@@ -17,6 +17,6 @@
     "target": "esnext",
     "types": ["node"]
   },
-  "include": ["components/**/*", "docs/**/*", "playroom/**/*"],
+  "include": ["lib/**/*"],
   "exclude": ["node_modules"]
 }
