@@ -37,13 +37,28 @@ export const unresponsiveProperties = {
   right: [0],
   height: sizes,
   width: sizes,
+  transitionProperty: {
+    none: 'none',
+    all: 'all',
+    default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+    colors: 'background-color, border-color, color, fill, stroke',
+    opacity: 'opacity',
+    shadow: 'box-shadow',
+    transform: 'transform',
+  },
+  transitionTimingFunction: {
+    linear: 'linear',
+    in: 'cubic-bezier(0.4, 0, 1, 1)',
+    out: 'cubic-bezier(0, 0, 0.2, 1)',
+    inOut: 'cubic-bezier(0.42, 0, 0.58, 1)',
+  },
 } as const;
 
 export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
 
 export const colorProperties = {
-  background: vars.color,
-  boxShadow,
+  color: vars.color,
+  backgroundColor: vars.color,
 } as const;
 
 export type ColorProperties = keyof typeof colorProperties;
