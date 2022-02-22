@@ -19,9 +19,11 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
   return (
     <>
       <Head>
-        <title>{meta?.title ? `${meta.title} — Mirror Design` : 'Mirror Design'}</title>
+        <title>{meta?.title ? `${meta.title} — Ministry of Health NZ` : 'Ministry of Health NZ'}</title>
         <meta
-          content={meta?.description ?? 'Design system for Mirror.xyz built with React and vanilla-extract.'}
+          content={
+            meta?.description ?? 'Design system for the Ministry of Health built with React and vanilla-extract.'
+          }
           key="description"
           name="description"
         />
