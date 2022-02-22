@@ -9,7 +9,13 @@ export default (tokens: Tokens) => {
     borderRadius: rest.border.radius,
     borderWidth: rest.border.width,
     fontFamily: rest.typography.fontFamily,
-    fontWeight: rest.typography.fontWeight,
+    textSize: rest.typography.text,
+    textWeight: rest.typography.fontWeight,
+    headingLevel: rest.typography.heading.level,
+    headingWeight: {
+      weak: rest.typography.fontWeight[rest.typography.heading.weight.weak],
+      regular: rest.typography.fontWeight[rest.typography.heading.weight.regular],
+    },
     color: rest.color,
     shadow: rest.shadows,
   } as const;

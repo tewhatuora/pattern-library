@@ -5,6 +5,7 @@ import Head from 'next/head';
 
 import { ThemeProvider } from 'moh-design-system/components';
 import neutral from 'moh-design-system/themes/neutral';
+import myCovidRecord from 'moh-design-system/themes/myCovidRecord';
 
 import { MDX } from '~/components';
 import { getLayout as getDocsLayout } from '~/layouts/docs';
@@ -15,7 +16,7 @@ const App = ({ Component, ...pageProps }) => {
   const getLayout = Component.getLayout || getDocsLayout;
 
   return (
-    <ThemeProvider theme={neutral}>
+    <ThemeProvider theme={myCovidRecord}>
       <Head>
         {/* Prevent theme flash */}
         <script

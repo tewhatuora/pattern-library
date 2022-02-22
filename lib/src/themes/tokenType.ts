@@ -1,5 +1,13 @@
-// import { Breakpoint } from '../css/breakpoints';
+import { Breakpoint } from '../css/breakpoints';
 
+export type TextBreakpoint = Exclude<Breakpoint, 'desktop' | 'wide'>;
+
+type FontSizeText = {
+  fontSize: string; // Should be a rem value
+  lineHeight: string;
+};
+
+export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 type FontWeight = 'regular' | 'medium' | 'bold' | 'black';
 
 export interface Tokens {
@@ -8,7 +16,24 @@ export interface Tokens {
   typography: {
     fontFamily: string;
     fontWeight: Record<FontWeight, '400' | '500' | '600' | '700' | '800' | '900'>;
-    // TODO: Add font sizes
+    heading: {
+      weight: {
+        weak: FontWeight;
+        regular: FontWeight;
+      };
+      level: {
+        '1': TextDefinition;
+        '2': TextDefinition;
+        '3': TextDefinition;
+        '4': TextDefinition;
+      };
+    };
+    text: {
+      xsmall: TextDefinition;
+      small: TextDefinition;
+      standard: TextDefinition;
+      large: TextDefinition;
+    };
   };
   space: {
     1: string;

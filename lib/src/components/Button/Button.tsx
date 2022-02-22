@@ -1,10 +1,12 @@
 import * as React from 'react';
 
+import { Text } from '../Text/Text';
+
 import { ReactNodeNoStrings } from '../../types';
 import { Box, BoxProps } from '../Box/Box';
-import * as styles from './styles.css';
+import * as styles from './Button.css';
 
-type BaseProps = {
+type ButtonProps = {
   suffix?: ReactNodeNoStrings;
   variant?: styles.Variant;
 } & Pick<
@@ -13,20 +15,11 @@ type BaseProps = {
 > &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
-type WithAnchor = {
-  as?: 'a';
-} & Pick<JSX.IntrinsicElements['a'], 'href' | 'rel' | 'target'>;
-
-type WithoutAnchor = {
-  as?: 'button';
-};
-
-export type Props = BaseProps & (WithAnchor | WithoutAnchor);
-
 export const Button = React.forwardRef(
-  ({ children, variant = 'primary', ...boxProps }: Props, ref: React.Ref<HTMLButtonElement>) => {
+  ({ children, variant = 'primary', ...boxProps }: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
     return (
       <Box
+        as="button"
         className={styles.variants({
           variant,
         })}
@@ -35,9 +28,10 @@ export const Button = React.forwardRef(
         // Note: Default values for boxProps need to be
         // assigned after the {...boxProps} spread below
         {...boxProps}
-        as={boxProps.as ?? 'button'}
       >
-        {children}
+        <Text size="standard" weight="medium">
+          {children}
+        </Text>
       </Box>
     );
   },
