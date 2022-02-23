@@ -4,7 +4,7 @@ import { useLocalStorage } from 'react-use';
 import * as themes from 'moh-design-system/themes';
 type ThemeKey = keyof typeof themes;
 
-const defaultTheme = 'myCovidRecord' as const;
+const defaultTheme = 'neutral' as const;
 
 interface ThemeSettingsContext {
   ready: boolean;
@@ -37,6 +37,7 @@ interface ThemeSettingProviderProps {
 export function ThemeSettingProvider({ children }: ThemeSettingProviderProps) {
   const [ready, setReady] = useState(false);
   const [themeKey, setThemeKey] = useThemePreference();
+  // eslint-disable-next-line import/namespace
   const theme = themes[ready ? themeKey : defaultTheme] ?? themes[defaultTheme];
 
   useEffect(() => {
