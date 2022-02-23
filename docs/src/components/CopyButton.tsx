@@ -35,7 +35,7 @@ export const CopyButton = ({ content }: Props) => {
   }, [content]);
 
   return (
-    <Button shape="square" size="small" variant="tertiary" onClick={onClick}>
+    <Button variant="tertiary" onClick={onClick}>
       {state.copied ? 'copied' : 'copy to clipboard'}
     </Button>
   );

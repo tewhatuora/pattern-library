@@ -71,7 +71,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
 
                   <Box {...dataProps}>
                     <Text
-                      color="secondary100"
+                      color="brandSecondary100"
                       //  font="mono"
                       size="small"
                     >

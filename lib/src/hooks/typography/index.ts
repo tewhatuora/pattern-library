@@ -16,7 +16,7 @@ export const globalTextStyle = ({
 }: Pick<UseTextProps, 'weight' | 'size'> = {}): StyleRule => ({
   fontFamily: vars.fontFamily,
   fontWeight: vars.textWeight[weight],
-  color: vars.color.primary100,
+  color: vars.color.brandPrimary100,
   ...responsiveStyle({
     mobile: {
       fontSize: vars.textSize[size].mobile.fontSize,
@@ -47,7 +47,7 @@ export const globalHeadingStyle = ({
 }: Pick<UseHeadingProps, 'weight' | 'level'>): StyleRule => ({
   fontFamily: vars.fontFamily,
   fontWeight: vars.headingWeight[weight],
-  color: vars.color.primary100,
+  color: vars.color.brandPrimary100,
   ...responsiveStyle({
     mobile: {
       fontSize: vars.headingLevel[level].mobile.fontSize,

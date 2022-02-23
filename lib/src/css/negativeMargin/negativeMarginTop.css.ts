@@ -14,21 +14,21 @@ export const base = style({
   ':before': { content: '""', display: 'table' },
 });
 
-export const mobile = styleVariants({ none: 0, ...vars.space }, (value) => negativeMarginTop(value));
+export const mobile = styleVariants({ 0: 0, ...vars.space }, (value) => negativeMarginTop(value));
 
-export const tablet = styleVariants({ none: 0, ...vars.space }, (value) =>
+export const tablet = styleVariants({ 0: 0, ...vars.space }, (value) =>
   responsiveStyle({
     tablet: negativeMarginTop(value),
   }),
 );
 
-export const desktop = styleVariants({ none: 0, ...vars.space }, (value) =>
+export const desktop = styleVariants({ 0: 0, ...vars.space }, (value) =>
   responsiveStyle({
     desktop: negativeMarginTop(value),
   }),
 );
 
-export const wide = styleVariants({ none: 0, ...vars.space }, (value) =>
+export const wide = styleVariants({ 0: 0, ...vars.space }, (value) =>
   responsiveStyle({
     wide: negativeMarginTop(value),
   }),
