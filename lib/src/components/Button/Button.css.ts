@@ -4,34 +4,35 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
-import { vars } from '../../themes/vars.css';
 
 const variant = {
   primary: atoms({
-    color: 'primary0',
+    color: 'brandAccentContrast',
     backgroundColor: {
-      base: 'primary100',
-      hover: 'primary75',
+      base: 'brandAccent100',
+      hover: 'brandAccent75',
+      active: 'brandAccent110',
     },
   }),
   secondary: atoms({
-    color: 'secondary0',
+    color: 'brandSecondaryContrast',
     backgroundColor: {
-      base: 'secondary100',
-      hover: 'secondary75',
+      base: 'brandSecondary100',
+      hover: 'brandSecondary75',
+      active: 'brandSecondary110',
     },
   }),
   tertiary: style([
     atoms({
-      color: 'primary100',
+      color: 'brandPrimary100',
       backgroundColor: {
         base: 'neutral0',
       },
+      borderColor: 'brandPrimary100',
+      borderWidth: 'standard',
     }),
     style({
-      borderWidth: vars.borderWidth.standard,
       borderStyle: 'solid',
-      borderColor: vars.color.primary100,
     }),
   ]),
 };
