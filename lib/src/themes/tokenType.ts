@@ -68,26 +68,29 @@ export interface Tokens {
     large: string;
   };
   color: {
-    primary100: string;
-    primary75: string;
-    primary50: string;
-    primary25: string;
-    primary5: string;
-    primary0: string;
+    brandPrimary110: string; // Used for pressed states
+    brandPrimary100: string; // Base (brandPrimary100)
+    brandPrimary75: string; // Used for hover states
+    brandPrimary50: string;
+    brandPrimary25: string; // Used for disabled states
+    brandPrimary5: string;
+    brandPrimaryContrast: string; // Contrast (maps to brandPrimary0 in Figma)
 
-    secondary100: string;
-    secondary75: string;
-    secondary50: string;
-    secondary25: string;
-    secondary5: string;
-    secondary0: string;
+    brandSecondary110: string;
+    brandSecondary100: string;
+    brandSecondary75: string;
+    brandSecondary50: string;
+    brandSecondary25: string;
+    brandSecondary5: string;
+    brandSecondaryContrast: string;
 
-    tertiary100: string;
-    tertiary75: string;
-    tertiary50: string;
-    tertiary25: string;
-    tertiary5: string;
-    tertiary0: string;
+    brandAccent110: string;
+    brandAccent100: string;
+    brandAccent75: string;
+    brandAccent50: string;
+    brandAccent25: string;
+    brandAccent5: string;
+    brandAccentContrast: string;
 
     neutral100: string;
     neutral75: string;
@@ -96,39 +99,44 @@ export interface Tokens {
     neutral5: string;
     neutral0: string;
 
+    positive110: string;
     positive100: string;
     positive75: string;
     positive50: string;
     positive25: string;
     positive5: string;
-    positive0: string;
+    positiveContrast: string;
 
+    info110: string;
     info100: string;
     info75: string;
     info50: string;
     info25: string;
     info5: string;
-    info0: string;
+    infoContrast: string;
 
+    caution110: string;
     caution100: string;
     caution75: string;
     caution50: string;
     caution25: string;
     caution5: string;
-    caution0: string;
+    cautionContrast: string;
 
+    error110: string;
     error100: string;
     error75: string;
     error50: string;
     error25: string;
     error5: string;
-    error0: string;
+    errorContrast: string;
 
+    annotation110: string;
     annotation100: string;
     annotation75: string;
     annotation50: string;
     annotation25: string;
     annotation5: string;
-    annotation0: string;
+    annotationContrast: string;
   };
 }
