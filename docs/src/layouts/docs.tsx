@@ -6,6 +6,7 @@ import { Box } from 'moh-design-system/components';
 
 // import { Header, Nav, NavProps, SkipNavContent, SkipNavLink } from '~/components';
 import { getLayout as getBaseLayout } from './site';
+import { ThemeToggle } from '~/components/ThemeSetting/ThemeToggle';
 
 export type Props = {
   meta: {
@@ -31,14 +32,21 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
 
       {/* <SkipNavLink>Skip to content</SkipNavLink> */}
 
-      <Box maxWidth="320" paddingX="6">
-        <Box as="aside" paddingRight={{ tablet: '12' }} paddingTop="12" position={{ tablet: 'fixed' }}>
+      <Box paddingX={6}>
+        <Box as="aside" paddingRight={{ tablet: 12 }} paddingTop={12} position={{ tablet: 'fixed' }}>
           {/* <Nav links={links} /> */}
+          <ThemeToggle />
         </Box>
 
         <Box as="main">
           {/* <SkipNavContent /> */}
-          <Box as="article" maxWidth="224" paddingBottom="20" paddingTop="20" paddingX={{ desktop: '10' }}>
+          <Box
+            as="article"
+            // maxWidth="224"
+            paddingBottom={20}
+            paddingTop={20}
+            paddingX={{ desktop: 10 }}
+          >
             {/* {meta && <Header {...meta} />} */}
 
             {children}

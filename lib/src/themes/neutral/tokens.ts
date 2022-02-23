@@ -120,6 +120,9 @@ const tokens: Tokens = {
     18: '4.5rem',
     20: '5rem',
   },
+  transitions: {
+    fast: 'transform .125s ease, opacity .125s ease',
+  },
   border: {
     radius: {
       standard: '8px',

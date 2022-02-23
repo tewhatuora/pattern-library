@@ -9,13 +9,14 @@ export interface TextProps extends Pick<BoxProps, 'as'> {
   size?: UseTextProps['size'];
   weight?: UseTextProps['weight'];
   align?: BoxProps['textAlign'];
+  color?: BoxProps['color'];
 }
 
-export const Text = ({ id, as = 'span', size = 'standard', align, weight = 'regular', children }: TextProps) => {
+export const Text = ({ id, as = 'span', size = 'standard', align, weight = 'regular', children, color }: TextProps) => {
   const textStyles = useText({ weight, size });
 
   return (
-    <Box as={as} className={textStyles} display="block" id={id} textAlign={align}>
+    <Box as={as} className={textStyles} color={color} display="block" id={id} textAlign={align}>
       {children}
     </Box>
   );

@@ -49,6 +49,9 @@ export interface Tokens {
     18: string;
     20: string;
   };
+  transitions: {
+    fast: string;
+  };
   border: {
     radius: {
       standard: string;

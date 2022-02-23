@@ -1,41 +1,42 @@
 import { MDXProviderProps } from '@mdx-js/react';
 import slugify from '@sindresorhus/slugify';
 
-import { Box } from 'moh-design-system/components';
+import { Box, Heading, Text } from 'moh-design-system/components';
+
+import { CodeBlock } from './CodeBlock';
 
 // import * as styles from '~/styles/utils.css';
-// import { CodeBlock } from './CodeBlock';
 // import { Link } from './Link';
 // import { SearchIcons } from './SearchIcons';
-// import { PropsTable } from './PropsTable';
+import { PropsTable } from './PropsTable';
 
 export const MDX: MDXProviderProps['components'] = {
-  // PropsTable,
+  PropsTable,
   // SearchIcons,
   // Default components
   // https://mdxjs.com/table-of-components/
   // a: (props) => <Link className={styles.link} {...props} />,
-  // code: (props) => <CodeBlock {...props} />,
+  code: (props) => <CodeBlock {...props} />,
   h2: ({ children }) => {
     const id = slugify(children);
     return (
-      <Box display="block" marginBottom="6" marginTop="12">
-        <Box id={id}>
+      <Box display="block" marginBottom={6} marginTop={12}>
+        <Heading id={id} level="2">
           <Box as="a" href={`#${id}`}>
             {children}
-            <Box marginLeft="2">#</Box>
+            <Box marginLeft={2}>#</Box>
           </Box>
-        </Box>
+        </Heading>
       </Box>
     );
   },
   inlineCode: ({ children }) => <Box as="code">{children}</Box>,
   p: ({ children }) => (
-    <Box marginY="6">
-      <Box as="p" lineHeight="1.625" variant="base">
+    <Box marginY={6}>
+      <Text as="p" size="standard">
         {children}
-      </Box>
+      </Text>
     </Box>
   ),
-  pre: (props) => <Box marginY="6" {...props} />,
+  pre: (props) => <Box marginY={6} {...props} />,
 };

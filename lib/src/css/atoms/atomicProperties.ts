@@ -6,7 +6,7 @@ const sizes = {
 
 const space = {
   ...vars.space,
-  none: 0,
+  0: 0,
 } as const;
 
 const boxShadow = vars.shadow;
@@ -14,7 +14,6 @@ const boxShadow = vars.shadow;
 export type BoxShadow = keyof typeof boxShadow;
 
 export const unresponsiveProperties = {
-  overflow: ['hidden', 'scroll', 'visible', 'auto'],
   userSelect: ['none'],
   outline: ['none'],
   opacity: [0],
@@ -31,10 +30,6 @@ export const unresponsiveProperties = {
   },
   cursor: ['default', 'pointer'],
   pointerEvents: ['none'],
-  top: [0],
-  bottom: [0],
-  left: [0],
-  right: [0],
   height: sizes,
   width: sizes,
   transitionProperty: {
@@ -52,6 +47,7 @@ export const unresponsiveProperties = {
     out: 'cubic-bezier(0, 0, 0.2, 1)',
     inOut: 'cubic-bezier(0.42, 0, 0.58, 1)',
   },
+  transition: vars.transition,
 } as const;
 
 export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
@@ -59,6 +55,7 @@ export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
 export const colorProperties = {
   color: vars.color,
   backgroundColor: vars.color,
+  borderColor: vars.color,
 } as const;
 
 export type ColorProperties = keyof typeof colorProperties;
@@ -71,12 +68,22 @@ export const responsiveProperties = {
     inlineBlock: 'inline-block',
     flex: 'flex',
   },
-  position: ['relative', 'absolute', 'fixed'],
+  position: ['relative', 'absolute', 'fixed', 'sticky'],
+  overflow: ['hidden', 'scroll', 'visible', 'auto'],
+  borderWidth: vars.borderWidth,
+  borderBottomWidth: vars.borderWidth,
+  borderLeftWidth: vars.borderWidth,
+  borderRightWidth: vars.borderWidth,
+  borderTopWidth: vars.borderWidth,
   borderRadius: {
     none: '0px',
     full: '9999px',
     ...vars.borderRadius,
   },
+  borderBottomLeftRadius: vars.borderRadius,
+  borderBottomRightRadius: vars.borderRadius,
+  borderTopLeftRadius: vars.borderRadius,
+  borderTopRightRadius: vars.borderRadius,
   paddingTop: space,
   paddingBottom: space,
   paddingRight: space,
@@ -85,6 +92,10 @@ export const responsiveProperties = {
   marginBottom: space,
   marginRight: space,
   marginLeft: space,
+  top: space,
+  right: space,
+  bottom: space,
+  left: space,
   alignItems: {
     flexStart: 'flex-start',
     center: 'center',

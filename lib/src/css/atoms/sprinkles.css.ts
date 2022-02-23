@@ -10,6 +10,11 @@ import {
 import { Breakpoint, breakpointNames, breakpoints } from '../breakpoints';
 import { colorProperties, responsiveProperties, unresponsiveProperties } from './atomicProperties';
 
+// Ensure reset has lowest specificity
+/* DO NOT MOVE THIS LINE */
+import '../reset.css';
+/* DO NOT MOVE THIS LINE */
+
 const unresponsiveAtomicProperties = defineProperties({
   properties: unresponsiveProperties,
 });
@@ -31,6 +36,10 @@ const responsiveAtomicProperties = defineProperties({
   responsiveArray: breakpointNames,
   properties: responsiveProperties,
   shorthands: {
+    borderLeftRadius: ['borderBottomLeftRadius', 'borderTopLeftRadius'],
+    borderRightRadius: ['borderBottomRightRadius', 'borderTopRightRadius'],
+    borderTopRadius: ['borderTopLeftRadius', 'borderTopRightRadius'],
+    borderBottomRadius: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
     padding: ['paddingBottom', 'paddingTop', 'paddingLeft', 'paddingRight'],
     paddingY: ['paddingTop', 'paddingBottom'],
     paddingX: ['paddingLeft', 'paddingRight'],
@@ -85,7 +94,6 @@ export type RequiredResponsiveValue<Value extends string | number> = RequiredCon
   typeof responsiveAtomicProperties,
   Value
 >;
-
 export type RequiredResponsiveObject<Value> = Partial<Record<Breakpoint, Value>> &
   Record<typeof breakpointNames[0], Value>;
 
