@@ -8,7 +8,7 @@ import { documentedThemes, useThemeSettings } from './ThemeSettingContext';
 
 export function ThemeToggle() {
   const { themeKey, setThemeKey, ready } = useThemeSettings();
-  console.log(themeKey);
+
   return (
     <Text size="standard" weight="bold">
       {ready ? (

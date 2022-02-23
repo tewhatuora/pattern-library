@@ -32,6 +32,9 @@ export const unresponsiveProperties = {
   pointerEvents: ['none'],
   height: sizes,
   width: sizes,
+  minWidth: {
+    0: '0%',
+  },
   transitionProperty: {
     none: 'none',
     all: 'all',

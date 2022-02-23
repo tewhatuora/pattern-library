@@ -14,14 +14,21 @@ type HeadingProps = {
   level: HeadingLevel;
   weight?: HeadingWeight;
   align?: BoxProps['textAlign'];
+  color?: BoxProps['color'];
   as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend';
   children?: React.ReactNode;
   id?: string;
 };
 
-export const Heading = ({ level, weight, align, as, children, id }: HeadingProps) => {
+export const Heading = ({ level, weight, align, as, children, id, color }: HeadingProps) => {
   return (
-    <Box as={as ?? resolveDefaultComponent[level]} className={useHeading({ weight, level })} id={id} textAlign={align}>
+    <Box
+      as={as ?? resolveDefaultComponent[level]}
+      className={useHeading({ weight, level })}
+      color={color}
+      id={id}
+      textAlign={align}
+    >
       {children}
     </Box>
   );

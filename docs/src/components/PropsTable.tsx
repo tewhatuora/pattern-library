@@ -3,10 +3,10 @@ import { PropItem } from 'react-docgen-typescript';
 
 import { Box, Button, ScreenReadersOnly, Stack, Text } from 'moh-design-system/components';
 
-import { Link } from './Link';
+// import { Link } from './Link';
 
 type Props = {
-  sourceLink?: string;
+  // sourceLink?: string;
   types: Record<string, PropItem>;
 };
 
@@ -16,7 +16,7 @@ const dataProps: Parameters<typeof Box>[0] = {
   paddingY: 3,
 };
 
-export const PropsTable = ({ sourceLink, types }: Props) => {
+export const PropsTable = ({ types }: Props) => {
   const [state, setState] = React.useState<{
     showDescriptions: boolean;
   }>({
@@ -119,11 +119,11 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
             </Button>
           )}
 
-          {sourceLink && (
+          {/* {sourceLink && (
             <Link href={sourceLink}>
               <Button variant="tertiary">View Source on GitHub</Button>
             </Link>
-          )}
+          )} */}
         </Stack>
       </Box>
     </>

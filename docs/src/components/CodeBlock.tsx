@@ -1,10 +1,16 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import Highlight, { Language, defaultProps } from 'prism-react-renderer';
 import vsLight from 'prism-react-renderer/themes/vsLight';
 
 import { Box, BoxProps } from 'moh-design-system/components';
 
 import { CopyButton } from './CopyButton';
+import type { Props as CodePreviewProps } from './CodePreview';
+
+const CodePreview = dynamic<CodePreviewProps>(() => import('./CodePreview').then((mod) => mod.CodePreview), {
+  loading: () => <Box backgroundColor="neutral25" borderRadius="large" width="full" />,
+});
 
 type Props = {
   backgroundColor?: BoxProps['backgroundColor'];
@@ -14,8 +20,10 @@ type Props = {
   expand?: boolean;
 };
 
-export const CodeBlock = ({ children, className }: Props) => {
+export const CodeBlock = ({ children, className, live, backgroundColor, expand }: Props) => {
   const code = children.trim();
+
+  if (live) return <CodePreview backgroundColor={backgroundColor} code={code} expand={expand} theme={vsLight} />;
 
   const language = className?.replace(/language-/, '') as Language;
   return (

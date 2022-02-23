@@ -1,7 +1,41 @@
-import { Button, Stack } from 'moh-design-system/components';
+import { Header, Link } from '~/components';
 
-<Stack space={8}>
-  <Button>Test</Button>
-  <Button variant="secondary">Test</Button>
-  <Button variant="tertiary">Test</Button>
-</Stack>
+<Header
+  description={
+    <>
+      Design system for the <Link href="https://www.health.govt.nz/">Ministry of Health NZ</Link> built with{' '}
+      <Link href="https://reactjs.org/">React</Link> and{' '}
+      <Link href="https://vanilla-extract.style/">vanilla-extract</Link>.
+    </>
+  }
+  title="Ministry of Health NZ Design System"
+/>
+
+## Install
+
+```bash
+npm install --save moh-design-system
+```
+
+## Set Up
+
+At the root of your application, import the required theme and the [`ThemeProvider`](/components/ThemeProvider) component.
+
+```tsx
+import myCovidRecord from 'moh-design-system/themes/myCovidRecord';
+import { ThemeProvider, Text } from 'moh-design-system';
+// ...etc.
+```
+
+Finally, wrap the root of your application with the `ThemeProvider` component, providing the imported theme via the `theme` prop.
+
+```tsx
+import myCovidRecord from 'moh-design-system/themes/myCovidRecord';
+import { ThemeProvider, Text } from 'moh-design-system';
+
+export default () => (
+  <ThemeProvider theme={myCovidRecord}>
+    <Text>Hello World</Text>
+  </ThemeProvider>
+);
+```

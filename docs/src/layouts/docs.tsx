@@ -4,9 +4,9 @@ import Head from 'next/head';
 
 import { Box } from 'moh-design-system/components';
 
-// import { Header, Nav, NavProps, SkipNavContent, SkipNavLink } from '~/components';
+import { Header, Nav, NavProps } from '~/components';
+
 import { getLayout as getBaseLayout } from './site';
-import { ThemeToggle } from '~/components/ThemeSetting/ThemeToggle';
 
 export type Props = {
   meta: {
@@ -16,7 +16,7 @@ export type Props = {
 };
 
 const Layout: NextLayout<Props> = ({ children, meta }) => {
-  // const links = (process.env.navLinks as unknown as NavProps['links']) ?? [];
+  const links = (process.env.navLinks as unknown as NavProps['links']) ?? [];
   return (
     <>
       <Head>
@@ -34,8 +34,7 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
 
       <Box paddingX={6}>
         <Box as="aside" paddingRight={{ tablet: 12 }} paddingTop={12} position={{ tablet: 'fixed' }}>
-          {/* <Nav links={links} /> */}
-          <ThemeToggle />
+          <Nav links={links} />
         </Box>
 
         <Box as="main">
@@ -47,7 +46,7 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
             paddingTop={20}
             paddingX={{ desktop: 10 }}
           >
-            {/* {meta && <Header {...meta} />} */}
+            {meta && <Header {...meta} />}
 
             {children}
           </Box>
