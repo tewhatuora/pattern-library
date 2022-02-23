@@ -7,8 +7,8 @@ import { MDX } from '~/components';
 import { getLayout as getDocsLayout } from '~/layouts/docs';
 import { ThemeSettingProvider } from '~/components/ThemeSetting';
 import { ToggleableThemeProvider } from '~/components/ThemeSetting/ToggleableThemeProvider';
-// import { getTheme } from '~/utils/cookies';
-// import '~/styles/globals.css';
+
+import '@fontsource/fira-sans';
 
 const App = ({ Component, ...pageProps }: AppProps) => {
   const getLayout = Component.getLayout || getDocsLayout;
