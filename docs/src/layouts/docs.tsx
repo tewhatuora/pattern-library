@@ -6,6 +6,8 @@ import { Box } from 'moh-design-system/components';
 
 import { Header, Nav, NavProps } from '~/components';
 
+import * as styles from '~/styles/utils.css';
+
 import { getLayout as getBaseLayout } from './site';
 
 export type Props = {
@@ -32,12 +34,12 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
 
       {/* <SkipNavLink>Skip to content</SkipNavLink> */}
 
-      <Box paddingX={6}>
-        <Box as="aside" paddingRight={{ tablet: 12 }} paddingTop={12} position={{ tablet: 'fixed' }}>
+      <div className={styles.sideNavWrapper}>
+        <aside className={styles.sideNavContainer}>
           <Nav links={links} />
-        </Box>
+        </aside>
 
-        <Box as="main">
+        <main className={styles.main}>
           {/* <SkipNavContent /> */}
           <Box
             as="article"
@@ -50,8 +52,8 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
 
             {children}
           </Box>
-        </Box>
-      </Box>
+        </main>
+      </div>
     </>
   );
 };
