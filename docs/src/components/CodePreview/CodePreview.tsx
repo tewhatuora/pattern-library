@@ -27,7 +27,7 @@ const initialState = {
   expand: false,
 };
 
-export const CodePreview = ({ backgroundColor = 'neutral25', code, expand = false, theme }: Props) => {
+export const CodePreview = ({ backgroundColor = 'neutral0', code, expand = false, theme }: Props) => {
   const previewRef = React.useRef<HTMLElement>(null);
   const [state, setState] = React.useState<State>({
     ...initialState,
@@ -51,7 +51,7 @@ export const CodePreview = ({ backgroundColor = 'neutral25', code, expand = fals
     >
       <Box
         backgroundColor="neutral25"
-        borderColor="neutral50"
+        borderColor="neutral5"
         borderRadius="xlarge"
         borderWidth="standard"
         overflow="hidden"
