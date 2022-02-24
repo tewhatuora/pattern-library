@@ -15,6 +15,12 @@ export const hoverChild = style({
   },
 });
 
+export const code = style({
+  fontFamily: 'Fira Code, Consolas',
+  lineHeight: '1.5',
+  fontSize: '1rem',
+});
+
 export const link = style([
   atoms({
     color: 'brandSecondary100',

@@ -16,7 +16,7 @@ type ButtonProps = {
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
 export const Button = React.forwardRef(
-  ({ children, variant = 'primary', ...boxProps }: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
+  ({ children, variant = 'primary', type = 'button', ...boxProps }: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
     return (
       <Box
         as="button"
@@ -24,6 +24,7 @@ export const Button = React.forwardRef(
           variant,
         })}
         ref={ref}
+        type={type}
         // Passed-through boxProps.
         // Note: Default values for boxProps need to be
         // assigned after the {...boxProps} spread below

@@ -9,6 +9,7 @@ import { ThemeSettingProvider } from '~/components/ThemeSetting';
 import { ToggleableThemeProvider } from '~/components/ThemeSetting/ToggleableThemeProvider';
 
 import '@fontsource/fira-sans';
+import '@fontsource/fira-code';
 
 const App = ({ Component, ...pageProps }: AppProps) => {
   const getLayout = Component.getLayout || getDocsLayout;
