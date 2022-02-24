@@ -1,0 +1,9 @@
+docs/.next/
+docs/public/playroom/
+
+lib/dist/
+lib/coverage/
+lib/src/components/icons/generated/
+
+.yarn/*
+yarn.lock
