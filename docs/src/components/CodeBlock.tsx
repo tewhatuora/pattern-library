@@ -10,7 +10,7 @@ import { vars } from 'moh-design-system/themes/vars.css';
 import { useIsMounted } from '~/utils/isMounted';
 import * as styles from '~/styles/utils.css';
 
-import { CopyButton } from './CopyButton';
+// import { CopyButton } from './CopyButton';
 import type { Props as CodePreviewProps } from './CodePreview';
 
 const CodePreview = dynamic<CodePreviewProps>(() => import('./CodePreview').then((mod) => mod.CodePreview), {
@@ -48,9 +48,9 @@ export const CodeBlock = ({ children, className, live, backgroundColor, expand }
       {/* eslint-disable react/no-array-index-key */}
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Box as="pre" borderRadius="xlarge" className={className} padding={6} position="relative" style={style}>
-          <Box position="absolute" right={3} top={3}>
+          {/* <Box position="absolute" right={3} top={3}>
             <CopyButton content={code} />
-          </Box>
+          </Box> */}
 
           {tokens.map((line, i) => (
             <Box
