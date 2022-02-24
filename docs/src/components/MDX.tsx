@@ -3,9 +3,10 @@ import slugify from '@sindresorhus/slugify';
 
 import { Box, Heading, Text } from 'moh-design-system/components';
 
+import * as styles from '~/styles/utils.css';
+
 import { CodeBlock } from './CodeBlock';
 
-// import * as styles from '~/styles/utils.css';
 // import { Link } from './Link';
 // import { SearchIcons } from './SearchIcons';
 import { PropsTable } from './PropsTable';
@@ -22,9 +23,11 @@ export const MDX: MDXProviderProps['components'] = {
     return (
       <Box display="block" marginBottom={6} marginTop={12}>
         <Heading id={id} level="2">
-          <Box as="a" href={`#${id}`}>
+          <Box as="a" className={styles.hoverParent} href={`#${id}`}>
             {children}
-            <Box marginLeft={2}>#</Box>
+            <Box className={styles.hoverChild} color="neutral50" display="inlineBlock" marginLeft={2}>
+              #
+            </Box>
           </Box>
         </Heading>
       </Box>

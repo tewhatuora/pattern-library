@@ -41,7 +41,9 @@ export const Nav = ({ links }: Props) => {
           </Stack> */}
 
           <Stack space={4}>
-            <Text size="small">Guides</Text>
+            <Text color="neutral50" size="small">
+              Guides
+            </Text>
             <Stack space={3}>
               <NavLink href="/guides/development">Development</NavLink>
               {/* <NavLink href="/guides/playroom">Playroom</NavLink> */}
@@ -50,7 +52,9 @@ export const Nav = ({ links }: Props) => {
 
           {links.map((x) => (
             <Stack key={x.name} space={4}>
-              <Text size="small">{x.name}</Text>
+              <Text color="neutral50" size="small">
+                {x.name}
+              </Text>
 
               <Stack space={3}>
                 {x.links.map((y) => (
@@ -76,7 +80,9 @@ const NavLink = ({
 }>) => {
   return (
     <Box>
-      <Link href={href}>{children}</Link>
+      <Link href={href}>
+        <Text size="small">{children}</Text>
+      </Link>
     </Box>
   );
 };
