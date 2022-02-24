@@ -23,7 +23,6 @@ $ npm install --save moh-design-system
 At the root of your project, import the reset, required theme and `ThemeProvider` component.
 
 ```js
-import 'moh-design-system/reset';
 import myCovidRecordTheme from 'moh-design-system/themes/myCovidRecord';
 import { ThemeProvider, Button } from 'moh-design-system';
 // ...etc.
@@ -32,7 +31,6 @@ import { ThemeProvider, Button } from 'moh-design-system';
 Finally, render the `ThemeProvider` component, providing the imported theme via the `theme` prop:
 
 ```js
-import 'moh-design-system/reset';
 import myCovidRecordTheme from 'moh-design-system/themes/myCovidRecord';
 import { ThemeProvider, Button } from 'moh-design-system';
 
@@ -43,4 +41,12 @@ const App = () => {
     </ThemeProvider>
   );
 };
+```
+
+## Local development
+
+Run the docs website by going into the `/docs/` folder and running:
+
+```bash
+yarn dev
 ```
