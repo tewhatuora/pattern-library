@@ -16,7 +16,7 @@
 
 In your React project, first install the library:
 
-```
+```bash
 $ npm install --save moh-design-system
 ```
 
@@ -30,7 +30,7 @@ import { ThemeProvider, Button } from 'moh-design-system';
 
 Finally, render the `ThemeProvider` component, providing the imported theme via the `theme` prop:
 
-```js
+```jsx
 import myCovidRecordTheme from 'moh-design-system/themes/myCovidRecord';
 import { ThemeProvider, Button } from 'moh-design-system';
 
@@ -48,7 +48,7 @@ const App = () => {
 Run the docs website by going into the `/docs/` folder and running:
 
 ```bash
-yarn dev
+$ yarn dev
 ```
 
 ---
@@ -65,5 +65,5 @@ See `.storybook/preview.js` for how themes are configured.
 
 To run storybook:
 ```bash
-yarn storybook
+$ yarn storybook
 ```
