@@ -59,7 +59,11 @@ Documentation can be created as `.stories.mdx` files inside the `./stories` dire
 
 Create component stories as either a `.stories.mdx` or `.stories.{ts|tsx|js|jsx}` file. e.g. `Button.stories.tsx`
 
-To run Storybook:
+### Themes
+
+See `.storybook/preview.js` for how themes are configured.
+
+To run storybook:
 ```bash
 yarn storybook
 ```
