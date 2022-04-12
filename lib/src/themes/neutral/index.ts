@@ -1,3 +1,2 @@
-import neutralTheme from './neutralTheme.css';
-
-export default neutralTheme;
+export { default } from './neutralTheme.css';
+export { default as neutralThemeTokens } from './tokens';

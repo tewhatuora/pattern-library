@@ -1,3 +1,2 @@
-import myCovidRecord from './myCovidRecord.css';
-
-export default myCovidRecord;
+export { default } from './myCovidRecord.css';
+export { default as myCovidRecordThemeTokens } from './tokens';

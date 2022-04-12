@@ -1,3 +1,2 @@
-import myHealthAccount from './myHealthAccount.css';
-
-export default myHealthAccount;
+export { default } from './myHealthAccount.css';
+export { default as myHealthAccountThemeTokens } from './tokens';
