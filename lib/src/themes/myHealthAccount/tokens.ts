@@ -1,8 +1,8 @@
 import { Tokens } from '../tokenType';
 
 const tokens: Tokens = {
-  name: 'neutral',
-  displayName: 'Neutral',
+  name: 'myHealthAccount',
+  displayName: 'My Health Account',
   typography: {
     fontFamily: 'Fira Sans, system-ui, sans-serif',
     fontWeight: {
