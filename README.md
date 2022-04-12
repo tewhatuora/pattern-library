@@ -50,3 +50,16 @@ Run the docs website by going into the `/docs/` folder and running:
 ```bash
 yarn dev
 ```
+
+---
+
+## Storybook
+
+Documentation can be created as `.stories.mdx` files inside the `./stories` directory. e.g. `Introduction.stories.mdx`
+
+Create component stories as either a `.stories.mdx` or `.stories.{ts|tsx|js|jsx}` file. e.g. `Button.stories.tsx`
+
+To run Storybook:
+```bash
+yarn storybook
+```
