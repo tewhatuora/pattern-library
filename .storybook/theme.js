@@ -3,7 +3,7 @@ import { create } from '@storybook/theming';
 export default create({
     base: 'light',
     brandTitle: 'Ministry of Health',
-    brandUrl: 'https://example.com',
+    brandUrl: '/',
     brandImage: './Logo.svg',
 
     colorPrimary: '#002E6E',
