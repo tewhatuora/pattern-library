@@ -6,7 +6,7 @@ import { ReactNodeNoStrings } from '../../types';
 import { Box, BoxProps } from '../Box/Box';
 import * as styles from './Button.css';
 
-type ButtonProps = {
+export type ButtonProps = {
   suffix?: ReactNodeNoStrings;
   variant?: styles.Variant;
 } & Pick<
