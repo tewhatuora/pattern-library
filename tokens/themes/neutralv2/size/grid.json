@@ -1,0 +1,38 @@
+{
+  "grid": {
+    "desktop": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
+        "pattern": "columns",
+        "gutterSize": 32,
+        "alignment": "stretch",
+        "count": 12,
+        "offset": 120
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:452eb9e34f94c2e85915b4e3662ad72ee633fd9e,",
+          "exportKey": "grid"
+        }
+      }
+    },
+    "mobile": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
+        "pattern": "columns",
+        "gutterSize": 8,
+        "alignment": "stretch",
+        "count": 2,
+        "offset": 16
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:6d14011b139ac8855de67abd371375d3f2af34df,",
+          "exportKey": "grid"
+        }
+      }
+    }
+  }
+}

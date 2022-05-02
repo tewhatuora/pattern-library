@@ -1,5 +1,5 @@
 {
-  "name": "moh-design-system-poc",
+  "name": "@mohnz/design-system",
   "version": "0.0.63",
   "description": "Design system POC for MOH",
   "main": "./dist/index.cjs.js",
