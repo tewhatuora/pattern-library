@@ -1,16 +1,19 @@
-import {addDecorator} from "@storybook/react";
+import { addDecorator } from '@storybook/react';
 import { withThemes } from '@react-theming/storybook-addon';
-import { ThemeProvider } from 'moh-design-system-poc/src';
+import { ThemeProvider } from '@mohnz/design-system/src';
 // Themes
-import neutral, { neutralThemeTokens } from 'moh-design-system-poc/src/themes/neutral';
-import myCovidRecord, { myCovidRecordThemeTokens } from 'moh-design-system-poc/src/themes/myCovidRecord';
-import myHealthAccount, { myHealthAccountThemeTokens } from 'moh-design-system-poc/src/themes/myHealthAccount';
+import neutral, { neutralThemeTokens } from '@mohnz/design-system/src/themes/neutral';
+import myCovidRecord, { myCovidRecordThemeTokens } from '@mohnz/design-system/src/themes/myCovidRecord';
+import myHealthAccount, { myHealthAccountThemeTokens } from '@mohnz/design-system/src/themes/myHealthAccount';
+
+import neutralv2, { tokens as neutralv2ThemeTokens } from '../styles/web/neutralv2/theme.css.ts';
 
 // Add themes for vanilla-extract here
 const themeMap = {
   neutral,
   myCovidRecord,
   myHealthAccount,
+  neutralv2,
 };
 
 export const parameters = {
@@ -27,4 +30,4 @@ export const parameters = {
 const providerFn = ({ theme, children }) => <ThemeProvider theme={themeMap[theme.name]}>{children}</ThemeProvider>;
 
 // Create decorator with theme tokens
-addDecorator(withThemes(null, [neutralThemeTokens, myCovidRecordThemeTokens, myHealthAccountThemeTokens], { providerFn }));
+addDecorator(withThemes(null, [neutralThemeTokens, myCovidRecordThemeTokens, myHealthAccountThemeTokens, neutralv2ThemeTokens], { providerFn }));
