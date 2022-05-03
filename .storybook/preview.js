@@ -6,7 +6,7 @@ import neutral, { neutralThemeTokens } from '@mohnz/design-system/src/themes/neu
 import myCovidRecord, { myCovidRecordThemeTokens } from '@mohnz/design-system/src/themes/myCovidRecord';
 import myHealthAccount, { myHealthAccountThemeTokens } from '@mohnz/design-system/src/themes/myHealthAccount';
 
-import neutralv2, { tokens as neutralv2ThemeTokens } from '../styles/web/neutralv2/theme.css.ts';
+import neutralv2, { tokens as neutralv2ThemeTokens } from '../styles/web/neutralv2/neutralv2Theme.css';
 
 // Add themes for vanilla-extract here
 const themeMap = {
@@ -17,11 +17,11 @@ const themeMap = {
 };
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/
+      date: /Date$/,
     },
   },
 };
@@ -30,4 +30,12 @@ export const parameters = {
 const providerFn = ({ theme, children }) => <ThemeProvider theme={themeMap[theme.name]}>{children}</ThemeProvider>;
 
 // Create decorator with theme tokens
-addDecorator(withThemes(null, [neutralThemeTokens, myCovidRecordThemeTokens, myHealthAccountThemeTokens, neutralv2ThemeTokens], { providerFn }));
+addDecorator(
+  withThemes(
+    null,
+    [neutralThemeTokens, myCovidRecordThemeTokens, myHealthAccountThemeTokens, neutralv2ThemeTokens],
+    {
+      providerFn,
+    },
+  ),
+);
