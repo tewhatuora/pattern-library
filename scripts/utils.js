@@ -1,13 +1,12 @@
 function simplifyTokens(tokens) {
-  if (tokens.hasOwnProperty('value')) {
+  if ('value' in tokens) {
     return tokens.value;
   }
 
-  return Object.keys(tokens)
-    .reduce((acc, key) => {
-      acc[key] = simplifyTokens(tokens[key]);
-      return acc;
-    }, {});
+  return Object.keys(tokens).reduce((acc, key) => {
+    acc[key] = simplifyTokens(tokens[key]);
+    return acc;
+  }, {});
 }
 
 function trim(str) {
