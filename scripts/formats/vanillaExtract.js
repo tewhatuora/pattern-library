@@ -2,6 +2,7 @@ const StyleDictionary = require('style-dictionary');
 
 const parseTokens = require('./parseTokens');
 const prettierFormat = require('./prettierFormat');
+const { ROOT_TYPE_NAME } = require('../constants');
 
 const vanillaExtract = ({ dictionary, file, options }) => {
   const values = parseTokens({ dictionary, file, options });
@@ -9,9 +10,9 @@ const vanillaExtract = ({ dictionary, file, options }) => {
   return prettierFormat(
     `
         ${StyleDictionary.formatHelpers.fileHeader({ file })}
-        import RootObject from './tokenTypes';
+        import ${ROOT_TYPE_NAME} from './tokenTypes';
         
-        export const tokens: RootObject = ${JSON.stringify(values, null, 0)};
+        export const tokens: ${ROOT_TYPE_NAME} = ${JSON.stringify(values, null, 0)};
       `,
   );
 };

@@ -6,15 +6,16 @@ const fs = require('fs');
 const vanillaExtract = require('./formats/vanillaExtract');
 const parseTokens = require('./formats/parseTokens');
 const prettierFormat = require('./formats/prettierFormat');
+const { ROOT_TYPE_NAME } = require('./constants');
 
 StyleDictionaryPackage.registerFormat({
   name: 'typescript/accurate-module-declarations',
   formatter: function ({ dictionary, file, options }) {
     const values = parseTokens({ dictionary, file, options });
     return prettierFormat(`
-      export default RootObject;
+      export default ${ROOT_TYPE_NAME};
       
-      ${JsonToTS(values).join('\n')}
+      ${JsonToTS(values, { rootName: ROOT_TYPE_NAME }).join('\n')}
       
     `);
   },
