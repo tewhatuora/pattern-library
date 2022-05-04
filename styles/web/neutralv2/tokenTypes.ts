@@ -1,12 +1,12 @@
-export default RootObject;
+export default Tokens;
 
-interface RootObject {
+interface Tokens {
   name: string;
   displayName: string;
   typography: Typography;
   space: Space;
-  transitions: Space;
-  border: Space;
+  transitions: Transitions;
+  border: Border;
   shadows: Shadows;
   grid: Grid;
   color: Color;
@@ -77,10 +77,10 @@ interface Color {
   visited100: string;
 }
 interface Grid {
-  desktop: Desktop2;
-  mobile: Desktop2;
+  desktop: Desktop;
+  mobile: Desktop;
 }
-interface Desktop2 {
+interface Desktop {
   pattern: string;
   gutterSize: number;
   alignment: string;
@@ -90,51 +90,66 @@ interface Desktop2 {
 interface Shadows {
   small: string;
 }
-interface Space {}
+interface Border {
+  radius: Radius;
+  width: Width;
+}
+interface Width {
+  standard: string;
+}
+interface Radius {
+  standard: string;
+  large: string;
+  xlarge: string;
+}
+interface Transitions {
+  fast: string;
+}
+interface Space {
+  '1': string;
+  '2': string;
+  '3': string;
+  '4': string;
+  '6': string;
+  '8': string;
+  '10': string;
+  '12': string;
+  '14': string;
+  '16': string;
+  '18': string;
+  '20': string;
+}
 interface Typography {
-  desktop: Desktop;
-  mobile: Desktop;
-}
-interface Desktop {
-  '3xl': _3xl;
-  '2xl': _2xl;
-  xl: Xl;
-  l: Xl;
-  m: M;
-  s: Xl;
-  xs: Xl;
-}
-interface M {
-  bold: Black;
-  medium: Black;
-  regular: Black;
-  'link-normal': Black;
-  'link-hover&focus': Black;
-  button: Black;
-  bullet: Black;
-  number: Black;
-}
-interface Xl {
-  bold: Black;
-  regular: Black;
-}
-interface _2xl {
-  black: Black;
-  bold: Black;
-}
-interface _3xl {
-  black: Black;
-}
-interface Black {
-  fontSize: number;
-  textDecoration: string;
   fontFamily: string;
-  fontWeight: number;
-  fontStyle: string;
-  fontStretch: string;
-  letterSpacing: number;
+  fontWeight: FontWeight;
+  heading: Heading;
+  text: Text;
+}
+interface Text {
+  xxxlarge: Xxxlarge;
+  xxlarge: Xxxlarge;
+  xlarge: Xxxlarge;
+  large: Xxxlarge;
+  standard: Xxxlarge;
+  small: Xxxlarge;
+  xsmall: Xxxlarge;
+}
+interface Xxxlarge {
+  mobile: Mobile;
+}
+interface Mobile {
+  fontSize: number;
   lineHeight: number;
-  paragraphIndent: number;
-  paragraphSpacing: number;
-  textCase: string;
+}
+interface Heading {}
+interface FontWeight {
+  black: number;
+  bold: number;
+  regular: number;
+  medium: number;
+  'link-normal': number;
+  'link-hover&focus': number;
+  button: number;
+  bullet: number;
+  number: number;
 }
