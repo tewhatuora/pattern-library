@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { StyleRule } from '@vanilla-extract/css';
 
-import { vars } from '../../themes/vars.css';
+import { contract } from '../../themes/themeContract.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import * as styles from './typography.css';
 
@@ -10,21 +10,24 @@ export interface UseTextProps {
   size?: keyof typeof styles.text;
 }
 
+// typography.mobile.m.regular.fontSize
+// text.standard.mobile.fontSize
+
 export const globalTextStyle = ({
   weight = 'regular',
   size = 'standard',
 }: Pick<UseTextProps, 'weight' | 'size'> = {}): StyleRule => ({
-  fontFamily: vars.fontFamily,
-  fontWeight: vars.textWeight[weight],
-  color: vars.color.brandPrimary100,
+  fontFamily: contract.fontFamily,
+  fontWeight: contract.textWeight[weight],
+  color: contract.color.primary100,
   ...responsiveStyle({
     mobile: {
-      fontSize: vars.textSize[size].mobile.fontSize,
-      lineHeight: vars.textSize[size].mobile.lineHeight,
+      fontSize: contract.textSize[size].mobile.fontSize,
+      lineHeight: contract.textSize[size].mobile.lineHeight,
     },
     tablet: {
-      fontSize: vars.textSize[size].tablet.fontSize,
-      lineHeight: vars.textSize[size].tablet.lineHeight,
+      fontSize: contract.textSize[size].tablet.fontSize,
+      lineHeight: contract.textSize[size].tablet.lineHeight,
     },
   }),
 });
@@ -45,17 +48,17 @@ export const globalHeadingStyle = ({
   weight = 'regular',
   level,
 }: Pick<UseHeadingProps, 'weight' | 'level'>): StyleRule => ({
-  fontFamily: vars.fontFamily,
-  fontWeight: vars.headingWeight[weight],
-  color: vars.color.brandPrimary100,
+  fontFamily: contract.fontFamily,
+  fontWeight: contract.headingWeight[weight],
+  color: contract.color.brandPrimary100,
   ...responsiveStyle({
     mobile: {
-      fontSize: vars.headingLevel[level].mobile.fontSize,
-      lineHeight: vars.headingLevel[level].mobile.lineHeight,
+      fontSize: contract.headingLevel[level].mobile.fontSize,
+      lineHeight: contract.headingLevel[level].mobile.lineHeight,
     },
     tablet: {
-      fontSize: vars.headingLevel[level].tablet.fontSize,
-      lineHeight: vars.headingLevel[level].tablet.lineHeight,
+      fontSize: contract.headingLevel[level].tablet.fontSize,
+      lineHeight: contract.headingLevel[level].tablet.lineHeight,
     },
   }),
 });

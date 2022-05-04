@@ -7,28 +7,28 @@ import { atoms } from '../../css/atoms/atoms';
 
 const variant = {
   primary: atoms({
-    color: 'brandAccentContrast',
+    color: 'primary0',
     backgroundColor: {
-      base: 'brandAccent100',
-      hover: 'brandAccent75',
-      active: 'brandAccent110',
+      base: 'primary100',
+      hover: 'primary75',
+      active: 'primary110',
     },
   }),
   secondary: atoms({
-    color: 'brandSecondaryContrast',
+    color: 'secondary0',
     backgroundColor: {
-      base: 'brandSecondary100',
-      hover: 'brandSecondary75',
-      active: 'brandSecondary110',
+      base: 'secondary100',
+      hover: 'secondary75',
+      active: 'secondary110',
     },
   }),
   tertiary: style([
     atoms({
-      color: 'brandPrimary100',
+      color: 'primary100',
       backgroundColor: {
         base: 'neutral0',
       },
-      borderColor: 'brandPrimary100',
+      borderColor: 'primary100',
       borderWidth: 'standard',
     }),
     style({
