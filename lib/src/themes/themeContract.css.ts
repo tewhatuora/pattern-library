@@ -1,7 +1,7 @@
 import { createThemeContract } from '@vanilla-extract/css';
 
-import makeVanillaTheme from './makeVanillaTheme';
+import makeVanillaStyleDictionaryTheme from './makeVanillaStyleDictionaryTheme';
 
 import { tokens } from '../../../styles/web/neutralv2/tokens';
 
-export const contract = createThemeContract(makeVanillaTheme(tokens));
+export const contract = createThemeContract(makeVanillaStyleDictionaryTheme(tokens));
