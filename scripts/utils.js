@@ -1,3 +1,5 @@
+const { SIZE_MAP } = require('./constants');
+
 function simplifyTokens(tokens) {
   if ('value' in tokens) {
     return tokens.value;
@@ -9,11 +11,21 @@ function simplifyTokens(tokens) {
   }, {});
 }
 
-function trim(str) {
-  return str.replace(/^\s+/gm, '').trim();
-}
+exports.simplifyTokens = simplifyTokens;
 
-module.exports = {
-  simplifyTokens,
-  trim,
+exports.trim = (str) => {
+  return str.replace(/^\s+/gm, '').trim();
+};
+
+exports.makeSize = (size) => {
+  if (size in SIZE_MAP) {
+    return SIZE_MAP[size];
+  }
+
+  const regex = /^(\d?)x([s|l])$/g;
+  const extras = regex.exec(size);
+
+  if (extras.length) {
+    return `${Array(Number(extras[1])).fill('x').join('')}${SIZE_MAP[extras[2]]}`;
+  }
 };
