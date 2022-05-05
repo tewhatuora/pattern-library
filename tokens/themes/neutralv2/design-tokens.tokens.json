@@ -1,33 +1,23 @@
 {
-  "spacing": {
+  "sizes": {
     "xl": {
       "mobile": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 40,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       },
       "desktop": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 48,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       }
@@ -35,31 +25,21 @@
     "l": {
       "mobile": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 32,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       },
       "desktop": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 40,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       }
@@ -67,31 +47,21 @@
     "m": {
       "mobile": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 24,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       },
       "desktop": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 32,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       }
@@ -99,31 +69,21 @@
     "s": {
       "mobile": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 16,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       },
       "desktop": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 24,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       }
@@ -131,31 +91,21 @@
     "2xl": {
       "desktop": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 55,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       },
       "mobile": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 48,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       }
@@ -163,31 +113,21 @@
     "xs": {
       "desktop": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 10,
-          "bottom": 10,
-          "left": 10,
-          "right": 10
-        },
+        "value": 16,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       },
       "mobile": {
         "description": null,
-        "type": "custom-spacing",
-        "value": {
-          "top": 0,
-          "bottom": 0,
-          "left": 0,
-          "right": 0
-        },
+        "value": 8,
+        "type": "dimension",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
-            "exportKey": "spacing"
+            "exportKey": "size"
           }
         }
       }
