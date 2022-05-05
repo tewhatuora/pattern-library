@@ -1,4 +1,198 @@
 {
+  "spacing": {
+    "xl": {
+      "mobile": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      },
+      "desktop": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      }
+    },
+    "l": {
+      "mobile": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      },
+      "desktop": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      }
+    },
+    "m": {
+      "mobile": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      },
+      "desktop": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      }
+    },
+    "s": {
+      "mobile": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      },
+      "desktop": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      }
+    },
+    "2xl": {
+      "desktop": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      },
+      "mobile": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      }
+    },
+    "xs": {
+      "desktop": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 10,
+          "bottom": 10,
+          "left": 10,
+          "right": 10
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      },
+      "mobile": {
+        "description": null,
+        "type": "custom-spacing",
+        "value": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "exportKey": "spacing"
+          }
+        }
+      }
+    }
+  },
   "color": {
     "primary": {
       "0": {
