@@ -6,8 +6,6 @@ const sizes = [1, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20];
  * @return {Object} Formatted spacing tokens
  */
 const spacing = (tokens) => {
-  console.log(tokens);
-
   return {
     ...tokens,
   };

@@ -1,16 +1,15 @@
-// import { vars } from '../../themes/vars.css';
-import { contract } from '../../themes/themeContract.css';
+import { vars } from '../../themes/vars.css';
 
 const sizes = {
   full: '100%',
 };
 
 const space = {
-  ...contract.space,
+  ...vars.space,
   0: 0,
 } as const;
 
-const boxShadow = contract.shadow;
+const boxShadow = vars.shadow;
 
 export type BoxShadow = keyof typeof boxShadow;
 
@@ -51,15 +50,15 @@ export const unresponsiveProperties = {
     out: 'cubic-bezier(0, 0, 0.2, 1)',
     inOut: 'cubic-bezier(0.42, 0, 0.58, 1)',
   },
-  transition: contract.transition,
+  transition: vars.transition,
 } as const;
 
 export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
 
 export const colorProperties = {
-  color: contract.color,
-  backgroundColor: contract.color,
-  borderColor: contract.color,
+  color: vars.color,
+  backgroundColor: vars.color,
+  borderColor: vars.color,
 } as const;
 
 export type ColorProperties = keyof typeof colorProperties;
@@ -74,20 +73,20 @@ export const responsiveProperties = {
   },
   position: ['relative', 'absolute', 'fixed', 'sticky'],
   overflow: ['hidden', 'scroll', 'visible', 'auto'],
-  borderWidth: contract.borderWidth,
-  borderBottomWidth: contract.borderWidth,
-  borderLeftWidth: contract.borderWidth,
-  borderRightWidth: contract.borderWidth,
-  borderTopWidth: contract.borderWidth,
+  borderWidth: vars.borderWidth,
+  borderBottomWidth: vars.borderWidth,
+  borderLeftWidth: vars.borderWidth,
+  borderRightWidth: vars.borderWidth,
+  borderTopWidth: vars.borderWidth,
   borderRadius: {
     none: '0px',
     full: '9999px',
-    ...contract.borderRadius,
+    ...vars.borderRadius,
   },
-  borderBottomLeftRadius: contract.borderRadius,
-  borderBottomRightRadius: contract.borderRadius,
-  borderTopLeftRadius: contract.borderRadius,
-  borderTopRightRadius: contract.borderRadius,
+  borderBottomLeftRadius: vars.borderRadius,
+  borderBottomRightRadius: vars.borderRadius,
+  borderTopLeftRadius: vars.borderRadius,
+  borderTopRightRadius: vars.borderRadius,
   paddingTop: space,
   paddingBottom: space,
   paddingRight: space,

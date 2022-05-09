@@ -45,7 +45,7 @@ export const text = {
   xxxlarge: makeTypographyRules(contract.textSize.xxxlarge),
 };
 
-export const headingWeight = styleVariants(contract.headingWeight, mapToProperty('fontWeight'));
+export const headingWeight = styleVariants(vars.headingWeight, mapToProperty('fontWeight'));
 
 export const heading = {
   '1': makeTypographyRules(contract.headingLevel['1']),
