@@ -45,7 +45,7 @@ export interface StackProps {
   align?: OptionalResponsiveValue<Align>;
 }
 
-export const Stack = ({ as = 'div', children, space = 0, align = 'left' }: StackProps) => {
+export const Stack = ({ as = 'div', children, space = 'default', align = 'left' }: StackProps) => {
   assert(
     validStackComponents.includes(as),
     `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,

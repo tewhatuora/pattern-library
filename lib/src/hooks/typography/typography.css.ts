@@ -14,7 +14,7 @@ export const fontFamily = style({
   fontFamily: vars.fontFamily,
 });
 
-export const fontWeight = styleVariants(contract.textWeight, mapToProperty('fontWeight'));
+export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));
 
 const makeTypographyRules = (textDefinition: TypographicDefinition) => {
   const { fontSize: mobileFontSize, lineHeight: mobileLineHeight } = textDefinition.mobile;
@@ -36,20 +36,16 @@ const makeTypographyRules = (textDefinition: TypographicDefinition) => {
 };
 
 export const text = {
-  xsmall: makeTypographyRules(contract.textSize.xsmall),
-  small: makeTypographyRules(contract.textSize.small),
-  medium: makeTypographyRules(contract.textSize.standard),
-  large: makeTypographyRules(contract.textSize.large),
-  xlarge: makeTypographyRules(contract.textSize.xlarge),
-  xxlarge: makeTypographyRules(contract.textSize.xxlarge),
-  xxxlarge: makeTypographyRules(contract.textSize.xxxlarge),
+  xsmall: makeTypographyRules(vars.textSize.xsmall),
+  small: makeTypographyRules(vars.textSize.small),
+  medium: makeTypographyRules(vars.textSize.standard),
 };
 
 export const headingWeight = styleVariants(vars.headingWeight, mapToProperty('fontWeight'));
 
 export const heading = {
-  '1': makeTypographyRules(contract.headingLevel['1']),
-  '2': makeTypographyRules(contract.headingLevel['2']),
-  '3': makeTypographyRules(contract.headingLevel['3']),
-  '4': makeTypographyRules(contract.headingLevel['4']),
+  '1': makeTypographyRules(vars.headingLevel['1']),
+  '2': makeTypographyRules(vars.headingLevel['2']),
+  '3': makeTypographyRules(vars.headingLevel['3']),
+  '4': makeTypographyRules(vars.headingLevel['4']),
 };

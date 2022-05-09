@@ -10,7 +10,7 @@ const resolveDefaultComponent = {
   '4': 'h4',
 } as const;
 
-type HeadingProps = {
+export type HeadingProps = {
   level: HeadingLevel;
   weight?: HeadingWeight;
   align?: BoxProps['textAlign'];

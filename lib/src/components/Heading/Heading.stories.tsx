@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Heading } from './Heading';
+import { Heading, HeadingProps } from './Heading';
 
 export default {
   /* 👇 The title prop is optional.
@@ -11,6 +11,12 @@ export default {
    */
   title: 'Typography/Heading',
   component: Heading,
+  argTypes: {
+    variant: {
+      level: ['1', '2', '3', '4'],
+      control: { type: 'select' },
+    },
+  },
 };
 
-export const Primary = () => <Heading level="1">This is a heading</Heading>;
+export const Default = (args: HeadingProps) => <Heading {...args}>This is a heading</Heading>;
