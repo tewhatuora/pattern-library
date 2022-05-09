@@ -20,12 +20,12 @@ const typography = (typographyTokens) => {
     for (const size of Object.keys(typographyTokens[bp])) {
       for (const weight of Object.keys(typographyTokens[bp][size])) {
         tokens.fontFamily = typographyTokens[bp][size][weight].fontFamily;
-        tokens.fontWeight[weight] = typographyTokens[bp][size][weight].fontWeight;
+        tokens.fontWeight[weight] = typographyTokens[bp][size][weight].fontWeight.toString();
 
         let formattedSize = makeSize(size);
         const newBp = bp === 'desktop' ? 'tablet' : bp;
 
-        // Large sizes are heading sizes, e.g
+        // Large sizes are heading sizes
         if (formattedSize.includes('large')) {
           const level = formattedSize.match(/x/g) || [];
           formattedSize = 4 - level.length;
@@ -33,7 +33,7 @@ const typography = (typographyTokens) => {
           tokens.heading = {
             weight: {
               ...tokens.heading.weight,
-              [weight]: typographyTokens[bp][size][weight].fontWeight,
+              [weight]: typographyTokens[bp][size][weight].fontWeight.toString(),
             },
             level: {
               ...tokens.heading.level,
@@ -50,8 +50,8 @@ const typography = (typographyTokens) => {
           tokens.text[formattedSize] = {
             ...tokens.text[formattedSize],
             [newBp]: {
-              fontSize: typographyTokens[bp][size][weight].fontSize,
-              lineHeight: typographyTokens[bp][size][weight].lineHeight,
+              fontSize: `${typographyTokens[bp][size][weight].fontSize}px`,
+              lineHeight: `${typographyTokens[bp][size][weight].lineHeight}px`,
             },
           };
         }

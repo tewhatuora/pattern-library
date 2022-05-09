@@ -10,7 +10,7 @@ const vanillaExtract = ({ dictionary, file, options }) => {
   return prettierFormat(
     `
         ${StyleDictionary.formatHelpers.fileHeader({ file })}
-        import ${ROOT_TYPE_NAME} from './tokenTypes';
+        import { ${ROOT_TYPE_NAME} } from '../../../lib/src/themes/tokenType';
         
         export const tokens: ${ROOT_TYPE_NAME} = ${JSON.stringify(values, null, 0)};
       `,

@@ -1,7 +1,4 @@
-import { Tokens } from './tokenType';
-
-export default (tokens: Tokens) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const formatTheme = (tokens) => {
   const { name, displayName, ...rest } = tokens;
 
   const resolvedTokens = {
@@ -19,7 +16,9 @@ export default (tokens: Tokens) => {
     color: rest.color,
     shadow: rest.shadows,
     transition: rest.transitions,
-  } as const;
+  };
 
   return resolvedTokens;
 };
+
+module.exports = formatTheme;

@@ -8,7 +8,16 @@ type FontSizeText = {
 };
 
 export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
-type FontWeight = 'regular' | 'medium' | 'bold' | 'black';
+type FontWeight =
+  | 'regular'
+  | 'medium'
+  | 'bold'
+  | 'black'
+  | 'link-normal'
+  | 'link-hover&focus'
+  | 'button'
+  | 'bullet'
+  | 'number';
 
 export interface Tokens {
   name: string;
@@ -33,6 +42,22 @@ export interface Tokens {
       small: TextDefinition;
       standard: TextDefinition;
       large: TextDefinition;
+    };
+  };
+  grid: {
+    desktop: {
+      pattern: string;
+      gutterSize: number;
+      alignment: string;
+      count: number;
+      offset: number;
+    };
+    mobile: {
+      pattern: string;
+      gutterSize: number;
+      alignment: string;
+      count: number;
+      offset: number;
     };
   };
   space: {
@@ -68,29 +93,29 @@ export interface Tokens {
     large: string;
   };
   color: {
-    brandPrimary110: string; // Used for pressed states
-    brandPrimary100: string; // Base (brandPrimary100)
-    brandPrimary75: string; // Used for hover states
-    brandPrimary50: string;
-    brandPrimary25: string; // Used for disabled states
-    brandPrimary5: string;
-    brandPrimaryContrast: string; // Contrast (maps to brandPrimary0 in Figma)
+    primary110: string; // Used for pressed states
+    primary100: string; // Base (brandPrimary100)
+    primary75: string; // Used for hover states
+    primary50: string;
+    primary25: string; // Used for disabled states
+    primary5: string;
+    primary0: string; // Contrast (maps to brandPrimary0 in Figma)
 
-    brandSecondary110: string;
-    brandSecondary100: string;
-    brandSecondary75: string;
-    brandSecondary50: string;
-    brandSecondary25: string;
-    brandSecondary5: string;
-    brandSecondaryContrast: string;
+    secondary110: string;
+    secondary100: string;
+    secondary75: string;
+    secondary50: string;
+    secondary25: string;
+    secondary5: string;
+    secondary0: string;
 
-    brandAccent110: string;
-    brandAccent100: string;
-    brandAccent75: string;
-    brandAccent50: string;
-    brandAccent25: string;
-    brandAccent5: string;
-    brandAccentContrast: string;
+    tertiary110: string;
+    tertiary100: string;
+    tertiary75: string;
+    tertiary50: string;
+    tertiary25: string;
+    tertiary5: string;
+    tertiary0: string;
 
     neutral100: string;
     neutral75: string;
@@ -105,7 +130,7 @@ export interface Tokens {
     positive50: string;
     positive25: string;
     positive5: string;
-    positiveContrast: string;
+    positive0: string;
 
     info110: string;
     info100: string;
@@ -113,7 +138,7 @@ export interface Tokens {
     info50: string;
     info25: string;
     info5: string;
-    infoContrast: string;
+    info0: string;
 
     caution110: string;
     caution100: string;
@@ -121,7 +146,7 @@ export interface Tokens {
     caution50: string;
     caution25: string;
     caution5: string;
-    cautionContrast: string;
+    caution0: string;
 
     error110: string;
     error100: string;
@@ -129,7 +154,7 @@ export interface Tokens {
     error50: string;
     error25: string;
     error5: string;
-    errorContrast: string;
+    error0: string;
 
     annotation110: string;
     annotation100: string;
@@ -137,6 +162,8 @@ export interface Tokens {
     annotation50: string;
     annotation25: string;
     annotation5: string;
-    annotationContrast: string;
+    annotation0: string;
+
+    visited100: string;
   };
 }

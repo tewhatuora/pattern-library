@@ -1,22 +1,16 @@
-const JsonToTS = require('json-to-ts');
 const StyleDictionaryPackage = require('style-dictionary');
 
 const fs = require('fs');
 
 const vanillaExtract = require('./formats/vanillaExtract');
-const parseTokens = require('./formats/parseTokens');
 const prettierFormat = require('./formats/prettierFormat');
-const { ROOT_TYPE_NAME } = require('./constants');
 
 StyleDictionaryPackage.registerFormat({
-  name: 'typescript/accurate-module-declarations',
-  formatter: function ({ dictionary, file, options }) {
-    const values = parseTokens({ dictionary, file, options });
+  name: 'typescript/theme-index',
+  formatter: function ({ options }) {
     return prettierFormat(`
-      export default ${ROOT_TYPE_NAME};
-      
-      ${JsonToTS(values, { rootName: ROOT_TYPE_NAME }).join('\n')}
-      
+      export { default } from './${options.name}Theme.css';
+      export { tokens as ${options.name}ThemeTokens } from './tokens';
     `);
   },
 });
@@ -28,11 +22,11 @@ StyleDictionaryPackage.registerFormat({
         ${StyleDictionaryPackage.formatHelpers.fileHeader({ file })}
         import { createTheme } from '@vanilla-extract/css';
         
-        import makeVanillaStyleDictionaryTheme from '../../../lib/src/themes/makeVanillaStyleDictionaryTheme';
-        import { contract } from '../../../lib/src/themes/themeContract.css';
+        import makeVanillaTheme from '../../../lib/src/themes/makeVanillaTheme';
+        import { vars } from '../../../lib/src/themes/vars.css';
         import { tokens } from './tokens';
         
-        export default createTheme(contract, makeVanillaStyleDictionaryTheme(tokens));
+        export default createTheme(vars, makeVanillaTheme(tokens));
     `);
   },
 });
@@ -61,8 +55,8 @@ function getStyleDictionaryConfig(theme, platform) {
             destination: 'tokens.ts',
           },
           {
-            format: 'typescript/accurate-module-declarations',
-            destination: 'tokenTypes.ts',
+            format: 'typescript/theme-index',
+            destination: 'index.ts',
           },
           {
             format: 'typescript/vanilla-extract-theme',

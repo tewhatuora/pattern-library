@@ -24,7 +24,7 @@ const parseTokens = ({ dictionary, options }) => {
     space: spacing(spaceTokens),
     transitions: transitions(otherTokens),
     border: borders(otherTokens),
-    shadows: shadows(otherTokens),
+    // shadows: shadows(otherTokens),
     color: color(colorTokens),
     // ...otherSizeTokens,
     // ...otherTokens,
