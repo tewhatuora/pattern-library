@@ -133,6 +133,68 @@
       }
     }
   },
+  "borders": {
+    "standard": {
+      "description": null,
+      "type": "custom-stroke",
+      "value": {
+        "align": "outside",
+        "dashPattern": [
+          0,
+          0
+        ],
+        "lineCap": "none",
+        "lineJoin": "miter",
+        "miterLimit": 4,
+        "weight": 1,
+        "color": "#000000ff"
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "border"
+        }
+      }
+    }
+  },
+  "radii": {
+    "standard": {
+      "description": null,
+      "type": "custom-radius",
+      "value": {
+        "smoothing": 0,
+        "topLeft": 8,
+        "topRight": 8,
+        "bottomLeft": 8,
+        "bottomRight": 8
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "radius"
+        }
+      }
+    }
+  },
+  "motion": {
+    "fast": {
+      "description": null,
+      "type": "custom-transition",
+      "value": {
+        "transitionType": "scroll_animate",
+        "duration": 0.125,
+        "easingFunction": {
+          "x1": 0.41999998688697815,
+          "x2": 0.5799999833106995,
+          "y1": 0,
+          "y2": 1
+        }
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "exportKey": "motion"
+        }
+      }
+    }
+  },
   "color": {
     "primary": {
       "0": {

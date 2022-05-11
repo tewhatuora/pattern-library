@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 09 May 2022 03:49:47 GMT
+ * Generated on Tue, 10 May 2022 22:56:25 GMT
  */
 
 import { Tokens } from '../../../lib/src/themes/tokenType';
@@ -24,34 +24,54 @@ export const tokens: Tokens = {
     heading: {
       weight: { black: '900', bold: '700', regular: '400' },
       level: {
-        '1': { tablet: { fontSize: '120px', lineHeight: '138px' }, mobile: { fontSize: '40px', lineHeight: '46px' } },
-        '2': { tablet: { fontSize: '40px', lineHeight: '48px' }, mobile: { fontSize: '32px', lineHeight: '38.4px' } },
-        '3': { tablet: { fontSize: '32px', lineHeight: '38.4px' }, mobile: { fontSize: '24px', lineHeight: '28.8px' } },
-        '4': { tablet: { fontSize: '24px', lineHeight: '31.2px' }, mobile: { fontSize: '20px', lineHeight: '26px' } },
+        '1': {
+          tablet: { fontSize: '12rem', lineHeight: '13.8rem' },
+          mobile: { fontSize: '4rem', lineHeight: '4.6rem' },
+        },
+        '2': {
+          tablet: { fontSize: '4rem', lineHeight: '4.8rem' },
+          mobile: { fontSize: '3.2rem', lineHeight: '3.84rem' },
+        },
+        '3': {
+          tablet: { fontSize: '3.2rem', lineHeight: '3.84rem' },
+          mobile: { fontSize: '2.4rem', lineHeight: '2.88rem' },
+        },
+        '4': {
+          tablet: { fontSize: '2.4rem', lineHeight: '3.12rem' },
+          mobile: { fontSize: '2rem', lineHeight: '2.6rem' },
+        },
       },
     },
     text: {
-      standard: {
-        tablet: { fontSize: '20px', lineHeight: '32px' },
-        mobile: { fontSize: '16px', lineHeight: '25.6px' },
+      large: {
+        tablet: { fontSize: '2.4rem', lineHeight: '3.12rem' },
+        mobile: { fontSize: '2rem', lineHeight: '2.6rem' },
       },
-      small: { tablet: { fontSize: '18px', lineHeight: '28.8px' }, mobile: { fontSize: '14px', lineHeight: '22.4px' } },
+      medium: {
+        tablet: { fontSize: '2rem', lineHeight: '3.2rem' },
+        mobile: { fontSize: '1.6rem', lineHeight: '2.56rem' },
+      },
+      small: {
+        tablet: { fontSize: '1.8rem', lineHeight: '2.88rem' },
+        mobile: { fontSize: '1.4rem', lineHeight: '2.24rem' },
+      },
       xsmall: {
-        tablet: { fontSize: '16px', lineHeight: '25.6px' },
-        mobile: { fontSize: '14px', lineHeight: '22.4px' },
+        tablet: { fontSize: '1.6rem', lineHeight: '2.56rem' },
+        mobile: { fontSize: '1.4rem', lineHeight: '2.24rem' },
       },
     },
   },
   space: {
-    xl: { mobile: 40, desktop: 48 },
-    l: { mobile: 32, desktop: 40 },
-    m: { mobile: 24, desktop: 32 },
-    s: { mobile: 16, desktop: 24 },
-    '2xl': { desktop: 55, mobile: 48 },
-    xs: { desktop: 16, mobile: 8 },
+    xlarge: { mobile: '4rem', tablet: '4.8rem' },
+    large: { mobile: '3.2rem', tablet: '4rem' },
+    medium: { mobile: '2.4rem', tablet: '3.2rem' },
+    small: { mobile: '1.6rem', tablet: '2.4rem' },
+    xxlarge: { tablet: '5.5rem', mobile: '4.8rem' },
+    xsmall: { tablet: '1.6rem', mobile: '0.8rem' },
   },
   transitions: { fast: 'transform .125s ease, opacity .125s ease' },
-  border: { radius: { standard: '8px', large: '12px', xlarge: '16px' }, width: { standard: '1px' } },
+  border: { radius: { standard: '0.8rem' }, width: { standard: '0.1rem' } },
+  shadows: { small: '0rem 0.4rem 3rem 0rem #4040401a' },
   color: {
     primary0: '#ffffff',
     primary5: '#f5f5f5',
