@@ -30,7 +30,7 @@ export const Button = React.forwardRef(
         // assigned after the {...boxProps} spread below
         {...boxProps}
       >
-        <Text size="standard" weight="bold">
+        <Text size="medium" weight="bold">
           {children}
         </Text>
       </Box>

@@ -11,11 +11,11 @@ export interface UseTextProps {
 }
 
 // typography.mobile.m.regular.fontSize
-// text.standard.mobile.fontSize
+// text.medium.mobile.fontSize
 
 export const globalTextStyle = ({
   weight = 'regular',
-  size = 'standard',
+  size = 'medium',
 }: Pick<UseTextProps, 'weight' | 'size'> = {}): StyleRule => ({
   fontFamily: vars.fontFamily,
   fontWeight: vars.textWeight[weight],
@@ -32,7 +32,7 @@ export const globalTextStyle = ({
   }),
 });
 
-export function useText({ weight = 'regular', size = 'standard' }: UseTextProps) {
+export function useText({ weight = 'regular', size = 'medium' }: UseTextProps) {
   return clsx(styles.fontFamily, styles.fontWeight[weight], styles.text[size]);
 }
 

@@ -38,7 +38,7 @@ const makeTypographyRules = (textDefinition: TypographicDefinition) => {
 export const text = {
   xsmall: makeTypographyRules(vars.textSize.xsmall),
   small: makeTypographyRules(vars.textSize.small),
-  medium: makeTypographyRules(vars.textSize.standard),
+  medium: makeTypographyRules(vars.textSize.medium),
 };
 
 export const headingWeight = styleVariants(vars.headingWeight, mapToProperty('fontWeight'));

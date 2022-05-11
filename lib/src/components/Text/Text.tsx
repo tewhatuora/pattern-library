@@ -12,7 +12,7 @@ export interface TextProps extends Pick<BoxProps, 'as'> {
   color?: BoxProps['color'];
 }
 
-export const Text = ({ id, as = 'span', size = 'standard', align, weight = 'regular', children, color }: TextProps) => {
+export const Text = ({ id, as = 'span', size = 'medium', align, weight = 'regular', children, color }: TextProps) => {
   const textStyles = useText({ weight, size });
 
   return (
