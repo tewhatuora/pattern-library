@@ -1,4 +1,4 @@
-const { trim } = require('../../utils');
+const { trim, sizeToRem } = require('../../utils');
 
 /**
  * Format color tokens
@@ -10,9 +10,9 @@ const shadows = (tokens) => {
     const rule = tokens[key];
 
     acc[key] = trim(
-      `${rule.shadowType === 'innerShadow' ? 'inset' : ''} ${rule.offsetX}px ${rule.offsetY}px ${rule.radius}px ${
-        rule.spread
-      }px ${rule.color}`,
+      `${rule.shadowType === 'innerShadow' ? 'inset' : ''} ${sizeToRem(rule.offsetX)} ${sizeToRem(
+        rule.offsetY,
+      )} ${sizeToRem(rule.radius)} ${sizeToRem(rule.spread)} ${rule.color}`,
     );
 
     return acc;

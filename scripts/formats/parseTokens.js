@@ -12,19 +12,18 @@ const parseTokens = ({ dictionary, options }) => {
     sizes: spaceTokens,
     effect: effectTokens,
     typography: typographyTokens,
+    motion: motionTokens,
     ...otherTokens
   } = simplifyTokens(dictionary.tokens);
-
-  console.log('spacing', spacing(spaceTokens));
 
   return {
     name: options.name,
     displayName: options.displayName,
     typography: typography(typographyTokens),
     space: spacing(spaceTokens),
-    transitions: transitions(otherTokens),
+    transitions: transitions(motionTokens),
     border: borders(otherTokens),
-    // shadows: shadows(otherTokens),
+    shadows: shadows(effectTokens),
     color: color(colorTokens),
     // ...otherSizeTokens,
     // ...otherTokens,

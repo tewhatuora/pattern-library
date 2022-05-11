@@ -1,9 +1,28 @@
 const StyleDictionaryPackage = require('style-dictionary');
 
+const StyleDictionary = require('style-dictionary');
+
 const fs = require('fs');
 
-const vanillaExtract = require('./formats/vanillaExtract');
 const prettierFormat = require('./formats/prettierFormat');
+const parseTokens = require('./formats/parseTokens');
+const { ROOT_TYPE_NAME } = require('./constants');
+
+StyleDictionaryPackage.registerFormat({
+  name: 'typescript/vanilla-extract-tokens',
+  formatter: function ({ dictionary, file, options }) {
+    const values = parseTokens({ dictionary, file, options });
+
+    return prettierFormat(
+      `
+        ${StyleDictionary.formatHelpers.fileHeader({ file })}
+        import { ${ROOT_TYPE_NAME} } from '../../../lib/src/themes/tokenType';
+        
+        export const tokens: ${ROOT_TYPE_NAME} = ${JSON.stringify(values, null, 0)};
+      `,
+    );
+  },
+});
 
 StyleDictionaryPackage.registerFormat({
   name: 'typescript/theme-index',
@@ -38,9 +57,6 @@ function getStyleDictionaryConfig(theme, platform) {
 
   return {
     source: [`tokens/themes/${theme}/*.json`, 'tokens/globals/**/*.json', `tokens/platforms/${platform}/*.json`],
-    format: {
-      vanillaExtract,
-    },
     platforms: {
       web: {
         transformGroup: 'js',
@@ -51,7 +67,7 @@ function getStyleDictionaryConfig(theme, platform) {
         },
         files: [
           {
-            format: 'vanillaExtract',
+            format: 'typescript/vanilla-extract-tokens',
             destination: 'tokens.ts',
           },
           {

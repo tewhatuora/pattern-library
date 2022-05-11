@@ -1,19 +1,27 @@
-/**
- * Format color tokens
- * @param {Object} tokens Color tokens
- * @return {Object} Formatted color tokens
- */
-const color = (tokens) => {
-  return {
-    radius: {
-      standard: '8px',
-      large: '12px',
-      xlarge: '16px',
-    },
-    width: {
-      standard: '1px',
-    },
-  };
-};
+const { sizeToRem } = require('../../utils');
 
-module.exports = color;
+/**
+ * Reduce tokens object to a
+ * a formatted value
+ * @param {Object} input Token object to format, e.g. tokens.borders
+ * @param {string} key Key to retrieve value from
+ * @return {Object} Formatted token object
+ */
+const reducer = (input, key) =>
+  Object.keys(input).reduce((tokens, name) => {
+    tokens[name] = sizeToRem(input[name][key]);
+
+    return tokens;
+  }, {});
+
+/**
+ * Format border width and radius tokens
+ * @param {Object} tokens tokens containing `border` & `radii`
+ * @return {Object} Formatted border tokens
+ */
+const border = (tokens) => ({
+  radius: reducer(tokens.radii, 'topLeft'),
+  width: reducer(tokens.borders, 'weight'),
+});
+
+module.exports = border;
