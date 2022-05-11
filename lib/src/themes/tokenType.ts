@@ -7,6 +7,11 @@ type FontSizeText = {
   lineHeight: string;
 };
 
+export type Space = {
+  mobile: string;
+  tablet: string;
+};
+
 export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 type FontWeight =
   | 'regular'
@@ -40,7 +45,7 @@ export interface Tokens {
     text: {
       xsmall: TextDefinition;
       small: TextDefinition;
-      standard: TextDefinition;
+      medium: TextDefinition;
       large: TextDefinition;
     };
   };
@@ -61,18 +66,12 @@ export interface Tokens {
     };
   };
   space: {
-    1: string;
-    2: string;
-    3: string;
-    4: string;
-    6: string;
-    8: string;
-    10: string;
-    12: string;
-    14: string;
-    16: string;
-    18: string;
-    20: string;
+    xlarge: Space;
+    large: Space;
+    medium: Space;
+    small: Space;
+    xxlarge: Space;
+    xsmall: Space;
   };
   transitions: {
     fast: string;
@@ -80,8 +79,6 @@ export interface Tokens {
   border: {
     radius: {
       standard: string;
-      large: string;
-      xlarge: string;
     };
     width: {
       standard: string;
