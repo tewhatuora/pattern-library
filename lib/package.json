@@ -6,7 +6,7 @@
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    ".": {
+    "./src": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
