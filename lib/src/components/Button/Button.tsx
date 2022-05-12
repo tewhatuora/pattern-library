@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import { Text } from '../Text/Text';
 
-import { ReactNodeNoStrings } from '../../types';
 import { Box, BoxProps } from '../Box/Box';
+import { Icon } from '../Icon/Icon';
 import * as styles from './Button.css';
 
 export type ButtonProps = {
-  suffix?: ReactNodeNoStrings;
+  icon?: string;
   variant?: styles.Variant;
 } & Pick<
   JSX.IntrinsicElements['button'],
@@ -16,7 +16,10 @@ export type ButtonProps = {
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
 export const Button = React.forwardRef(
-  ({ children, variant = 'primary', type = 'button', ...boxProps }: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
+  (
+    { children, variant = 'primary', type = 'button', icon, ...boxProps }: ButtonProps,
+    ref: React.Ref<HTMLButtonElement>,
+  ) => {
     return (
       <Box
         as="button"
@@ -33,6 +36,8 @@ export const Button = React.forwardRef(
         <Text size="medium" weight="bold">
           {children}
         </Text>
+
+        {!!icon && <Icon className={styles.buttonIcon} icon={icon} />}
       </Box>
     );
   },

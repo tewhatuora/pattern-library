@@ -1,8 +1,7 @@
-// Button.stories.js|jsx
-
 import React from 'react';
 
 import { Button, ButtonProps } from './Button';
+import icons from '../Icon/icons';
 
 export default {
   /* 👇 The title prop is optional.
@@ -14,6 +13,10 @@ export default {
   argTypes: {
     variant: {
       options: ['primary', 'secondary', 'tertiary'],
+      control: { type: 'select' },
+    },
+    icon: {
+      options: Object.keys(icons),
       control: { type: 'select' },
     },
   },

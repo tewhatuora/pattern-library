@@ -2,8 +2,8 @@ import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
-
 import { atoms } from '../../css/atoms/atoms';
+import { vars } from '../../themes/vars.css';
 
 const variant = {
   primary: atoms({
@@ -69,3 +69,14 @@ export const variants = recipe({
 });
 
 export type Variants = RecipeVariants<typeof variants>;
+
+export const buttonIcon = style([
+  responsiveStyle({
+    mobile: {
+      marginLeft: vars.space.xsmall.mobile,
+    },
+    tablet: {
+      marginLeft: vars.space.xsmall.tablet,
+    },
+  }),
+]);
