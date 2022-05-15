@@ -12,6 +12,13 @@ export type Space = {
   tablet: string;
 };
 
+export type BorderRadius = {
+  topLeft: string;
+  topRight: string;
+  bottomLeft: string;
+  bottomRight: string;
+};
+
 export type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 type FontWeight =
   | 'regular'
@@ -78,10 +85,14 @@ export interface Tokens {
   };
   border: {
     radius: {
-      standard: string;
+      tags: BorderRadius;
+      inputs: BorderRadius;
+      button: BorderRadius;
+      card: BorderRadius;
     };
     width: {
-      standard: string;
+      small: string;
+      medium: string;
     };
   };
   shadows: {

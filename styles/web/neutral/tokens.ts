@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 10 May 2022 22:56:25 GMT
+ * Generated on Fri, 13 May 2022 00:55:19 GMT
  */
 
 import { Tokens } from '../../../lib/src/themes/tokenType';
@@ -66,12 +66,20 @@ export const tokens: Tokens = {
     large: { mobile: '3.2rem', tablet: '4rem' },
     medium: { mobile: '2.4rem', tablet: '3.2rem' },
     small: { mobile: '1.6rem', tablet: '2.4rem' },
-    xxlarge: { tablet: '5.5rem', mobile: '4.8rem' },
+    xxlarge: { tablet: '5.6rem', mobile: '4.8rem' },
     xsmall: { tablet: '1.6rem', mobile: '0.8rem' },
   },
   transitions: { fast: 'transform .125s ease, opacity .125s ease' },
-  border: { radius: { standard: '0.8rem' }, width: { standard: '0.1rem' } },
-  shadows: { small: '0rem 0.4rem 3rem 0rem #4040401a' },
+  border: {
+    radius: {
+      card: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
+      button: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
+      inputs: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
+      tags: { topLeft: '10rem', topRight: '10rem', bottomLeft: '10rem', bottomRight: '10rem' },
+    },
+    width: { small: '0.1rem', standard: '0rem', medium: '0.2rem' },
+  },
+  shadows: { '10': '0rem 0.4rem 3rem 0rem #4040401a' },
   color: {
     primary0: '#ffffff',
     primary5: '#f5f5f5',

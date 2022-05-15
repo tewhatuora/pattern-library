@@ -1,3 +1,5 @@
+import { BorderRadius } from '../../themes/tokenType';
+
 import { vars } from '../../themes/vars.css';
 
 const sizes = {
@@ -12,6 +14,32 @@ const space = {
 const boxShadow = vars.shadow;
 
 export type BoxShadow = keyof typeof boxShadow;
+
+type BorderRadiusByName = {
+  [key: string]: BorderRadius;
+};
+
+const borderRadiusAll = Object.keys(vars.borderRadius).reduce((all, name) => {
+  const { topLeft, topRight, bottomRight, bottomLeft } = vars.borderRadius[name];
+
+  return {
+    ...all,
+    [name]: `${topLeft} ${topRight} ${bottomRight} ${bottomLeft}`,
+  };
+}, {});
+
+const borderRadius = Object.keys(vars.borderRadius).reduce((acc, name: string): BorderRadiusByName => {
+  const corners = vars.borderRadius[name];
+
+  Object.keys(corners).forEach((corner: string) => {
+    acc[corner] = {
+      ...acc[corner],
+      [name]: corners[corner],
+    };
+  });
+
+  return acc;
+}, {});
 
 export const unresponsiveProperties = {
   userSelect: ['none'],
@@ -83,12 +111,12 @@ export const responsiveProperties = {
   borderRadius: {
     none: '0px',
     full: '9999px',
-    ...vars.borderRadius,
+    ...borderRadiusAll,
   },
-  borderBottomLeftRadius: vars.borderRadius,
-  borderBottomRightRadius: vars.borderRadius,
-  borderTopLeftRadius: vars.borderRadius,
-  borderTopRightRadius: vars.borderRadius,
+  borderBottomLeftRadius: borderRadius.bottomLeft,
+  borderBottomRightRadius: borderRadius.bottomRight,
+  borderTopLeftRadius: borderRadius.topLeft,
+  borderTopRightRadius: borderRadius.topRight,
   paddingTop: space,
   paddingBottom: space,
   paddingRight: space,

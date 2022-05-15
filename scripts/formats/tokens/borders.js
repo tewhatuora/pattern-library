@@ -1,15 +1,29 @@
-const { sizeToRem } = require('../../utils');
+const { sizeToRem, makeSize } = require('../../utils');
 
 /**
  * Reduce tokens object to a
  * a formatted value
  * @param {Object} input Token object to format, e.g. tokens.borders
- * @param {string} key Key to retrieve value from
+ * @param {string} keys Key to retrieve value from
+ * @param {Function} transformName Function to transform token name key
  * @return {Object} Formatted token object
  */
-const reducer = (input, key) =>
+const reducer = (input, keys, transformName = undefined) =>
   Object.keys(input).reduce((tokens, name) => {
-    tokens[name] = sizeToRem(input[name][key]);
+    let tokenName = name;
+
+    if (typeof transformName === 'function') {
+      tokenName = transformName(name);
+    }
+
+    if (keys.length > 1) {
+      tokens[tokenName] = keys.reduce((acc, curr) => {
+        acc[curr] = sizeToRem(input[name][curr]);
+        return acc;
+      }, {});
+    } else {
+      tokens[tokenName] = sizeToRem(input[name][keys[0]]);
+    }
 
     return tokens;
   }, {});
@@ -20,8 +34,8 @@ const reducer = (input, key) =>
  * @return {Object} Formatted border tokens
  */
 const border = (tokens) => ({
-  radius: reducer(tokens.radii, 'topLeft'),
-  width: reducer(tokens.borders, 'weight'),
+  radius: reducer(tokens.radii, ['topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
+  width: reducer(tokens.borders, ['weight'], makeSize),
 });
 
 module.exports = border;

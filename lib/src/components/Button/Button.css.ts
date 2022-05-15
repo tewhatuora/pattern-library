@@ -29,7 +29,7 @@ const variant = {
         base: 'neutral0',
       },
       borderColor: 'primary100',
-      borderWidth: 'standard',
+      borderWidth: 'small',
     }),
     style({
       borderStyle: 'solid',
@@ -49,7 +49,7 @@ export const variants = recipe({
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
-      borderRadius: 'standard',
+      borderRadius: 'button',
     }),
     responsiveStyle({
       mobile: {

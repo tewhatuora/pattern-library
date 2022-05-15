@@ -41,9 +41,12 @@ exports.makeSize = (size) => {
 
   const extras = /^(\d?)x([s|l])$/g.exec(size);
 
-  if (extras.length) {
+  if (extras?.length) {
     return `${Array(Number(extras[1])).fill('x').join('')}${SIZE_MAP[extras[2]]}`;
   }
+
+  // Fallback to input, this is not a size
+  return size;
 };
 
 /**
