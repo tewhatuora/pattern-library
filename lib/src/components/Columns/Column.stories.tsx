@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Column, ColumnProps } from './Column';
-import { Columns } from './Columns';
+import { Row } from './Row';
 import { Text } from '../Text/Text';
 
 export default {
@@ -11,7 +11,7 @@ export default {
 
 export const Default = (args: ColumnProps) => (
   <div style={{ paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#ccc' }}>
-    <Columns>
+    <Row>
       <Column {...args}>
         <div style={{ backgroundColor: '#eaeaea' }}>
           <Text align="center" as="div">
@@ -19,6 +19,6 @@ export const Default = (args: ColumnProps) => (
           </Text>
         </div>
       </Column>
-    </Columns>
+    </Row>
   </div>
 );

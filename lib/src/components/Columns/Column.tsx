@@ -1,16 +1,20 @@
-import * as React from 'react';
+import React, { createContext, useContext } from 'react';
 import clsx from 'clsx';
 
+import assert from 'assert';
+
 import { Box } from '../Box/Box';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+
 import * as styles from './Column.css';
+
+export const ParentColumnContext = createContext({ columns: 12 });
 
 type ColumnLength = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export type ColumnProps = {
   columns: ColumnLength;
-  noGutters?: boolean;
-  push?: ColumnLength;
-  pull?: ColumnLength;
+  start?: ColumnLength;
   center?: boolean;
   children?: React.ReactNode;
 };
@@ -20,25 +24,25 @@ export type ColumnProps = {
  * @param props
  * @constructor
  */
-export const Column = ({ children, columns = 12, push, pull, center, noGutters, ...boxProps }: ColumnProps) => {
-  const optionalClasses = {
-    [styles.noGutters]: noGutters,
-    [styles.gutter.xsmall]: !noGutters,
-    [styles.center]: center,
-  };
+export const Column = ({ children, columns = 12, center, start = 1, ...boxProps }: ColumnProps) => {
+  const parentColumn = useContext(ParentColumnContext);
+  const startPos = center ? (parentColumn.columns - columns) / 2 + 1 : start;
 
-  if (push && !center) {
-    optionalClasses[styles.push[push]] = true;
-  }
-
-  if (pull && !center) {
-    optionalClasses[styles.pull[pull]] = true;
+  if (center) {
+    assert(
+      startPos % 2 === 0,
+      `Cannot center a ${columns} column component within an ${parentColumn?.columns} column container`,
+    );
   }
 
   return (
-    <Box as="div" className={clsx(optionalClasses, styles.width[columns])} {...boxProps}>
-      {children}
-    </Box>
+    <ErrorBoundary>
+      <ParentColumnContext.Provider value={{ columns }}>
+        <Box as="div" className={clsx(styles.width[columns], styles.start[startPos])} {...boxProps}>
+          {children}
+        </Box>
+      </ParentColumnContext.Provider>
+    </ErrorBoundary>
   );
 };
 
