@@ -1,10 +1,10 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 
 import { Space } from '../../themes/tokenType';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
-import { CSSRule, makeStyles } from './helpers';
+import { makeStyles } from './helpers';
 
 const makeGutterRules = (space: Space) =>
   style(
@@ -45,7 +45,7 @@ export const row = style([
   }),
 ]);
 
-const getNestedStyle = (columns: number): CSSRule =>
+const getNestedStyle = (columns: number): StyleRule =>
   responsiveStyle({
     tablet: {
       gridTemplateColumns: `repeat(${columns}, [col-start] 1fr)`,
