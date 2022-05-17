@@ -1,11 +1,7 @@
 import { addDecorator } from '@storybook/react';
 import { withThemes } from '@react-theming/storybook-addon';
-import { ThemeProvider } from '@mohnz/design-system/src';
+import { ThemeProvider } from '../lib/src';
 // Themes
-// import neutral, { neutralThemeTokens } from '@mohnz/design-system/src/themes/neutral';
-// import myCovidRecord, { myCovidRecordThemeTokens } from '@mohnz/design-system/src/themes/myCovidRecord';
-// import myHealthAccount, { myHealthAccountThemeTokens } from '@mohnz/design-system/src/themes/myHealthAccount';
-
 import neutral, { neutralThemeTokens } from '../styles/web/neutral';
 
 
