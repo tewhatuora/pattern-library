@@ -1,10 +1,11 @@
-# moh-design-system-poc
+# @mohnz/design-system
 
 ## Roadmap
 
-- [ ] Set up vanilla-extract theme/styles (theme contract, mapping tokens)
-- [ ] Set up docs site (MDX)
-- [ ] Set up playroom (Prototyping tool)
+- [X] Set up vanilla-extract theme/styles (theme contract, mapping tokens)
+- [X] ~~Set up docs site (MDX)~~
+- [X] ~~Set up playroom (Prototyping tool)~~
+- [X] Set up Storybook for docs
 - [ ] Set up bundling and package deployment
 - [ ] Give it a cool name? e.g. Seek has 'Braid', MOH has...
 
@@ -14,25 +15,37 @@
 
 ## Setup
 
+### Development
+
+Checkout this repository, and install the dependencies:
+```bash
+$ yarn
+```
+
+Install `yarn` workspace plugin:
+```bash
+$ yarn plugin import workspace-tools
+```
+### Usage
 In your React project, first install the library:
 
 ```bash
-$ npm install --save moh-design-system
+$ yarn add @mohnz/design-system
 ```
 
 At the root of your project, import the reset, required theme and `ThemeProvider` component.
 
 ```js
-import myCovidRecordTheme from 'moh-design-system/themes/myCovidRecord';
-import { ThemeProvider, Button } from 'moh-design-system';
+import myCovidRecordTheme from '@mohnz/design-system/themes/myCovidRecord';
+import { ThemeProvider, Button } from '@mohnz/design-system';
 // ...etc.
 ```
 
 Finally, render the `ThemeProvider` component, providing the imported theme via the `theme` prop:
 
 ```jsx
-import myCovidRecordTheme from 'moh-design-system/themes/myCovidRecord';
-import { ThemeProvider, Button } from 'moh-design-system';
+import myCovidRecordTheme from '@mohnz/design-system/themes/myCovidRecord';
+import { ThemeProvider, Button } from '@mohnz/design-system';
 
 const App = () => {
   return (
@@ -41,14 +54,6 @@ const App = () => {
     </ThemeProvider>
   );
 };
-```
-
-## Local development
-
-Run the docs website by going into the `/docs/` folder and running:
-
-```bash
-$ yarn dev
 ```
 
 ---
