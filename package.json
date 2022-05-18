@@ -3,8 +3,7 @@
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "lib",
-    "docs"
+    "lib"
   ],
   "scripts": {
     "build": "yarn workspaces foreach -pi run build",
