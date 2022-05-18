@@ -11,7 +11,7 @@ export type RowProps = {
 };
 
 /**
- * Columns component
+ * Row component
  * @param props
  * @constructor
  */

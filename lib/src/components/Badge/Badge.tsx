@@ -13,8 +13,7 @@ export type BadgeProps = {
 >;
 
 /**
- * Badge component
- * @param props
+ * Badge component for static labels
  * @constructor
  */
 export const Badge = ({ variant = 'neutral', children, ...boxProps }: BadgeProps) => {
@@ -38,4 +37,3 @@ export const Badge = ({ variant = 'neutral', children, ...boxProps }: BadgeProps
 };
 
 Badge.displayName = 'Badge';
-// export default Badge;

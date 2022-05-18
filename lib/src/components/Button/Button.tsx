@@ -15,6 +15,9 @@ export type ButtonProps = {
 > &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
+/**
+ * Buttons allow users to take actions, and make choices, with a single tap.
+ */
 export const Button = React.forwardRef(
   (
     { children, variant = 'primary', type = 'button', icon, ...boxProps }: ButtonProps,
