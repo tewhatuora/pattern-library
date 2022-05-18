@@ -10,6 +10,10 @@ type ScreenReadersOnlyProps = {
   as?: 'div' | 'span';
 };
 
+/**
+ * A component that will be visible
+ * only to screen readers
+ */
 export const ScreenReadersOnly = ({ id, children, as = 'span' }: ScreenReadersOnlyProps) => {
   return (
     <Box as={as} className={styles.root} id={id} overflow="hidden" position="absolute">

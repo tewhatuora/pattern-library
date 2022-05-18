@@ -12,6 +12,10 @@ export interface TextProps extends Pick<BoxProps, 'as'> {
   color?: BoxProps['color'];
 }
 
+/**
+ * A Text component for displaying
+ * text content as a given HTML tag
+ */
 export const Text = ({ id, as = 'span', size = 'medium', align, weight = 'regular', children, color }: TextProps) => {
   const textStyles = useText({ weight, size });
 

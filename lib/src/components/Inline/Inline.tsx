@@ -17,6 +17,9 @@ export interface InlineProps extends CollapsibleAlignmentProps {
   children: ReactNodeNoStrings;
 }
 
+/**
+ * An inline component
+ */
 export const Inline = ({ space = 0, align, alignY, collapseBelow, reverse, as = 'div', children }: InlineProps) => {
   assert(
     validInlineComponents.includes(as),

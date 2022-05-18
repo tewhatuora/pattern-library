@@ -20,6 +20,9 @@ export type HeadingProps = {
   id?: string;
 };
 
+/**
+ * Heading component for h1, h2, h3, h4 elements
+ */
 export const Heading = ({ level, weight, align, as, children, id, color }: HeadingProps) => {
   return (
     <Box

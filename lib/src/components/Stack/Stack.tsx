@@ -45,6 +45,11 @@ export interface StackProps {
   align?: OptionalResponsiveValue<Align>;
 }
 
+/**
+ * A component to vertically stack it's
+ * children components, separated by a
+ * `space provided as a prop
+ */
 export const Stack = ({ as = 'div', children, space = 'default', align = 'left' }: StackProps) => {
   assert(
     validStackComponents.includes(as),

@@ -7,7 +7,7 @@ type ContainerProps = {
   children?: React.ReactNode;
 };
 /**
- * Container component
+ * Grid container component
  * @param props
  * @constructor
  */
