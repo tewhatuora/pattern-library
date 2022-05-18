@@ -22,7 +22,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
     dts({
-      exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*'],
+      exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*', 'src/**/*.stories.tsx'],
       beforeWriteFile: (filePath, content) => ({
         content,
         filePath: filePath.replace('src', ''),
