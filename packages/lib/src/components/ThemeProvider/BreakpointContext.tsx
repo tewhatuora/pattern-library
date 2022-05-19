@@ -22,11 +22,20 @@ const getCurrentBreakpoint = (
   return 'mobile';
 };
 
-export const breakpointContext = createContext<Breakpoint | null>(null);
+export const BreakpointContext = createContext<Breakpoint | null>(null);
 
 interface BreakpointProviderProps {
   children: ReactNode;
 }
+
+/**
+ * Breakpoint provider
+ * wraps children components with a context
+ * provider with the value of the current
+ * breakpoint state
+ * @param children
+ * @constructor
+ */
 export function BreakpointProvider({ children }: BreakpointProviderProps) {
   const { tablet, desktop, wide } = breakpoints;
 
@@ -64,5 +73,5 @@ export function BreakpointProvider({ children }: BreakpointProviderProps) {
     };
   }, [tablet, desktop, wide, state]);
 
-  return <breakpointContext.Provider value={state}>{children}</breakpointContext.Provider>;
+  return <BreakpointContext.Provider value={state}>{children}</BreakpointContext.Provider>;
 }

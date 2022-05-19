@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
 import * as styles from './Row.css';
-import { ParentColumnContext } from '../../components/Columns/Column';
+import { ParentColumnContext } from './Column';
 
 export type RowProps = {
   children?: ReactNode;

@@ -1,11 +1,17 @@
-import { styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { responsiveStyle } from '../responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 const negativeMarginLeft = (spaceValue: string | number) => ({
-  marginLeft: spaceValue ? calc.negate(spaceValue) : 0,
+  ':before': {
+    marginLeft: spaceValue ? calc.negate(spaceValue) : 0,
+  },
+});
+
+export const base = style({
+  ':before': { content: '""', display: 'table' },
 });
 
 export const mobile = styleVariants({ 0: 0, ...vars.space }, (value) => negativeMarginLeft(value));
