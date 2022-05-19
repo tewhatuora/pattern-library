@@ -1,15 +1,13 @@
 {
-  "name": "moh-design-system-poc",
+  "name": "moh-design-system",
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "lib"
+    "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -pi run build",
-    "build:components": "yarn workspace degen build",
-    "clean": "yarn workspaces foreach -p run clean",
-    "dev": "yarn workspaces foreach -pi run dev",
+    "build": "yarn workspace @mohnz/design-system build && yarn",
+    "start": "yarn workspace example start",
     "lint": "eslint . --cache",
     "lint:fix": "yarn lint --fix",
     "lint:format": "prettier --write .",
