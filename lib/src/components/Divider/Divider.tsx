@@ -8,7 +8,9 @@ export type DividerProps = {
 };
 
 /**
- * Divider component
+ * A section break in content. Semantically equivalent to the `<hr>` HTML
+ * element. Set the `isDecoration` prop to `true` if it is purely decorative and
+ * doesn't represent a section break.
  * @param props
  * @constructor
  */
