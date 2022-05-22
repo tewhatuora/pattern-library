@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import assert from 'assert';
 
 import { Box, BoxProps } from '../Box/Box';
