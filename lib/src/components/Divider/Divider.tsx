@@ -5,6 +5,7 @@ import * as styles from './Divider.css';
 export type DividerProps = {
   variant: styles.Variant;
   isDecoration?: boolean;
+  className?: string;
 };
 
 /**
@@ -14,8 +15,8 @@ export type DividerProps = {
  * @param props
  * @constructor
  */
-export const Divider = ({ variant = 'dark', isDecoration = false }: DividerProps) => {
-  return <hr className={styles.variants({ variant })} role={isDecoration ? 'presentation' : undefined} />;
+export const Divider = ({ variant = 'dark', isDecoration = false, className }: DividerProps) => {
+  return <hr className={className ?? styles.variants({ variant })} role={isDecoration ? 'presentation' : undefined} />;
 };
 
 Divider.displayName = 'Divider';
