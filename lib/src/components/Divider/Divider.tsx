@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React from 'react';
 
 import * as styles from './Divider.css';
@@ -16,7 +17,9 @@ export type DividerProps = {
  * @constructor
  */
 export const Divider = ({ variant = 'dark', isDecoration = false, className }: DividerProps) => {
-  return <hr className={className ?? styles.variants({ variant })} role={isDecoration ? 'presentation' : undefined} />;
+  return (
+    <hr className={clsx(styles.variants({ variant }), className)} role={isDecoration ? 'presentation' : undefined} />
+  );
 };
 
 Divider.displayName = 'Divider';
