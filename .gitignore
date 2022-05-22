@@ -11,9 +11,9 @@ yarn-error.log*
 docs/.next/
 docs/public/playroom/
 
-lib/dist/
-lib/coverage/
-lib/src/components/icons/generated/
+packages/lib/dist/
+packages/lib/coverage/
+packages/lib/src/components/icons/generated/
 
 .yarn/*
 !.yarn/patches

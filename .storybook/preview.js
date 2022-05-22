@@ -1,8 +1,8 @@
 import { addDecorator } from '@storybook/react';
 import { withThemes } from '@react-theming/storybook-addon';
-import { ThemeProvider } from '../lib/src';
+import { ThemeProvider } from '../packages/lib/src';
 // Themes
-import neutral, { neutralThemeTokens } from '../styles/web/neutral';
+import neutral, { neutralThemeTokens } from '../packages/lib/src/themes/neutral';
 
 
 // Add themes for vanilla-extract here

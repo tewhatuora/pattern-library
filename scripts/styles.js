@@ -16,7 +16,7 @@ StyleDictionaryPackage.registerFormat({
     return prettierFormat(
       `
         ${StyleDictionary.formatHelpers.fileHeader({ file })}
-        import { ${ROOT_TYPE_NAME} } from '../../../lib/src/themes/tokenType';
+        import { ${ROOT_TYPE_NAME} } from '../tokenType';
         
         export const tokens: ${ROOT_TYPE_NAME} = ${JSON.stringify(values, null, 0)};
       `,
@@ -41,8 +41,8 @@ StyleDictionaryPackage.registerFormat({
         ${StyleDictionaryPackage.formatHelpers.fileHeader({ file })}
         import { createTheme } from '@vanilla-extract/css';
         
-        import makeVanillaTheme from '../../../lib/src/themes/makeVanillaTheme';
-        import { vars } from '../../../lib/src/themes/vars.css';
+        import makeVanillaTheme from '../makeVanillaTheme';
+        import { vars } from '../vars.css';
         import { tokens } from './tokens';
         
         export default createTheme(vars, makeVanillaTheme(tokens));
@@ -60,7 +60,7 @@ function getStyleDictionaryConfig(theme, platform) {
     platforms: {
       web: {
         transformGroup: 'js',
-        buildPath: `styles/web/${theme}/`,
+        buildPath: `packages/lib/src/themes/${theme}/`,
         options: {
           name,
           displayName,

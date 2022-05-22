@@ -17,6 +17,8 @@
     "target": "esnext",
     "types": ["node"]
   },
-  "include": ["lib/**/*"],
+  "include": [
+    "packages/lib/**/*"
+  ],
   "exclude": ["node_modules"]
 }
