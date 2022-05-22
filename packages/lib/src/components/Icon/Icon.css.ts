@@ -12,26 +12,7 @@ export const icon = style([
     justifyContent: 'center',
     alignItems: 'center',
   }),
-  // responsiveStyle({
-  //   mobile: {
-  //     height: vars.space.small.mobile,
-  //     width: vars.space.small.mobile,
-  //   },
-  //   tablet: {
-  //     height: vars.space.small.tablet,
-  //     width: vars.space.small.tablet,
-  //   },
-  // }),
 ]);
-
-// globalStyle(`${icon} > svg`, {
-//   width: '100%',
-//   height: '100%',
-// });
-
-// globalStyle(`${icon} > svg path`, {
-//   fill: 'currentColor',
-// });
 
 const variant = {
   decorativeIcons: responsiveStyle({

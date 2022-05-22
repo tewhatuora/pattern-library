@@ -19,7 +19,10 @@ export type BannerProps = {
 >;
 
 /**
- * Badge component
+ * Banner component.
+ * Displays a prominent message and icon.
+ * Closable option and when closed, component is hidden
+ * Has a light and dark variant
  * @param props
  * @constructor
  */

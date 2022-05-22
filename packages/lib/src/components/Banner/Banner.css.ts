@@ -65,6 +65,7 @@ export const variants = recipe({
     variant,
     theme,
   },
+  //for light theme only although no tokens yet, uses the dark theme tokens
   compoundVariants: [
     {
       variants: {
