@@ -1,6 +1,7 @@
 export type { BoxProps } from './Box/Box';
 export { Box } from './Box/Box';
 export { Button } from './Button/Button';
+export { Divider } from './Divider/Divider';
 export { Heading } from './Heading/Heading';
 export { Inline } from './Inline/Inline';
 export { ScreenReadersOnly } from './ScreenReadersOnly/ScreenReadersOnly';
