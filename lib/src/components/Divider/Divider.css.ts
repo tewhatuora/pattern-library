@@ -27,12 +27,10 @@ export const variants = recipe({
     responsiveStyle({
       mobile: {
         borderTopWidth: vars.borderWidth.small,
-        marginTop: vars.space.medium.mobile,
         marginBottom: vars.space.medium.mobile,
       },
       desktop: {
         borderTopWidth: vars.borderWidth.medium,
-        marginTop: vars.space.medium.tablet,
         marginBottom: vars.space.medium.tablet,
       },
     }),
