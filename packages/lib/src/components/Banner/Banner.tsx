@@ -32,7 +32,7 @@ export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', .
   const closeIcon = 'cross';
 
   //icon for display depending on variant
-  const icon = variant === 'urgent' ? 'alert' : 'document';
+  const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
 
   //for closing banner if set true banner hidden
   const [isClosed, setIsClosed] = useState(false);
@@ -56,9 +56,8 @@ export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', .
       // assigned after the {...boxProps} spread below
       {...boxProps}
     >
-      {/* <Icon icon={icon} /> */}
       <Box className={styles.spanStyles}>
-        <Icon className={styles.bannerIconStyles} icon={icon} variant="decorativeIcons" />
+        <Icon className={styles.bannerIconStyles} icon={bannerIcon} variant="decorativeIcons" />
         <Text size="medium" weight="regular">
           {label}
         </Text>
