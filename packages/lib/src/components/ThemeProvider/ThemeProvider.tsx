@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { BreakpointProvider } from './BreakpointContext';
 import { ThemeContext } from './ThemeContext';

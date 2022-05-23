@@ -1,7 +1,3 @@
-// Heading.stories.js|jsx
-
-import React from 'react';
-
 import { Heading, HeadingProps } from './Heading';
 
 export default {

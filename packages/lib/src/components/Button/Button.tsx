@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import { forwardRef, Ref } from 'react';
 import { Text } from '../Text/Text';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -18,10 +17,10 @@ export type ButtonProps = {
 /**
  * Buttons allow users to take actions, and make choices, with a single tap.
  */
-export const Button = React.forwardRef(
+export const Button = forwardRef(
   (
     { children, variant = 'primary', type = 'button', icon, ...boxProps }: ButtonProps,
-    ref: React.Ref<HTMLButtonElement>,
+    ref: Ref<HTMLButtonElement>,
   ) => {
     return (
       <Box
