@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Box, BoxProps } from '../Box/Box';
 import { HeadingLevel, HeadingWeight, useHeading } from '../../hooks/typography';
 

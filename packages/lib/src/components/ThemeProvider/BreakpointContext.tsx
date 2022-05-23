@@ -1,5 +1,5 @@
 // Adapted version of https://github.com/streamich/react-use/blob/master/src/useMedia.ts
-import React, { ReactNode, createContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 
 import { Breakpoint, breakpoints } from '../../css/breakpoints';
 

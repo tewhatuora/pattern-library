@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button, ButtonProps } from './Button';
 import icons from '../Icon/icons';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Column, ColumnProps } from './Column';
 import { Row } from './Row';
 import { Text } from '../Text/Text';

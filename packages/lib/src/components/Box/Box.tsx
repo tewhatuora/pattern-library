@@ -1,18 +1,18 @@
-import * as React from 'react';
+import { forwardRef, createElement, AllHTMLAttributes, ElementType } from 'react';
 import clsx, { ClassValue } from 'clsx';
 
 import { Atoms, atoms } from '../../css/atoms/atoms';
 import { sprinkles } from '../../css/atoms/sprinkles.css';
 
-type HTMLProperties = Omit<React.AllHTMLAttributes<HTMLElement>, 'as' | 'className' | 'color' | 'height' | 'width'>;
+type HTMLProperties = Omit<AllHTMLAttributes<HTMLElement>, 'as' | 'className' | 'color' | 'height' | 'width'>;
 
 type Props = Atoms &
   HTMLProperties & {
-    as?: React.ElementType;
+    as?: ElementType;
     className?: ClassValue;
   };
 
-export const Box = React.forwardRef<HTMLElement, Props>(({ as = 'div', className, ...props }: Props, ref) => {
+export const Box = forwardRef<HTMLElement, Props>(({ as = 'div', className, ...props }: Props, ref) => {
   const atomProps: Record<string, unknown> = {};
   const nativeProps: Record<string, unknown> = {};
 
@@ -29,7 +29,7 @@ export const Box = React.forwardRef<HTMLElement, Props>(({ as = 'div', className
     ...atomProps,
   });
 
-  return React.createElement(as, {
+  return createElement(as, {
     className: clsx(atomicClasses, className),
     ...nativeProps,
     ref,

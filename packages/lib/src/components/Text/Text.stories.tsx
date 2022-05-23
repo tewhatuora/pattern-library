@@ -1,7 +1,3 @@
-// Button.stories.js|jsx
-
-import React from 'react';
-
 import { Text, TextProps } from './Text';
 
 export default {
