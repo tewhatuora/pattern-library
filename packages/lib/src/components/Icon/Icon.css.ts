@@ -17,32 +17,32 @@ export const icon = style([
 const variant = {
   decorativeIcons: responsiveStyle({
     mobile: {
-      height: '2.4rem',
-      width: '2.4rem',
+      height: vars.space.medium.mobile,
+      width: vars.space.medium.mobile,
     },
     tablet: {
-      height: '4rem',
-      width: '4rem',
+      height: vars.space.large.tablet,
+      width: vars.space.large.tablet,
     },
   }),
   functionalIcons: responsiveStyle({
     mobile: {
-      height: '1.6rem',
-      width: '1.6rem',
+      height: vars.space.small.mobile,
+      width: vars.space.small.mobile,
     },
     tablet: {
-      height: '2.4rem',
-      width: '2.4rem',
+      height: vars.space.small.tablet,
+      width: vars.space.small.tablet,
     },
   }),
   socialIcons: responsiveStyle({
     mobile: {
-      height: '3.2rem',
-      width: '3.2rem',
+      height: vars.space.large.mobile,
+      width: vars.space.large.mobile,
     },
     tablet: {
-      height: '4rem',
-      width: '4rem',
+      height: vars.space.large.tablet,
+      width: vars.space.large.tablet,
     },
   }),
 };

@@ -26,11 +26,7 @@ export type BannerProps = {
  * @param props
  * @constructor
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', ...boxProps }: BannerProps) => {
-  //icon for closing banner
-  const closeIcon = 'cross';
-
   //icon for display depending on variant
   const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
 
@@ -51,9 +47,6 @@ export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', .
               theme,
             })
       }
-      // Passed-through boxProps.
-      // Note: Default values for boxProps need to be
-      // assigned after the {...boxProps} spread below
       {...boxProps}
     >
       <Box className={styles.spanStyles}>
@@ -62,9 +55,16 @@ export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', .
           {label}
         </Text>
       </Box>
-      {isClosable ? (
-        <Icon className={styles.closeIconStyles} icon={closeIcon} variant="functionalIcons" onClick={closeBanner} />
-      ) : null}
+      {/* {isClosable ? (
+        <button type="button" aria-label="Close">
+          <Icon className={styles.closeIconStyles} icon="cross" variant="functionalIcons" onClick={closeBanner} />
+        </button>
+      ) : null} */}
+      {isClosable && (
+        <button type="button" aria-label="Close">
+          <Icon className={styles.closeIconStyles} icon="cross" variant="functionalIcons" onClick={closeBanner} />
+        </button>
+      )}
     </Box>
   );
 };
