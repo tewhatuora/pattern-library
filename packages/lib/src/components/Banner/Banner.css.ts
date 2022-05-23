@@ -1,11 +1,16 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
+
+const offset = 0.2;
+const offsetSmall = `${offset}rem`;
+const offsetLarge = `${offset * 2}rem`;
 
 const variant = {
   alert: atoms({
@@ -39,26 +44,9 @@ export const variants = recipe({
     atoms({
       display: 'flex',
       flexShrink: '0',
-      alignItems: 'center',
+      flexGrow: '1',
+      alignItems: 'flexStart',
       justifyContent: 'spaceBetween',
-    }),
-    responsiveStyle({
-      mobile: {
-        width: '100%',
-        fontSize: '1.8rem',
-        paddingLeft: vars.space.small.mobile,
-        paddingRight: vars.space.small.mobile,
-        paddingTop: vars.space.small.mobile,
-        paddingBottom: vars.space.small.mobile,
-      },
-      tablet: {
-        width: '100%',
-        fontSize: '2rem',
-        paddingLeft: vars.space.xxlarge.tablet,
-        paddingRight: vars.space.xxlarge.tablet,
-        paddingTop: vars.space.small.tablet,
-        paddingBottom: vars.space.small.tablet,
-      },
     }),
   ]),
   variants: {
@@ -102,39 +90,74 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-export const bannerIconStyles = style([
-  { display: 'block', flexShrink: 0 },
+export const bannerIcon = style([
+  {
+    display: 'block',
+    flexShrink: 0
+  },
   responsiveStyle({
     mobile: {
-      marginLeft: vars.space.small.mobile,
       marginRight: vars.space.small.mobile,
     },
-    desktop: {
-      marginLeft: vars.space.large.tablet,
+    tablet: {
       marginRight: vars.space.medium.tablet,
     },
   }),
 ]);
 
-export const closeIconStyles = style([
-  { display: 'flex-end', flexShrink: 0 },
+export const closeButton = style([
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
+  },
   responsiveStyle({
     mobile: {
-      marginLeft: vars.space.xsmall.mobile,
-      marginRight: vars.space.xsmall.mobile,
+      paddingTop: calc.subtract(vars.space.medium.mobile, offsetSmall),
+      paddingBottom: calc.subtract(vars.space.medium.mobile, offsetSmall),
+      paddingRight: vars.space.small.mobile,
+      paddingLeft: vars.space.small.mobile,
     },
     tablet: {
-      marginLeft: vars.space.xsmall.tablet,
-      marginRight: vars.space.xsmall.tablet,
-    },
-  }),
+      paddingTop: calc.add(vars.space.small.tablet, offsetLarge),
+      paddingBottom: calc.add(vars.space.small.tablet, offsetLarge),
+      paddingRight: vars.space.xxlarge.tablet,
+      paddingLeft: vars.space.medium.tablet,
+    }
+  })
 ]);
 
-export const hideBannerStyles = style({
+export const hideBanner = style({
   display: 'none',
 });
 
-export const spanStyles = style({
-  display: 'flex',
-  alignItems: 'center',
-});
+export const bannerText = style([
+  responsiveStyle({
+    tablet: {
+      marginTop: offsetLarge
+    }
+  })
+]);
+
+export const bannerInner = style([
+  atoms({
+    display: 'flex',
+    alignItems: 'flexStart',
+  }),
+  responsiveStyle({
+    mobile: {
+      paddingTop: vars.space.small.mobile,
+      paddingLeft: vars.space.small.mobile,
+      paddingBottom: vars.space.small.mobile
+    },
+    tablet: {
+      width: '75%',
+      paddingTop: calc.subtract(vars.space.small.tablet, offsetLarge),
+      paddingLeft: vars.space.xxlarge.tablet,
+      paddingBottom: calc.subtract(vars.space.small.tablet, offsetLarge)
+    }
+  })
+]);

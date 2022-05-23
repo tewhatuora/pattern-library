@@ -1,16 +1,15 @@
-import * as React from 'react';
-
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Text } from '../Text/Text';
-
 import { Box } from '../Box/Box';
-import * as styles from './Banner.css';
 import { Icon } from '../Icon/Icon';
+import { CloseButton } from '../CloseButton/CloseButton';
+
+import * as styles from './Banner.css';
 
 export type BannerProps = {
   label?: string;
-  isClosable?: boolean;
+  onClose?: () => void;
   variant: styles.Variant;
   theme: styles.Theme;
 } & Pick<
@@ -26,22 +25,30 @@ export type BannerProps = {
  * @param props
  * @constructor
  */
-export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', ...boxProps }: BannerProps) => {
+export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...boxProps }: BannerProps) => {
+  // for closing banner if set true banner hidden
+  const [isClosed, setIsClosed] = useState(false);
+
   //icon for display depending on variant
   const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
 
-  //for closing banner if set true banner hidden
-  const [isClosed, setIsClosed] = useState(false);
-  const closeBanner = () => {
+  /**
+   * Handle closing banner
+   */
+  const handleCloseBanner = useCallback(() => {
     setIsClosed(true);
-  };
+
+    if (typeof onClose === 'function') {
+      onClose();
+    }
+  }, [onClose, setIsClosed]);
 
   return (
     <Box
       as="div"
       className={
         isClosed
-          ? styles.hideBannerStyles
+          ? styles.hideBanner
           : styles.variants({
               variant,
               theme,
@@ -49,21 +56,15 @@ export const Banner = ({ label, isClosable, variant = 'alert', theme = 'dark', .
       }
       {...boxProps}
     >
-      <Box className={styles.spanStyles}>
-        <Icon className={styles.bannerIconStyles} icon={bannerIcon} variant="decorativeIcons" />
-        <Text size="medium" weight="regular">
+      <Box className={styles.bannerInner}>
+        <Icon className={styles.bannerIcon} icon={bannerIcon} variant="decorativeIcons" />
+        <Text size="medium" weight="regular" className={styles.bannerText}>
           {label}
         </Text>
       </Box>
-      {/* {isClosable ? (
-        <button type="button" aria-label="Close">
-          <Icon className={styles.closeIconStyles} icon="cross" variant="functionalIcons" onClick={closeBanner} />
-        </button>
-      ) : null} */}
-      {isClosable && (
-        <button type="button" aria-label="Close">
-          <Icon className={styles.closeIconStyles} icon="cross" variant="functionalIcons" onClick={closeBanner} />
-        </button>
+
+      {!!onClose && (
+        <CloseButton className={styles.closeButton} onClose={handleCloseBanner} />
       )}
     </Box>
   );
