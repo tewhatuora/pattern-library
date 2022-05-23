@@ -93,7 +93,7 @@ export type Variants = RecipeVariants<typeof variants>;
 export const bannerIcon = style([
   {
     display: 'block',
-    flexShrink: 0
+    flexShrink: 0,
   },
   responsiveStyle({
     mobile: {
@@ -126,8 +126,8 @@ export const closeButton = style([
       paddingBottom: calc.add(vars.space.small.tablet, offsetLarge),
       paddingRight: vars.space.xxlarge.tablet,
       paddingLeft: vars.space.medium.tablet,
-    }
-  })
+    },
+  }),
 ]);
 
 export const hideBanner = style({
@@ -137,9 +137,9 @@ export const hideBanner = style({
 export const bannerText = style([
   responsiveStyle({
     tablet: {
-      marginTop: offsetLarge
-    }
-  })
+      marginTop: offsetLarge,
+    },
+  }),
 ]);
 
 export const bannerInner = style([
@@ -151,13 +151,13 @@ export const bannerInner = style([
     mobile: {
       paddingTop: vars.space.small.mobile,
       paddingLeft: vars.space.small.mobile,
-      paddingBottom: vars.space.small.mobile
+      paddingBottom: vars.space.small.mobile,
     },
     tablet: {
       width: '75%',
       paddingTop: calc.subtract(vars.space.small.tablet, offsetLarge),
       paddingLeft: vars.space.xxlarge.tablet,
-      paddingBottom: calc.subtract(vars.space.small.tablet, offsetLarge)
-    }
-  })
+      paddingBottom: calc.subtract(vars.space.small.tablet, offsetLarge),
+    },
+  }),
 ]);
