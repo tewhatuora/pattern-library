@@ -1,10 +1,9 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '../../themes/vars.css';
+import { vars } from '@/src/themes/vars.css';
 
 import { atoms } from '../../css/atoms/atoms';
-
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 const variant = {
