@@ -1,36 +1,57 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '@/src/themes/vars.css';
-
+import { vars } from '../../themes/vars.css';
 import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
+const thicknessVar = createVar();
+const marginBottomVar = createVar();
+
 const variant = {
   light: atoms({
-    borderColor: 'primary0',
+    backgroundColor: 'primary0',
   }),
   dark: atoms({
-    borderColor: 'primary25',
+    backgroundColor: 'primary25',
   }),
 };
 
 export type Variant = keyof typeof variant;
 
+const dividerStyle = style({
+  vars: {
+    [thicknessVar]: vars.borderWidth.small,
+    [marginBottomVar]: vars.space.medium.mobile,
+  },
+  selectors: {
+    '&[data-orientation=horizontal]': {
+      width: '100%',
+      height: thicknessVar,
+    },
+    '&[data-orientation=vertical]': {
+      width: thicknessVar,
+      height: '100%',
+    },
+  },
+  marginBottom: marginBottomVar,
+});
+
 export const variants = recipe({
   base: style([
-    atoms({
-      borderStyle: 'none',
-      borderTopStyle: 'solid',
-    }),
+    dividerStyle,
     responsiveStyle({
       mobile: {
-        borderTopWidth: vars.borderWidth.small,
-        marginBottom: vars.space.medium.mobile,
+        vars: {
+          [thicknessVar]: vars.borderWidth.small,
+          [marginBottomVar]: vars.space.medium.mobile,
+        },
       },
       desktop: {
-        borderTopWidth: vars.borderWidth.medium,
-        marginBottom: vars.space.medium.tablet,
+        vars: {
+          [thicknessVar]: vars.borderWidth.medium,
+          [marginBottomVar]: vars.space.medium.tablet,
+        },
       },
     }),
   ]),
