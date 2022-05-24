@@ -7,7 +7,7 @@ export default {
   component: Notice,
   argTypes: {
     label: {
-      defaultValue: 'This is a notice',
+      defaultValue: 'A message with a lighter visual treatment than alert',
     },
   },
 };

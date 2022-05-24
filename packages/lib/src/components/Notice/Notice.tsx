@@ -13,11 +13,13 @@ export type NoticeProps = {
 
 /**
  * Notice component
+ * A message with a lighter visual treatment than alert component
+ * Has a positive, info and critical variant
+ * Displays an icon(depending on the variant) with a text message
  * @param props
  * @constructor
  */
 export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps) => {
-  //icon for display depending on variant
   const noticeIcon = variant === 'positive' ? 'tick' : 'warning';
 
   return (
