@@ -1,5 +1,6 @@
 export type { BoxProps } from './Box/Box';
 export { Badge } from './Badge/Badge';
+export { Banner } from './Banner/Banner';
 export { Box } from './Box/Box';
 export { Button } from './Button/Button';
 export { Column } from './Columns/Column';
