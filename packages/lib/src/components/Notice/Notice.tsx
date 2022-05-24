@@ -30,7 +30,6 @@ export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps
       })}
       {...boxProps}
     >
-      {/* <Icon icon={icon} /> */}
       <Text size="medium" weight="regular">
         <Icon className={styles.noticeIcon} icon={noticeIcon} variant="functionalIcons" />
         {label}
