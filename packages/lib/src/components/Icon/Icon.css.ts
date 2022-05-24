@@ -59,11 +59,11 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
+globalStyle(`${icon} > svg path`, {
+  fill: 'currentColor',
+});
+
 globalStyle(`${icon} > svg`, {
   width: '100%',
   height: '100%',
-});
-
-globalStyle(`${icon} > svg path`, {
-  fill: 'currentColor',
 });

@@ -5,6 +5,7 @@ import { Icon } from '../Icon/Icon';
 type CloseButtonProps = {
   onClose: () => void;
   className?: string;
+  icon: string | number;
 };
 
 /**
@@ -15,6 +16,6 @@ type CloseButtonProps = {
  */
 export const CloseButton = memo((props: CloseButtonProps) => (
   <button type="button" aria-label="Close" className={props.className} onClick={props.onClose}>
-    <Icon icon="cross" variant="functionalIcons" />
+    <Icon icon={props.icon} variant="functionalIcons" />
   </button>
 ));
