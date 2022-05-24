@@ -32,7 +32,7 @@ export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps
     >
       <Text size="medium" weight="regular">
         <Icon className={styles.noticeIcon} icon={noticeIcon} variant="functionalIcons" />
-        {label}
+        <Box className={styles.labelStyles}> {label}</Box>
       </Text>
     </Box>
   );

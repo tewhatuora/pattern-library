@@ -30,11 +30,8 @@ export const variants = recipe({
       justifyContent: 'spaceBetween',
     }),
     responsiveStyle({
-      mobile: {
-        fontSize: '1.8rem',
-      },
       tablet: {
-        fontSize: '2rem',
+        width: '75%',
       },
     }),
   ]),
@@ -51,7 +48,7 @@ export const noticeIcon = style([
   responsiveStyle({
     mobile: {
       marginLeft: vars.space.xsmall.mobile,
-      marginRight: vars.space.xsmall.tablet,
+      marginRight: vars.space.xsmall.mobile,
     },
     tablet: {
       marginLeft: vars.space.xsmall.tablet,
@@ -59,3 +56,7 @@ export const noticeIcon = style([
     },
   }),
 ]);
+
+export const labelStyles = style({
+  display: 'flex',
+});
