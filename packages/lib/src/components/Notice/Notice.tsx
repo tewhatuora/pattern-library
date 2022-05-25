@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Text } from '../Text/Text';
 
 import { Box } from '../Box/Box';
@@ -24,17 +22,16 @@ export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps
 
   return (
     <Box
-      aria-role="alert"
-      aria-live="polite"
+      aria-role="status"
       as="div"
       className={styles.variants({
         variant,
       })}
       {...boxProps}
     >
+      <Icon className={styles.noticeIcon} icon={noticeIcon} variant="functionalIcons" />
       <Text size="medium" weight="regular">
-        <Icon className={styles.noticeIcon} icon={noticeIcon} variant="functionalIcons" />
-        <Box className={styles.labelStyles}> {label}</Box>
+        {label}
       </Text>
     </Box>
   );

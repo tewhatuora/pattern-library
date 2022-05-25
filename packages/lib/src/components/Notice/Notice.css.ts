@@ -11,7 +11,6 @@ import { vars } from '../../themes/vars.css';
  * Align icon to text offset
  */
 const offset = 0.2;
-const offsetSmall = `${offset}rem`;
 
 const variant = {
   positive: atoms({
@@ -33,8 +32,6 @@ export const variants = recipe({
       display: 'flex',
       flexShrink: '0',
       flexGrow: '1',
-      alignItems: 'flexStart',
-      justifyContent: 'spaceBetween',
     }),
     responsiveStyle({
       tablet: {
@@ -51,21 +48,16 @@ export const variants = recipe({
 export type Variants = RecipeVariants<typeof variants>;
 
 export const noticeIcon = style([
-  { float: 'left', display: 'inline' },
   responsiveStyle({
     mobile: {
-      paddingTop: offsetSmall,
+      paddingTop: offset,
       marginLeft: vars.space.xsmall.mobile,
       marginRight: vars.space.xsmall.mobile,
     },
     tablet: {
-      paddingTop: offsetSmall,
+      paddingTop: offset,
       marginLeft: vars.space.xsmall.tablet,
       marginRight: vars.space.xsmall.tablet,
     },
   }),
 ]);
-
-export const labelStyles = style({
-  display: 'flex',
-});
