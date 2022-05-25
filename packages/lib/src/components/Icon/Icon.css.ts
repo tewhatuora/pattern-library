@@ -50,7 +50,7 @@ const variant = {
 export type Variant = keyof typeof variant;
 
 export const variants = recipe({
-  base: icon,
+  base: {},
   variants: {
     variant,
   },

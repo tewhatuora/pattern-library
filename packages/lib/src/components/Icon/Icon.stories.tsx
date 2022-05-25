@@ -1,5 +1,8 @@
 import { Icon, IconProps } from './Icon';
+import { Box } from '../Box/Box';
+import { Text } from '../Text/Text';
 import icons, { decorative, functional, social } from './icons';
+import { vars } from '../../themes/vars.css';
 
 export default {
   title: 'Components/Icon',
@@ -10,23 +13,44 @@ export default {
       control: { type: 'select' },
       defaultValue: 'alert',
     },
+    color: {
+      options: Object.keys(vars.color),
+      control: { type: 'select' },
+      defaultValue: 'primary110',
+    },
   },
 };
 
-export const Individual = (args: IconProps) => <Icon {...args} color="primary110" />;
+export const Individual = (args: IconProps) => <Icon {...args} />;
 
-const renderIcons = (icons) => {
-  return Object.keys(icons).map((icon) => <Icon color="primary110" icon={icon} key={icon} />);
+export const InheritedColor = (args: IconProps) => {
+  const { color, ...rest } = args;
+  return (
+    <Box display="inlineFlex" color={args.color}>
+      <Icon {...rest} />
+      <Text>Inherits parent `color`</Text>
+    </Box>
+  );
 };
 
-export const Decorative = () => {
-  return <>{renderIcons(decorative)}</>;
+const IconContainer = ({ children }) => (
+  <Box display="flex" justifyContent="spaceBetween" flexDirection="row">
+    {children}
+  </Box>
+);
+
+const renderIcons = (icons, args) => {
+  return Object.keys(icons).map((icon) => <Icon icon={icon} key={icon} color={args.color} />);
 };
 
-export const Functional = () => {
-  return <>{renderIcons(functional)}</>;
+export const Decorative = (args: IconProps) => {
+  return <IconContainer>{renderIcons(decorative, args)}</IconContainer>;
 };
 
-export const Social = () => {
-  return <>{renderIcons(social)}</>;
+export const Functional = (args: IconProps) => {
+  return <IconContainer>{renderIcons(functional, args)}</IconContainer>;
+};
+
+export const Social = (args: IconProps) => {
+  return <IconContainer>{renderIcons(social, args)}</IconContainer>;
 };
