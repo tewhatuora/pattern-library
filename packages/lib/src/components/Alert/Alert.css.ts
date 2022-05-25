@@ -44,12 +44,14 @@ export const variants = recipe({
     }),
     responsiveStyle({
       mobile: {
+        gap: vars.space.xsmall.mobile,
         paddingTop: vars.space.xsmall.mobile,
         paddingBottom: vars.space.xsmall.mobile,
         paddingLeft: vars.space.small.mobile,
         paddingRight: vars.space.small.mobile,
       },
       tablet: {
+        gap: vars.space.xsmall.tablet,
         paddingTop: vars.space.xsmall.tablet,
         paddingBottom: vars.space.xsmall.tablet,
         paddingLeft: vars.space.small.tablet,
@@ -64,3 +66,7 @@ export const variants = recipe({
 });
 
 export type Variants = RecipeVariants<typeof variants>;
+
+export const icon = style({
+  flexShrink: 0,
+});
