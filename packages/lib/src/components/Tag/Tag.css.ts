@@ -19,17 +19,19 @@ export const tagStyles = style([
     borderColor: 'primary100',
     borderWidth: 'small',
     borderRadius: 'tags',
+    alignItems: 'center',
+    justifyContent: 'spaceBetween',
   }),
   responsiveStyle({
     mobile: {
       width: 'max-content',
-      paddingLeft: calc.subtract(vars.space.xsmall.mobile, offsetSmall),
-      paddingRight: calc.subtract(vars.space.xsmall.mobile, offsetSmall),
+      paddingLeft: calc.subtract(vars.space.xsmall.mobile, offsetLarge),
+      paddingRight: calc.subtract(vars.space.xsmall.mobile, offsetLarge),
     },
     tablet: {
       width: 'max-content',
-      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offsetSmall),
-      paddingRight: calc.subtract(vars.space.xsmall.tablet, offsetSmall),
+      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offsetLarge),
+      paddingRight: calc.subtract(vars.space.xsmall.tablet, offsetLarge),
     },
   }),
 ]);
@@ -38,21 +40,13 @@ export const closeButton = style([
   {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
     border: 'none',
     background: 'none',
     cursor: 'pointer',
-    // ':hover': {
-    //   color: 'white',
-    // },
   },
   responsiveStyle({
-    mobile: {
-      paddingLeft: calc.subtract(vars.space.xsmall.mobile, offsetSmall),
-    },
-    tablet: {
-      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offsetSmall),
-    },
+    mobile: { paddingLeft: vars.space.xsmall.mobile },
+    tablet: { paddingLeft: vars.space.xsmall.mobile },
   }),
 ]);
 
@@ -63,7 +57,6 @@ export const iconStyles = style([
     justifyContent: 'center',
     border: 'none',
     cursor: 'pointer',
-    fill: 'none',
   },
 ]);
 

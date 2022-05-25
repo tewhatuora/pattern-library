@@ -7,7 +7,7 @@ export default {
   component: Tag,
   argTypes: {
     label: {
-      defaultValue: 'Tag it!',
+      defaultValue: 'Tag Component',
     },
   },
 };

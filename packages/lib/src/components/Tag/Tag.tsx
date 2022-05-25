@@ -29,7 +29,7 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
   const [isCleared, setIsCleared] = useState(false);
 
   /**
-   * Handle closing banner
+   * Handle closing Tag
    */
   const handleClearTag = useCallback(() => {
     setIsCleared(true);
@@ -46,13 +46,7 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
       </Text>
       <Box className={styles.iconStyles}>
         {!!isClearable && (
-          <CloseButton
-            className={styles.closeButton}
-            onClose={handleClearTag}
-            icon="clear_field"
-            color="caution100"
-            variant="tagIcon"
-          />
+          <CloseButton className={styles.closeButton} onClose={handleClearTag} icon="clear_field" variant="tagIcon" />
         )}
       </Box>
     </Box>
