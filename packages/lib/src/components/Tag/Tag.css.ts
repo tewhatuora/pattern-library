@@ -42,9 +42,9 @@ export const closeButton = style([
     border: 'none',
     background: 'none',
     cursor: 'pointer',
-    ':hover': {
-      color: 'white',
-    },
+    // ':hover': {
+    //   color: 'white',
+    // },
   },
   responsiveStyle({
     mobile: {
@@ -62,7 +62,6 @@ export const iconStyles = style([
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    color: 'caution100',
     cursor: 'pointer',
     fill: 'none',
   },
