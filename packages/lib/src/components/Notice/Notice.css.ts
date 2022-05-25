@@ -7,10 +7,6 @@ import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-const offset = 0.2;
-const offsetSmall = `${offset}rem`;
-const offsetLarge = `${offset * 2}rem`;
-
 const variant = {
   positive: atoms({
     color: 'positive100',
@@ -52,12 +48,10 @@ export const noticeIcon = style([
   { float: 'left', display: 'inline' },
   responsiveStyle({
     mobile: {
-      paddingTop: offsetSmall,
       marginLeft: vars.space.xsmall.mobile,
       marginRight: vars.space.xsmall.mobile,
     },
     tablet: {
-      paddingTop: offsetLarge,
       marginLeft: vars.space.xsmall.tablet,
       marginRight: vars.space.xsmall.tablet,
     },
