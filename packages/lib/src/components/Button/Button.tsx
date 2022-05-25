@@ -10,15 +10,17 @@ import * as styles from './Button.css';
 
 export type ButtonProps = {
   icon?: string;
+  iconPosition?: 'left' | 'right';
   as?: ElementType;
   className?: string;
+  label?: string;
   variant?: styles.Variant;
   onPress?: (e: any) => void;
 } & Pick<JSX.IntrinsicElements['button'], 'children' | 'disabled' | 'type' | 'tabIndex'> &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
 export const ButtonRoot = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement> | null) => {
-  const { children, as = 'button', type = 'button', className, icon, onPress, ...boxProps } = props;
+  const { children, label, as = 'button', type = 'button', className, icon, onPress, ...boxProps } = props;
 
   const { buttonProps } = useButton(
     {
@@ -29,7 +31,7 @@ export const ButtonRoot = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonEle
   );
 
   return (
-    <Box as={as} className={className} ref={ref} type={type} {...buttonProps} {...boxProps}>
+    <Box as={as} className={className} ref={ref} type={type} {...buttonProps} {...boxProps} aria-label={label}>
       {children}
     </Box>
   );
@@ -44,8 +46,11 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     as = 'button',
     type = 'button',
     variant = 'primary',
+    label,
+    disabled,
     className,
     icon,
+    iconPosition = 'right',
     onPress,
     ...boxProps
   } = props;
@@ -61,6 +66,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       )}
       ref={ref}
       type={type}
+      label={label}
       onPress={onPress}
       {...boxProps}
     >
