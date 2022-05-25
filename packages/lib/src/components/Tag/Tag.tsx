@@ -45,7 +45,9 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
         {label}
       </Text>
       <Box className={styles.iconStyles}>
-        {!!isClearable && <CloseButton className={styles.closeButton} onClose={handleClearTag} icon="clear_field" />}
+        {!!isClearable && (
+          <CloseButton className={styles.closeButton} onClose={handleClearTag} icon="clear_field" variant="tagIcon" />
+        )}
       </Box>
     </Box>
   );

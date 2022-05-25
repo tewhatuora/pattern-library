@@ -45,6 +45,16 @@ const variant = {
       width: vars.space.large.tablet,
     },
   }),
+  tagIcon: responsiveStyle({
+    mobile: {
+      height: vars.space.small.mobile,
+      width: vars.space.small.mobile,
+    },
+    tablet: {
+      height: vars.space.small.mobile,
+      width: vars.space.small.mobile,
+    },
+  }),
 };
 
 export type Variant = keyof typeof variant;
