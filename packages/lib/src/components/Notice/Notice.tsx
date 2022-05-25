@@ -17,8 +17,15 @@ export type NoticeProps = {
  * @param props
  * @constructor
  */
+
+const iconMap = {
+  positive: 'tick',
+  info: 'info',
+  critical: 'warning',
+};
+
 export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps) => {
-  const noticeIcon = variant === 'positive' ? 'tick' : 'warning';
+  const noticeIcon = iconMap[variant];
 
   return (
     <Box
