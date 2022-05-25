@@ -15,7 +15,7 @@ type CloseButtonProps = {
  * @constructor
  */
 export const CloseButton = memo((props: CloseButtonProps) => (
-  <button type="button" aria-label="Close" className={props.className} onClick={props.onClose}>
+  <button type="button" aria-label="Close" title="close" className={props.className} onClick={props.onClose}>
     <Icon icon={props.icon} variant="functionalIcons" />
   </button>
 ));
