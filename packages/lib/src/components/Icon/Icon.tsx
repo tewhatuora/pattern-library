@@ -1,4 +1,5 @@
 import assert from 'assert';
+import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import * as styles from './Icon.css';
@@ -28,7 +29,7 @@ export const Icon = ({ icon, className, variant = 'decorativeIcons', ...boxProps
   const IconComponent = icons[icon];
 
   return (
-    <Box as="span" className={`${styles.variants({ variant })} ${className}`} {...boxProps}>
+    <Box as="span" className={clsx(styles.icon, styles.variants({ variant }), className)} {...boxProps}>
       <IconComponent />
     </Box>
   );
