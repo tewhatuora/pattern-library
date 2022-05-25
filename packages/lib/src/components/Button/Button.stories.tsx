@@ -21,3 +21,13 @@ export default {
 };
 
 export const Default = (args: ButtonProps) => <Button {...args}>Button</Button>;
+export const OnPress = (args: ButtonProps) => (
+  <Button
+    {...args}
+    onPress={() => {
+      alert('Button pressed!');
+    }}
+  >
+    Button
+  </Button>
+);

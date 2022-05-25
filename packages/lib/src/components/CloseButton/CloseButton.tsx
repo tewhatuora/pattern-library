@@ -1,9 +1,10 @@
 import { memo } from 'react';
 
 import { Icon } from '../Icon/Icon';
+import { ButtonRoot } from '../Button/Button';
 
 type CloseButtonProps = {
-  onClose: () => void;
+  onClose: (e: any) => void;
   className?: string;
 };
 
@@ -14,7 +15,7 @@ type CloseButtonProps = {
  * @constructor
  */
 export const CloseButton = memo((props: CloseButtonProps) => (
-  <button type="button" aria-label="Close" className={props.className} onClick={props.onClose}>
+  <ButtonRoot label="Close" className={props.className} onPress={props.onClose}>
     <Icon icon="cross" variant="functionalIcons" />
-  </button>
+  </ButtonRoot>
 ));
