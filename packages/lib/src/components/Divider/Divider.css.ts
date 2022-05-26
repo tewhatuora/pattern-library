@@ -6,7 +6,7 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 const thicknessVar = createVar();
-const marginBottomVar = createVar();
+const marginVar = createVar();
 
 const variant = {
   light: atoms({
@@ -22,19 +22,19 @@ export type Variant = keyof typeof variant;
 const dividerStyle = style({
   vars: {
     [thicknessVar]: vars.borderWidth.small,
-    [marginBottomVar]: vars.space.medium.mobile,
+    [marginVar]: vars.space.medium.mobile,
   },
   selectors: {
     '&[data-orientation=horizontal]': {
       width: '100%',
       height: thicknessVar,
+      marginBottom: marginVar,
     },
     '&[data-orientation=vertical]': {
       width: thicknessVar,
       height: '100%',
     },
   },
-  marginBottom: marginBottomVar,
 });
 
 export const variants = recipe({
@@ -44,13 +44,13 @@ export const variants = recipe({
       mobile: {
         vars: {
           [thicknessVar]: vars.borderWidth.small,
-          [marginBottomVar]: vars.space.medium.mobile,
+          [marginVar]: vars.space.medium.mobile,
         },
       },
       desktop: {
         vars: {
           [thicknessVar]: vars.borderWidth.medium,
-          [marginBottomVar]: vars.space.medium.tablet,
+          [marginVar]: vars.space.medium.tablet,
         },
       },
     }),
