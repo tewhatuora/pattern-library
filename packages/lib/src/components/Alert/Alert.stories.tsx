@@ -17,3 +17,6 @@ export const Default = (args: AlertProps) => {
 
   return <Alert {...args}>{args.children || text}</Alert>;
 };
+Default.args = {
+  variant: 'positive',
+};
