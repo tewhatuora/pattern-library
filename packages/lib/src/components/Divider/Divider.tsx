@@ -1,4 +1,3 @@
-import React from 'react';
 import clsx from 'clsx';
 import * as Separator from '@radix-ui/react-separator';
 
