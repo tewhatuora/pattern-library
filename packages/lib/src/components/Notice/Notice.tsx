@@ -6,7 +6,7 @@ import { Icon } from '../Icon/Icon';
 import { ReactNode } from 'react';
 
 export type NoticeProps = {
-  children?: ReactNode;
+  label?: string;
   variant: styles.Variant;
   alternativeIcon?: string;
 };
@@ -26,7 +26,7 @@ const iconMap = {
   critical: 'warning',
 };
 
-export const Notice = ({ children, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
+export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
   return (
     <Box
       aria-role="status"
@@ -38,7 +38,7 @@ export const Notice = ({ children, variant = 'positive', alternativeIcon, ...box
     >
       <Icon className={styles.noticeIcon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
       <Text size="medium" weight="regular">
-        {children}
+        {label}
       </Text>
     </Box>
   );
