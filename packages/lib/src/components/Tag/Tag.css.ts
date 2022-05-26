@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -8,9 +7,7 @@ import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { calc } from '@vanilla-extract/css-utils';
 
-const offset = 0.2;
-const offsetSmall = `${offset}rem`;
-const offsetLarge = `${offset * 2}rem`;
+const offset = '0.4rem';
 
 export const tagStyles = style([
   atoms({
@@ -25,24 +22,24 @@ export const tagStyles = style([
   responsiveStyle({
     mobile: {
       width: 'max-content',
-      paddingLeft: calc.subtract(vars.space.xsmall.mobile, offsetLarge),
-      paddingRight: calc.subtract(vars.space.xsmall.mobile, offsetLarge),
+      paddingLeft: calc.add(vars.space.xsmall.mobile, offset),
+      paddingRight: calc.add(vars.space.xsmall.mobile, offset),
     },
     tablet: {
       width: 'max-content',
-      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offsetLarge),
-      paddingRight: calc.subtract(vars.space.xsmall.tablet, offsetLarge),
+      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offset),
+      paddingRight: calc.subtract(vars.space.xsmall.tablet, offset),
     },
   }),
 ]);
 
 export const closeButton = style([
   {
-    display: 'flex',
     alignItems: 'center',
     border: 'none',
     background: 'none',
     cursor: 'pointer',
+    color: 'white',
   },
   responsiveStyle({
     mobile: { paddingLeft: vars.space.xsmall.mobile },
@@ -53,9 +50,6 @@ export const closeButton = style([
 export const iconStyles = style([
   {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: 'none',
     cursor: 'pointer',
   },
 ]);
