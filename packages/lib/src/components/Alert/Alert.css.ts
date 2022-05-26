@@ -86,3 +86,7 @@ export const contentWrapper = style([
     },
   }),
 ]);
+
+export const closeButton = style({
+  color: 'currentColor',
+});
