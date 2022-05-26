@@ -6,11 +6,11 @@ export default create({
     brandUrl: '/',
     brandImage: './Logo.svg',
 
-    colorPrimary: '#002E6E',
+    colorPrimary: '#E5E5E5',
     colorSecondary: '#0071BC',
 
     // UI
-    appBg: '#E5E5E5',
+    appBg: '#002E6E',
     appContentBg: '#fff',
     appBorderColor: '#7E94B5',
     appBorderRadius: 8,
@@ -20,13 +20,13 @@ export default create({
     fontCode: 'monospace',
 
     // Text colors
-    textColor: '#002E6E',
+    textColor: '#fff',
     textInverseColor: 'rgba(255,255,255,0.9)',
 
     // Toolbar default and active colors
-    barTextColor: '#fff',
-    barSelectedColor: '#fff',
-    barBg: '#002E6E',
+    barTextColor: '#002E6E',
+    barSelectedColor: '#002E6E',
+    barBg: '#eceff4',
 
     // Form colors
     inputBg: 'white',

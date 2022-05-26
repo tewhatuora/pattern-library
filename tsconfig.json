@@ -15,8 +15,11 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "esnext",
-    "types": ["node"]
+    "types": ["node"],
+    "jsx" : "react-jsx"
   },
-  "include": ["lib/**/*"],
+  "include": [
+    "packages/lib/**/*"
+  ],
   "exclude": ["node_modules"]
 }

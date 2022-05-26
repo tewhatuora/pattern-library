@@ -1,14 +1,14 @@
 const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 const path = require('path');
 
-const pathToInlineSvg = path.resolve(__dirname, '../lib/src/icons');
+const pathToInlineSvg = path.resolve(__dirname, '../packages/lib/src/icons');
 
 module.exports = {
   stories: [
     '../stories/**/*.stories.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
-    '../lib/src/components/**/*.stories.mdx',
-    '../lib/src/components/**/*.stories.@(js|jsx|ts|tsx)'
+    '../packages/lib/src/components/**/*.stories.mdx',
+    '../packages/lib/src/components/**/*.stories.@(js|jsx|ts|tsx)'
   ],
   addons: [
     '@storybook/addon-links',
@@ -36,7 +36,7 @@ module.exports = {
       use: [{
         loader: '@svgr/webpack',
         options: {
-          icon: true,
+          dimensions: false
         },
       }],
     });
