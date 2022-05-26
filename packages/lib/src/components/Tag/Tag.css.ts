@@ -16,8 +16,6 @@ export const tagStyles = style([
     borderColor: 'primary100',
     borderWidth: 'small',
     borderRadius: 'tags',
-    alignItems: 'center',
-    justifyContent: 'spaceBetween',
   }),
   responsiveStyle({
     mobile: {
@@ -40,6 +38,7 @@ export const closeButton = style([
     background: 'none',
     cursor: 'pointer',
     color: 'white',
+    width: '2.5rem',
   },
   responsiveStyle({
     mobile: { paddingLeft: vars.space.xsmall.mobile },
@@ -50,7 +49,6 @@ export const closeButton = style([
 export const iconStyles = style([
   {
     display: 'flex',
-    cursor: 'pointer',
   },
 ]);
 

@@ -11,10 +11,7 @@ export type TagProps = {
   label: string;
   isClearable: boolean;
   onClear?: () => void;
-} & Pick<
-  JSX.IntrinsicElements['button'],
-  'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'disabled' | 'type' | 'tabIndex'
->;
+};
 
 /**
  * Tag Component
