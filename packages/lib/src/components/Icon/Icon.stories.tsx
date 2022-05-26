@@ -26,9 +26,8 @@ export const Individual = (args: IconProps) => <Icon {...args} />;
 export const InheritedColor = (args: IconProps) => {
   const { color, ...rest } = args;
   return (
-    <Box display="inlineFlex" color={args.color}>
-      <Icon {...rest} />
-      <Text>Inherits parent `color`</Text>
+    <Box display="inlineFlex" alignItems="center" color={args.color}>
+      <Icon {...rest} /> <Text>Inherits parent `color`</Text>
     </Box>
   );
 };
@@ -39,7 +38,7 @@ const IconContainer = ({ children }) => (
   </Box>
 );
 
-const renderIcons = (icons, args) => {
+const renderIcons = (icons, args: IconProps) => {
   return Object.keys(icons).map((icon) => <Icon icon={icon} key={icon} color={args.color} />);
 };
 
