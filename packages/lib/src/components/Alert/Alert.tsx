@@ -20,7 +20,8 @@ const iconMap: Record<styles.Variant, string> = {
 };
 
 /**
- * Alert component for static labels
+ * Alerts are small informative, positive, cautionary or critical messages with
+ * a stronger visual treatment than notices.
  * @constructor
  */
 export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps }: AlertProps) => {
