@@ -3,10 +3,12 @@ import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 import * as styles from './Notice.css';
 import { Icon } from '../Icon/Icon';
+import { ReactNode } from 'react';
 
 export type NoticeProps = {
-  label: string;
+  children?: ReactNode;
   variant: styles.Variant;
+  alternativeIcon?: string;
 };
 
 /**
@@ -24,9 +26,7 @@ const iconMap = {
   critical: 'warning',
 };
 
-export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps) => {
-  const noticeIcon = iconMap[variant];
-
+export const Notice = ({ children, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
   return (
     <Box
       aria-role="status"
@@ -36,9 +36,9 @@ export const Notice = ({ label, variant = 'positive', ...boxProps }: NoticeProps
       })}
       {...boxProps}
     >
-      <Icon className={styles.noticeIcon} icon={noticeIcon} variant="functionalIcons" />
+      <Icon className={styles.noticeIcon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
       <Text size="medium" weight="regular">
-        {label}
+        {children}
       </Text>
     </Box>
   );
