@@ -41,6 +41,7 @@ export const variants = recipe({
     atoms({
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'spaceBetween',
     }),
     responsiveStyle({
       mobile: {
@@ -70,3 +71,18 @@ export type Variants = RecipeVariants<typeof variants>;
 export const icon = style({
   flexShrink: 0,
 });
+
+export const contentWrapper = style([
+  {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.xsmall.mobile,
+    },
+    desktop: {
+      gap: vars.space.xsmall.tablet,
+    },
+  }),
+]);
