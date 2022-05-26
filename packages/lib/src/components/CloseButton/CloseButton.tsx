@@ -6,7 +6,6 @@ type CloseButtonProps = {
   onClose: () => void;
   className?: string;
   icon: string | number;
-  color?: string;
   variant: 'decorativeIcons' | 'functionalIcons' | 'socialIcons' | 'tagIcon' | undefined;
 };
 
