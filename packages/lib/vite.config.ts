@@ -2,7 +2,8 @@ import { defineConfig } from 'vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
+import svgr from '@honkhonk/vite-plugin-svgr';
 
 import pkg from './package.json';
 
@@ -22,7 +23,15 @@ export default defineConfig({
       identifiers: 'short',
     }),
     tsconfigPaths(),
-    react(),
+    react({
+      jsxRuntime: 'automatic',
+    }),
+    svgr({
+      svgrOptions: {
+        jsxRuntime: 'automatic',
+        dimensions: false,
+      },
+    }),
     dts({
       exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*', 'src/**/*.stories.tsx'],
       beforeWriteFile: (filePath, content) => ({
