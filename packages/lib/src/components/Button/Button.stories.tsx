@@ -2,10 +2,6 @@ import { Button, ButtonProps } from './Button';
 import icons from '../Icon/icons';
 
 export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
   title: 'Components/Button',
   component: Button,
   argTypes: {
@@ -14,8 +10,17 @@ export default {
       control: { type: 'select' },
     },
     icon: {
-      options: Object.keys(icons),
+      options: ['', ...Object.keys(icons)],
       control: { type: 'select' },
+    },
+    iconPosition: {
+      options: ['right', 'left'],
+      defaultValue: 'right',
+      control: { type: 'radio' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      defaultValue: false,
     },
   },
 };

@@ -5,16 +5,26 @@ import clsx from 'clsx';
 import { Text } from '../Text/Text';
 import { Box, BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
+import { IconType } from '../Icon/icons';
 
 import * as styles from './Button.css';
 
+type KeysUnder<T, K extends PropertyKey> = T extends object
+  ? {
+      [P in keyof T]-?: (P extends K ? keyof T[P] : never) | KeysUnder<T[P], K>;
+    }[keyof T]
+  : never;
+
+type IconVariant = KeysUnder<styles.Variants, 'icon'>;
+type ColorVariant = KeysUnder<styles.Variants, 'color'>;
+
 export type ButtonProps = {
-  icon?: string;
-  iconPosition?: 'left' | 'right';
+  icon?: IconType;
+  iconPosition?: IconVariant;
   as?: ElementType;
   className?: string;
   label?: string;
-  variant?: styles.Variant;
+  variant?: ColorVariant;
   onPress?: (e: any) => void;
 } & Pick<JSX.IntrinsicElements['button'], 'children' | 'disabled' | 'type' | 'tabIndex'> &
   Pick<BoxProps, 'width' | 'justifyContent'>;
@@ -31,7 +41,15 @@ export const ButtonRoot = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonEle
   );
 
   return (
-    <Box as={as} className={className} ref={ref} type={type} {...buttonProps} {...boxProps} aria-label={label}>
+    <Box
+      as={as}
+      className={clsx(styles.root, className)}
+      ref={ref}
+      type={type}
+      {...buttonProps}
+      {...boxProps}
+      aria-label={label}
+    >
       {children}
     </Box>
   );
@@ -60,13 +78,15 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       as={as}
       className={clsx(
         styles.variants({
-          variant,
+          color: variant,
+          icon: iconPosition,
         }),
         className,
       )}
       ref={ref}
       type={type}
       label={label}
+      disabled={disabled}
       onPress={onPress}
       {...boxProps}
     >
@@ -74,7 +94,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
         {children}
       </Text>
 
-      {!!icon && <Icon className={styles.buttonIcon} icon={icon} />}
+      {!!icon && <Icon icon={icon} variant="functionalIcons" />}
     </ButtonRoot>
   );
 });
