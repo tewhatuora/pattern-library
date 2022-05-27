@@ -7,7 +7,7 @@ export default {
   component: ToggleSwitch,
   argTypes: {
     label: {
-      defaultValue: 'ToggleSwitch',
+      defaultValue: 'ToggleSwitch Component',
     },
   },
 };

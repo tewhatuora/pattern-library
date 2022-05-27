@@ -1,5 +1,6 @@
 import * as Switch from '@radix-ui/react-switch';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
+import * as Label from '@radix-ui/react-label';
 
 import { Text } from '../Text/Text';
 
@@ -19,13 +20,15 @@ export type ToggleSwitchProps = {
  */
 export const ToggleSwitch = ({ label, ...boxProps }: ToggleSwitchProps) => {
   return (
-    <Box as="div" className={styles.toggleSwitchStyles} {...boxProps}>
-      <Text size="xsmall" weight="regular">
-        {label}
-      </Text>
-      <Switch.Root className={styles.switchRootStyles} defaultChecked id="s1">
-        <Switch.Thumb className={styles.switchThumbStyles} />
-      </Switch.Root>
+    <Box as="div" {...boxProps}>
+      <form>
+        <Text className={styles.toggleSwitchStyles} size="xsmall" weight="regular">
+          <Label.Root htmlFor="s1">{label}</Label.Root>
+          <SwitchPrimitive.Root className={styles.switchRootStyles} defaultChecked id="s1">
+            <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
+          </SwitchPrimitive.Root>
+        </Text>
+      </form>
     </Box>
   );
 };

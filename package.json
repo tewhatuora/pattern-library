@@ -83,6 +83,7 @@
     "webpack": "5"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^0.1.5",
     "@radix-ui/react-switch": "^0.1.5",
     "@react-theming/storybook-addon": "^1.1.5"
   },

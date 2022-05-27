@@ -2725,7 +2725,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-label@npm:0.1.5":
+"@radix-ui/react-label@npm:0.1.5, @radix-ui/react-label@npm:^0.1.5":
   version: 0.1.5
   resolution: "@radix-ui/react-label@npm:0.1.5"
   dependencies:
@@ -15788,6 +15788,7 @@ __metadata:
     "@babel/core": ^7.17.9
     "@next/eslint-plugin-next": ^12.1.6
     "@prettier/plugin-xml": ^1.2.0
+    "@radix-ui/react-label": ^0.1.5
     "@radix-ui/react-switch": ^0.1.5
     "@react-theming/storybook-addon": ^1.1.5
     "@size-limit/preset-big-lib": ^6.0.3
