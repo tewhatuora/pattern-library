@@ -1,16 +1,15 @@
-import * as React from 'react';
-
 import { Text } from '../Text/Text';
 
 import { Box } from '../Box/Box';
 import * as styles from './Tag.css';
-import { useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { CloseButton } from '../CloseButton/CloseButton';
 
 export type TagProps = {
   label: string;
   isClearable: boolean;
   onClear?: () => void;
+  children: ReactNode;
 };
 
 /**
@@ -49,4 +48,3 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
 };
 
 Tag.displayName = 'Tag';
-// export default Tag;
