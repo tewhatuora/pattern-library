@@ -10,7 +10,7 @@ import { vars } from '../../themes/vars.css';
 /**
  * Align icon to text offset
  */
-const offset = 0.2;
+const offset = '0.2rem';
 
 const variant = {
   positive: atoms({
@@ -42,7 +42,6 @@ export const variants = recipe({
   variants: {
     variant,
   },
-  compoundVariants: [],
 });
 
 export type Variants = RecipeVariants<typeof variants>;
@@ -50,12 +49,12 @@ export type Variants = RecipeVariants<typeof variants>;
 export const noticeIcon = style([
   responsiveStyle({
     mobile: {
-      paddingTop: offset,
+      marginTop: offset,
       marginLeft: vars.space.xsmall.mobile,
       marginRight: vars.space.xsmall.mobile,
     },
     tablet: {
-      paddingTop: offset,
+      marginTop: offset,
       marginLeft: vars.space.xsmall.tablet,
       marginRight: vars.space.xsmall.tablet,
     },
