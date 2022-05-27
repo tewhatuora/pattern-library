@@ -29,7 +29,7 @@ const iconMap = {
 export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
   return (
     <Box
-      aria-role="status"
+      role="status"
       as="div"
       className={styles.variants({
         variant,
