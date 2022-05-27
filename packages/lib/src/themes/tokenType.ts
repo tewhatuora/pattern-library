@@ -93,6 +93,7 @@ export interface Tokens {
     width: {
       small: string;
       medium: string;
+      standard: string;
     };
   };
   shadows: {
