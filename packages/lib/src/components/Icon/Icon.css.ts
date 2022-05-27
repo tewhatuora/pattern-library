@@ -6,13 +6,11 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 
-export const icon = style([
-  atoms({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }),
-]);
+export const icon = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
 
 const variant = {
   decorativeIcons: responsiveStyle({
