@@ -13,6 +13,7 @@ export { Inline } from './Inline/Inline';
 export { ScreenReadersOnly } from './ScreenReadersOnly/ScreenReadersOnly';
 export { Row } from './Columns/Row';
 export { Stack } from './Stack/Stack';
+export { Tag } from './Tag/Tag';
 export { Text } from './Text/Text';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
