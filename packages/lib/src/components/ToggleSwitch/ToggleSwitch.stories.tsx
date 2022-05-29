@@ -9,6 +9,9 @@ export default {
     label: {
       defaultValue: 'ToggleSwitch Component',
     },
+    headingLabel: {
+      defaultValue: 'Heading',
+    },
   },
 };
 
