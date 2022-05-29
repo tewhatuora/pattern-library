@@ -12,7 +12,7 @@ type IconProps = {
   variant?: styles.Variant;
   onClick?: () => void;
   className?: string;
-} & Pick<BoxProps, 'as'>;
+} & Pick<BoxProps, 'as' | 'color'>;
 
 /**
  * Icon component to render
