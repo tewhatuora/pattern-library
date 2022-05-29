@@ -9,8 +9,10 @@ import * as styles from './ToggleSwitch.css';
 import { ReactNode, useCallback, useState } from 'react';
 
 export type ToggleSwitchProps = {
-  onClear?: () => void;
   label?: string;
+  headingDisplayed: boolean;
+  headingLabel?: string;
+  onChange?: () => void;
 };
 
 /**
@@ -18,17 +20,34 @@ export type ToggleSwitchProps = {
  * @param props
  * @constructor
  */
-export const ToggleSwitch = ({ label, ...boxProps }: ToggleSwitchProps) => {
+export const ToggleSwitch = ({ label, headingDisplayed, headingLabel, onChange, ...boxProps }: ToggleSwitchProps) => {
+  const [displayHeading, setDisplayHeading] = useState(false);
+
+  const onChangeFunction = useCallback(() => {
+    setDisplayHeading(true);
+
+    if (typeof onChange === 'function') {
+      onChangeFunction();
+    }
+  }, [onChange, setDisplayHeading]);
+
   return (
-    <Box as="div" {...boxProps}>
-      <form>
-        <Text className={styles.toggleSwitchStyles} size="xsmall" weight="regular">
+    <Box as="div" className={styles.containerStyles} {...boxProps}>
+      <Box className={styles.labelStyles}>
+        {!!headingDisplayed && (
+          <Text size="xsmall" weight="bold">
+            {headingLabel}
+          </Text>
+        )}
+        <Text size="xsmall" weight="regular">
           <Label.Root htmlFor="s1">{label}</Label.Root>
-          <SwitchPrimitive.Root className={styles.switchRootStyles} defaultChecked id="s1">
-            <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
-          </SwitchPrimitive.Root>
         </Text>
-      </form>
+      </Box>
+      <Box className={styles.toggleStyles}>
+        <SwitchPrimitive.Root className={styles.switchRootStyles} defaultChecked id="s1">
+          <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
+        </SwitchPrimitive.Root>
+      </Box>
     </Box>
   );
 };

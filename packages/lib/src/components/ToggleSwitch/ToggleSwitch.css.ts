@@ -9,20 +9,13 @@ import { calc } from '@vanilla-extract/css-utils';
 
 const offset = '0.4rem';
 
-export const toggleSwitchStyles = style([
+export const labelStyles = style([
   atoms({
     display: 'flex',
-    justifyContent: 'spaceBetween',
-  }),
-  responsiveStyle({
-    mobile: {
-      paddingLeft: vars.space.medium.mobile,
-      paddingRight: vars.space.medium.mobile,
-    },
-    tablet: {
-      paddingLeft: vars.space.medium.tablet,
-      paddingRight: vars.space.medium.tablet,
-    },
+    flexDirection: 'column',
+    flexShrink: '0',
+    flexGrow: '1',
+    alignItems: 'flexStart',
   }),
 ]);
 
@@ -49,8 +42,8 @@ export const switchRootStyles = style([
 
 export const switchThumbStyles = style([
   {
-    width: '2.1rem',
-    height: '2.1rem',
+    width: '2.7rem',
+    height: '2.7rem',
     display: 'block',
     backgroundColor: 'white',
     borderRadius: '9999px',
@@ -68,8 +61,24 @@ export const switchThumbStyles = style([
   }),
 ]);
 
-export const iconStyles = style([
+export const toggleStyles = style([
   {
     display: 'flex',
   },
+]);
+
+export const containerStyles = style([
+  {
+    display: 'flex',
+  },
+  responsiveStyle({
+    mobile: {
+      paddingLeft: vars.space.medium.mobile,
+      paddingRight: vars.space.medium.mobile,
+    },
+    tablet: {
+      paddingLeft: vars.space.medium.tablet,
+      paddingRight: vars.space.medium.tablet,
+    },
+  }),
 ]);
