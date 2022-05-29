@@ -10,6 +10,7 @@ export { Container } from './Container/Container';
 export { Heading } from './Heading/Heading';
 export { Icon } from './Icon/Icon';
 export { Inline } from './Inline/Inline';
+export { Notice } from './Notice/Notice';
 export { ScreenReadersOnly } from './ScreenReadersOnly/ScreenReadersOnly';
 export { Row } from './Columns/Row';
 export { Stack } from './Stack/Stack';
