@@ -46,11 +46,9 @@ export const closeButton = style([
   }),
 ]);
 
-export const iconStyles = style([
-  {
-    display: 'flex',
-  },
-]);
+export const iconStyles = style({
+  display: 'flex',
+});
 
 export const hideTag = style({
   display: 'none',
