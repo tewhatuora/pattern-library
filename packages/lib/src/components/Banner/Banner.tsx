@@ -64,7 +64,12 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
       </Box>
 
       {!!onClose && (
-        <CloseButton className={styles.closeButton} onClose={handleCloseBanner} />
+        <CloseButton
+          className={styles.closeButton}
+          onClose={handleCloseBanner}
+          icon="cross"
+          variant="functionalIcons"
+        />
       )}
     </Box>
   );

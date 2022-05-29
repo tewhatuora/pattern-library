@@ -6,6 +6,8 @@ import { ButtonRoot } from '../Button/Button';
 type CloseButtonProps = {
   onClose: (e: any) => void;
   className?: string;
+  icon: string | number;
+  variant: 'decorativeIcons' | 'functionalIcons' | 'socialIcons' | 'tagIcon' | undefined;
 };
 
 /**
@@ -16,6 +18,6 @@ type CloseButtonProps = {
  */
 export const CloseButton = memo((props: CloseButtonProps) => (
   <ButtonRoot label="Close" className={props.className} onPress={props.onClose}>
-    <Icon icon="cross" variant="functionalIcons" />
+    <Icon icon={props.icon} variant={props.variant} />
   </ButtonRoot>
 ));
