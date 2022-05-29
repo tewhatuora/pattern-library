@@ -7,9 +7,10 @@ import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-const offset = 0.2;
-const offsetSmall = `${offset}rem`;
-const offsetLarge = `${offset * 2}rem`;
+/**
+ * Align icon to text offset
+ */
+const offset = '0.2rem';
 
 const variant = {
   positive: atoms({
@@ -31,8 +32,6 @@ export const variants = recipe({
       display: 'flex',
       flexShrink: '0',
       flexGrow: '1',
-      alignItems: 'flexStart',
-      justifyContent: 'spaceBetween',
     }),
     responsiveStyle({
       tablet: {
@@ -43,27 +42,21 @@ export const variants = recipe({
   variants: {
     variant,
   },
-  compoundVariants: [],
 });
 
 export type Variants = RecipeVariants<typeof variants>;
 
 export const noticeIcon = style([
-  { float: 'left', display: 'inline' },
   responsiveStyle({
     mobile: {
-      paddingTop: offsetSmall,
+      marginTop: offset,
       marginLeft: vars.space.xsmall.mobile,
       marginRight: vars.space.xsmall.mobile,
     },
     tablet: {
-      paddingTop: offsetLarge,
+      marginTop: offset,
       marginLeft: vars.space.xsmall.tablet,
       marginRight: vars.space.xsmall.tablet,
     },
   }),
 ]);
-
-export const labelStyles = style({
-  display: 'flex',
-});
