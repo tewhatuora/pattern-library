@@ -10,9 +10,9 @@ import { ReactNode, useCallback, useState } from 'react';
 
 export type ToggleSwitchProps = {
   label?: string;
-  headingDisplayed: boolean;
+  isHeadingDisplayed: boolean;
   headingLabel?: string;
-  onChange?: () => void;
+  onChange?: (e: any) => void;
 };
 
 /**
@@ -20,7 +20,13 @@ export type ToggleSwitchProps = {
  * @param props
  * @constructor
  */
-export const ToggleSwitch = ({ label, headingDisplayed, headingLabel, onChange, ...boxProps }: ToggleSwitchProps) => {
+export const ToggleSwitch = ({
+  label,
+  isHeadingDisplayed: headingDisplayed,
+  headingLabel,
+  onChange,
+  ...boxProps
+}: ToggleSwitchProps) => {
   const [displayHeading, setDisplayHeading] = useState(false);
 
   const onChangeFunction = useCallback(() => {
@@ -53,4 +59,3 @@ export const ToggleSwitch = ({ label, headingDisplayed, headingLabel, onChange, 
 };
 
 ToggleSwitch.displayName = 'ToggleSwitch';
-// export default ToggleSwitch;
