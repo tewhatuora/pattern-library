@@ -12,7 +12,8 @@ export type ToggleSwitchProps = {
   label?: string;
   isHeadingDisplayed: boolean;
   headingLabel?: string;
-  onChange?: (e: any) => void;
+  onChange?: () => void;
+  children: ReactNode;
 };
 
 /**

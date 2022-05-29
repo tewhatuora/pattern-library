@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ToggleSwitch, ToggleSwitchProps } from './ToggleSwitch';
 
 export default {
@@ -19,5 +17,14 @@ export const Default = (args: ToggleSwitchProps) => {
   const text = 'ToggleSwitch';
   const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
 
-  return <ToggleSwitch {...args}>{label}</ToggleSwitch>;
+  return (
+    <ToggleSwitch
+      {...args}
+      onChange={() => {
+        return alert('ToggleSwitched!');
+      }}
+    >
+      {label}
+    </ToggleSwitch>
+  );
 };
