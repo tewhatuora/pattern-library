@@ -1,8 +1,10 @@
 export type { BoxProps } from './Box/Box';
+export { Alert } from './Alert/Alert';
 export { Badge } from './Badge/Badge';
 export { Banner } from './Banner/Banner';
 export { Box } from './Box/Box';
 export { Button } from './Button/Button';
+export { Divider } from './Divider/Divider';
 export { Column } from './Columns/Column';
 export { Container } from './Container/Container';
 export { Heading } from './Heading/Heading';

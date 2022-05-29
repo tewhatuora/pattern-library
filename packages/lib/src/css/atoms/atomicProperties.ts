@@ -13,6 +13,8 @@ const space = {
 
 const boxShadow = vars.shadow;
 
+const borderStyle = ['none', 'solid', 'dashed', 'dotted', 'double'];
+
 export type BoxShadow = keyof typeof boxShadow;
 
 type BorderRadiusByName = {
@@ -79,6 +81,11 @@ export const unresponsiveProperties = {
     inOut: 'cubic-bezier(0.42, 0, 0.58, 1)',
   },
   transition: vars.transition,
+  borderStyle: borderStyle,
+  borderBottomStyle: borderStyle,
+  borderLeftStyle: borderStyle,
+  borderRightStyle: borderStyle,
+  borderTopStyle: borderStyle,
 } as const;
 
 export type UnresponsiveProperties = keyof typeof unresponsiveProperties;

@@ -7,12 +7,12 @@ import icons from './icons';
 
 export const validIcons = Object.keys(icons) as const;
 
-type IconProps = {
+export type IconProps = {
   icon: keyof typeof icons;
   variant?: styles.Variant;
   onClick?: () => void;
   className?: string;
-} & Pick<BoxProps, 'as'>;
+} & Pick<BoxProps, 'as' | 'color'>;
 
 /**
  * Icon component to render
