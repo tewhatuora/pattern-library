@@ -43,7 +43,7 @@ export const switchRootStyles = style([
     backgroundColor: vars.color.neutral100,
     borderRadius: '10rem',
     transition: 'transform 100ms',
-    transform: 'translateX(2px)',
+    transform: 'translateX(0.2rem)',
     position: 'relative',
     WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
     selectors: {
@@ -58,13 +58,13 @@ export const switchThumbStyles = style([
     height: '2.7rem',
     display: 'block',
     backgroundColor: vars.color.neutral0,
-    borderRadius: '9999px',
-    boxShadow: '0 2px 10px black',
+    borderRadius: '10rem',
+    // boxShadow: '0 2px 10px black',
     transition: 'transform 100ms',
-    transform: 'translateX(2px)',
+    transform: 'translateX(0.25rem)',
     willChange: 'transform',
     selectors: {
-      '&[data-state=checked]': { transform: 'translateX(19px)' },
+      '&[data-state=checked]': { transform: 'translateX(2.1rem)' },
     },
   },
 ]);
