@@ -12,10 +12,6 @@ const offset = '0.4rem';
 export const containerStyles = style([
   atoms({
     display: 'flex',
-    flexDirection: 'column',
-    flexShrink: '0',
-    flexGrow: '1',
-    alignItems: 'flexStart',
   }),
 ]);
 
@@ -23,37 +19,40 @@ export const toggleGroup = style([
   {
     display: 'flex',
     backgroundColor: vars.color.neutral0,
-    borderRadius: 4,
-    borderColor: vars.color.primary100,
-    borderWidth: vars.borderWidth.small,
+    borderRadius: '0.4rem',
   },
-
-  responsiveStyle({
-    mobile: {},
-    tablet: {},
-  }),
 ]);
 
 export const styledItem = style([
   {
     all: 'unset',
-    backgroundColor: 'white',
-    color: 'gray',
-    height: '6 rem',
-    width: '42rem',
+    backgroundColor: vars.color.primary0,
+    color: vars.color.primary100,
     display: 'flex',
+    flexShrink: '0',
+    flexGrow: '1',
+
     alignItems: 'center',
     justifyContent: 'center',
+    border: '0.1rem solid black',
     selectors: {
-      '&:first-child': { marginLeft: 0, borderTopLeftRadius: 4, borderBottomLeftRadius: 4 },
-      '&:last-child': { borderTopRightRadius: 4, borderBottomRightRadius: 4 },
+      '&:first-child': { marginLeft: 0, borderTopLeftRadius: '0.4rem', borderBottomLeftRadius: '0.4rem' },
+      '&:last-child': { borderTopRightRadius: '0.4rem', borderBottomRightRadius: '0.4rem' },
       '&:hover': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
-      '&:focus': { position: 'relative', boxShadow: `0 0 0 2px black` },
+      '&:focus': { position: 'relative', boxShadow: `0 0 0 0.1rem black` },
     },
   },
   responsiveStyle({
-    mobile: {},
-    tablet: {},
+    mobile: {
+      width: '15rem',
+      paddingTop: vars.space.xsmall.tablet,
+      paddingBottom: vars.space.xsmall.tablet,
+    },
+    tablet: {
+      width: '42rem',
+      paddingTop: vars.space.xsmall.tablet,
+      paddingBottom: vars.space.xsmall.tablet,
+    },
   }),
 ]);

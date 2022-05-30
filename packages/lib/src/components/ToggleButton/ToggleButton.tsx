@@ -3,7 +3,7 @@ import { Text } from '../Text/Text';
 import * as styles from './ToggleButton.css';
 
 import { Box } from '../Box/Box';
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode } from 'react';
 
 import { ToggleGroup, ToggleGroupItem } from '@radix-ui/react-toggle-group';
 
@@ -28,12 +28,12 @@ export const ToggleButton = ({ labelLeft, labelRight, onChange, ...boxProps }: T
     <Box as="div" className={styles.containerStyles} {...boxProps}>
       <ToggleGroup className={styles.toggleGroup} type="single" defaultValue="center" aria-label="Text alignment">
         <ToggleGroupItem className={styles.styledItem} value="left" aria-label="Left aligned">
-          <Text size="medium" weight="regular">
+          <Text size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
         <ToggleGroupItem className={styles.styledItem} value="right" aria-label="Right aligned">
-          <Text size="medium" weight="regular">
+          <Text size="medium" weight="bold">
             {labelRight}
           </Text>
         </ToggleGroupItem>
