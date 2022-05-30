@@ -1,18 +1,21 @@
-import * as Switch from '@radix-ui/react-switch';
+import { ReactNode } from 'react';
+
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import * as Label from '@radix-ui/react-label';
 
 import { Text } from '../Text/Text';
-
 import { Box } from '../Box/Box';
+
 import * as styles from './ToggleSwitch.css';
-import { ReactNode, useCallback, useState } from 'react';
 
 export type ToggleSwitchProps = {
+  id: string;
   label?: string;
+  defaultChecked: boolean;
   isHeadingDisplayed: boolean;
   headingLabel?: string;
   onChange?: (checked: boolean) => void;
+  name?: string;
   children: ReactNode;
 };
 
@@ -27,29 +30,36 @@ export type ToggleSwitchProps = {
  * @constructor
  */
 export const ToggleSwitch = ({
+  id,
   label,
-  isHeadingDisplayed: headingDisplayed,
+  defaultChecked,
+  isHeadingDisplayed,
   headingLabel,
   onChange,
+  name,
   ...boxProps
 }: ToggleSwitchProps) => {
   return (
     <Box as="div" className={styles.containerStyles} {...boxProps}>
       <Box className={styles.labelStyles}>
-        {!!headingDisplayed && (
+        {!!isHeadingDisplayed && (
           <Text size="medium" weight="bold">
             {headingLabel}
           </Text>
         )}
         <Text size="medium" weight="regular">
-          <Label.Root htmlFor="s1">{label}</Label.Root>
+          <Label.Root htmlFor={id}>{label}</Label.Root>
         </Text>
       </Box>
-      <Box className={styles.toggleStyles}>
-        <SwitchPrimitive.Root className={styles.switchRootStyles} defaultChecked id="s1" onCheckedChange={onChange}>
-          <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
-        </SwitchPrimitive.Root>
-      </Box>
+      <SwitchPrimitive.Root
+        className={styles.switchRootStyles}
+        defaultChecked={defaultChecked}
+        id={id}
+        name={name}
+        onCheckedChange={onChange}
+      >
+        <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
+      </SwitchPrimitive.Root>
     </Box>
   );
 };
