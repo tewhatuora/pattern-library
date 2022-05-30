@@ -2,24 +2,12 @@ import { style } from '@vanilla-extract/css';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
-import { atoms } from '../../css/atoms/atoms';
-
 import { vars } from '../../themes/vars.css';
-import { calc } from '@vanilla-extract/css-utils';
-
-const offset = '0.4rem';
-
-export const containerStyles = style([
-  atoms({
-    display: 'flex',
-  }),
-]);
 
 export const toggleGroup = style([
   {
     display: 'flex',
     backgroundColor: vars.color.neutral0,
-    borderRadius: '0.4rem',
   },
 ]);
 
@@ -29,18 +17,20 @@ export const styledItem = style([
     backgroundColor: vars.color.primary0,
     color: vars.color.primary100,
     display: 'flex',
-    flexShrink: '0',
-    flexGrow: '1',
-
-    alignItems: 'center',
     justifyContent: 'center',
     border: '0.1rem solid black',
     selectors: {
-      '&:first-child': { marginLeft: 0, borderTopLeftRadius: '0.4rem', borderBottomLeftRadius: '0.4rem' },
-      '&:last-child': { borderTopRightRadius: '0.4rem', borderBottomRightRadius: '0.4rem' },
-      '&:hover': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
+      '&:first-child': {
+        borderTopLeftRadius: vars.borderRadius.inputs.topLeft,
+        borderBottomLeftRadius: vars.borderRadius.inputs.bottomLeft,
+      },
+      '&:last-child': {
+        borderTopRightRadius: vars.borderRadius.inputs.topRight,
+        borderBottomRightRadius: vars.borderRadius.inputs.bottomRight,
+      },
+      '&:hover': { backgroundColor: vars.color.primary0, color: vars.color.primary100 },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
-      '&:focus': { position: 'relative', boxShadow: `0 0 0 0.1rem black` },
+      '&:focus': { position: 'relative', outline: vars.color.secondary50 },
     },
   },
   responsiveStyle({

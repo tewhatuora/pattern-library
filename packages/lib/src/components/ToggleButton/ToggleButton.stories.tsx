@@ -14,17 +14,5 @@ export default {
 };
 
 export const Default = (args: ToggleButtonProps) => {
-  const text = 'ToggleButton';
-  const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
-
-  return (
-    <ToggleButton
-      {...args}
-      onChange={() => {
-        return alert('ToggleButtoned!');
-      }}
-    >
-      {label}
-    </ToggleButton>
-  );
+  return <ToggleButton {...args}></ToggleButton>;
 };
