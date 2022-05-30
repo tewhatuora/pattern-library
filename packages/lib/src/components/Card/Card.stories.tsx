@@ -82,11 +82,9 @@ GridLayout.args = {
   hasShadow: true,
   className: styles.storybookCard,
   children: (
-    <>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elit nisi, rhoncus non nisi eu, gravida dictum ex.
-        Nam posuere erat eu dui fringilla congue.
-      </Text>
-    </>
+    <Text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elit nisi, rhoncus non nisi eu, gravida dictum ex.
+      Nam posuere erat eu dui fringilla congue.
+    </Text>
   ),
 };

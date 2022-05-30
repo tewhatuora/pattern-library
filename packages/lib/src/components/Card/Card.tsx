@@ -4,11 +4,10 @@ import { Box } from '../Box/Box';
 import * as styles from './Card.css';
 
 export type CardProps = {
-  hasShadow?: boolean;
+  noShadow?: boolean;
   className?: string;
 } & Pick<
-  JSX.IntrinsicElements['button'],
-  'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'disabled' | 'type' | 'tabIndex'
+  JSX.IntrinsicElements['div'], 'children'
 >;
 
 /**
