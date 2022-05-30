@@ -2612,6 +2612,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-collection@npm:0.1.4":
+  version: 0.1.4
+  resolution: "@radix-ui/react-collection@npm:0.1.4"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/react-compose-refs": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-slot": 0.1.2
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 7c2b0ccca5e873e570ebd53e9133de86dfff26df01e16a7af2f4af1e55df71f90dd6d89995b24cf01b6eeaf04a3b05481a8f916792f76de58f9b0e77e0c4902f
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-compose-refs@npm:0.1.0":
   version: 0.1.0
   resolution: "@radix-ui/react-compose-refs@npm:0.1.0"
@@ -2673,6 +2688,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-roving-focus@npm:0.1.5":
+  version: 0.1.5
+  resolution: "@radix-ui/react-roving-focus@npm:0.1.5"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-collection": 0.1.4
+    "@radix-ui/react-compose-refs": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-id": 0.1.5
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-use-callback-ref": 0.1.0
+    "@radix-ui/react-use-controllable-state": 0.1.0
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 5a0504c1e6d617d0f3483fe7d16c4bc1552536f56828800ae6dac40cd9e758101405d99c3005721d059475715d28ede1f276cdf5d089b61d59b939fadf544a30
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-separator@npm:^0.1.4":
   version: 0.1.4
   resolution: "@radix-ui/react-separator@npm:0.1.4"
@@ -2713,6 +2747,37 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0
   checksum: e000cfeff7438a9ae3ff6877d1e86c0e8f1902b4358ff5ed29343ab685c848d03560e6ac379908a40006b7e28c1c17fe03952b70f13d6a444d3a142537d3de80
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-toggle-group@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@radix-ui/react-toggle-group@npm:0.1.5"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-roving-focus": 0.1.5
+    "@radix-ui/react-toggle": 0.1.4
+    "@radix-ui/react-use-controllable-state": 0.1.0
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: e2a45b49f882e52c245da056833382b725307e308c1068f2ce323e72b09747730c70c3c43e0791d6f5b269128afd13c59eb91c96445252eae92ec54f15d8f793
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-toggle@npm:0.1.4":
+  version: 0.1.4
+  resolution: "@radix-ui/react-toggle@npm:0.1.4"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-use-controllable-state": 0.1.0
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 7725372ba730d804032d5d97a08c193500373de8f156ebd0e7b4833dad26306a0e2449ce012ec3ff4545956aa40eff81be9c8945425dca67d747c8dc920495a8
   languageName: node
   linkType: hard
 
@@ -16318,6 +16383,7 @@ __metadata:
     "@radix-ui/react-label": ^0.1.5
     "@radix-ui/react-separator": ^0.1.4
     "@radix-ui/react-switch": ^0.1.5
+    "@radix-ui/react-toggle-group": ^0.1.5
     "@react-theming/storybook-addon": ^1.1.5
     "@size-limit/preset-big-lib": ^6.0.3
     "@storybook/addon-actions": ^6.4.22
