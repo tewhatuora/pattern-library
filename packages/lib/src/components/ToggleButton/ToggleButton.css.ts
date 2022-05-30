@@ -14,11 +14,14 @@ export const toggleGroup = style([
 export const styledItem = style([
   {
     all: 'unset',
-    backgroundColor: vars.color.primary0,
-    color: vars.color.primary100,
     display: 'flex',
     justifyContent: 'center',
     border: '0.1rem solid black',
+    backgroundColor: vars.color.primary0,
+    color: vars.color.primary100,
+    paddingTop: vars.space.xsmall.tablet,
+    paddingBottom: vars.space.xsmall.tablet,
+
     selectors: {
       '&:first-child': {
         borderTopLeftRadius: vars.borderRadius.inputs.topLeft,
@@ -36,13 +39,9 @@ export const styledItem = style([
   responsiveStyle({
     mobile: {
       width: '15rem',
-      paddingTop: vars.space.xsmall.tablet,
-      paddingBottom: vars.space.xsmall.tablet,
     },
     tablet: {
       width: '42rem',
-      paddingTop: vars.space.xsmall.tablet,
-      paddingBottom: vars.space.xsmall.tablet,
     },
   }),
 ]);
