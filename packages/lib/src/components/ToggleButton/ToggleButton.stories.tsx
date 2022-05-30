@@ -4,11 +4,11 @@ export default {
   title: 'Components/ToggleButton',
   component: ToggleButton,
   argTypes: {
-    label: {
-      defaultValue: 'ToggleButton Component',
+    labelLeft: {
+      defaultValue: 'Left',
     },
-    headingLabel: {
-      defaultValue: 'Heading',
+    labelRight: {
+      defaultValue: 'Right',
     },
   },
 };
