@@ -16,6 +16,10 @@ export type ToggleButtonProps = {
 
 /**
  * ToggleButton Component
+ * A control that has two mutually-exclusive states
+ * Display a Left Button with text label
+ * Display a Right button with text label
+ * Only allow one button to have a selcted state
  * @param props
  * @constructor
  */

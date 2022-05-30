@@ -24,7 +24,8 @@ export const toggleGroup = style([
     display: 'flex',
     backgroundColor: vars.color.neutral0,
     borderRadius: 4,
-    // boxShadow: `0 2px 10px ${blackA.blackA7}`,
+    borderColor: vars.color.primary100,
+    borderWidth: vars.borderWidth.small,
   },
 
   responsiveStyle({
@@ -46,7 +47,7 @@ export const styledItem = style([
     selectors: {
       '&:first-child': { marginLeft: 0, borderTopLeftRadius: 4, borderBottomLeftRadius: 4 },
       '&:last-child': { borderTopRightRadius: 4, borderBottomRightRadius: 4 },
-      '&:hover': { backgroundColor: 'violet' },
+      '&:hover': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
       '&:focus': { position: 'relative', boxShadow: `0 0 0 2px black` },
     },
