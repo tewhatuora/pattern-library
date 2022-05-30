@@ -29,3 +29,11 @@ export const variants = recipe({
 });
 
 export type Variants = RecipeVariants<typeof variants>;
+
+/**
+ * I wanted to add padding but couldn't get it working with `atoms()` so I did
+ * this instead.
+ */
+export const storybookCard = style({
+  padding: vars.space.small.mobile,
+});
