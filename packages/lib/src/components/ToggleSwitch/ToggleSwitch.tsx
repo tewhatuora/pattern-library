@@ -12,7 +12,7 @@ export type ToggleSwitchProps = {
   label?: string;
   isHeadingDisplayed: boolean;
   headingLabel?: string;
-  onChange?: () => void;
+  onChange?: (checked: boolean) => void;
   children: ReactNode;
 };
 
@@ -28,30 +28,20 @@ export const ToggleSwitch = ({
   onChange,
   ...boxProps
 }: ToggleSwitchProps) => {
-  const [displayHeading, setDisplayHeading] = useState(false);
-
-  const onChangeFunction = useCallback(() => {
-    setDisplayHeading(true);
-
-    if (typeof onChange === 'function') {
-      onChangeFunction();
-    }
-  }, [onChange, setDisplayHeading]);
-
   return (
     <Box as="div" className={styles.containerStyles} {...boxProps}>
       <Box className={styles.labelStyles}>
         {!!headingDisplayed && (
-          <Text size="xsmall" weight="bold">
+          <Text size="medium" weight="bold">
             {headingLabel}
           </Text>
         )}
-        <Text size="xsmall" weight="regular">
+        <Text size="medium" weight="regular">
           <Label.Root htmlFor="s1">{label}</Label.Root>
         </Text>
       </Box>
       <Box className={styles.toggleStyles}>
-        <SwitchPrimitive.Root className={styles.switchRootStyles} defaultChecked id="s1">
+        <SwitchPrimitive.Root className={styles.switchRootStyles} defaultChecked id="s1" onCheckedChange={onChange}>
           <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
         </SwitchPrimitive.Root>
       </Box>
