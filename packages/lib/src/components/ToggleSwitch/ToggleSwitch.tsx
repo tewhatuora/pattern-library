@@ -18,6 +18,11 @@ export type ToggleSwitchProps = {
 
 /**
  * ToggleSwitch Component
+ * A control that has two mutually exclusive states
+ * Always has a default value
+ * Display text on the left
+ * Option to display a text heading on the left
+ * Display a toggle switch on the right
  * @param props
  * @constructor
  */
