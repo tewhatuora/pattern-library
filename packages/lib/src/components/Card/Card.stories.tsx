@@ -15,8 +15,8 @@ export const Single = (args: CardProps) => {
   return <Card {...args} />;
 };
 Single.args = {
-  hasShadow: true,
   className: styles.storybookCard,
+  noShadow: false,
   children: (
     <>
       <Text>
@@ -79,8 +79,8 @@ export const GridLayout = (args: CardProps) => {
   );
 };
 GridLayout.args = {
-  hasShadow: true,
   className: styles.storybookCard,
+  noShadow: false,
   children: (
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elit nisi, rhoncus non nisi eu, gravida dictum ex.
