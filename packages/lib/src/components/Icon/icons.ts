@@ -45,7 +45,6 @@ import LinkedIn from '../../icons/social/LinkedIn.svg?component';
 import TikTok from '../../icons/social/TikTok.svg?component';
 import Twitter from '../../icons/social/Twitter.svg?component';
 
-console.log(Twitter);
 export type IconType =
   | 'alert'
   | 'blood'
