@@ -65,3 +65,18 @@ export const radioText = style([
     paddingLeft: '1.5rem',
   },
 ]);
+
+export const headingLabel = style([
+  {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+]);
+
+export const labelStyles = style([
+  {
+    color: 'black',
+    userSelect: 'none',
+    paddingLeft: '1.5rem',
+  },
+]);

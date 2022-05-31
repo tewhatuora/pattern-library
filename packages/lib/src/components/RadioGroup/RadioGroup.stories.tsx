@@ -7,6 +7,13 @@ export default {
     labels: {
       defaultValue: ['One', 'Two', 'Three'],
     },
+    headingLabels: {
+      defaultValue: [
+        { heading: 'Heading 1', label: 'One' },
+        { heading: 'Heading 2', label: 'Two' },
+        { heading: 'Heading 3', label: 'Three' },
+      ],
+    },
   },
 };
 

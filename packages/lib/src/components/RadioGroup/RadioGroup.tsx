@@ -13,6 +13,9 @@ import * as styles from './RadioGroup.css';
 export type RadioGroupProps = {
   labels: string[];
   onChange?: (value: string) => void;
+  isHeadingDisplayed: boolean;
+  headingLabels: { heading: string; label: string }[];
+  //   headingLabels: string[];
   children: ReactNode;
 };
 
@@ -26,22 +29,40 @@ export type RadioGroupProps = {
  * @param props
  * @constructor
  */
-export const RadioGroup = ({ labels, onChange, ...boxProps }: RadioGroupProps) => {
+export const RadioGroup = ({ labels, isHeadingDisplayed, headingLabels, onChange, ...boxProps }: RadioGroupProps) => {
   return (
     <Box as="div" className={styles.RadioGroup} {...boxProps}>
       <RadioGroupPrimitive.Root aria-label="View density">
-        {labels.map((label, index) => (
-          <ul key={index}>
-            <Box className={styles.Flex}>
-              <RadioGroupPrimitive.Item className={styles.styledItem} value={label} id={label}>
-                <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
-              </RadioGroupPrimitive.Item>
-              <Text className={styles.radioText} size="medium" weight="regular">
-                <Label htmlFor={label}>{label}</Label>
-              </Text>
-            </Box>
-          </ul>
-        ))}
+        {!!isHeadingDisplayed
+          ? headingLabels.map(({ heading, label }) => (
+              <ul>
+                <Box className={styles.Flex}>
+                  <RadioGroupPrimitive.Item className={styles.styledItem} value={label} id={label}>
+                    <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
+                  </RadioGroupPrimitive.Item>
+                  <Box className={styles.headingLabel}>
+                    <Text className={styles.radioText} size="medium" weight="bold">
+                      <Label htmlFor={label}>{heading}</Label>
+                    </Text>
+                    <Text className={styles.labelStyles} size="medium" weight="regular">
+                      {label}
+                    </Text>
+                  </Box>
+                </Box>
+              </ul>
+            ))
+          : labels.map((label) => (
+              <ul>
+                <Box className={styles.Flex}>
+                  <RadioGroupPrimitive.Item className={styles.styledItem} value={label} id={label}>
+                    <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
+                  </RadioGroupPrimitive.Item>
+                  <Text className={styles.radioText} size="medium" weight="regular">
+                    <Label htmlFor={label}>{label}</Label>
+                  </Text>
+                </Box>
+              </ul>
+            ))}
       </RadioGroupPrimitive.Root>
     </Box>
   );
