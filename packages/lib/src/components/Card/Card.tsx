@@ -18,10 +18,9 @@ export const Card = ({ hasShadow = false, children, className, ...boxProps }: Ca
   return (
     <Box
       as="div"
-      className={clsx(
-        styles.variants({
-          hasShadow,
-        }),
+      className={clsx({
+        [styles.variant.noShadow]: noShadow
+      },
         className,
       )}
       {...boxProps}
