@@ -18,6 +18,10 @@ export type RadioGroupProps = {
 
 /**
  * RadioGroup Component
+ * Displays a list of vertically stacked radio components
+ * Enables users to pick exactly one option from a radio group
+ *Have an option to display a heading
+ * Have an option to be required
  *
  * @param props
  * @constructor
@@ -25,25 +29,6 @@ export type RadioGroupProps = {
 export const RadioGroup = ({ labels, onChange, ...boxProps }: RadioGroupProps) => {
   return (
     <Box as="div" className={styles.RadioGroup} {...boxProps}>
-      {/* <RadioGroupPrimitive.Root aria-label="View density">
-        <Box className={styles.Flex}>
-          <RadioGroupPrimitive.Item className={styles.styledItem} value="default" id="r1">
-            <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
-          </RadioGroupPrimitive.Item>
-          <Text className={styles.radioText} size="medium" weight="regular">
-            <Label htmlFor="r1">{labels[0]}</Label>
-          </Text>
-        </Box>
-        <Box className={styles.Flex}>
-          <RadioGroupPrimitive.Item className={styles.styledItem} value="compact" id="r2">
-            <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
-          </RadioGroupPrimitive.Item>
-          <Text className={styles.radioText} size="medium" weight="regular">
-            <Label htmlFor="r2">{labels[1]}</Label>
-          </Text>
-        </Box>
-      </RadioGroupPrimitive.Root> */}
-
       <RadioGroupPrimitive.Root aria-label="View density">
         {labels.map((label, index) => (
           <ul key={index}>
