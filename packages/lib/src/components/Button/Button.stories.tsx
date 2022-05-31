@@ -22,10 +22,16 @@ export default {
       control: { type: 'boolean' },
       defaultValue: false,
     },
+    children: {
+      control: {
+        type: 'text',
+        defaultValue: 'Button',
+      },
+    },
   },
 };
 
-export const Default = (args: ButtonProps) => <Button {...args}>Button</Button>;
+export const Default = (args: ButtonProps) => <Button {...args}>{args.children || 'Button'}</Button>;
 export const OnPress = (args: ButtonProps) => (
   <Button
     {...args}
@@ -33,6 +39,6 @@ export const OnPress = (args: ButtonProps) => (
       alert('Button pressed!');
     }}
   >
-    Button
+    {args.children || 'Button'}
   </Button>
 );
