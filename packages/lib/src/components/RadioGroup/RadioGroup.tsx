@@ -3,13 +3,10 @@ import { ReactNode } from 'react';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 
 import { Label } from '@radix-ui/react-label';
-
 import { Text } from '../Text/Text';
-
 import { Box } from '../Box/Box';
 
 import * as styles from './RadioGroup.css';
-import clsx from 'clsx';
 
 export type RadioGroupProps = {
   labels: string[];
@@ -45,13 +42,7 @@ export const RadioGroup = ({
 }: RadioGroupProps) => {
   return (
     <Box as="div" {...boxProps}>
-      <RadioGroupPrimitive.Root
-        aria-label="View density"
-        name={name}
-        required={isRequired}
-        orientation="vertical"
-        onValueChange={onChange}
-      >
+      <RadioGroupPrimitive.Root aria-label="View density" name={name} required={isRequired} onValueChange={onChange}>
         {!!isHeadingDisplayed
           ? labelsWithHeading.map(({ heading, label }) => (
               <Box
