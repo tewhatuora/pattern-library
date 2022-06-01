@@ -14,5 +14,5 @@ export default {
 };
 
 export const Default = (args: ToggleSwitchProps) => {
-  return <ToggleSwitch {...args}></ToggleSwitch>;
+  return <ToggleSwitch {...args} />;
 };
