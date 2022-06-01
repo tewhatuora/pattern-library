@@ -1,3 +1,4 @@
+import { PropsWithChildren, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -12,9 +13,19 @@ export type CardProps = {
  * Card for building 2D layouts using grids or to contain content.
  * @constructor
  */
-export const Card = ({ noShadow = false, children, className }: CardProps) => {
+export const Card = ({ noShadow = false, children, className }: PropsWithChildren<CardProps>) => {
+  const cardClassNames = useMemo(() => {
+    return clsx(
+      styles.card,
+      {
+        [styles.variants.noShadow]: noShadow,
+      },
+      className,
+    );
+  }, [noShadow, className]);
+
   return (
-    <Box as="div" className={clsx([styles.variants[noShadow ? 'noShadow' : 'shadow']], className)}>
+    <Box as="div" className={cardClassNames}>
       {children}
     </Box>
   );
