@@ -97,9 +97,7 @@ export interface Tokens {
     };
   };
   shadows: {
-    small: string;
-    medium: string;
-    large: string;
+    '10': string;
   };
   color: {
     primary110: string; // Used for pressed states

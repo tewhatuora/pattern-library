@@ -7,7 +7,7 @@ export default {
   component: Notice,
   argTypes: {
     label: {
-      defaultValue: 'A message with a lighter visual treatment than alert',
+      defaultValue: 'A static message with a lighter visual treatment than alert',
     },
   },
 };
