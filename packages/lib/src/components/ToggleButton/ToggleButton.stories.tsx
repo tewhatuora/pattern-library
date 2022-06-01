@@ -14,5 +14,5 @@ export default {
 };
 
 export const Default = (args: ToggleButtonProps) => {
-  return <ToggleButton {...args}></ToggleButton>;
+  return <ToggleButton {...args} />;
 };
