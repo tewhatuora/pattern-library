@@ -4,6 +4,7 @@ import { Text } from '../Text/Text';
 import { Heading } from '../Heading/Heading';
 import { Container } from '../Container/Container';
 import { Button } from '../Button/Button';
+import { Card } from '../Card/Card';
 
 export default {
   title: 'Layout/Row',
@@ -129,18 +130,6 @@ export const NoGutters = (args: RowProps) => {
   );
 };
 
-const Card = (props) => (
-  <div
-    style={{
-      padding: '2rem 0',
-      borderRadius: '0.8rem',
-      boxShadow: '0rem 0.4rem 3rem 0rem #4040401a',
-      backgroundColor: '#fff',
-    }}
-  >
-    {props.children}
-  </div>
-);
 export const LayoutExample = () => {
   return (
     <div style={{ padding: '10rem 0', backgroundColor: '#f8f7ff' }}>
