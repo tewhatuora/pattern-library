@@ -2,12 +2,13 @@ import { memo } from 'react';
 
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from '../Button/Button';
+import { IconType } from '../Icon/icons';
 
 type CloseButtonProps = {
   onClose: (e: any) => void;
   className?: string;
-  icon: string | number;
-  variant: 'decorativeIcons' | 'functionalIcons' | 'socialIcons' | 'tagIcon' | undefined;
+  icon?: IconType;
+  variant?: 'decorativeIcons' | 'functionalIcons' | 'socialIcons' | 'tagIcon';
 };
 
 /**
@@ -16,8 +17,10 @@ type CloseButtonProps = {
  * @param props
  * @constructor
  */
-export const CloseButton = memo((props: CloseButtonProps) => (
-  <ButtonRoot label="Close" className={props.className} onPress={props.onClose}>
-    <Icon icon={props.icon} variant={props.variant} />
-  </ButtonRoot>
-));
+export const CloseButton = memo(
+  ({ onClose, className, icon = 'cross', variant = 'functionalIcons' }: CloseButtonProps) => (
+    <ButtonRoot aria-label="Close" className={className} onPress={onClose}>
+      <Icon icon={icon} variant={variant} />
+    </ButtonRoot>
+  ),
+);
