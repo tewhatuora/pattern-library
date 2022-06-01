@@ -13,6 +13,7 @@ export { Inline } from './Inline/Inline';
 export { Notice } from './Notice/Notice';
 export { ScreenReadersOnly } from './ScreenReadersOnly/ScreenReadersOnly';
 export { Row } from './Columns/Row';
+export { RadioGroup } from './RadioGroup/RadioGroup';
 export { Stack } from './Stack/Stack';
 export { Tag } from './Tag/Tag';
 export { Text } from './Text/Text';
