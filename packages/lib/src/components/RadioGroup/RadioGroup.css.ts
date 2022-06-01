@@ -7,6 +7,9 @@ import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
+/*
+marginbottom for radio button
+*/
 const margin = '2rem';
 
 const state = {
