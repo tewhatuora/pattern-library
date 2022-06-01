@@ -17,8 +17,6 @@ export type RadioGroupProps = {
   labelsWithHeading: { heading: string; label: string }[];
   name: string;
   isRequired: boolean;
-  isDisabled: boolean;
-  isError: boolean;
   onChange?: (value: string) => void;
   children: ReactNode;
   variant: styles.Variant;
@@ -41,21 +39,10 @@ export const RadioGroup = ({
   labelsWithHeading,
   name,
   isRequired,
-  isDisabled,
-  isError,
-  variant,
+  variant = 'default',
   onChange,
   ...boxProps
 }: RadioGroupProps) => {
-  if (isDisabled) {
-    variant = 'disabled';
-  } else if (isError) {
-    variant = 'error';
-    isDisabled = true;
-  } else {
-    variant = 'default';
-  }
-
   return (
     <Box as="div" {...boxProps}>
       <RadioGroupPrimitive.Root
@@ -77,7 +64,7 @@ export const RadioGroup = ({
                     className={styles.styledItem}
                     value={label}
                     id={label}
-                    disabled={isDisabled}
+                    disabled={variant === 'disabled' ? true : false}
                   >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>
@@ -103,7 +90,7 @@ export const RadioGroup = ({
                     className={styles.styledItem}
                     value={label}
                     id={label}
-                    disabled={isDisabled}
+                    disabled={variant === 'disabled' ? true : false}
                   >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>

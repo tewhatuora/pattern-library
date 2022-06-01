@@ -58,8 +58,7 @@ export const styledItem = style([
     height: '2.4rem',
     borderRadius: '100%',
     selectors: {
-      '&:hover': { backgroundColor: vars.color.secondary75 },
-      '&:focus': { outline: vars.color.caution100 },
+      '&:focus': { borderColor: vars.color.caution100 },
     },
   },
 ]);
