@@ -23,6 +23,21 @@ export const parameters = {
   },
 };
 
+export const argTypes = {
+  as: {
+    table: {
+      disable: true,
+    },
+    control: false,
+  },
+  onPress: {
+    table: {
+      disable: true,
+    },
+    control: false,
+  },
+};
+
 // Wrap story components with <ThemeProvider>, with vanilla-extract theme applied.
 const providerFn = ({ theme, children }) => <ThemeProvider theme={themeMap[theme.name]}>{children}</ThemeProvider>;
 
