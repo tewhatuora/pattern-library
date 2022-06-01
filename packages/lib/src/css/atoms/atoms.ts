@@ -12,12 +12,6 @@ export interface Atoms extends Sprinkles {
   reset?: keyof JSX.IntrinsicElements;
 }
 
-console.log(
-  sprinkles({
-    display: 'block',
-  }),
-);
-
 export const atoms = ({ reset, ...rest }: Atoms) => {
   if (!reset) {
     return sprinkles(rest);
