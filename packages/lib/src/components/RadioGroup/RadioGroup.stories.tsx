@@ -5,9 +5,9 @@ export default {
   component: RadioGroup,
   argTypes: {
     labels: {
-      defaultValue: ['One', 'Two', 'Three'],
+      defaultValue: ['Content One', 'Two', 'Three'],
     },
-    headingLabels: {
+    labelsWithHeading: {
       defaultValue: [
         { heading: 'Heading 1', label: 'One' },
         { heading: 'Heading 2', label: 'Two' },
@@ -18,5 +18,5 @@ export default {
 };
 
 export const Default = (args: RadioGroupProps) => {
-  return <RadioGroup {...args}></RadioGroup>;
+  return <RadioGroup {...args} />;
 };

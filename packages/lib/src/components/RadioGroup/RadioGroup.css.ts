@@ -1,31 +1,67 @@
 import { style } from '@vanilla-extract/css';
+import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
+import { atoms } from '../../css/atoms/atoms';
+
 import { vars } from '../../themes/vars.css';
 
-export const RadioGroup = style([
-  {
-    display: 'flex',
-    backgroundColor: vars.color.neutral0,
+const margin = '2rem';
+
+const variant = {
+  default: atoms({
+    color: 'primary100',
+    borderColor: 'primary100',
+  }),
+  disabled: atoms({
+    color: 'primary50',
+    borderColor: 'primary50',
+  }),
+  error: atoms({
+    color: 'error100',
+    borderColor: 'error100',
+  }),
+};
+
+export type Variant = keyof typeof variant;
+
+export const variants = recipe({
+  base: style([
+    atoms({
+      display: 'flex',
+      alignItems: 'flexStart',
+    }),
+    responsiveStyle({
+      mobile: {
+        marginBottom: margin,
+      },
+      tablet: {
+        marginBottom: margin,
+      },
+    }),
+  ]),
+  variants: {
+    variant,
   },
-]);
+});
+
+export type Variants = RecipeVariants<typeof variants>;
 
 export const styledItem = style([
   {
     all: 'unset',
     display: 'flex',
-    flexDirection: 'column',
-    border: '0.01rem solid black',
+    borderStyle: 'solid',
+    borderWidth: vars.borderWidth.small,
     width: '2.4rem',
     height: '2.4rem',
     borderRadius: '100%',
     selectors: {
       '&:hover': { backgroundColor: vars.color.secondary75 },
-      '&:focus': { boxShadow: `0 0 0 0.04rem #BFBFBF` },
+      '&:focus': { outline: vars.color.caution100 },
     },
   },
-  responsiveStyle({}),
 ]);
 
 export const styledIndicator = style([
@@ -54,29 +90,28 @@ export const styledIndicator = style([
 export const Flex = style([
   {
     display: 'flex',
-    alignItems: 'center',
   },
 ]);
 
 export const radioText = style([
   {
-    color: 'black',
-    userSelect: 'none',
-    paddingLeft: '1.5rem',
-  },
-]);
-
-export const headingLabel = style([
-  {
+    // color: vars.color.primary100,
+    marginLeft: vars.space.xsmall.tablet,
     display: 'flex',
     flexDirection: 'column',
   },
 ]);
 
-export const labelStyles = style([
+export const headingWithLabel = style([{}]);
+
+export const offsetButton = style({
+  marginTop: '0.4rem',
+});
+
+export const disabled = style([
   {
-    color: 'black',
-    userSelect: 'none',
-    paddingLeft: '1.5rem',
+    background: vars.color.primary50,
   },
 ]);
+
+export const errorState = style([{ background: vars.color.error100 }]);

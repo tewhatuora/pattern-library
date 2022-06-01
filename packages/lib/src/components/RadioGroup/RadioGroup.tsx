@@ -9,14 +9,19 @@ import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 
 import * as styles from './RadioGroup.css';
+import clsx from 'clsx';
 
 export type RadioGroupProps = {
   labels: string[];
-  onChange?: (value: string) => void;
   isHeadingDisplayed: boolean;
-  headingLabels: { heading: string; label: string }[];
-  //   headingLabels: string[];
+  labelsWithHeading: { heading: string; label: string }[];
+  name: string;
+  isRequired: boolean;
+  isDisabled: boolean;
+  isError: boolean;
+  onChange?: (value: string) => void;
   children: ReactNode;
+  variant: styles.Variant;
 };
 
 /**
@@ -29,39 +34,84 @@ export type RadioGroupProps = {
  * @param props
  * @constructor
  */
-export const RadioGroup = ({ labels, isHeadingDisplayed, headingLabels, onChange, ...boxProps }: RadioGroupProps) => {
+
+export const RadioGroup = ({
+  labels,
+  isHeadingDisplayed,
+  labelsWithHeading,
+  name,
+  isRequired,
+  isDisabled,
+  isError,
+  variant,
+  onChange,
+  ...boxProps
+}: RadioGroupProps) => {
+  if (isDisabled) {
+    variant = 'disabled';
+  } else if (isError) {
+    variant = 'error';
+    isDisabled = true;
+  } else {
+    variant = 'default';
+  }
+
   return (
-    <Box as="div" className={styles.RadioGroup} {...boxProps}>
-      <RadioGroupPrimitive.Root aria-label="View density">
+    <Box as="div" {...boxProps}>
+      <RadioGroupPrimitive.Root
+        aria-label="View density"
+        name={name}
+        required={isRequired}
+        orientation="vertical"
+        onValueChange={onChange}
+      >
         {!!isHeadingDisplayed
-          ? headingLabels.map(({ heading, label }) => (
-              <ul>
-                <Box className={styles.Flex}>
-                  <RadioGroupPrimitive.Item className={styles.styledItem} value={label} id={label}>
+          ? labelsWithHeading.map(({ heading, label }) => (
+              <Box
+                className={styles.variants({
+                  variant,
+                })}
+              >
+                <Box className={styles.offsetButton}>
+                  <RadioGroupPrimitive.Item
+                    className={styles.styledItem}
+                    value={label}
+                    id={label}
+                    disabled={isDisabled}
+                  >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>
-                  <Box className={styles.headingLabel}>
-                    <Text className={styles.radioText} size="medium" weight="bold">
-                      <Label htmlFor={label}>{heading}</Label>
-                    </Text>
-                    <Text className={styles.labelStyles} size="medium" weight="regular">
-                      {label}
-                    </Text>
-                  </Box>
                 </Box>
-              </ul>
-            ))
-          : labels.map((label) => (
-              <ul>
-                <Box className={styles.Flex}>
-                  <RadioGroupPrimitive.Item className={styles.styledItem} value={label} id={label}>
-                    <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
-                  </RadioGroupPrimitive.Item>
-                  <Text className={styles.radioText} size="medium" weight="regular">
-                    <Label htmlFor={label}>{label}</Label>
+                <Box className={styles.radioText}>
+                  <Text size="medium" weight="bold">
+                    <Label htmlFor={label}>{heading}</Label>
+                  </Text>
+                  <Text size="medium" weight="regular">
+                    {label}
                   </Text>
                 </Box>
-              </ul>
+              </Box>
+            ))
+          : labels.map((label) => (
+              <Box
+                className={styles.variants({
+                  variant,
+                })}
+              >
+                <Box className={styles.offsetButton}>
+                  <RadioGroupPrimitive.Item
+                    className={styles.styledItem}
+                    value={label}
+                    id={label}
+                    disabled={isDisabled}
+                  >
+                    <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
+                  </RadioGroupPrimitive.Item>
+                </Box>
+                <Text className={styles.radioText} size="medium" weight="regular">
+                  <Label htmlFor={label}>{label}</Label>
+                </Text>
+              </Box>
             ))}
       </RadioGroupPrimitive.Root>
     </Box>
