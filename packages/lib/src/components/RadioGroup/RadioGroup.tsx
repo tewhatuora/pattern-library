@@ -16,7 +16,7 @@ export type RadioGroupProps = {
   isRequired: boolean;
   onChange?: (value: string) => void;
   children: ReactNode;
-  variant: styles.Variant;
+  state: styles.Variant;
 };
 
 /**
@@ -36,7 +36,7 @@ export const RadioGroup = ({
   labelsWithHeading,
   name,
   isRequired,
-  variant = 'default',
+  state = 'default',
   onChange,
   ...boxProps
 }: RadioGroupProps) => {
@@ -47,7 +47,7 @@ export const RadioGroup = ({
           ? labelsWithHeading.map(({ heading, label }) => (
               <Box
                 className={styles.variants({
-                  variant,
+                  variant: state,
                 })}
               >
                 <Box className={styles.offsetButton}>
@@ -55,7 +55,7 @@ export const RadioGroup = ({
                     className={styles.styledItem}
                     value={label}
                     id={label}
-                    disabled={variant === 'disabled' ? true : false}
+                    disabled={state === 'disabled' ? true : false}
                   >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>
@@ -73,7 +73,7 @@ export const RadioGroup = ({
           : labels.map((label) => (
               <Box
                 className={styles.variants({
-                  variant,
+                  variant: state,
                 })}
               >
                 <Box className={styles.offsetButton}>
@@ -81,7 +81,7 @@ export const RadioGroup = ({
                     className={styles.styledItem}
                     value={label}
                     id={label}
-                    disabled={variant === 'disabled' ? true : false}
+                    disabled={state === 'disabled' ? true : false}
                   >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>

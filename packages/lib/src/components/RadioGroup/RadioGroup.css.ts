@@ -9,7 +9,7 @@ import { vars } from '../../themes/vars.css';
 
 const margin = '2rem';
 
-const variant = {
+const state = {
   default: atoms({
     color: 'primary100',
     borderColor: 'primary100',
@@ -24,7 +24,7 @@ const variant = {
   }),
 };
 
-export type Variant = keyof typeof variant;
+export type Variant = keyof typeof state;
 
 export const variants = recipe({
   base: style([
@@ -41,7 +41,7 @@ export const variants = recipe({
     }),
   ]),
   variants: {
-    variant,
+    variant: state,
   },
 });
 
