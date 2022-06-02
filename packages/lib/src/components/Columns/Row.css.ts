@@ -1,12 +1,14 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 
-import { Space } from '../../themes/tokenType';
+import { Viewport } from '../../themes/tokenType';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { Space } from '../../css/atoms/atoms';
+
 import { makeStyles } from './helpers';
 
-const makeGutterRules = (space: Space) =>
+const makeGutterRules = (space: Viewport) =>
   style(
     responsiveStyle({
       mobile: {
@@ -31,7 +33,7 @@ export const noGutters = style({
   gap: 0,
 });
 
-export const row = style([
+export const row = style(
   responsiveStyle({
     mobile: {
       display: 'flex',
@@ -43,7 +45,7 @@ export const row = style([
       flexDirection: 'unset',
     },
   }),
-]);
+);
 
 const getNestedStyle = (columns: number): StyleRule =>
   responsiveStyle({
@@ -52,4 +54,26 @@ const getNestedStyle = (columns: number): StyleRule =>
     },
   });
 
+const getOffsetStyle = (gutter: Space): StyleRule =>
+  responsiveStyle({
+    mobile: {},
+    tablet: {
+      marginLeft: `calc(-1 * ${vars.space[gutter].tablet})`,
+      marginRight: `calc(-1 * ${vars.space[gutter].tablet})`,
+    },
+  });
+
 export const nested = styleVariants(makeStyles(getNestedStyle));
+
+const makeOffsetStyles = () => {
+  const spaceNames = Object.keys(vars.space) as Space[];
+
+  return spaceNames.reduce((variants: any, space: Space) => {
+    return {
+      ...variants,
+      [space]: getOffsetStyle(space),
+    };
+  }, {} as Record<Space, StyleRule>);
+};
+
+export const offset = styleVariants(makeOffsetStyles());

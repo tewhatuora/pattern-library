@@ -7,7 +7,7 @@ type FontSizeText = {
   lineHeight: string;
 };
 
-export type Space = {
+export type Viewport = {
   mobile: string;
   tablet: string;
 };
@@ -73,12 +73,12 @@ export interface Tokens {
     };
   };
   space: {
-    xlarge: Space;
-    large: Space;
-    medium: Space;
-    small: Space;
-    xxlarge: Space;
-    xsmall: Space;
+    xlarge: Viewport;
+    large: Viewport;
+    medium: Viewport;
+    small: Viewport;
+    xxlarge: Viewport;
+    xsmall: Viewport;
   };
   transitions: {
     fast: string;
@@ -97,7 +97,7 @@ export interface Tokens {
     };
   };
   shadows: {
-    '10': string;
+    [key: string]: string;
   };
   color: {
     primary110: string; // Used for pressed states
