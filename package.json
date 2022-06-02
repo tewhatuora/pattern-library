@@ -21,7 +21,10 @@
   },
   "lint-staged": {
     "packages/lib/src/**/*.{js,mdx,ts,tsx}": [
-      "echo 'hello'"
+      "yarn lint:format && yarn lint:fix"
+    ],
+    "*.{json,md,yml}": [
+      "yarn lint:format"
     ]
   },
   "husky": {
