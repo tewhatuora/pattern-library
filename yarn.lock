@@ -2624,6 +2624,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-checkbox@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@radix-ui/react-checkbox@npm:0.1.5"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-compose-refs": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-label": 0.1.5
+    "@radix-ui/react-presence": 0.1.2
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-use-controllable-state": 0.1.0
+    "@radix-ui/react-use-previous": 0.1.1
+    "@radix-ui/react-use-size": 0.1.1
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 658f249a52e1eec2697aa6c9bb43eb9910a3f6ebdb827bfb5561d94f6afaf80d5fb4cb9231672281e1057296e4fcfdb71b204db138e7a12fef7c3ea38303660c
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-collection@npm:0.1.4":
   version: 0.1.4
   resolution: "@radix-ui/react-collection@npm:0.1.4"
@@ -2661,6 +2681,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-icons@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@radix-ui/react-icons@npm:1.1.1"
+  peerDependencies:
+    react: ^16.x || ^17.x || ^18.x
+  checksum: fc64cd763994e035fe7a4898c0710793aebc2689d56dcc8a2fd76c334a424c48a1aa2fbcccc2bd1c0990d731f27090fc0ddf6859af32c5aa217bd75a10cb3e34
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-id@npm:0.1.5":
   version: 0.1.5
   resolution: "@radix-ui/react-id@npm:0.1.5"
@@ -2685,6 +2714,19 @@ __metadata:
   peerDependencies:
     react: ^16.8 || ^17.0
   checksum: fc9741d1abdeabd11cbb21ad5e0126e76fe03a2b71b7265bec847d509ad16a83b9e0cb5ef5fa3510274c610385319745a767765aec02a20aae050a1ee6359eff
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-presence@npm:0.1.2":
+  version: 0.1.2
+  resolution: "@radix-ui/react-presence@npm:0.1.2"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/react-compose-refs": 0.1.0
+    "@radix-ui/react-use-layout-effect": 0.1.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 7a189e24a353b30f0b6ee87d0577bdb183dde79a2be8105638e73d28e7538f4f6dd64d205634bdd6100bcfdabab713870e8cdb0f01ae9cd9a44f6650eb9e7ce6
   languageName: node
   linkType: hard
 
@@ -16392,6 +16434,8 @@ __metadata:
     "@babel/core": ^7.17.9
     "@next/eslint-plugin-next": ^12.1.6
     "@prettier/plugin-xml": ^1.2.0
+    "@radix-ui/react-checkbox": ^0.1.5
+    "@radix-ui/react-icons": ^1.1.1
     "@radix-ui/react-label": ^0.1.5
     "@radix-ui/react-separator": ^0.1.4
     "@radix-ui/react-switch": ^0.1.5
