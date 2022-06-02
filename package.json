@@ -21,7 +21,7 @@
   },
   "lint-staged": {
     "*.{js,mdx,ts,tsx}": [
-      "yarn lint:fix"
+      "yarn lint:format && yarn lint:fix"
     ],
     "*.{json,md,yml}": [
       "yarn lint:format"
