@@ -20,11 +20,8 @@
     "styles": "node scripts/styles.js"
   },
   "lint-staged": {
-    "*.{js,mdx,ts,tsx}": [
-      "yarn lint:format && yarn lint:fix"
-    ],
-    "*.{json,md,yml}": [
-      "yarn lint:format"
+    "packages/lib/src/**/*.{js,mdx,ts,tsx}": [
+      "echo 'hello'"
     ]
   },
   "husky": {
