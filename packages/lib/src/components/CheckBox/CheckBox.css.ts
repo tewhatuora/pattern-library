@@ -52,20 +52,24 @@ export type Variants = RecipeVariants<typeof variants>;
 
 export const checkBoxPrimitive = style({
   all: 'unset',
-  width: 25,
-  height: 25,
-  borderRadius: 4,
+  width: '2.4rem',
+  height: '2.4rem',
+  borderRadius: vars.borderRadius.button.topLeft,
+  borderStyle: 'solid',
+  borderWidth: vars.borderWidth.small,
+  borderColor: vars.color.primary100,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   selectors: {
-    '&:hover': { backgroundColor: 'violet' },
-    '&:focus': { boxShadow: `0 0 0 2px black` },
+    '&[data-state=on]': { backgroundColor: 'black' },
+    '&:hover': { backgroundColor: vars.color.tertiary25 },
+    '&:focus': { outline: vars.color.secondary50, borderWidth: vars.borderWidth.medium },
   },
 });
 
 export const indicator = style({
-  color: 'violet',
+  color: vars.color.primary100,
 });
 
 export const radioText = style({
@@ -76,6 +80,9 @@ export const radioText = style({
 
 export const container = style({
   display: 'flex',
+  selectors: {
+    '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
+  },
 });
 
 export const label = style({
