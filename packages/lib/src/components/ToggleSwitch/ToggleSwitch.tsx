@@ -12,8 +12,7 @@ export type ToggleSwitchProps = {
   id: string;
   label?: string;
   defaultChecked: boolean;
-  isHeadingDisplayed: boolean;
-  headingLabel?: string;
+  heading?: string;
   onChange?: (checked: boolean) => void;
   name?: string;
   children: ReactNode;
@@ -33,8 +32,7 @@ export const ToggleSwitch = ({
   id,
   label,
   defaultChecked,
-  isHeadingDisplayed,
-  headingLabel,
+  heading,
   onChange,
   name,
   ...boxProps
@@ -42,9 +40,9 @@ export const ToggleSwitch = ({
   return (
     <Box as="div" className={styles.containerStyles} {...boxProps}>
       <Box className={styles.labelStyles}>
-        {!!isHeadingDisplayed && (
+        {!!heading && (
           <Text size="medium" weight="bold">
-            {headingLabel}
+            {heading}
           </Text>
         )}
         <Text size="medium" weight="regular">
