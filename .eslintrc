@@ -45,7 +45,7 @@
       }
     ],
     "sort-imports": [
-      "error",
+      "warn",
       {
         "ignoreCase": false,
         "ignoreDeclarationSort": true,
@@ -67,7 +67,7 @@
     "react/no-array-index-key": "error",
     "react/no-multi-comp": "off",
     "react/prop-types": "off",
-    "react/self-closing-comp": "warn"
+    "react/self-closing-comp": "error"
   },
   "overrides": [
     {
@@ -109,9 +109,13 @@
       "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
     },
     "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules"]
+      },
       "typescript": {
         "alwaysTryTypes": true,
-        "project": ["lib/tsconfig.json", "docs/tsconfig.json"]
+        "project": ["packages/lib/tsconfig.json"]
       }
     },
     "react": {
