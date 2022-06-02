@@ -35,12 +35,12 @@ export const ToggleButton = ({
   return (
     <Box as="div" {...boxProps}>
       <ToggleGroup className={styles.toggleGroup} onValueChange={onChange} type="single" aria-label="Text alignment">
-        <ToggleGroupItem className={styles.styledItem} value={valueLeft} aria-label={valueLeft}>
+        <ToggleGroupItem className={styles.styledItem} value={valueLeft} aria-label={labelLeft}>
           <Text size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
-        <ToggleGroupItem className={styles.styledItem} value={valueRight} aria-label={valueRight}>
+        <ToggleGroupItem className={styles.styledItem} value={valueRight} aria-label={labelRight}>
           <Text size="medium" weight="bold">
             {labelRight}
           </Text>
