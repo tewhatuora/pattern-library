@@ -14,16 +14,16 @@ const margin = '2rem';
 
 const state = {
   default: atoms({
-    color: 'primary100',
     borderColor: 'primary100',
+    color: 'primary100',
   }),
   disabled: atoms({
-    color: 'primary50',
     borderColor: 'primary50',
+    color: 'primary50',
   }),
   error: atoms({
-    color: 'error100',
     borderColor: 'error100',
+    color: 'error100',
   }),
 };
 
@@ -57,22 +57,23 @@ export const checkBoxPrimitive = style({
   borderRadius: vars.borderRadius.button.topLeft,
   borderStyle: 'solid',
   borderWidth: vars.borderWidth.small,
-  borderColor: vars.color.primary100,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  marginTop: '0.4rem',
+
   selectors: {
-    '&[data-state=on]': { backgroundColor: 'black' },
+    '&[data-state=checked]': { backgroundColor: vars.color.primary100 },
     '&:hover': { backgroundColor: vars.color.tertiary25 },
-    '&:focus': { outline: vars.color.secondary50, borderWidth: vars.borderWidth.medium },
+    '&:focus': { borderColor: vars.color.secondary50, borderWidth: vars.borderWidth.medium },
   },
 });
 
 export const indicator = style({
-  color: vars.color.primary100,
+  color: vars.color.primary0,
 });
 
-export const radioText = style({
+export const text = style({
   display: 'flex',
   flexDirection: 'column',
   marginLeft: vars.space.xsmall.tablet,
@@ -80,9 +81,6 @@ export const radioText = style({
 
 export const container = style({
   display: 'flex',
-  selectors: {
-    '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
-  },
 });
 
 export const label = style({

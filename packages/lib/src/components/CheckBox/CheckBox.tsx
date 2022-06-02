@@ -15,15 +15,14 @@ export type CheckBoxProps = {
   labelsWithHeading: { heading: string; label: string }[];
   name: string;
   isRequired: boolean;
-  onChange?: (value: string) => void;
-  checked: boolean;
+  onChange?: (checked: boolean) => void;
   children: ReactNode;
   state: styles.Variant;
 };
 
 /**
  * CheckBox Component
- * Displays a list of vertically stacked radio components
+ * Displays a list of vertically stacked checkbox components
  * Enables users to pick exactly one option from a radio group
  *Have an option to display a heading
  * Have an option to be required
@@ -42,19 +41,60 @@ export const CheckBox = ({
   onChange,
   ...boxProps
 }: CheckBoxProps) => {
-  const [checked, setChecked] = useState('indeterminate');
   return (
-    <Box as="div" className={styles.container} {...boxProps}>
-      <CheckBoxPrimitive.Root className={styles.checkBoxPrimitive}>
-        <CheckBoxPrimitive.Indicator className={styles.indicator}>
-          <CheckIcon />
-        </CheckBoxPrimitive.Indicator>
-      </CheckBoxPrimitive.Root>
-      <Label htmlFor="c1">
-        <Text className={styles.label} size="small" weight="regular">
-          Checked
-        </Text>
-      </Label>
+    <Box as="div" {...boxProps}>
+      {!!!isHeadingDisplayed
+        ? labelsWithHeading.map(({ heading, label }) => (
+            <Box className={styles.container}>
+              <Box
+                className={styles.variants({
+                  variant: state,
+                })}
+              >
+                <CheckBoxPrimitive.Root
+                  className={styles.checkBoxPrimitive}
+                  onCheckedChange={onChange}
+                  disabled={state === 'disabled' ? true : false}
+                >
+                  <CheckBoxPrimitive.Indicator className={styles.indicator}>
+                    <CheckIcon />
+                  </CheckBoxPrimitive.Indicator>
+                </CheckBoxPrimitive.Root>
+                <Label htmlFor={label} className={styles.text}>
+                  <Text size="medium" weight="bold">
+                    <Label htmlFor={label}>{heading}</Label>
+                  </Text>
+                  <Text size="medium" weight="regular">
+                    {label}
+                  </Text>
+                </Label>
+              </Box>
+            </Box>
+          ))
+        : labels.map((label) => (
+            <Box className={styles.container}>
+              <Box
+                className={styles.variants({
+                  variant: state,
+                })}
+              >
+                <CheckBoxPrimitive.Root
+                  className={styles.checkBoxPrimitive}
+                  onCheckedChange={onChange}
+                  disabled={state === 'disabled' ? true : false}
+                >
+                  <CheckBoxPrimitive.Indicator className={styles.indicator}>
+                    <CheckIcon />
+                  </CheckBoxPrimitive.Indicator>
+                </CheckBoxPrimitive.Root>
+                <Label htmlFor={label}>
+                  <Text className={styles.label} size="small" weight="regular">
+                    {label}
+                  </Text>
+                </Label>
+              </Box>
+            </Box>
+          ))}
     </Box>
   );
 };
