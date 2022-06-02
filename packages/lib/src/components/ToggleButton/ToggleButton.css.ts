@@ -13,7 +13,6 @@ export const styledItem = style([
     all: 'unset',
     display: 'flex',
     justifyContent: 'center',
-    border: '0.1rem solid black',
     borderStyle: 'solid',
     borderColor: vars.color.primary100,
     borderWidth: vars.borderWidth.small,

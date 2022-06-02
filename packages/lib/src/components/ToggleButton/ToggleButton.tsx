@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@radix-ui/react-toggle-group';
 
 import { Text } from '../Text/Text';
@@ -9,6 +9,8 @@ import * as styles from './ToggleButton.css';
 export type ToggleButtonProps = {
   labelLeft: string;
   labelRight: string;
+  valueLeft: string;
+  valueRight: string;
   onChange?: (value: string) => void;
   children: ReactNode;
 };
@@ -22,16 +24,23 @@ export type ToggleButtonProps = {
  * @param props
  * @constructor
  */
-export const ToggleButton = ({ labelLeft, labelRight, onChange, ...boxProps }: ToggleButtonProps) => {
+export const ToggleButton = ({
+  labelLeft,
+  labelRight,
+  valueLeft,
+  valueRight,
+  onChange,
+  ...boxProps
+}: ToggleButtonProps) => {
   return (
     <Box as="div" {...boxProps}>
       <ToggleGroup className={styles.toggleGroup} onValueChange={onChange} type="single" aria-label="Text alignment">
-        <ToggleGroupItem className={styles.styledItem} value={labelLeft} aria-label="Left aligned">
+        <ToggleGroupItem className={styles.styledItem} value={valueLeft} aria-label={valueLeft}>
           <Text size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
-        <ToggleGroupItem className={styles.styledItem} value={labelRight} aria-label="Right aligned">
+        <ToggleGroupItem className={styles.styledItem} value={valueRight} aria-label={valueRight}>
           <Text size="medium" weight="bold">
             {labelRight}
           </Text>
