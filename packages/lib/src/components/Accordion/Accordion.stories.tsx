@@ -6,8 +6,10 @@ export default {
 };
 
 export const Default = (args: AccordionProps) => {
-  const text = args.variant || 'Accordion';
-  const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
-
-  return <Accordion {...args}>{label}</Accordion>;
+  return <Accordion {...args} />;
+};
+Default.args = {
+  icon: 'tick',
+  header: 'Header',
+  label: 'Label',
 };

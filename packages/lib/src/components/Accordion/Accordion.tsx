@@ -2,28 +2,47 @@ import * as styles from './Accordion.css';
 import * as RadixAccordion from '@radix-ui/react-accordion';
 
 import { Text } from '../Text/Text';
+import { Icon } from '../Icon/Icon';
 
 export type AccordionProps = {
-  variant: styles.Variant;
-} & Pick<
-  JSX.IntrinsicElements['button'],
-  'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'disabled' | 'type' | 'tabIndex'
->;
+  // icon?: IconType;
+  icon?: string;
+  header?: string;
+  label: string;
+  divider?: 'top' | 'bottom' | 'both' | 'none';
+  variant?: 'light' | 'dark';
+};
 
 /**
  * Accordion
  * @constructor
  */
-export const Accordion = ({}: AccordionProps) => {
+export const Accordion = ({ icon, header, label, divider = 'none', variant = 'dark' }: AccordionProps) => {
   return (
-    <RadixAccordion.Root type="single">
+    <RadixAccordion.Root type="single" collapsible className={styles.root({ divider, variant })}>
       <RadixAccordion.Item value="item-1">
-        <RadixAccordion.Header>
-          <Text>Header</Text>
-          <RadixAccordion.Trigger />
+        <RadixAccordion.Header className={styles.header}>
+          <RadixAccordion.Trigger className={styles.trigger}>
+            <div className={styles.headerContainer}>
+              {!!icon && <Icon icon={icon} variant="functionalIcons" className={styles.icon} />}
+              <div className={styles.headingText}>
+                {/* TODO: Change from 'p' */}
+                {!!header && (
+                  <Text as="div" weight="bold">
+                    {header}
+                  </Text>
+                )}
+                <Text as="div">{label}</Text>
+              </div>
+            </div>
+
+            <Icon icon="chevron_down" className={styles.chevron} />
+          </RadixAccordion.Trigger>
         </RadixAccordion.Header>
-        <RadixAccordion.Content>
-          <Text>Hello this is some content</Text>
+        <RadixAccordion.Content className={styles.content}>
+          <div className={styles.contentWrapper}>
+            <Text>Hello this is some content</Text>
+          </div>
         </RadixAccordion.Content>
       </RadixAccordion.Item>
     </RadixAccordion.Root>
