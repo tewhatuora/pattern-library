@@ -27,6 +27,11 @@
       "yarn lint:format"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@next/eslint-plugin-next": "^12.1.6",
@@ -69,7 +74,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "fs-extra": "^10.0.0",
     "glob": "^7.2.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.0",
     "json-to-ts": "^1.7.0",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
