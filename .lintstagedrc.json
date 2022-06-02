@@ -1,8 +1,5 @@
 {
   "packages/lib/src/**/*.{ts,tsx}": [
     "yarn lint:format && yarn lint:fix"
-  ],
-  "*.{md,mdx,yml}": [
-    "yarn lint:format"
   ]
 }
