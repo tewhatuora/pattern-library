@@ -1,47 +1,22 @@
-import { BorderRadius } from '../../themes/tokenType';
+import { StyleRule, CSSProperties } from '@vanilla-extract/css';
 
 import { vars } from '../../themes/vars.css';
+import { ResponsiveStyle, responsiveStyle } from '../../css/responsiveStyle';
+
+import { Space } from './atoms';
+import { Viewport } from '../../themes/tokenType';
 
 const sizes = {
   full: '100%',
 };
-
-const space = {
-  ...vars.space,
-  0: 0,
-} as const;
-
+const space = vars.space;
 const boxShadow = vars.shadow;
-
-const borderStyle = ['none', 'solid', 'dashed', 'dotted', 'double'];
+const borderWidth = vars.borderWidth;
+const borderRadiusAll = vars.borderRadiusAll;
+const borderRadius = vars.borderRadius;
+const borderStyle = ['none', 'solid', 'dashed', 'dotted', 'double'] as const;
 
 export type BoxShadow = keyof typeof boxShadow;
-
-type BorderRadiusByName = {
-  [key: string]: BorderRadius;
-};
-
-const borderRadiusAll = Object.keys(vars.borderRadius).reduce((all, name) => {
-  const { topLeft, topRight, bottomRight, bottomLeft } = vars.borderRadius[name];
-
-  return {
-    ...all,
-    [name]: `${topLeft} ${topRight} ${bottomRight} ${bottomLeft}`,
-  };
-}, {});
-
-const borderRadius = Object.keys(vars.borderRadius).reduce((acc, name: string): BorderRadiusByName => {
-  const corners = vars.borderRadius[name];
-
-  Object.keys(corners).forEach((corner: string) => {
-    acc[corner] = {
-      ...acc[corner],
-      [name]: corners[corner],
-    };
-  });
-
-  return acc;
-}, {});
 
 export const unresponsiveProperties = {
   userSelect: ['none'],
@@ -97,6 +72,30 @@ export const colorProperties = {
 } as const;
 
 export type ColorProperties = keyof typeof colorProperties;
+type ResponsiveSpace = Record<Space, ResponsiveStyle>;
+type Breakpoint = keyof Viewport;
+
+const spaceNames = Object.keys(space) as Space[];
+
+const responsiveSpace = (property: string) => {
+  return spaceNames.reduce((responsive, name: Space) => {
+    const viewports = Object.keys(space[name]) as Breakpoint[];
+
+    return {
+      ...responsive,
+      [name]: responsiveStyle(
+        viewports.reduce((sizes, current: Breakpoint) => {
+          return {
+            ...sizes,
+            [current]: {
+              [property]: space[name][current],
+            },
+          };
+        }, {} as ResponsiveStyle),
+      ),
+    };
+  }, {} as ResponsiveSpace);
+};
 
 export const responsiveProperties = {
   display: {
@@ -110,11 +109,11 @@ export const responsiveProperties = {
   },
   position: ['relative', 'absolute', 'fixed', 'sticky'],
   overflow: ['hidden', 'scroll', 'visible', 'auto'],
-  borderWidth: vars.borderWidth,
-  borderBottomWidth: vars.borderWidth,
-  borderLeftWidth: vars.borderWidth,
-  borderRightWidth: vars.borderWidth,
-  borderTopWidth: vars.borderWidth,
+  borderWidth: borderWidth,
+  borderBottomWidth: borderWidth,
+  borderLeftWidth: borderWidth,
+  borderRightWidth: borderWidth,
+  borderTopWidth: borderWidth,
   borderRadius: {
     none: '0px',
     full: '9999px',
@@ -124,18 +123,18 @@ export const responsiveProperties = {
   borderBottomRightRadius: borderRadius.bottomRight,
   borderTopLeftRadius: borderRadius.topLeft,
   borderTopRightRadius: borderRadius.topRight,
-  paddingTop: space,
-  paddingBottom: space,
-  paddingRight: space,
-  paddingLeft: space,
-  marginTop: space,
-  marginBottom: space,
-  marginRight: space,
-  marginLeft: space,
-  top: space,
-  right: space,
-  bottom: space,
-  left: space,
+  paddingTop: responsiveSpace('paddingTop'),
+  paddingBottom: responsiveSpace('paddingBottom'),
+  paddingRight: responsiveSpace('paddingRight'),
+  paddingLeft: responsiveSpace('paddingLeft'),
+  marginTop: responsiveSpace('marginTop'),
+  marginBottom: responsiveSpace('marginBottom'),
+  marginRight: responsiveSpace('marginRight'),
+  marginLeft: responsiveSpace('marginLeft'),
+  top: responsiveSpace('top'),
+  right: responsiveSpace('right'),
+  bottom: responsiveSpace('bottom'),
+  left: responsiveSpace('left'),
   alignItems: {
     flexStart: 'flex-start',
     center: 'center',
