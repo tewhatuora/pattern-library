@@ -1,8 +1,8 @@
-import { style } from '@vanilla-extract/css';
-import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
+import { style } from '@vanilla-extract/css';
+import { responsiveStyle } from '../../css/responsiveStyle';
+
+import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 import { vars } from '../../themes/vars.css';
 
 export const root = style({
