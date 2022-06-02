@@ -3,9 +3,9 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
-import { atoms } from '../../css/atoms/atoms';
-
 import { vars } from '../../themes/vars.css';
+
+const animationDuration = '300ms';
 
 const slideDown = keyframes({
   from: { height: 0 },
@@ -83,11 +83,9 @@ export const headerContainer = style({
 });
 
 export const chevron = style({
-  width: '1.8rem',
-  height: '1.8rem',
   flexShrink: 0,
 
-  transition: 'transform 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+  transition: `transform ${animationDuration}`,
   selectors: {
     '[data-state=open] &': { transform: 'rotate(180deg)' },
   },
@@ -98,12 +96,10 @@ export const content = style({
 
   selectors: {
     '&[data-state="open"]': {
-      // animation: `${slideDown} 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards`,
-      animation: `${slideDown} 1s cubic-bezier(0.87, 0, 0.13, 1) forwards`,
+      animation: `${slideDown} ${animationDuration} forwards`,
     },
     '&[data-state="closed"]': {
-      // animation: `${slideUp} 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards`,
-      animation: `${slideUp} 1s cubic-bezier(0.87, 0, 0.13, 1) forwards`,
+      animation: `${slideUp} ${animationDuration} forwards`,
     },
   },
 });
