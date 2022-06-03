@@ -1,9 +1,7 @@
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
 import { style } from '@vanilla-extract/css';
 
 import { atoms } from '../../css/atoms/atoms';
-
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
