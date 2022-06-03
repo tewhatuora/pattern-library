@@ -1,16 +1,17 @@
 import { Row, RowProps } from './Row';
-import { Column, ColumnProps } from './Column';
+import { Column } from './Column';
 import { Text } from '../Text/Text';
 import { Heading } from '../Heading/Heading';
 import { Container } from '../Container/Container';
 import { Button } from '../Button/Button';
+import { Card } from '../Card/Card';
 
 export default {
   title: 'Layout/Row',
   component: Row,
 };
 
-const Example = (props) => (
+const Example = ({ children }) => (
   <div
     style={{
       padding: '2rem 0',
@@ -18,7 +19,7 @@ const Example = (props) => (
     }}
   >
     <Text align="center" as="div">
-      {props.children}
+      {children}
     </Text>
   </div>
 );
@@ -129,29 +130,17 @@ export const NoGutters = (args: RowProps) => {
   );
 };
 
-const Card = (props) => (
-  <div
-    style={{
-      padding: '2rem 0',
-      borderRadius: '0.8rem',
-      boxShadow: '0rem 0.4rem 3rem 0rem #4040401a',
-      backgroundColor: '#fff',
-    }}
-  >
-    {props.children}
-  </div>
-);
 export const LayoutExample = () => {
   return (
     <div style={{ padding: '10rem 0', backgroundColor: '#f8f7ff' }}>
       <Container>
         <Row>
           <Column columns={8}>
-            <Heading level={2}>Heading</Heading>
+            <Heading level="2">Heading</Heading>
             <Card>
-              <Row>
+              <Row offset>
                 <Column center columns={6}>
-                  <Heading level={3}>Heading</Heading>
+                  <Heading level="3">Heading</Heading>
                   <Text as="p">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Parturient sit consequat nisl, lectus sed
                     sit. Dui turpis vestibulum, scelerisque tristique amet augue facilisis. Turpis dignissim duis
@@ -182,11 +171,9 @@ export const LayoutExample = () => {
             </Row>
           </Column>
           <Column columns={4}>
-            <Heading level={2}>Heading</Heading>
+            <Heading level="2">Heading</Heading>
             <Card>
-              <Text align="center" as="div">
-                Lorem ipsum dolor sit amet,
-              </Text>
+              <Text as="p">Lorem ipsum dolor sit amet,</Text>
             </Card>
           </Column>
         </Row>

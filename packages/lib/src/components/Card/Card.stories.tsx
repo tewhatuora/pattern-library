@@ -3,7 +3,6 @@ import { Row } from '../Columns/Row';
 import { Card, CardProps } from './Card';
 import { Text } from '../Text/Text';
 
-import * as styles from './Card.css';
 import { Container } from '../Container/Container';
 
 export default {
@@ -15,7 +14,6 @@ export const Single = (args: CardProps) => {
   return <Card {...args} />;
 };
 Single.args = {
-  className: styles.storybookCard,
   noShadow: false,
   children: (
     <>
@@ -79,7 +77,6 @@ export const GridLayout = (args: CardProps) => {
   );
 };
 GridLayout.args = {
-  className: styles.storybookCard,
   noShadow: false,
   children: (
     <Text>
