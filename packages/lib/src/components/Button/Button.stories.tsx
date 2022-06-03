@@ -40,5 +40,6 @@ export const OnPress = (args: ButtonProps) => (
     }}
   >
     {args.children || 'Button'}
+    <div />
   </Button>
 );
