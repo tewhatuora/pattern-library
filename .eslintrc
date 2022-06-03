@@ -19,6 +19,7 @@
     "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "prettier"
@@ -99,7 +100,6 @@
         "@typescript-eslint/no-unused-vars": "off",
         "prettier/prettier": "off",
         "import/no-unresolved": "off",
-        "react/react-in-jsx-scope": "off",
         "react/jsx-no-undef": "off"
       }
     }
