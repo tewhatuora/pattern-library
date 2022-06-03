@@ -68,7 +68,9 @@
     "react/no-array-index-key": "error",
     "react/no-multi-comp": "off",
     "react/prop-types": "off",
-    "react/self-closing-comp": "error"
+    "react/self-closing-comp": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
   },
   "overrides": [
     {
