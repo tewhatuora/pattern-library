@@ -60,8 +60,6 @@ export const checkBoxPrimitive = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  marginTop: '0.4rem',
-
   selectors: {
     '&[data-state=checked]': { backgroundColor: vars.color.primary100 },
     '&:hover': { backgroundColor: vars.color.tertiary25 },
@@ -86,4 +84,8 @@ export const container = style({
 export const label = style({
   paddingLeft: '1.5rem',
   userSelect: 'none',
+});
+
+export const offset = style({
+  marginTop: '0.4rem',
 });

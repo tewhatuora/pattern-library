@@ -1,7 +1,7 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 import * as CheckBoxPrimitive from '@radix-ui/react-checkbox';
-import { CheckIcon } from '@radix-ui/react-icons';
+import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons';
 
 import { Label } from '@radix-ui/react-label';
 import { Text } from '../Text/Text';
@@ -15,6 +15,7 @@ export type CheckBoxProps = {
   labelsWithHeading: { heading: string; label: string }[];
   name: string;
   isRequired: boolean;
+  isIndeterminate: boolean;
   onChange?: (checked: boolean) => void;
   children: ReactNode;
   state: styles.Variant;
@@ -23,10 +24,10 @@ export type CheckBoxProps = {
 /**
  * CheckBox Component
  * Displays a list of vertically stacked checkbox components
- * Enables users to pick exactly one option from a radio group
- *Have an option to display a heading
+ * Enables users to pick multiple options from a radio group
+ * Have an option to display a heading
  * Have an option to be required
- *
+ * Have the option top display checkboxes with indeterminate state
  * @param props
  * @constructor
  */
@@ -37,6 +38,7 @@ export const CheckBox = ({
   labelsWithHeading,
   name,
   isRequired,
+  isIndeterminate,
   state = 'default',
   onChange,
   ...boxProps
@@ -54,10 +56,12 @@ export const CheckBox = ({
                 <CheckBoxPrimitive.Root
                   className={styles.checkBoxPrimitive}
                   onCheckedChange={onChange}
+                  required={isRequired}
+                  name={name}
                   disabled={state === 'disabled' ? true : false}
                 >
                   <CheckBoxPrimitive.Indicator className={styles.indicator}>
-                    <CheckIcon />
+                    {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
                   </CheckBoxPrimitive.Indicator>
                 </CheckBoxPrimitive.Root>
                 <Label htmlFor={label} className={styles.text}>
@@ -81,10 +85,12 @@ export const CheckBox = ({
                 <CheckBoxPrimitive.Root
                   className={styles.checkBoxPrimitive}
                   onCheckedChange={onChange}
+                  required={isRequired}
+                  name={name}
                   disabled={state === 'disabled' ? true : false}
                 >
                   <CheckBoxPrimitive.Indicator className={styles.indicator}>
-                    <CheckIcon />
+                    {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon />}
                   </CheckBoxPrimitive.Indicator>
                 </CheckBoxPrimitive.Root>
                 <Label htmlFor={label}>
