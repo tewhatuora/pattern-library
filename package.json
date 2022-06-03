@@ -17,8 +17,7 @@
     "size": "yarn build:components && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
-    "styles": "node scripts/styles.js",
-    "lint-staged": "lint-staged"
+    "styles": "node scripts/styles.js"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
