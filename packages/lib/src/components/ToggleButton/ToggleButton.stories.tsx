@@ -10,6 +10,12 @@ export default {
     labelRight: {
       defaultValue: 'Right',
     },
+    valueLeft: {
+      defaultValue: 'Left ToggleButton',
+    },
+    valueRight: {
+      defaultValue: 'Right ToggleButton',
+    },
   },
 };
 
