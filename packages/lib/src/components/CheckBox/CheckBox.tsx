@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode } from 'react';
 
 import * as CheckBoxPrimitive from '@radix-ui/react-checkbox';
 import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons';
@@ -43,7 +43,7 @@ export const CheckBox = ({
 }: CheckBoxProps) => {
   return (
     <Box as="div" {...boxProps}>
-      {isHeadingDisplayed
+      {!!isHeadingDisplayed
         ? labelsWithHeading.map(({ heading, label, indeterminate }) => (
             <Box className={styles.container}>
               <Box
