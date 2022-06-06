@@ -1,15 +1,15 @@
-import { Text } from '../Text/Text';
+import { useCallback, useState } from 'react';
 
+import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
-import * as styles from './Tag.css';
-import { ReactNode, useCallback, useState } from 'react';
 import { CloseButton } from '../CloseButton/CloseButton';
+
+import * as styles from './Tag.css';
 
 export type TagProps = {
   label: string;
-  isClearable: boolean;
+  isClearable?: boolean;
   onClear?: () => void;
-  children: ReactNode;
 };
 
 /**
@@ -40,7 +40,7 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
       <Text className={styles.iconStyles} size="xsmall" weight="regular">
         {label}
         {!!isClearable && (
-          <CloseButton className={styles.closeButton} onClose={handleClearTag} icon="clear_field" variant="tagIcon" />
+          <CloseButton className={styles.closeButton} icon="clear_field" variant="tagIcon" onClose={handleClearTag} />
         )}
       </Text>
     </Box>
