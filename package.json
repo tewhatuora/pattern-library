@@ -75,7 +75,9 @@
     "webpack": "5"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^0.1.5",
     "@radix-ui/react-separator": "^0.1.4",
+    "@radix-ui/react-switch": "^0.1.5",
     "@react-theming/storybook-addon": "^1.1.5"
   },
   "packageManager": "yarn@3.2.1"

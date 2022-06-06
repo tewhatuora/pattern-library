@@ -16,5 +16,6 @@ export { Row } from './Columns/Row';
 export { Stack } from './Stack/Stack';
 export { Tag } from './Tag/Tag';
 export { Text } from './Text/Text';
+export { ToggleSwitch } from './ToggleSwitch/ToggleSwitch';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
