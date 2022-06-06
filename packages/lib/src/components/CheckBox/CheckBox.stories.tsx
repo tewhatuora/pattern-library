@@ -4,14 +4,22 @@ export default {
   title: 'Components/CheckBox',
   component: CheckBox,
   argTypes: {
+    // labels: {
+    //   defaultValue: ['Content One', 'Two', 'Three'],
+    // },
     labels: {
-      defaultValue: ['Content One', 'Two', 'Three'],
+      defaultValue: [
+        { label: 'Heading 1', isIndeterminate: false },
+        { label: 'Heading 2', isIndeterminate: false },
+        { label: 'Heading 3', isIndeterminate: false },
+      ],
     },
+
     labelsWithHeading: {
       defaultValue: [
-        { heading: 'Heading 1', label: 'One' },
-        { heading: 'Heading 2', label: 'Two' },
-        { heading: 'Heading 3', label: 'Three' },
+        { heading: 'Heading 1', label: 'One', isIndeterminate: false },
+        { heading: 'Heading 2', label: 'Two', isIndeterminate: false },
+        { heading: 'Heading 3', label: 'Three', isIndeterminate: false },
       ],
     },
   },

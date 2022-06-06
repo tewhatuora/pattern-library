@@ -10,12 +10,11 @@ import { Box } from '../Box/Box';
 import * as styles from './CheckBox.css';
 
 export type CheckBoxProps = {
-  labels: string[];
+  labels: { label: string; isIndeterminate: boolean }[];
   isHeadingDisplayed: boolean;
-  labelsWithHeading: { heading: string; label: string }[];
+  labelsWithHeading: { heading: string; label: string; isIndeterminate: boolean }[];
   name: string;
   isRequired: boolean;
-  isIndeterminate: boolean;
   onChange?: (checked: boolean) => void;
   children: ReactNode;
   state: styles.Variant;
@@ -24,7 +23,7 @@ export type CheckBoxProps = {
 /**
  * CheckBox Component
  * Displays a list of vertically stacked checkbox components
- * Enables users to pick multiple options from a radio group
+ * Enables users to pick multiple options from a group of checkbox component
  * Have an option to display a heading
  * Have an option to be required
  * Have the option top display checkboxes with indeterminate state
@@ -38,7 +37,6 @@ export const CheckBox = ({
   labelsWithHeading,
   name,
   isRequired,
-  isIndeterminate,
   state = 'default',
   onChange,
   ...boxProps
@@ -46,7 +44,7 @@ export const CheckBox = ({
   return (
     <Box as="div" {...boxProps}>
       {!!!isHeadingDisplayed
-        ? labelsWithHeading.map(({ heading, label }) => (
+        ? labelsWithHeading.map(({ heading, label, isIndeterminate }) => (
             <Box className={styles.container}>
               <Box
                 className={styles.variants({
@@ -75,7 +73,7 @@ export const CheckBox = ({
               </Box>
             </Box>
           ))
-        : labels.map((label) => (
+        : labels.map((label, isIndeterminate) => (
             <Box className={styles.container}>
               <Box
                 className={styles.variants({
@@ -90,7 +88,7 @@ export const CheckBox = ({
                   disabled={state === 'disabled' ? true : false}
                 >
                   <CheckBoxPrimitive.Indicator className={styles.indicator}>
-                    {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon />}
+                    {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
                   </CheckBoxPrimitive.Indicator>
                 </CheckBoxPrimitive.Root>
                 <Label htmlFor={label}>
