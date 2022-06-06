@@ -12,7 +12,6 @@ export type ToggleButtonProps = {
   valueLeft: string;
   valueRight: string;
   onChange?: (value: string) => void;
-  children: ReactNode;
 };
 
 /**
