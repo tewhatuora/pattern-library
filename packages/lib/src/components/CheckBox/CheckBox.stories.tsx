@@ -9,17 +9,17 @@ export default {
     // },
     labels: {
       defaultValue: [
-        { label: 'Heading 1', isIndeterminate: false },
-        { label: 'Heading 2', isIndeterminate: false },
-        { label: 'Heading 3', isIndeterminate: false },
+        { label: 'Heading 1', indeterminate: false },
+        { label: 'Heading 2', indeterminate: false },
+        { label: 'Heading 3', indeterminate: false },
       ],
     },
 
     labelsWithHeading: {
       defaultValue: [
-        { heading: 'Heading 1', label: 'One', isIndeterminate: false },
-        { heading: 'Heading 2', label: 'Two', isIndeterminate: false },
-        { heading: 'Heading 3', label: 'Three', isIndeterminate: false },
+        { heading: 'Heading 1', label: 'One', indeterminate: false },
+        { heading: 'Heading 2', label: 'Two', indeterminate: false },
+        { heading: 'Heading 3', label: 'Three', indeterminate: false },
       ],
     },
   },
