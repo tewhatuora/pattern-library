@@ -4,9 +4,6 @@ export default {
   title: 'Components/CheckBox',
   component: CheckBox,
   argTypes: {
-    // labels: {
-    //   defaultValue: ['Content One', 'Two', 'Three'],
-    // },
     labels: {
       defaultValue: [
         { label: 'Heading 1', indeterminate: false },
