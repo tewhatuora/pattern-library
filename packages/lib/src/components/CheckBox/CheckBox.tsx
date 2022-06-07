@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 import * as CheckBoxPrimitive from '@radix-ui/react-checkbox';
 import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons';
 
@@ -10,13 +8,13 @@ import { Box } from '../Box/Box';
 import * as styles from './CheckBox.css';
 
 export type CheckBoxProps = {
-  labels: { label: string; indeterminate: boolean }[];
+  label: { label: string };
   isHeadingDisplayed: boolean;
-  labelsWithHeading: { heading: string; label: string; indeterminate: boolean }[];
+  labelWithHeading?: { heading: string; label: string };
   name: string;
+  isIndeterminate: boolean;
   isRequired: boolean;
   onChange?: (checked: boolean) => void;
-  children: ReactNode;
   state: styles.Variant;
 };
 
@@ -32,10 +30,11 @@ export type CheckBoxProps = {
  */
 
 export const CheckBox = ({
-  labels,
+  label,
   isHeadingDisplayed,
-  labelsWithHeading,
+  labelWithHeading,
   name,
+  isIndeterminate,
   isRequired,
   state = 'default',
   onChange,
@@ -43,64 +42,87 @@ export const CheckBox = ({
 }: CheckBoxProps) => {
   return (
     <Box as="div" {...boxProps}>
-      {!!isHeadingDisplayed
-        ? labelsWithHeading.map(({ heading, label, indeterminate }) => (
-            <Box className={styles.container}>
-              <Box
-                className={styles.variants({
-                  variant: state,
-                })}
-              >
-                <CheckBoxPrimitive.Root
-                  className={styles.checkBoxPrimitive}
-                  onCheckedChange={onChange}
-                  required={isRequired}
-                  name={name}
-                  disabled={state === 'disabled' ? true : false}
-                >
-                  <CheckBoxPrimitive.Indicator className={styles.indicator}>
-                    {indeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
-                  </CheckBoxPrimitive.Indicator>
-                </CheckBoxPrimitive.Root>
-                <Label htmlFor={label} className={styles.text}>
-                  <Text size="medium" weight="bold">
-                    <Label htmlFor={label}>{heading}</Label>
-                  </Text>
-                  <Text size="medium" weight="regular">
-                    {label}
-                  </Text>
-                </Label>
-              </Box>
-            </Box>
-          ))
-        : labels.map(({ label, indeterminate }) => (
-            <Box className={styles.container}>
-              <Box
-                className={styles.variants({
-                  variant: state,
-                })}
-              >
-                <CheckBoxPrimitive.Root
-                  className={styles.checkBoxPrimitive}
-                  onCheckedChange={onChange}
-                  required={isRequired}
-                  name={name}
-                  disabled={state === 'disabled' ? true : false}
-                >
-                  <CheckBoxPrimitive.Indicator className={styles.indicator}>
-                    {indeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
-                  </CheckBoxPrimitive.Indicator>
-                </CheckBoxPrimitive.Root>
-                <Label htmlFor={label}>
-                  <Text className={styles.label} size="small" weight="regular">
-                    {label}
-                  </Text>
-                </Label>
-              </Box>
-            </Box>
-          ))}
+      {!!isHeadingDisplayed ? (
+        <Box
+          className={styles.variants({
+            variant: state,
+          })}
+        >
+          <CheckBoxPrimitive.Root
+            className={styles.checkBoxPrimitive}
+            onCheckedChange={onChange}
+            required={isRequired}
+            name={name}
+            disabled={state === 'disabled'}
+          >
+            <CheckBoxPrimitive.Indicator className={styles.indicator}>
+              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
+            </CheckBoxPrimitive.Indicator>
+          </CheckBoxPrimitive.Root>
+          <Label htmlFor={labelWithHeading.label} className={styles.text}>
+            <Text size="medium" weight="bold">
+              <Label htmlFor={labelWithHeading.label}>{labelWithHeading.heading}</Label>
+            </Text>
+            <Text size="medium" weight="regular">
+              {labelWithHeading.label}
+            </Text>
+          </Label>
+        </Box>
+      ) : (
+        <Box
+          className={styles.variants({
+            variant: state,
+          })}
+        >
+          <CheckBoxPrimitive.Root
+            className={styles.checkBoxPrimitive}
+            onCheckedChange={onChange}
+            required={isRequired}
+            name={name}
+            disabled={state === 'disabled'}
+          >
+            <CheckBoxPrimitive.Indicator className={styles.indicator}>
+              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
+            </CheckBoxPrimitive.Indicator>
+          </CheckBoxPrimitive.Root>
+          <Label htmlFor={label}>
+            <Text className={styles.label} size="small" weight="regular">
+              {label}
+            </Text>
+          </Label>
+        </Box>
+      )}
     </Box>
   );
 };
+
+// export const CheckBoxGroup = ({
+//   label,
+//   isHeadingDisplayed,
+//   labelWithHeading,
+//   name,
+//   isIndeterminate,
+//   isRequired,
+//   state,
+//   onChange,
+//   ...boxProps
+// }: CheckBoxProps) => {
+//   return (
+//     <Box as="div" className={styles.container} {...boxProps}>
+//       <CheckBox>
+//         label={label}, isHeadingDisplayed="false", name={name}, isIndeterminate= {isIndeterminate},isRequired=
+//         {isRequired}, state={state}
+//       </CheckBox>
+//       <CheckBox>
+//         label={label}, isHeadingDisplayed=false, name={name}, isIndeterminate= {isIndeterminate}, isRequired=
+//         {isRequired}, state={state}
+//       </CheckBox>
+//       <CheckBox>
+//         label={label}, isHeadingDisplayed=false, name={name}, isIndeterminate= {isIndeterminate}, isRequired=
+//         {isRequired}, state={state}
+//       </CheckBox>
+//     </Box>
+//   );
+// };
 
 CheckBox.displayName = 'CheckBox';

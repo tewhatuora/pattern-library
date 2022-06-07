@@ -54,7 +54,7 @@ export const checkBoxPrimitive = style({
   all: 'unset',
   width: '2.4rem',
   height: '2.4rem',
-  borderRadius: vars.borderRadius.button.topLeft,
+  borderRadius: '0.4rem',
   borderStyle: 'solid',
   borderWidth: vars.borderWidth.small,
   display: 'flex',
@@ -63,7 +63,7 @@ export const checkBoxPrimitive = style({
   selectors: {
     '&[data-state=checked]': { backgroundColor: vars.color.primary100 },
     '&:hover': { backgroundColor: vars.color.tertiary25 },
-    '&:focus': { borderColor: vars.color.secondary50, borderWidth: vars.borderWidth.medium },
+    '&:focus': { boxShadow: `0 0 0 0.4rem #BFBFBF` },
   },
 });
 
@@ -79,6 +79,7 @@ export const text = style({
 
 export const container = style({
   display: 'flex',
+  flexDirection: 'column',
 });
 
 export const label = style({
