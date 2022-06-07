@@ -55,7 +55,7 @@ export const RadioGroup = ({
                     className={styles.styledItem}
                     value={label}
                     id={label}
-                    disabled={state === 'disabled' ? true : false}
+                    disabled={state === 'disabled'}
                   >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>
@@ -81,7 +81,7 @@ export const RadioGroup = ({
                     className={styles.styledItem}
                     value={label}
                     id={label}
-                    disabled={state === 'disabled' ? true : false}
+                    disabled={state === 'disabled'}
                   >
                     <RadioGroupPrimitive.Indicator className={styles.styledIndicator} />
                   </RadioGroupPrimitive.Item>
