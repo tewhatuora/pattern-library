@@ -1,4 +1,4 @@
-import { StyleRule, CSSProperties } from '@vanilla-extract/css';
+import { StyleRule } from '@vanilla-extract/css';
 
 import { vars } from '../../themes/vars.css';
 import { ResponsiveStyle, responsiveStyle } from '../../css/responsiveStyle';
@@ -72,28 +72,26 @@ export const colorProperties = {
 } as const;
 
 export type ColorProperties = keyof typeof colorProperties;
-type ResponsiveSpace = Record<Space, ResponsiveStyle>;
+type ResponsiveSpace = Record<Space, StyleRule>;
 type Breakpoint = keyof Viewport;
 
 const spaceNames = Object.keys(space) as Space[];
 
 const responsiveSpace = (property: string) => {
-  return spaceNames.reduce((responsive, name: Space) => {
+  return spaceNames.reduce((responsive: ResponsiveSpace, name: Space) => {
     const viewports = Object.keys(space[name]) as Breakpoint[];
 
-    return {
-      ...responsive,
-      [name]: responsiveStyle(
-        viewports.reduce((sizes, current: Breakpoint) => {
-          return {
-            ...sizes,
-            [current]: {
-              [property]: space[name][current],
-            },
-          };
-        }, {} as ResponsiveStyle),
-      ),
-    };
+    const breakpointStyles = viewports.reduce((breakpoints: ResponsiveStyle, current: Breakpoint) => {
+      breakpoints[current] = {
+        [property]: space[name][current],
+      };
+
+      return breakpoints;
+    }, {} as ResponsiveStyle);
+
+    responsive[name] = responsiveStyle(breakpointStyles);
+
+    return responsive;
   }, {} as ResponsiveSpace);
 };
 

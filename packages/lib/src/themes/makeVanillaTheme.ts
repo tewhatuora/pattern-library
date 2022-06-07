@@ -4,32 +4,57 @@ export default (tokens: Tokens) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { name, displayName, ...rest } = tokens;
 
-  const borderRadiusNames = Object.keys(rest.border.radius) as (keyof typeof rest.border.radius)[];
+  type BorderRadiusName = keyof typeof rest.border.radius;
+  type CornerName = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+  type BorderRadiusAll = Record<BorderRadiusName, string>;
+  type BorderRadiusCorners = Record<CornerName, Record<keyof typeof borderRadiusNames, string>>;
 
-  const borderRadiusAll = borderRadiusNames.reduce((all, name) => {
+  const borderRadiusNames = Object.keys(rest.border.radius) as BorderRadiusName[];
+
+  /**
+   * Reduce borderRadius token names
+   * to an object where the key is the
+   * token name and the value is a CSS
+   * string of border-radius values
+   * for each corner of the element.
+   * e.g {
+   *   button: '0.8rem 0.8rem 0.8rem 0.8rem'
+   * }
+   */
+  const borderRadiusAll = borderRadiusNames.reduce((borderRadius: BorderRadiusAll, name: BorderRadiusName) => {
     const { topLeft, topRight, bottomRight, bottomLeft } = rest.border.radius[name];
 
-    return {
-      ...all,
-      [name]: `${topLeft} ${topRight} ${bottomRight} ${bottomLeft}`,
-    };
-  }, {});
+    borderRadius[name] = `${topLeft} ${topRight} ${bottomRight} ${bottomLeft}`;
 
-  type CornerName = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+    return borderRadius;
+  }, {} as BorderRadiusAll);
 
-  const borderRadius = borderRadiusNames.reduce((acc, name) => {
+  /**
+   * Reduce borderRadius token names
+   * to an object where the key is a
+   * border-radius corner name e.g `topLeft`
+   * and the value is an object where the
+   * keys are the token names e.g `button`
+   * and the value is token value.
+   * e.g {
+   *   topLeft: {
+   *     button: '0.8rem'
+   *   }
+   * }
+   */
+  const borderRadius = borderRadiusNames.reduce((borderRadius: BorderRadiusCorners, name: BorderRadiusName) => {
     const corners = rest.border.radius[name];
     const cornerNames = Object.keys(corners) as CornerName[];
 
-    cornerNames.forEach((corner) => {
-      acc[corner] = {
-        ...acc[corner],
+    cornerNames.forEach((corner: CornerName) => {
+      borderRadius[corner] = {
+        ...borderRadius[corner], // Spread previous values
         [name]: corners[corner],
       };
     });
 
-    return acc;
-  }, {} as Record<CornerName, Record<keyof typeof borderRadiusNames, string>>);
+    return borderRadius;
+  }, {} as BorderRadiusCorners);
 
   return {
     space: rest.space,
