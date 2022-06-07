@@ -86,7 +86,3 @@ export const label = style({
   paddingLeft: '1.5rem',
   userSelect: 'none',
 });
-
-export const offset = style({
-  marginTop: '0.4rem',
-});

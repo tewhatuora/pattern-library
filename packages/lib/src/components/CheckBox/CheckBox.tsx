@@ -42,7 +42,7 @@ export const Checkbox = ({
 }: CheckboxProps) => {
   return (
     <Box as="div" {...boxProps}>
-      {!!isHeadingDisplayed ? (
+      {isHeadingDisplayed ? (
         <Box
           className={styles.variants({
             variant: state,
@@ -56,7 +56,7 @@ export const Checkbox = ({
             disabled={state === 'disabled'}
           >
             <CheckboxPrimitive.Indicator className={styles.indicator}>
-              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
+              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon />}
             </CheckboxPrimitive.Indicator>
           </CheckboxPrimitive.Root>
           <Label htmlFor={labelWithHeading.label} className={styles.text}>
@@ -82,7 +82,7 @@ export const Checkbox = ({
             disabled={state === 'disabled'}
           >
             <CheckboxPrimitive.Indicator className={styles.indicator}>
-              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon className={styles.offset} />}
+              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon />}
             </CheckboxPrimitive.Indicator>
           </CheckboxPrimitive.Root>
           <Label htmlFor={label}>
