@@ -1,8 +1,8 @@
-import { CheckBox, CheckBoxProps } from './CheckBox';
+import { Checkbox, CheckboxProps } from './CheckBox';
 
 export default {
-  title: 'Components/CheckBox',
-  component: CheckBox,
+  title: 'Components/Checkbox',
+  component: Checkbox,
   argTypes: {
     label: {
       defaultValue: 'Checkbox 1',
@@ -14,6 +14,6 @@ export default {
   },
 };
 
-export const Default = (args: CheckBoxProps) => {
-  return <CheckBox {...args} />;
+export const Default = (args: CheckboxProps) => {
+  return <Checkbox {...args} />;
 };

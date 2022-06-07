@@ -1,25 +1,25 @@
 import { Box } from '../Box/Box';
 
 import * as styles from './CheckBoxGroup.css';
-import { CheckBox } from '../CheckBox/CheckBox';
+import { Checkbox } from '../CheckBox/CheckBox';
 
-export type CheckBoxGroupProps = {};
+export type CheckboxGroupProps = {};
 
 /**
- * CheckBox Component
- * Displays a list of vertically stacked checkbox components
- * Enables users to pick multiple options from a group of checkbox component
+ * Checkbox Component
+ * Displays a list of vertically stacked Checkbox components
+ * Enables users to pick multiple options from a group of Checkbox component
  * Have an option to display a heading
  * Have an option to be required
- * Have the option top display checkboxes with indeterminate state
+ * Have the option top display Checkboxes with indeterminate state
  * @param props
  * @constructor
  */
 
-export const CheckBoxGroup = ({ ...boxProps }: CheckBoxGroupProps) => {
+export const CheckboxGroup = ({ ...boxProps }: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
-      <CheckBox
+      <Checkbox
         label={'Check one'}
         isHeadingDisplayed={false}
         name={''}
@@ -27,7 +27,7 @@ export const CheckBoxGroup = ({ ...boxProps }: CheckBoxGroupProps) => {
         isRequired={false}
         state={'default'}
       />
-      <CheckBox
+      <Checkbox
         label={'Check two'}
         isHeadingDisplayed={false}
         name={''}
@@ -39,4 +39,4 @@ export const CheckBoxGroup = ({ ...boxProps }: CheckBoxGroupProps) => {
   );
 };
 
-CheckBoxGroup.displayName = 'CheckBoxGroup';
+CheckboxGroup.displayName = 'CheckboxGroup';
