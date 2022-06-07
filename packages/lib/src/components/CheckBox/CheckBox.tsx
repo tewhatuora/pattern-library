@@ -8,7 +8,7 @@ import { Box } from '../Box/Box';
 import * as styles from './CheckBox.css';
 
 export type CheckBoxProps = {
-  label: { label: string };
+  label: string;
   isHeadingDisplayed: boolean;
   labelWithHeading?: { heading: string; label: string };
   name: string;

@@ -16,11 +16,25 @@ export type CheckBoxGroupProps = {};
  * @constructor
  */
 
-export const CheckBoxGroup = () => {
+export const CheckBoxGroup = ({ ...boxProps }: CheckBoxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
-      <CheckBox /> 
-      </CheckBox>
+      <CheckBox
+        label={'Check one'}
+        isHeadingDisplayed={false}
+        name={''}
+        isIndeterminate={false}
+        isRequired={false}
+        state={'default'}
+      />
+      <CheckBox
+        label={'Check two'}
+        isHeadingDisplayed={false}
+        name={''}
+        isIndeterminate={false}
+        isRequired={false}
+        state={'default'}
+      />
     </Box>
   );
 };
