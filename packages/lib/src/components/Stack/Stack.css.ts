@@ -5,6 +5,14 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 const variant = {
+  xxlarge: responsiveStyle({
+    mobile: {
+      gap: vars.space.xxlarge.mobile,
+    },
+    tablet: {
+      gap: vars.space.xxlarge.tablet,
+    },
+  }),
   xlarge: responsiveStyle({
     mobile: {
       gap: vars.space.xlarge.mobile,
@@ -35,14 +43,6 @@ const variant = {
     },
     tablet: {
       gap: vars.space.small.tablet,
-    },
-  }),
-  xxlarge: responsiveStyle({
-    mobile: {
-      gap: vars.space.xxlarge.mobile,
-    },
-    tablet: {
-      gap: vars.space.xxlarge.tablet,
     },
   }),
   xsmall: responsiveStyle({
