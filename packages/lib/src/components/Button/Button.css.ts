@@ -1,8 +1,8 @@
-import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
+import { style } from '@vanilla-extract/css';
 
-import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
+import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 export const root = style({
@@ -11,21 +11,6 @@ export const root = style({
 
 export const variants = recipe({
   base: style([
-    {
-      selectors: {
-        '&[disabled]': {
-          cursor: 'not-allowed',
-        },
-      },
-    },
-    responsiveStyle({
-      mobile: {
-        gap: vars.space.xsmall.mobile,
-      },
-      tablet: {
-        gap: vars.space.xsmall.tablet,
-      },
-    }),
     atoms({
       display: 'flex',
       justifyContent: 'center',
@@ -36,14 +21,22 @@ export const variants = recipe({
       transitionTimingFunction: 'inOut',
       borderRadius: 'button',
     }),
+    {
+      width: '100%',
+      selectors: {
+        '&[disabled]': {
+          cursor: 'not-allowed',
+        },
+      },
+    },
     responsiveStyle({
       mobile: {
         height: vars.space.xxlarge.tablet,
-        width: '100%',
+        gap: vars.space.xsmall.mobile,
       },
       tablet: {
         height: '6rem',
-        width: '39.6rem',
+        gap: vars.space.xsmall.tablet,
       },
     }),
   ]),

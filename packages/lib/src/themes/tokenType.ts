@@ -84,7 +84,7 @@ export interface Tokens {
     };
   };
   shadows: {
-    '10': string;
+    [key: string]: string;
   };
   color: {
     primary110: string; // Used for pressed states
