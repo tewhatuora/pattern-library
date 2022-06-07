@@ -2,11 +2,19 @@ import { Box } from '../Box/Box';
 
 import * as styles from './CheckBoxGroup.css';
 import { Checkbox } from '../CheckBox/CheckBox';
+import { label } from '../CheckBox/CheckBox.css';
 
-export type CheckboxGroupProps = {};
+export type CheckboxGroupProps = {
+  checkboxObject: {
+    label: string;
+    state: 'default' | 'disabled' | 'error';
+    isIndeterminate: boolean;
+    isRequired: boolean;
+  }[];
+};
 
 /**
- * Checkbox Component
+ * CheckboxGroup Component
  * Displays a list of vertically stacked Checkbox components
  * Enables users to pick multiple options from a group of Checkbox component
  * Have an option to display a heading
@@ -16,25 +24,14 @@ export type CheckboxGroupProps = {};
  * @constructor
  */
 
-export const CheckboxGroup = ({ ...boxProps }: CheckboxGroupProps) => {
+export const CheckboxGroup = ({ checkboxObject, ...boxProps }: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
-      <Checkbox
-        label={'Check one'}
-        isHeadingDisplayed={false}
-        name={''}
-        isIndeterminate={false}
-        isRequired={false}
-        state={'default'}
-      />
-      <Checkbox
-        label={'Check two'}
-        isHeadingDisplayed={false}
-        name={''}
-        isIndeterminate={false}
-        isRequired={false}
-        state={'default'}
-      />
+      <Box>
+        {checkboxObject.map(({ label, state, isIndeterminate, isRequired }) => (
+          <Checkbox label={label} isIndeterminate={isIndeterminate} state={state} isRequired={isRequired} />
+        ))}
+      </Box>
     </Box>
   );
 };

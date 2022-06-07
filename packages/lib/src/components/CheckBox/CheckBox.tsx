@@ -9,11 +9,11 @@ import * as styles from './CheckBox.css';
 
 export type CheckboxProps = {
   label: string;
-  isHeadingDisplayed: boolean;
+  isHeadingDisplayed?: boolean;
   labelWithHeading?: { heading: string; label: string };
-  name: string;
-  isIndeterminate: boolean;
-  isRequired: boolean;
+  name?: string;
+  isIndeterminate?: boolean;
+  isRequired?: boolean;
   onChange?: (checked: boolean) => void;
   state: styles.Variant;
 };

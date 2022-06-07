@@ -5,12 +5,12 @@ export default {
   title: 'Components/CheckboxGroup',
   component: CheckboxGroup,
   argTypes: {
-    label: {
-      defaultValue: 'Checkbox 1',
-    },
-
-    labelWithHeading: {
-      defaultValue: { heading: 'Heading 1', label: 'Checkbox 1' },
+    checkboxObject: {
+      defaultValue: [
+        { label: 'Heading 1', state: 'default', isIndeterminate: false, isRequired: true },
+        { label: 'Heading 2', state: 'disabled', isIndeterminate: false, isRequired: true },
+        { label: 'Heading 3', state: 'error', isIndeterminate: true, isRequired: true },
+      ],
     },
   },
 };
