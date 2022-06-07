@@ -1,50 +1,96 @@
-import Alert from '../../icons/Alert.svg';
-import Blood from '../../icons/Blood.svg';
-import Document from '../../icons/Document.svg';
-import Email from '../../icons/Email.svg';
-import Exempt from '../../icons/Exempt.svg';
-import Language from '../../icons/Language.svg';
-import Menu from '../../icons/Menu.svg';
-import Name from '../../icons/Name.svg';
-import Nasal from '../../icons/Nasal.svg';
-import NHINumber from '../../icons/NHINumber.svg';
-import Password from '../../icons/Password.svg';
-import Pending from '../../icons/Pending.svg';
-import Person from '../../icons/Person.svg';
-import Phone from '../../icons/Phone.svg';
-import RAT from '../../icons/RAT.svg';
-import Saliva from '../../icons/Saliva.svg';
-import Search from '../../icons/Search.svg';
-import Security from '../../icons/Security.svg';
-import Tick from '../../icons/Tick.svg';
-import UnknownTest from '../../icons/UnknownTest.svg';
-import Vaccine from '../../icons/Vaccine.svg';
+import { ReactNode, ElementType, ReactSVGElement, FunctionComponent } from 'react';
+
+import Alert from '../../icons/Alert.svg?component';
+import Blood from '../../icons/Blood.svg?component';
+import Document from '../../icons/Document.svg?component';
+import Email from '../../icons/Email.svg?component';
+import Exempt from '../../icons/Exempt.svg?component';
+import Language from '../../icons/Language.svg?component';
+import Menu from '../../icons/Menu.svg?component';
+import Name from '../../icons/Name.svg?component';
+import Nasal from '../../icons/Nasal.svg?component';
+import NHINumber from '../../icons/NHINumber.svg?component';
+import Password from '../../icons/Password.svg?component';
+import Pending from '../../icons/Pending.svg?component';
+import Person from '../../icons/Person.svg?component';
+import Phone from '../../icons/Phone.svg?component';
+import RAT from '../../icons/RAT.svg?component';
+import Saliva from '../../icons/Saliva.svg?component';
+import Search from '../../icons/Search.svg?component';
+import Security from '../../icons/Security.svg?component';
+import Tick from '../../icons/Tick.svg?component';
+import UnknownTest from '../../icons/UnknownTest.svg?component';
+import Vaccine from '../../icons/Vaccine.svg?component';
 // Functional
-import Warning from '../../icons/functional/Warning.svg';
-import Link from '../../icons/functional/Link.svg';
-import Plus from '../../icons/functional/Plus.svg';
-import Print from '../../icons/functional/Print.svg';
-import ClearField from '../../icons/functional/ClearField.svg';
-import Cross from '../../icons/functional/Cross.svg';
-import Info from '../../icons/functional/Info.svg';
-import ChevronLeft from '../../icons/functional/ChevronLeft.svg';
-import ChevronRight from '../../icons/functional/ChevronRight.svg';
-import ChevronUp from '../../icons/functional/ChevronUp.svg';
-import BackToTop from '../../icons/functional/BackToTop.svg';
-import ChevronDown from '../../icons/functional/ChevronDown.svg';
-import ArrowRight from '../../icons/functional/ArrowRight.svg';
-import ArrowUp from '../../icons/functional/ArrowUp.svg';
-import ArrowLeft from '../../icons/functional/ArrowLeft.svg';
-import ArrowDown from '../../icons/functional/ArrowDown.svg';
+import Warning from '../../icons/functional/Warning.svg?component';
+import Link from '../../icons/functional/Link.svg?component';
+import Plus from '../../icons/functional/Plus.svg?component';
+import Print from '../../icons/functional/Print.svg?component';
+import ClearField from '../../icons/functional/ClearField.svg?component';
+import Cross from '../../icons/functional/Cross.svg?component';
+import Info from '../../icons/functional/Info.svg?component';
+import ChevronLeft from '../../icons/functional/ChevronLeft.svg?component';
+import ChevronRight from '../../icons/functional/ChevronRight.svg?component';
+import ChevronUp from '../../icons/functional/ChevronUp.svg?component';
+import BackToTop from '../../icons/functional/BackToTop.svg?component';
+import ChevronDown from '../../icons/functional/ChevronDown.svg?component';
+import ArrowRight from '../../icons/functional/ArrowRight.svg?component';
+import ArrowUp from '../../icons/functional/ArrowUp.svg?component';
+import ArrowLeft from '../../icons/functional/ArrowLeft.svg?component';
+import ArrowDown from '../../icons/functional/ArrowDown.svg?component';
 // Social
-import Facebook from '../../icons/social/Facebook.svg';
-import Instagram from '../../icons/social/Instagram.svg';
-import LinkedIn from '../../icons/social/LinkedIn.svg';
-import TikTok from '../../icons/social/TikTok.svg';
-import Twitter from '../../icons/social/Twitter.svg';
+import Facebook from '../../icons/social/Facebook.svg?component';
+import Instagram from '../../icons/social/Instagram.svg?component';
+import LinkedIn from '../../icons/social/LinkedIn.svg?component';
+import TikTok from '../../icons/social/TikTok.svg?component';
+import Twitter from '../../icons/social/Twitter.svg?component';
+
+export type IconType =
+  | 'alert'
+  | 'blood'
+  | 'document'
+  | 'email'
+  | 'exempt'
+  | 'language'
+  | 'menu'
+  | 'name'
+  | 'nasal'
+  | 'nhi_number'
+  | 'password'
+  | 'pending'
+  | 'person'
+  | 'phone'
+  | 'rat'
+  | 'saliva'
+  | 'search'
+  | 'security'
+  | 'tick'
+  | 'unknown_test'
+  | 'vaccine'
+  | 'warning'
+  | 'link'
+  | 'plus'
+  | 'print'
+  | 'clear_field'
+  | 'cross'
+  | 'info'
+  | 'chevron_left'
+  | 'chevron_right'
+  | 'chevron_up'
+  | 'back_to_top'
+  | 'chevron_down'
+  | 'arrow_right'
+  | 'arrow_up'
+  | 'arrow_left'
+  | 'arrow_down'
+  | 'facebook'
+  | 'instagram'
+  | 'linkedin'
+  | 'tiktok'
+  | 'twitter';
 
 export type IconMap = {
-  [key: string]: ReactNode;
+  [key in IconType]?: FunctionComponent<ReactSVGElement>;
 };
 
 export const decorative: IconMap = {

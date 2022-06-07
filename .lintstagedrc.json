@@ -1,0 +1,6 @@
+{
+  "packages/lib/src/**/*.{ts,tsx}": [
+    "yarn lint:format",
+    "yarn lint:fix"
+  ]
+}

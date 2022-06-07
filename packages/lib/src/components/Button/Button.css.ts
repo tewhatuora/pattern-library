@@ -1,43 +1,13 @@
-import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
+import { style } from '@vanilla-extract/css';
 
-import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
+import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
-const variant = {
-  primary: atoms({
-    color: 'primary0',
-    backgroundColor: {
-      base: 'primary100',
-      hover: 'primary75',
-      active: 'primary110',
-    },
-  }),
-  secondary: atoms({
-    color: 'secondary0',
-    backgroundColor: {
-      base: 'secondary100',
-      hover: 'secondary75',
-      active: 'secondary110',
-    },
-  }),
-  tertiary: style([
-    atoms({
-      color: 'primary100',
-      backgroundColor: {
-        base: 'neutral0',
-      },
-      borderColor: 'primary100',
-      borderWidth: 'small',
-    }),
-    style({
-      borderStyle: 'solid',
-    }),
-  ]),
-};
-
-export type Variant = keyof typeof variant;
+export const root = style({
+  color: 'inherit',
+});
 
 export const variants = recipe({
   base: style([
@@ -51,32 +21,102 @@ export const variants = recipe({
       transitionTimingFunction: 'inOut',
       borderRadius: 'button',
     }),
+    {
+      width: '100%',
+      selectors: {
+        '&[disabled]': {
+          cursor: 'not-allowed',
+        },
+      },
+    },
     responsiveStyle({
       mobile: {
-        height: '3.5rem',
-        width: '100%',
+        height: vars.space.xxlarge.tablet,
+        gap: vars.space.xsmall.mobile,
       },
       tablet: {
-        height: '3.75rem',
-        width: '24.75rem',
+        height: '6rem',
+        gap: vars.space.xsmall.tablet,
       },
     }),
   ]),
   variants: {
-    variant,
+    icon: {
+      right: {
+        flexDirection: 'row',
+      },
+      left: {
+        flexDirection: 'row-reverse',
+      },
+    },
+    color: {
+      primary: {
+        color: vars.color.primary0,
+        backgroundColor: vars.color.primary100,
+        ':hover': {
+          backgroundColor: vars.color.tertiary75,
+        },
+        ':focus': {
+          backgroundColor: vars.color.tertiary75,
+          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+        },
+        ':active': {
+          backgroundColor: vars.color.primary110,
+          outline: 'none',
+        },
+        selectors: {
+          '&[disabled]': {
+            backgroundColor: vars.color.tertiary25,
+          },
+        },
+      },
+      secondary: {
+        color: vars.color.secondary0,
+        backgroundColor: vars.color.secondary100,
+        ':hover': {
+          backgroundColor: vars.color.secondary75,
+        },
+        ':focus': {
+          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+        },
+        ':active': {
+          backgroundColor: vars.color.secondary110,
+        },
+        selectors: {
+          '&[disabled]': {
+            backgroundColor: vars.color.secondary25,
+          },
+        },
+      },
+      tertiary: {
+        color: vars.color.primary100,
+        backgroundColor: vars.color.neutral0,
+        borderStyle: 'solid',
+        borderColor: vars.color.primary100,
+        borderWidth: vars.borderWidth.small,
+        ':hover': {
+          borderColor: vars.color.primary75,
+        },
+        ':focus': {
+          borderWidth: vars.borderWidth.standard,
+          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+        },
+        ':active': {
+          borderColor: vars.color.primary110,
+        },
+        selectors: {
+          '&[disabled]': {
+            color: vars.color.primary25,
+            borderColor: vars.color.primary25,
+          },
+        },
+      },
+    },
   },
-  compoundVariants: [],
+  defaultVariants: {
+    color: 'primary',
+    icon: 'right',
+  },
 });
 
 export type Variants = RecipeVariants<typeof variants>;
-
-export const buttonIcon = style([
-  responsiveStyle({
-    mobile: {
-      marginLeft: vars.space.xsmall.mobile,
-    },
-    tablet: {
-      marginLeft: vars.space.xsmall.tablet,
-    },
-  }),
-]);

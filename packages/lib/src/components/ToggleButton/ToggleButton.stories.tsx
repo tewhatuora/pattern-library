@@ -10,9 +10,15 @@ export default {
     labelRight: {
       defaultValue: 'Right',
     },
+    valueLeft: {
+      defaultValue: 'Left ToggleButton',
+    },
+    valueRight: {
+      defaultValue: 'Right ToggleButton',
+    },
   },
 };
 
 export const Default = (args: ToggleButtonProps) => {
-  return <ToggleButton {...args}></ToggleButton>;
+  return <ToggleButton {...args} />;
 };

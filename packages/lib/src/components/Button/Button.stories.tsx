@@ -2,10 +2,6 @@ import { Button, ButtonProps } from './Button';
 import icons from '../Icon/icons';
 
 export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
   title: 'Components/Button',
   component: Button,
   argTypes: {
@@ -14,13 +10,28 @@ export default {
       control: { type: 'select' },
     },
     icon: {
-      options: Object.keys(icons),
+      options: ['', ...Object.keys(icons)],
       control: { type: 'select' },
+    },
+    iconPosition: {
+      options: ['right', 'left'],
+      defaultValue: 'right',
+      control: { type: 'radio' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      defaultValue: false,
+    },
+    children: {
+      control: {
+        type: 'text',
+        defaultValue: 'Button',
+      },
     },
   },
 };
 
-export const Default = (args: ButtonProps) => <Button {...args}>Button</Button>;
+export const Default = (args: ButtonProps) => <Button {...args}>{args.children || 'Button'}</Button>;
 export const OnPress = (args: ButtonProps) => (
   <Button
     {...args}
@@ -28,6 +39,6 @@ export const OnPress = (args: ButtonProps) => (
       alert('Button pressed!');
     }}
   >
-    Button
+    {args.children || 'Button'}
   </Button>
 );

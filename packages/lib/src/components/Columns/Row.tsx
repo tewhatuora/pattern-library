@@ -1,13 +1,15 @@
-import { ReactNode, useContext } from 'react';
+import { PropsWithChildren, useContext, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
 import * as styles from './Row.css';
 import { ParentColumnContext } from './Column';
+import { Space } from '../../css/atoms/atoms';
 
 export type RowProps = {
-  children?: ReactNode;
   noGutters?: boolean;
+  offset?: boolean;
+  gutter?: Space;
 };
 
 /**
@@ -15,19 +17,19 @@ export type RowProps = {
  * @param props
  * @constructor
  */
-export const Row = ({ children, noGutters, ...boxProps }: RowProps) => {
+export const Row = ({ children, gutter = 'medium', noGutters, offset, ...boxProps }: PropsWithChildren<RowProps>) => {
   const parentCols = useContext(ParentColumnContext);
 
-  const dynamicClasses = {
-    [styles.noGutters]: noGutters,
-    [styles.gutter.medium]: !noGutters,
-  };
+  const classNames = useMemo(() => {
+    const dynamicClasses = {
+      [styles.noGutters]: noGutters,
+      [styles.gutter[gutter]]: !noGutters,
+      [styles.nested[parentCols.columns]]: !!parentCols?.columns,
+      [styles.offset[gutter]]: offset,
+    };
 
-  if (parentCols?.columns) {
-    dynamicClasses[styles.nested[parentCols.columns]] = true;
-  }
-
-  const classNames = clsx(dynamicClasses, styles.row);
+    return clsx(dynamicClasses, styles.row);
+  }, [parentCols, noGutters, offset, gutter]);
 
   return (
     <Box as="div" className={classNames} {...boxProps}>

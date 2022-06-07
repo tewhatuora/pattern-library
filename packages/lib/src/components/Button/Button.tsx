@@ -1,37 +1,53 @@
-import { ElementType, forwardRef, Ref, RefObject } from 'react';
+import { ElementType, forwardRef, ReactText, Ref, RefObject, PropsWithChildren } from 'react';
 import { useButton } from '@react-aria/button';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
 import { Box, BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
+import { IconType } from '../Icon/icons';
 
 import * as styles from './Button.css';
 
-export type ButtonProps = {
-  icon?: string;
-  iconPosition?: 'left' | 'right';
+type KeysUnder<T, K extends PropertyKey> = T extends object
+  ? {
+      [P in keyof T]-?: (P extends K ? keyof T[P] : never) | KeysUnder<T[P], K>;
+    }[keyof T]
+  : never;
+
+type IconVariant = KeysUnder<styles.Variants, 'icon'>;
+type ColorVariant = KeysUnder<styles.Variants, 'color'>;
+
+export type ButtonType<Props> = {
+  icon?: IconType;
+  iconPosition?: IconVariant;
   as?: ElementType;
   className?: string;
-  label?: string;
-  variant?: styles.Variant;
+  variant?: ColorVariant;
   onPress?: (e: any) => void;
-} & Pick<JSX.IntrinsicElements['button'], 'children' | 'disabled' | 'type' | 'tabIndex'> &
+} & Props &
+  Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
-export const ButtonRoot = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement> | null) => {
-  const { children, label, as = 'button', type = 'button', className, icon, onPress, ...boxProps } = props;
+type ButtonRootProps = PropsWithChildren<ButtonType<{}>>;
+
+export type ButtonProps = ButtonType<{ children: ReactText }>;
+
+export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButtonElement> | null) => {
+  const { children, as = 'button', type = 'button', disabled, className, icon, onPress, ...boxProps } = props;
 
   const { buttonProps } = useButton(
     {
-      ...props,
+      type,
+      onPress,
+      isDisabled: disabled,
       elementType: as,
     },
     ref as RefObject<HTMLButtonElement>,
   );
 
   return (
-    <Box as={as} className={className} ref={ref} type={type} {...buttonProps} {...boxProps} aria-label={label}>
+    <Box as={as} className={clsx(styles.root, className)} ref={ref} type={type} {...buttonProps} {...boxProps}>
       {children}
     </Box>
   );
@@ -46,7 +62,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     as = 'button',
     type = 'button',
     variant = 'primary',
-    label,
     disabled,
     className,
     icon,
@@ -60,13 +75,14 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       as={as}
       className={clsx(
         styles.variants({
-          variant,
+          color: variant,
+          icon: iconPosition,
         }),
         className,
       )}
       ref={ref}
       type={type}
-      label={label}
+      disabled={disabled}
       onPress={onPress}
       {...boxProps}
     >
@@ -74,7 +90,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
         {children}
       </Text>
 
-      {!!icon && <Icon className={styles.buttonIcon} icon={icon} />}
+      {!!icon && <Icon icon={icon} variant="functionalIcons" />}
     </ButtonRoot>
   );
 });
