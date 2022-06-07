@@ -1,9 +1,9 @@
-import { CheckBoxGroupProps } from './CheckBoxGroup';
-import { CheckBoxGroup } from './CheckBoxGroup';
+import { CheckboxGroupProps } from './CheckBoxGroup';
+import { CheckboxGroup } from './CheckBoxGroup';
 
 export default {
-  title: 'Components/CheckBoxGroup',
-  component: CheckBoxGroup,
+  title: 'Components/CheckboxGroup',
+  component: CheckboxGroup,
   argTypes: {
     label: {
       defaultValue: 'Checkbox 1',
@@ -15,6 +15,6 @@ export default {
   },
 };
 
-export const Default = (args: CheckBoxGroupProps) => {
-  return <CheckBoxGroup {...args} />;
+export const Default = (args: CheckboxGroupProps) => {
+  return <CheckboxGroup {...args} />;
 };
