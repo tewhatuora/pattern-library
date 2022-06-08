@@ -21,7 +21,7 @@ const mediaQuery = {
   wide: makeMediaQuery('wide'),
 };
 
-interface ResponsiveStyle {
+export interface ResponsiveStyle {
   mobile?: CSSProps;
   tablet?: CSSProps;
   desktop?: CSSProps;
