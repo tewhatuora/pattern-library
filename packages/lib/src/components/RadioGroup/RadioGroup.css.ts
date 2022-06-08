@@ -1,95 +1,116 @@
-import { style } from '@vanilla-extract/css';
-import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { responsiveStyle } from '../../css/responsiveStyle';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 import { atoms } from '../../css/atoms/atoms';
-
 import { vars } from '../../themes/vars.css';
+import { responsiveStyle } from '../../css/responsiveStyle';
 
-/*
-marginbottom for radio button
-*/
-const margin = '2rem';
-
-const state = {
-  default: atoms({
+export const container = style([
+  {
+    marginBottom: '2rem',
+  },
+  atoms({
+    display: 'flex',
     color: 'primary100',
     borderColor: 'primary100',
   }),
-  disabled: atoms({
-    color: 'primary50',
-    borderColor: 'primary50',
+]);
+
+export const radioButton = style([
+  atoms({
+    reset: 'button',
+    display: 'flex',
+    cursor: 'pointer',
   }),
-  error: atoms({
-    color: 'error100',
-    borderColor: 'error100',
-  }),
-};
-
-export type Variant = keyof typeof state;
-
-export const variants = recipe({
-  base: style([
-    atoms({
-      display: 'flex',
-    }),
-    responsiveStyle({
-      mobile: {
-        marginBottom: margin,
+  {
+    overflow: 'hidden',
+    width: '2.4rem',
+    height: '2.4rem',
+    marginTop: '0.4rem',
+    borderStyle: 'solid',
+    borderWidth: vars.borderWidth.small,
+    borderRadius: '100%',
+    borderColor: vars.color.primary100,
+    selectors: {
+      '&:focus': {
+        outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
       },
-      tablet: {
-        marginBottom: margin,
+      '&[disabled]': {
+        color: vars.color.primary50,
+        borderColor: vars.color.primary50,
+        cursor: 'not-allowed',
       },
-    }),
-  ]),
-  variants: {
-    variant: state,
-  },
-});
-
-export type Variants = RecipeVariants<typeof variants>;
-
-export const styledItem = style({
-  all: 'unset',
-  display: 'flex',
-  borderStyle: 'solid',
-  borderWidth: vars.borderWidth.small,
-  width: '2.4rem',
-  height: '2.4rem',
-  borderRadius: '100%',
-  selectors: {
-    '&:focus': { borderColor: vars.color.caution100 },
-  },
-});
-
-export const styledIndicator = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  height: '100%',
-  position: 'relative',
-  backgroundColor: vars.color.primary100,
-  borderRadius: '50%',
-  selectors: {
-    '&::after': {
-      content: '""',
-      display: 'block',
-      width: '0.8rem',
-      height: '0.8rem',
-      borderRadius: '50%',
-      backgroundColor: vars.color.primary0,
     },
   },
+]);
+
+export const radioButtonVariant = styleVariants({
+  error: [
+    radioButton,
+    {
+      borderColor: vars.color.error100,
+    },
+  ],
 });
 
-export const radioText = style({
-  display: 'flex',
-  flexDirection: 'column',
-  marginLeft: vars.space.xsmall.tablet,
-});
+export const indicator = style([
+  atoms({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  }),
+  {
+    width: '100%',
+    height: '100%',
+    backgroundColor: vars.color.primary100,
+    selectors: {
+      '&:after': {
+        content: '""',
+        display: 'block',
+        width: '0.8rem',
+        height: '0.8rem',
+        borderRadius: '50%',
+        backgroundColor: vars.color.primary0,
+      },
+      [`${radioButton}[disabled] &`]: {
+        color: vars.color.primary50,
+        backgroundColor: vars.color.primary50,
+      },
+    },
+  },
+]);
 
-export const offsetButton = style({
-  marginTop: '0.4rem',
+export const label = style([
+  atoms({
+    display: 'flex',
+    flexDirection: 'column',
+    cursor: 'pointer',
+  }),
+  {
+    marginLeft: vars.space.xsmall.tablet,
+  },
+  responsiveStyle({
+    mobile: {
+      marginTop: '0.4rem',
+    },
+    tablet: {
+      marginTop: '0',
+    },
+  }),
+]);
+
+export const labelVariant = styleVariants({
+  disabled: [
+    label,
+    {
+      color: vars.color.primary50,
+      cursor: 'not-allowed',
+    },
+  ],
+  error: [
+    label,
+    {
+      color: vars.color.error100,
+    },
+  ],
 });
