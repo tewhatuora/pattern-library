@@ -1,16 +1,20 @@
-import { Children, PropsWithChildren, cloneElement } from 'react';
+import { Children, cloneElement, isValidElement } from 'react';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 
-import { RadioButton } from './RadioButton';
-
 import assert from 'assert';
+
+import { RadioButtonProps } from './RadioButton';
+
+import { ChildrenOfType } from '../../types/index';
 
 export type RadioGroupProps = {
   name: string;
   value?: string;
+  disabled: boolean;
   required: boolean;
   error?: boolean | string;
   onChange?: (value: string) => void;
+  children: ChildrenOfType<'RadioButton', RadioButtonProps>;
 };
 
 /**
@@ -23,23 +27,17 @@ export type RadioGroupProps = {
  * @param props
  * @constructor
  */
-export const RadioGroup = ({
-  name,
-  value,
-  required,
-  error,
-  onChange,
-  children,
-}: PropsWithChildren<RadioGroupProps>) => (
+export const RadioGroup = ({ name, value, required, disabled, error, onChange, children }: RadioGroupProps) => (
   <RadioGroupPrimitive.Root name={name} required={required} onValueChange={onChange}>
     {Children.map(children, (child) => {
       assert(
-        child.type.name === RadioButton.name,
+        isValidElement(child) && child?.type.name === 'RadioButton',
         'Only RadioButton components are allowed as children of RadioGroup.',
       );
 
       return cloneElement(child, {
         selected: child.props.value === value,
+        disabled: child.props.disabled || disabled,
         error: child.props.error || error,
       });
     })}
