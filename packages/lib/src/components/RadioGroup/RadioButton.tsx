@@ -36,8 +36,8 @@ export const RadioButton = ({ value, id, label, selected, disabled, error, headi
     </RadioGroupPrimitive.Item>
     <Box
       className={clsx(styles.label, {
+        [styles.labelVariant.error]: !disabled && !!error, // Only have error styles if not disabled
         [styles.labelVariant.disabled]: !!disabled,
-        [styles.labelVariant.error]: !!error,
       })}
     >
       {!!heading && (
