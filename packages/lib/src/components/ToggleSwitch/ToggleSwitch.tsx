@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import * as Label from '@radix-ui/react-label';
 
@@ -13,11 +11,10 @@ export const ToggleSwitchStyles = styles;
 export type ToggleSwitchProps = {
   id: string;
   label?: string;
-  defaultChecked: boolean;
+  defaultChecked?: boolean;
   heading?: string;
   onChange?: (checked: boolean) => void;
   name?: string;
-  children: ReactNode;
 };
 
 /**
