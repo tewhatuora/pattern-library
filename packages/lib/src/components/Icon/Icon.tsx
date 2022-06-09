@@ -3,8 +3,11 @@ import clsx from 'clsx';
 import assert from 'assert';
 
 import { Box } from '../Box/Box';
-import * as styles from './Icon.css';
 import icons, { IconType } from './icons';
+
+import * as styles from './Icon.css';
+
+export const IconStyles = styles;
 
 const validIcons = Object.keys(icons);
 

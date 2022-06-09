@@ -1,14 +1,16 @@
 import { Text } from '../Text/Text';
-
 import { Box } from '../Box/Box';
-import * as styles from './Notice.css';
 import { Icon } from '../Icon/Icon';
-import { ReactNode } from 'react';
+import { IconType } from '../Icon/icons';
+
+import * as styles from './Notice.css';
+
+export const NoticeStyles = styles;
 
 export type NoticeProps = {
   label?: string;
   variant: styles.Variant;
-  alternativeIcon?: string;
+  alternativeIcon?: IconType;
 };
 
 /**
@@ -20,7 +22,7 @@ export type NoticeProps = {
  * @constructor
  */
 
-const iconMap = {
+const iconMap: Record<string, IconType> = {
   positive: 'tick',
   info: 'info',
   critical: 'warning',
@@ -29,14 +31,14 @@ const iconMap = {
 export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
   return (
     <Box
-      role="status"
       as="div"
       className={styles.variants({
         variant,
       })}
+      role="status"
       {...boxProps}
     >
-      <Icon className={styles.noticeIcon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
+      <Icon className={styles.icon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
       <Text size="medium" weight="regular">
         {label}
       </Text>

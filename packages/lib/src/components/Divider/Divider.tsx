@@ -3,6 +3,8 @@ import * as Separator from '@radix-ui/react-separator';
 
 import * as styles from './Divider.css';
 
+export const DividerStyles = styles;
+
 export type DividerProps = {
   variant: styles.Variant;
 } & Separator.SeparatorProps;

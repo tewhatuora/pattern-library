@@ -8,6 +8,8 @@ import { Box } from '../Box/Box';
 
 import * as styles from './ToggleSwitch.css';
 
+export const ToggleSwitchStyles = styles;
+
 export type ToggleSwitchProps = {
   id: string;
   label?: string;
@@ -38,8 +40,8 @@ export const ToggleSwitch = ({
   ...boxProps
 }: ToggleSwitchProps) => {
   return (
-    <Box as="div" className={styles.containerStyles} {...boxProps}>
-      <Box className={styles.labelStyles}>
+    <Box as="div" className={styles.container} {...boxProps}>
+      <Box className={styles.label}>
         {!!heading && (
           <Text size="medium" weight="bold">
             {heading}
@@ -50,13 +52,13 @@ export const ToggleSwitch = ({
         </Text>
       </Box>
       <SwitchPrimitive.Root
-        className={styles.switchRootStyles}
+        className={styles.switchRoot}
         defaultChecked={defaultChecked}
         id={id}
         name={name}
         onCheckedChange={onChange}
       >
-        <SwitchPrimitive.Thumb className={styles.switchThumbStyles} />
+        <SwitchPrimitive.Thumb className={styles.switchThumb} />
       </SwitchPrimitive.Root>
     </Box>
   );
