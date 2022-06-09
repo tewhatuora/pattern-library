@@ -21,3 +21,4 @@ export { ToggleSwitch, ToggleSwitchStyles } from './ToggleSwitch/ToggleSwitch';
 export { ToggleButton, ToggleButtonStyles } from './ToggleButton/ToggleButton';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
+export { useHeading, useText } from '../hooks/typography';
