@@ -4,16 +4,21 @@ export default {
   title: 'Components/Checkbox',
   component: Checkbox,
   argTypes: {
-    label: {
-      defaultValue: 'Checkbox 1',
-    },
-
-    labelWithHeading: {
-      defaultValue: { heading: 'Heading 1', label: 'Checkbox 1' },
+    checked: {
+      control: {
+        type: 'select',
+        options: [true, false, 'indeterminate'],
+      },
     },
   },
 };
 
 export const Default = (args: CheckboxProps) => {
   return <Checkbox {...args} />;
+};
+Default.args = {
+  checked: 'indeterminate',
+  label: 'Label',
+  heading: 'Heading',
+  required: false,
 };

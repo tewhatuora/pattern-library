@@ -1,22 +1,28 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons';
+// import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons';
 
 import { Label } from '@radix-ui/react-label';
+
+import clsx from 'clsx';
+
+import indeterminateIcon from './checkbox-indeterminate.svg';
+import tickIcon from './checkbox-tick.svg';
+
 import { Text } from '../Text/Text';
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 
 import * as styles from './CheckBox.css';
 
 export type CheckboxProps = {
   label: string;
-  isHeadingDisplayed?: boolean;
-  labelWithHeading?: { heading: string; label: string };
+  heading?: string;
   name?: string;
-  isIndeterminate?: boolean;
-  isRequired?: boolean;
-  onChange?: (checked: boolean) => void;
-  state: styles.Variant;
-};
+  required?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
+  checked: boolean | 'indeterminate';
+  disabled?: boolean;
+  hasError?: boolean;
+} & BoxProps;
 
 /**
  * Checkbox Component
@@ -31,67 +37,45 @@ export type CheckboxProps = {
 
 export const Checkbox = ({
   label,
-  isHeadingDisplayed,
-  labelWithHeading,
+  heading,
   name,
-  isIndeterminate,
-  isRequired,
-  state = 'default',
-  onChange,
+  required = false,
+  checked,
+  onCheckedChange,
+  hasError = false,
+  disabled = false,
+  className,
   ...boxProps
 }: CheckboxProps) => {
   return (
-    <Box as="div" {...boxProps}>
-      {isHeadingDisplayed ? (
-        <Box
-          className={styles.variants({
-            variant: state,
-          })}
-        >
-          <CheckboxPrimitive.Root
-            className={styles.checkBoxPrimitive}
-            onCheckedChange={onChange}
-            required={isRequired}
-            name={name}
-            disabled={state === 'disabled'}
-          >
-            <CheckboxPrimitive.Indicator className={styles.indicator}>
-              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon />}
-            </CheckboxPrimitive.Indicator>
-          </CheckboxPrimitive.Root>
-          <Label htmlFor={labelWithHeading.label} className={styles.text}>
-            <Text size="medium" weight="bold">
-              <Label htmlFor={labelWithHeading.label}>{labelWithHeading.heading}</Label>
-            </Text>
-            <Text size="medium" weight="regular">
-              {labelWithHeading.label}
-            </Text>
-          </Label>
-        </Box>
-      ) : (
-        <Box
-          className={styles.variants({
-            variant: state,
-          })}
-        >
-          <CheckboxPrimitive.Root
-            className={styles.checkBoxPrimitive}
-            onCheckedChange={onChange}
-            required={isRequired}
-            name={name}
-            disabled={state === 'disabled'}
-          >
-            <CheckboxPrimitive.Indicator className={styles.indicator}>
-              {isIndeterminate ? <DividerHorizontalIcon /> : <CheckIcon />}
-            </CheckboxPrimitive.Indicator>
-          </CheckboxPrimitive.Root>
-          <Label htmlFor={label}>
-            <Text className={styles.label} size="small" weight="regular">
-              {label}
-            </Text>
-          </Label>
-        </Box>
-      )}
+    <Box
+      as="div"
+      className={clsx(styles.wrapper, { [styles.disabled]: disabled, [styles.error]: hasError }, className)}
+      {...boxProps}
+    >
+      <CheckboxPrimitive.Root
+        aria-invalid={hasError ? 'true' : 'false'}
+        checked={checked}
+        className={styles.checkBoxPrimitive}
+        disabled={disabled}
+        name={name}
+        required={required}
+        onCheckedChange={onCheckedChange}
+      >
+        <CheckboxPrimitive.Indicator className={styles.indicator}>
+          {checked === 'indeterminate' ? <img src={indeterminateIcon} /> : <img src={tickIcon} />}
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
+      <Label className={styles.text} htmlFor={label}>
+        {heading && (
+          <Text size="medium" weight="bold">
+            {heading}
+          </Text>
+        )}
+        <Text size="medium" weight="regular">
+          {label}
+        </Text>
+      </Label>
     </Box>
   );
 };

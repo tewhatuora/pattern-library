@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -12,68 +12,81 @@ marginbottom for radio button
 */
 const margin = '2rem';
 
-const state = {
-  default: atoms({
-    borderColor: 'primary100',
-    color: 'primary100',
+export const wrapper = style([
+  atoms({
+    display: 'flex',
   }),
-  disabled: atoms({
-    borderColor: 'primary50',
-    color: 'primary50',
-  }),
-  error: atoms({
-    borderColor: 'error100',
-    color: 'error100',
-  }),
-};
+  {
+    marginBottom: margin,
 
-export type Variant = keyof typeof state;
-
-export const variants = recipe({
-  base: style([
-    atoms({
-      display: 'flex',
-    }),
-    responsiveStyle({
-      mobile: {
-        marginBottom: margin,
+    selectors: {
+      '&[aria-invalid="true"]': {
+        color: vars.color.error100,
       },
-      tablet: {
-        marginBottom: margin,
-      },
-    }),
-  ]),
-  variants: {
-    variant: state,
+    },
   },
+]);
+
+export const disabled = style({
+  color: vars.color.primary50,
 });
 
-export type Variants = RecipeVariants<typeof variants>;
+export const error = style({
+  color: vars.color.error100,
+});
 
 export const checkBoxPrimitive = style({
   all: 'unset',
-  width: '2.4rem',
-  height: '2.4rem',
+  width: '2.2rem',
+  height: '2.2rem',
   borderRadius: '0.4rem',
   borderStyle: 'solid',
-  borderWidth: vars.borderWidth.small,
+  borderWidth: vars.borderWidth.medium,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
+  // Will be overridden by the selectors below
+  borderColor: vars.color.primary100,
+  backgroundColor: vars.color.primary0,
+
+  ':focus': {
+    boxShadow: `0 0 0 0.4rem #BFBFBF`,
+    backgroundColor: vars.color.tertiary5,
+  },
+
+  ':hover': {
+    backgroundColor: vars.color.tertiary25,
+  },
+
   selectors: {
-    '&[data-state=checked]': { backgroundColor: vars.color.primary100 },
-    '&:hover': { backgroundColor: vars.color.tertiary25 },
-    '&:focus': { boxShadow: `0 0 0 0.4rem #BFBFBF` },
+    '&:not([data-state="unchecked"])': {
+      backgroundColor: vars.color.primary100,
+    },
+    '&:not([data-state="unchecked"]):hover': {
+      backgroundColor: vars.color.primary110,
+    },
+
+    // The following override `&:not([data-state="unchecked"]):hover`.
+    // Otherwise the disabled and error hover styles are wrong.
+    '&:disabled, &:disabled:hover': {
+      borderColor: vars.color.tertiary50,
+      backgroundColor: vars.color.tertiary50,
+    },
+    '&[aria-invalid="true"], &[aria-invalid="true"]:hover': {
+      borderColor: vars.color.error100,
+    },
   },
 });
 
 export const indicator = style({
   color: vars.color.primary0,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
 
 export const text = style({
-  display: 'flex',
-  flexDirection: 'column',
   marginLeft: vars.space.xsmall.tablet,
 });
 
