@@ -23,12 +23,12 @@ export const styledItem = style([
 
     selectors: {
       '&:first-child': {
-        borderTopLeftRadius: vars.borderRadius.inputs.topLeft,
-        borderBottomLeftRadius: vars.borderRadius.inputs.bottomLeft,
+        borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
+        borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
       },
       '&:last-child': {
-        borderTopRightRadius: vars.borderRadius.inputs.topRight,
-        borderBottomRightRadius: vars.borderRadius.inputs.bottomRight,
+        borderTopRightRadius: vars.borderRadius.topRight.inputs,
+        borderBottomRightRadius: vars.borderRadius.bottomRight.inputs,
       },
       '&:hover': {
         borderColor: vars.color.primary75,
