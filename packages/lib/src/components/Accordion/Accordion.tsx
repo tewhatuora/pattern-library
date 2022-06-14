@@ -9,6 +9,7 @@ import { Icon } from '../Icon/Icon';
 
 import { IconType } from '../Icon/icons';
 
+// @TODO: Align content with heading
 const Content = ({ children }: PropsWithChildren<Record<string, any>>) => {
   return (
     <RadixAccordion.Content className={styles.content}>
@@ -25,6 +26,7 @@ type AccordionTriggerProps = {
 
 const Trigger = ({ icon, header, label }: AccordionTriggerProps) => {
   return (
+    // @TODO: Update `asChild` to allow heading levels
     <RadixAccordion.Header className={styles.header}>
       <RadixAccordion.Trigger className={styles.trigger}>
         <div className={styles.headerContainer}>
@@ -80,6 +82,7 @@ const Root = ({ type, variant = 'dark', children }: AccordionRootProps) => {
   );
 };
 
+// @TODO: Split into multiple files
 export const Accordion = {
   Root,
   Item,
