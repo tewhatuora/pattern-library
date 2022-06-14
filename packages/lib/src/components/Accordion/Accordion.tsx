@@ -1,6 +1,6 @@
 import * as RadixAccordion from '@radix-ui/react-accordion';
 
-import { PropsWithChildren } from 'react';
+import { Children, PropsWithChildren, cloneElement, isValidElement } from 'react';
 
 import * as styles from './Accordion.css';
 
@@ -8,6 +8,7 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 
 import { IconType } from '../Icon/icons';
+import assert from 'assert';
 
 // @TODO: Align content with heading
 const Content = ({ children }: PropsWithChildren<Record<string, any>>) => {
@@ -67,17 +68,26 @@ const Item = ({ value, children }: AccordionItemProps) => {
 export type AccordionRootProps = {
   type: 'single' | 'multiple';
   variant?: 'light' | 'dark';
-  children: typeof Item;
 };
 
+// This is causing a typescript error and expecting only a single child. Can we
+// do something like in the [RadioGroup
+// component](https://gitlab.com/alphero/moh-design-system/-/merge_requests/22/diffs#1f13c70d2429235328c3b6254d8a8d9972300963_0_32)
+// ? (See below)
 /**
  * Accordion
  * @constructor
  */
-const Root = ({ type, variant = 'dark', children }: AccordionRootProps) => {
+const Root = ({ type, variant = 'dark', children }: PropsWithChildren<AccordionRootProps>) => {
   return (
     <RadixAccordion.Root className={styles.root[variant]} collapsible type={type}>
-      {children}
+      {Children.map(children, (child) => {
+        assert(
+          isValidElement(child) && child?.type.name === 'AccordionItem', // Might need to rename the component, "Item" is a bit generic
+          'Only Accordion.Item components are allowed as children of Accordion.Root.',
+        );
+        return cloneElement(child);
+      })}
     </RadixAccordion.Root>
   );
 };
