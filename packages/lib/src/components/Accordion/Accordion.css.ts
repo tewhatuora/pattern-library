@@ -20,36 +20,38 @@ const slideUp = keyframes({
 const colorVar = createVar();
 const borderColorVar = createVar();
 
-export const root = recipe({
-  base: {
-    borderColor: borderColorVar,
-    borderWidth: vars.borderWidth.small,
-    borderStyle: 'none',
-    color: colorVar,
-  },
-  variants: {
-    divider: {
-      none: {},
-      top: { borderTopStyle: 'solid' },
-      bottom: { borderBottomStyle: 'solid' },
-      both: {
-        borderTopStyle: 'solid',
-        borderBottomStyle: 'solid',
+const base = style({
+  borderColor: borderColorVar,
+  borderWidth: vars.borderWidth.small,
+  borderStyle: 'none',
+  color: colorVar,
+});
+
+export const root = styleVariants({
+  light: [
+    base,
+    {
+      vars: {
+        [colorVar]: vars.color.primary0,
+        [borderColorVar]: vars.color.primary0,
       },
     },
-    variant: {
-      light: {
-        vars: {
-          [colorVar]: vars.color.primary0,
-          [borderColorVar]: vars.color.primary0,
-        },
+  ],
+  dark: [
+    base,
+    {
+      vars: {
+        [colorVar]: vars.color.primary100,
+        [borderColorVar]: vars.color.primary25,
       },
-      dark: {
-        vars: {
-          [colorVar]: vars.color.primary100,
-          [borderColorVar]: vars.color.primary25,
-        },
-      },
+    },
+  ],
+});
+
+export const item = style({
+  selectors: {
+    '&:not(:last-child)': {
+      borderBottom: `${vars.borderWidth.small} solid ${vars.color.primary25}`,
     },
   },
 });
