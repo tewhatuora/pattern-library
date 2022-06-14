@@ -1,5 +1,4 @@
 import { createVar, keyframes, style, styleVariants } from '@vanilla-extract/css';
-import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -116,7 +115,3 @@ export const contentWrapper = style(
     },
   }),
 );
-
-export const headingText = style({
-  textAlign: 'start',
-});
