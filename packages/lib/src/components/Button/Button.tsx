@@ -1,4 +1,4 @@
-import { ElementType, forwardRef, ReactText, Ref, RefObject, PropsWithChildren } from 'react';
+import { ElementType, PropsWithChildren, ReactText, Ref, RefObject, forwardRef } from 'react';
 import { useButton } from '@react-aria/button';
 import clsx from 'clsx';
 
@@ -29,12 +29,12 @@ export type ButtonType<Props> = {
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
-type ButtonRootProps = PropsWithChildren<ButtonType<{}>>;
+type ButtonRootProps = PropsWithChildren<ButtonType<unknown>>;
 
 export type ButtonProps = ButtonType<{ children: ReactText }>;
 
 export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButtonElement> | null) => {
-  const { children, as = 'button', type = 'button', disabled, className, icon, onPress, ...boxProps } = props;
+  const { children, as = 'button', type = 'button', disabled, className, onPress, ...boxProps } = props;
 
   const { buttonProps } = useButton(
     {
@@ -80,13 +80,13 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
         }),
         className,
       )}
+      disabled={disabled}
       ref={ref}
       type={type}
-      disabled={disabled}
       onPress={onPress}
       {...boxProps}
     >
-      <Text size="medium" weight="bold">
+      <Text size="medium" weight={variant === 'text' ? 'link-normal' : 'bold'}>
         {children}
       </Text>
 
