@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 18 May 2022 22:39:40 GMT
+ * Generated on Mon, 13 Jun 2022 21:37:12 GMT
  */
 
 import { Tokens } from '../tokenType';
@@ -49,11 +49,11 @@ export const tokens: Tokens = {
       },
       medium: {
         tablet: { fontSize: '2rem', lineHeight: '3.2rem' },
-        mobile: { fontSize: '1.6rem', lineHeight: '2.56rem' },
+        mobile: { fontSize: '1.8rem', lineHeight: '2.88rem' },
       },
       small: {
         tablet: { fontSize: '1.8rem', lineHeight: '2.88rem' },
-        mobile: { fontSize: '1.4rem', lineHeight: '2.24rem' },
+        mobile: { fontSize: '1.6rem', lineHeight: '2.56rem' },
       },
       xsmall: {
         tablet: { fontSize: '1.6rem', lineHeight: '2.56rem' },
@@ -72,14 +72,14 @@ export const tokens: Tokens = {
   transitions: { fast: 'transform .125s ease, opacity .125s ease' },
   border: {
     radius: {
-      card: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
+      standard: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
       button: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
       inputs: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
       tags: { topLeft: '10rem', topRight: '10rem', bottomLeft: '10rem', bottomRight: '10rem' },
     },
-    width: { small: '0.1rem', standard: '0rem', medium: '0.2rem' },
+    width: { small: '0.1rem', medium: '0.2rem', large: '0.3rem', xlarge: '0.4rem' },
   },
-  shadows: { '10': '0rem 0.4rem 3rem 0rem #4040401a' },
+  shadows: { primary: '0rem 0.4rem 3rem 0rem #4040401a' },
   color: {
     primary0: '#ffffff',
     primary5: '#f5f5f5',
