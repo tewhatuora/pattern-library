@@ -4,13 +4,13 @@ import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-export const containerStyles = style([
+export const container = style([
   atoms({
     display: 'flex',
   }),
 ]);
 
-export const labelStyles = style([
+export const label = style([
   atoms({
     display: 'flex',
     flexDirection: 'column',
@@ -20,7 +20,7 @@ export const labelStyles = style([
   }),
 ]);
 
-export const switchRootStyles = style([
+export const switchRoot = style([
   {
     all: 'unset',
     width: '5.1rem',
@@ -35,7 +35,7 @@ export const switchRootStyles = style([
   },
 ]);
 
-export const switchThumbStyles = style([
+export const switchThumb = style([
   {
     width: '2.7rem',
     height: '2.7rem',
