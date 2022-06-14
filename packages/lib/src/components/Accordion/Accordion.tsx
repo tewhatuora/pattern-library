@@ -10,6 +10,8 @@ import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 import assert from 'assert';
 
+import { ChildrenOfType } from '../../types/index';
+
 // @TODO: Align content with heading
 const Content = ({ children }: PropsWithChildren<Record<string, any>>) => {
   return (
@@ -68,6 +70,7 @@ const Item = ({ value, children }: AccordionItemProps) => {
 export type AccordionRootProps = {
   type: 'single' | 'multiple';
   variant?: 'light' | 'dark';
+  children: ChildrenOfType<'Item', AccordionItemProps>;
 };
 
 // This is causing a typescript error and expecting only a single child. Can we
@@ -78,12 +81,12 @@ export type AccordionRootProps = {
  * Accordion
  * @constructor
  */
-const Root = ({ type, variant = 'dark', children }: PropsWithChildren<AccordionRootProps>) => {
+const Root = ({ type, variant = 'dark', children }: AccordionRootProps) => {
   return (
     <RadixAccordion.Root className={styles.root[variant]} collapsible type={type}>
       {Children.map(children, (child) => {
         assert(
-          isValidElement(child) && child?.type.name === 'AccordionItem', // Might need to rename the component, "Item" is a bit generic
+          isValidElement(child) && child?.type.name === 'Item', // Might need to rename the component, "Item" is a bit generic
           'Only Accordion.Item components are allowed as children of Accordion.Root.',
         );
         return cloneElement(child);
