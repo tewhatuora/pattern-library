@@ -4,6 +4,13 @@ import { Text } from '../Text/Text';
 export default {
   title: 'Components/Accordion',
   component: Accordion.Root,
+  argTypes: {
+    type: {
+      options: ['single', 'multiple'],
+      defaultValue: 'multiple',
+      control: { type: 'radio' },
+    },
+  }
 };
 
 export const Default = (args: AccordionRootProps) => {

@@ -69,7 +69,13 @@ export type AccordionRootProps = {
 const Root = ({ type, variant = 'dark', children }: AccordionRootProps) => {
   return (
     <RadixAccordion.Root type={type} collapsible className={styles.root[variant]}>
-      {children}
+      {Children.map(children, (child) => {
+        assert(
+          isValidElement(child) && child?.type.name === 'AccordionItem', // Might need to rename the component, "Item" is a bit generic
+          'Only Accordion.Item components are allowed as children of Accordion.Root.',
+        );
+        return cloneElement(child);
+    })}
     </RadixAccordion.Root>
   );
 };
