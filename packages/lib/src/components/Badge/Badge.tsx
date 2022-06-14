@@ -3,6 +3,8 @@ import { Box } from '../Box/Box';
 
 import * as styles from './Badge.css';
 
+export const BadgeStyles = styles;
+
 export type BadgeProps = {
   variant: styles.Variant;
 } & Pick<

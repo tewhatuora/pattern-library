@@ -1,6 +1,8 @@
 import { Box } from '../Box/Box';
 import * as styles from './Container.css';
 
+export const ContainerStyles = styles;
+
 type ContainerProps = {
   children?: React.ReactNode;
 };

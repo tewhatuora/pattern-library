@@ -6,6 +6,8 @@ import type { Space } from '../../css/atoms/atoms';
 
 import * as styles from './Stack.css';
 
+export const StackStyles = styles;
+
 export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 export interface StackProps {

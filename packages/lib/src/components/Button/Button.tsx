@@ -9,6 +9,8 @@ import { IconType } from '../Icon/icons';
 
 import * as styles from './Button.css';
 
+export const ButtonStyles = styles;
+
 type KeysUnder<T, K extends PropertyKey> = T extends object
   ? {
       [P in keyof T]-?: (P extends K ? keyof T[P] : never) | KeysUnder<T[P], K>;
@@ -29,7 +31,7 @@ export type ButtonType<Props> = {
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 
-type ButtonRootProps = PropsWithChildren<ButtonType<unknown>>;
+type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
 
 export type ButtonProps = ButtonType<{ children: ReactText }>;
 
