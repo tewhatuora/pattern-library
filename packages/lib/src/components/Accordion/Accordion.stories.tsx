@@ -6,23 +6,18 @@ export default {
   component: Accordion.Root,
 };
 
-export const Default = (args: AccordionRootProps) => {
-  return <Accordion.Root {...args} />;
-};
-Default.args = {
-  type: 'multiple',
-  variant: 'dark',
-  children: (
-    <>
+export const Default = (args: Omit<AccordionRootProps, 'children'>) => {
+  return (
+    <Accordion.Root {...args}>
       <Accordion.Item value="item-1">
-        <Accordion.Trigger header="Header" label="Label" icon="document" />
+        <Accordion.Trigger header="Header" icon="document" label="Label" />
         <Accordion.Content>
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item value="item-2">
-        <Accordion.Trigger label="Label" icon="document" />
+        <Accordion.Trigger icon="document" label="Label" />
         <Accordion.Content>
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
@@ -41,6 +36,10 @@ Default.args = {
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
       </Accordion.Item>
-    </>
-  ),
+    </Accordion.Root>
+  );
+};
+Default.args = {
+  type: 'multiple',
+  variant: 'dark',
 };
