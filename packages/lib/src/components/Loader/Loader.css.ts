@@ -12,8 +12,9 @@ export const container = style({
   width: '22.4rem',
 });
 
-export const spinner = style([
+const spinnerStyles = style([
   {
+    marginBottom: '1.6rem',
     animation: `${rotate} 1s linear infinite`,
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
@@ -22,28 +23,28 @@ export const spinner = style([
   },
   responsiveStyle({
     mobile: {
-      width: '4rem',
-      height: '4rem',
+      width: '3.6rem',
+      height: '3.6rem',
       borderWidth: '0.2rem', // TODO: use tokens
     },
     desktop: {
-      width: '8rem',
-      height: '8rem',
+      width: '7.2rem',
+      height: '7.2rem',
       borderWidth: '0.4rem', // TODO: use tokens
     },
   }),
 ]);
 
-export const variant = styleVariants({
+export const spinner = styleVariants({
   light: [
-    spinner,
+    spinnerStyles,
     {
       borderLeftColor: vars.color.primary0,
       borderTopColor: vars.color.primary0,
     },
   ],
   dark: [
-    spinner,
+    spinnerStyles,
     {
       borderLeftColor: vars.color.primary100,
       borderTopColor: vars.color.primary100,
@@ -51,7 +52,7 @@ export const variant = styleVariants({
   ],
 });
 
-export const labelVariant = styleVariants({
+export const label = styleVariants({
   light: {
     color: vars.color.primary0,
   },
@@ -60,4 +61,4 @@ export const labelVariant = styleVariants({
   },
 });
 
-export type Variant = keyof typeof variant;
+export type Variant = keyof typeof spinner;

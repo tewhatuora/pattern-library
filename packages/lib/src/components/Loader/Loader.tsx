@@ -1,5 +1,5 @@
 import { Text } from '../Text/Text';
-import { Stack } from '../Stack/Stack';
+import { Box } from '../Box/Box';
 
 import * as styles from './Loader.css';
 
@@ -14,15 +14,15 @@ export type LoaderProps = {
  * @param props
  * @constructor
  */
-export const Loader = ({ variant = 'dark', message = 'Loading' }: LoaderProps) => {
+export const Loader = ({ variant = 'dark', message }: LoaderProps) => {
   return (
     <div className={styles.container}>
-      <Stack alignItems="center" display="flex" flexDirection="column" justifyContent="center" space="xsmall">
-        <div className={styles.variant[variant]} />
-        <Text align="center" className={styles.labelVariant[variant]} weight="regular">
+      <Box alignItems="center" display="flex" flexDirection="column">
+        <div className={styles.spinner[variant]} />
+        <Text align="center" className={styles.label[variant]} weight="regular">
           {message}
         </Text>
-      </Stack>
+      </Box>
     </div>
   );
 };
