@@ -6,6 +6,8 @@ import { Icon } from '../Icon/Icon';
 import { CloseButton } from '../CloseButton/CloseButton';
 import { IconType } from '../Icon/icons';
 
+export const AlertStyles = styles;
+
 export type AlertProps = {
   variant: styles.Variant;
   children?: React.ReactNode;
