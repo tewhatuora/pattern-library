@@ -1,4 +1,4 @@
-import { ReactNode, ElementType, ReactSVGElement, FunctionComponent } from 'react';
+import { FunctionComponent, ReactSVGElement } from 'react';
 
 import Alert from '../../icons/Alert.svg?component';
 import Blood from '../../icons/Blood.svg?component';

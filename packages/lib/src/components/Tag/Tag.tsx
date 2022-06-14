@@ -6,6 +6,8 @@ import { CloseButton } from '../CloseButton/CloseButton';
 
 import * as styles from './Tag.css';
 
+export const TagStyles = styles;
+
 export type TagProps = {
   label: string;
   isClearable?: boolean;
@@ -36,8 +38,8 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
   }, [onClear, setIsCleared]);
 
   return (
-    <Box as="div" className={isCleared ? styles.hideTag : styles.tagStyles} {...boxProps}>
-      <Text className={styles.iconStyles} size="xsmall" weight="regular">
+    <Box as="div" className={isCleared ? styles.hidden : styles.tag} {...boxProps}>
+      <Text className={styles.icon} size="xsmall" weight="regular">
         {label}
         {!!isClearable && (
           <CloseButton className={styles.closeButton} icon="clear_field" variant="tagIcon" onClose={handleClearTag} />

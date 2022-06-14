@@ -1,14 +1,13 @@
 import { style } from '@vanilla-extract/css';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
-
 import { vars } from '../../themes/vars.css';
 
-export const toggleGroup = style({
+export const group = style({
   display: 'flex',
 });
 
-export const styledItem = style([
+export const button = style([
   {
     all: 'unset',
     display: 'flex',

@@ -1,10 +1,11 @@
-import { ReactNode, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@radix-ui/react-toggle-group';
 
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 
 import * as styles from './ToggleButton.css';
+
+export const ToggleButtonStyles = styles;
 
 export type ToggleButtonProps = {
   labelLeft: string;
@@ -33,13 +34,13 @@ export const ToggleButton = ({
 }: ToggleButtonProps) => {
   return (
     <Box as="div" {...boxProps}>
-      <ToggleGroup className={styles.toggleGroup} onValueChange={onChange} type="single" aria-label="Text alignment">
-        <ToggleGroupItem className={styles.styledItem} value={valueLeft} aria-label={labelLeft}>
+      <ToggleGroup aria-label="Text alignment" className={styles.group} type="single" onValueChange={onChange}>
+        <ToggleGroupItem aria-label={labelLeft} className={styles.button} value={valueLeft}>
           <Text size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
-        <ToggleGroupItem className={styles.styledItem} value={valueRight} aria-label={labelRight}>
+        <ToggleGroupItem aria-label={labelRight} className={styles.button} value={valueRight}>
           <Text size="medium" weight="bold">
             {labelRight}
           </Text>
