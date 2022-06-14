@@ -2,6 +2,8 @@ import { Box } from '../Box/Box';
 
 import * as styles from './ScreenReadersOnly.css';
 
+export const ScreenReadersOnlyStyles = styles;
+
 type ScreenReadersOnlyProps = {
   id?: string;
   children: React.ReactNode;

@@ -1,15 +1,13 @@
 import { style } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
-
 import { atoms } from '../../css/atoms/atoms';
-
 import { vars } from '../../themes/vars.css';
-import { calc } from '@vanilla-extract/css-utils';
 
 const offset = '0.4rem';
 
-export const tagStyles = style([
+export const tag = style([
   atoms({
     display: 'flex',
     backgroundColor: 'primary0',
@@ -46,10 +44,10 @@ export const closeButton = style([
   }),
 ]);
 
-export const iconStyles = style({
+export const icon = style({
   display: 'flex',
 });
 
-export const hideTag = style({
+export const hidden = style({
   display: 'none',
 });

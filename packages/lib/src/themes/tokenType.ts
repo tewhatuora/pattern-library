@@ -75,16 +75,17 @@ export interface Tokens {
       tags: BorderRadius;
       inputs: BorderRadius;
       button: BorderRadius;
-      card: BorderRadius;
+      standard: BorderRadius;
     };
     width: {
       small: string;
       medium: string;
-      standard: string;
+      large: string;
+      xlarge: string;
     };
   };
   shadows: {
-    [key: string]: string;
+    primary: string;
   };
   color: {
     primary110: string; // Used for pressed states

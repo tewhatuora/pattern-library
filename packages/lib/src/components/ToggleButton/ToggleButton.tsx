@@ -5,6 +5,8 @@ import { Box } from '../Box/Box';
 
 import * as styles from './ToggleButton.css';
 
+export const ToggleButtonStyles = styles;
+
 export type ToggleButtonProps = {
   labelLeft: string;
   labelRight: string;
@@ -32,13 +34,13 @@ export const ToggleButton = ({
 }: ToggleButtonProps) => {
   return (
     <Box as="div" {...boxProps}>
-      <ToggleGroup aria-label="Text alignment" className={styles.toggleGroup} type="single" onValueChange={onChange}>
-        <ToggleGroupItem aria-label={labelLeft} className={styles.styledItem} value={valueLeft}>
+      <ToggleGroup aria-label="Text alignment" className={styles.group} type="single" onValueChange={onChange}>
+        <ToggleGroupItem aria-label={labelLeft} className={styles.button} value={valueLeft}>
           <Text size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
-        <ToggleGroupItem aria-label={labelRight} className={styles.styledItem} value={valueRight}>
+        <ToggleGroupItem aria-label={labelRight} className={styles.button} value={valueRight}>
           <Text size="medium" weight="bold">
             {labelRight}
           </Text>

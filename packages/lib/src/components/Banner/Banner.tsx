@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
@@ -6,6 +6,8 @@ import { Icon } from '../Icon/Icon';
 import { CloseButton } from '../CloseButton/CloseButton';
 
 import * as styles from './Banner.css';
+
+export const BannerStyles = styles;
 
 export type BannerProps = {
   label?: string;
@@ -48,7 +50,7 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
       as="div"
       className={
         isClosed
-          ? styles.hideBanner
+          ? styles.hidden
           : styles.variants({
               variant,
               theme,
@@ -57,8 +59,8 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
       {...boxProps}
     >
       <Box className={styles.bannerInner}>
-        <Icon className={styles.bannerIcon} icon={bannerIcon} variant="decorativeIcons" />
-        <Text size="medium" weight="regular" className={styles.bannerText}>
+        <Icon className={styles.icon} icon={bannerIcon} variant="decorativeIcons" />
+        <Text className={styles.text} size="medium" weight="regular">
           {label}
         </Text>
       </Box>
@@ -66,9 +68,9 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
       {!!onClose && (
         <CloseButton
           className={styles.closeButton}
-          onClose={handleCloseBanner}
           icon="cross"
           variant="functionalIcons"
+          onClose={handleCloseBanner}
         />
       )}
     </Box>

@@ -7,10 +7,10 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 export const card = style([
   atoms({
     backgroundColor: 'neutral0',
-    borderRadius: 'card',
+    borderRadius: 'standard',
   }),
   {
-    boxShadow: vars.shadow['10'],
+    boxShadow: vars.shadow.primary,
   },
   responsiveStyle({
     mobile: {

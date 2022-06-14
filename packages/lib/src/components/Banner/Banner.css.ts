@@ -90,7 +90,7 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-export const bannerIcon = style([
+export const icon = style([
   {
     display: 'block',
     flexShrink: 0,
@@ -130,11 +130,11 @@ export const closeButton = style([
   }),
 ]);
 
-export const hideBanner = style({
+export const hidden = style({
   display: 'none',
 });
 
-export const bannerText = style([
+export const text = style([
   responsiveStyle({
     tablet: {
       marginTop: offsetLarge,
