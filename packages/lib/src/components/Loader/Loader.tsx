@@ -3,6 +3,8 @@ import { Box } from '../Box/Box';
 
 import * as styles from './Loader.css';
 
+export const LoaderStyles = styles;
+
 export type LoaderProps = {
   variant: styles.Variant;
   message: string;
