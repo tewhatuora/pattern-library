@@ -17,11 +17,11 @@ export type BadgeProps = {
 export const Badge = ({ variant = 'neutral', children, ...boxProps }: BadgeProps) => {
   return (
     <Box
-      aria-role="status"
       as="div"
       className={styles.variants({
         variant,
       })}
+      role="status"
       // Passed-through boxProps.
       // Note: Default values for boxProps need to be
       // assigned after the {...boxProps} spread below
