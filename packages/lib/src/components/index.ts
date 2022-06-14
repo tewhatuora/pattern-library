@@ -17,6 +17,7 @@ export { Row } from './Columns/Row';
 export { Stack } from './Stack/Stack';
 export { Tag } from './Tag/Tag';
 export { Text } from './Text/Text';
+export { TextLinkButton } from './TextLinkButton/TextLinkButton';
 export { ToggleSwitch } from './ToggleSwitch/ToggleSwitch';
 export { ToggleButton } from './ToggleButton/ToggleButton';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
