@@ -1,5 +1,6 @@
-import { Accordion, AccordionRootProps } from './Accordion';
+import { Accordion } from './Accordion';
 import { Text } from '../Text/Text';
+import { AccordionRootProps } from './Root';
 
 export default {
   title: 'Components/Accordion',
