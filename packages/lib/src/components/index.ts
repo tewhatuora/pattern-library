@@ -12,6 +12,7 @@ export { Heading } from './Heading/Heading';
 export { Icon, IconStyles } from './Icon/Icon';
 export { Inline } from './Inline/Inline';
 export { Notice, NoticeStyles } from './Notice/Notice';
+export { Pagination, PaginationStyles } from './Pagination/Pagination';
 export { ScreenReadersOnly, ScreenReadersOnlyStyles } from './ScreenReadersOnly/ScreenReadersOnly';
 export { Row, RowStyles } from './Columns/Row';
 export { Stack, StackStyles } from './Stack/Stack';
