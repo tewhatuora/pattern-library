@@ -4,7 +4,6 @@ import * as RadixAccordion from '@radix-ui/react-accordion';
 
 import * as styles from './Accordion.css';
 
-// @TODO: Align content with heading
 export const Content = ({ children }: PropsWithChildren<Record<string, any>>) => {
   return (
     <RadixAccordion.Content className={styles.content}>

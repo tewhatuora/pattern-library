@@ -59,19 +59,28 @@ export const header = style({
   margin: 0,
 });
 
-export const trigger = style({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: vars.space.small.mobile,
-  cursor: 'pointer',
-  color: 'currentColor',
+export const trigger = style([
+  {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    cursor: 'pointer',
+    color: 'currentColor',
 
-  // Override button styles
-  border: 'none',
-  backgroundColor: 'transparent',
-});
+    // Override button styles
+    border: 'none',
+    backgroundColor: 'transparent',
+  },
+  responsiveStyle({
+    mobile: {
+      padding: vars.space.small.mobile,
+    },
+    tablet: {
+      padding: vars.space.small.tablet,
+    },
+  }),
+]);
 
 export const icon = style({
   flexShrink: 0,
@@ -108,10 +117,10 @@ export const content = style({
 export const contentWrapper = style(
   responsiveStyle({
     mobile: {
-      padding: vars.space.xsmall.mobile,
+      padding: vars.space.small.mobile,
     },
     tablet: {
-      padding: vars.space.xsmall.tablet,
+      padding: vars.space.small.tablet,
     },
   }),
 );
