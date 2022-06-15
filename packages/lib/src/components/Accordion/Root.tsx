@@ -15,10 +15,6 @@ export type AccordionRootProps = {
   children: ChildrenOfType<'Item', AccordionItemProps>;
 };
 
-// This is causing a typescript error and expecting only a single child. Can we
-// do something like in the [RadioGroup
-// component](https://gitlab.com/alphero/moh-design-system/-/merge_requests/22/diffs#1f13c70d2429235328c3b6254d8a8d9972300963_0_32)
-// ? (See below)
 /**
  * Accordion
  * @constructor
