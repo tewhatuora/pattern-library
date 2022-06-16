@@ -1,47 +1,11 @@
 import { useState } from 'react';
-import { Checkbox } from '../CheckBox/CheckBox';
-import { CheckboxGroupProps } from './CheckBoxGroup';
-import { CheckboxGroup } from './CheckBoxGroup';
+import { Checkbox, CheckboxProps } from '../CheckBox/Checkbox';
+import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
 
 export default {
   title: 'Components/CheckboxGroup',
   component: CheckboxGroup,
-  argTypes: {
-    checkboxObject: {
-      defaultValue: [
-        { label: 'Checkbox 1', state: 'default', isIndeterminate: false, isRequired: true },
-        { label: 'Checkbox 2', state: 'disabled', isIndeterminate: false, isRequired: true },
-        { label: 'Checkbox 3', state: 'error', isIndeterminate: true, isRequired: true },
-      ],
-    },
-    checkboxWithHeading: {
-      defaultValue: [
-        {
-          labelWithHeading: { heading: 'Heading 1', label: 'Checkbox 1' },
-          state: 'default',
-          isIndeterminate: false,
-          isRequired: true,
-        },
-        {
-          labelWithHeading: { heading: 'Heading 2', label: 'Checkbox 2' },
-          state: 'disabled',
-          isIndeterminate: false,
-          isRequired: true,
-        },
-        {
-          labelWithHeading: { heading: 'Heading 3', label: 'Checkbox 3' },
-          state: 'error',
-          isIndeterminate: true,
-          isRequired: true,
-        },
-      ],
-    },
-  },
 };
-
-function newCheckboxState(state: boolean | 'indeterminate') {
-  return state === 'indeterminate' ? true : !state;
-}
 
 export const Default = (args: CheckboxGroupProps) => {
   const [checkbox1State, setCheckbox1State] = useState<boolean | 'indeterminate'>(true);

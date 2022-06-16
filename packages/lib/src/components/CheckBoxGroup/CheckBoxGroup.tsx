@@ -1,10 +1,10 @@
 import { Children, cloneElement, isValidElement } from 'react';
 import assert from 'assert';
 
-import { CheckboxProps } from '../CheckBox/CheckBox';
+import { CheckboxProps } from '../CheckBox/Checkbox';
 import { ChildrenOfType } from '../../types/index';
 import { Box } from '../Box/Box';
-import * as styles from './CheckBoxGroup.css';
+import * as styles from './CheckboxGroup.css';
 
 export type CheckboxGroupProps = {
   isHeadingDisplayed: boolean;

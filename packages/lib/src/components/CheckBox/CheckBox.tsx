@@ -1,17 +1,16 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-// import { CheckIcon, DividerHorizontalIcon } from '@radix-ui/react-icons';
 
 import { Label } from '@radix-ui/react-label';
 
 import clsx from 'clsx';
 
-import indeterminateIcon from './checkbox-indeterminate.svg';
-import tickIcon from './checkbox-tick.svg';
+import indeterminateIcon from './icons/checkbox-indeterminate.svg';
+import tickIcon from './icons/checkbox-tick.svg';
 
 import { Text } from '../Text/Text';
 import { Box, BoxProps } from '../Box/Box';
 
-import * as styles from './CheckBox.css';
+import * as styles from './Checkbox.css';
 
 export type CheckboxProps = {
   label: string;

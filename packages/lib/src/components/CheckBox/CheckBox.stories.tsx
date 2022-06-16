@@ -1,4 +1,5 @@
-import { Checkbox, CheckboxProps } from './CheckBox';
+import { useState } from 'react';
+import { Checkbox, CheckboxProps } from './Checkbox';
 
 export default {
   title: 'Components/Checkbox',
@@ -6,7 +7,7 @@ export default {
   argTypes: {
     checked: {
       control: {
-        type: 'select',
+        type: 'radio',
         options: [true, false, 'indeterminate'],
       },
     },
@@ -17,7 +18,7 @@ export const Default = (args: CheckboxProps) => {
   return <Checkbox {...args} />;
 };
 Default.args = {
-  checked: 'indeterminate',
+  checked: true,
   label: 'Label',
   heading: 'Heading',
   required: false,
