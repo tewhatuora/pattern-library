@@ -3,6 +3,7 @@ export { Alert, AlertStyles } from './Alert/Alert';
 export { Badge, BadgeStyles } from './Badge/Badge';
 export { Banner, BannerStyles } from './Banner/Banner';
 export { Box } from './Box/Box';
+export { Breadcrumbs, BreadcrumbsStyles } from './Breadcrumbs/Breadcrumbs';
 export { Button, ButtonStyles } from './Button/Button';
 export { Divider, DividerStyles } from './Divider/Divider';
 export { Card, CardStyles } from './Card/Card';
