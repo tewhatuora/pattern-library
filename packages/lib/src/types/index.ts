@@ -11,3 +11,5 @@ export type ReactNodeNoStrings = React.ReactElement | React.ReactNodeArray | boo
  * https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
  */
 export type EmptyObject = { [k: string]: unknown };
+
+export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; type: { name: Name } })[];
