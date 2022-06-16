@@ -1,23 +1,12 @@
 import { Box } from '../Box/Box';
 
 import * as styles from './CheckBoxGroup.css';
-import { Checkbox } from '../CheckBox/CheckBox';
-import { label } from '../CheckBox/CheckBox.css';
+import { CheckboxProps } from '../CheckBox/CheckBox';
+import { ChildrenOfType } from '../../types/index';
 
 export type CheckboxGroupProps = {
   isHeadingDisplayed: boolean;
-  checkboxObject: {
-    label: string;
-    state: 'default' | 'disabled' | 'error';
-    isIndeterminate: boolean;
-    isRequired: boolean;
-  }[];
-  checkboxWithHeading: {
-    labelWithHeading: { heading: string; label: string };
-    state: 'default' | 'disabled' | 'error';
-    isIndeterminate: boolean;
-    isRequired: boolean;
-  }[];
+  children: ChildrenOfType<'Checkbox', CheckboxProps>;
 };
 
 /**
@@ -31,27 +20,10 @@ export type CheckboxGroupProps = {
  * @constructor
  */
 
-export const CheckboxGroup = ({
-  isHeadingDisplayed,
-  checkboxObject,
-  checkboxWithHeading,
-  ...boxProps
-}: CheckboxGroupProps) => {
+export const CheckboxGroup = ({ isHeadingDisplayed, children, ...boxProps }: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
-      {isHeadingDisplayed
-        ? checkboxWithHeading.map(({ labelWithHeading, state, isIndeterminate, isRequired }) => (
-            <Checkbox
-              heading={labelWithHeading.heading}
-              label={labelWithHeading.label}
-              state={state}
-              isIndeterminate={isIndeterminate}
-              isRequired={isRequired}
-            />
-          ))
-        : checkboxObject.map(({ label, state, isIndeterminate, isRequired }) => (
-            <Checkbox label={label} isIndeterminate={isIndeterminate} state={state} isRequired={isRequired} />
-          ))}
+      {children}
     </Box>
   );
 };

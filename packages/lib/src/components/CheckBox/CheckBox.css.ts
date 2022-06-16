@@ -57,6 +57,7 @@ export const checkBoxPrimitive = style({
 
   ':hover': {
     backgroundColor: vars.color.tertiary25,
+    borderColor: vars.color.primary110,
   },
 
   selectors: {
@@ -70,7 +71,11 @@ export const checkBoxPrimitive = style({
     // The following override `&:not([data-state="unchecked"]):hover`.
     // Otherwise the disabled and error hover styles are wrong.
     '&:disabled, &:disabled:hover': {
+      cursor: 'not-allowed',
       borderColor: vars.color.tertiary50,
+      backgroundColor: vars.color.primary0,
+    },
+    '&:disabled:not([data-state="unchecked"]), &:disabled:not([data-state="unchecked"]):hover': {
       backgroundColor: vars.color.tertiary50,
     },
     '&[aria-invalid="true"], &[aria-invalid="true"]:hover': {
