@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { Box } from '../Box/Box';
 import * as styles from './Card.css';
 
+export const CardStyles = styles;
+
 export type CardProps = {
   noShadow?: boolean;
   className?: string;

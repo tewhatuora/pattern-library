@@ -31,16 +31,19 @@ type FontWeight =
   | 'bullet'
   | 'number';
 
+type FontWeightValue = '400' | '500' | '600' | '700' | '800' | '900';
+
 export interface Tokens {
   name: string;
   displayName: string;
   typography: {
     fontFamily: string;
-    fontWeight: Record<FontWeight, '400' | '500' | '600' | '700' | '800' | '900'>;
+    fontWeight: Record<FontWeight, FontWeightValue>;
     heading: {
       weight: {
-        weak: FontWeight;
-        regular: FontWeight;
+        black: FontWeightValue;
+        bold: FontWeightValue;
+        regular: FontWeightValue;
       };
       level: {
         '1': TextDefinition;
@@ -54,22 +57,6 @@ export interface Tokens {
       small: TextDefinition;
       medium: TextDefinition;
       large: TextDefinition;
-    };
-  };
-  grid: {
-    desktop: {
-      pattern: string;
-      gutterSize: number;
-      alignment: string;
-      count: number;
-      offset: number;
-    };
-    mobile: {
-      pattern: string;
-      gutterSize: number;
-      alignment: string;
-      count: number;
-      offset: number;
     };
   };
   space: {
@@ -88,16 +75,17 @@ export interface Tokens {
       tags: BorderRadius;
       inputs: BorderRadius;
       button: BorderRadius;
-      card: BorderRadius;
+      standard: BorderRadius;
     };
     width: {
       small: string;
       medium: string;
-      standard: string;
+      large: string;
+      xlarge: string;
     };
   };
   shadows: {
-    [key: string]: string;
+    primary: string;
   };
   color: {
     primary110: string; // Used for pressed states

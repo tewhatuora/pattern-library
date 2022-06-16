@@ -62,7 +62,7 @@ function getStyleDictionaryConfig(theme, platform) {
         transformGroup: 'js',
         buildPath: `packages/lib/src/themes/${theme}/`,
         options: {
-          name,
+          name: theme,
           displayName,
         },
         files: [

@@ -42,7 +42,7 @@ export const variants = recipe({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'spaceBetween',
-      borderRadius: 'card',
+      borderRadius: 'standard',
     }),
     responsiveStyle({
       mobile: {

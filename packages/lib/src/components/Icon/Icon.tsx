@@ -1,9 +1,13 @@
-import assert from 'assert';
 import clsx from 'clsx';
 
-import { Box, BoxProps } from '../Box/Box';
-import * as styles from './Icon.css';
+import assert from 'assert';
+
+import { Box } from '../Box/Box';
 import icons, { IconType } from './icons';
+
+import * as styles from './Icon.css';
+
+export const IconStyles = styles;
 
 const validIcons = Object.keys(icons);
 
@@ -12,7 +16,8 @@ type IconProps = {
   variant?: styles.Variant;
   onClick?: () => void;
   className?: string;
-} & Pick<BoxProps, 'as' | 'color'>;
+  color?: string | undefined;
+};
 
 /**
  * Icon component to render

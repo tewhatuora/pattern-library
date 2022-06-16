@@ -11,21 +11,6 @@ export const root = style({
 
 export const variants = recipe({
   base: style([
-    {
-      selectors: {
-        '&[disabled]': {
-          cursor: 'not-allowed',
-        },
-      },
-    },
-    responsiveStyle({
-      mobile: {
-        gap: vars.space.xsmall.mobile,
-      },
-      tablet: {
-        gap: vars.space.xsmall.tablet,
-      },
-    }),
     atoms({
       display: 'flex',
       justifyContent: 'center',
@@ -36,14 +21,22 @@ export const variants = recipe({
       transitionTimingFunction: 'inOut',
       borderRadius: 'button',
     }),
+    {
+      width: '100%',
+      selectors: {
+        '&[disabled]': {
+          cursor: 'not-allowed',
+        },
+      },
+    },
     responsiveStyle({
       mobile: {
         height: vars.space.xxlarge.tablet,
-        width: '100%',
+        gap: vars.space.xsmall.mobile,
       },
       tablet: {
         height: '6rem',
-        width: '39.6rem',
+        gap: vars.space.xsmall.tablet,
       },
     }),
   ]),
@@ -65,7 +58,7 @@ export const variants = recipe({
         },
         ':focus': {
           backgroundColor: vars.color.tertiary75,
-          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
           backgroundColor: vars.color.primary110,
@@ -84,7 +77,7 @@ export const variants = recipe({
           backgroundColor: vars.color.secondary75,
         },
         ':focus': {
-          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
           backgroundColor: vars.color.secondary110,
@@ -105,8 +98,8 @@ export const variants = recipe({
           borderColor: vars.color.primary75,
         },
         ':focus': {
-          borderWidth: vars.borderWidth.standard,
-          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          borderWidth: '0',
+          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
           borderColor: vars.color.primary110,

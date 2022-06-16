@@ -46,7 +46,7 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-export const noticeIcon = style([
+export const icon = style([
   responsiveStyle({
     mobile: {
       marginTop: offset,
