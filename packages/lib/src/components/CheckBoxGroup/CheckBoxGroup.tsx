@@ -1,8 +1,10 @@
-import { Box } from '../Box/Box';
+import { Children, cloneElement, isValidElement } from 'react';
+import assert from 'assert';
 
-import * as styles from './CheckBoxGroup.css';
 import { CheckboxProps } from '../CheckBox/CheckBox';
 import { ChildrenOfType } from '../../types/index';
+import { Box } from '../Box/Box';
+import * as styles from './CheckBoxGroup.css';
 
 export type CheckboxGroupProps = {
   isHeadingDisplayed: boolean;
@@ -23,7 +25,13 @@ export type CheckboxGroupProps = {
 export const CheckboxGroup = ({ isHeadingDisplayed, children, ...boxProps }: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
-      {children}
+      {Children.map(children, (child) => {
+        assert(
+          isValidElement(child) && child?.type.name === 'Checkbox',
+          'Only `Checkbox` components are allowed as children of `CheckboxGroup`.',
+        );
+        return cloneElement(child);
+      })}
     </Box>
   );
 };
