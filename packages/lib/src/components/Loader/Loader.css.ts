@@ -25,12 +25,12 @@ const spinnerStyles = style([
     mobile: {
       width: '3.6rem',
       height: '3.6rem',
-      borderWidth: '0.2rem', // TODO: use tokens
+      borderWidth: vars.borderWidth.medium,
     },
     desktop: {
       width: '7.2rem',
       height: '7.2rem',
-      borderWidth: '0.4rem', // TODO: use tokens
+      borderWidth: vars.borderWidth.large,
     },
   }),
 ]);
