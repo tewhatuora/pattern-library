@@ -18,28 +18,28 @@ export const Default = (args: Omit<AccordionRootProps, 'children'>) => {
   return (
     <Accordion.Root {...args}>
       <Accordion.Item value="item-1">
-        <Accordion.Trigger header="Header" headingLevel={5} icon="document" label="Label" />
+        <Accordion.Trigger header="Header" icon="document" label="Label" />
         <Accordion.Content>
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item value="item-2">
-        <Accordion.Trigger headingLevel={5} icon="document" label="Label" />
+        <Accordion.Trigger icon="document" label="Label" />
         <Accordion.Content>
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item value="item-3">
-        <Accordion.Trigger header="Header" headingLevel={5} label="Label" />
+        <Accordion.Trigger header="Header" label="Label" />
         <Accordion.Content>
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item value="item-4">
-        <Accordion.Trigger headingLevel={5} label="Label" />
+        <Accordion.Trigger label="Label" />
         <Accordion.Content>
           <Text>Lorem ipsum</Text>
         </Accordion.Content>
@@ -50,4 +50,5 @@ export const Default = (args: Omit<AccordionRootProps, 'children'>) => {
 Default.args = {
   type: 'multiple',
   variant: 'dark',
+  headingLevel: 6,
 };
