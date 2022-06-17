@@ -20,13 +20,14 @@ export const Default = (args: StackProps) => (
   <Stack {...args}>
     {[...Array(5)].map((x) => (
       <Box
-        display="flex"
         alignItems="center"
-        justifyContent="center"
         backgroundColor="info25"
         borderColor="info100"
-        color="info100"
         borderWidth="small"
+        color="info100"
+        display="flex"
+        justifyContent="center"
+        key={x}
         padding="medium"
       >
         Item {x}

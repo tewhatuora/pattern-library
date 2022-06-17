@@ -76,6 +76,7 @@
     "webpack": "5"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^0.1.6",
     "@radix-ui/react-label": "^0.1.5",
     "@radix-ui/react-separator": "^0.1.4",
     "@radix-ui/react-switch": "^0.1.5",

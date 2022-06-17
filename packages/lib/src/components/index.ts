@@ -1,4 +1,5 @@
 export type { BoxProps } from './Box/Box';
+export { Accordion } from './Accordion/Accordion';
 export { Alert, AlertStyles } from './Alert/Alert';
 export { Badge, BadgeStyles } from './Badge/Badge';
 export { Banner, BannerStyles } from './Banner/Banner';
