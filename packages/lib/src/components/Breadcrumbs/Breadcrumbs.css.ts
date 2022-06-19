@@ -13,6 +13,7 @@ export const crumb = style({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
+  color: vars.color.info100,
 
   selectors: {
     '&:last-of-type, &:first-of-type': {

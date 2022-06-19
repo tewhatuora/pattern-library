@@ -50,6 +50,11 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
     };
   }, []);
 
+  /**
+   * Set a breadcrumb to be invisible if there
+   * is not enough space when the first and
+   * last breadcrumbs are visible
+   */
   const toggleBreadcrumbVisibility = useCallback(
     (index: number, shouldHide: boolean) => {
       const newState = breadcrumbIsHidden.slice();
