@@ -2754,6 +2754,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-radio-group@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@radix-ui/react-radio-group@npm:0.1.5"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-compose-refs": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-label": 0.1.5
+    "@radix-ui/react-presence": 0.1.2
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-roving-focus": 0.1.5
+    "@radix-ui/react-use-controllable-state": 0.1.0
+    "@radix-ui/react-use-previous": 0.1.1
+    "@radix-ui/react-use-size": 0.1.1
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 5ce6a661ccdfec2587e690946a50e84589ce62dafe22c83d0b4266c0bb0705897f6c5583e26b317c646b71c312e21737c77228e9854b92328c015e31ceb3518b
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-roving-focus@npm:0.1.5":
   version: 0.1.5
   resolution: "@radix-ui/react-roving-focus@npm:0.1.5"
@@ -15984,6 +16005,7 @@ __metadata:
     "@prettier/plugin-xml": ^1.2.0
     "@radix-ui/react-accordion": ^0.1.6
     "@radix-ui/react-label": ^0.1.5
+    "@radix-ui/react-radio-group": ^0.1.5
     "@radix-ui/react-separator": ^0.1.4
     "@radix-ui/react-switch": ^0.1.5
     "@radix-ui/react-toggle-group": ^0.1.5
