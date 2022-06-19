@@ -7,11 +7,15 @@ export const link = style({
   display: 'inline-flex',
   alignItems: 'center',
   color: vars.color.info100,
+  textDecoration: 'none',
   cursor: 'pointer',
   selectors: {
     '&:hover': {
       color: vars.color.info75,
       textDecoration: 'underline',
+    },
+    '&:focus, &:focus-within': {
+      outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
     },
     '&:visited': {
       color: vars.color.visited100,
