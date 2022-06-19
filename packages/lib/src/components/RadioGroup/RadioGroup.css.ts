@@ -30,12 +30,15 @@ export const radioButton = style([
     borderWidth: vars.borderWidth.small,
     borderRadius: '100%',
     borderColor: vars.color.primary100,
+    transition: 'border-color 0.3s ease-out, outline-color 0.3s ease-out',
     selectors: {
+      '&:hover': {
+        borderColor: vars.color.primary75,
+      },
       '&:focus': {
         outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
       },
       '&[disabled]': {
-        color: vars.color.primary50,
         borderColor: vars.color.primary50,
         cursor: 'not-allowed',
       },
@@ -63,6 +66,7 @@ export const indicator = style([
     width: '100%',
     height: '100%',
     backgroundColor: vars.color.primary100,
+    transition: 'backgroundColor 0.3s ease-out',
     selectors: {
       '&:after': {
         content: '""',
@@ -73,7 +77,6 @@ export const indicator = style([
         backgroundColor: vars.color.primary0,
       },
       [`${radioButton}[disabled] &`]: {
-        color: vars.color.primary50,
         backgroundColor: vars.color.primary50,
       },
     },
