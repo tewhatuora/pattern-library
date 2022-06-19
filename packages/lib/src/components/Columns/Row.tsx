@@ -2,9 +2,12 @@ import { PropsWithChildren, useContext, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
-import * as styles from './Row.css';
 import { ParentColumnContext } from './Column';
 import { Space } from '../../css/atoms/atoms';
+
+import * as styles from './Row.css';
+
+export const RowStyles = styles;
 
 export type RowProps = {
   noGutters?: boolean;

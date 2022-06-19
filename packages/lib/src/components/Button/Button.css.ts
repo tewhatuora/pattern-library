@@ -58,7 +58,7 @@ export const variants = recipe({
         },
         ':focus': {
           backgroundColor: vars.color.tertiary75,
-          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
           backgroundColor: vars.color.primary110,
@@ -77,7 +77,7 @@ export const variants = recipe({
           backgroundColor: vars.color.secondary75,
         },
         ':focus': {
-          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
           backgroundColor: vars.color.secondary110,
@@ -98,8 +98,8 @@ export const variants = recipe({
           borderColor: vars.color.primary75,
         },
         ':focus': {
-          borderWidth: vars.borderWidth.standard,
-          outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          borderWidth: '0',
+          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
           borderColor: vars.color.primary110,
