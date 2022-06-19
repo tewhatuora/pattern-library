@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import { AnchorLink, AnchorLinkProps } from './AnchorLink';
 
 export default {
@@ -20,3 +22,11 @@ export default {
 };
 
 export const Default = (args: AnchorLinkProps) => <AnchorLink {...args} />;
+
+const RouterLink = (props: PropsWithChildren<AnchorLinkProps>) => (
+  <a {...props} onClick={(e) => e.preventDefault()}>
+    {props.children}
+  </a>
+);
+
+export const AsComponent = (args: AnchorLinkProps) => <AnchorLink {...args} component={<RouterLink />} />;
