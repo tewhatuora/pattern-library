@@ -3,8 +3,9 @@ import clsx from 'clsx';
 
 import { Icon } from '../Icon/Icon';
 
-import * as styles from './AnchorLink.css';
 import { UseTextProps, useText } from '../../hooks/typography';
+
+import * as styles from './AnchorLink.css';
 
 export const AnchorLinkStyles = styles;
 

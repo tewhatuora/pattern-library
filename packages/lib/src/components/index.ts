@@ -1,6 +1,6 @@
 export type { BoxProps } from './Box/Box';
 export { Accordion } from './Accordion/Accordion';
-export { AnchorLink } from './AnchorLink/AnchorLink';
+export { AnchorLink, AnchorLinkStyles } from './AnchorLink/AnchorLink';
 export { Alert, AlertStyles } from './Alert/Alert';
 export { Badge, BadgeStyles } from './Badge/Badge';
 export { Banner, BannerStyles } from './Banner/Banner';
