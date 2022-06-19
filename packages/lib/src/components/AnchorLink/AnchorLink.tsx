@@ -10,7 +10,7 @@ export const AnchorLinkStyles = styles;
 
 export type AnchorLinkProps = {
   to: string;
-  component?: string | ReactElement;
+  component?: 'a' | ReactElement;
   size?: UseTextProps['size'];
   weight?: UseTextProps['weight'];
 };
