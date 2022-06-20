@@ -1,24 +1,31 @@
 import React from 'react';
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
+import { Alert } from '../Alert/Alert';
+import { EmptyObject } from '../../types';
+
+type ErrorBoundaryState = {
+  hasError: boolean;
+  error?: Error;
+};
+
+class ErrorBoundary extends React.Component<EmptyObject, ErrorBoundaryState> {
+  constructor(props: EmptyObject) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
-  componentDidCatch(error, errorInfo) {
-    console.log('ErrorBoundary');
+  componentDidCatch(error: Error) {
+    console.error(error);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <p>{this.state.error?.message}</p>;
+      return <Alert variant="critical">{this.state.error?.message}</Alert>;
     }
 
     return this.props.children;
