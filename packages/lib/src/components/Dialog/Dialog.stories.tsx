@@ -1,0 +1,84 @@
+import { useState } from 'react';
+
+import { Dialog } from './Dialog';
+import { DialogProps } from './Root';
+import { Text } from '../Text/Text';
+import { Button } from '../Button/Button';
+import icons from '../Icon/icons';
+
+export default {
+  title: 'Components/Dialog',
+  component: Dialog,
+  argTypes: {
+    icon: {
+      options: ['', ...Object.keys(icons)],
+      control: { type: 'select' },
+      defaultValue: 'alert',
+    },
+    heading: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Heading',
+    },
+    subheading: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Subheading',
+    },
+  },
+};
+
+const content = (
+  <Dialog.Content>
+    <Text as="p">This is some dialog content</Text>
+  </Dialog.Content>
+);
+const actions = (
+  <Dialog.Actions>
+    <Dialog.Action variant="secondary">Secondary</Dialog.Action>
+    <Dialog.Action variant="tertiary">Tertiary</Dialog.Action>
+    <Dialog.Action variant="primary">Primary</Dialog.Action>
+  </Dialog.Actions>
+);
+
+export const Uncontrolled = (args: DialogProps) => (
+  <Dialog.Root
+    {...args}
+    trigger={<Button>Open</Button>}
+    onOpenChange={(open) => {
+      alert(`Dialog open = ${open}`);
+    }}
+  >
+    {content}
+    {actions}
+  </Dialog.Root>
+);
+
+export const Controlled = (args: DialogProps) => {
+  const [open, setOpen] = useState<boolean>(false);
+
+  return (
+    <Dialog.Root
+      {...args}
+      open={open}
+      trigger={<Button>Open</Button>}
+      onOpenChange={(open: boolean) => {
+        setOpen(open);
+      }}
+    >
+      {content}
+      {actions}
+    </Dialog.Root>
+  );
+};
+
+export const DefaultOpen = (args: DialogProps) => {
+  return (
+    <Dialog.Root {...args} defaultOpen trigger={<Button>Open</Button>}>
+      {content}
+      {actions}
+    </Dialog.Root>
+  );
+};
