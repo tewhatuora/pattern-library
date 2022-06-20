@@ -5,15 +5,25 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 import { fontFamily } from '../../hooks/typography/typography.css';
 
-export const list = style({
-  minWidth: '0',
-});
+export const list = style([
+  {
+    color: vars.color.primary100,
+  },
+  responsiveStyle({
+    mobile: {
+      maxWidth: '100%',
+    },
+    tablet: {
+      maxWidth: '60%',
+    },
+  }),
+]);
 
 export const crumb = style({
-  textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  color: vars.color.info100,
+  color: vars.color.primary100,
+  fontWeight: vars.textWeight.regular,
 
   selectors: {
     '&:last-of-type, &:first-of-type': {
