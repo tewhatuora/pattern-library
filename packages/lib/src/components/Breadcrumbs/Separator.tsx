@@ -14,7 +14,7 @@ export const Separator = memo(({ hidden }: { hidden?: boolean }) => (
       [styles.hidden]: hidden,
     })}
   >
-    <Text>/</Text>
+    <Text weight="regular">/</Text>
   </li>
 ));
 

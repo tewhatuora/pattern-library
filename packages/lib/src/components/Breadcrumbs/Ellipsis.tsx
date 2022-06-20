@@ -15,7 +15,7 @@ type EllipsisProps = {
  */
 export const Ellipsis = memo(({ hidden }: EllipsisProps) => (
   <li aria-hidden="true" className={clsx(styles.ellipsis, { [styles.hidden]: hidden })}>
-    <Text>&hellip;</Text>
+    <Text weight="regular">&hellip;</Text>
   </li>
 ));
 
