@@ -8,9 +8,9 @@
   "scripts": {
     "build": "yarn workspace @mohnz/design-system build && yarn",
     "start": "yarn workspace example start",
-    "lint": "eslint . --cache",
+    "lint": "eslint --cache",
     "lint:fix": "yarn lint --fix",
-    "lint:format": "prettier --write .",
+    "lint:format": "prettier --write",
     "lint:types": "yarn workspaces foreach -p run lint:types",
     "postinstall": "husky install",
     "prepublish": "yarn clean && yarn build:components",

@@ -1,7 +1,7 @@
 docs/.next/
 docs/public/playroom/
 
-lib/dist/
+lib/dist/*
 lib/coverage/
 lib/src/components/icons/
 
