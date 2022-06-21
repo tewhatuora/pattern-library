@@ -8,9 +8,9 @@ lib/src/components/icons/
 *.svg
 
 .idea
-.iml
-.xml
-.md
+*.iml
+*.xml
+*.md
 
 .yarn/*
 yarn.lock
