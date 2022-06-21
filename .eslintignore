@@ -12,5 +12,7 @@ lib/src/components/icons/
 *.xml
 *.md
 
+scripts/*
+
 .yarn/*
 yarn.lock
