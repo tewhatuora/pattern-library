@@ -5,5 +5,7 @@ lib/dist/
 lib/coverage/
 lib/src/components/icons/
 
+*.svg
+
 .yarn/*
 yarn.lock
