@@ -30,10 +30,11 @@ export const radioButton = style([
     borderWidth: vars.borderWidth.small,
     borderRadius: '100%',
     borderColor: vars.color.primary100,
-    transition: 'border-color 0.3s ease-out, outline-color 0.3s ease-out',
+    transition: 'border-color 0.3s ease-out, outline-color 0.3s ease-out, background-color 0.3s ease-out',
     selectors: {
       '&:hover': {
         borderColor: vars.color.primary75,
+        backgroundColor: vars.color.primary25,
       },
       '&:focus': {
         outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
