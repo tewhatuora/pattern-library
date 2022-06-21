@@ -1,18 +1,16 @@
-import { Children, PropsWithChildren, ReactElement, ReactNode, cloneElement, isValidElement } from 'react';
+import { PropsWithChildren, ReactElement, ReactNode } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 
-import assert from 'assert';
-
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Stack } from '../Stack/Stack';
 import { Heading } from '../Heading/Heading';
 import { Icon } from '../Icon/Icon';
 import { Column } from '../Columns/Column';
 import { Row } from '../Columns/Row';
+import { Content } from './Content';
+import { Actions } from './Actions';
 import { useTheme } from '../ThemeProvider/ThemeContext';
-
-import { ChildrenOfType } from '../../types';
+import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 import { IconType } from '../Icon/icons';
 
@@ -24,7 +22,7 @@ export type DialogProps = {
   subheading?: string;
   content?: ReactNode;
   trigger?: ReactElement;
-  children: ChildrenOfType<'Content', any> & ChildrenOfType<'Actions', any>;
+  // children: ChildrenOfType<'Content', any> & ChildrenOfType<'Actions', any>;
 } & RadixDialog.DialogProps;
 
 /**
@@ -69,16 +67,12 @@ export const Root = ({
                           <Heading level="2">{heading}</Heading>
                         </RadixDialog.Title>
                         {!!subheading && <Heading level="4">{subheading}</Heading>}
-                        <ErrorBoundary>
-                          {Children.map(children, (child) => {
-                            console.log(child);
-                            assert(
-                              isValidElement(child) && ['Content', 'Actions'].includes(child?.type.name),
-                              'Only Dialog.Content and Dialog.Actions components are allowed as children of Dialog.Root.',
-                            );
-                            return cloneElement(child);
-                          })}
-                        </ErrorBoundary>
+                        <AllowedChildren
+                          errorMessage="Only Dialog.Content and Dialog.Actions components are allowed as children of Dialog.Root"
+                          types={[Content, Actions]}
+                        >
+                          {children}
+                        </AllowedChildren>
                       </Stack>
                     </Column>
                   </Row>
