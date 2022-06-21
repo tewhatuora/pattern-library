@@ -4,7 +4,10 @@ docs/public/playroom/
 lib/dist/
 lib/coverage/
 lib/src/components/icons/
+
 *.svg
+
+.idea
 
 .yarn/*
 yarn.lock
