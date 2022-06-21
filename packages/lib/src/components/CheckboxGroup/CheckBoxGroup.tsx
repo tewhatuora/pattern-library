@@ -1,13 +1,16 @@
 import { Children, cloneElement, isValidElement } from 'react';
+
 import assert from 'assert';
 
-import { CheckboxProps } from '../CheckBox/Checkbox';
+import { CheckboxProps } from '../Checkbox/Checkbox';
 import { ChildrenOfType } from '../../types/index';
 import { Box } from '../Box/Box';
+
 import * as styles from './CheckboxGroup.css';
 
+export const CheckboxGroupStyles = styles;
+
 export type CheckboxGroupProps = {
-  isHeadingDisplayed: boolean;
   children: ChildrenOfType<'Checkbox', CheckboxProps>;
 };
 
@@ -22,7 +25,7 @@ export type CheckboxGroupProps = {
  * @constructor
  */
 
-export const CheckboxGroup = ({ isHeadingDisplayed, children, ...boxProps }: CheckboxGroupProps) => {
+export const CheckboxGroup = ({ children, ...boxProps }: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
       {Children.map(children, (child) => {

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Checkbox, CheckboxProps } from './Checkbox';
 
 export default {
@@ -22,4 +21,5 @@ Default.args = {
   label: 'Label',
   heading: 'Heading',
   required: false,
+  id: 'checkbox',
 };

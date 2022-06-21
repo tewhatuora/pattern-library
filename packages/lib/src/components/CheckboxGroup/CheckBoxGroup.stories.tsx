@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Checkbox, CheckboxProps } from '../CheckBox/Checkbox';
+
+import { Checkbox } from '../Checkbox/Checkbox';
 import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
 
 export default {
-  title: 'Components/CheckboxGroup',
+  title: 'Components/CheckBoxGroup',
   component: CheckboxGroup,
 };
 
@@ -17,23 +18,31 @@ export const Default = (args: CheckboxGroupProps) => {
 
   return (
     <CheckboxGroup {...args}>
-      <Checkbox label="Checkbox 1" checked={checkbox1State} onCheckedChange={setCheckbox1State} />
-      <Checkbox label="Checkbox 2" checked={checkbox2State} onCheckedChange={setCheckbox2State} />
-      <Checkbox label="Checkbox 3" checked={checkbox3State} onCheckedChange={setCheckbox3State} />
-      <Checkbox heading="Checkbox" label="with heading" checked={checkbox4State} onCheckedChange={setCheckbox4State} />
+      <Checkbox checked={!!checkbox1State} id="checkbox_1" label="Checkbox 1" onCheckedChange={setCheckbox1State} />
+      <Checkbox checked={!!checkbox2State} id="checkbox_2" label="Checkbox 2" onCheckedChange={setCheckbox2State} />
+      <Checkbox checked={!!checkbox3State} id="checkbox_4" label="Checkbox 3" onCheckedChange={setCheckbox3State} />
       <Checkbox
-        heading="Disabled checkbox"
+        checked={!!checkbox4State}
+        heading="Checkbox"
+        id="checkbox_4"
         label="with heading"
-        checked={checkbox5State}
-        onCheckedChange={setCheckbox5State}
-        disabled
+        onCheckedChange={setCheckbox4State}
       />
       <Checkbox
-        heading="Checkbox"
-        label="with error"
-        checked={checkbox6State}
-        onCheckedChange={setCheckbox6State}
+        checked={!!checkbox5State}
+        disabled
+        heading="Disabled checkbox"
+        id="checkbox_5"
+        label="with heading"
+        onCheckedChange={setCheckbox5State}
+      />
+      <Checkbox
+        checked={!!checkbox6State}
         hasError
+        heading="Checkbox"
+        id="checkbox_6"
+        label="with error"
+        onCheckedChange={setCheckbox6State}
       />
     </CheckboxGroup>
   );

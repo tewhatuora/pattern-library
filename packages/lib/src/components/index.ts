@@ -7,6 +7,8 @@ export { Box } from './Box/Box';
 export { Button, ButtonStyles } from './Button/Button';
 export { Divider, DividerStyles } from './Divider/Divider';
 export { Card, CardStyles } from './Card/Card';
+export { Checkbox, CheckboxStyles } from './Checkbox/Checkbox';
+export { CheckboxGroup, CheckboxGroupStyles } from './CheckboxGroup/CheckboxGroup';
 export { Column, ColumnStyles } from './Columns/Column';
 export { Container, ContainerStyles } from './Container/Container';
 export { Heading } from './Heading/Heading';

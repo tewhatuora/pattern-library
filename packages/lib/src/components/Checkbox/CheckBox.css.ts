@@ -1,23 +1,14 @@
-import { createVar, style } from '@vanilla-extract/css';
-import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-
-import { responsiveStyle } from '../../css/responsiveStyle';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 import { atoms } from '../../css/atoms/atoms';
-
 import { vars } from '../../themes/vars.css';
-
-/*
-marginbottom for radio button
-*/
-const margin = '2rem';
 
 export const wrapper = style([
   atoms({
     display: 'flex',
   }),
   {
-    marginBottom: margin,
+    marginBottom: '2rem',
 
     selectors: {
       '&[aria-invalid="true"]': {
@@ -35,7 +26,7 @@ export const error = style({
   color: vars.color.error100,
 });
 
-export const checkBoxPrimitive = style({
+export const checkbox = style({
   all: 'unset',
   width: '2.2rem',
   height: '2.2rem',
@@ -45,6 +36,7 @@ export const checkBoxPrimitive = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  cursor: 'pointer',
 
   // Will be overridden by the selectors below
   borderColor: vars.color.primary100,
@@ -91,16 +83,11 @@ export const indicator = style({
   alignItems: 'center',
 });
 
-export const text = style({
-  marginLeft: vars.space.xsmall.tablet,
-});
-
-export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
+globalStyle(`${indicator} > svg`, {
+  width: '1.2rem',
+  fill: vars.color.primary0,
 });
 
 export const label = style({
-  paddingLeft: '1.5rem',
-  userSelect: 'none',
+  marginLeft: vars.space.xsmall.tablet,
 });

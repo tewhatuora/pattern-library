@@ -4,16 +4,19 @@ import { Label } from '@radix-ui/react-label';
 
 import clsx from 'clsx';
 
-import indeterminateIcon from './icons/checkbox-indeterminate.svg';
-import tickIcon from './icons/checkbox-tick.svg';
-
 import { Text } from '../Text/Text';
 import { Box, BoxProps } from '../Box/Box';
 
+import IndeterminateIcon from '../../icons/checkbox/checkbox-indeterminate.svg?component';
+import TickIcon from '../../icons/checkbox/checkbox-tick.svg?component';
+
 import * as styles from './Checkbox.css';
+
+export const CheckboxStyles = styles;
 
 export type CheckboxProps = {
   label: string;
+  id: string;
   heading?: string;
   name?: string;
   required?: boolean;
@@ -38,6 +41,7 @@ export const Checkbox = ({
   label,
   heading,
   name,
+  id,
   required = false,
   checked,
   onCheckedChange,
@@ -55,17 +59,18 @@ export const Checkbox = ({
       <CheckboxPrimitive.Root
         aria-invalid={hasError ? 'true' : 'false'}
         checked={checked}
-        className={styles.checkBoxPrimitive}
+        className={styles.checkbox}
         disabled={disabled}
+        id={id}
         name={name}
         required={required}
         onCheckedChange={onCheckedChange}
       >
         <CheckboxPrimitive.Indicator className={styles.indicator}>
-          {checked === 'indeterminate' ? <img src={indeterminateIcon} /> : <img src={tickIcon} />}
+          {checked === 'indeterminate' ? <IndeterminateIcon /> : <TickIcon />}
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
-      <Label className={styles.text} htmlFor={label}>
+      <Label className={styles.label} htmlFor={id}>
         {heading && (
           <Text size="medium" weight="bold">
             {heading}
