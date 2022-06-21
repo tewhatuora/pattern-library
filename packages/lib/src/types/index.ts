@@ -12,9 +12,4 @@ export type ReactNodeNoStrings = React.ReactElement | React.ReactNodeArray | boo
  */
 export type EmptyObject = { [k: string]: unknown };
 
-export type ChildOfType<Name, Props> = (React.ReactChild | React.ReactFragment | React.ReactPortal) & {
-  props: Props;
-  type: { name: Name };
-};
-
-export type ChildrenOfType<Name, Props> = ChildOfType<Name, Props>[];
+export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; type: { name: Name } })[];
