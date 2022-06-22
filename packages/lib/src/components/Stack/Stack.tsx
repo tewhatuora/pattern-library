@@ -10,7 +10,7 @@ export const StackStyles = styles;
 
 export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
-type StackProps = {
+export type StackProps = {
   as?: typeof validStackComponents[number];
   children: JSX.Element[];
   className?: string;
