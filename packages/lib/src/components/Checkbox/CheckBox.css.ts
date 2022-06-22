@@ -1,0 +1,93 @@
+import { globalStyle, style } from '@vanilla-extract/css';
+
+import { atoms } from '../../css/atoms/atoms';
+import { vars } from '../../themes/vars.css';
+
+export const wrapper = style([
+  atoms({
+    display: 'flex',
+  }),
+  {
+    marginBottom: '2rem',
+
+    selectors: {
+      '&[aria-invalid="true"]': {
+        color: vars.color.error100,
+      },
+    },
+  },
+]);
+
+export const disabled = style({
+  color: vars.color.primary50,
+});
+
+export const error = style({
+  color: vars.color.error100,
+});
+
+export const checkbox = style({
+  all: 'unset',
+  width: '2.2rem',
+  height: '2.2rem',
+  borderRadius: '0.4rem',
+  borderStyle: 'solid',
+  borderWidth: vars.borderWidth.medium,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+
+  // Will be overridden by the selectors below
+  borderColor: vars.color.primary100,
+  backgroundColor: vars.color.primary0,
+
+  ':focus': {
+    boxShadow: `0 0 0 0.4rem #BFBFBF`,
+    backgroundColor: vars.color.tertiary5,
+  },
+
+  ':hover': {
+    backgroundColor: vars.color.tertiary25,
+    borderColor: vars.color.primary110,
+  },
+
+  selectors: {
+    '&:not([data-state="unchecked"])': {
+      backgroundColor: vars.color.primary100,
+    },
+    '&:not([data-state="unchecked"]):hover': {
+      backgroundColor: vars.color.primary110,
+    },
+
+    // The following override `&:not([data-state="unchecked"]):hover`.
+    // Otherwise the disabled and error hover styles are wrong.
+    '&:disabled, &:disabled:hover': {
+      cursor: 'not-allowed',
+      borderColor: vars.color.tertiary50,
+      backgroundColor: vars.color.primary0,
+    },
+    '&:disabled:not([data-state="unchecked"]), &:disabled:not([data-state="unchecked"]):hover': {
+      backgroundColor: vars.color.tertiary50,
+    },
+    '&[aria-invalid="true"], &[aria-invalid="true"]:hover': {
+      borderColor: vars.color.error100,
+    },
+  },
+});
+
+export const indicator = style({
+  color: vars.color.primary0,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+globalStyle(`${indicator} > svg`, {
+  width: '1.2rem',
+  fill: vars.color.primary0,
+});
+
+export const label = style({
+  marginLeft: vars.space.xsmall.tablet,
+});
