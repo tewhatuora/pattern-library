@@ -1,6 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-import { ButtonStyles } from '../Button/Button';
+import * as buttonStyles from '../Button/Button.css';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
@@ -64,7 +64,7 @@ export const buttonContainer = style(
 
 export const button = styleVariants({
   primary: [
-    ButtonStyles.variants({ color: 'primary' }),
+    buttonStyles.variants({ color: 'primary' }),
     pageItem,
     responsiveStyle({
       mobile: {
@@ -80,7 +80,7 @@ export const button = styleVariants({
     }),
   ],
   page: [
-    ButtonStyles.variants({ color: 'tertiary' }),
+    buttonStyles.variants({ color: 'tertiary' }),
     pageItem,
     {
       border: 'none',
@@ -92,7 +92,7 @@ export const button = styleVariants({
       },
     },
   ],
-  current: [ButtonStyles.variants({ color: 'primary' }), pageItem],
+  current: [buttonStyles.variants({ color: 'primary' }), pageItem],
 });
 
 const dot = {
