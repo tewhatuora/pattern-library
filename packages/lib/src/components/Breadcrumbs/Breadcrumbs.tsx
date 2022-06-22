@@ -96,7 +96,9 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
         );
 
         // Separator after each breadcrumb
-        list.push(<Separator hidden={breadcrumbIsHidden[index]} key={`separator-${index * 10}`} />);
+        // NOTE: Disabling this rule because indexes are never changed/sorted
+        // eslint-disable-next-line react/no-array-index-key
+        list.push(<Separator hidden={breadcrumbIsHidden[index]} key={`separator-${index}`} />);
       }
 
       return list;
