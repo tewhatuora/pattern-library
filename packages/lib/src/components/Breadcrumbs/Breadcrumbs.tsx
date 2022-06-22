@@ -38,12 +38,12 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
   const [indexToCheck, setIndexToCheck] = useState<number>(0);
 
   useEffect(() => {
-    const resizeHandler = () => {
+    const resizeHandler = debounce(() => {
       setBreadcrumbIsHidden([]);
       setIndexToCheck(0);
-    };
+    }, 500);
 
-    window.addEventListener('resize', debounce(resizeHandler, 500));
+    window.addEventListener('resize', resizeHandler);
 
     return () => {
       window.removeEventListener('resize', resizeHandler);
