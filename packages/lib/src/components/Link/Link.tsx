@@ -28,4 +28,4 @@ export const Link = ({ href, size = 'medium', weight = 'regular', children }: Pr
   );
 };
 
-export default Link;
+Link.displayName = 'Link';
