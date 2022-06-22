@@ -12,6 +12,7 @@ export { Container, ContainerStyles } from './Container/Container';
 export { Heading } from './Heading/Heading';
 export { Icon, IconStyles } from './Icon/Icon';
 export { Inline } from './Inline/Inline';
+export { InputMessage, InputMessageStyles } from './InputMessage/InputMessage';
 export { Loader, LoaderStyles } from './Loader/Loader';
 export { Notice, NoticeStyles } from './Notice/Notice';
 export { ScreenReadersOnly, ScreenReadersOnlyStyles } from './ScreenReadersOnly/ScreenReadersOnly';
