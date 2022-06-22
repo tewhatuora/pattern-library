@@ -1,9 +1,18 @@
 docs/.next/
 docs/public/playroom/
 
-lib/dist/
+lib/dist/*
 lib/coverage/
-lib/src/components/icons/generated/
+lib/src/components/icons/
+
+*.svg
+
+.idea
+*.iml
+*.xml
+*.md
+
+scripts/*
 
 .yarn/*
 yarn.lock
