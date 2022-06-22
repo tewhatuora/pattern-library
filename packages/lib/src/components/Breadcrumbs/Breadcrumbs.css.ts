@@ -37,10 +37,6 @@ export const ellipsis = style({
   color: vars.color.info100,
 });
 
-export const hidden = style({
-  display: 'none',
-});
-
 export const separator = style(
   responsiveStyle({
     mobile: {

@@ -2,6 +2,7 @@ import { PropsWithChildren, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import * as styles from './Breadcrumbs.css';
+import { sprinkles } from '../../css/atoms/sprinkles.css';
 
 type CrumbProps = {
   index: number;
@@ -53,7 +54,7 @@ export const Crumb = ({
   return (
     <li
       className={clsx(styles.crumb, {
-        [styles.hidden]: hidden,
+        [sprinkles({ display: 'none' })]: hidden,
       })}
       ref={crumbRef}
     >

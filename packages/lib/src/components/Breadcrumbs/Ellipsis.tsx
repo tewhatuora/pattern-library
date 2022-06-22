@@ -1,8 +1,10 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import * as styles from './Breadcrumbs.css';
 import { Text } from '../Text/Text';
+
+import * as styles from './Breadcrumbs.css';
+import { sprinkles } from '../../css/atoms/sprinkles.css';
 
 type EllipsisProps = {
   hidden: boolean;
@@ -14,7 +16,7 @@ type EllipsisProps = {
  * room to show all breadcrumbs
  */
 export const Ellipsis = memo(({ hidden }: EllipsisProps) => (
-  <li aria-hidden="true" className={clsx(styles.ellipsis, { [styles.hidden]: hidden })}>
+  <li aria-hidden="true" className={clsx(styles.ellipsis, { [sprinkles({ display: 'none' })]: hidden })}>
     <Text weight="regular">&hellip;</Text>
   </li>
 ));
