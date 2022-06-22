@@ -66,7 +66,7 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
         setIndexToCheck((start) => start + 1);
       }
     },
-    [setIndexToCheck, breadcrumbIsHidden, setBreadcrumbIsHidden],
+    [breadcrumbIsHidden],
   );
 
   /**
