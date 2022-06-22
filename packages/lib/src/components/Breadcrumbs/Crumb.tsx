@@ -44,9 +44,7 @@ export const Crumb = ({
 
       const shouldHide = el.getBoundingClientRect().width > parent.getBoundingClientRect().width;
 
-      if (typeof onToggleVisibility === 'function') {
-        onToggleVisibility(index, shouldHide);
-      }
+      onToggleVisibility?.(index, shouldHide);
     }
     // NOTE: disabling this rule as we only want the effect to run when `shouldTestLayout` changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
