@@ -28,9 +28,6 @@
   "scripts": {
     "build": "vite build",
     "lint:types": "tsc --noEmit",
-    "lint": "eslint . --cache",
-    "lint:fix": "yarn lint --fix",
-    "lint:format": "prettier --write .",
     "publish": "yarn npm publish",
     "test": "jest"
   },
