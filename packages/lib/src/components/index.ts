@@ -15,6 +15,7 @@ export { Inline } from './Inline/Inline';
 export { Loader, LoaderStyles } from './Loader/Loader';
 export { Notice, NoticeStyles } from './Notice/Notice';
 export { ScreenReadersOnly, ScreenReadersOnlyStyles } from './ScreenReadersOnly/ScreenReadersOnly';
+export { RadioGroup } from './RadioGroup/RadioGroup';
 export { Row, RowStyles } from './Columns/Row';
 export { Stack, StackStyles } from './Stack/Stack';
 export { Tag, TagStyles } from './Tag/Tag';
