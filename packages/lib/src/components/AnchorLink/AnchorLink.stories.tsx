@@ -6,17 +6,34 @@ export default {
   title: 'Components/AnchorLink',
   component: AnchorLink,
   argTypes: {
-    href: {
+    to: {
       control: {
         type: 'text',
-        defaultValue: '#',
+      },
+      defaultValue: '#',
+    },
+    target: {
+      control: {
+        type: 'select',
+        options: ['_self', '_blank', '_parent', '_top'],
+      },
+    },
+    rel: {
+      control: {
+        type: 'text',
       },
     },
     children: {
       control: {
         type: 'text',
-        defaultValue: 'Anchor link',
       },
+      defaultValue: 'Anchor link',
+    },
+    'aria-label': {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Anchor link',
     },
   },
 };
@@ -29,4 +46,4 @@ const RouterLink = (props: PropsWithChildren<AnchorLinkProps>) => (
   </a>
 );
 
-export const AsComponent = (args: AnchorLinkProps) => <AnchorLink {...args} component={<RouterLink />} />;
+export const AsComponent = (args: AnchorLinkProps) => <AnchorLink {...args} component={<RouterLink {...args} />} />;
