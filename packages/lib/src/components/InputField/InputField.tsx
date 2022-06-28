@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, createElement, useCallback, useMemo } from 'react';
+import { ChangeEvent, ChangeEventHandler, InputHTMLAttributes, createElement, useCallback, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Icon } from '../Icon/Icon';
@@ -27,7 +27,7 @@ export type InputFieldProps = {
   required?: boolean;
   defaultValue?: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
-};
+} & InputHTMLAttributes<InputFieldType>;
 
 export type OtherInputFieldProps = Omit<InputFieldProps, 'type' | 'clearable' | 'rows' | 'multiline'>;
 
