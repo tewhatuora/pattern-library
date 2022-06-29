@@ -1,30 +1,52 @@
-/**
- * Label has all label props, but can pass colours and stuff?
- * Has tertiary label (clickable with onClick)
- */
-
+import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
-
-import * as styles from './InputLabel.css';
+import { TextLinkButton, TextLinkButtonProps } from '../TextLinkButton/TextLinkButton';
 
 export type InputLabelProps = {
   heading: string;
   subheading?: string;
   tertiaryLabel?: string;
+  tertiaryLabelIcon?: Pick<TextLinkButtonProps, 'icon'>;
+  tertiaryLabelIconPosition?: Pick<TextLinkButtonProps, 'iconPosition'>;
   onTertiaryLabelClick?: () => void;
+  htmlFor: string;
 };
 
-export const InputLabel = ({ heading, subheading, tertiaryLabel, onTertiaryLabelClick }: InputLabelProps) => {
+/**
+ * InputLabel
+ *
+ * A label for an input field.
+ *
+ * The label must be programmatically linked to a form input element using the
+ * `htmlFor` method rather than nesting it inside the label.
+ *
+ * @param props
+ * @constructor
+ */
+export const InputLabel = ({
+  heading,
+  subheading,
+  tertiaryLabel,
+  tertiaryLabelIcon,
+  tertiaryLabelIconPosition,
+  onTertiaryLabelClick,
+}: InputLabelProps) => {
   return (
-    <label className={styles.label}>
-      <div className={styles.headingWrapper}>
+    <Box display="flex" justifyContent="spaceBetween">
+      <label>
         <Text weight="bold">{heading}</Text>
         <Text size="small">{subheading}</Text>
-      </div>
+      </label>
 
-      <button className={styles.tertiaryLabelButton} onClick={onTertiaryLabelClick}>
-        <Text>{tertiaryLabel}</Text>
-      </button>
-    </label>
+      {!!tertiaryLabel && (
+        <TextLinkButton
+          icon={tertiaryLabelIcon}
+          iconPosition={tertiaryLabelIconPosition}
+          onPress={onTertiaryLabelClick}
+        >
+          {tertiaryLabel}
+        </TextLinkButton>
+      )}
+    </Box>
   );
 };
