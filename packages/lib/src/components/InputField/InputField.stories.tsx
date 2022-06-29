@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import { InputField, InputFieldProps } from './InputField';
 
 export default {
@@ -55,4 +57,21 @@ export default {
 
 export const Default = (args: InputFieldProps) => {
   return <InputField {...args} />;
+};
+
+/**
+ * Example with forwarding a ref, and using it
+ * to focus() the underlying <input /> field
+ * @param args
+ * @constructor
+ */
+export const Refs = (args: InputFieldProps) => {
+  const ref = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    if (ref?.current) {
+      ref.current.focus();
+    }
+  }, [ref]);
+
+  return <InputField {...args} placeholder="Focused by default using forwardRef" ref={ref} />;
 };
