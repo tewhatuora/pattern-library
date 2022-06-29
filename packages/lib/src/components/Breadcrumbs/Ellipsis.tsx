@@ -16,7 +16,7 @@ type EllipsisProps = {
  * room to show all breadcrumbs
  */
 export const Ellipsis = memo(({ hidden }: EllipsisProps) => (
-  <li aria-hidden="true" className={clsx(styles.ellipsis, { [sprinkles({ display: 'none' })]: hidden })}>
+  <li aria-label="Some pages skipped" className={clsx(styles.ellipsis, { [sprinkles({ display: 'none' })]: hidden })}>
     <Text weight="regular">&hellip;</Text>
   </li>
 ));
