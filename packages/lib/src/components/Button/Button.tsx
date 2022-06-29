@@ -88,7 +88,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       onPress={onPress}
       {...boxProps}
     >
-      <Text size="medium" weight="bold">
+      <Text size="medium" weight={variant === 'text' ? 'link-normal' : 'bold'}>
         {children}
       </Text>
 

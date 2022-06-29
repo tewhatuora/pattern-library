@@ -22,6 +22,7 @@ export { Row, RowStyles } from './Columns/Row';
 export { Stack, StackStyles } from './Stack/Stack';
 export { Tag, TagStyles } from './Tag/Tag';
 export { Text } from './Text/Text';
+export { TextLinkButton } from './TextLinkButton/TextLinkButton';
 export { ToggleSwitch, ToggleSwitchStyles } from './ToggleSwitch/ToggleSwitch';
 export { ToggleButton, ToggleButtonStyles } from './ToggleButton/ToggleButton';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
