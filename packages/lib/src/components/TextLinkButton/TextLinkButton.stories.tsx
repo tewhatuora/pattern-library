@@ -17,8 +17,8 @@ export default {
     children: {
       control: {
         type: 'text',
-        defaultValue: 'Text Link',
       },
+      defaultValue: 'Text Link',
     },
   },
 };
