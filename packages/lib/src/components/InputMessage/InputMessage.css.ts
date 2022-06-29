@@ -5,6 +5,7 @@ import { vars } from '../../themes/vars.css';
 export const message = style({
   display: 'flex',
   flexDirection: 'column',
+  marginTop: '0.4rem',
 });
 
 export const helperText = style({
