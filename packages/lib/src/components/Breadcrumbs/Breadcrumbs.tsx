@@ -112,7 +112,7 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
   }, [indexToCheck, breadcrumbIsHidden, toggleBreadcrumbVisibility, children]);
 
   return (
-    <Box as="nav" className={withBackground ? styles.breadcrumbs.withBackground : styles.breadcrumbs}>
+    <Box aria-label="Breadcrumb" as="nav" className={withBackground ? styles.breadcrumbs.withBackground : styles.breadcrumbs}>
       <Box as="ol" className={styles.list} display="flex" flexDirection="row">
         {breadcrumbs.first}
         <Separator />
