@@ -1,5 +1,6 @@
 import {
   AnchorHTMLAttributes,
+  ForwardedRef,
   PropsWithChildren,
   ReactElement,
   cloneElement,
@@ -26,6 +27,16 @@ export type AnchorLinkProps = {
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
+type CustomAnchorLinkProps = {
+  to: string;
+  component: ReactElement;
+} & AriaLinkOptions;
+
+const CustomAnchorLink = forwardRef(
+  ({ component, ...rest }: PropsWithChildren<CustomAnchorLinkProps>, ref: ForwardedRef<HTMLElement>) =>
+    cloneElement(component as ReactElement<any, string>, { ...rest, ref }, rest.children),
+);
+
 /**
  * Links to a specified anchor point within the same page.
  * @constructor
@@ -37,7 +48,7 @@ export const AnchorLink = ({
   component = 'a',
   children,
   ...rest
-}: PropsWithChildren<AnchorLinkProps>): JSX.Element => {
+}: PropsWithChildren<AnchorLinkProps>) => {
   const ref = useRef<HTMLElement>(null);
   const textStyles = useText({ weight, size });
   const { linkProps } = useLink({ ...rest }, ref);
@@ -49,21 +60,21 @@ export const AnchorLink = ({
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
   };
 
-  const linkChildren = [
-    <Icon className={styles.icon} icon="chevron_right" key="icon" variant="functionalIcons" />,
-    children,
-  ];
+  const linkChildren = (
+    <>
+      <Icon className={styles.icon} icon="chevron_right" key="icon" variant="functionalIcons" />
+      {children}
+    </>
+  );
 
   if (typeof component === 'string') {
     return <>{createElement(component, { ...props, ref }, linkChildren)}</>;
   }
 
   return (
-    <>
-      {forwardRef((props, ref) => {
-        return <>{cloneElement(component, { ...props, ref }, linkChildren)}</>;
-      })}
-    </>
+    <CustomAnchorLink {...props} component={component} ref={ref} to={to}>
+      {linkChildren}
+    </CustomAnchorLink>
   );
 };
 
