@@ -1,13 +1,4 @@
-import {
-  AnchorHTMLAttributes,
-  ForwardedRef,
-  PropsWithChildren,
-  ReactElement,
-  cloneElement,
-  createElement,
-  forwardRef,
-  useRef,
-} from 'react';
+import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
 import clsx from 'clsx';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
 
@@ -21,21 +12,11 @@ export const AnchorLinkStyles = styles;
 
 export type AnchorLinkProps = {
   to: string;
-  component?: 'a' | ReactElement;
+  component?: FC<any>;
   size?: UseTextProps['size'];
   weight?: UseTextProps['weight'];
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
-
-type CustomAnchorLinkProps = {
-  to: string;
-  component: ReactElement;
-} & AriaLinkOptions;
-
-const CustomAnchorLink = forwardRef(
-  ({ component, ...rest }: PropsWithChildren<CustomAnchorLinkProps>, ref: ForwardedRef<HTMLElement>) =>
-    cloneElement(component as ReactElement<any, string>, { ...rest, ref }, rest.children),
-);
 
 /**
  * Links to a specified anchor point within the same page.
@@ -45,7 +26,7 @@ export const AnchorLink = ({
   to,
   size = 'medium',
   weight = 'regular',
-  component = 'a',
+  component: LinkComponent,
   children,
   ...rest
 }: PropsWithChildren<AnchorLinkProps>) => {
@@ -67,14 +48,18 @@ export const AnchorLink = ({
     </>
   );
 
-  if (typeof component === 'string') {
-    return <>{createElement(component, { ...props, ref }, linkChildren)}</>;
+  if (LinkComponent) {
+    return (
+      <LinkComponent {...props} ref={ref as RefObject<any>}>
+        {linkChildren}
+      </LinkComponent>
+    );
   }
 
   return (
-    <CustomAnchorLink {...props} component={component} ref={ref} to={to}>
+    <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
       {linkChildren}
-    </CustomAnchorLink>
+    </a>
   );
 };
 

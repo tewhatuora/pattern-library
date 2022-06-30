@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
 import { AnchorLink, AnchorLinkProps } from './AnchorLink';
 
@@ -40,10 +40,12 @@ export default {
 
 export const Default = (args: AnchorLinkProps) => <AnchorLink {...args} />;
 
-const RouterLink = (props: PropsWithChildren<AnchorLinkProps>) => (
-  <a {...props} onClick={(e) => e.preventDefault()}>
-    {props.children}
-  </a>
-);
+const RouterLink = forwardRef((props: PropsWithChildren<AnchorLinkProps>, ref: ForwardedRef<any>) => {
+  return (
+    <a {...props} ref={ref} onClick={(e) => e.preventDefault()}>
+      {props.children}
+    </a>
+  );
+});
 
-export const AsComponent = (args: AnchorLinkProps) => <AnchorLink {...args} component={<RouterLink {...args} />} />;
+export const AsComponent = (args: AnchorLinkProps) => <AnchorLink {...args} component={RouterLink} />;
