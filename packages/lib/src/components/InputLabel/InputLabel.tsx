@@ -1,15 +1,18 @@
 import { Box } from '../Box/Box';
+import { Button, ButtonProps } from '../Button/Button';
 import { Text } from '../Text/Text';
-import { TextLinkButton, TextLinkButtonProps } from '../TextLinkButton/TextLinkButton';
+
+import * as styles from './InputLabel.css';
 
 export type InputLabelProps = {
   heading: string;
   subheading?: string;
   tertiaryLabel?: string;
-  tertiaryLabelIcon?: Pick<TextLinkButtonProps, 'icon'>;
-  tertiaryLabelIconPosition?: Pick<TextLinkButtonProps, 'iconPosition'>;
+  tertiaryLabelIcon?: Pick<ButtonProps, 'icon'>;
+  tertiaryLabelIconPosition?: Pick<ButtonProps, 'iconPosition'>;
   onTertiaryLabelClick?: () => void;
   htmlFor: string;
+  error?: boolean;
 };
 
 /**
@@ -30,22 +33,34 @@ export const InputLabel = ({
   tertiaryLabelIcon,
   tertiaryLabelIconPosition,
   onTertiaryLabelClick,
+  htmlFor,
+  error = false,
 }: InputLabelProps) => {
+  const labelColor = error ? 'error100' : 'primary100';
+
   return (
     <Box display="flex" justifyContent="spaceBetween">
-      <label>
-        <Text weight="bold">{heading}</Text>
-        <Text size="small">{subheading}</Text>
-      </label>
+      <Box as="label" htmlFor={htmlFor}>
+        <Text color={labelColor} weight="bold">
+          {heading}
+        </Text>
+        <Text color={labelColor} size="small">
+          {subheading}
+        </Text>
+      </Box>
 
       {!!tertiaryLabel && (
-        <TextLinkButton
+        <Button
+          as="a"
+          className={styles.tertiaryLabelButton}
           icon={tertiaryLabelIcon}
           iconPosition={tertiaryLabelIconPosition}
+          variant="label"
+          weight="medium"
           onPress={onTertiaryLabelClick}
         >
           {tertiaryLabel}
-        </TextLinkButton>
+        </Button>
       )}
     </Box>
   );
