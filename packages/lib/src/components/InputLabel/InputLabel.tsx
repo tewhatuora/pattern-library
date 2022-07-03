@@ -1,5 +1,8 @@
+import clsx from 'clsx';
+
 import { Box } from '../Box/Box';
 import { Button, ButtonProps } from '../Button/Button';
+import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
 import * as styles from './InputLabel.css';
@@ -9,10 +12,25 @@ export type InputLabelProps = {
   subheading?: string;
   tertiaryLabel?: string;
   tertiaryLabelIcon?: Pick<ButtonProps, 'icon'>;
-  tertiaryLabelIconPosition?: Pick<ButtonProps, 'iconPosition'>;
-  onTertiaryLabelClick?: () => void;
+  tertiaryLabelIconPosition?: 'left' | 'right';
   htmlFor: string;
   error?: boolean;
+} & (AsLink | AsButton | AsText);
+
+type AsLink = {
+  tertiaryLabelAs: 'a';
+  href: string;
+  onTertiaryLabelClick: never;
+};
+type AsButton = {
+  tertiaryLabelAs: 'button';
+  href: never;
+  onTertiaryLabelClick: (e: any) => void;
+};
+type AsText = {
+  tertiaryLabelAs: 'text';
+  href: never;
+  onTertiaryLabelClick: never;
 };
 
 /**
@@ -30,10 +48,12 @@ export const InputLabel = ({
   heading,
   subheading,
   tertiaryLabel,
+  tertiaryLabelAs,
   tertiaryLabelIcon,
-  tertiaryLabelIconPosition,
+  tertiaryLabelIconPosition = 'left',
   onTertiaryLabelClick,
   htmlFor,
+  href,
   error = false,
 }: InputLabelProps) => {
   const labelColor = error ? 'error100' : 'primary100';
@@ -49,19 +69,27 @@ export const InputLabel = ({
         </Text>
       </Box>
 
-      {!!tertiaryLabel && (
-        <Button
-          as="a"
-          className={styles.tertiaryLabelButton}
-          icon={tertiaryLabelIcon}
-          iconPosition={tertiaryLabelIconPosition}
-          variant="label"
-          weight="medium"
-          onPress={onTertiaryLabelClick}
-        >
-          {tertiaryLabel}
-        </Button>
-      )}
+      {tertiaryLabel &&
+        (tertiaryLabelAs !== 'text' ? (
+          <Button
+            as={tertiaryLabelAs}
+            className={clsx(styles.tertiaryLabel)}
+            href={href}
+            icon={tertiaryLabelIcon}
+            iconPosition={tertiaryLabelIconPosition}
+            variant="label"
+            // weight="medium"
+            onPress={onTertiaryLabelClick}
+          >
+            {tertiaryLabel}
+          </Button>
+        ) : (
+          <Box as="span" className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition])}>
+            <Text size="medium">{tertiaryLabel}</Text>
+
+            {!!tertiaryLabelIcon && <Icon icon={tertiaryLabelIcon} variant="functionalIcons" />}
+          </Box>
+        ))}
     </Box>
   );
 };
