@@ -7,6 +7,7 @@ import { vars } from '../../themes/vars.css';
 
 export const root = style({
   color: 'inherit',
+  cursor: 'pointer',
 });
 
 export const variants = recipe({
