@@ -10,13 +10,11 @@ import {
 } from 'react';
 import clsx from 'clsx';
 
-import { Icon } from '../Icon/Icon';
-import { ButtonRoot } from '../Button/Button';
+import { InputClearButton } from './InputClearButton';
 
 import { useText } from '../../hooks/typography';
 
 import * as styles from './InputField.css';
-import { clearIcon } from '../Icon/Icon.css';
 
 export const InputFieldStyles = styles;
 
@@ -35,7 +33,7 @@ export type BaseInputFieldProps = {
   rows?: number;
   required?: boolean;
   defaultValue?: string;
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
 
 export type InputFieldProps = BaseInputFieldProps & InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>;
@@ -90,21 +88,13 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     }, [value, defaultValue]);
 
     const handleClear = useCallback(() => {
-      onChange({ target: { name, value: '' } } as ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+      onChange?.({ target: { name, value: '' } } as ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
     }, [name, onChange]);
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
     const elements = [];
 
     const inputElement = createElement(inputEl, {
-      className: clsx(
-        {
-          [styles.input.error]: error,
-          [styles.input.base]: !error,
-          [styles.input.multiline]: multiline,
-        },
-        textSizeClasses,
-      ),
       disabled,
       id,
       name,
@@ -113,20 +103,26 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       type,
       rows,
       onChange,
+      'aria-invalid': !!error?.toString() || 'false',
       key: 'input',
       ...valueProps,
       ...props,
+      className: clsx(
+        {
+          [styles.input.error]: error,
+          [styles.input.base]: !error,
+          [styles.input.multiline]: multiline,
+        },
+        textSizeClasses,
+        props.className,
+      ),
       ref,
     });
 
     elements.push(inputElement);
 
     if (clearable && value?.length) {
-      elements.push(
-        <ButtonRoot className={styles.clearButton} key="clear" onPress={handleClear}>
-          <Icon className={clearIcon} color="primary100" icon="clear_field" variant="functionalIcons" />
-        </ButtonRoot>,
-      );
+      elements.push(<InputClearButton onClear={handleClear} />);
     }
 
     return <div className={styles.field}>{elements}</div>;
