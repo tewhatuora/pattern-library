@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
@@ -8,6 +8,7 @@ export const field = style({
   position: 'relative',
   display: 'flex',
   gap: vars.space.xsmall.tablet,
+  flexGrow: '1',
 });
 
 export const inputBase = style([
@@ -21,6 +22,7 @@ export const inputBase = style([
   }),
   {
     appearance: 'none',
+    overflow: 'hidden',
     width: '100%',
     height: vars.space.xxlarge.tablet,
     lineHeight: vars.space.xxlarge.tablet,
@@ -40,7 +42,7 @@ export const inputBase = style([
         borderColor: vars.color.primary100,
         color: vars.color.primary100,
       },
-      '&:focus': {
+      '&:focus, &:focus-within': {
         color: vars.color.primary100,
         borderColor: vars.color.caution100,
         outline: `${vars.borderWidth.small} solid ${vars.color.caution100}`,
@@ -66,8 +68,15 @@ export const input = styleVariants({
       position: 'relative',
       zIndex: 2,
       backgroundColor: 'transparent',
-      paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
     },
+    responsiveStyle({
+      mobile: {
+        paddingRight: calc(vars.space.xsmall.mobile).multiply(2).add(vars.space.small.mobile).toString(),
+      },
+      tablet: {
+        paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
+      },
+    }),
   ],
   multiline: [
     inputBase,
@@ -96,6 +105,17 @@ export const input = styleVariants({
       outline: `${vars.borderWidth.small} solid ${vars.color.error100}`,
     },
   ],
+  phone: [
+    inputBase,
+    {
+      padding: '0',
+    },
+  ],
+});
+
+globalStyle(`${input.phone} ${inputBase}, ${inputBase} ${inputBase}:focus, ${inputBase} ${inputBase}:focus-within`, {
+  border: 'none',
+  outline: 'none',
 });
 
 export const clearButton = style({
@@ -108,4 +128,5 @@ export const clearButton = style({
   paddingLeft: vars.space.xsmall.tablet,
   paddingRight: vars.space.xsmall.tablet,
   cursor: 'pointer',
+  zIndex: 2,
 });
