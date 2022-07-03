@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 
@@ -15,7 +16,7 @@ export const helperText = style({
 export const errorMessage = style({
   display: 'flex',
   alignItems: 'center',
-  marginTop: '1.4rem',
+  marginTop: calc.divide(vars.space.xsmall.tablet, 4),
   color: vars.color.error100,
 });
 
