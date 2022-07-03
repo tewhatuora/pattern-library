@@ -79,6 +79,31 @@ export const variants = recipe({
           },
         },
       ]),
+      label: style([
+        responsiveStyle({
+          mobile: {
+            height: 'auto',
+            gap: calc.divide(vars.space.xsmall.mobile, 2),
+          },
+          tablet: {
+            height: 'auto',
+            gap: calc.multiply(vars.space.xsmall.mobile, 1.25),
+          },
+        }),
+        {
+          display: 'inline-flex',
+          width: 'auto',
+          color: vars.color.info100,
+          borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+          ':hover': {
+            color: vars.color.info75,
+            textDecoration: 'underline',
+          },
+          ':focus': {
+            outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          },
+        },
+      ]),
       primary: {
         color: vars.color.primary0,
         backgroundColor: vars.color.primary100,
