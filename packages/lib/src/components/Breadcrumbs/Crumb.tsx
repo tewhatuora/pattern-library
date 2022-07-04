@@ -1,0 +1,69 @@
+import { LiHTMLAttributes, PropsWithChildren, useEffect, useRef } from 'react';
+import clsx from 'clsx';
+
+import * as styles from './Breadcrumbs.css';
+import { sprinkles } from '../../css/atoms/sprinkles.css';
+
+type CrumbProps = {
+  index: number;
+  shouldCheckVisibility?: boolean;
+  hidden?: boolean;
+  onToggleVisibility?: (index: number, shouldHide: boolean) => void;
+} & LiHTMLAttributes<HTMLLIElement>;
+
+/**
+ * Crumb
+ * Individual breadcrumb item
+ * @param index
+ * @param shouldCheckVisibility
+ * @param hidden
+ * @param onToggleVisibility
+ * @param children
+ * @param rest
+ * @constructor
+ */
+export const Crumb = ({
+  index,
+  shouldCheckVisibility,
+  hidden,
+  onToggleVisibility,
+  children,
+  ...rest
+}: PropsWithChildren<CrumbProps>) => {
+  const crumbRef = useRef<HTMLLIElement>(null);
+  const crumbTextRef = useRef<HTMLSpanElement>(null);
+
+  /**
+   * Check if the breadcrumb's text is larger than it
+   * has space for. If it is, the breadcrumb will be
+   * hidden. This happens for the second, until the
+   * second last items.
+   * The first and last breadcrumb are always displayed.
+   */
+  useEffect(() => {
+    if (crumbRef.current && crumbTextRef.current && shouldCheckVisibility) {
+      const parent = crumbRef.current;
+      const el = crumbTextRef.current;
+
+      const shouldHide = el.getBoundingClientRect().width > parent.getBoundingClientRect().width;
+
+      onToggleVisibility?.(index, shouldHide);
+    }
+    // NOTE: disabling this rule as we only want the effect to run when `shouldTestLayout` changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldCheckVisibility, hidden]);
+
+  return (
+    <li
+      className={clsx(styles.crumb, {
+        [sprinkles({ display: 'none' })]: hidden,
+      })}
+      ref={crumbRef}
+      {...rest}
+    >
+      <span ref={crumbTextRef}>{children}</span>
+    </li>
+  );
+};
+
+Crumb.displayName = 'Crumb';
