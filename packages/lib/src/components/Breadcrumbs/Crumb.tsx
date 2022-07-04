@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef } from 'react';
+import { LiHTMLAttributes, PropsWithChildren, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import * as styles from './Breadcrumbs.css';
@@ -9,7 +9,7 @@ type CrumbProps = {
   shouldCheckVisibility?: boolean;
   hidden?: boolean;
   onToggleVisibility?: (index: number, shouldHide: boolean) => void;
-};
+} & LiHTMLAttributes<HTMLLIElement>;
 
 /**
  * Crumb
@@ -19,6 +19,7 @@ type CrumbProps = {
  * @param hidden
  * @param onToggleVisibility
  * @param children
+ * @param rest
  * @constructor
  */
 export const Crumb = ({
@@ -27,6 +28,7 @@ export const Crumb = ({
   hidden,
   onToggleVisibility,
   children,
+  ...rest
 }: PropsWithChildren<CrumbProps>) => {
   const crumbRef = useRef<HTMLLIElement>(null);
   const crumbTextRef = useRef<HTMLSpanElement>(null);
@@ -57,6 +59,7 @@ export const Crumb = ({
         [sprinkles({ display: 'none' })]: hidden,
       })}
       ref={crumbRef}
+      {...rest}
     >
       <span ref={crumbTextRef}>{children}</span>
     </li>

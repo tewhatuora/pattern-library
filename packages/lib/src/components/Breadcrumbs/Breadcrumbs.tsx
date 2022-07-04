@@ -77,7 +77,11 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
     const lastIndex = crumbs.length - 1;
 
     const first = <Crumb index={0}>{crumbs[0]}</Crumb>;
-    const last = <Crumb index={lastIndex}>{crumbs[lastIndex]}</Crumb>;
+    const last = (
+      <Crumb aria-current="page" index={lastIndex}>
+        {crumbs[lastIndex]}
+      </Crumb>
+    );
 
     const middle = crumbs.slice(1, lastIndex).reduce((list: ReactNode[], current: ReactNode, index: number) => {
       if (isValidElement(current)) {
@@ -112,7 +116,11 @@ export const Breadcrumbs = memo(({ withBackground, children }: PropsWithChildren
   }, [indexToCheck, breadcrumbIsHidden, toggleBreadcrumbVisibility, children]);
 
   return (
-    <Box aria-label="Breadcrumb" as="nav" className={withBackground ? styles.breadcrumbs.withBackground : styles.breadcrumbs}>
+    <Box
+      aria-label="Breadcrumb"
+      as="nav"
+      className={withBackground ? styles.breadcrumbs.withBackground : styles.breadcrumbs}
+    >
       <Box as="ol" className={styles.list} display="flex" flexDirection="row">
         {breadcrumbs.first}
         <Separator />
