@@ -22,7 +22,6 @@ export type DialogProps = {
   subheading?: string;
   content?: ReactNode;
   trigger?: ReactElement;
-  // children: ChildrenOfType<'Content', any> & ChildrenOfType<'Actions', any>;
 } & RadixDialog.DialogProps;
 
 /**
