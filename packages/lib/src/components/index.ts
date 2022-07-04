@@ -1,9 +1,11 @@
 export type { BoxProps } from './Box/Box';
 export { Accordion } from './Accordion/Accordion';
+export { AnchorLink, AnchorLinkStyles } from './AnchorLink/AnchorLink';
 export { Alert, AlertStyles } from './Alert/Alert';
 export { Badge, BadgeStyles } from './Badge/Badge';
 export { Banner, BannerStyles } from './Banner/Banner';
 export { Box } from './Box/Box';
+export { Breadcrumbs, BreadcrumbsStyles } from './Breadcrumbs/Breadcrumbs';
 export { Button, ButtonStyles } from './Button/Button';
 export { Divider, DividerStyles } from './Divider/Divider';
 export { Card, CardStyles } from './Card/Card';
@@ -31,3 +33,4 @@ export { ToggleButton, ToggleButtonStyles } from './ToggleButton/ToggleButton';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
 export { useHeading, useText } from '../hooks/typography';
+export { atoms } from '../css/atoms/atoms';
