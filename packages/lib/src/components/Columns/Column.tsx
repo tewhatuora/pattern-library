@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { PropsWithChildren, createContext, useContext } from 'react';
 import clsx from 'clsx';
 
 import assert from 'assert';
@@ -18,7 +18,16 @@ export type ColumnProps = {
   columns: ColumnLength;
   start?: ColumnLength;
   center?: boolean;
-  children?: React.ReactNode;
+};
+
+/**
+ * Column styles
+ * Returns CSS classNames for a Column
+ * @param {Number} columns Amount of columns, e.g. 8
+ * @param {Number} start Start position for the column. E.g., to center a 6 column element within an 8 column container, use start = 1
+ */
+export const columnStyles = ({ columns = 12, start = 1 }: { columns: ColumnLength; start?: ColumnLength }) => {
+  return clsx(styles.width[columns], styles.start[start]);
 };
 
 /**
@@ -26,9 +35,10 @@ export type ColumnProps = {
  * @param props
  * @constructor
  */
-export const Column = ({ children, columns = 12, center, start = 1, ...boxProps }: ColumnProps) => {
+export const Column = ({ children, columns = 12, center, start = 1, ...boxProps }: PropsWithChildren<ColumnProps>) => {
   const parentColumn = useContext(ParentColumnContext);
-  const startPos = center ? (parentColumn.columns - columns) / 2 + 1 : start;
+  const startPos = (center ? (parentColumn.columns - columns) / 2 + 1 : start) as ColumnLength;
+  const className = columnStyles({ columns, start: startPos });
 
   if (center) {
     assert(
@@ -40,7 +50,7 @@ export const Column = ({ children, columns = 12, center, start = 1, ...boxProps 
   return (
     <ErrorBoundary>
       <ParentColumnContext.Provider value={{ columns }}>
-        <Box as="div" className={clsx(styles.width[columns], styles.start[startPos])} {...boxProps}>
+        <Box as="div" className={className} {...boxProps}>
           {children}
         </Box>
       </ParentColumnContext.Provider>
