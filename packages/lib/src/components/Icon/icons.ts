@@ -45,6 +45,8 @@ import Instagram from '../../icons/social/Instagram.svg?component';
 import LinkedIn from '../../icons/social/LinkedIn.svg?component';
 import TikTok from '../../icons/social/TikTok.svg?component';
 import Twitter from '../../icons/social/Twitter.svg?component';
+// Other
+import International from '../../icons/International.svg?component';
 
 export type IconType =
   | 'alert'
@@ -53,6 +55,7 @@ export type IconType =
   | 'document'
   | 'email'
   | 'exempt'
+  | 'international'
   | 'language'
   | 'menu'
   | 'name'
@@ -149,10 +152,15 @@ export const social: IconMap = {
   twitter: Twitter,
 };
 
+export const other: IconMap = {
+  international: International,
+};
+
 const icons: IconMap = {
   ...decorative,
   ...functional,
   ...social,
+  ...other,
 };
 
 export default icons;
