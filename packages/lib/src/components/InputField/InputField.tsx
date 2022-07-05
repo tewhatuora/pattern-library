@@ -42,19 +42,6 @@ export type OtherInputFieldProps = Omit<BaseInputFieldProps, 'type' | 'clearable
 
 /**
  * Text field and background for an input field.
- * @param error
- * @param id
- * @param name
- * @param defaultValue
- * @param disabled
- * @param clearable
- * @param required
- * @param placeholder
- * @param multiline
- * @param type
- * @param rows
- * @param onChange
- * @param value
  * @param props
  * @constructor
  */
@@ -92,7 +79,6 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     }, [name, onChange]);
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
-    const elements = [];
 
     const inputElement = createElement(inputEl, {
       disabled,
@@ -104,7 +90,6 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       rows,
       onChange,
       'aria-invalid': !!error?.toString() || 'false',
-      key: 'input',
       ...valueProps,
       ...props,
       className: clsx(
@@ -119,13 +104,14 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       ref,
     });
 
-    elements.push(inputElement);
+    const hasClearButton = Boolean(clearable && value?.length);
 
-    if (clearable && value?.length) {
-      elements.push(<InputClearButton onClear={handleClear} />);
-    }
-
-    return <div className={styles.field}>{elements}</div>;
+    return (
+      <div className={styles.field}>
+        {inputElement}
+        {hasClearButton && <InputClearButton onClear={handleClear} />}
+      </div>
+    );
   },
 );
 
