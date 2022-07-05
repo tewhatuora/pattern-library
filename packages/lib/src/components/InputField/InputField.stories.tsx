@@ -52,6 +52,10 @@ export default {
         type: 'number',
       },
     },
+    type: {
+      defaultValue: 'text',
+      options: ['email', 'number', 'password', 'search', 'tel', 'text', 'url'],
+    },
   },
 };
 
