@@ -38,15 +38,17 @@ export const columnStyles = ({ columns = 12, start = 1 }: { columns: ColumnLengt
  */
 export const Column = ({ children, columns = 12, center, start = 1, ...boxProps }: PropsWithChildren<ColumnProps>) => {
   const parentColumn = useContext(ParentColumnContext);
-  const startPos = (center ? (parentColumn.columns - columns) / 2 + 1 : start) as ColumnLength;
-  const className = columnStyles({ columns, start: startPos });
+  const leftoverColumns = (parentColumn.columns - columns) / 2;
 
   if (center) {
     assert(
-      startPos % 2 === 0,
+      leftoverColumns % 2 === 0,
       `Cannot center a ${columns} column component within an ${parentColumn?.columns} column container`,
     );
   }
+
+  const startPos = (center ? leftoverColumns + 1 : start) as ColumnLength;
+  const className = columnStyles({ columns, start: startPos });
 
   return (
     <ErrorBoundary>
