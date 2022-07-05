@@ -2872,6 +2872,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-tabs@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@radix-ui/react-tabs@npm:0.1.5"
+  dependencies:
+    "@babel/runtime": ^7.13.10
+    "@radix-ui/primitive": 0.1.0
+    "@radix-ui/react-context": 0.1.1
+    "@radix-ui/react-id": 0.1.5
+    "@radix-ui/react-primitive": 0.1.4
+    "@radix-ui/react-roving-focus": 0.1.5
+    "@radix-ui/react-use-controllable-state": 0.1.0
+  peerDependencies:
+    react: ^16.8 || ^17.0
+  checksum: 323d8f669ec739e9f697df26edd5695536f648d5851d84a7f9e7d8bf9913504ce7c7bb12f99d7e2da07830e1f4ab05f5f74c0456989fe64acef35b4ed6aa4a42
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-toggle-group@npm:^0.1.5":
   version: 0.1.5
   resolution: "@radix-ui/react-toggle-group@npm:0.1.5"
@@ -3003,6 +3020,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/label@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "@react-aria/label@npm:3.3.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/utils": ^3.13.1
+    "@react-types/label": ^3.6.1
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 7d5637f8859772086d9cfdfd0e872f3cccecb93da8a2947a0fd43013b90e9065b6801de7e5f37787329a4ddf8fbb089ce895096774fb5f9df866a3f01516f0e6
+  languageName: node
+  linkType: hard
+
 "@react-aria/link@npm:^3.3.1":
   version: 3.3.1
   resolution: "@react-aria/link@npm:3.3.1"
@@ -3027,6 +3058,22 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 30468b436f9d56636eb3fb89cbbbf861c55ad841e255e529d225a0efd9c23628badaee72c42ab3870b5f17a9d5b5163564a64e9b928565230a090cb4f7de23bf
+  languageName: node
+  linkType: hard
+
+"@react-aria/textfield@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "@react-aria/textfield@npm:3.6.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/focus": ^3.6.1
+    "@react-aria/label": ^3.3.1
+    "@react-aria/utils": ^3.13.1
+    "@react-types/shared": ^3.13.1
+    "@react-types/textfield": ^3.5.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 6d9b1f5b9fa2f560799496c50fde09892b4ae03f8423e14b866af79640a930845220f340c3ec0a79de094575bf204ae0370f21074b2d2955e4f4ca6e4c9d1270
   languageName: node
   linkType: hard
 
@@ -3092,6 +3139,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-types/label@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "@react-types/label@npm:3.6.1"
+  dependencies:
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 13054a700b1e7fd09d0db5aa4ab7d1d9ebedfde6e14f4f18f05be8de86a837841a9aa0bce11ed11ed0a7f96fe1e6a8f56419c54da154688a8cf034ed7485a728
+  languageName: node
+  linkType: hard
+
 "@react-types/link@npm:^3.3.1":
   version: 3.3.1
   resolution: "@react-types/link@npm:3.3.1"
@@ -3110,6 +3168,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 61eb674df29502292f7664aee55fa230609310a6cb92b5c07052155a50772e5407464a898c1dbaf6cbff7018ed26fa83045f78af557fbdc0a9c3df4994434b2e
+  languageName: node
+  linkType: hard
+
+"@react-types/textfield@npm:^3.5.1":
+  version: 3.5.1
+  resolution: "@react-types/textfield@npm:3.5.1"
+  dependencies:
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 6195703acbca6a60ca284239a23be6853ab4f9e220b5f3c8e2e4fb82abfaa6257f996e1a427939771dc4152c30728057b5e4716e5763b2f1c1bb08c892da87a7
   languageName: node
   linkType: hard
 
@@ -16111,7 +16180,9 @@ __metadata:
     "@radix-ui/react-radio-group": ^0.1.5
     "@radix-ui/react-separator": ^0.1.4
     "@radix-ui/react-switch": ^0.1.5
+    "@radix-ui/react-tabs": ^0.1.5
     "@radix-ui/react-toggle-group": ^0.1.5
+    "@react-aria/textfield": ^3.6.1
     "@size-limit/preset-big-lib": ^6.0.3
     "@storybook/addon-actions": ^6.4.22
     "@storybook/addon-essentials": ^6.4.22
