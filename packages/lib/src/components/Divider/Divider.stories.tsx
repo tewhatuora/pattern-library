@@ -1,4 +1,7 @@
 import { Divider, DividerProps } from './Divider';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Divider.docs.mdx';
 
 export default {
   title: 'Components/Divider',
@@ -7,6 +10,11 @@ export default {
     orientation: {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

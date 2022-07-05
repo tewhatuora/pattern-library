@@ -1,5 +1,8 @@
 import { RadioGroup, RadioGroupProps } from './RadioGroup';
 import { RadioButton } from './RadioButton';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './RadioGroup.docs.mdx';
 
 export default {
   title: 'Components/RadioGroup',
@@ -7,6 +10,11 @@ export default {
   argTypes: {
     error: {
       control: { type: 'boolean' },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

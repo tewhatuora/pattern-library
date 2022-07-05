@@ -19,7 +19,6 @@ export type AccordionRootProps = {
 export const AccordionContext = createContext({ headingLevel: 3 });
 
 /**
- * Accordion.
  * Expandable and collapsible content.
  *
  * This component is built on top of the Radix UI Accordion component.

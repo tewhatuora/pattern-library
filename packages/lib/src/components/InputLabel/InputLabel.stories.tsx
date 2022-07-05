@@ -1,5 +1,8 @@
 import icons from '../Icon/icons';
 import { InputLabel, InputLabelProps } from './InputLabel';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './InputLabel.docs.mdx';
 
 export default {
   title: 'Components/InputLabel',
@@ -24,6 +27,11 @@ export default {
         options: ['left', 'right'],
       },
       defaultValue: 'left',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

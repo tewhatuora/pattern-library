@@ -1,5 +1,8 @@
 import { TextLinkButton, TextLinkButtonProps } from './TextLinkButton';
 import icons from '../Icon/icons';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './TextLinkButton.docs.mdx';
 
 export default {
   title: 'Components/TextLinkButton',
@@ -19,6 +22,11 @@ export default {
         type: 'text',
       },
       defaultValue: 'Text Link',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

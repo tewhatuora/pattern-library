@@ -1,6 +1,9 @@
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
 import { Link } from '../Link/Link';
 import { Text } from '../Text/Text';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Breadcrumbs.docs.mdx';
 
 export default {
   title: 'Components/Breadcrumbs',
@@ -10,6 +13,11 @@ export default {
       control: {
         type: 'boolean',
       },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

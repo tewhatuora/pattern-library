@@ -1,6 +1,9 @@
 import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
 import { AnchorLink, AnchorLinkProps } from './AnchorLink';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './AnchorLink.docs.mdx';
 
 export default {
   title: 'Components/AnchorLink',
@@ -34,6 +37,11 @@ export default {
         type: 'text',
       },
       defaultValue: 'Anchor link',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

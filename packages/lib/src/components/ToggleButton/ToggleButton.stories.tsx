@@ -1,4 +1,7 @@
 import { ToggleButton, ToggleButtonProps } from './ToggleButton';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './ToggleButton.docs.mdx';
 
 export default {
   title: 'Components/ToggleButton',
@@ -15,6 +18,11 @@ export default {
     },
     valueRight: {
       defaultValue: 'Right ToggleButton',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

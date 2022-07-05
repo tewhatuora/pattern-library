@@ -1,4 +1,7 @@
 import { Notice, NoticeProps } from './Notice';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Notice.docs.mdx';
 
 export default {
   title: 'Components/Notice',
@@ -6,6 +9,11 @@ export default {
   argTypes: {
     label: {
       defaultValue: 'A static message with a lighter visual treatment than alert',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

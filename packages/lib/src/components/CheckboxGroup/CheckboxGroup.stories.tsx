@@ -2,10 +2,18 @@ import { useState } from 'react';
 
 import { Checkbox } from '../Checkbox/Checkbox';
 import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './CheckboxGroup.docs.mdx';
 
 export default {
   title: 'Components/CheckBoxGroup',
   component: CheckboxGroup,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
 };
 
 export const Default = (args: CheckboxGroupProps) => {

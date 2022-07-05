@@ -1,6 +1,9 @@
 import { Accordion } from './Accordion';
 import { Text } from '../Text/Text';
 import { AccordionRootProps } from './Root';
+import Docs from './Accordion.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/Accordion',
@@ -10,6 +13,11 @@ export default {
       options: ['single', 'multiple'],
       defaultValue: 'multiple',
       control: { type: 'radio' },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

@@ -1,4 +1,7 @@
 import { ToggleSwitch, ToggleSwitchProps } from './ToggleSwitch';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './ToggleSwitch.docs.mdx';
 
 export default {
   title: 'Components/ToggleSwitch',
@@ -9,6 +12,11 @@ export default {
     },
     headingLabel: {
       defaultValue: 'Heading',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

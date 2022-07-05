@@ -1,5 +1,8 @@
 import { Button, ButtonProps } from './Button';
 import icons from '../Icon/icons';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Button.docs.mdx';
 
 export default {
   title: 'Components/Button',
@@ -27,6 +30,11 @@ export default {
         type: 'text',
         defaultValue: 'Button',
       },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

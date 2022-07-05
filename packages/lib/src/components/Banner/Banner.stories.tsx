@@ -1,4 +1,7 @@
 import { Banner, BannerProps } from './Banner';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Banner.docs.mdx';
 
 export default {
   title: 'Components/Banner',
@@ -6,6 +9,11 @@ export default {
   argTypes: {
     label: {
       defaultValue: 'Lorem ipsum dolor sit amet',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

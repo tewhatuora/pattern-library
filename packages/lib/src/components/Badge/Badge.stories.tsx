@@ -1,8 +1,16 @@
 import { Badge, BadgeProps } from './Badge';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Badge.docs.mdx';
 
 export default {
   title: 'Components/Badge',
   component: Badge,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
 };
 
 export const Default = (args: BadgeProps) => {

@@ -4,10 +4,18 @@ import { Card, CardProps } from './Card';
 import { Text } from '../Text/Text';
 
 import { Container } from '../Container/Container';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Card.docs.mdx';
 
 export default {
   title: 'Components/Card',
   component: Card,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
 };
 
 export const Single = (args: CardProps) => {

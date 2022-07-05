@@ -1,4 +1,7 @@
 import { Tag, TagProps } from './Tag';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Tag.docs.mdx';
 
 export default {
   title: 'Components/Tag',
@@ -6,6 +9,11 @@ export default {
   argTypes: {
     label: {
       defaultValue: 'Tag Component',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };
