@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { InputField, InputFieldProps } from './InputField';
 
@@ -59,8 +59,16 @@ export default {
   },
 };
 
-export const Default = (args: InputFieldProps) => {
+export const Uncontrolled = (args: InputFieldProps) => {
   return <InputField {...args} />;
+};
+
+export const Controlled = (args: InputFieldProps) => {
+  const [value, setValue] = useState('');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+  return <InputField {...args} value={value} onChange={handleChange} />;
 };
 
 /**
