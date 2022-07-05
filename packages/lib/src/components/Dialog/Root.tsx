@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement, ReactNode, useRef } from 'react';
+import { PropsWithChildren, ReactElement, ReactNode, cloneElement, useMemo, useRef } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { useOutsideClick } from 'rooks';
 
@@ -51,20 +51,39 @@ export const Root = ({
   const headingClassName = useHeading({ level: '2' });
   const subheadingClassName = useHeading({ level: '4' });
 
+  /**
+   * Render trigger, passing onPress
+   * for <Button> components
+   */
+  const renderTrigger = useMemo(() => {
+    return (
+      !!trigger && (
+        <RadixDialog.Trigger asChild>
+          {cloneElement(trigger, {
+            onPress: () => {
+              trigger.props?.onPress?.();
+              onOpenChange?.(true);
+            },
+          })}
+        </RadixDialog.Trigger>
+      )
+    );
+  }, [trigger, onOpenChange]);
+
   useOutsideClick(ref, () => {
     onOpenChange?.(false);
   });
 
   return (
     <RadixDialog.Root defaultOpen={defaultOpen} open={open} onOpenChange={onOpenChange}>
-      {!!trigger && <RadixDialog.Trigger asChild>{trigger}</RadixDialog.Trigger>}
+      {renderTrigger}
       <RadixDialog.Portal>
         <ThemeProvider theme={theme}>
           <RadixDialog.Overlay className={styles.overlay} />
           <RadixDialog.Content className={styles.dialog}>
             <Row flexGrow={1}>
               <Column center columns={8}>
-                <div className={styles.content} id="REFFFF" ref={ref}>
+                <div className={styles.content} ref={ref}>
                   <Row offset>
                     <Column center columns={4}>
                       <RadixDialog.Close className={styles.closeButton}>
