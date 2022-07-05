@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import assert from 'assert';
 
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 import * as styles from './Column.css';
@@ -18,7 +18,8 @@ export type ColumnProps = {
   columns: ColumnLength;
   start?: ColumnLength;
   center?: boolean;
-};
+  className?: string;
+} & BoxProps;
 
 /**
  * Column styles
@@ -36,7 +37,14 @@ export const columnStyles = ({ columns = 12, start = 1 }: { columns: ColumnLengt
  * @param props
  * @constructor
  */
-export const Column = ({ children, columns = 12, center, start = 1, ...boxProps }: PropsWithChildren<ColumnProps>) => {
+export const Column = ({
+  children,
+  columns = 12,
+  center,
+  start = 1,
+  className,
+  ...boxProps
+}: PropsWithChildren<ColumnProps>) => {
   const parentColumn = useContext(ParentColumnContext);
   const leftoverColumns = (parentColumn.columns - columns) / 2;
 
@@ -48,12 +56,12 @@ export const Column = ({ children, columns = 12, center, start = 1, ...boxProps 
   }
 
   const startPos = (center ? leftoverColumns + 1 : start) as ColumnLength;
-  const className = columnStyles({ columns, start: startPos });
+  const classNames = columnStyles({ columns, start: startPos });
 
   return (
     <ErrorBoundary>
       <ParentColumnContext.Provider value={{ columns }}>
-        <Box as="div" className={className} {...boxProps}>
+        <Box as="div" className={clsx(classNames, className)} {...boxProps}>
           {children}
         </Box>
       </ParentColumnContext.Provider>
