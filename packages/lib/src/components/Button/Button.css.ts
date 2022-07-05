@@ -9,6 +9,7 @@ import { vars } from '../../themes/vars.css';
 
 export const root = style({
   color: 'inherit',
+  cursor: 'pointer',
 });
 
 export const variants = recipe({
@@ -17,7 +18,6 @@ export const variants = recipe({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      cursor: 'pointer',
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
