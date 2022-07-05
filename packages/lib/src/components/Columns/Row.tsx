@@ -18,10 +18,11 @@ export type RowProps<P> = {
 /**
  * Row styles
  * Return CSS classNames for a Row
- * @param {Space} gutter Gutter space token name, e.g. 'medium'
- * @param {Boolean} noGutters Remove gutters
- * @param {Boolean} offset Offset the row into it's parent's gutters
- * @param {Number} parentCols Amount of columns the parent Column has
+ * @param params Row style parameters
+ * @param {Space} params.gutter Gutter space token name, e.g. 'medium'
+ * @param {Boolean} params.noGutters Remove gutters
+ * @param {Boolean} params.offset Offset the row into it's parent's gutters
+ * @param {Number} params.parentCols Amount of columns the parent Column has
  */
 export const rowStyles = ({ gutter = 'medium', noGutters, offset, parentCols }: RowProps<{ parentCols?: number }>) => {
   const dynamicClasses = {
