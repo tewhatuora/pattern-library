@@ -68,9 +68,7 @@ export const Default = (args: InputFieldProps) => {
 export const Refs = (args: InputFieldProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
-    if (ref?.current) {
-      ref.current.focus();
-    }
+    ref?.current?.focus();
   }, [ref]);
 
   return <InputField {...args} placeholder="Focused by default using forwardRef" ref={ref} />;
