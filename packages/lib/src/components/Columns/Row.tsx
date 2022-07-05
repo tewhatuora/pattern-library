@@ -1,7 +1,7 @@
 import { PropsWithChildren, useContext, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import { ParentColumnContext } from './Column';
 import { Space } from '../../css/atoms/atoms';
 
@@ -13,7 +13,7 @@ export type RowProps = {
   noGutters?: boolean;
   offset?: boolean;
   gutter?: Space;
-};
+} & BoxProps;
 
 /**
  * Row component
