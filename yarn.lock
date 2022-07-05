@@ -3230,6 +3230,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-types/label@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "@react-types/label@npm:3.6.1"
+  dependencies:
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 13054a700b1e7fd09d0db5aa4ab7d1d9ebedfde6e14f4f18f05be8de86a837841a9aa0bce11ed11ed0a7f96fe1e6a8f56419c54da154688a8cf034ed7485a728
+  languageName: node
+  linkType: hard
+
 "@react-types/link@npm:^3.3.1":
   version: 3.3.1
   resolution: "@react-types/link@npm:3.3.1"
@@ -3239,17 +3250,6 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 6cc95731d2fef8e50ec304cb4027fd915cac4b4d9d1e8490c85bfb007b751f8e2c77fa7ebb2dcb534ec66b6bf4e35a10da0dc288c893e059b8dd8cc020ac8a16
-  languageName: node
-  linkType: hard
-
-"@react-types/label@npm:^3.6.1":
-  version: 3.6.1
-  resolution: "@react-types/label@npm:3.6.1"
-  dependencies:
-    "@react-types/shared": ^3.13.1
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 13054a700b1e7fd09d0db5aa4ab7d1d9ebedfde6e14f4f18f05be8de86a837841a9aa0bce11ed11ed0a7f96fe1e6a8f56419c54da154688a8cf034ed7485a728
   languageName: node
   linkType: hard
 
