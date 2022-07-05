@@ -1,5 +1,6 @@
 import * as RadixTabs from '@radix-ui/react-tabs';
 import clsx from 'clsx';
+import { RefAttributes } from 'react';
 
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
@@ -13,7 +14,7 @@ export type TabsTriggerProps = {
   icon?: IconType;
   iconPosition?: 'left' | 'right';
 } & RadixTabs.TabsTriggerProps &
-  React.RefAttributes<HTMLButtonElement>;
+  RefAttributes<HTMLButtonElement>;
 
 export const Trigger = ({ children, value, className, icon, iconPosition = 'left', ...rest }: TabsTriggerProps) => {
   return (
