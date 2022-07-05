@@ -10,6 +10,8 @@ import {
 } from 'react';
 import clsx from 'clsx';
 
+import { Box } from '../Box/Box';
+
 import { InputClearButton } from './InputClearButton';
 
 import { useText } from '../../hooks/typography';
@@ -109,7 +111,11 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     return (
       <div className={styles.field}>
         {inputElement}
-        {hasClearButton && <InputClearButton onClear={handleClear} />}
+        {hasClearButton && (
+          <Box position="relative">
+            <InputClearButton onClear={handleClear} />
+          </Box>
+        )}
       </div>
     );
   },

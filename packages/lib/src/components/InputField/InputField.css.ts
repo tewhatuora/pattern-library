@@ -7,7 +7,6 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 export const field = style({
   position: 'relative',
   display: 'flex',
-  gap: vars.space.xsmall.tablet,
   flexGrow: '1',
 });
 
@@ -124,7 +123,7 @@ export const clearButton = style({
   right: 0,
   display: 'flex',
   alignItems: 'center',
-  height: '100%',
+  height: vars.space.xxlarge.tablet,
   paddingLeft: vars.space.xsmall.tablet,
   paddingRight: vars.space.xsmall.tablet,
   cursor: 'pointer',
