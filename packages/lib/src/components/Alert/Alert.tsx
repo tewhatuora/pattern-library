@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 
@@ -27,7 +29,7 @@ const iconMap: Record<styles.Variant, IconType> = {
  * a stronger visual treatment than notices.
  * @constructor
  */
-export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps }: AlertProps) => {
+export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps }: PropsWithChildren<AlertProps>) => {
   return (
     <Box
       as="div"

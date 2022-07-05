@@ -7,6 +7,7 @@ export { Banner, BannerStyles } from './Banner/Banner';
 export { Box } from './Box/Box';
 export { Breadcrumbs, BreadcrumbsStyles } from './Breadcrumbs/Breadcrumbs';
 export { Button, ButtonStyles } from './Button/Button';
+export { Dialog, DialogStyles } from './Dialog/Dialog';
 export { Divider, DividerStyles } from './Divider/Divider';
 export { Card, CardStyles } from './Card/Card';
 export { Checkbox, CheckboxStyles } from './Checkbox/Checkbox';
