@@ -23,12 +23,6 @@ export default {
     defaultValue: {
       control: { type: 'string' },
     },
-    orientation: {
-      control: {
-        type: 'radio',
-        options: ['horizontal', 'vertical'],
-      },
-    },
     activationMode: {
       control: {
         type: 'radio',
