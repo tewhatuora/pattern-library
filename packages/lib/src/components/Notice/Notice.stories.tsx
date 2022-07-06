@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Notice, NoticeProps } from './Notice';
 
 export default {

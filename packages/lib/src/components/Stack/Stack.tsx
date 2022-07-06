@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import assert from 'assert';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -12,7 +14,6 @@ export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 export type StackProps = {
   as?: typeof validStackComponents[number];
-  children: JSX.Element[];
   className?: string;
   space: Space;
   horizontal?: boolean;
@@ -30,7 +31,7 @@ export const Stack = ({
   space = 'medium',
   horizontal = false,
   ...boxProps
-}: StackProps) => {
+}: PropsWithChildren<StackProps>) => {
   assert(
     validStackComponents.includes(as),
     `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,

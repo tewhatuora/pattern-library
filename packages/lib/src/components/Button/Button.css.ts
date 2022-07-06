@@ -1,12 +1,15 @@
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 import { style } from '@vanilla-extract/css';
 
+import { calc } from '@vanilla-extract/css-utils';
+
 import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 export const root = style({
   color: 'inherit',
+  cursor: 'pointer',
 });
 
 export const variants = recipe({
@@ -15,7 +18,6 @@ export const variants = recipe({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      cursor: 'pointer',
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
@@ -50,6 +52,58 @@ export const variants = recipe({
       },
     },
     color: {
+      text: style([
+        responsiveStyle({
+          mobile: {
+            height: 'auto',
+            gap: calc.divide(vars.space.xsmall.mobile, 2),
+            padding: calc.divide(vars.space.xsmall.mobile, 2),
+          },
+          tablet: {
+            height: 'auto',
+            gap: calc.multiply(vars.space.xsmall.mobile, 1.25),
+            padding: calc.divide(vars.space.xsmall.mobile, 2),
+          },
+        }),
+        {
+          display: 'inline-flex',
+          width: 'auto',
+          color: vars.color.info100,
+          borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+          ':hover': {
+            color: vars.color.info75,
+            textDecoration: 'underline',
+          },
+          ':focus': {
+            outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          },
+        },
+      ]),
+      label: style([
+        responsiveStyle({
+          mobile: {
+            height: 'auto',
+            gap: calc.divide(vars.space.xsmall.mobile, 2),
+          },
+          tablet: {
+            height: 'auto',
+            gap: calc.multiply(vars.space.xsmall.mobile, 1.25),
+          },
+        }),
+        {
+          display: 'inline-flex',
+          width: 'auto',
+          color: vars.color.info100,
+          borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+          ':hover': {
+            color: vars.color.info75,
+            textDecoration: 'underline',
+          },
+          ':focus': {
+            outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+          },
+        },
+      ]),
       primary: {
         color: vars.color.primary0,
         backgroundColor: vars.color.primary100,

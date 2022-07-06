@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Tag, TagProps } from './Tag';
 
 export default {
@@ -13,9 +11,6 @@ export default {
 };
 
 export const Default = (args: TagProps) => {
-  const text = 'tag';
-  const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
-
   return (
     <Tag
       {...args}
