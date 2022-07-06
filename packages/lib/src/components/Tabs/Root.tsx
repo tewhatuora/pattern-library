@@ -13,6 +13,16 @@ export type TabsRootProps = {
 } & Omit<RadixTabs.TabsProps, 'orientation' | 'dir' | 'asChild'> &
   React.RefAttributes<HTMLDivElement>;
 
+/**
+ * Tabs
+ *
+ *  For a horizontal selection of multiple content panels.
+ *
+ * Built on the Radix Tabs component.
+ *
+ * @param props
+ * @returns
+ */
 export const Root = ({ className, children, ...rest }: TabsRootProps) => {
   return (
     <RadixTabs.Root className={className} {...rest}>
