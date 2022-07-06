@@ -82,6 +82,8 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
 
+    const hasClearButton = Boolean(clearable && value?.length);
+
     const inputElement = createElement(inputEl, {
       disabled,
       id,
@@ -99,14 +101,13 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
           [styles.input.error]: error,
           [styles.input.base]: !error,
           [styles.input.multiline]: multiline,
+          [styles.input.clearable]: hasClearButton,
         },
         textSizeClasses,
         props.className,
       ),
       ref,
     });
-
-    const hasClearButton = Boolean(clearable && value?.length);
 
     return (
       <div className={styles.field}>

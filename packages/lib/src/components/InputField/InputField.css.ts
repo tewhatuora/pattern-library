@@ -61,6 +61,12 @@ export const inputBase = style([
 
 export const input = styleVariants({
   base: [inputBase],
+  clearable: [
+    inputBase,
+    {
+      paddingRight: calc.multiply(vars.space.xsmall.tablet, 3),
+    },
+  ],
   dropdown: [
     inputBase,
     {
