@@ -1,4 +1,5 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 
@@ -16,6 +17,7 @@ export const button = style({
   backgroundColor: 'transparent',
   border: 'none',
   padding: '0.6rem 1.6rem',
+  cursor: 'pointer',
 
   vars: {
     [barHeightVar]: '0',
