@@ -20,20 +20,18 @@ export const label = style([
   }),
 ]);
 
-export const switchRoot = style([
-  {
-    all: 'unset',
-    width: '5.1rem',
-    height: '3.1rem',
-    backgroundColor: vars.color.tertiary75,
-    borderRadius: vars.borderRadius.topLeft.tags,
-    position: 'relative',
-    WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-    selectors: {
-      '&[data-state=checked]': { backgroundColor: vars.color.neutral100 },
-    },
+export const switchRoot = style({
+  all: 'unset',
+  width: '5.1rem',
+  height: '3.1rem',
+  backgroundColor: vars.color.tertiary75,
+  borderRadius: vars.borderRadius.topLeft.tags,
+  position: 'relative',
+  WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+  selectors: {
+    '&[data-state=checked]': { backgroundColor: vars.color.neutral100 },
   },
-]);
+});
 
 export const switchThumb = style([
   {
@@ -41,7 +39,7 @@ export const switchThumb = style([
     height: '2.7rem',
     display: 'block',
     backgroundColor: vars.color.neutral0,
-    borderRadius: vars.borderRadius.topLeft.tags,
+    borderRadius: vars.borderRadiusAll.tags,
     transition: 'transform 100ms ease-out',
     transform: 'translateX(0.25rem)',
     willChange: 'transform',

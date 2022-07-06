@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Banner, BannerProps } from './Banner';
 
 export default {
@@ -7,9 +5,9 @@ export default {
   component: Banner,
   argTypes: {
     label: {
-      defaultValue: 'Lorem ipsum dolor sit amet'
+      defaultValue: 'Lorem ipsum dolor sit amet',
     },
-  }
+  },
 };
 
 export const Default = (args: BannerProps) => {
@@ -20,5 +18,14 @@ export const Default = (args: BannerProps) => {
 };
 
 export const OnClose = (args: BannerProps) => {
-  return <Banner {...args} onClose={() => { alert('Banner closed!'); }}>Banner with onClose</Banner>;
+  return (
+    <Banner
+      {...args}
+      onClose={() => {
+        alert('Banner closed!');
+      }}
+    >
+      Banner with onClose
+    </Banner>
+  );
 };
