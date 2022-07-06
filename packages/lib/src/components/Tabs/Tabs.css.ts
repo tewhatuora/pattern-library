@@ -5,7 +5,7 @@ import { vars } from '../../themes/vars.css';
 const barHeightVar = createVar();
 
 export const list = style({
-  borderBottom: `0.2rem solid ${vars.color.primary25}`,
+  borderBottom: `${vars.borderWidth.medium} solid ${vars.color.primary25}`,
   padding: 0,
   display: 'flex',
   alignItems: 'flex-end',
@@ -29,20 +29,20 @@ export const button = style({
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: '-0.2rem', // Cover the list's bottom border
+    bottom: calc.multiply(vars.borderWidth.medium, -1), // Cover the list's bottom border
     height: barHeightVar,
     backgroundColor: vars.color.primary100,
   },
 
   ':focus-visible': {
-    outline: `0.2rem solid ${vars.color.caution100}`,
+    outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
   },
 
   selectors: {
     '&[data-state="active"]:not(:focus-visible)': {
       fontWeight: vars.textWeight.bold,
       vars: {
-        [barHeightVar]: '0.4rem',
+        [barHeightVar]: vars.borderWidth.xlarge,
       },
     },
   },
