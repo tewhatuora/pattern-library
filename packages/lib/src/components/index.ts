@@ -18,6 +18,8 @@ export { Header, HeaderStyles } from './Header/Header';
 export { Heading } from './Heading/Heading';
 export { Icon, IconStyles } from './Icon/Icon';
 export { Inline } from './Inline/Inline';
+export { InputField, InputFieldStyles } from './InputField/InputField';
+export { InputLabel, InputLabelStyles } from './InputLabel/InputLabel';
 export { InputMessage, InputMessageStyles } from './InputMessage/InputMessage';
 export { Loader, LoaderStyles } from './Loader/Loader';
 export { Notice, NoticeStyles } from './Notice/Notice';

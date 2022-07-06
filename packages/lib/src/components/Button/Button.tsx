@@ -33,7 +33,7 @@ export type ButtonType<Props> = {
 
 type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
 
-export type ButtonProps = ButtonType<{ children: ReactText }>;
+export type ButtonProps = ButtonType<{ children?: ReactText }>;
 
 export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButtonElement> | null) => {
   const { children, as = 'button', type = 'button', disabled, className, onPress, ...boxProps } = props;
@@ -89,9 +89,11 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       onPress={onPress}
       {...boxProps}
     >
-      <Text size="medium" weight={weightFor(variant)}>
-        {children}
-      </Text>
+      {!!children && (
+        <Text size="medium" weight={weightFor(variant)}>
+          {children}
+        </Text>
+      )}
 
       {!!icon && <Icon icon={icon} variant="functionalIcons" />}
     </ButtonRoot>

@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
+import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
@@ -73,4 +73,13 @@ globalStyle(`${icon} > svg path`, {
 globalStyle(`${icon} > svg`, {
   width: '100%',
   height: '100%',
+});
+
+export const clearIcon = style({});
+
+globalStyle(`${clearIcon} > svg path`, {
+  fill: vars.color.primary0,
+});
+globalStyle(`${clearIcon} > svg circle`, {
+  fill: 'currentColor',
 });
