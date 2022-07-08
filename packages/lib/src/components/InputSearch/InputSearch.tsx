@@ -14,7 +14,7 @@ export type InputSearchProps = Omit<OtherInputFieldProps, 'error' | 'disabled' |
  */
 export const InputSearch = ({ id, name, placeholder, value, defaultValue, onChange }: InputSearchProps) => {
   return (
-    <Box display="flex" flexDirection="row">
+    <Box className={styles.container} display="flex" flexDirection="row">
       <InputField
         className={styles.input}
         clearable

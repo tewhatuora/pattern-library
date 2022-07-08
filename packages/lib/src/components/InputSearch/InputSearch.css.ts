@@ -4,6 +4,17 @@ import { calc } from '@vanilla-extract/css-utils';
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
+export const container = style(
+  responsiveStyle({
+    mobile: {
+      boxShadow: vars.shadow.primary,
+    },
+    tablet: {
+      boxShadow: 'none',
+    },
+  }),
+);
+
 export const input = style([
   {
     borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
