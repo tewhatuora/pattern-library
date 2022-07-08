@@ -16,6 +16,7 @@ export type StackProps = {
   as?: typeof validStackComponents[number];
   space: Space;
   horizontal?: boolean;
+  classNane?: string;
 } & BoxProps;
 
 /**
@@ -28,6 +29,7 @@ export const Stack = ({
   children,
   space = 'medium',
   horizontal = false,
+  className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
   assert(
@@ -38,10 +40,13 @@ export const Stack = ({
   return (
     <Box
       as={as}
-      className={styles.variants({
-        space,
-        direction: horizontal ? 'horizontal' : 'vertical',
-      })}
+      className={[
+        styles.variants({
+          space,
+          direction: horizontal ? 'horizontal' : 'vertical',
+        }),
+        className,
+      ]}
       {...boxProps}
     >
       {children}

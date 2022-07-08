@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -44,13 +44,62 @@ export const header = styleVariants({
   ],
 });
 
+export const logo = style([
+  {
+    display: 'block',
+    ':visited': {
+      color: 'currentColor',
+    },
+  },
+  responsiveStyle({
+    mobile: {
+      width: '10rem',
+    },
+    tablet: {
+      width: '14rem',
+    },
+  }),
+]);
+
+globalStyle(`${logo} svg path`, {
+  fill: 'currentColor',
+});
+
 export const searchNav = style(
   responsiveStyle({
     mobile: {
       display: 'none',
     },
-    tablet: {
+    desktop: {
       display: 'flex',
     },
   }),
 );
+
+export const headerLink = style([
+  atoms({
+    display: 'flex',
+    alignItems: 'center',
+  }),
+  {
+    color: 'currentColor',
+    textDecoration: 'none',
+    gap: '0.4rem',
+    ':hover': {
+      textDecoration: 'underline',
+    },
+  },
+]);
+
+export const mobileMenuButton = style([
+  atoms({
+    alignItems: 'center',
+  }),
+  {
+    gap: vars.space.xsmall.mobile,
+  },
+  responsiveStyle({
+    mobile: { display: 'flex' },
+    desktop: { display: 'none' },
+  }),
+]);

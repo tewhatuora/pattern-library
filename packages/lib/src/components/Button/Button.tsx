@@ -72,7 +72,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     ...boxProps
   } = props;
 
-  console.log(weightFor(variant));
   return (
     <ButtonRoot
       as={as}
