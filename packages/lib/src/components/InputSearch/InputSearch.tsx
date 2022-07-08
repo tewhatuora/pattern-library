@@ -26,7 +26,7 @@ export const InputSearch = ({ id, name, placeholder, value, defaultValue, onChan
         value={value}
         onChange={onChange}
       />
-      <Button className={styles.button} icon="search" variant="primary" />
+      <Button className={styles.button} icon="search" type="submit" variant="primary" />
     </Box>
   );
 };

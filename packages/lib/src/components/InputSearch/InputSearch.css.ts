@@ -17,14 +17,12 @@ export const container = style(
 
 export const input = style([
   {
-    borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
     borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
     borderTopRightRadius: '0',
     borderBottomRightRadius: '0',
-    borderRightWidth: '0',
+    border: `${vars.borderWidth.small} solid ${vars.color.primary100}`,
     selectors: {
       '&:focus': {
-        borderWidth: vars.borderWidth.small,
         borderColor: vars.color.caution100,
         outline: 'none',
         boxShadow: `inset 0 0 0 0.1rem ${vars.color.caution100}`,
@@ -47,9 +45,9 @@ export const button = style([
     borderBottomRightRadius: vars.borderRadius.bottomRight.inputs,
     borderTopLeftRadius: '0',
     borderBottomLeftRadius: '0',
+    border: `${vars.borderWidth.small} solid ${vars.color.primary100}`,
     selectors: {
       '&:focus': {
-        borderWidth: vars.borderWidth.small,
         borderColor: vars.color.caution100,
         outline: 'none',
         boxShadow: `inset 0 0 0 0.1rem ${vars.color.caution100}`,
