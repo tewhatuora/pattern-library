@@ -19,6 +19,9 @@ export const Default = (args: ListRootProps) => {
       </List.Item>
       <List.Item>Item 2</List.Item>
       <List.Item>Item 3</List.Item>
+      <List.Root bulletStyle="number" type="ol">
+        <List.Item>Item 1 in nested list</List.Item>
+      </List.Root>
     </List.Root>
   );
 };
@@ -53,3 +56,16 @@ export const Icons = (args: ListRootProps) => {
     </List.Root>
   );
 };
+
+export const NormalList = () => (
+  <ol>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <ol>
+      <li>Item 3</li>
+      <ul>
+        <li>Item 4</li>
+      </ul>
+    </ol>
+  </ol>
+);
