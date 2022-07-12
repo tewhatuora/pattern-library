@@ -43,6 +43,11 @@ export const noMarkers = style({
   paddingInlineStart: 0,
 });
 
+/**
+ * I've used a `dividers` class instead of using selectors on the `list` and
+ * `item` classes with the `data-variant` selector because it would
+ * be significantly more verbose.
+ */
 export const dividers = style({
   position: 'relative',
 
