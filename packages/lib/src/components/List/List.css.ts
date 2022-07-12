@@ -87,7 +87,7 @@ export const dividers = style({
 
 export const itemIcon = style([
   {
-    width: 40,
+    width: listPadding,
     flexShrink: 0,
   },
   // Make the icon line up with the text
