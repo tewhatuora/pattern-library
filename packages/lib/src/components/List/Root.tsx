@@ -12,13 +12,17 @@ export const ListStyles = styles;
 
 export type ListRootProps = PropsWithChildren<{
   type: 'ol' | 'ul';
-  bulletStyle: 'none' | 'bullet' | 'number' | 'individualIcons';
+  noMarkers?: boolean;
   dividers?: boolean;
+  className?: string;
 }>;
 
-export const Root = ({ type, bulletStyle = 'bullet', dividers = false, children }: ListRootProps) => {
+export const Root = ({ type, noMarkers = false, dividers = false, className, children }: ListRootProps) => {
   const newChildren = Children.map(children, (child) => {
-    assert(isValidElement(child), 'A child of `List.Root` is an invalid React element.');
+    assert(
+      isValidElement(child),
+      'A child of `List.Root` is an invalid React element. Check that the children are all valid.',
+    );
 
     return cloneElement(child, { className: clsx(child.props.className, { [styles.dividers]: dividers }) });
   });
@@ -26,7 +30,8 @@ export const Root = ({ type, bulletStyle = 'bullet', dividers = false, children 
   const listEl = createElement(
     type,
     {
-      className: clsx(styles.list, styles.listStyle[bulletStyle]),
+      className: clsx(styles.list, { [styles.noMarkers]: noMarkers }, className),
+      'data-dividers': dividers, // Required to handle vertical padding of nested lists
     },
     <AllowedChildren
       errorMessage="Only `List.Item` and `List.Root` components are allowed as children of `List.Root`."

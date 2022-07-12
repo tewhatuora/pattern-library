@@ -11,17 +11,43 @@ export default {
   },
 };
 
-export const Default = (args: ListRootProps) => {
+export const Basic = (args: ListRootProps) => {
   return (
     <List.Root {...args}>
-      <List.Item>
-        Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1
-      </List.Item>
+      <List.Item>Item 1</List.Item>
       <List.Item>Item 2</List.Item>
       <List.Item>Item 3</List.Item>
-      <List.Root bulletStyle="number" type="ol">
-        <List.Item>Item 1 in nested list</List.Item>
+      <List.Item>Item 4</List.Item>
+      <List.Item>Item 5</List.Item>
+    </List.Root>
+  );
+};
+
+export const NestedList = (args: ListRootProps) => {
+  return (
+    <List.Root {...args}>
+      <List.Item>Item</List.Item>
+      <List.Item>Item</List.Item>
+      <List.Root dividers type="ol">
+        <List.Item>Item</List.Item>
+        <List.Item>Item</List.Item>
+        <List.Root dividers type="ul">
+          <List.Item>Item</List.Item>
+          <List.Item>Item</List.Item>
+          <List.Item>Item</List.Item>
+          <List.Root type="ol">
+            <List.Item>Item</List.Item>
+            <List.Item>Item</List.Item>
+            <List.Item>Item</List.Item>
+            <List.Item>Item</List.Item>
+            <List.Item>Item</List.Item>
+          </List.Root>
+          <List.Item>Item</List.Item>
+        </List.Root>
+        <List.Item>Item</List.Item>
       </List.Root>
+      <List.Item>Item</List.Item>
+      <List.Item>Item</List.Item>
     </List.Root>
   );
 };
@@ -30,42 +56,55 @@ export const Headings = (args: ListRootProps) => {
   return (
     <List.Root {...args}>
       <List.Item icon="tick">
-        <Text weight="bold">
-          Heading Heading Heading Heading Heading Heading Heading Heading Heading Heading Heading Heading Heading
-          Heading Heading Heading Heading Heading
-        </Text>
-        <div>
-          Content Content Content Content Content Content Content Content Content Content Content Content Content
-          Content Content Content Content Content Content
-        </div>
+        <Text weight="bold">Heading</Text>
+        <div>Content</div>
       </List.Item>
       <List.Item icon="tick">Item 2</List.Item>
       <List.Item icon="cross">Item 3</List.Item>
     </List.Root>
   );
 };
+Headings.args = { noMarkers: true };
 
 export const Icons = (args: ListRootProps) => {
   return (
     <List.Root {...args}>
-      <List.Item icon="alert">
-        Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1
-      </List.Item>
-      <List.Item icon="tick">Item 2</List.Item>
-      <List.Item icon="cross">Item 3</List.Item>
+      <List.Item icon="alert">Item</List.Item>
+      <List.Item icon="tick">Item</List.Item>
+      <List.Item icon="cross">Item</List.Item>
     </List.Root>
   );
 };
+Icons.args = { noMarkers: true };
 
-export const NormalList = () => (
-  <ol>
-    <li>Item 1</li>
-    <li>Item 2</li>
-    <ol>
-      <li>Item 3</li>
-      <ul>
-        <li>Item 4</li>
-      </ul>
-    </ol>
-  </ol>
-);
+export const WrappingLines = (args: ListRootProps) => {
+  return (
+    <List.Root {...args}>
+      <List.Item icon="tick">
+        <Text weight="bold">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis massa sit amet velit ultrices accumsan a
+          sed purus. Ut varius ipsum a purus commodo accumsan. Ut sem quam, dapibus sit amet accumsan in, rutrum eget
+          felis. Etiam pulvinar tempor interdum. In elementum lorem in ornare ullamcorper. Nulla facilisi. Suspendisse.
+        </Text>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis massa sit amet velit ultrices accumsan a
+          sed purus. Ut varius ipsum a purus commodo accumsan. Ut sem quam, dapibus sit amet accumsan in, rutrum eget
+          felis. Etiam pulvinar tempor interdum. In elementum lorem in ornare ullamcorper. Nulla facilisi. Suspendisse.
+        </div>
+      </List.Item>
+      <List.Item icon="tick">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis massa sit amet velit ultrices accumsan a sed
+        purus. Ut varius ipsum a purus commodo accumsan. Ut sem quam, dapibus sit amet accumsan in, rutrum eget felis.
+        Etiam pulvinar tempor interdum. In elementum lorem in ornare ullamcorper. Nulla facilisi. Suspendisse.
+      </List.Item>
+      <List.Root dividers type="ol">
+        <List.Item>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis massa sit amet velit ultrices accumsan a
+          sed purus. Ut varius ipsum a purus commodo accumsan. Ut sem quam, dapibus sit amet accumsan in, rutrum eget
+          felis. Etiam pulvinar tempor interdum. In elementum lorem in ornare ullamcorper. Nulla facilisi. Suspendisse.
+        </List.Item>
+      </List.Root>
+    </List.Root>
+  );
+};
+WrappingLines.args = { noMarkers: true };
