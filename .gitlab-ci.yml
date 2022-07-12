@@ -1,0 +1,11 @@
+image: node:12.10.0
+
+pages:
+  script:
+    - yarn
+    - yarn build-storybook
+  artifacts:
+    paths:
+      - storybook-static
+  only:
+    - main
