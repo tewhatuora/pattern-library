@@ -31,6 +31,10 @@ export const list = style({
       paddingTop: 0,
       paddingBottom: 0,
     },
+
+    '&[data-variant="dark"]': {
+      color: vars.color.primary0,
+    },
   },
 });
 
@@ -47,7 +51,7 @@ export const dividers = style({
 
   selectors: {
     /** Shared styles for ::before and ::after. */
-    '&::before, &::after': {
+    [beforeAndAfterOf('&')]: {
       content: '',
       position: 'absolute',
 
@@ -71,8 +75,12 @@ export const dividers = style({
      * With `listStyle.none`, the `paddingInlineStart` is removed, so the
      * dividers need to have `left: 0` instead of accounting for the padding.
      */
-    [`${noMarkers} > &::before, ${noMarkers} > &::after`]: {
+    [beforeAndAfterOf(`${noMarkers} > &`)]: {
       left: 0,
+    },
+
+    [beforeAndAfterOf(`${list}[data-variant="dark"] &`)]: {
+      backgroundColor: vars.color.primary0,
     },
   },
 });
@@ -96,7 +104,6 @@ export const itemIcon = style([
 export const itemContent = style({
   display: 'inline-flex',
   alignItems: 'baseline', // Works more consistently than 'flex-start' for aligning the icon
-  // gap: 12,
 });
 
 export const itemIconPosition = styleVariants({
@@ -107,3 +114,13 @@ export const itemIconPosition = styleVariants({
     flexDirection: 'row-reverse',
   },
 });
+
+/**
+ * Helper for styles that affect both the ::before and ::after pseudo-elements of an element.
+ *
+ * @param selector Element to get the ::before and ::after of
+ * @returns Selector that selects both ::before and ::after pseudo-elements of the selector
+ */
+function beforeAndAfterOf(selector: string) {
+  return `${selector}::before, ${selector}::after`;
+}
