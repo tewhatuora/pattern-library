@@ -13,30 +13,34 @@ export const ButtonStyles = styles;
 
 type KeysUnder<T, K extends PropertyKey> = T extends object
   ? {
-      [P in keyof T]-?: (P extends K ? keyof T[P] : never) | KeysUnder<T[P], K>;
+      [P in keyof T]-?: (P extends K ? keyof T[P] : any) | KeysUnder<T[P], K>;
     }[keyof T]
-  : never;
+  : any;
 
-type IconVariant = KeysUnder<styles.Variants, 'icon'>;
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
 export type ButtonType<Props> = {
   icon?: IconType;
-  iconPosition?: IconVariant;
+  iconPosition?: 'left' | 'right';
   as?: ElementType;
   className?: string;
   variant?: ColorVariant;
   onPress?: (e: any) => void;
 } & Props &
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
-  Pick<BoxProps, 'width' | 'justifyContent'>;
+  Pick<BoxProps, 'width' | 'justifyContent'> &
+  AsLink;
+
+type AsLink = {
+  href?: string;
+};
 
 type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
 
-export type ButtonProps = ButtonType<{ children: ReactText }>;
+export type ButtonProps = ButtonType<{ children?: ReactText }>;
 
 export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButtonElement> | null) => {
-  const { children, as = 'button', type = 'button', disabled, className, onPress, ...boxProps } = props;
+  const { children, as = 'button', type = 'button', disabled, className, href, onPress, ...boxProps } = props;
 
   const { buttonProps } = useButton(
     {
@@ -49,7 +53,15 @@ export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButto
   );
 
   return (
-    <Box as={as} className={clsx(styles.root, className)} ref={ref} type={type} {...buttonProps} {...boxProps}>
+    <Box
+      as={as}
+      className={clsx(styles.root, className)}
+      href={href}
+      ref={ref}
+      type={type}
+      {...buttonProps}
+      {...boxProps}
+    >
       {children}
     </Box>
   );
@@ -68,6 +80,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     className,
     icon,
     iconPosition = 'right',
+    href,
     onPress,
     ...boxProps
   } = props;
@@ -83,14 +96,17 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
         className,
       )}
       disabled={disabled}
+      href={href}
       ref={ref}
       type={type}
       onPress={onPress}
       {...boxProps}
     >
-      <Text size="medium" weight={weightFor(variant)}>
-        {children}
-      </Text>
+      {!!children && (
+        <Text size="medium" weight={weightFor(variant)}>
+          {children}
+        </Text>
+      )}
 
       {!!icon && <Icon icon={icon} variant="functionalIcons" />}
     </ButtonRoot>
