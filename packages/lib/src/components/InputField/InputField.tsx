@@ -70,10 +70,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
 
     const valueProps = useMemo(() => {
-      if (defaultValue) {
-        return { defaultValue };
-      }
-      return { value };
+      return value ? { value } : { defaultValue };
     }, [value, defaultValue]);
 
     const handleClear = useCallback(() => {
@@ -93,13 +90,12 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       type,
       rows,
       onChange,
-      'aria-invalid': !!error?.toString() || 'false',
+      'aria-invalid': error,
       ...valueProps,
       ...props,
       className: clsx(
         {
-          [styles.input.error]: error,
-          [styles.input.base]: !error,
+          [styles.input.base]: true,
           [styles.input.multiline]: multiline,
           [styles.input.clearable]: hasClearButton,
         },

@@ -55,6 +55,10 @@ export const inputBase = style([
       '&::placeholder': {
         color: vars.color.neutral50,
       },
+      '&[aria-invalid="true"]:not([disabled])': {
+        borderColor: vars.color.error100,
+        outline: `${vars.borderWidth.small} solid ${vars.color.error100}`,
+      },
     },
   },
 ]);
@@ -102,13 +106,6 @@ export const input = styleVariants({
         lineHeight: vars.textSize.medium.tablet.lineHeight,
       },
     }),
-  ],
-  error: [
-    inputBase,
-    {
-      borderColor: vars.color.error100,
-      outline: `${vars.borderWidth.small} solid ${vars.color.error100}`,
-    },
   ],
   phone: [
     inputBase,
