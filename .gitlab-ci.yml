@@ -6,6 +6,6 @@ pages:
     - yarn build-storybook
   artifacts:
     paths:
-      - storybook-static
+      - public
   only:
     - main
