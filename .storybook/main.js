@@ -1,7 +1,8 @@
-const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 const path = require('path');
+const { vanillaExtractPlugin } = require('@vanilla-extract/vite-plugin');
+const svgr = require('@honkhonk/vite-plugin-svgr').default;
 
-const pathToInlineSvg = path.resolve(__dirname, '../packages/lib/src/icons');
+const { mergeConfig } = require('vite');
 
 module.exports = {
   stories: [
@@ -18,30 +19,25 @@ module.exports = {
   ],
   framework: '@storybook/react',
   core: {
-    builder: '@storybook/builder-webpack5',
+    builder: '@storybook/builder-vite',
   },
   staticDirs: ['./public'],
-  webpackFinal: async (config, { configType }) => {
-    // Add Vanilla Extract here
-    config.plugins = [...config.plugins, new VanillaExtractPlugin()];
+  // use `mergeConfig` to recursively merge Vite options
 
-    // modify storybook's file-loader rule to avoid conflicts with svgr
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test.test('.svg'));
-    fileLoaderRule.exclude = pathToInlineSvg;
-
-    config.module.rules.push({
-      test: /\.svg$/,
-      include: pathToInlineSvg,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      base: process.env.BASE_URL || config.base,
+      plugins: [
+        vanillaExtractPlugin({
+          identifiers: 'short',
+        }),
+        svgr({
+          svgrOptions: {
+            jsxRuntime: 'automatic',
             dimensions: false,
           },
-        },
+        }),
       ],
     });
-
-    return config;
   },
 };
