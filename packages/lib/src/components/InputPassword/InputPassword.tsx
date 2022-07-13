@@ -51,6 +51,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
     return (
       <div>
         <InputLabel
+          disabled={disabled}
           error={error || !!errorMessage}
           htmlFor={id}
           label={label}
@@ -72,7 +73,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
           value={value}
           onChange={onChange}
         />
-        <InputMessage errorMessage={errorMessage} helperText={helperText} />
+        <InputMessage disabled={disabled} errorMessage={errorMessage} helperText={helperText} />
       </div>
     );
   },
