@@ -53,6 +53,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
     return (
       <Box flexGrow={1}>
         <InputLabel
+          disabled={disabled}
           error={error || !!errorMessage}
           href={href}
           htmlFor={id}
@@ -80,7 +81,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           value={value}
           onChange={onChange}
         />
-        <InputMessage errorMessage={errorMessage} helperText={helperText} />
+        <InputMessage disabled={disabled} errorMessage={errorMessage} helperText={helperText} />
       </Box>
     );
   },
