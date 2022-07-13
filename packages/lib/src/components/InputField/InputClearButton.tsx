@@ -15,7 +15,7 @@ export type InputClearButtonProps = {
  */
 export const InputClearButton = ({ onClear }: InputClearButtonProps) => {
   return (
-    <ButtonRoot className={styles.clearButton} key="clear" onPress={onClear}>
+    <ButtonRoot aria-label="Clear input field" className={styles.clearButton} onPress={onClear}>
       <Icon className={clearIcon} color="primary100" icon="clear_field" variant="functionalIcons" />
     </ButtonRoot>
   );

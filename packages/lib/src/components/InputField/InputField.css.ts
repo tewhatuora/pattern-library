@@ -7,7 +7,6 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 export const field = style({
   position: 'relative',
   display: 'flex',
-  gap: vars.space.xsmall.tablet,
   flexGrow: '1',
 });
 
@@ -56,12 +55,22 @@ export const inputBase = style([
       '&::placeholder': {
         color: vars.color.neutral50,
       },
+      '&[aria-invalid="true"]:not([disabled])': {
+        borderColor: vars.color.error100,
+        outline: `${vars.borderWidth.small} solid ${vars.color.error100}`,
+      },
     },
   },
 ]);
 
 export const input = styleVariants({
   base: [inputBase],
+  clearable: [
+    inputBase,
+    {
+      paddingRight: calc.multiply(vars.space.xsmall.tablet, 3),
+    },
+  ],
   dropdown: [
     inputBase,
     {
@@ -98,13 +107,6 @@ export const input = styleVariants({
       },
     }),
   ],
-  error: [
-    inputBase,
-    {
-      borderColor: vars.color.error100,
-      outline: `${vars.borderWidth.small} solid ${vars.color.error100}`,
-    },
-  ],
   phone: [
     inputBase,
     {
@@ -124,7 +126,7 @@ export const clearButton = style({
   right: 0,
   display: 'flex',
   alignItems: 'center',
-  height: '100%',
+  height: vars.space.xxlarge.tablet,
   paddingLeft: vars.space.xsmall.tablet,
   paddingRight: vars.space.xsmall.tablet,
   cursor: 'pointer',
