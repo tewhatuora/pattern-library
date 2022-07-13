@@ -1,14 +1,12 @@
 import * as RadixAccordion from '@radix-ui/react-accordion';
 
-import { Children, cloneElement, isValidElement } from 'react';
-
-import assert from 'assert';
+import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
+import { AccordionTriggerProps, Trigger } from './Trigger';
+import { AccordionContentProps, Content } from './Content';
 
 import { ChildrenOfType } from '../../types/index';
 
 import * as styles from './Accordion.css';
-import { AccordionContentProps } from './Content';
-import { AccordionTriggerProps } from './Trigger';
 
 export type AccordionItemProps = {
   value: string;
@@ -18,13 +16,12 @@ export type AccordionItemProps = {
 export const Item = ({ value, children }: AccordionItemProps) => {
   return (
     <RadixAccordion.Item className={styles.item} value={value}>
-      {Children.map(children, (child) => {
-        assert(
-          isValidElement(child) && ['Trigger', 'Content'].includes(child?.type.name),
-          'Only `Accordion.Trigger` and `Accordion.Content` components are allowed as children of `Accordion.Item`.',
-        );
-        return cloneElement(child);
-      })}
+      <AllowedChildren
+        errorMessage="Only `Accordion.Trigger` and `Accordion.Content` components are allowed as children of `Accordion.Item`"
+        types={[Trigger, Content]}
+      >
+        {children}
+      </AllowedChildren>
     </RadixAccordion.Item>
   );
 };
