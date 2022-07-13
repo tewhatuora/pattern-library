@@ -70,7 +70,10 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
 
     const valueProps = useMemo(() => {
-      return value ? { value } : { defaultValue };
+      if (defaultValue) {
+        return { defaultValue };
+      }
+      return { value };
     }, [value, defaultValue]);
 
     const handleClear = useCallback(() => {
