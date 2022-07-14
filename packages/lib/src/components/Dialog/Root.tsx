@@ -102,7 +102,7 @@ export const Root = ({
                           </Box>
                         )}
                         <AllowedChildren
-                          errorMessage="Only Dialog.Content and Dialog.Actions components are allowed as children of Dialog.Root"
+                          errorMessage="Only `Dialog.Content` and `Dialog.Actions` components are allowed as children of `Dialog.Root`"
                           types={[Content, Actions]}
                         >
                           {children}

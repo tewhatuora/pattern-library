@@ -1,8 +1,5 @@
-import { Children, cloneElement, isValidElement } from 'react';
-
-import assert from 'assert';
-
-import { CheckboxProps } from '../Checkbox/Checkbox';
+import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
+import { Checkbox, CheckboxProps } from '../Checkbox/Checkbox';
 import { ChildrenOfType } from '../../types/index';
 import { Box } from '../Box/Box';
 
@@ -28,13 +25,12 @@ export type CheckboxGroupProps = {
 export const CheckboxGroup = ({ children, ...boxProps }: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
-      {Children.map(children, (child) => {
-        assert(
-          isValidElement(child) && child?.type.name === 'Checkbox',
-          'Only `Checkbox` components are allowed as children of `CheckboxGroup`.',
-        );
-        return cloneElement(child);
-      })}
+      <AllowedChildren
+        errorMessage="Only `Checkbox` components are allowed as children of `CheckboxGroup`"
+        types={[Checkbox]}
+      >
+        {children}
+      </AllowedChildren>
     </Box>
   );
 };

@@ -18,6 +18,7 @@ export type InputLabelProps = {
   tertiaryLabelIconPosition?: 'left' | 'right';
   htmlFor: string;
   error?: boolean;
+  disabled?: boolean;
 } & (AsLink | AsButton | AsText);
 
 type AsLink = {
@@ -58,8 +59,9 @@ export const InputLabel = ({
   htmlFor,
   href,
   error = false,
+  disabled,
 }: InputLabelProps) => {
-  const labelColor = error ? 'error100' : 'primary100';
+  const labelColor = error && !disabled ? 'error100' : 'primary100';
 
   return (
     <Box display="flex" justifyContent="spaceBetween">
