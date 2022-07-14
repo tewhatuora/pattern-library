@@ -8,15 +8,22 @@ import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 import * as styles from './List.css';
 
-export type ListRootProps = PropsWithChildren<{
+export type ListRootProps = {
   type: 'ol' | 'ul';
   noMarkers?: boolean;
   dividers?: boolean;
   className?: string;
   variant?: 'light' | 'dark';
-}>;
+};
 
-export const Root = ({ type, noMarkers = false, dividers = false, variant, className, children }: ListRootProps) => {
+export const Root = ({
+  type,
+  noMarkers = false,
+  dividers = false,
+  variant,
+  className,
+  children,
+}: PropsWithChildren<ListRootProps>) => {
   const newChildren = Children.map(children, (child) => {
     assert(
       isValidElement(child),
