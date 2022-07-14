@@ -37,8 +37,9 @@ export const Root = ({
     type,
     {
       className: clsx(styles.list, { [styles.noMarkers]: noMarkers }, className),
-      'data-dividers': dividers, // Required to handle vertical padding of nested lists
-      'data-variant': variant,
+      'data-dividers': dividers,
+      'data - variant': variant, // Required to handle vertical padding of nested lists
+      role: 'list', // Fixes <ul> in Safari when list-style is set to 'none'. See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns
     },
     <AllowedChildren
       errorMessage="Only `List.Item` and `List.Root` components are allowed as children of `List.Root`."
