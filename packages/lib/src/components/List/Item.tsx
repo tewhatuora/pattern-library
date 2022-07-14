@@ -13,7 +13,7 @@ export type ListItemProps = {
   iconPosition?: 'left' | 'right';
 } & HTMLAttributes<HTMLLIElement>;
 
-export const Item = ({ icon, iconPosition = 'left', children, ...rest }: ListItemProps) => {
+export const Item = ({ icon, iconPosition = 'left', children, ...rest }: PropsWithChildren<ListItemProps>) => {
   return (
     <li {...rest}>
       <Box className={clsx(styles.itemContent, styles.itemIconPosition[iconPosition])}>
