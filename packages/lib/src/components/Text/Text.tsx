@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -17,21 +17,23 @@ export interface TextProps extends Pick<BoxProps, 'as'> {
  * A Text component for displaying
  * text content as a given HTML tag
  */
-export const Text = ({
-  id,
-  as = 'span',
-  size = 'medium',
-  align,
-  weight = 'regular',
-  children,
-  color,
-  className,
-}: PropsWithChildren<TextProps>) => {
-  const textStyles = useText({ weight, size });
+export const Text = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
+  ({ id, as = 'span', size = 'medium', align, weight = 'regular', children, color, className }, ref) => {
+    const textStyles = useText({ weight, size });
 
-  return (
-    <Box as={as} className={clsx(textStyles, className)} color={color} display="block" id={id} textAlign={align}>
-      {children}
-    </Box>
-  );
-};
+    return (
+      <Box
+        as={as}
+        className={clsx(textStyles, className)}
+        color={color}
+        display="block"
+        id={id}
+        ref={ref}
+        tabIndex={-1} // Allows it to be focused
+        textAlign={align}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
