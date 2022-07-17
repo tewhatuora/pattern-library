@@ -6,7 +6,6 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 const thicknessVar = createVar();
-const marginVar = createVar();
 
 const variant = {
   light: atoms({
@@ -22,13 +21,11 @@ export type Variant = keyof typeof variant;
 const dividerStyle = style({
   vars: {
     [thicknessVar]: vars.borderWidth.small,
-    [marginVar]: vars.space.medium.mobile,
   },
   selectors: {
     '&[data-orientation=horizontal]': {
       width: '100%',
       height: thicknessVar,
-      marginBottom: marginVar,
     },
     '&[data-orientation=vertical]': {
       width: thicknessVar,
@@ -44,13 +41,11 @@ export const variants = recipe({
       mobile: {
         vars: {
           [thicknessVar]: vars.borderWidth.small,
-          [marginVar]: vars.space.medium.mobile,
         },
       },
       desktop: {
         vars: {
           [thicknessVar]: vars.borderWidth.medium,
-          [marginVar]: vars.space.medium.tablet,
         },
       },
     }),
@@ -58,7 +53,6 @@ export const variants = recipe({
   variants: {
     variant,
   },
-  compoundVariants: [],
 });
 
 export type Variants = RecipeVariants<typeof variants>;
