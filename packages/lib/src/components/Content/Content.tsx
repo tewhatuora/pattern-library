@@ -1,11 +1,15 @@
 import { PropsWithChildren, forwardRef } from 'react';
 
+import clsx from 'clsx';
+
 import { HeadingProps } from '@/dist/types/components/Heading/Heading';
 
 import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
 
 import { Stack } from '../Stack/Stack';
+import { Box } from '../Box/Box';
+import { atoms } from '..';
 
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
@@ -22,7 +26,7 @@ export type ContentProps = {
  * @param props
  */
 export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
-  ({ heading, headingLevel, headingAs, subheading, children }, ref) => {
+  ({ heading, headingLevel, headingAs, subheading, variant, children }, ref) => {
     const subheadingLevel = subheadingLevelFor[headingLevel];
 
     const headingElement =
@@ -48,11 +52,18 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
       );
 
     return (
-      <Stack space="xsmall">
-        {headingElement}
-        {subheading && subheadingElement}
-        <Text>{children}</Text>
-      </Stack>
+      <Box
+        className={clsx({
+          // Inherit color if variant is not given
+          [atoms({ color: variant === 'dark' ? 'primary0' : 'primary100' })]: variant,
+        })}
+      >
+        <Stack space="xsmall">
+          {headingElement}
+          {subheading && subheadingElement}
+          <Text>{children}</Text>
+        </Stack>
+      </Box>
     );
   },
 );
