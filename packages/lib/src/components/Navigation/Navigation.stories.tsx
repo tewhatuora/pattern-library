@@ -14,6 +14,23 @@ export default {
         type: 'boolean',
       },
     },
+    variant: {
+      control: {
+        type: 'select',
+        options: ['light', 'dark'],
+      },
+    },
+    searchFormAction: {
+      control: {
+        type: 'text',
+      },
+    },
+    searchFormMethod: {
+      control: {
+        type: 'select',
+        options: ['GET', 'POST'],
+      },
+    },
   },
 };
 
@@ -97,9 +114,9 @@ Link.argTypes = {
   },
 };
 
-export const Tertiary = (args) => {
+export const Tertiary = () => {
   return (
-    <Navigation.Side {...args}>
+    <Navigation.Side>
       <Navigation.Link href="#link-one">Link one</Navigation.Link>
       <Navigation.Link href="#link-two">Link two</Navigation.Link>
       <Navigation.Link href="#link-three">Link three</Navigation.Link>
