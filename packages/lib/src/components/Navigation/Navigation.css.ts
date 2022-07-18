@@ -72,28 +72,6 @@ export const navList = style([
   }),
 ]);
 
-export const mobileOnly = style([
-  responsiveStyle({
-    mobile: {
-      display: 'block',
-    },
-    desktop: {
-      display: 'none',
-    },
-  }),
-]);
-
-export const desktopOnly = style(
-  responsiveStyle({
-    mobile: {
-      display: 'none',
-    },
-    desktop: {
-      display: 'block',
-    },
-  }),
-);
-
 export const noDesktop = style([
   responsiveStyle({
     desktop: {

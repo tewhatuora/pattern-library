@@ -1,9 +1,15 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
+import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { fontFamily, fontWeight, text } from '../../hooks/typography/typography.css';
 
 const base = style([
+  atoms({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  }),
   fontFamily,
   fontWeight.regular,
   text.medium,
