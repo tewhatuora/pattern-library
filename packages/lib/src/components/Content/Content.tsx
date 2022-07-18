@@ -1,30 +1,43 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, forwardRef } from 'react';
+
+import { HeadingProps } from '@/dist/types/components/Heading/Heading';
 
 import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
+
+import { Stack } from '../Stack/Stack';
 
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 export type ContentProps = {
   heading: string;
   headingLevel: ContentHeadingLevel;
+  headingAs?: Pick<HeadingProps, 'as'>;
   subheading?: string;
   variant?: 'light' | 'dark';
 };
 
 /**
- * Grid Content component
+ * Predefined content groups to make laying out text more efficient.
  * @param props
- * @constructor
  */
-export const Content = ({ heading, headingLevel, subheading, children }: PropsWithChildren<ContentProps>) => {
-  const subheadingLevel = subheadingLevelForHeadingLevel[headingLevel];
+export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
+  ({ heading, headingLevel, headingAs, subheading, children }, ref) => {
+    const subheadingLevel = subheadingLevelFor[headingLevel];
 
-  return (
-    <>
-      {headingLevel === '5' ? <Text as="h5">{heading}</Text> : <Heading level={headingLevel}>{heading}</Heading>}
+    const headingElement =
+      headingLevel === '5' ? (
+        <Text as={headingAs ?? 'h5'} ref={ref} weight="bold">
+          {heading}
+        </Text>
+      ) : (
+        <Heading as={headingAs} level={headingLevel} ref={ref}>
+          {heading}
+        </Heading>
+      );
 
-      {subheadingLevel === '5' ? (
+    const subheadingElement =
+      subheadingLevel === '5' ? (
         <Text as="div" weight="bold">
           {heading}
         </Text>
@@ -32,14 +45,19 @@ export const Content = ({ heading, headingLevel, subheading, children }: PropsWi
         <Heading as="div" level={subheadingLevel}>
           {subheading}
         </Heading>
-      )}
+      );
 
-      <Text>{children}</Text>
-    </>
-  );
-};
+    return (
+      <Stack space="xsmall">
+        {headingElement}
+        {subheading && subheadingElement}
+        <Text>{children}</Text>
+      </Stack>
+    );
+  },
+);
 
-const subheadingLevelForHeadingLevel: Record<ContentHeadingLevel, ContentHeadingLevel> = {
+const subheadingLevelFor: Record<ContentHeadingLevel, ContentHeadingLevel> = {
   '1': '3',
   '2': '4',
   '3': '4',
