@@ -20,6 +20,7 @@ export { Inline } from './Inline/Inline';
 export { InputField, InputFieldStyles } from './InputField/InputField';
 export { InputLabel, InputLabelStyles } from './InputLabel/InputLabel';
 export { InputMessage, InputMessageStyles } from './InputMessage/InputMessage';
+export { List, ListStyles } from './List/List';
 export { Loader, LoaderStyles } from './Loader/Loader';
 export { Navigation, NavigationStyles } from './Navigation/Navigation';
 export { Notice, NoticeStyles } from './Notice/Notice';
