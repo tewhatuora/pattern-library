@@ -2,34 +2,38 @@ import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
 import { AnchorLinkProps } from '@/src/components/AnchorLink/AnchorLink';
 
+import { LinkProps } from '@/src/components/Navigation/Link';
+
 import { Navigation } from './Navigation';
 import { NavigationProps } from './Root';
 
 export default {
   title: 'Components/Navigation',
   component: Navigation,
-  argTypes: {
-    open: {
-      control: {
-        type: 'boolean',
-      },
+};
+
+const navArgTypes = {
+  open: {
+    control: {
+      type: 'boolean',
     },
-    variant: {
-      control: {
-        type: 'select',
-        options: ['light', 'dark'],
-      },
+    defaultValue: true,
+  },
+  variant: {
+    control: {
+      type: 'select',
+      options: ['light', 'dark'],
     },
-    searchFormAction: {
-      control: {
-        type: 'text',
-      },
+  },
+  searchFormAction: {
+    control: {
+      type: 'text',
     },
-    searchFormMethod: {
-      control: {
-        type: 'select',
-        options: ['GET', 'POST'],
-      },
+  },
+  searchFormMethod: {
+    control: {
+      type: 'select',
+      options: ['GET', 'POST'],
     },
   },
 };
@@ -87,8 +91,72 @@ export const Default = (args: NavigationProps) => (
     <Navigation.Item href="#" label="Nav item 5" />
   </Navigation.Root>
 );
+Default.argTypes = navArgTypes;
 
-export const Link = (args) => {
+export const WithUtilityNavigation = (args: NavigationProps) => {
+  return (
+    <Navigation.Root
+      {...args}
+      utilityNavItems={[
+        {
+          href: '#',
+          icon: 'language',
+          label: 'Language',
+        },
+        {
+          href: '#',
+          icon: 'person',
+          label: 'Name Surname',
+        },
+      ]}
+    >
+      <Navigation.Item href="#" label="Nav item 1" selected>
+        <Navigation.Menu>
+          <Navigation.MenuList heading="List one">
+            <Navigation.Item href="#" label="Sub nav item 1" />
+            <Navigation.Item href="#" label="Sub nav item 2" />
+            <Navigation.Item href="#" label="Sub nav item 3" />
+            <Navigation.Item href="#" label="Sub nav item 4" />
+          </Navigation.MenuList>
+          <Navigation.MenuList heading="List two">
+            <Navigation.Item href="#" label="Sub nav item 5" />
+            <Navigation.Item href="#" label="Sub nav item 6" />
+            <Navigation.Item href="#" label="Sub nav item 7" />
+            <Navigation.Item href="#" label="Sub nav item 8" />
+          </Navigation.MenuList>
+          <Navigation.MenuList heading="List three">
+            <Navigation.Item href="#" label="Sub nav item 5" />
+            <Navigation.Item href="#" label="Sub nav item 6" />
+            <Navigation.Item href="#" label="Sub nav item 7" />
+            <Navigation.Item href="#" label="Sub nav item 8" />
+          </Navigation.MenuList>
+          <Navigation.MenuList heading="List four">
+            <Navigation.Item href="#" label="Sub nav item 5" />
+            <Navigation.Item href="#" label="Sub nav item 6" />
+            <Navigation.Item href="#" label="Sub nav item 7" />
+            <Navigation.Item href="#" label="Sub nav item 8" />
+          </Navigation.MenuList>
+        </Navigation.Menu>
+      </Navigation.Item>
+      <Navigation.Item href="#" label="Nav item 2">
+        <Navigation.Menu mini>
+          <Navigation.MenuList heading="List one">
+            <Navigation.Item href="#" label="Sub nav item 1" />
+            <Navigation.Item href="#" label="Sub nav item 2" />
+            <Navigation.Item href="#" label="Sub nav item 3" />
+            <Navigation.Item href="#" label="Sub nav item 4" />
+          </Navigation.MenuList>
+        </Navigation.Menu>
+      </Navigation.Item>
+      <Navigation.Item href="#" label="Nav item 3" />
+      <Navigation.Item href="#" label="Nav item 4" />
+      <Navigation.Item href="#" label="Nav item 5" />
+    </Navigation.Root>
+  );
+};
+WithUtilityNavigation.argTypes = navArgTypes;
+
+export const Link = (args: LinkProps) => {
   return (
     <Navigation.Link {...args} href="#">
       Link
@@ -101,7 +169,7 @@ Link.argTypes = {
   },
 };
 
-export const LinkAsComponent = (args) => {
+export const LinkAsComponent = (args: LinkProps) => {
   return (
     <Navigation.Link {...args} component={RouterLink} href="#">
       Link
@@ -114,7 +182,7 @@ Link.argTypes = {
   },
 };
 
-export const Tertiary = () => {
+export const Side = () => {
   return (
     <Navigation.Side>
       <Navigation.Link href="#link-one">Link one</Navigation.Link>
@@ -125,3 +193,4 @@ export const Tertiary = () => {
     </Navigation.Side>
   );
 };
+Side.argTypes = {};

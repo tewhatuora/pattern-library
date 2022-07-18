@@ -5,7 +5,7 @@ import { Stack } from '../Stack/Stack';
 import { InputSearch } from '../InputSearch/InputSearch';
 import { Divider } from '../Divider/Divider';
 import { Item } from './Item';
-import { Utility } from './Utility';
+import { Utility, UtilityNavItemProps } from './Utility';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 import * as styles from './Navigation.css';
@@ -18,6 +18,7 @@ export type NavigationProps = {
   open: boolean;
   searchFormAction: string;
   searchFormMethod: 'POST' | 'GET';
+  utilityNavItems: UtilityNavItemProps[];
 };
 
 /**
@@ -32,6 +33,7 @@ export const Root = ({
   searchFormAction = '/',
   searchFormMethod = 'GET',
   children,
+  utilityNavItems,
 }: PropsWithChildren<NavigationProps>) => {
   return (
     <nav
@@ -55,8 +57,12 @@ export const Root = ({
             {children}
           </AllowedChildren>
         </ul>
-        <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
-        <Utility className={helpers.upToTablet.block} variant={variant} />
+        {!!utilityNavItems?.length && (
+          <>
+            <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
+            <Utility className={helpers.upToTablet.block} items={utilityNavItems} variant={variant} />
+          </>
+        )}
       </Stack>
     </nav>
   );
