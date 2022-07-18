@@ -11,7 +11,7 @@ import { Menu } from './Menu';
 import { ButtonRoot } from '../Button/Button';
 
 import * as styles from './Item.css';
-import * as navStyles from './Navigation.css';
+import * as helpers from '../../css/helpers.css';
 
 export const NavigationItemStyles = styles;
 
@@ -83,12 +83,10 @@ export const Item = ({
     <Text key={label} weight={selected ? 'bold' : 'regular'}>
       {label}
     </Text>,
-    !subNav && (
+    !subNav && !!children && (
       <>
-        <Icon className={navStyles.mobileOnly} icon="chevron_right" variant="functionalIcons" />
-        {children && (
-          <Icon className={clsx(navStyles.desktopOnly, styles.chevron)} icon="chevron_down" variant="functionalIcons" />
-        )}
+        <Icon className={helpers.upToTablet.flex} icon="chevron_right" variant="functionalIcons" />
+        <Icon className={clsx(helpers.desktopUp.flex, styles.chevron)} icon="chevron_down" variant="functionalIcons" />
       </>
     ),
   ];
