@@ -54,3 +54,16 @@ export const FiveNavigations = () => {
     </Footer>
   );
 };
+
+export const MoreThanFiveNavigationsShouldThrowError = () => {
+  return (
+    <Footer>
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+    </Footer>
+  );
+};

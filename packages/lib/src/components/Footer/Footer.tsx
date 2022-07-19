@@ -48,6 +48,10 @@ export type FooterProps = {
 export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChildren<FooterProps>) => {
   const numChildren = Children.count(children);
 
+  if (numChildren > 5) {
+    throw new Error('There can only be up to 5 `Navigation` components as children of `Footer`.');
+  }
+
   const socialLinks = !!socialLinkHrefs && (
     <Box className={styles.social} display="flex" flexDirection="row">
       {Object.entries(socialLinkHrefs)
