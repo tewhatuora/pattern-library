@@ -45,16 +45,24 @@ export type FooterProps = {
   extraLogos?: ReactNode[];
 };
 
+const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
+
 export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChildren<FooterProps>) => {
   const numChildren = Children.count(children);
 
   const socialLinks = !!socialLinkHrefs && (
     <Box className={styles.social} display="flex" flexDirection="row">
-      {Object.entries(socialLinkHrefs).map(([key, value]) => (
-        <a aria-label={key} href={value} key={key}>
-          <Icon className={styles.socialIcons} icon={key as IconType} variant="socialIcons" />
-        </a>
-      ))}
+      {Object.entries(socialLinkHrefs)
+        .map(([key, value]) => (
+          <a aria-label={key} href={value} key={key}>
+            <Icon className={styles.socialIcons} icon={key as IconType} variant="socialIcons" />
+          </a>
+        ))
+        .sort(
+          (a, b) =>
+            socialLinksOrder.findIndex((v) => v === a.key?.toString()) -
+            socialLinksOrder.findIndex((v) => v === b.key?.toString()),
+        )}
     </Box>
   );
 

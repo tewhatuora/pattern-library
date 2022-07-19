@@ -27,7 +27,7 @@ export const lessSpace = style({
 });
 
 // Third row
-export const social = style({});
+export const social = style({ gap: 22 });
 
 export const socialIcons = style({
   color: vars.color.neutral25,
