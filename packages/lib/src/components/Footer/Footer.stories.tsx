@@ -1,16 +1,37 @@
-import { Footer } from './Footer';
+import { Footer, Navigation } from './Footer';
 
 export default {
   title: 'Components/Footer',
-  component: Footer.Root,
+  component: Footer,
 };
 
 export const Default = () => {
   return (
-    <Footer.Root>
-      <Footer.FirstRow />
-      <Footer.SecondRow />
-      <Footer.ThirdRow />
-    </Footer.Root>
+    <Footer>
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+    </Footer>
+  );
+};
+
+export const FiveNavigations = () => {
+  return (
+    <Footer
+      socialLinkHrefs={{
+        twitter: 'http://twitter.com',
+        instagram: 'http://instagram.com',
+        linkedin: 'http://linkedin.com',
+        tiktok: 'http://tiktok.com',
+        facebook: 'http://facebook.com',
+      }}
+    >
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+    </Footer>
   );
 };

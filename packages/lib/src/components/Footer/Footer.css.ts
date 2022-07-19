@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { vars } from '../../themes/vars.css';
+
 export const firstRow = style({
   height: 72, // TODO: Convert to space
 });
@@ -12,4 +14,21 @@ export const govtLogoWrapper = style({
 
 export const otherLogosWrapper = style({
   height: 72,
+});
+
+// Second Row
+
+export const secondRow = style({
+  gap: 64,
+});
+
+export const lessSpace = style({
+  gap: 40,
+});
+
+// Third row
+export const social = style({});
+
+export const socialIcons = style({
+  color: vars.color.neutral25,
 });
