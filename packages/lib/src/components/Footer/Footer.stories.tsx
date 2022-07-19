@@ -8,6 +8,11 @@ export default {
 export const Default = () => {
   return (
     <Footer
+      imprintItems={[
+        { text: '© Ministry of Health | Manatū Hauora' },
+        { text: 'Copyright', href: '#' },
+        { text: 'Privacy policy', href: '#' },
+      ]}
       socialLinkHrefs={{
         twitter: 'http://twitter.com',
         instagram: 'http://instagram.com',

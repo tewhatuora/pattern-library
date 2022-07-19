@@ -36,3 +36,5 @@ export const social = style({ gap: 22 });
 export const socialIcons = style({
   color: vars.color.neutral25,
 });
+
+export const imprintItems = style({ gap: 48 });

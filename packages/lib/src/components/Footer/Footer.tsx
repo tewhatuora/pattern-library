@@ -72,12 +72,12 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
   );
 
   const imprintItemsElements = !!imprintItems && (
-    <Box className="ImprintItems">
+    <Box className={styles.imprintItems} display="flex">
       {imprintItems?.map(({ text, href }) =>
         href ? (
-          <a href={href} key={text}>
-            {text}
-          </a>
+          <Box as="a" href={href} key={text}>
+            <Text>{text}</Text>
+          </Box>
         ) : (
           <Text key={text}>{text}</Text>
         ),
