@@ -73,17 +73,20 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
         </Box>
 
         {/* Second row */}
-        <Box
-          className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}
-          display="flex"
-          flexDirection="row"
-        >
-          <AllowedChildren
-            errorMessage="Only `Navigation` components are allowed as children of `Footer`."
-            types={[Navigation]}
+        <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
+          <Box
+            className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}
+            display="flex"
+            flexDirection="row"
           >
-            {children}
-          </AllowedChildren>
+            <AllowedChildren
+              errorMessage="Only `Navigation` components are allowed as children of `Footer`."
+              types={[Navigation]}
+            >
+              {children}
+            </AllowedChildren>
+          </Box>
+          {!!socialLinks && <SafeSite />}
         </Box>
 
         {/* Third row */}
@@ -91,7 +94,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
           <Divider variant="dark" />
           <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
             Third row
-            {socialLinks}
+            {socialLinks || <SafeSite />}
           </Box>
         </Box>
       </Stack>
@@ -99,4 +102,6 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
   );
 };
 
-export const Navigation = () => <p>Navigation</p>; // TODO: Placeholder, remove when actual Navigation is implemented
+export const Navigation = () => <p>Navigation</p>; // TODO: Replace with actual Navigation
+
+const SafeSite = () => <p>Safe Site</p>; // TODO: Replace with actual Safe Site
