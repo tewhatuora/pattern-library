@@ -45,8 +45,6 @@ export type FooterProps = {
   extraLogos?: ReactNode[];
 };
 
-const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
-
 export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChildren<FooterProps>) => {
   const numChildren = Children.count(children);
 
@@ -74,7 +72,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
           <Box className={styles.govtLogoWrapper}>
             <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
           </Box>
-          <Box className={styles.otherLogosWrapper}>
+          <Box alignItems="center" className={styles.otherLogosWrapper} display="flex">
             {/* Allowed children: logos or images of some sort */}
             {extraLogos}
           </Box>
@@ -113,3 +111,5 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
 export const Navigation = () => <p>Navigation</p>; // TODO: Replace with actual Navigation
 
 const SafeSite = () => <p>Safe Site</p>; // TODO: Replace with actual Safe Site
+
+const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];

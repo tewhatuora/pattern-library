@@ -7,6 +7,25 @@ export default {
 
 export const Default = () => {
   return (
+    <Footer
+      socialLinkHrefs={{
+        twitter: 'http://twitter.com',
+        instagram: 'http://instagram.com',
+        linkedin: 'http://linkedin.com',
+        tiktok: 'http://tiktok.com',
+        facebook: 'http://facebook.com',
+      }}
+    >
+      <Navigation />
+      <Navigation />
+      <Navigation />
+      <Navigation />
+    </Footer>
+  );
+};
+
+export const WithoutSocialLinks = () => {
+  return (
     <Footer>
       <Navigation />
       <Navigation />
