@@ -60,11 +60,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
             <Icon className={styles.socialIcons} icon={key as IconType} variant="socialIcons" />
           </a>
         ))
-        .sort(
-          (a, b) =>
-            socialLinksOrder.findIndex((v) => v === a.key?.toString()) -
-            socialLinksOrder.findIndex((v) => v === b.key?.toString()),
-        )}
+        .sort(byDesignOrder)}
     </Box>
   );
 
@@ -116,4 +112,11 @@ export const Navigation = () => <p>Navigation</p>; // TODO: Replace with actual 
 
 const SafeSite = () => <p>Safe Site</p>; // TODO: Replace with actual Safe Site
 
-const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
+function byDesignOrder(a: JSX.Element, b: JSX.Element) {
+  const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
+
+  return (
+    socialLinksOrder.findIndex((v) => v === a.key?.toString()) -
+    socialLinksOrder.findIndex((v) => v === b.key?.toString())
+  );
+}
