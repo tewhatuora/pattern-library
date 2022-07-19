@@ -6,6 +6,7 @@ import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
 import { Stack } from '../Stack/Stack';
+import { Text } from '../Text/Text';
 
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
@@ -34,6 +35,11 @@ export const FooterStyles = styles;
 
 // TODO: Update FirstRow, SecondRow, and ThirdRow components to have descriptive names
 
+type ImprintItem = {
+  text: string;
+  href?: string;
+};
+
 export type FooterProps = {
   socialLinkHrefs?: {
     facebook?: string;
@@ -43,9 +49,10 @@ export type FooterProps = {
     tiktok?: string;
   };
   extraLogos?: ReactNode[];
+  imprintItems?: ImprintItem[];
 };
 
-export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChildren<FooterProps>) => {
+export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: PropsWithChildren<FooterProps>) => {
   const numChildren = Children.count(children);
 
   if (numChildren > 5) {
@@ -61,6 +68,20 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
           </a>
         ))
         .sort(byDesignOrder)}
+    </Box>
+  );
+
+  const imprintItemsElements = !!imprintItems && (
+    <Box className="ImprintItems">
+      {imprintItems?.map(({ text, href }) =>
+        href ? (
+          <a href={href} key={text}>
+            {text}
+          </a>
+        ) : (
+          <Text key={text}>{text}</Text>
+        ),
+      )}
     </Box>
   );
 
@@ -98,9 +119,16 @@ export const Footer = ({ socialLinkHrefs, extraLogos, children }: PropsWithChild
         {/* Third row */}
         <Box>
           <Divider variant="dark" />
-          <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
-            Third row
+          <Box display="flex" flexDirection="rowReverse" justifyContent="spaceBetween">
+            {/*
+             * `flexDirection="rowReverse" ensures the socialLinks/SafeSite is always
+             * on the right even when there are no imprintItemsElements.
+             * It should also be okay for accessibility because the order of viewing the
+             * socialLinks/SafeSite first or the imprintItemsElements first doesn't
+             * really matter.
+             */}
             {socialLinks || <SafeSite />}
+            {imprintItemsElements}
           </Box>
         </Box>
       </Stack>
