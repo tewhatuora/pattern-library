@@ -122,7 +122,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
         {/* Third row */}
         <Box>
           <Divider variant="dark" />
-          <Box display="flex" flexDirection="rowReverse" justifyContent="spaceBetween">
+          <Box className={styles.socialAndImprintWrapper}>
             {/*
              * `flexDirection="rowReverse" ensures the socialLinks/SafeSite is always
              * on the right even when there are no imprintItemsElements.

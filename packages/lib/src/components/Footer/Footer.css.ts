@@ -18,7 +18,7 @@ export const firstRow = style({
 
 export const govtLogoWrapper = style({
   height: '6.4rem',
-  width: '2.65rem',
+  width: '26.5rem',
 });
 
 export const otherLogosWrapper = style({
@@ -37,6 +37,19 @@ export const lessSpace = style({
 });
 
 // Third row
+
+export const socialAndImprintWrapper = style([
+  atoms({
+    display: 'flex',
+    flexDirection: { mobile: 'columnReverse', tablet: 'rowReverse' },
+    justifyContent: 'spaceBetween',
+  }),
+  responsiveStyle({
+    mobile: { gap: '4.2rem' },
+    tablet: { gap: 0 },
+  }),
+]);
+
 export const social = style({
   gap: '2.2rem', // It's the same for all breakpoints and doesn't match any tokens
 });
