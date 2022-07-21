@@ -37,4 +37,16 @@ export const socialIcons = style({
   color: vars.color.neutral25,
 });
 
-export const imprintItems = style({ gap: 48 });
+export const imprintItems = style({
+  marginTop: -24,
+
+  display: 'flex',
+  flexWrap: 'wrap',
+});
+
+export const imprintItem = style({
+  // marginRight: 48
+  width: 'fit-content',
+  marginTop: 24,
+  marginRight: 48,
+});

@@ -63,23 +63,25 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
     <Box className={styles.social} display="flex" flexDirection="row">
       {Object.entries(socialLinkHrefs)
         .map(([key, value]) => (
-          <a aria-label={key} href={value} key={key}>
+          <Box aria-label={key} as="a" href={value} key={key}>
             <Icon className={styles.socialIcons} icon={key as IconType} variant="socialIcons" />
-          </a>
+          </Box>
         ))
         .sort(byDesignOrder)}
     </Box>
   );
 
   const imprintItemsElements = !!imprintItems && (
-    <Box className={styles.imprintItems} display="flex">
+    <Box className={styles.imprintItems}>
       {imprintItems?.map(({ text, href }) =>
         href ? (
-          <Box as="a" href={href} key={text}>
+          <Box as="a" className={styles.imprintItem} href={href} key={text}>
             <Text>{text}</Text>
           </Box>
         ) : (
-          <Text key={text}>{text}</Text>
+          <Text className={styles.imprintItem} key={text}>
+            {text}
+          </Text>
         ),
       )}
     </Box>

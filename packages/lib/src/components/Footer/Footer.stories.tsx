@@ -31,7 +31,13 @@ export const Default = () => {
 
 export const WithoutSocialLinks = () => {
   return (
-    <Footer>
+    <Footer
+      imprintItems={[
+        { text: '© Ministry of Health | Manatū Hauora' },
+        { text: 'Copyright', href: '#' },
+        { text: 'Privacy policy', href: '#' },
+      ]}
+    >
       <Navigation />
       <Navigation />
       <Navigation />
