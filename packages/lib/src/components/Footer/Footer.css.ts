@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { calc } from '@vanilla-extract/css-utils';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -9,33 +11,35 @@ import { vars } from '../../themes/vars.css';
 // TODO: Update all hardcoded number pixel values to tokens
 
 export const firstRow = style({
-  height: 72,
+  height: '7.2rem',
 });
 
 // TODO: Change how govt logo is implemented and update styles accordingly
 
 export const govtLogoWrapper = style({
-  height: 64,
-  width: 265,
+  height: '6.4rem',
+  width: '2.65rem',
 });
 
 export const otherLogosWrapper = style({
-  height: 72,
-  gap: 56,
+  height: '7.2rem',
+  gap: vars.space.xxlarge.tablet,
 });
 
 // Second Row
 
 export const secondRow = style({
-  gap: 64,
+  gap: calc.multiply(2, vars.space.large.mobile), // 6.4rem
 });
 
 export const lessSpace = style({
-  gap: 40,
+  gap: vars.space.xlarge.mobile,
 });
 
 // Third row
-export const social = style({ gap: 22 });
+export const social = style({
+  gap: '2.2rem', // It's the same for all breakpoints and doesn't match any tokens
+});
 
 export const socialIcons = style({
   color: vars.color.neutral25,
@@ -50,12 +54,12 @@ export const imprintItems = style([
     mobile: {
       flexDirection: 'column',
       flexWrap: 'nowrap',
-      gap: 24,
+      gap: vars.space.small.tablet,
     },
     tablet: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      marginTop: -24,
+      marginTop: calc.multiply(-1, vars.space.small.tablet),
     },
   }),
 ]);
@@ -66,8 +70,8 @@ export const imprintItem = style([
   responsiveStyle({
     mobile: {},
     tablet: {
-      marginTop: 24,
-      marginRight: 48,
+      marginTop: vars.space.small.tablet,
+      marginRight: vars.space.xlarge.tablet,
     },
   }),
 ]);
