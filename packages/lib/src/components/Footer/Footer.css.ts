@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, globalStyle, style } from '@vanilla-extract/css';
 
 import { calc } from '@vanilla-extract/css-utils';
 
@@ -28,9 +28,16 @@ export const otherLogosWrapper = style({
 
 // Second Row
 
-export const secondRow = style({
-  gap: calc.multiply(2, vars.space.large.mobile), // 6.4rem
-});
+export const secondRow = style([
+  atoms({
+    display: 'flex',
+    flexDirection: { mobile: 'column', tablet: 'row' },
+    flexWrap: 'wrap',
+  }),
+  {
+    gap: calc.multiply(2, vars.space.large.mobile), // 6.4rem
+  },
+]);
 
 export const lessSpace = style({
   gap: vars.space.xlarge.mobile,
@@ -88,3 +95,26 @@ export const imprintItem = style([
     },
   }),
 ]);
+
+const shieldedSiteButtonSizeVar = createVar();
+
+export const shieldedSite = style([
+  responsiveStyle({
+    mobile: {
+      alignSelf: 'flex-start',
+      vars: { [shieldedSiteButtonSizeVar]: '4rem' },
+    },
+    tablet: {
+      alignSelf: 'flex-end',
+      vars: { [shieldedSiteButtonSizeVar]: '6.4rem' },
+    },
+  }),
+]);
+
+/**
+ * The `react-shielded` component has SVG styles set to a size of 32px. Need to override it.
+ */
+globalStyle(`${shieldedSite} > button > svg`, {
+  width: shieldedSiteButtonSizeVar,
+  height: shieldedSiteButtonSizeVar,
+});

@@ -14,6 +14,7 @@ import { IconType } from '../Icon/icons';
 import NZGovtLogo from './nz-govt-logo.svg?component';
 
 import * as styles from './Footer.css';
+import { ShieldedSite } from './ShieldedSite';
 export const FooterStyles = styles;
 
 /**
@@ -103,12 +104,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
 
         {/* Second row */}
         <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
-          <Box
-            className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}
-            display="flex"
-            flexDirection="row"
-            flexWrap="wrap"
-          >
+          <Box className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}>
             <AllowedChildren
               errorMessage="Only `Navigation` components are allowed as children of `Footer`."
               types={[Navigation]}
@@ -116,7 +112,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
               {children}
             </AllowedChildren>
           </Box>
-          {!!socialLinks && <SafeSite />}
+          {!!socialLinks && <ShieldedSite />}
         </Box>
 
         {/* Third row */}
@@ -124,13 +120,13 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
           <Divider variant="dark" />
           <Box className={styles.socialAndImprintWrapper}>
             {/*
-             * `flexDirection="rowReverse" ensures the socialLinks/SafeSite is always
+             * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
              * on the right even when there are no imprintItemsElements.
              * It should also be okay for accessibility because the order of viewing the
-             * socialLinks/SafeSite first or the imprintItemsElements first doesn't
+             * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
              * really matter.
              */}
-            {socialLinks || <SafeSite />}
+            {socialLinks || <ShieldedSite />}
             {imprintItemsElements}
           </Box>
         </Box>
@@ -140,8 +136,6 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
 };
 
 export const Navigation = () => <p>Navigation</p>; // TODO: Replace with actual Navigation
-
-const SafeSite = () => <p>Safe Site</p>; // TODO: Replace with actual Safe Site
 
 function byDesignOrder(a: JSX.Element, b: JSX.Element) {
   const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
