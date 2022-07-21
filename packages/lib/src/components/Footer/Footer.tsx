@@ -100,11 +100,12 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
         </Box>
 
         {/* Second row */}
-        <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
+        <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
           <Box
             className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}
             display="flex"
             flexDirection="row"
+            flexWrap="wrap"
           >
             <AllowedChildren
               errorMessage="Only `Navigation` components are allowed as children of `Footer`."
