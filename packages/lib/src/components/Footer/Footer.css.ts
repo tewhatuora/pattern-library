@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+import { responsiveStyle } from '../../css/responsiveStyle';
+
+import { atoms } from '../../css/atoms/atoms';
+
 import { vars } from '../../themes/vars.css';
 
 // TODO: Update all hardcoded number pixel values to tokens
@@ -37,16 +41,33 @@ export const socialIcons = style({
   color: vars.color.neutral25,
 });
 
-export const imprintItems = style({
-  marginTop: -24,
+export const imprintItems = style([
+  atoms({
+    display: 'flex',
+  }),
+  {},
+  responsiveStyle({
+    mobile: {
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      gap: 24,
+    },
+    tablet: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginTop: -24,
+    },
+  }),
+]);
 
-  display: 'flex',
-  flexWrap: 'wrap',
-});
-
-export const imprintItem = style({
-  // marginRight: 48
-  width: 'fit-content',
-  marginTop: 24,
-  marginRight: 48,
-});
+export const imprintItem = style([
+  atoms({}),
+  {},
+  responsiveStyle({
+    mobile: {},
+    tablet: {
+      marginTop: 24,
+      marginRight: 48,
+    },
+  }),
+]);
