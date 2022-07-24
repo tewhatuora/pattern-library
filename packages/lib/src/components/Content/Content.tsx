@@ -2,9 +2,8 @@ import { PropsWithChildren, forwardRef } from 'react';
 
 import clsx from 'clsx';
 
-import { HeadingProps } from '../Heading/Heading';
+import { Heading, HeadingProps } from '../Heading/Heading';
 
-import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
 
 import { Stack } from '../Stack/Stack';
@@ -42,11 +41,11 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
 
     const subheadingElement =
       subheadingLevel === '5' ? (
-        <Text as="div" weight="bold">
+        <Text as="p" weight="bold">
           {heading}
         </Text>
       ) : (
-        <Heading as="div" level={subheadingLevel}>
+        <Heading as="p" level={subheadingLevel}>
           {subheading}
         </Heading>
       );

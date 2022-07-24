@@ -15,7 +15,7 @@ export type HeadingProps = {
   weight?: HeadingWeight;
   align?: BoxProps['textAlign'];
   color?: BoxProps['color'];
-  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend';
+  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'p';
   children?: React.ReactNode;
   id?: string;
 };
