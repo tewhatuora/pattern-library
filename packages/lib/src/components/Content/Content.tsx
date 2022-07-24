@@ -2,7 +2,7 @@ import { PropsWithChildren, forwardRef } from 'react';
 
 import clsx from 'clsx';
 
-import { HeadingProps } from '@/dist/types/components/Heading/Heading';
+import { HeadingProps } from '../Heading/Heading';
 
 import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
