@@ -2,6 +2,7 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 import * as buttonStyles from '../Button/Button.css';
 
+import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
@@ -18,6 +19,10 @@ export const pages = style([
 ]);
 
 export const pageLinks = style([
+  atoms({
+    alignItems: 'center',
+    flexDirection: 'row',
+  }),
   responsiveStyle({
     mobile: {
       display: 'none',
@@ -39,10 +44,19 @@ export const page = style({
   },
 });
 
-export const pageItem = style({
-  width: '100%',
-  height: '100%',
-});
+export const pageItem = style([
+  atoms({
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  }),
+  {
+    width: '100%',
+    height: '100%',
+  },
+]);
 
 export const buttonContainer = style(
   responsiveStyle({
@@ -84,11 +98,9 @@ export const button = styleVariants({
     pageItem,
     {
       border: 'none',
-      selectors: {
-        '&:hover': {
-          color: vars.color.primary0,
-          backgroundColor: vars.color.secondary100,
-        },
+      ':hover': {
+        color: vars.color.primary0,
+        backgroundColor: vars.color.secondary100,
       },
     },
   ],
@@ -106,21 +118,19 @@ export const ellipsis = style([
   dot,
   {
     position: 'relative',
-    selectors: {
-      '&:before': {
-        content: '""',
-        position: 'absolute',
-        top: '0',
-        left: '-0.6rem',
-        ...dot,
-      },
-      '&:after': {
-        content: '""',
-        position: 'absolute',
-        top: '0',
-        right: '-0.6rem',
-        ...dot,
-      },
+    ':before': {
+      content: '""',
+      position: 'absolute',
+      top: '0',
+      left: '-0.6rem',
+      ...dot,
+    },
+    ':after': {
+      content: '""',
+      position: 'absolute',
+      top: '0',
+      right: '-0.6rem',
+      ...dot,
     },
   },
 ]);

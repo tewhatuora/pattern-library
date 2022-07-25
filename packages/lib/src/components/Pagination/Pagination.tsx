@@ -85,14 +85,7 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
 
       return (
         <li className={styles.page} key={item}>
-          <Box
-            alignItems="center"
-            className={styles.pageItem}
-            display="flex"
-            flexGrow={1}
-            justifyContent="center"
-            textAlign="center"
-          >
+          <Box className={styles.pageItem}>
             <span className={styles.ellipsis} />
           </Box>
         </li>
@@ -112,7 +105,7 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
       <Text className={styles.pages}>
         {current} of {pages}
       </Text>
-      <Box alignItems="center" as="ul" className={styles.pageLinks} flexDirection="row">
+      <Box as="ul" className={styles.pageLinks}>
         {renderPageButtons}
       </Box>
       <Box className={styles.buttonContainer}>
