@@ -17,6 +17,7 @@
     "size": "yarn build:components && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
+    "build-storybook": "BASE_URL=/moh-design-system/ && build-storybook --output-dir public",
     "styles": "node scripts/styles.js"
   },
   "lint-staged": {
@@ -89,6 +90,7 @@
     "@radix-ui/react-radio-group": "^0.1.5",
     "@radix-ui/react-separator": "^0.1.4",
     "@radix-ui/react-switch": "^0.1.5",
+    "@radix-ui/react-tabs": "^0.1.5",
     "@radix-ui/react-toggle-group": "^0.1.5",
     "@react-aria/textfield": "^3.6.1"
   },
