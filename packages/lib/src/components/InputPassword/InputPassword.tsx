@@ -1,4 +1,5 @@
-import { ForwardedRef, forwardRef, useCallback, useState } from 'react';
+import { ForwardedRef, HTMLInputTypeAttribute, RefObject, forwardRef, useCallback, useState } from 'react';
+import { useTextField } from '@react-aria/textfield';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputField, OtherInputFieldProps } from '../InputField/InputField';
@@ -35,11 +36,27 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       required,
       disabled,
       defaultValue,
+      tertiaryLabelIcon,
+      tertiaryLabelIconPosition,
       onChange,
+      ...rest
     }: InputPasswordProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const [type, setType] = useState<PasswordFieldType>(PasswordFieldType.Password);
+    const [type, setType] = useState<HTMLInputTypeAttribute>(PasswordFieldType.Password);
+    const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
+      {
+        id,
+        name,
+        label,
+        placeholder,
+        value,
+        defaultValue,
+        ...rest,
+        type,
+      },
+      ref as RefObject<HTMLInputElement>,
+    );
 
     /**
      * Handle showing/hiding the password value
@@ -55,16 +72,19 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
           error={error || !!errorMessage}
           htmlFor={id}
           label={label}
+          labelProps={labelProps}
           subheading={subheading}
           tertiaryLabel={type === PasswordFieldType.Password ? 'Show' : 'Hide'}
           tertiaryLabelAs="button"
+          tertiaryLabelIcon={tertiaryLabelIcon}
+          tertiaryLabelIconPosition={tertiaryLabelIconPosition}
           onTertiaryLabelClick={handleToggle}
         />
         <InputField
+          {...inputProps}
           defaultValue={defaultValue}
           disabled={disabled}
           error={error || !!errorMessage}
-          id={id}
           name={name}
           placeholder={placeholder}
           ref={ref}
@@ -73,7 +93,13 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
           value={value}
           onChange={onChange}
         />
-        <InputMessage disabled={disabled} errorMessage={errorMessage} helperText={helperText} />
+        <InputMessage
+          descriptionProps={descriptionProps}
+          disabled={disabled}
+          errorMessage={errorMessage}
+          errorMessageProps={errorMessageProps}
+          helperText={helperText}
+        />
       </div>
     );
   },
