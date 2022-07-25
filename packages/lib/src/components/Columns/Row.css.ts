@@ -7,6 +7,7 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { Space } from '../../css/atoms/atoms';
 
 import { makeStyles } from './helpers';
+import { mobileRow, tabletRow } from '../../css/grid';
 
 const makeGutterRules = (space: Viewport) =>
   style(
@@ -33,19 +34,12 @@ export const noGutters = style({
   gap: 0,
 });
 
-export const row = style(
+export const row = style([
+  mobileRow,
   responsiveStyle({
-    mobile: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    tablet: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(12, [col-start] 1fr)',
-      flexDirection: 'unset',
-    },
+    tablet: tabletRow,
   }),
-);
+]);
 
 const getNestedStyle = (columns: number): StyleRule =>
   responsiveStyle({

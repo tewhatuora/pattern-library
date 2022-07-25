@@ -12,6 +12,11 @@ export default {
       },
       defaultValue: '#',
     },
+    noIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
     target: {
       control: {
         type: 'select',

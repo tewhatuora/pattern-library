@@ -23,6 +23,7 @@ export { InputLabel, InputLabelStyles } from './InputLabel/InputLabel';
 export { InputMessage, InputMessageStyles } from './InputMessage/InputMessage';
 export { List, ListStyles } from './List/List';
 export { Loader, LoaderStyles } from './Loader/Loader';
+export { Navigation, NavigationStyles } from './Navigation/Navigation';
 export { Notice, NoticeStyles } from './Notice/Notice';
 export { ScreenReadersOnly, ScreenReadersOnlyStyles } from './ScreenReadersOnly/ScreenReadersOnly';
 export { RadioGroup } from './RadioGroup/RadioGroup';

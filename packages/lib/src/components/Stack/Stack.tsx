@@ -16,7 +16,7 @@ export type StackProps = {
   as?: typeof validStackComponents[number];
   space: Space;
   horizontal?: boolean;
-  classNane?: string;
+  className?: string;
 } & BoxProps;
 
 /**
