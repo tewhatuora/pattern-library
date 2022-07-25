@@ -60,8 +60,6 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       ref as RefObject<HTMLInputElement>,
     );
 
-    console.log(descriptionProps, errorMessageProps, errorMessage);
-
     /**
      * Handle showing/hiding the password value
      */
