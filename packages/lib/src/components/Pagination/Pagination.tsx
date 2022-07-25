@@ -48,8 +48,9 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
    * Handle clicking on the 'Previous' button
    */
   const handlePrevious = useCallback(() => {
-    if (typeof onChange === 'function' && current >= 2) {
-      onChange(current - 1);
+    if (current >= 2) {
+      const prevPage = current - 1;
+      onChange?.(prevPage);
     }
   }, [current, onChange]);
 
@@ -57,8 +58,9 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
    * Handle clicking on the 'Next' button
    */
   const handleNext = useCallback(() => {
-    if (typeof onChange === 'function' && current <= pages - 1) {
-      onChange(current + 1);
+    if (current <= pages - 1) {
+      const nextPage = current + 1;
+      onChange?.(nextPage);
     }
   }, [current, pages, onChange]);
 
@@ -71,9 +73,7 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
      * @param {number} page The page number clicked on
      */
     const handlePage = (page: number) => () => {
-      if (typeof onChange === 'function') {
-        onChange(page);
-      }
+      onChange?.(page);
     };
 
     return items.map((item) => {
@@ -81,22 +81,22 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
         return (
           <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onPress={handlePage(item)} />
         );
-      } else {
-        return (
-          <li className={styles.page} key={item}>
-            <Box
-              alignItems="center"
-              className={styles.pageItem}
-              display="flex"
-              flexGrow={1}
-              justifyContent="center"
-              textAlign="center"
-            >
-              <span className={styles.ellipsis} />
-            </Box>
-          </li>
-        );
       }
+
+      return (
+        <li className={styles.page} key={item}>
+          <Box
+            alignItems="center"
+            className={styles.pageItem}
+            display="flex"
+            flexGrow={1}
+            justifyContent="center"
+            textAlign="center"
+          >
+            <span className={styles.ellipsis} />
+          </Box>
+        </li>
+      );
     });
   }, [current, items, onChange]);
 
