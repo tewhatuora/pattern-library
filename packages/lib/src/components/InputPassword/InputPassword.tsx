@@ -51,12 +51,16 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
         label,
         placeholder,
         value,
+        description: helperText,
         defaultValue,
+        errorMessage,
         ...rest,
         type,
       },
       ref as RefObject<HTMLInputElement>,
     );
+
+    console.log(descriptionProps, errorMessageProps, errorMessage);
 
     /**
      * Handle showing/hiding the password value
