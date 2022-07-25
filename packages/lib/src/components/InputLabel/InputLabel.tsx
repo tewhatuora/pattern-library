@@ -1,3 +1,4 @@
+import { LabelHTMLAttributes } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -19,10 +20,7 @@ export type InputLabelProps = {
   htmlFor?: string;
   error?: boolean;
   disabled?: boolean;
-  labelProps?: {
-    id: string;
-    htmlFor: string;
-  };
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
 } & (AsLink | AsButton | AsText);
 
 type AsLink = {
