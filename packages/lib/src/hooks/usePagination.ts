@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 type UsePaginationHook = {
-  siblingCount: number;
   pages: number;
   current: number;
 };
