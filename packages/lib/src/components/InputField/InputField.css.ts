@@ -33,7 +33,7 @@ export const inputBase = style([
     borderWidth: vars.borderWidth.small,
     borderColor: vars.color.primary50,
     borderStyle: 'solid',
-    color: vars.color.neutral50,
+    color: vars.color.primary100,
     backgroundColor: vars.color.primary0,
 
     selectors: {
