@@ -3,6 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { atoms } from '../../css/atoms/atoms';
 
 const focusStyle = {
   outline: `${vars.borderWidth.small} solid ${vars.color.caution100}`,
@@ -20,6 +21,10 @@ const controlStyle = style({
 });
 
 export const container = style([
+  atoms({
+    display: 'flex',
+    flexDirection: 'row',
+  }),
   {
     borderRadius: vars.borderRadiusAll.inputs,
     border: `${vars.borderWidth.small} solid ${vars.color.primary50}`,
