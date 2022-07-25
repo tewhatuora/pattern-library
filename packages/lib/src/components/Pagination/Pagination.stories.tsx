@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { Pagination, PaginationProps } from './Pagination';
 
@@ -10,19 +10,25 @@ export default {
       control: {
         type: 'number',
       },
+      defaultValue: 13,
+    },
+    current: {
+      disabled: true,
     },
   },
 };
 
 export const Default = (args: PaginationProps) => {
-  const [current, setCurrent] = useState(1);
+  const { current } = args;
+  const [page, setPage] = useState(current);
 
-  const handleChange = useCallback(
-    (page: number) => {
-      setCurrent(page);
-    },
-    [setCurrent],
-  );
+  useEffect(() => {
+    setPage(current);
+  }, [current]);
 
-  return <Pagination {...args} current={current} onChange={handleChange} />;
+  const handleChange = useCallback((page: number) => {
+    setPage(page);
+  }, []);
+
+  return <Pagination {...args} current={page} onChange={handleChange} />;
 };
