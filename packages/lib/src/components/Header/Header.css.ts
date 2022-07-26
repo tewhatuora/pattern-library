@@ -1,4 +1,5 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -11,7 +12,7 @@ export const base = style([
     justifyContent: 'spaceBetween',
   }),
   {
-    height: '9.6rem',
+    height: calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet),
   },
   responsiveStyle({
     mobile: {
@@ -65,30 +66,11 @@ globalStyle(`${logo} svg path`, {
   fill: 'currentColor',
 });
 
-export const searchNav = style(
-  responsiveStyle({
-    mobile: {
-      display: 'none',
-    },
-    desktop: {
-      display: 'flex',
-    },
-  }),
-);
-
-export const headerLink = style([
+export const searchForm = style([
   atoms({
     display: 'flex',
     alignItems: 'center',
   }),
-  {
-    color: 'currentColor',
-    textDecoration: 'none',
-    gap: '0.4rem',
-    ':hover': {
-      textDecoration: 'underline',
-    },
-  },
 ]);
 
 export const mobileMenuButton = style([
@@ -98,8 +80,4 @@ export const mobileMenuButton = style([
   {
     gap: vars.space.xsmall.mobile,
   },
-  responsiveStyle({
-    mobile: { display: 'flex' },
-    desktop: { display: 'none' },
-  }),
 ]);
