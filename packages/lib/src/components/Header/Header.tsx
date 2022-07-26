@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { Badge } from '../Badge/Badge';
 import { ButtonRoot } from '../Button/Button';
 import { Stack } from '../Stack/Stack';
 import { Icon } from '../Icon/Icon';
 import { InputSearch } from '../InputSearch/InputSearch';
+import { UtilityNavItemProps } from '../Navigation/Utility';
+import { Navigation } from '../Navigation/Navigation';
 
 import Logo from '../../assets/logo-moh.svg?component';
 
+import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
 
 export const HeaderStyles = styles;
@@ -19,30 +22,37 @@ export type HeaderProps = {
   variant: 'dark' | 'light';
   beta?: boolean;
   withSearch?: boolean;
-  language?: boolean;
-  name?: boolean;
+  utilityNavItems?: UtilityNavItemProps[];
+  searchFormAction: string;
+  searchFormMethod: 'POST' | 'GET';
   className?: string;
+  logoComponent: ReactNode;
+  navigationOpen?: boolean;
+  onToggleNavigation?: () => void;
 };
 
-const HeaderLink = ({ link, icon, className, children }) => {
-  return (
-    <a className={clsx(styles.headerLink, className)} href={link}>
-      <Icon icon={icon} variant="functionalIcons" />
-      <Text weight="regular">{children}</Text>
-    </a>
-  );
+type MenuButtonProps = {
+  open?: boolean;
+  color: BoxProps['color'];
+  onToggle?: () => void;
 };
 
-const MenuButton = () => {
-  const [open, setOpen] = useState(false);
-
+/**
+ * Menu open/close button
+ * @param open
+ * @param color
+ * @param onToggle
+ * @constructor
+ */
+const MenuButton = ({ open, color, onToggle }: MenuButtonProps) => {
   return (
-    <ButtonRoot className={styles.mobileMenuButton} onPress={() => setOpen(!open)}>
-      <Text>{open ? 'Close' : 'Menu'}</Text>
-      <Icon icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
+    <ButtonRoot className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton)} onPress={onToggle}>
+      <Text color={color}>{open ? 'Close' : 'Menu'}</Text>
+      <Icon color={color} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
     </ButtonRoot>
   );
 };
+
 /**
  * Found at the top of all mobile and desktop pages
  *
@@ -51,47 +61,62 @@ const MenuButton = () => {
  *
  * @constructor
  */
-export const Header = ({ variant = 'light', withSearch, beta, language, name }: HeaderProps) => {
-  const color = variant === 'light' ? 'primary100' : 'primary0';
+export const Header = ({
+  variant = 'light',
+  withSearch,
+  beta,
+  searchFormAction,
+  searchFormMethod = 'GET',
+  logoComponent,
+  utilityNavItems,
+  navigationOpen,
+  onToggleNavigation,
+}: HeaderProps) => {
+  /**
+   * Light/dark color
+   */
+  const color = useMemo(() => {
+    return variant === 'light' ? 'primary100' : 'primary0';
+  }, [variant]);
+
+  /**
+   * Utility navigation items
+   */
+  const renderUtilityNav = useMemo(() => {
+    if (!utilityNavItems?.length) {
+      return null;
+    }
+    return <Navigation.Utility items={utilityNavItems} variant={variant} />;
+  }, [utilityNavItems, variant]);
 
   return (
     <header className={styles.header[variant]}>
       <Stack alignItems="center" horizontal space="small">
-        <Box color={color} display="flex" flexDirection="column">
-          <Text size="small">My COVID</Text>
-          <Text size="small" weight="bold">
-            Placeholder
-          </Text>
-          {beta && (
-            <span>
-              <Badge variant="info">Beta</Badge>
-            </span>
-          )}
-        </Box>
+        {!!logoComponent && (
+          <Box color={color} display="flex" flexDirection="column">
+            {logoComponent}
+            {beta && (
+              <span>
+                <Badge variant="info">Beta</Badge>
+              </span>
+            )}
+          </Box>
+        )}
         <Box color={color}>
           <a className={styles.logo} href="/">
             <Logo />
           </a>
         </Box>
       </Stack>
-      <Stack className={styles.searchNav} color={color} horizontal space="small">
-        {language && (
-          <HeaderLink icon="language" link="#Language">
-            Language
-          </HeaderLink>
-        )}
-        {name && (
-          <HeaderLink icon="person" link="#FirstnameSurname">
-            Name Surname
-          </HeaderLink>
-        )}
+      <Stack className={helpers.desktopUp.flex} color={color} horizontal space="small">
+        {renderUtilityNav}
         {withSearch && (
-          <form action="/" method="GET">
-            <InputSearch id="search" name="search" placeholder="Search" variant={variant} />
+          <form action={searchFormAction} className={styles.searchForm} method={searchFormMethod}>
+            <InputSearch id="search" name="search" placeholder="Search" />
           </form>
         )}
       </Stack>
-      <MenuButton />
+      <MenuButton color={color} open={navigationOpen} onToggle={onToggleNavigation} />
     </header>
   );
 };
