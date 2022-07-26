@@ -17,7 +17,6 @@ export type StackProps = {
   className?: string;
   space: Space;
   horizontal?: boolean;
-  className?: string;
 } & BoxProps;
 
 /**
@@ -28,7 +27,6 @@ export type StackProps = {
 export const Stack = ({
   as = 'div',
   children,
-  className,
   space = 'medium',
   horizontal = false,
   className,

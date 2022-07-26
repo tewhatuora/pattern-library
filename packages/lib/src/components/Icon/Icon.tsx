@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import assert from 'assert';
 
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import icons, { IconType } from './icons';
 
 import * as styles from './Icon.css';
@@ -16,7 +16,7 @@ type IconProps = {
   variant?: styles.Variant;
   onClick?: () => void;
   className?: string;
-  color?: string | undefined;
+  color?: BoxProps['color'];
 };
 
 /**
