@@ -25,6 +25,11 @@ const navArgTypes = {
       options: ['light', 'dark'],
     },
   },
+  withSearch: {
+    control: {
+      type: 'boolean',
+    },
+  },
   searchFormAction: {
     control: {
       type: 'text',

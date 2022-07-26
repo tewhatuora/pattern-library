@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { Children, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
 import { Stack } from '../Stack/Stack';
@@ -16,6 +16,7 @@ export const NavigationStyles = styles;
 export type NavigationProps = {
   variant: 'light' | 'dark';
   open: boolean;
+  withSearch?: boolean;
   searchFormAction: string;
   searchFormMethod: 'POST' | 'GET';
   utilityNavItems: UtilityNavItemProps[];
@@ -30,11 +31,14 @@ export type NavigationProps = {
 export const Root = ({
   variant = 'light',
   open,
+  withSearch,
   searchFormAction = '/',
   searchFormMethod = 'GET',
   children,
   utilityNavItems,
 }: PropsWithChildren<NavigationProps>) => {
+  const hasNavItems = !!Children.count(children);
+
   return (
     <nav
       className={clsx({
@@ -43,23 +47,29 @@ export const Root = ({
       })}
     >
       <Stack space="medium">
-        <form action={searchFormAction} className={clsx(helpers.upToTablet.block)} method={searchFormMethod}>
-          <InputSearch id="search" name="search" placeholder="Search" />
-        </form>
-        <ul className={clsx(styles.navList)}>
-          <AllowedChildren
-            errorMessage="Only `Navigation.Item` components are allowed as children of `Navigation.Root`"
-            propsForChild={() => ({
-              variant,
-            })}
-            types={[Item]}
-          >
-            {children}
-          </AllowedChildren>
-        </ul>
+        {withSearch && (
+          <form action={searchFormAction} className={clsx(helpers.upToTablet.block)} method={searchFormMethod}>
+            <InputSearch id="search" name="search" placeholder="Search" />
+          </form>
+        )}
+        {hasNavItems && (
+          <ul className={clsx(styles.navList)}>
+            <AllowedChildren
+              errorMessage="Only `Navigation.Item` components are allowed as children of `Navigation.Root`"
+              propsForChild={() => ({
+                variant,
+              })}
+              types={[Item]}
+            >
+              {children}
+            </AllowedChildren>
+          </ul>
+        )}
         {!!utilityNavItems?.length && (
           <>
-            <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
+            {hasNavItems && (
+              <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
+            )}
             <Utility className={helpers.upToTablet.block} items={utilityNavItems} variant={variant} />
           </>
         )}

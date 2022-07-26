@@ -52,6 +52,11 @@ export const utilityLink = styleVariants({
     utilityLinkBase,
     {
       color: vars.color.primary0,
+      selectors: {
+        '&:hover': {
+          color: vars.color.primary0,
+        },
+      },
     },
   ],
 });
