@@ -12,7 +12,7 @@ type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 export type ContentProps = {
   heading: string;
   headingLevel: ContentHeadingLevel;
-  headingAs?: Pick<HeadingProps, 'as'>;
+  headingAs?: HeadingProps['as'];
   subheading?: string;
   variant?: 'light' | 'dark';
 };
