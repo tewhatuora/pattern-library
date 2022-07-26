@@ -1,8 +1,8 @@
 import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
-import { AnchorLinkProps } from '@/src/components/AnchorLink/AnchorLink';
+import { AnchorLinkProps } from '../AnchorLink/AnchorLink';
 
-import { LinkProps } from '@/src/components/Navigation/Link';
+import { LinkProps } from '../Navigation/Link';
 
 import { Navigation } from './Navigation';
 import { NavigationProps } from './Root';
