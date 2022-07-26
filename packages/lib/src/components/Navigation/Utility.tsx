@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import clsx from 'clsx';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
@@ -13,6 +13,7 @@ export type UtilityNavItemProps = {
   href: string;
   icon: IconType;
   label: string;
+  component?: FC<any>;
 };
 
 export type UtilityProps = {
@@ -31,11 +32,12 @@ const UtilityNavItem = memo(
     href,
     icon,
     label,
+    component,
   }: UtilityNavItemProps & {
     variant: 'light' | 'dark';
   }) => (
     <li>
-      <Link className={styles.utilityLink[variant]} href={href}>
+      <Link className={styles.utilityLink[variant]} component={component} href={href}>
         <Icon icon={icon} variant="functionalIcons" /> <Text>{label}</Text>
       </Link>
     </li>
@@ -52,7 +54,14 @@ export const Utility = memo(({ variant, className, items }: UtilityProps) => {
       throw new Error(`Navigation.Utility only accepts a maximum of 2 items. ${items.length} given`);
     }
     return items.map((item: UtilityNavItemProps) => (
-      <UtilityNavItem href={item.href} icon={item.icon} key={item.label} label={item.label} variant={variant} />
+      <UtilityNavItem
+        component={item.component}
+        href={item.href}
+        icon={item.icon}
+        key={item.label}
+        label={item.label}
+        variant={variant}
+      />
     ));
   }, [variant, items]);
 

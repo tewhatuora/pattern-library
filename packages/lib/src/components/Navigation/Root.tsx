@@ -19,7 +19,7 @@ export type NavigationProps = {
   withSearch?: boolean;
   searchFormAction: string;
   searchFormMethod: 'POST' | 'GET';
-  utilityNavItems: UtilityNavItemProps[];
+  utilityNavItems?: UtilityNavItemProps[];
 };
 
 /**
