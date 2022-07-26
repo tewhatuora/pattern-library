@@ -1,4 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -8,7 +9,7 @@ const base = style([
   responsiveStyle({
     mobile: {
       position: 'fixed',
-      top: '0',
+      top: calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet),
       left: '0',
       right: '0',
       paddingTop: vars.space.medium.mobile,
