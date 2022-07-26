@@ -45,6 +45,12 @@ export const input = style([
     borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
     borderTopRightRadius: '0',
     borderBottomRightRadius: '0',
+    selectors: {
+      '&::-webkit-search-decoration, &::-webkit-search-cancel-button, &::-webkit-search-results-button, &::-webkit-search-results-decoration':
+        {
+          display: 'none',
+        },
+    },
   },
   responsiveStyle({
     mobile: {
