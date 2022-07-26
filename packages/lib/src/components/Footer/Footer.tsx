@@ -11,7 +11,8 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
-import NZGovtLogo from './nz-govt-logo.svg?component';
+import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
+import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
 
 import * as styles from './Footer.css';
 import { ShieldedSite } from './ShieldedSite';
@@ -51,21 +52,30 @@ export type FooterProps = {
   };
   extraLogos?: ReactNode[];
   imprintItems?: ImprintItem[];
+  variant?: 'light' | 'dark';
 };
 
-export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: PropsWithChildren<FooterProps>) => {
+export const Footer = ({
+  socialLinkHrefs,
+  extraLogos,
+  imprintItems,
+  variant,
+  children,
+}: PropsWithChildren<FooterProps>) => {
   const numChildren = Children.count(children);
 
   if (numChildren > 5) {
     throw new Error('There can only be up to 5 `Navigation` components as children of `Footer`.');
   }
 
+  const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
+
   const socialLinks = !!socialLinkHrefs && (
     <Box className={styles.social} display="flex" flexDirection="row">
       {Object.entries(socialLinkHrefs)
         .map(([key, value]) => (
           <Box aria-label={key} as="a" href={value} key={key}>
-            <Icon className={styles.socialIcons} icon={key as IconType} variant="socialIcons" />
+            <Icon className={styles.socialIcons[variant ?? 'dark']} icon={key as IconType} variant="socialIcons" />
           </Box>
         ))
         .sort(byDesignOrder)}
@@ -89,7 +99,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
   );
 
   return (
-    <footer>
+    <Box as="footer" color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}>
       <Stack space="medium">
         {/* First row */}
         <Box className={styles.firstRow} display="flex" justifyContent="spaceBetween">
@@ -117,7 +127,12 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
 
         {/* Third row */}
         <Box>
-          <Divider variant="dark" />
+          <Divider
+            variant={
+              // Divider currently has light and dark swapped
+              (variant && (variant === 'light' ? 'dark' : 'light')) ?? 'dark'
+            }
+          />
           <Box className={styles.socialAndImprintWrapper}>
             {/*
              * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
@@ -131,7 +146,7 @@ export const Footer = ({ socialLinkHrefs, extraLogos, imprintItems, children }: 
           </Box>
         </Box>
       </Stack>
-    </footer>
+    </Box>
   );
 };
 

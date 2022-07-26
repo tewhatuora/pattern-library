@@ -1,26 +1,27 @@
-import { Footer, Navigation } from './Footer';
+import { Footer, FooterProps, Navigation } from './Footer';
 
 export default {
   title: 'Components/Footer',
   component: Footer,
 };
 
-export const Default = () => {
+const imprintItems = [
+  { text: '© Ministry of Health | Manatū Hauora' },
+  { text: 'Copyright', href: '#' },
+  { text: 'Privacy policy', href: '#' },
+];
+
+const socialLinkHrefs = {
+  twitter: 'http://twitter.com',
+  instagram: 'http://instagram.com',
+  linkedin: 'http://linkedin.com',
+  tiktok: 'http://tiktok.com',
+  facebook: 'http://facebook.com',
+};
+
+export const Default = (args: FooterProps) => {
   return (
-    <Footer
-      imprintItems={[
-        { text: '© Ministry of Health | Manatū Hauora' },
-        { text: 'Copyright', href: '#' },
-        { text: 'Privacy policy', href: '#' },
-      ]}
-      socialLinkHrefs={{
-        twitter: 'http://twitter.com',
-        instagram: 'http://instagram.com',
-        linkedin: 'http://linkedin.com',
-        tiktok: 'http://tiktok.com',
-        facebook: 'http://facebook.com',
-      }}
-    >
+    <Footer {...args}>
       <Navigation />
       <Navigation />
       <Navigation />
@@ -28,16 +29,14 @@ export const Default = () => {
     </Footer>
   );
 };
+Default.args = {
+  imprintItems,
+  socialLinkHrefs,
+};
 
-export const WithoutSocialLinks = () => {
+export const WithoutSocialLinks = (args: FooterProps) => {
   return (
-    <Footer
-      imprintItems={[
-        { text: '© Ministry of Health | Manatū Hauora' },
-        { text: 'Copyright', href: '#' },
-        { text: 'Privacy policy', href: '#' },
-      ]}
-    >
+    <Footer {...args}>
       <Navigation />
       <Navigation />
       <Navigation />
@@ -45,18 +44,11 @@ export const WithoutSocialLinks = () => {
     </Footer>
   );
 };
+WithoutSocialLinks.args = { imprintItems };
 
-export const FiveNavigations = () => {
+export const FiveNavigations = (args: FooterProps) => {
   return (
-    <Footer
-      socialLinkHrefs={{
-        twitter: 'http://twitter.com',
-        instagram: 'http://instagram.com',
-        linkedin: 'http://linkedin.com',
-        tiktok: 'http://tiktok.com',
-        facebook: 'http://facebook.com',
-      }}
-    >
+    <Footer {...args}>
       <Navigation />
       <Navigation />
       <Navigation />
@@ -65,10 +57,14 @@ export const FiveNavigations = () => {
     </Footer>
   );
 };
+FiveNavigations.args = {
+  imprintItems,
+  socialLinkHrefs,
+};
 
-export const MoreThanFiveNavigationsShouldThrowError = () => {
+export const MoreThanFiveNavigationsShouldThrowError = (args: FooterProps) => {
   return (
-    <Footer>
+    <Footer {...args}>
       <Navigation />
       <Navigation />
       <Navigation />

@@ -1,4 +1,4 @@
-import { createVar, globalStyle, style } from '@vanilla-extract/css';
+import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
 import { calc } from '@vanilla-extract/css-utils';
 
@@ -17,7 +17,7 @@ export const firstRow = style({
 // TODO: Change how govt logo is implemented and update styles accordingly
 
 export const govtLogoWrapper = style({
-  height: '6.4rem',
+  height: '7.2rem',
   width: '26.5rem',
 });
 
@@ -61,8 +61,13 @@ export const social = style({
   gap: '2.2rem', // It's the same for all breakpoints and doesn't match any tokens
 });
 
-export const socialIcons = style({
-  color: vars.color.neutral25,
+export const socialIcons = styleVariants({
+  light: {
+    color: vars.color.neutral25,
+  },
+  dark: {
+    color: vars.color.neutral0,
+  },
 });
 
 export const imprintItems = style([
