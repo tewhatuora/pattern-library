@@ -20,22 +20,20 @@ export const FooterStyles = styles;
 
 /**
  * 
- * The Footer component should:
-- Use theme tokens for colors, dimensions and typography.
-- Display a maximum of 5 Navigation lists using Grid Columns
-- Display social icons in the last column
-- Display MOH icon in the last column
+* The Footer component should:
+- Use theme tokens for colors, dimensions and typography. √
+- Display a maximum of 5 Navigation lists using Grid Columns √
+- Display social icons in the last column √
+- Display MOH icon in the last column 
 - Display NZ Government icon in the last column
-- Display a Divider to separate navigation lists from imprint list
-- Display a maximum of 7 'Imprint' list items
-- Display the Safe site icon
-- Have a light variant
-- Have a dark variant
+- Display a Divider to separate navigation lists from imprint list √
+- Display a maximum of 7 'Imprint' list items √
+- Display the Safe site icon √
+- Have a light variant √
+- Have a dark variant √
  */
 
-// TODO: Move NZ govt logo to correct place
-
-// TODO: Update FirstRow, SecondRow, and ThirdRow components to have descriptive names
+// TODO: Move NZ govt logo asset to correct place
 
 type ImprintItem = {
   text: string;
@@ -117,12 +115,16 @@ export const Footer = ({
         {/* Second row */}
         <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
           <Box className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}>
-            <AllowedChildren
-              errorMessage="Only `Navigation` components are allowed as children of `Footer`."
-              types={[Navigation]}
-            >
-              {children}
-            </AllowedChildren>
+            {Children.map(children, (child) => (
+              <Box className={styles.navigationWrapper}>
+                <AllowedChildren
+                  errorMessage="Only `Navigation` components are allowed as children of `Footer`."
+                  types={[Navigation]}
+                >
+                  {child}
+                </AllowedChildren>
+              </Box>
+            ))}
           </Box>
           {!!socialLinks && <ShieldedSite />}
         </Box>

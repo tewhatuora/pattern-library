@@ -8,8 +8,6 @@ import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-// TODO: Update all hardcoded number pixel values to tokens
-
 export const firstRow = style({
   height: '7.2rem',
 });
@@ -34,13 +32,25 @@ export const secondRow = style([
     flexDirection: { mobile: 'column', tablet: 'row' },
     flexWrap: 'wrap',
   }),
-  {
-    gap: calc.multiply(2, vars.space.large.mobile), // 6.4rem
-  },
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.medium.mobile,
+    },
+    tablet: {
+      gap: calc.multiply(2, vars.space.large.mobile), // 6.4rem
+    },
+  }),
+  {},
 ]);
 
 export const lessSpace = style({
   gap: vars.space.xlarge.mobile,
+});
+
+export const navigationWrapper = style({
+  flexGrow: 1,
+  flexShrink: 1,
+  maxWidth: '32rem',
 });
 
 // Third row

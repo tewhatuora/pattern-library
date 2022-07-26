@@ -34,7 +34,15 @@ Default.args = {
   socialLinkHrefs,
 };
 
-export const WithoutSocialLinks = (args: FooterProps) => {
+export const NoNavigations = (args: FooterProps) => {
+  return <Footer {...args} />;
+};
+NoNavigations.args = {
+  imprintItems,
+  socialLinkHrefs,
+};
+
+export const NoSocialLinks = (args: FooterProps) => {
   return (
     <Footer {...args}>
       <Navigation />
@@ -44,7 +52,14 @@ export const WithoutSocialLinks = (args: FooterProps) => {
     </Footer>
   );
 };
-WithoutSocialLinks.args = { imprintItems };
+NoSocialLinks.args = { imprintItems };
+
+export const NoNavigationsOrSocialLinks = (args: FooterProps) => {
+  return <Footer {...args} />;
+};
+NoNavigations.args = {
+  imprintItems,
+};
 
 export const FiveNavigations = (args: FooterProps) => {
   return (
@@ -74,3 +89,10 @@ export const MoreThanFiveNavigationsShouldThrowError = (args: FooterProps) => {
     </Footer>
   );
 };
+
+export const MoreThanSevenImprintItemsShouldThrowError = (args: FooterProps) => {
+  return <Footer {...args} />;
+};
+MoreThanSevenImprintItemsShouldThrowError.arguments({
+  imprintItems: [...imprintItems, ...imprintItems, ...imprintItems],
+});
