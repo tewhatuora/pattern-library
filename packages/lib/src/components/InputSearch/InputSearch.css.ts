@@ -54,7 +54,7 @@ export const input = style([
   },
   responsiveStyle({
     mobile: {
-      height: vars.space.xxlarge.mobile,
+      height: vars.space.xxlarge.tablet,
     },
     tablet: {
       height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
@@ -72,12 +72,12 @@ export const button = style([
   },
   responsiveStyle({
     mobile: {
-      width: vars.space.xxlarge.mobile,
-      height: vars.space.xxlarge.mobile,
+      width: vars.space.xxlarge.tablet,
+      height: vars.space.xxlarge.tablet,
     },
     tablet: {
-      width: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xxlarge.tablet, 4)),
-      height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
+      width: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.mobile, 2)),
+      height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.mobile, 2)),
     },
   }),
 ]);
