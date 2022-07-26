@@ -68,6 +68,10 @@ export const Footer = ({
     throw new Error('There can only be up to 5 `Navigation` components as children of `Footer`.');
   }
 
+  if (imprintItems && imprintItems.length > 7) {
+    throw new Error('There can only be up to 7 imprint items as props of `Footer`.');
+  }
+
   const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
   const socialLinks = !!socialLinkHrefs && (
