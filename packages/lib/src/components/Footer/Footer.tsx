@@ -79,7 +79,7 @@ export const Footer = ({
       {Object.entries(socialLinkHrefs)
         .map(([key, value]) => (
           <Box aria-label={key} as="a" href={value} key={key}>
-            <Icon className={styles.socialIcons[variant ?? 'dark']} icon={key as IconType} variant="socialIcons" />
+            <Icon className={styles.socialIcons[variant ?? 'light']} icon={key as IconType} variant="socialIcons" />
           </Box>
         ))
         .sort(byDesignOrder)}
