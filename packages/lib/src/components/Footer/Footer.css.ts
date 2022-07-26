@@ -84,19 +84,6 @@ export const imprintItems = style([
     tablet: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      marginTop: calc.multiply(-1, vars.space.small.tablet),
-    },
-  }),
-]);
-
-export const imprintItem = style([
-  atoms({}),
-  {},
-  responsiveStyle({
-    mobile: {},
-    tablet: {
-      marginTop: vars.space.small.tablet,
-      marginRight: vars.space.xlarge.tablet,
     },
   }),
 ]);

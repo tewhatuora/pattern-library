@@ -86,13 +86,11 @@ export const Footer = ({
     <Box className={styles.imprintItems}>
       {imprintItems?.map(({ text, href }) =>
         href ? (
-          <Box as="a" className={styles.imprintItem} href={href} key={text}>
+          <Box as="a" href={href} key={text}>
             <Text>{text}</Text>
           </Box>
         ) : (
-          <Text className={styles.imprintItem} key={text}>
-            {text}
-          </Text>
+          <Text key={text}>{text}</Text>
         ),
       )}
     </Box>
