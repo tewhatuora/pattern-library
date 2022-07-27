@@ -95,12 +95,12 @@ export const navListItemLink = styleVariants({
     style([
       responsiveStyle({
         mobile: {
-          paddingTop: vars.space.medium.mobile,
-          paddingBottom: vars.space.medium.mobile,
+          paddingTop: calc.divide(vars.space.medium.mobile, 2),
+          paddingBottom: calc.divide(vars.space.medium.mobile, 2),
         },
         desktop: {
-          paddingTop: vars.space.small.tablet,
-          paddingBottom: vars.space.small.tablet,
+          paddingTop: calc.divide(vars.space.small.tablet, 2),
+          paddingBottom: calc.divide(vars.space.small.tablet, 2),
           selectors: {
             '&:hover': {
               textDecoration: 'underline',

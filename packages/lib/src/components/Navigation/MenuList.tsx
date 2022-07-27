@@ -1,16 +1,14 @@
 import { PropsWithChildren } from 'react';
-import clsx from 'clsx';
 
-import { Column } from '../Columns/Column';
 import { Text } from '../Text/Text';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Item } from './Item';
 
 import * as styles from './Menu.css';
 
-export const NavigationMenuListStyles = styles;
+export const MenuListStyles = styles;
 
-export type NavigationMenuListProps = {
+export type MenuListProps = {
   heading: string;
 };
 
@@ -18,11 +16,13 @@ export type NavigationMenuListProps = {
  * Navigation menu list
  * @constructor
  */
-export const MenuList = ({ heading, children }: PropsWithChildren<NavigationMenuListProps>) => {
+export const MenuList = ({ heading, children }: PropsWithChildren<MenuListProps>) => {
   return (
-    <Column columns={3}>
-      <Text weight="bold">{heading}</Text>
-      <ul className={clsx(styles.subNavList)}>
+    <>
+      <Text className={styles.subNavHeading} weight="bold">
+        {heading}
+      </Text>
+      <ul className={styles.subNavList}>
         <AllowedChildren
           errorMessage="Only `Navigation.Item` components are allowed as children of `Navigation.MenuList`"
           propsForChild={() => ({
@@ -33,7 +33,7 @@ export const MenuList = ({ heading, children }: PropsWithChildren<NavigationMenu
           {children}
         </AllowedChildren>
       </ul>
-    </Column>
+    </>
   );
 };
 

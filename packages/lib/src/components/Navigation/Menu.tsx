@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren, useContext, useEffect, useRef, useState } from 'react';
+import { Children, PropsWithChildren, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import { debounce } from 'lodash';
@@ -6,10 +6,11 @@ import { debounce } from 'lodash';
 import assert from 'assert';
 
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
+import { useAllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Container } from '../Container/Container';
 import { Row } from '../Columns/Row';
-import { MenuList } from './MenuList';
+import { Column } from '../Columns/Column';
+import { MenuList, MenuListProps } from './MenuList';
 import { ButtonRoot } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
@@ -46,6 +47,12 @@ export const Menu = ({
   const numberOfChildren = Children.count(children);
 
   const dimension = breakpoint !== 'desktop' && breakpoint !== 'wide' ? 'width' : 'height';
+
+  const menuLists = useAllowedChildren({
+    children,
+    errorMessage: 'Only `Navigation.MenuList` components are allowed as children of `Navigation.Menu`',
+    types: [MenuList],
+  });
 
   assert(
     !(numberOfChildren > 1 && mini),
@@ -110,12 +117,11 @@ export const Menu = ({
                   </Text>
                 </ButtonRoot>
               )}
-              <AllowedChildren
-                errorMessage="Only `Navigation.MenuList` components are allowed as children of `Navigation.Menu`"
-                types={[MenuList]}
-              >
-                {children}
-              </AllowedChildren>
+              {menuLists?.map((menuList: ReactNode & { props: MenuListProps }) => (
+                <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
+                  {menuList}
+                </Column>
+              ))}
             </Row>
           </Container>
         </div>

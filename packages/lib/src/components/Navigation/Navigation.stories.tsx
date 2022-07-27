@@ -1,5 +1,7 @@
 import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
+import { MenuListProps } from '@/src/components/Navigation/MenuList';
+
 import { AnchorLinkProps } from '../AnchorLink/AnchorLink';
 
 import { LinkProps } from '../Navigation/Link';
@@ -199,3 +201,19 @@ export const Side = () => {
   );
 };
 Side.argTypes = {};
+
+export const NavigationLinks = (args: MenuListProps) => (
+  <Navigation.MenuList {...args}>
+    <Navigation.Item href="#" label="Sub nav item 5" />
+    <Navigation.Item href="#" label="Sub nav item 6" />
+    <Navigation.Item href="#" label="Sub nav item 7" />
+    <Navigation.Item href="#" label="Sub nav item 8" />
+  </Navigation.MenuList>
+);
+NavigationLinks.argTypes = {
+  heading: {
+    control: {
+      type: 'text',
+    },
+  },
+};
