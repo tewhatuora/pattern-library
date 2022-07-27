@@ -7,6 +7,16 @@ export default {
   title: 'Components/InputDate',
   component: InputDate,
   argTypes: {
+    id: {
+      control: {
+        type: 'text',
+      },
+    },
+    name: {
+      control: {
+        type: 'text',
+      },
+    },
     label: {
       control: {
         type: 'text',
