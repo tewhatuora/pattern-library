@@ -1,4 +1,5 @@
 import { ChangeEventHandler, ForwardedRef, SelectHTMLAttributes, forwardRef, useMemo } from 'react';
+import { useField } from '@react-aria/label';
 import clsx from 'clsx';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
@@ -60,6 +61,12 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
     ref: ForwardedRef<HTMLSelectElement>,
   ) => {
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
+    const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
+      id,
+      label,
+      description: helperText,
+      errorMessage,
+    });
     const optionEls = useMemo(() => {
       const opts = options.slice();
 
@@ -89,6 +96,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             href={href}
             htmlFor={id}
             label={label}
+            labelProps={labelProps}
             subheading={subheading}
             tertiaryLabel={tertiaryLabel}
             tertiaryLabelAs={tertiaryLabelAs}
@@ -99,10 +107,10 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
         )}
         <div className={fieldStyles.field}>
           <select
+            {...fieldProps}
             aria-invalid={invalid}
             className={clsx(
               {
-                [fieldStyles.input.error]: error || !!errorMessage,
                 [fieldStyles.input.base]: !error && !errorMessage,
                 [fieldStyles.input.dropdown]: true,
               },
@@ -122,7 +130,13 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           </select>
           <Icon className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
         </div>
-        <InputMessage errorMessage={errorMessage} helperText={helperText} />
+        <InputMessage
+          descriptionProps={descriptionProps}
+          disabled={disabled}
+          errorMessage={errorMessage}
+          errorMessageProps={errorMessageProps}
+          helperText={helperText}
+        />
       </div>
     );
   },
