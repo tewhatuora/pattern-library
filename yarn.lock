@@ -2452,6 +2452,7 @@ __metadata:
     "@radix-ui/react-dialog": ^0.1.7
     "@react-aria/button": ^3.4.4
     "@react-aria/interactions": ^3.8.4
+    "@react-aria/label": ^3.3.1
     "@react-aria/link": ^3.3.1
     "@react-types/shared": ^3.13.1
     "@testing-library/dom": ^8.10.1
