@@ -70,8 +70,6 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       ref as RefObject<HTMLInputElement>,
     );
 
-    console.log(labelProps, inputProps);
-
     const handleClear = useCallback(() => {
       onChange?.('');
     }, [onChange]);
