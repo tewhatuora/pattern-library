@@ -1,5 +1,6 @@
-import { ForwardedRef, forwardRef, useCallback } from 'react';
+import { ForwardedRef, RefObject, forwardRef, useCallback } from 'react';
 import PhoneInput, { Country } from 'react-phone-number-input';
+import { useTextField } from '@react-aria/textfield';
 import clsx from 'clsx';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
@@ -55,6 +56,21 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
+    const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
+      {
+        id,
+        name,
+        label,
+        placeholder,
+        value,
+        description: helperText,
+        errorMessage,
+        type: 'tel',
+      },
+      ref as RefObject<HTMLInputElement>,
+    );
+
+    console.log(labelProps, inputProps);
 
     const handleClear = useCallback(() => {
       onChange?.('');
@@ -67,6 +83,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           href={href}
           htmlFor={id}
           label={label}
+          labelProps={labelProps}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
@@ -76,10 +93,10 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
         />
         <div className={inputStyles.field}>
           <PhoneInput
-            aria-describedby={`${errorMessage} ${helperText}`}
+            id={id}
+            {...inputProps}
             className={clsx(
               {
-                [inputStyles.input.error]: errorMessage,
                 [inputStyles.input.base]: !errorMessage,
                 [inputStyles.input.phone]: true,
                 [styles.input]: true,
@@ -91,7 +108,6 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             defaultCountry={defaultCountry}
             disabled={disabled}
             displayInitialValueAsLocalNumber
-            id={id}
             inputComponent={InputField}
             international={international}
             invalid={(!!errorMessage).toString()}
@@ -104,7 +120,13 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           />
           {!!clearable && !!value?.length && <InputClearButton onClear={handleClear} />}
         </div>
-        <InputMessage errorMessage={errorMessage} helperText={helperText} />
+        <InputMessage
+          descriptionProps={descriptionProps}
+          disabled={disabled}
+          errorMessage={errorMessage}
+          errorMessageProps={errorMessageProps}
+          helperText={helperText}
+        />
       </div>
     );
   },

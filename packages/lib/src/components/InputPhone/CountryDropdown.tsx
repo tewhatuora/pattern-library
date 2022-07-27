@@ -20,7 +20,7 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
     (event) => {
       const value = event.target.value;
 
-      onChange(value === 'International' ? undefined : value);
+      onChange?.(value === 'International' ? undefined : value);
     },
     [onChange],
   );

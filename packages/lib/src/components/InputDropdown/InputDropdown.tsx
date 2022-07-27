@@ -102,7 +102,6 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             aria-invalid={invalid}
             className={clsx(
               {
-                [fieldStyles.input.error]: error || !!errorMessage,
                 [fieldStyles.input.base]: !error && !errorMessage,
                 [fieldStyles.input.dropdown]: true,
               },
