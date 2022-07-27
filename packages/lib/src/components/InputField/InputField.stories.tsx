@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { InputField, InputFieldProps } from './InputField';
 
@@ -52,11 +52,23 @@ export default {
         type: 'number',
       },
     },
+    type: {
+      defaultValue: 'text',
+      options: ['email', 'number', 'password', 'search', 'tel', 'text', 'url'],
+    },
   },
 };
 
-export const Default = (args: InputFieldProps) => {
+export const Uncontrolled = (args: InputFieldProps) => {
   return <InputField {...args} />;
+};
+
+export const Controlled = (args: InputFieldProps) => {
+  const [value, setValue] = useState('');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+  return <InputField {...args} value={value} onChange={handleChange} />;
 };
 
 /**
@@ -68,9 +80,7 @@ export const Default = (args: InputFieldProps) => {
 export const Refs = (args: InputFieldProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
-    if (ref?.current) {
-      ref.current.focus();
-    }
+    ref?.current?.focus();
   }, [ref]);
 
   return <InputField {...args} placeholder="Focused by default using forwardRef" ref={ref} />;

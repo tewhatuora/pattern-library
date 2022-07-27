@@ -10,6 +10,8 @@ import {
 } from 'react';
 import clsx from 'clsx';
 
+import { Box } from '../Box/Box';
+
 import { InputClearButton } from './InputClearButton';
 
 import { useText } from '../../hooks/typography';
@@ -42,19 +44,6 @@ export type OtherInputFieldProps = Omit<BaseInputFieldProps, 'type' | 'clearable
 
 /**
  * Text field and background for an input field.
- * @param error
- * @param id
- * @param name
- * @param defaultValue
- * @param disabled
- * @param clearable
- * @param required
- * @param placeholder
- * @param multiline
- * @param type
- * @param rows
- * @param onChange
- * @param value
  * @param props
  * @constructor
  */
@@ -92,7 +81,8 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     }, [name, onChange]);
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
-    const elements = [];
+
+    const hasClearButton = Boolean(clearable && value?.length);
 
     const inputElement = createElement(inputEl, {
       disabled,
@@ -103,15 +93,14 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       type,
       rows,
       onChange,
-      'aria-invalid': !!error?.toString() || 'false',
-      key: 'input',
+      'aria-invalid': error,
       ...valueProps,
       ...props,
       className: clsx(
         {
-          [styles.input.error]: error,
-          [styles.input.base]: !error,
+          [styles.input.base]: true,
           [styles.input.multiline]: multiline,
+          [styles.input.clearable]: hasClearButton,
         },
         textSizeClasses,
         props.className,
@@ -119,13 +108,16 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       ref,
     });
 
-    elements.push(inputElement);
-
-    if (clearable && value?.length) {
-      elements.push(<InputClearButton onClear={handleClear} />);
-    }
-
-    return <div className={styles.field}>{elements}</div>;
+    return (
+      <div className={styles.field}>
+        {inputElement}
+        {hasClearButton && (
+          <Box position="relative">
+            <InputClearButton onClear={handleClear} />
+          </Box>
+        )}
+      </div>
+    );
   },
 );
 
