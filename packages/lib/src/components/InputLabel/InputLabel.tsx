@@ -21,22 +21,9 @@ export type InputLabelProps = {
   error?: boolean;
   disabled?: boolean;
   labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
-} & (AsLink | AsButton | AsText);
-
-type AsLink = {
-  tertiaryLabelAs: 'a';
-  href: string;
-  onTertiaryLabelClick: never;
-};
-type AsButton = {
-  tertiaryLabelAs: 'button';
-  href?: never;
-  onTertiaryLabelClick: (e: any) => void;
-};
-type AsText = {
-  tertiaryLabelAs: 'text';
-  href?: never;
-  onTertiaryLabelClick: never;
+  tertiaryLabelAs?: 'a' | 'button' | 'text';
+  href?: string | never;
+  onTertiaryLabelClick?: (e: any) => void | never;
 };
 
 /**

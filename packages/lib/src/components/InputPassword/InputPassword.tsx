@@ -1,9 +1,9 @@
-import { ForwardedRef, HTMLInputTypeAttribute, RefObject, forwardRef, useCallback, useState } from 'react';
-import { useTextField } from '@react-aria/textfield';
+import { ForwardedRef, forwardRef, useCallback, useState } from 'react';
 
-import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
-import { InputField, OtherInputFieldProps } from '../InputField/InputField';
-import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
+import { InputLabelProps } from '../InputLabel/InputLabel';
+import { OtherInputFieldProps } from '../InputField/InputField';
+import { InputMessageProps } from '../InputMessage/InputMessage';
+import { InputText } from '../InputText/InputText';
 
 enum PasswordFieldType {
   Password = 'password',
@@ -39,27 +39,10 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       tertiaryLabelIcon,
       tertiaryLabelIconPosition,
       onChange,
-      ...rest
     }: InputPasswordProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const [type, setType] = useState<HTMLInputTypeAttribute>(PasswordFieldType.Password);
-    const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
-      {
-        id,
-        name,
-        label,
-        placeholder,
-        value,
-        description: helperText,
-        defaultValue,
-        errorMessage,
-        ...rest,
-        type,
-      },
-      ref as RefObject<HTMLInputElement>,
-    );
-
+    const [type, setType] = useState<PasswordFieldType>(PasswordFieldType.Password);
     /**
      * Handle showing/hiding the password value
      */
@@ -68,41 +51,28 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
     }, [type]);
 
     return (
-      <div>
-        <InputLabel
-          disabled={disabled}
-          error={error || !!errorMessage}
-          htmlFor={id}
-          label={label}
-          labelProps={labelProps}
-          subheading={subheading}
-          tertiaryLabel={type === PasswordFieldType.Password ? 'Show' : 'Hide'}
-          tertiaryLabelAs="button"
-          tertiaryLabelIcon={tertiaryLabelIcon}
-          tertiaryLabelIconPosition={tertiaryLabelIconPosition}
-          onTertiaryLabelClick={handleToggle}
-        />
-        <InputField
-          {...inputProps}
-          defaultValue={defaultValue}
-          disabled={disabled}
-          error={error || !!errorMessage}
-          name={name}
-          placeholder={placeholder}
-          ref={ref}
-          required={required}
-          type={type}
-          value={value}
-          onChange={onChange}
-        />
-        <InputMessage
-          descriptionProps={descriptionProps}
-          disabled={disabled}
-          errorMessage={errorMessage}
-          errorMessageProps={errorMessageProps}
-          helperText={helperText}
-        />
-      </div>
+      <InputText
+        defaultValue={defaultValue}
+        disabled={disabled}
+        error={error || !!errorMessage}
+        errorMessage={errorMessage}
+        helperText={helperText}
+        id={id}
+        label={label}
+        name={name}
+        placeholder={placeholder}
+        ref={ref}
+        required={required}
+        subheading={subheading}
+        tertiaryLabel={type === PasswordFieldType.Password ? 'Show' : 'Hide'}
+        tertiaryLabelAs="button"
+        tertiaryLabelIcon={tertiaryLabelIcon}
+        tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+        type={type}
+        value={value}
+        onChange={onChange}
+        onTertiaryLabelClick={handleToggle}
+      />
     );
   },
 );
