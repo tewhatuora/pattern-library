@@ -14,6 +14,7 @@ export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 export type StackProps = {
   as?: typeof validStackComponents[number];
+  className?: string;
   space: Space;
   horizontal?: boolean;
 } & BoxProps;
@@ -26,6 +27,7 @@ export type StackProps = {
 export const Stack = ({
   as = 'div',
   children,
+  className,
   space = 'medium',
   horizontal = false,
   ...boxProps
@@ -38,10 +40,13 @@ export const Stack = ({
   return (
     <Box
       as={as}
-      className={styles.variants({
-        space,
-        direction: horizontal ? 'horizontal' : 'vertical',
-      })}
+      className={[
+        styles.variants({
+          space,
+          direction: horizontal ? 'horizontal' : 'vertical',
+        }),
+        className,
+      ]}
       {...boxProps}
     >
       {children}
