@@ -1,3 +1,4 @@
+import { LabelHTMLAttributes } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -16,25 +17,13 @@ export type InputLabelProps = {
   tertiaryLabel?: string;
   tertiaryLabelIcon?: IconType;
   tertiaryLabelIconPosition?: 'left' | 'right';
-  htmlFor: string;
+  htmlFor?: string;
   error?: boolean;
   disabled?: boolean;
-} & (AsLink | AsButton | AsText);
-
-type AsLink = {
-  tertiaryLabelAs: 'a';
-  href: string;
-  onTertiaryLabelClick: never;
-};
-type AsButton = {
-  tertiaryLabelAs: 'button';
-  href: never;
-  onTertiaryLabelClick: (e: any) => void;
-};
-type AsText = {
-  tertiaryLabelAs: 'text';
-  href: never;
-  onTertiaryLabelClick: never;
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
+  tertiaryLabelAs?: 'a' | 'button' | 'text';
+  href?: string | never;
+  onTertiaryLabelClick?: (e: any) => void | never;
 };
 
 /**
@@ -60,12 +49,13 @@ export const InputLabel = ({
   href,
   error = false,
   disabled,
+  labelProps,
 }: InputLabelProps) => {
   const labelColor = error && !disabled ? 'error100' : 'primary100';
 
   return (
     <Box display="flex" justifyContent="spaceBetween">
-      <Box as="label" htmlFor={htmlFor}>
+      <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
         <Text color={labelColor} weight="bold">
           {label}
         </Text>
