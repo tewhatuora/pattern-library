@@ -14,8 +14,10 @@ import { IconType } from '../Icon/icons';
 import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
 import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
 
-import * as styles from './Footer.css';
 import { ShieldedSite } from './ShieldedSite';
+
+import * as styles from './Footer.css';
+import { List } from '../List/List';
 export const FooterStyles = styles;
 
 /**
@@ -154,7 +156,16 @@ export const Footer = ({
   );
 };
 
-export const Navigation = () => <p>Navigation</p>; // TODO: Replace with actual Navigation
+export const Navigation = ({ numChildren = 5, long = false }: { numChildren?: number; long?: boolean }) => {
+  const text = long ? 'Lorem ipsum dolor sit amet blahblaatsuranturnyt' : 'Navigation';
+
+  const children = [];
+  for (let i = 0; i < numChildren; i++) {
+    children.push(<List.Item key={`Navigation-key-${i}`}>{text}</List.Item>);
+  }
+
+  return <List.Root type="ol">{children}</List.Root>;
+}; // TODO: Replace with actual Navigation
 
 function byDesignOrder(a: JSX.Element, b: JSX.Element) {
   const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];

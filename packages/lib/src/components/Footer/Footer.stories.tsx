@@ -23,8 +23,7 @@ export const Default = (args: FooterProps) => {
   return (
     <Footer {...args}>
       <Navigation />
-      <Navigation />
-      <Navigation />
+      <Navigation long />
       <Navigation />
     </Footer>
   );
@@ -93,6 +92,6 @@ export const MoreThanFiveNavigationsShouldThrowError = (args: FooterProps) => {
 export const MoreThanSevenImprintItemsShouldThrowError = (args: FooterProps) => {
   return <Footer {...args} />;
 };
-MoreThanSevenImprintItemsShouldThrowError.arguments({
+MoreThanSevenImprintItemsShouldThrowError.args = {
   imprintItems: [...imprintItems, ...imprintItems, ...imprintItems],
-});
+};
