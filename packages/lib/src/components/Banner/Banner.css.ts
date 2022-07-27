@@ -43,8 +43,8 @@ export const variants = recipe({
   base: style([
     atoms({
       display: 'flex',
-      flexShrink: '0',
-      flexGrow: '1',
+      flexShrink: 0,
+      flexGrow: 1,
       alignItems: 'flexStart',
       justifyContent: 'spaceBetween',
     }),
@@ -145,7 +145,7 @@ export const text = style([
 export const bannerInner = style([
   atoms({
     display: 'flex',
-    alignItems: 'flexStart',
+    alignItems: 'center',
   }),
   responsiveStyle({
     mobile: {
