@@ -80,7 +80,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       }
 
       return opts.map((option) => (
-        <option disabled={option.disabled} key={option.label} selected={option.selected} value={option.value}>
+        <option disabled={option.disabled} key={option.label} value={option.value}>
           {option.label}
         </option>
       ));

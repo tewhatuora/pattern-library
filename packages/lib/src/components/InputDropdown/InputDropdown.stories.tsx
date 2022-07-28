@@ -57,16 +57,21 @@ export const Default = (args: InputDropdownProps) => (
     {...args}
     options={[
       {
-        value: 1,
+        value: '1',
         label: 'Option one',
       },
       {
-        value: 2,
+        value: '2',
         label: 'Option two',
       },
       {
         value: '3',
-        label: 'Option three',
+        label: 'Option three (disabled)',
+        disabled: true,
+      },
+      {
+        value: '4',
+        label: 'Option four',
       },
     ]}
   />
