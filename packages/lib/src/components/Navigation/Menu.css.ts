@@ -37,10 +37,19 @@ export const variants = styleVariants({
     backgroundColor: vars.color.primary0,
     color: vars.color.primary100,
   },
-  dark: {
-    backgroundColor: vars.color.primary75,
-    color: vars.color.primary0,
-  },
+  dark: [
+    {
+      color: vars.color.primary0,
+    },
+    responsiveStyle({
+      mobile: {
+        backgroundColor: vars.color.primary75,
+      },
+      desktop: {
+        backgroundColor: vars.color.primary100,
+      },
+    }),
+  ],
 });
 
 /**
