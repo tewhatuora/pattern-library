@@ -1,12 +1,12 @@
 import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
-import { calc } from '@vanilla-extract/css-utils';
-
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
+
+export const widthVar = createVar();
 
 export const firstRow = style({
   height: '7.2rem',
@@ -28,30 +28,46 @@ export const otherLogosWrapper = style({
 
 export const secondRow = style([
   atoms({
-    display: 'flex',
-    flexDirection: { mobile: 'column', tablet: 'row' },
-    flexWrap: 'wrap',
+    display: 'grid',
+    width: 'full',
   }),
-  responsiveStyle({
-    mobile: {
-      gap: vars.space.medium.mobile,
+  {
+    vars: {
+      [widthVar]: '320px',
     },
-    tablet: {
-      gap: calc.multiply(2, vars.space.large.mobile), // 6.4rem
-    },
-  }),
-  {},
+    gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
+    // gridTemplateColumns: 'repeat(auto-fill, minmax(min(10rem, 100%), 1fr))',
+    // gridTemplateColumns: 'repeat(auto-fill, min(fit-content, 320px))',
+    columnGap: vars.space.large.tablet,
+  },
 ]);
 
+export const secondRowChildren = styleVariants({
+  0: {},
+  1: { gridTemplateColumns: 'minmax(0, 32rem)' },
+  2: { gridTemplateColumns: 'repeat(2, minmax(0, 32rem))' },
+  3: { gridTemplateColumns: 'repeat(3, minmax(0, 32rem))' },
+  4: { gridTemplateColumns: 'repeat(4, minmax(0, 32rem))' },
+  5: { gridTemplateColumns: 'repeat(5, minmax(0, 32rem))' },
+});
+
 export const lessSpace = style({
-  gap: vars.space.xlarge.mobile,
+  columnGap: vars.space.xlarge.mobile,
 });
 
 export const navigationWrapper = style({
-  flexGrow: 1,
-  flexShrink: 1,
-  maxWidth: '32rem',
+  width: 'fit-content',
+  maxWidth: 320,
 });
+
+export const hiddenNavs = style({
+  maxWidth: 320,
+  width: 'fit-content',
+  position: 'absolute',
+  visibility: 'hidden',
+});
+
+export const tempNavigation = style({ width: 'fit-content' });
 
 // Third row
 

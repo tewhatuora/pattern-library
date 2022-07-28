@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren, ReactNode } from 'react';
+import { Children, PropsWithChildren, ReactNode, useEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -62,11 +62,33 @@ export const Footer = ({
   variant,
   children,
 }: PropsWithChildren<FooterProps>) => {
-  const numChildren = Children.count(children);
+  const navRefs = useRef<Array<HTMLElement | null>>([]);
 
-  if (numChildren > 5) {
+  const [maxChildWidth, setMaxChildWidth] = useState(0);
+  const [showNavs, setShowNavs] = useState(false);
+
+  useEffect(() => {
+    const widths = navRefs.current.map((ref) => ref?.getBoundingClientRect().width);
+
+    const filtered = widths.filter(Boolean);
+
+    const sorted = filtered.sort();
+
+    const widestChildWidth = sorted.at(-1) ?? 320;
+
+    console.log({ widestChildWidth });
+
+    console.log(styles.widthVar.slice(4, styles.widthVar.length - 1));
+
+    setMaxChildWidth(Math.min(widestChildWidth, 320));
+    setShowNavs(true);
+  }, []);
+
+  if (Children.count(children) > 5) {
     throw new Error('There can only be up to 5 `Navigation` components as children of `Footer`.');
   }
+
+  const numChildren = Children.count(children) as 0 | 1 | 2 | 3 | 4 | 5;
 
   if (imprintItems && imprintItems.length > 7) {
     throw new Error('There can only be up to 7 imprint items as props of `Footer`.');
@@ -102,56 +124,78 @@ export const Footer = ({
 
   return (
     <Box as="footer" color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}>
-      <Stack space="medium">
-        {/* First row */}
-        <Box className={styles.firstRow} display="flex" justifyContent="spaceBetween">
-          <Box className={styles.govtLogoWrapper}>
-            <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
-          </Box>
-          <Box alignItems="center" className={styles.otherLogosWrapper} display="flex">
-            {/* Allowed children: logos or images of some sort */}
-            {extraLogos}
-          </Box>
+      {Children.map(children, (child) => (
+        <Box aria-hidden className={styles.hiddenNavs} ref={(element) => navRefs.current.push(element)}>
+          <AllowedChildren
+            errorMessage="Only `Navigation` components are allowed as children of `Footer`."
+            types={[Navigation]}
+          >
+            {child}
+          </AllowedChildren>
         </Box>
+      ))}
 
-        {/* Second row */}
-        <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
-          <Box className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren >= 5 })}>
-            {Children.map(children, (child) => (
-              <Box className={styles.navigationWrapper}>
-                <AllowedChildren
-                  errorMessage="Only `Navigation` components are allowed as children of `Footer`."
-                  types={[Navigation]}
-                >
-                  {child}
-                </AllowedChildren>
-              </Box>
-            ))}
+      <div hidden={!showNavs}>
+        <Stack space="medium">
+          {/* First row */}
+          <Box className={styles.firstRow} display="flex" justifyContent="spaceBetween">
+            <Box className={styles.govtLogoWrapper}>
+              <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
+            </Box>
+            <Box alignItems="center" className={styles.otherLogosWrapper} display="flex">
+              {/* Allowed children: logos or images of some sort */}
+              {extraLogos}
+            </Box>
           </Box>
-          {!!socialLinks && <ShieldedSite />}
-        </Box>
 
-        {/* Third row */}
-        <Box>
-          <Divider
-            variant={
-              // Divider currently has light and dark swapped
-              (variant && (variant === 'light' ? 'dark' : 'light')) ?? 'dark'
-            }
-          />
-          <Box className={styles.socialAndImprintWrapper}>
-            {/*
-             * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
-             * on the right even when there are no imprintItemsElements.
-             * It should also be okay for accessibility because the order of viewing the
-             * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
-             * really matter.
-             */}
-            {socialLinks || <ShieldedSite />}
-            {imprintItemsElements}
+          {/* Second row */}
+          <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
+            <Box
+              className={clsx(
+                styles.secondRow,
+                // styles.secondRowChildren[numChildren],
+                {
+                  [styles.lessSpace]: numChildren >= 5,
+                },
+              )}
+              style={{ [styles.widthVar.slice(4, styles.widthVar.length - 1)]: `${maxChildWidth / 10}rem` }}
+            >
+              {Children.map(children, (child) => (
+                <Box className={styles.navigationWrapper}>
+                  <AllowedChildren
+                    errorMessage="Only `Navigation` components are allowed as children of `Footer`."
+                    types={[Navigation]}
+                  >
+                    {child}
+                  </AllowedChildren>
+                </Box>
+              ))}
+            </Box>
+            {!!socialLinks && <ShieldedSite />}
           </Box>
-        </Box>
-      </Stack>
+
+          {/* Third row */}
+          <Box>
+            <Divider
+              variant={
+                // Divider currently has light and dark swapped
+                (variant && (variant === 'light' ? 'dark' : 'light')) ?? 'dark'
+              }
+            />
+            <Box className={styles.socialAndImprintWrapper}>
+              {/*
+               * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
+               * on the right even when there are no imprintItemsElements.
+               * It should also be okay for accessibility because the order of viewing the
+               * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
+               * really matter.
+               */}
+              {socialLinks || <ShieldedSite />}
+              {imprintItemsElements}
+            </Box>
+          </Box>
+        </Stack>
+      </div>
     </Box>
   );
 };
@@ -161,10 +205,18 @@ export const Navigation = ({ numChildren = 5, long = false }: { numChildren?: nu
 
   const children = [];
   for (let i = 0; i < numChildren; i++) {
-    children.push(<List.Item key={`Navigation-key-${i}`}>{text}</List.Item>);
+    children.push(
+      <List.Item key={`Navigation-key-${i}`} style={{ width: 'fit-content' }}>
+        {text}
+      </List.Item>,
+    );
   }
 
-  return <List.Root type="ol">{children}</List.Root>;
+  return (
+    <List.Root className={styles.tempNavigation} type="ol">
+      {children}
+    </List.Root>
+  );
 }; // TODO: Replace with actual Navigation
 
 function byDesignOrder(a: JSX.Element, b: JSX.Element) {
