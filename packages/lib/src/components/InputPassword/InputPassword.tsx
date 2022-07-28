@@ -28,6 +28,8 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       name,
       label,
       subheading,
+      tertiaryLabelIcon,
+      tertiaryLabelIconPosition,
       placeholder,
       error,
       errorMessage,
@@ -35,9 +37,8 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       value,
       required,
       disabled,
+      clearable,
       defaultValue,
-      tertiaryLabelIcon,
-      tertiaryLabelIconPosition,
       onChange,
     }: InputPasswordProps,
     ref: ForwardedRef<HTMLInputElement>,
@@ -52,6 +53,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
 
     return (
       <InputText
+        clearable={clearable}
         defaultValue={defaultValue}
         disabled={disabled}
         error={error || !!errorMessage}

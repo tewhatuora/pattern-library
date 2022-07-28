@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import icons from '../Icon/icons';
 
@@ -80,7 +80,10 @@ export default {
   },
 };
 
-export const Default = (args: InputPasswordProps) => <InputPassword {...args} />;
+export const Default = (args: InputPasswordProps) => {
+  const [value, setValue] = useState('');
+  return <InputPassword {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+};
 
 /**
  * Example with forwarding a ref, and using it
