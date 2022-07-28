@@ -3,6 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { atoms } from '../../css/atoms/atoms';
 
 const focusStyle = {
   outline: `${vars.borderWidth.small} solid ${vars.color.caution100}`,
@@ -20,6 +21,10 @@ const controlStyle = style({
 });
 
 export const container = style([
+  atoms({
+    display: 'flex',
+    flexDirection: 'row',
+  }),
   {
     borderRadius: vars.borderRadiusAll.inputs,
     border: `${vars.borderWidth.small} solid ${vars.color.primary50}`,
@@ -40,10 +45,16 @@ export const input = style([
     borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
     borderTopRightRadius: '0',
     borderBottomRightRadius: '0',
+    selectors: {
+      '&::-webkit-search-decoration, &::-webkit-search-cancel-button, &::-webkit-search-results-button, &::-webkit-search-results-decoration':
+        {
+          display: 'none',
+        },
+    },
   },
   responsiveStyle({
     mobile: {
-      height: vars.space.xxlarge.mobile,
+      height: vars.space.xxlarge.tablet,
     },
     tablet: {
       height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
@@ -61,12 +72,12 @@ export const button = style([
   },
   responsiveStyle({
     mobile: {
-      width: vars.space.xxlarge.mobile,
-      height: vars.space.xxlarge.mobile,
+      width: vars.space.xxlarge.tablet,
+      height: vars.space.xxlarge.tablet,
     },
     tablet: {
-      width: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xxlarge.tablet, 4)),
-      height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
+      width: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.mobile, 2)),
+      height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.mobile, 2)),
     },
   }),
 ]);
