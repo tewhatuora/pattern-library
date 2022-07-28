@@ -20,6 +20,8 @@ import * as styles from './Footer.css';
 import { List } from '../List/List';
 export const FooterStyles = styles;
 
+const MAX_COLUMN_WIDTH = 320;
+
 /**
  * 
 * The Footer component should:
@@ -65,30 +67,20 @@ export const Footer = ({
   const navRefs = useRef<Array<HTMLElement | null>>([]);
 
   const [maxChildWidth, setMaxChildWidth] = useState(0);
+
+  // To hide calculating the column widths. See `hiddenChildrenForWidthCalculations`
   const [showNavs, setShowNavs] = useState(false);
 
   useEffect(() => {
-    const widths = navRefs.current.map((ref) => ref?.getBoundingClientRect().width);
-
-    const filtered = widths.filter(Boolean);
-
-    const sorted = filtered.sort();
-
-    const widestChildWidth = sorted.at(-1) ?? 320;
-
-    console.log({ widestChildWidth });
-
-    console.log(styles.widthVar.slice(4, styles.widthVar.length - 1));
-
-    setMaxChildWidth(Math.min(widestChildWidth, 320));
-    setShowNavs(true);
+    setMaxChildWidth(Math.min(widthOfWidestElement(navRefs.current), MAX_COLUMN_WIDTH));
+    setShowNavs(true); // Should get batched with the setter above
   }, []);
 
-  if (Children.count(children) > 5) {
+  const numChildren = Children.count(children);
+
+  if (numChildren > 5) {
     throw new Error('There can only be up to 5 `Navigation` components as children of `Footer`.');
   }
-
-  const numChildren = Children.count(children) as 0 | 1 | 2 | 3 | 4 | 5;
 
   if (imprintItems && imprintItems.length > 7) {
     throw new Error('There can only be up to 7 imprint items as props of `Footer`.');
@@ -122,18 +114,31 @@ export const Footer = ({
     </Box>
   );
 
+  /**
+   * This solves this design requirement:
+   *
+   * > The columns themselves should flex with the screen width but have a
+   * > max-width of 320px. The width should not be defined by the content, but
+   * > by a parent element so the sizes can be the same across all columns.
+   *
+   * CSS grid and flexbox cannot do this alone. The only way I found to achieve
+   * this is to render the children in a separate, hidden context, measure their
+   * intrinsic width to find the widest one, then set a CSS variable to set all
+   * columns to that width.
+   *
+   * This causes some layout issues, where for a second the elements would
+   * display incorrectly. The `showNavs` state only makes the Footer content
+   * visible once the calculation has been done.
+   */
+  const hiddenChildrenForWidthCalculations = Children.map(children, (child) => (
+    <Box aria-hidden className={styles.hiddenNavs} ref={(element) => navRefs.current.push(element)}>
+      {child}
+    </Box>
+  ));
+
   return (
     <Box as="footer" color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}>
-      {Children.map(children, (child) => (
-        <Box aria-hidden className={styles.hiddenNavs} ref={(element) => navRefs.current.push(element)}>
-          <AllowedChildren
-            errorMessage="Only `Navigation` components are allowed as children of `Footer`."
-            types={[Navigation]}
-          >
-            {child}
-          </AllowedChildren>
-        </Box>
-      ))}
+      {hiddenChildrenForWidthCalculations}
 
       <div hidden={!showNavs}>
         <Stack space="medium">
@@ -151,24 +156,16 @@ export const Footer = ({
           {/* Second row */}
           <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
             <Box
-              className={clsx(
-                styles.secondRow,
-                // styles.secondRowChildren[numChildren],
-                {
-                  [styles.lessSpace]: numChildren >= 5,
-                },
-              )}
-              style={{ [styles.widthVar.slice(4, styles.widthVar.length - 1)]: `${maxChildWidth / 10}rem` }}
+              className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren === 5 })}
+              style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
             >
               {Children.map(children, (child) => (
-                <Box className={styles.navigationWrapper}>
-                  <AllowedChildren
-                    errorMessage="Only `Navigation` components are allowed as children of `Footer`."
-                    types={[Navigation]}
-                  >
-                    {child}
-                  </AllowedChildren>
-                </Box>
+                <AllowedChildren
+                  errorMessage="Only `Navigation` components are allowed as children of `Footer`."
+                  types={[Navigation]}
+                >
+                  {child}
+                </AllowedChildren>
               ))}
             </Box>
             {!!socialLinks && <ShieldedSite />}
@@ -225,5 +222,33 @@ function byDesignOrder(a: JSX.Element, b: JSX.Element) {
   return (
     socialLinksOrder.findIndex((v) => v === a.key?.toString()) -
     socialLinksOrder.findIndex((v) => v === b.key?.toString())
+  );
+}
+
+/**
+ * Helper function for setting vanilla extract CSS variables in the style tag.
+ *
+ * When referencing the CSS variables, it includes the `var(...)` wrapper, which
+ * should be omitted when set. This strips that off.
+ * @param cssVariable
+ * @param value
+ * @returns
+ */
+function setCssVariable(cssVariable: string, value: string) {
+  return { [cssVariable.slice(4, styles.widthVar.length - 1)]: value };
+}
+
+/**
+ * Helper function that gets the width of the widest given element.
+ * @param refs
+ * @returns
+ */
+function widthOfWidestElement(refs: (HTMLElement | null)[]) {
+  return (
+    refs
+      .map((ref) => ref?.getBoundingClientRect().width) // Get width
+      .filter(Boolean) // Filter out null values
+      .sort()
+      .at(-1) ?? Infinity // Highest number is last, default to Infinity
   );
 }

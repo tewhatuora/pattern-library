@@ -32,39 +32,19 @@ export const secondRow = style([
     width: 'full',
   }),
   {
-    vars: {
-      [widthVar]: '320px',
-    },
     gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
-    // gridTemplateColumns: 'repeat(auto-fill, minmax(min(10rem, 100%), 1fr))',
-    // gridTemplateColumns: 'repeat(auto-fill, min(fit-content, 320px))',
     columnGap: vars.space.large.tablet,
   },
 ]);
-
-export const secondRowChildren = styleVariants({
-  0: {},
-  1: { gridTemplateColumns: 'minmax(0, 32rem)' },
-  2: { gridTemplateColumns: 'repeat(2, minmax(0, 32rem))' },
-  3: { gridTemplateColumns: 'repeat(3, minmax(0, 32rem))' },
-  4: { gridTemplateColumns: 'repeat(4, minmax(0, 32rem))' },
-  5: { gridTemplateColumns: 'repeat(5, minmax(0, 32rem))' },
-});
 
 export const lessSpace = style({
   columnGap: vars.space.xlarge.mobile,
 });
 
-export const navigationWrapper = style({
-  width: 'fit-content',
-  maxWidth: 320,
-});
-
 export const hiddenNavs = style({
-  maxWidth: 320,
-  width: 'fit-content',
   position: 'absolute',
   visibility: 'hidden',
+  width: 'fit-content',
 });
 
 export const tempNavigation = style({ width: 'fit-content' });
