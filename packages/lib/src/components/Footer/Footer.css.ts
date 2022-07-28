@@ -12,8 +12,6 @@ export const firstRow = style({
   height: '7.2rem',
 });
 
-// TODO: Change how govt logo is implemented and update styles accordingly
-
 export const govtLogoWrapper = style({
   height: '7.2rem',
   width: '26.5rem',
