@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { Children, PropsWithChildren, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import { debounce } from 'lodash';
@@ -14,6 +14,7 @@ import { MenuList, MenuListProps } from './MenuList';
 import { ButtonRoot } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
+import { NavigationContext } from './Root';
 
 import * as styles from './Menu.css';
 import * as navStyles from './Navigation.css';
@@ -43,10 +44,12 @@ export const Menu = ({
   const breakpoint = useContext(BreakpointContext);
   const [shouldRender, setShouldRender] = useState(show);
   const [measurement, setMeasurement] = useState(0);
+  const [offset, setOffset] = useState(0);
   const menuEl = useRef<HTMLDivElement>(null);
   const numberOfChildren = Children.count(children);
-
-  const dimension = breakpoint !== 'desktop' && breakpoint !== 'wide' ? 'width' : 'height';
+  const navContext = useContext(NavigationContext);
+  const isMobile = breakpoint !== 'desktop' && breakpoint !== 'wide';
+  const dimension = isMobile ? 'width' : 'height';
 
   const menuLists = useAllowedChildren({
     children,
@@ -73,6 +76,12 @@ export const Menu = ({
         if (menuEl?.current) {
           setMeasurement(menuEl.current.getBoundingClientRect()?.[dimension]);
         }
+
+        if (isMobile) {
+          if (navContext.element?.current) {
+            setOffset(navContext.element?.current.getBoundingClientRect()?.left);
+          }
+        }
       } else {
         setMeasurement(0);
       }
@@ -87,7 +96,19 @@ export const Menu = ({
     return () => {
       window.removeEventListener('resize', resizeHandler);
     };
-  }, [dimension, show, shouldRender]);
+  }, [dimension, show, shouldRender, isMobile, navContext]);
+
+  const style = useMemo(() => {
+    const css = {
+      [dimension]: `${measurement}px`,
+    };
+
+    if (isMobile) {
+      css.right = `-${offset}px`;
+    }
+
+    return css;
+  }, [dimension, measurement, offset, isMobile]);
 
   return (
     <div
@@ -95,9 +116,7 @@ export const Menu = ({
         [styles.navigationMenuContainer.mini]: mini,
         [styles.variants[variant]]: true,
       })}
-      style={{
-        [dimension]: measurement,
-      }}
+      style={style}
       onTransitionEnd={handleTransitionEnd}
     >
       {shouldRender && (
