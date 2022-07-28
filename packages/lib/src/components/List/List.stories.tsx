@@ -1,11 +1,19 @@
 import { List } from './List';
 import { ListRootProps } from './Root';
+import Docs from './List.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/List',
   component: List.Root,
   args: {
     type: 'ul',
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
   },
 };
 

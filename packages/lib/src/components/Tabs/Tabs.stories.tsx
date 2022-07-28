@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { TabsRootProps } from './Root';
 import { Tabs } from './Tabs';
 
+import Docs from './Tabs.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
+
 export default {
   title: 'Components/Tabs',
   component: Tabs.Root,
@@ -30,6 +33,11 @@ export default {
         type: 'radio',
         options: ['automatic', 'manual'],
       },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

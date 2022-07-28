@@ -5,6 +5,9 @@ import { DialogProps } from './Root';
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
 import icons from '../Icon/icons';
+import Docs from './Dialog.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/Dialog',
@@ -26,6 +29,11 @@ export default {
         type: 'text',
       },
       defaultValue: 'Subheading',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 import { InputText, InputTextProps } from './InputText';
 import icons from '../Icon/icons';
+import Docs from './InputText.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/InputText',
@@ -79,6 +82,11 @@ export default {
         options: ['left', 'right'],
       },
       defaultValue: 'left',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { Pagination, PaginationProps } from './Pagination';
+import Docs from './Pagination.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/Pagination',
@@ -14,6 +16,11 @@ export default {
     },
     current: {
       disabled: true,
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };
