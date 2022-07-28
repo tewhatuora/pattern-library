@@ -111,7 +111,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
         {inputElement}
         {hasClearButton && (
           <Box position="relative">
-            <InputClearButton onClear={handleClear} />
+            <InputClearButton fieldType={type} onClear={handleClear} />
           </Box>
         )}
       </div>

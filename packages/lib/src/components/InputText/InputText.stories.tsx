@@ -101,9 +101,7 @@ export const Controlled = (args: InputTextProps) => {
 export const Refs = (args: InputTextProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
-    if (ref?.current) {
-      ref.current.focus();
-    }
+    ref?.current?.focus();
   }, [ref]);
 
   return <InputText {...args} ref={ref} />;
