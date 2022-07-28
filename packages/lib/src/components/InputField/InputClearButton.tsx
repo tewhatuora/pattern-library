@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from '../Button/Button';
 import * as styles from './InputField.css';
@@ -6,6 +8,7 @@ import { clearIcon } from '../Icon/Icon.css';
 export const InputClearButtonStyles = styles;
 
 export type InputClearButtonProps = {
+  clearButton?: string;
   onClear: () => void;
 };
 
@@ -13,9 +16,13 @@ export type InputClearButtonProps = {
  * Button/icon to clear an input field
  * @constructor
  */
-export const InputClearButton = ({ onClear }: InputClearButtonProps) => {
+export const InputClearButton = ({ fieldType = 'text', onClear }: InputClearButtonProps) => {
   return (
-    <ButtonRoot aria-label="Clear input field" className={styles.clearButton} onPress={onClear}>
+    <ButtonRoot
+      aria-label="Clear input field"
+      className={clsx(styles.clearButtonBase, styles.clearButton[fieldType])}
+      onPress={onClear}
+    >
       <Icon className={clearIcon} color="primary100" icon="clear_field" variant="functionalIcons" />
     </ButtonRoot>
   );
