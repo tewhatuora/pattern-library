@@ -1,13 +1,12 @@
+import { createContext } from 'react';
 import * as RadixAccordion from '@radix-ui/react-accordion';
 
-import { Children, cloneElement, createContext, isValidElement } from 'react';
+import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
+import { AccordionItemProps, Item } from './Item';
 
 import * as styles from './Accordion.css';
 
-import assert from 'assert';
-
 import { ChildrenOfType } from '../../types/index';
-import { AccordionItemProps } from './Item';
 
 export type AccordionRootProps = {
   type: 'single' | 'multiple';
@@ -29,13 +28,12 @@ export const Root = ({ type, variant = 'dark', headingLevel, children }: Accordi
   return (
     <RadixAccordion.Root className={styles.root[variant]} collapsible type={type}>
       <AccordionContext.Provider value={{ headingLevel }}>
-        {Children.map(children, (child) => {
-          assert(
-            isValidElement(child) && child?.type.name === 'Item', // Might need to rename the component, "Item" is a bit generic
-            'Only Accordion.Item components are allowed as children of Accordion.Root.',
-          );
-          return cloneElement(child);
-        })}
+        <AllowedChildren
+          errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"
+          types={[Item]}
+        >
+          {children}
+        </AllowedChildren>
       </AccordionContext.Provider>
     </RadixAccordion.Root>
   );

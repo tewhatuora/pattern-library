@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import assert from 'assert';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -12,7 +14,7 @@ export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 export type StackProps = {
   as?: typeof validStackComponents[number];
-  children: JSX.Element[];
+  className?: string;
   space: Space;
   horizontal?: boolean;
 } & BoxProps;
@@ -22,7 +24,14 @@ export type StackProps = {
  * children components, separated by a
  * `space provided as a prop
  */
-export const Stack = ({ as = 'div', children, space = 'medium', horizontal = false, ...boxProps }: StackProps) => {
+export const Stack = ({
+  as = 'div',
+  children,
+  className,
+  space = 'medium',
+  horizontal = false,
+  ...boxProps
+}: PropsWithChildren<StackProps>) => {
   assert(
     validStackComponents.includes(as),
     `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
@@ -31,10 +40,13 @@ export const Stack = ({ as = 'div', children, space = 'medium', horizontal = fal
   return (
     <Box
       as={as}
-      className={styles.variants({
-        space,
-        direction: horizontal ? 'horizontal' : 'vertical',
-      })}
+      className={[
+        styles.variants({
+          space,
+          direction: horizontal ? 'horizontal' : 'vertical',
+        }),
+        className,
+      ]}
       {...boxProps}
     >
       {children}

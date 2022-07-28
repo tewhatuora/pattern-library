@@ -10,6 +10,7 @@ export const InputMessageStyles = styles;
 export type InputMessageProps = {
   helperText?: string;
   errorMessage?: string;
+  disabled?: boolean;
   descriptionProps?: HTMLAttributes<HTMLElement>;
   errorMessageProps?: HTMLAttributes<HTMLElement>;
 };
@@ -18,7 +19,13 @@ export type InputMessageProps = {
  * Further content for an input field.
  * @constructor
  */
-export const InputMessage = ({ helperText, errorMessage, descriptionProps, errorMessageProps }: InputMessageProps) => {
+export const InputMessage = ({
+  helperText,
+  errorMessage,
+  disabled,
+  descriptionProps,
+  errorMessageProps,
+}: InputMessageProps) => {
   if (!helperText && !errorMessage) {
     return null;
   }
@@ -30,7 +37,7 @@ export const InputMessage = ({ helperText, errorMessage, descriptionProps, error
           <span {...descriptionProps}>{helperText}</span>
         </Text>
       )}
-      {!!errorMessage && (
+      {!!errorMessage && !disabled && (
         <Text className={styles.errorMessage} color="error100" size="xsmall" weight="regular">
           <Icon className={styles.errorMessageIcon} icon="alert_filled" variant="functionalIcons" />
           <span {...errorMessageProps}>{errorMessage}</span>
