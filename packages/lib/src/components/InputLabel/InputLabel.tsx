@@ -1,36 +1,29 @@
+import { LabelHTMLAttributes } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
-import { Button, ButtonProps } from '../Button/Button';
+import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
 import * as styles from './InputLabel.css';
+import { IconType } from '../Icon/icons';
+
+export const InputLabelStyles = styles;
 
 export type InputLabelProps = {
-  heading: string;
+  label: string;
   subheading?: string;
   tertiaryLabel?: string;
-  tertiaryLabelIcon?: Pick<ButtonProps, 'icon'>;
+  tertiaryLabelIcon?: IconType;
   tertiaryLabelIconPosition?: 'left' | 'right';
-  htmlFor: string;
+  htmlFor?: string;
   error?: boolean;
-} & (AsLink | AsButton | AsText);
-
-type AsLink = {
-  tertiaryLabelAs: 'a';
-  href: string;
-  onTertiaryLabelClick: never;
-};
-type AsButton = {
-  tertiaryLabelAs: 'button';
-  href: never;
-  onTertiaryLabelClick: (e: any) => void;
-};
-type AsText = {
-  tertiaryLabelAs: 'text';
-  href: never;
-  onTertiaryLabelClick: never;
+  disabled?: boolean;
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
+  tertiaryLabelAs?: 'a' | 'button' | 'text';
+  href?: string | never;
+  onTertiaryLabelClick?: (e: any) => void | never;
 };
 
 /**
@@ -45,7 +38,7 @@ type AsText = {
  * @constructor
  */
 export const InputLabel = ({
-  heading,
+  label,
   subheading,
   tertiaryLabel,
   tertiaryLabelAs,
@@ -55,14 +48,16 @@ export const InputLabel = ({
   htmlFor,
   href,
   error = false,
+  disabled,
+  labelProps,
 }: InputLabelProps) => {
-  const labelColor = error ? 'error100' : 'primary100';
+  const labelColor = error && !disabled ? 'error100' : 'primary100';
 
   return (
     <Box display="flex" justifyContent="spaceBetween">
-      <Box as="label" htmlFor={htmlFor}>
+      <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
         <Text color={labelColor} weight="bold">
-          {heading}
+          {label}
         </Text>
         <Text color={labelColor} size="small">
           {subheading}
@@ -78,14 +73,15 @@ export const InputLabel = ({
             icon={tertiaryLabelIcon}
             iconPosition={tertiaryLabelIconPosition}
             variant="label"
-            // weight="medium"
             onPress={onTertiaryLabelClick}
           >
             {tertiaryLabel}
           </Button>
         ) : (
           <Box as="span" className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition])}>
-            <Text size="medium">{tertiaryLabel}</Text>
+            <Text size="medium" weight="link-normal">
+              {tertiaryLabel}
+            </Text>
 
             {!!tertiaryLabelIcon && <Icon icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>

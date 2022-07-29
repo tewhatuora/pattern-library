@@ -7,7 +7,7 @@ export default (tokens: Tokens) => {
   type BorderRadiusName = keyof typeof rest.border.radius;
   type CornerName = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
   type BorderRadiusAll = Record<BorderRadiusName, string>;
-  type BorderRadiusCorners = Record<CornerName, Record<keyof typeof borderRadiusNames, string>>;
+  type BorderRadiusCorners = Record<CornerName, Record<BorderRadiusName, string>>;
 
   const borderRadiusNames = Object.keys(rest.border.radius) as BorderRadiusName[];
 

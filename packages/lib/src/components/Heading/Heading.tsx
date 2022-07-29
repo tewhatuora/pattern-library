@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { Box, BoxProps } from '../Box/Box';
 import { HeadingLevel, HeadingWeight, useHeading } from '../../hooks/typography';
 
@@ -13,7 +15,7 @@ export type HeadingProps = {
   weight?: HeadingWeight;
   align?: BoxProps['textAlign'];
   color?: BoxProps['color'];
-  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend';
+  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'p';
   children?: React.ReactNode;
   id?: string;
 };
@@ -21,16 +23,20 @@ export type HeadingProps = {
 /**
  * Heading component for h1, h2, h3, h4 elements
  */
-export const Heading = ({ level, weight, align, as, children, id, color }: HeadingProps) => {
-  return (
-    <Box
-      as={as ?? resolveDefaultComponent[level]}
-      className={useHeading({ weight, level })}
-      color={color}
-      id={id}
-      textAlign={align}
-    >
-      {children}
-    </Box>
-  );
-};
+export const Heading = forwardRef<HTMLElement, HeadingProps>(
+  ({ level, weight, align, as, children, id, color }, ref) => {
+    return (
+      <Box
+        as={as ?? resolveDefaultComponent[level]}
+        className={useHeading({ weight, level })}
+        color={color}
+        id={id}
+        ref={ref}
+        tabIndex={-1} // Allows it to be focused
+        textAlign={align}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
