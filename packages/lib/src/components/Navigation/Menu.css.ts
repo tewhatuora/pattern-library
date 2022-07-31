@@ -13,9 +13,9 @@ const navigationMenuContainerBase = style([
     zIndex: '2',
     top: '0',
     right: '0',
+    height: calc.subtract('100vh', calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet)),
     transition: 'width 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
     willChange: 'width',
-    height: '100vh',
     overflowY: 'scroll',
     WebkitOverflowScrolling: 'touch',
   },
@@ -144,10 +144,8 @@ export const subNavHeading = style([
 export const subNavList = style([
   atoms({
     reset: 'ul',
+    width: 'full',
   }),
-  {
-    width: '100%',
-  },
 ]);
 
 export const backButton = style([

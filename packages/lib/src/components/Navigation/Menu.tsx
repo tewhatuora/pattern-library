@@ -15,6 +15,7 @@ import { ButtonRoot } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 import { NavigationContext } from './Root';
+import { Breakpoint } from '../../css/breakpoints';
 
 import * as styles from './Menu.css';
 import * as navStyles from './Navigation.css';
@@ -41,14 +42,14 @@ export const Menu = ({
   onClose,
   children,
 }: PropsWithChildren<NavigationMenuProps>) => {
-  const breakpoint = useContext(BreakpointContext);
+  const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const [shouldRender, setShouldRender] = useState(show);
   const [measurement, setMeasurement] = useState(0);
   const [offset, setOffset] = useState(0);
   const menuEl = useRef<HTMLDivElement>(null);
   const numberOfChildren = Children.count(children);
   const navContext = useContext(NavigationContext);
-  const isMobile = breakpoint !== 'desktop' && breakpoint !== 'wide';
+  const isMobile = breakpoint && !['desktop', 'wide'].includes(breakpoint);
   const dimension = isMobile ? 'width' : 'height';
 
   const menuLists = useAllowedChildren({
@@ -112,9 +113,8 @@ export const Menu = ({
 
   return (
     <div
-      className={clsx(styles.navigationMenuContainer.default, {
+      className={clsx(styles.navigationMenuContainer.default, [styles.variants[variant]], {
         [styles.navigationMenuContainer.mini]: mini,
-        [styles.variants[variant]]: true,
       })}
       style={style}
       onTransitionEnd={handleTransitionEnd}

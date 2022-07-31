@@ -16,7 +16,7 @@ export const NavigationStyles = styles;
 export const NavigationContext = createContext<{ element: RefObject<HTMLElement> | null }>({ element: null });
 
 export type NavigationProps = {
-  variant: 'light' | 'dark';
+  variant?: 'light' | 'dark';
   open: boolean;
   withSearch?: boolean;
   searchFormAction: string;
@@ -45,8 +45,7 @@ export const Root = ({
   return (
     <NavigationContext.Provider value={{ element: navEl }}>
       <nav
-        className={clsx({
-          [styles.navigation[variant]]: true,
+        className={clsx(styles.navigation[variant], {
           [styles.open]: open,
         })}
         ref={navEl}

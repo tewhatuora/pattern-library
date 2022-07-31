@@ -12,6 +12,7 @@ import { ButtonRoot } from '../Button/Button';
 
 import * as styles from './Item.css';
 import * as helpers from '../../css/helpers.css';
+import { Breakpoint } from '../../css/breakpoints';
 
 export const NavigationItemStyles = styles;
 
@@ -38,13 +39,13 @@ export const Item = ({
   component,
   children,
 }: PropsWithChildren<NavigationItemProps>) => {
-  const breakpoint = useContext(BreakpointContext);
+  const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const ref = useRef(null);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
 
   const handleToggle = useCallback(() => {
-    setSubMenuIsOpen(!subMenuIsOpen);
-  }, [subMenuIsOpen]);
+    setSubMenuIsOpen((subMenuIsOpen) => !subMenuIsOpen);
+  }, []);
 
   const handleMouseEnter = useCallback(() => {
     setSubMenuIsOpen(true);
@@ -60,8 +61,7 @@ export const Item = ({
 
   const className = subNav ? styles.subNavListItem : styles.navListItem;
   const baseProps = {
-    className: clsx({
-      [styles.navListItemLink.default]: true,
+    className: clsx(styles.navListItemLink.default, {
       [styles.navListItemLink.subnav]: subNav,
     }),
     tabIndex: 0,
@@ -96,7 +96,7 @@ export const Item = ({
 
   let mouseEventHandlers = {};
 
-  if (breakpoint === 'desktop' || breakpoint === 'wide') {
+  if (breakpoint && ['desktop', 'wide'].includes(breakpoint)) {
     mouseEventHandlers = {
       onMouseEnter: handleMouseEnter,
       onMouseLeave: handleMouseLeave,

@@ -30,9 +30,9 @@ const navListItemLinkBase = style([
     display: 'flex',
     justifyContent: 'spaceBetween',
     alignItems: 'center',
+    width: 'full',
   }),
   {
-    width: '100%',
     color: 'currentColor',
     textDecoration: 'none',
     selectors: {
@@ -67,7 +67,7 @@ const navListItemLinkBase = style([
       },
     },
     desktop: {
-      gap: '0.4rem',
+      gap: calc.divide(vars.space.xsmall.tablet, 4),
       paddingTop: vars.space.medium.tablet,
       paddingBottom: vars.space.medium.tablet,
       selectors: {
