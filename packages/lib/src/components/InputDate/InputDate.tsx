@@ -107,6 +107,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               disabled={disabled}
               error={!!errors?.day}
               {...fieldProps}
+              aria-labelledby={labelProps.id}
               id={`${id}_day`}
               inputMode="numeric"
               label="Day"
@@ -124,6 +125,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               disabled={disabled}
               error={!!errors?.month}
               {...fieldProps}
+              aria-labelledby={labelProps.id}
               id={`${id}_month`}
               inputMode="numeric"
               label="Month"
@@ -141,6 +143,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               disabled={disabled}
               error={!!errors?.year}
               {...fieldProps}
+              aria-labelledby={labelProps.id}
               id={`${id}_year`}
               inputMode="numeric"
               label="Year"

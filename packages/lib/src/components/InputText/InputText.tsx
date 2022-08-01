@@ -86,6 +86,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
         <InputField
+          {...rest}
           {...inputProps}
           clearable={clearable}
           defaultValue={defaultValue}
@@ -101,7 +102,6 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           type={fieldType}
           value={value}
           onChange={onChange}
-          {...rest}
         />
         <InputMessage
           descriptionProps={descriptionProps}
