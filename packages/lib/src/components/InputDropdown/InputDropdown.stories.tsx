@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { InputDropdown, InputDropdownProps } from './InputDropdown';
 import icons from '../Icon/icons';
@@ -52,30 +52,39 @@ export default {
   },
 };
 
-export const Default = (args: InputDropdownProps) => (
-  <InputDropdown
-    {...args}
-    options={[
-      {
-        value: '1',
-        label: 'Option one',
-      },
-      {
-        value: '2',
-        label: 'Option two',
-      },
-      {
-        value: '3',
-        label: 'Option three (disabled)',
-        disabled: true,
-      },
-      {
-        value: '4',
-        label: 'Option four',
-      },
-    ]}
-  />
-);
+export const Default = (args: InputDropdownProps) => {
+  const [value, setValue] = useState(undefined);
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <InputDropdown
+      {...args}
+      options={[
+        {
+          value: '1',
+          label: 'Option one',
+        },
+        {
+          value: '2',
+          label: 'Option two',
+        },
+        {
+          value: '3',
+          label: 'Option three (disabled)',
+          disabled: true,
+        },
+        {
+          value: '4',
+          label: 'Option four',
+        },
+      ]}
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
 
 /**
  * Example with forwarding a ref, and using it

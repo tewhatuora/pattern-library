@@ -77,6 +77,7 @@ export const input = styleVariants({
       position: 'relative',
       zIndex: 2,
       backgroundColor: 'transparent',
+      color: vars.color.primary100,
     },
     responsiveStyle({
       mobile: {
@@ -86,6 +87,12 @@ export const input = styleVariants({
         paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
       },
     }),
+  ],
+  dropdownPlaceholder: [
+    inputBase,
+    {
+      color: 'transparent',
+    },
   ],
   multiline: [
     inputBase,
