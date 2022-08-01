@@ -25,9 +25,10 @@ export const NavigationMenuStyles = styles;
 export type NavigationMenuProps = {
   mini?: boolean;
   label?: string;
-  show?: boolean;
+  startTransitionOut?: boolean;
   variant?: 'light' | 'dark';
   onClose?: () => void;
+  onStartClose?: () => void;
 };
 
 /**
@@ -37,13 +38,13 @@ export type NavigationMenuProps = {
 export const Menu = ({
   mini,
   label,
-  show,
+  startTransitionOut,
   variant = 'dark',
   onClose,
+  onStartClose,
   children,
 }: PropsWithChildren<NavigationMenuProps>) => {
   const breakpoint: Breakpoint | null = useContext(BreakpointContext);
-  const [shouldRender, setShouldRender] = useState(show);
   const [measurement, setMeasurement] = useState(0);
   const [offset, setOffset] = useState(0);
   const menuEl = useRef<HTMLDivElement>(null);
@@ -63,17 +64,22 @@ export const Menu = ({
     `NavigationMenu can't display as 'mini' with more than one 'NavigationMenuList'. ${numberOfChildren} given`,
   );
 
+  /**
+   * Wait for CSS transition to finish
+   * before triggering `onClose` to unmount
+   * the submenu component.
+   */
   const handleTransitionEnd = () => {
-    if (!shouldRender) {
-      setShouldRender(false);
+    if (startTransitionOut) {
+      onClose?.();
     }
   };
 
   useEffect(() => {
     const setDimension = () => {
-      if (show) {
-        setShouldRender(true);
-
+      if (startTransitionOut) {
+        setMeasurement(0);
+      } else {
         if (menuEl?.current) {
           setMeasurement(menuEl.current.getBoundingClientRect()?.[dimension]);
         }
@@ -83,8 +89,6 @@ export const Menu = ({
             setOffset(navContext.element?.current.getBoundingClientRect()?.left);
           }
         }
-      } else {
-        setMeasurement(0);
       }
     };
 
@@ -97,8 +101,11 @@ export const Menu = ({
     return () => {
       window.removeEventListener('resize', resizeHandler);
     };
-  }, [dimension, show, shouldRender, isMobile, navContext]);
+  }, [dimension, startTransitionOut, isMobile, navContext]);
 
+  /**
+   * Memoized submenu CSS styles
+   */
   const style = useMemo(() => {
     const css = {
       [dimension]: `${measurement}px`,
@@ -119,32 +126,30 @@ export const Menu = ({
       style={style}
       onTransitionEnd={handleTransitionEnd}
     >
-      {shouldRender && (
-        <div
-          className={clsx(styles.navigationMenu.default, {
-            [styles.navigationMenu.mini]: mini,
-          })}
-          ref={menuEl}
-        >
-          <Container className={clsx({ [styles.resetContainerForTablet]: !mini, [styles.gridContainer]: mini })}>
-            <Row className={clsx({ [styles.resetRowForTablet]: !mini, [styles.gridRow]: mini })}>
-              {!!label && (
-                <ButtonRoot className={clsx(navStyles.noDesktop, styles.backButton)} onPress={onClose}>
-                  <Icon icon="chevron_left" />
-                  <Text className={styles.backButtonText} weight="bold">
-                    {label}
-                  </Text>
-                </ButtonRoot>
-              )}
-              {menuLists?.map((menuList: ReactNode & { props: MenuListProps }) => (
-                <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
-                  {menuList}
-                </Column>
-              ))}
-            </Row>
-          </Container>
-        </div>
-      )}
+      <div
+        className={clsx(styles.navigationMenu.default, {
+          [styles.navigationMenu.mini]: mini,
+        })}
+        ref={menuEl}
+      >
+        <Container className={clsx({ [styles.resetContainerForTablet]: !mini, [styles.gridContainer]: mini })}>
+          <Row className={clsx({ [styles.resetRowForTablet]: !mini, [styles.gridRow]: mini })}>
+            {!!label && (
+              <ButtonRoot className={clsx(navStyles.noDesktop, styles.backButton)} onPress={onStartClose}>
+                <Icon icon="chevron_left" />
+                <Text className={styles.backButtonText} weight="bold">
+                  {label}
+                </Text>
+              </ButtonRoot>
+            )}
+            {menuLists?.map((menuList: ReactNode & { props: MenuListProps }) => (
+              <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
+                {menuList}
+              </Column>
+            ))}
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 };

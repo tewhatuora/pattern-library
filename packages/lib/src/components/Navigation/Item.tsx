@@ -42,21 +42,39 @@ export const Item = ({
   const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const ref = useRef(null);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
+  const [startTransitionOut, setStartTransitionOut] = useState(false);
 
-  const handleToggle = useCallback(() => {
-    setSubMenuIsOpen((subMenuIsOpen) => !subMenuIsOpen);
-  }, []);
-
-  const handleMouseEnter = useCallback(() => {
+  /**
+   * Set the sub menu to open/mounted state
+   */
+  const handleOpen = useCallback(() => {
     setSubMenuIsOpen(true);
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
-    setSubMenuIsOpen(false);
+  /**
+   * Wait for onTransitionEnd to finish before
+   * setting menu to closed/unmounted state
+   */
+  const handleStartClose = useCallback(() => {
+    setStartTransitionOut(true);
   }, []);
 
-  useOutsideClick(ref, () => {
+  /**
+   * Set sub menu to closed/unmounted state
+   */
+  const handleClose = useCallback(() => {
     setSubMenuIsOpen(false);
+    setStartTransitionOut(false);
+  }, []);
+
+  /**
+   * Handle clicking outside submenu to trigger
+   * it to close, if it's open
+   */
+  useOutsideClick(ref, () => {
+    if (subMenuIsOpen) {
+      handleStartClose();
+    }
   });
 
   const className = subNav ? styles.subNavListItem : styles.navListItem;
@@ -70,7 +88,7 @@ export const Item = ({
     ...baseProps,
     as: 'button',
     ref: ref,
-    onPress: handleToggle,
+    onPress: handleOpen,
   };
 
   const linkProps = {
@@ -98,26 +116,29 @@ export const Item = ({
 
   if (breakpoint && ['desktop', 'wide'].includes(breakpoint)) {
     mouseEventHandlers = {
-      onMouseEnter: handleMouseEnter,
-      onMouseLeave: handleMouseLeave,
+      onMouseEnter: handleOpen,
+      onMouseLeave: handleStartClose,
     };
   }
 
   return (
     <li className={className} {...mouseEventHandlers}>
       {el}
-      <AllowedChildren
-        errorMessage="Only `Navigation.Menu` components are allowed as children of `Navigation.Item`"
-        propsForChild={() => ({
-          label,
-          variant,
-          show: subMenuIsOpen,
-          onClose: handleToggle,
-        })}
-        types={[Menu]}
-      >
-        {children}
-      </AllowedChildren>
+      {subMenuIsOpen && (
+        <AllowedChildren
+          errorMessage="Only `Navigation.Menu` components are allowed as children of `Navigation.Item`"
+          propsForChild={() => ({
+            label,
+            variant,
+            startTransitionOut,
+            onStartClose: handleStartClose,
+            onClose: handleClose,
+          })}
+          types={[Menu]}
+        >
+          {children}
+        </AllowedChildren>
+      )}
     </li>
   );
 };
