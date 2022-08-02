@@ -33,7 +33,7 @@ export const inputBase = style([
     borderWidth: vars.borderWidth.small,
     borderColor: vars.color.primary50,
     borderStyle: 'solid',
-    color: vars.color.neutral50,
+    color: vars.color.primary100,
     backgroundColor: vars.color.primary0,
 
     selectors: {
@@ -120,15 +120,33 @@ globalStyle(`${input.phone} ${inputBase}, ${inputBase} ${inputBase}:focus, ${inp
   outline: 'none',
 });
 
-export const clearButton = style({
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  display: 'flex',
-  alignItems: 'center',
-  height: vars.space.xxlarge.tablet,
-  paddingLeft: vars.space.xsmall.tablet,
-  paddingRight: vars.space.xsmall.tablet,
-  cursor: 'pointer',
-  zIndex: 2,
+export const clearButtonBase = style([
+  {
+    position: 'absolute',
+    top: '0.1rem',
+    right: 0,
+    display: 'flex',
+    alignItems: 'center',
+    height: vars.space.xxlarge.tablet,
+    paddingLeft: vars.space.xsmall.tablet,
+    paddingRight: vars.space.xsmall.tablet,
+    cursor: 'pointer',
+    zIndex: 2,
+  },
+]);
+
+export const clearButton = styleVariants({
+  search: [
+    clearButtonBase,
+    responsiveStyle({
+      mobile: {
+        top: '0',
+        height: vars.space.xxlarge.tablet,
+      },
+      tablet: {
+        top: '0',
+        height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
+      },
+    }),
+  ],
 });

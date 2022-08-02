@@ -8,6 +8,7 @@ import * as styles from './InputMessage.css';
 export const InputMessageStyles = styles;
 
 export type InputMessageProps = {
+  id?: string;
   helperText?: string;
   errorMessage?: string;
   disabled?: boolean;
