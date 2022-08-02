@@ -154,6 +154,13 @@ export const backButton = style([
     flexDirection: 'row',
     marginBottom: 'xsmall',
   }),
+  {
+    selectors: {
+      '&:focus': {
+        outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
+      },
+    },
+  },
 ]);
 
 export const backButtonText = style([

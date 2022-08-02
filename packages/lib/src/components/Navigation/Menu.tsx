@@ -48,6 +48,7 @@ export const Menu = ({
   const [measurement, setMeasurement] = useState(0);
   const [offset, setOffset] = useState(0);
   const menuEl = useRef<HTMLDivElement>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
   const numberOfChildren = Children.count(children);
   const navContext = useContext(NavigationContext);
   const isMobile = breakpoint && !['desktop', 'wide'].includes(breakpoint);
@@ -118,6 +119,12 @@ export const Menu = ({
     return css;
   }, [dimension, measurement, offset, isMobile]);
 
+  useEffect(() => {
+    if (isMobile) {
+      closeButton?.current?.focus();
+    }
+  }, [closeButton, isMobile]);
+
   return (
     <div
       className={clsx(styles.navigationMenuContainer.default, [styles.variants[variant]], {
@@ -135,7 +142,11 @@ export const Menu = ({
         <Container className={clsx({ [styles.resetContainerForTablet]: !mini, [styles.gridContainer]: mini })}>
           <Row className={clsx({ [styles.resetRowForTablet]: !mini, [styles.gridRow]: mini })}>
             {!!label && (
-              <ButtonRoot className={clsx(navStyles.noDesktop, styles.backButton)} onPress={onStartClose}>
+              <ButtonRoot
+                className={clsx(navStyles.noDesktop, styles.backButton)}
+                ref={closeButton}
+                onPress={onStartClose}
+              >
                 <Icon icon="chevron_left" />
                 <Text className={styles.backButtonText} weight="bold">
                   {label}
