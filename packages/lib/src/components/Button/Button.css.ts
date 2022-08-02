@@ -35,10 +35,12 @@ export const variants = recipe({
       mobile: {
         height: vars.space.xxlarge.tablet,
         gap: vars.space.xsmall.mobile,
+        maxWidth: '39.6rem',
       },
       tablet: {
         height: '6rem',
         gap: vars.space.xsmall.tablet,
+        maxWidth: 'unset',
       },
     }),
   ]),
