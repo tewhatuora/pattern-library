@@ -1,4 +1,13 @@
-import { FC, PropsWithChildren, createElement, useCallback, useContext, useRef, useState } from 'react';
+import {
+  FC,
+  MutableRefObject,
+  PropsWithChildren,
+  createElement,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 import clsx from 'clsx';
 import { useOutsideClick } from 'rooks';
 
@@ -43,6 +52,8 @@ export const Item = ({
   const ref = useRef(null);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
   const [startTransitionOut, setStartTransitionOut] = useState(false);
+  const [focusedItem, setFocusedItem] = useState<MutableRefObject<HTMLButtonElement | null>>(ref);
+  const isDesktop = breakpoint && ['desktop', 'wide'].includes(breakpoint);
 
   /**
    * Set the sub menu to open/mounted state
@@ -56,8 +67,12 @@ export const Item = ({
    * setting menu to closed/unmounted state
    */
   const handleStartClose = useCallback(() => {
+    if (!isDesktop) {
+      focusedItem?.current?.focus();
+    }
+
     setStartTransitionOut(true);
-  }, []);
+  }, [focusedItem, isDesktop]);
 
   /**
    * Set sub menu to closed/unmounted state
@@ -77,17 +92,28 @@ export const Item = ({
   }, [subMenuIsOpen, handleStartClose]);
 
   /**
-   * Handle the escape key to close
-   * open submenu
+   * Handle closing the submenu
+   * with space or enter key
    */
-  const handleEscape = useCallback(
+  const handleKeyboardClose = useCallback(
     (e) => {
-      if (e.code === 'Escape') {
+      if (['Space', 'Enter'].includes(e.code)) {
         closeSubMenuIfOpen();
       }
     },
     [closeSubMenuIfOpen],
   );
+
+  /**
+   * Handle setting focused button ref
+   * so that it can be focused when closing
+   * submenu on mobile
+   */
+  const handleFocus = useCallback(() => {
+    if (!isDesktop) {
+      setFocusedItem(ref);
+    }
+  }, [ref, isDesktop]);
 
   /**
    * Handle clicking outside submenu to trigger
@@ -106,7 +132,9 @@ export const Item = ({
     ...baseProps,
     as: 'button',
     ref: ref,
+    onFocus: handleFocus,
     onPress: handleOpen,
+    onKeyDown: handleKeyboardClose,
   };
 
   const linkProps = {
@@ -132,7 +160,7 @@ export const Item = ({
 
   let mouseEventHandlers = {};
 
-  if (breakpoint && ['desktop', 'wide'].includes(breakpoint)) {
+  if (isDesktop) {
     mouseEventHandlers = {
       onMouseEnter: handleOpen,
       onMouseLeave: handleStartClose,
@@ -140,7 +168,7 @@ export const Item = ({
   }
 
   return (
-    <li className={className} {...mouseEventHandlers} onKeyDown={handleEscape}>
+    <li className={className} {...mouseEventHandlers}>
       {el}
       {subMenuIsOpen && (
         <AllowedChildren
