@@ -68,14 +68,32 @@ export const Item = ({
   }, []);
 
   /**
-   * Handle clicking outside submenu to trigger
-   * it to close, if it's open
+   * Only close the sub menu if it's open
    */
-  useOutsideClick(ref, () => {
+  const closeSubMenuIfOpen = useCallback(() => {
     if (subMenuIsOpen) {
       handleStartClose();
     }
-  });
+  }, [subMenuIsOpen, handleStartClose]);
+
+  /**
+   * Handle the escape key to close
+   * open submenu
+   */
+  const handleEscape = useCallback(
+    (e) => {
+      if (e.code === 'Escape') {
+        closeSubMenuIfOpen();
+      }
+    },
+    [closeSubMenuIfOpen],
+  );
+
+  /**
+   * Handle clicking outside submenu to trigger
+   * it to close, if it's open
+   */
+  useOutsideClick(ref, closeSubMenuIfOpen);
 
   const className = subNav ? styles.subNavListItem : styles.navListItem;
   const baseProps = {
@@ -122,7 +140,7 @@ export const Item = ({
   }
 
   return (
-    <li className={className} {...mouseEventHandlers}>
+    <li className={className} {...mouseEventHandlers} onKeyDown={handleEscape}>
       {el}
       {subMenuIsOpen && (
         <AllowedChildren
