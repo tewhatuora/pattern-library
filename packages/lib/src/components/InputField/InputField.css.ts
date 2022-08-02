@@ -3,12 +3,32 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { atoms } from '../../css/atoms/atoms';
 
-export const field = style({
-  position: 'relative',
-  display: 'flex',
-  flexGrow: '1',
-});
+export const field = style([
+  atoms({
+    position: 'relative',
+    display: 'flex',
+    flexGrow: 1,
+  }),
+]);
+
+export const fieldSegments = style([
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.small.mobile,
+    },
+    tablet: {
+      gap: vars.space.xsmall.tablet,
+    },
+  }),
+]);
+
+export const fieldSegment = style([
+  atoms({
+    flexGrow: 1,
+  }),
+]);
 
 export const inputBase = style([
   responsiveStyle({
@@ -77,6 +97,7 @@ export const input = styleVariants({
       position: 'relative',
       zIndex: 2,
       backgroundColor: 'transparent',
+      color: vars.color.primary100,
     },
     responsiveStyle({
       mobile: {
@@ -86,6 +107,12 @@ export const input = styleVariants({
         paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
       },
     }),
+  ],
+  dropdownPlaceholder: [
+    inputBase,
+    {
+      color: 'transparent',
+    },
   ],
   multiline: [
     inputBase,
