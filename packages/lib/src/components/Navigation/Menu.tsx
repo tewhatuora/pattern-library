@@ -75,6 +75,10 @@ export const Menu = ({
   const handleTransitionEnd = () => {
     if (startTransitionOut) {
       onClose?.();
+    } else {
+      if (isMobile) {
+        closeButton?.current?.focus();
+      }
     }
   };
 
@@ -121,11 +125,11 @@ export const Menu = ({
     return css;
   }, [dimension, measurement, offset, isMobile]);
 
-  useEffect(() => {
-    if (isMobile) {
-      closeButton?.current?.focus();
-    }
-  }, [closeButton, isMobile]);
+  // useEffect(() => {
+  //   if (isMobile) {
+  //     closeButton?.current?.focus();
+  //   }
+  // }, [closeButton, isMobile]);
 
   return (
     <div
@@ -142,7 +146,7 @@ export const Menu = ({
         ref={menuEl}
       >
         <Container className={clsx({ [styles.resetContainerForTablet]: !mini, [styles.gridContainer]: mini })}>
-          <FocusTrap>
+          <FocusTrap focusTrapOptions={{ initialFocus: false }}>
             <Box>
               <Row className={clsx({ [styles.resetRowForTablet]: !mini, [styles.gridRow]: mini })}>
                 {!!label && (

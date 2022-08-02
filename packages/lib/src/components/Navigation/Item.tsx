@@ -1,5 +1,6 @@
 import {
   FC,
+  Fragment,
   MutableRefObject,
   PropsWithChildren,
   createElement,
@@ -67,12 +68,14 @@ export const Item = ({
    * setting menu to closed/unmounted state
    */
   const handleStartClose = useCallback(() => {
-    if (!isDesktop) {
-      focusedItem?.current?.focus();
-    }
+    if (subMenuIsOpen) {
+      if (!isDesktop) {
+        focusedItem?.current?.focus();
+      }
 
-    setStartTransitionOut(true);
-  }, [focusedItem, isDesktop]);
+      setStartTransitionOut(true);
+    }
+  }, [subMenuIsOpen, focusedItem, isDesktop]);
 
   /**
    * Set sub menu to closed/unmounted state
@@ -148,10 +151,10 @@ export const Item = ({
       {label}
     </Text>,
     !subNav && !!children && (
-      <>
+      <Fragment key="icons">
         <Icon className={helpers.upToTablet.flex} icon="chevron_right" variant="functionalIcons" />
         <Icon className={clsx(helpers.desktopUp.flex, styles.chevron)} icon="chevron_down" variant="functionalIcons" />
-      </>
+      </Fragment>
     ),
   ];
 
@@ -160,7 +163,7 @@ export const Item = ({
 
   let mouseEventHandlers = {};
 
-  if (isDesktop) {
+  if (isDesktop && !subNav) {
     mouseEventHandlers = {
       onMouseEnter: handleOpen,
       onMouseLeave: handleStartClose,
@@ -170,7 +173,7 @@ export const Item = ({
   return (
     <li className={className} {...mouseEventHandlers}>
       {el}
-      {subMenuIsOpen && (
+      {subMenuIsOpen && !subNav && (
         <AllowedChildren
           errorMessage="Only `Navigation.Menu` components are allowed as children of `Navigation.Item`"
           propsForChild={() => ({
