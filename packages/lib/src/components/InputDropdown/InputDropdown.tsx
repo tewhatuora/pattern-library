@@ -6,6 +6,7 @@ import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { OtherInputFieldProps } from '../InputField/InputField';
 import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 import { Icon } from '../Icon/Icon';
+import { Text } from '../Text/Text';
 
 import * as styles from './InputDropdown.css';
 import * as fieldStyles from '../InputField/InputField.css';
@@ -42,7 +43,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       errorMessage,
       disabled,
       defaultValue,
-      value,
+      value = '',
       required,
       label,
       subheading,
@@ -80,11 +81,16 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       }
 
       return opts.map((option) => (
-        <option disabled={option.disabled} key={option.label} selected={option.selected} value={option.value}>
+        <option disabled={option.disabled} key={option.label} value={option.value}>
           {option.label}
         </option>
       ));
     }, [options, placeholder]);
+
+    const shouldShowPlaceholder = useMemo(
+      () => !!placeholder && !value && !defaultValue,
+      [placeholder, value, defaultValue],
+    );
 
     const invalid = error || !!errorMessage ? 'true' : 'false';
 
@@ -110,9 +116,10 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             {...fieldProps}
             aria-invalid={invalid}
             className={clsx(
+              fieldStyles.input.dropdown,
               {
                 [fieldStyles.input.base]: !error && !errorMessage,
-                [fieldStyles.input.dropdown]: true,
+                [fieldStyles.input.dropdownPlaceholder]: shouldShowPlaceholder,
               },
               textSizeClasses,
             )}
@@ -128,6 +135,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           >
             {optionEls}
           </select>
+          {shouldShowPlaceholder && <Text className={styles.placeholder}>{placeholder}</Text>}
           <Icon aria-hidden="true" className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
         </div>
         <InputMessage
