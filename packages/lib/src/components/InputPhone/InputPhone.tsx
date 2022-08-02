@@ -1,4 +1,4 @@
-import { ForwardedRef, RefObject, forwardRef, useCallback } from 'react';
+import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback } from 'react';
 import PhoneInput, { Country } from 'react-phone-number-input';
 import { useTextField } from '@react-aria/textfield';
 import clsx from 'clsx';
@@ -22,7 +22,7 @@ export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
     clearable?: boolean;
     international?: boolean;
     defaultCountry?: Country;
-    onChange: (value: string) => void;
+    onChange: InputPhoneOnChangeFn;
   };
 
 /**
@@ -94,10 +94,10 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             id={id}
             {...inputProps}
             className={clsx(
+              inputStyles.input.phone,
+              styles.input,
               {
                 [inputStyles.input.base]: !errorMessage,
-                [inputStyles.input.phone]: true,
-                [styles.input]: true,
               },
               textSizeClasses,
             )}
@@ -111,7 +111,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             invalid={(!!errorMessage).toString()}
             name={name}
             placeholder={placeholder}
-            ref={ref}
+            ref={ref as LegacyRef<any>}
             required={required}
             value={value}
             onChange={onChange}

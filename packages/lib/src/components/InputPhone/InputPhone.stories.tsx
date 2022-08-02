@@ -49,9 +49,7 @@ export const Refs = (args: InputPhoneProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    if (ref?.current) {
-      ref.current.focus();
-    }
+    ref?.current?.focus();
   }, [ref]);
 
   return <InputPhone {...args} ref={ref} />;

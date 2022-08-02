@@ -48,8 +48,8 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
         onChange={handleCountrySelect}
       />
       <div
-        className={clsx({
-          [styles.flagWrapper.base]: true,
+        aria-hidden="true"
+        className={clsx(styles.flagWrapper.base, {
           [styles.flagWrapper.international]: !value || value == 'International',
         })}
       >

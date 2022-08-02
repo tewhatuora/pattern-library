@@ -128,7 +128,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           >
             {optionEls}
           </select>
-          <Icon className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
+          <Icon aria-hidden="true" className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
         </div>
         <InputMessage
           descriptionProps={descriptionProps}
