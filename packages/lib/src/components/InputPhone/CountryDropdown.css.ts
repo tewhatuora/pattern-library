@@ -6,7 +6,12 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 export const countryDropdown = style([
   {
     position: 'relative',
-    backgroundColor: vars.color.primary5,
+    backgroundColor: vars.color.primary0,
+    selectors: {
+      '&:focus-within': {
+        backgroundColor: vars.color.primary5,
+      },
+    },
   },
   responsiveStyle({
     mobile: {
@@ -29,7 +34,6 @@ export const flagWrapperBase = style([
     left: vars.space.xsmall.tablet,
     top: '0',
     zIndex: '2',
-    backgroundColor: vars.color.primary5,
   },
   responsiveStyle({
     mobile: {
