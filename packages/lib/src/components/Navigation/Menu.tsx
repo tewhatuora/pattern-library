@@ -1,4 +1,5 @@
 import { Children, PropsWithChildren, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import FocusTrap from 'focus-trap-react';
 import clsx from 'clsx';
 
 import { debounce } from 'lodash';
@@ -7,6 +8,7 @@ import assert from 'assert';
 
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { useAllowedChildren } from '../AllowedChildren/AllowedChildren';
+import { Box } from '../Box/Box';
 import { Container } from '../Container/Container';
 import { Row } from '../Columns/Row';
 import { Column } from '../Columns/Column';
@@ -140,25 +142,29 @@ export const Menu = ({
         ref={menuEl}
       >
         <Container className={clsx({ [styles.resetContainerForTablet]: !mini, [styles.gridContainer]: mini })}>
-          <Row className={clsx({ [styles.resetRowForTablet]: !mini, [styles.gridRow]: mini })}>
-            {!!label && (
-              <ButtonRoot
-                className={clsx(navStyles.noDesktop, styles.backButton)}
-                ref={closeButton}
-                onPress={onStartClose}
-              >
-                <Icon icon="chevron_left" />
-                <Text className={styles.backButtonText} weight="bold">
-                  {label}
-                </Text>
-              </ButtonRoot>
-            )}
-            {menuLists?.map((menuList: ReactNode & { props: MenuListProps }) => (
-              <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
-                {menuList}
-              </Column>
-            ))}
-          </Row>
+          <FocusTrap>
+            <Box>
+              <Row className={clsx({ [styles.resetRowForTablet]: !mini, [styles.gridRow]: mini })}>
+                {!!label && (
+                  <ButtonRoot
+                    className={clsx(navStyles.noDesktop, styles.backButton)}
+                    ref={closeButton}
+                    onPress={onStartClose}
+                  >
+                    <Icon icon="chevron_left" />
+                    <Text className={styles.backButtonText} weight="bold">
+                      {label}
+                    </Text>
+                  </ButtonRoot>
+                )}
+                {menuLists?.map((menuList: ReactNode & { props: MenuListProps }) => (
+                  <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
+                    {menuList}
+                  </Column>
+                ))}
+              </Row>
+            </Box>
+          </FocusTrap>
         </Container>
       </div>
     </div>
