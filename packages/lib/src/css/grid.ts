@@ -1,6 +1,9 @@
 import { StyleRule } from '@vanilla-extract/css';
 
 import { vars } from '../themes/vars.css';
+import { ColumnLength } from '../components/Columns/Column';
+
+export const MAX_COLS = 12;
 
 export const mobileContainer: StyleRule = {
   marginLeft: vars.space.xsmall.mobile,
@@ -16,8 +19,10 @@ export const mobileRow: StyleRule = {
   display: 'flex',
   flexDirection: 'column',
 };
-export const tabletRow: StyleRule = {
+
+export const tabletRow = (cols: ColumnLength = MAX_COLS): StyleRule => ({
   display: 'grid',
-  gridTemplateColumns: 'repeat(12, [col-start] 1fr)',
+  gridTemplateColumns: `repeat(${cols}, [col-start] 1fr)`,
   flexDirection: 'unset',
-};
+  width: `${(cols / 12) * 100}%`,
+});

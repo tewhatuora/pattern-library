@@ -196,7 +196,7 @@ export const resetRowForTablet = style(
   responsiveStyle({
     mobile: gridRowStyles,
     tablet: gridRowStyles,
-    desktop: tabletRow,
+    desktop: tabletRow(),
   }),
   'resetRowForTablet',
 );

@@ -5,28 +5,32 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { fontFamily } from '../../hooks/typography/typography.css';
+import { tabletRow } from '../../css/grid';
 
 const width = {
   full: {
+    ...tabletRow(12),
     gridTemplateAreas: '"content content content content content content image image image image image image"',
   },
   half: {
+    ...tabletRow(6),
     gridTemplateRows: 'auto',
     gridTemplateAreas: `
           "content content content content content content"
           "image image image image image image"`,
   },
   third: {
+    ...tabletRow(4),
     gridTemplateRows: 'auto',
     gridTemplateAreas: `
-        "content content content content"
-        "image image image image"`,
+      "content content content content"
+      "image image image image"`,
   },
 };
 
 const imagePosition = {
-  left: {},
-  right: {},
+  before: {},
+  after: {},
 };
 
 export type WidthVariant = keyof typeof width;
@@ -42,13 +46,15 @@ export const rowVariants = recipe({
     {
       variants: {
         width: 'full',
-        imagePosition: 'left',
+        imagePosition: 'before',
       },
       style: responsiveStyle({
         mobile: {
+          display: 'flex',
           flexDirection: 'column-reverse',
         },
         desktop: {
+          display: 'grid',
           gridTemplateAreas: '"image image image image image image content content content content content content"',
         },
       }),
@@ -56,13 +62,15 @@ export const rowVariants = recipe({
     {
       variants: {
         width: 'full',
-        imagePosition: 'right',
+        imagePosition: 'after',
       },
       style: responsiveStyle({
         mobile: {
+          display: 'flex',
           flexDirection: 'column-reverse',
         },
         desktop: {
+          display: 'grid',
           gridTemplateAreas: '"content content content content content content image image image image image image"',
         },
       }),
@@ -71,7 +79,7 @@ export const rowVariants = recipe({
     {
       variants: {
         width: 'half',
-        imagePosition: 'left',
+        imagePosition: 'before',
       },
       style: responsiveStyle({
         mobile: {
@@ -83,7 +91,7 @@ export const rowVariants = recipe({
     {
       variants: {
         width: 'half',
-        imagePosition: 'right',
+        imagePosition: 'after',
       },
       style: responsiveStyle({
         mobile: {
@@ -96,7 +104,7 @@ export const rowVariants = recipe({
     {
       variants: {
         width: 'third',
-        imagePosition: 'left',
+        imagePosition: 'before',
       },
       style: responsiveStyle({
         mobile: {
@@ -108,7 +116,7 @@ export const rowVariants = recipe({
     {
       variants: {
         width: 'third',
-        imagePosition: 'right',
+        imagePosition: 'after',
       },
       style: responsiveStyle({
         mobile: {
@@ -196,13 +204,21 @@ export const image = styleVariants({
   ],
 });
 
-export const contentCol = style({
-  gridArea: 'content',
-});
+export const contentCol = style(
+  responsiveStyle({
+    desktop: {
+      gridArea: 'content',
+    },
+  }),
+);
 
-export const imageCol = style({
-  gridArea: 'image',
-});
+export const imageCol = style(
+  responsiveStyle({
+    desktop: {
+      gridArea: 'image',
+    },
+  }),
+);
 
 export const buttonRow = styleVariants({
   full: {
@@ -217,17 +233,63 @@ export const buttonRow = styleVariants({
 });
 
 export const primaryButtonColumn = styleVariants({
-  full: {},
-  half: {},
-  third: {},
+  full: responsiveStyle({
+    mobile: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
+  half: responsiveStyle({
+    mobile: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
+  third: responsiveStyle({
+    mobile: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
 });
 
 export const secondaryButtonColumn = styleVariants({
-  full: {},
-  half: {
-    gridRowStart: '2',
-  },
-  third: {
-    gridRowStart: '2',
-  },
+  full: responsiveStyle({
+    mobile: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
+  half: responsiveStyle({
+    mobile: {
+      display: 'flex',
+      justifyContent: 'center',
+      gridRowStart: '2',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
+  third: responsiveStyle({
+    mobile: {
+      display: 'flex',
+      justifyContent: 'center',
+      gridRowStart: '2',
+    },
+    desktop: {
+      display: 'block',
+    },
+  }),
 });

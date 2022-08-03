@@ -28,22 +28,22 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
 
     const headingElement =
       headingLevel === '5' ? (
-        <Text as={headingAs ?? 'h5'} ref={ref} weight="bold">
+        <Text as={headingAs ?? 'h5'} color="primary100" ref={ref} weight="bold">
           {heading}
         </Text>
       ) : (
-        <Heading as={headingAs} level={headingLevel} ref={ref}>
+        <Heading as={headingAs} color="primary100" level={headingLevel} ref={ref}>
           {heading}
         </Heading>
       );
 
     const subheadingElement =
       subheadingLevel === '5' ? (
-        <Text as="p" weight="bold">
+        <Text as="p" color="primary100" weight="bold">
           {heading}
         </Text>
       ) : (
-        <Heading as="p" level={subheadingLevel}>
+        <Heading as="p" color="primary100" level={subheadingLevel}>
           {subheading}
         </Heading>
       );
@@ -58,7 +58,7 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
         <Stack space="xsmall">
           {headingElement}
           {subheading && subheadingElement}
-          <Text>{children}</Text>
+          <Text color="primary100">{children}</Text>
         </Stack>
       </Box>
     );

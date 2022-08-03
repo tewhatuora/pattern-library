@@ -1,6 +1,10 @@
 import { ImageBlock, ImageBlockProps } from './ImageBlock';
 import { Text } from '../Text/Text';
 
+import { Container } from '../Container/Container';
+import { Column } from '../Columns/Column';
+import { Row } from '../Columns/Row';
+
 export default {
   title: 'Components/ImageBlock',
   component: ImageBlock,
@@ -36,7 +40,7 @@ export default {
       defaultValue: 'right',
       control: {
         type: 'radio',
-        options: ['left', 'right'],
+        options: ['before', 'after'],
       },
     },
   },
@@ -47,5 +51,48 @@ export const Default = (args: ImageBlockProps) => {
     <ImageBlock {...args}>
       <Text as="p">Content</Text>
     </ImageBlock>
+  );
+};
+
+export const TwoHalves = (args: ImageBlockProps) => {
+  return (
+    <Container>
+      <Row>
+        <Column columns={6} desktop={6} mobile={12} tablet={12}>
+          <ImageBlock {...args} width="half">
+            <Text as="p">Content</Text>
+          </ImageBlock>
+        </Column>
+        <Column columns={6} desktop={6} mobile={12} tablet={12}>
+          <ImageBlock {...args} width="half">
+            <Text as="p">Content</Text>
+          </ImageBlock>
+        </Column>
+      </Row>
+    </Container>
+  );
+};
+
+export const ThreeThirds = (args: ImageBlockProps) => {
+  return (
+    <Container>
+      <Row>
+        <Column columns={4} desktop={4} mobile={12} tablet={12}>
+          <ImageBlock {...args} width="third">
+            <Text as="p">Content</Text>
+          </ImageBlock>
+        </Column>
+        <Column columns={4} desktop={4} mobile={12} tablet={12}>
+          <ImageBlock {...args} width="third">
+            <Text as="p">Content</Text>
+          </ImageBlock>
+        </Column>
+        <Column columns={4} desktop={4} mobile={12} tablet={12}>
+          <ImageBlock {...args} width="third">
+            <Text as="p">Content</Text>
+          </ImageBlock>
+        </Column>
+      </Row>
+    </Container>
   );
 };

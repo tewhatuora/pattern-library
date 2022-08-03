@@ -25,6 +25,7 @@ export const variants = recipe({
     }),
     {
       width: '100%',
+      maxWidth: '39.6rem',
       selectors: {
         '&[disabled]': {
           cursor: 'not-allowed',
@@ -35,12 +36,10 @@ export const variants = recipe({
       mobile: {
         height: vars.space.xxlarge.tablet,
         gap: vars.space.xsmall.mobile,
-        maxWidth: '39.6rem',
       },
       tablet: {
         height: '6rem',
         gap: vars.space.xsmall.tablet,
-        maxWidth: 'unset',
       },
     }),
   ]),

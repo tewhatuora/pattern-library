@@ -1,5 +1,7 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 
+import { ColumnLength } from '@/dist/types/components/Columns/Column';
+
 import { Viewport } from '../../themes/tokenType';
 
 import { vars } from '../../themes/vars.css';
@@ -7,7 +9,7 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { Space } from '../../css/atoms/atoms';
 
 import { makeStyles } from './helpers';
-import { mobileRow, tabletRow } from '../../css/grid';
+import { MAX_COLS, mobileRow, tabletRow } from '../../css/grid';
 
 const makeGutterRules = (space: Viewport) =>
   style(
@@ -34,12 +36,23 @@ export const noGutters = style({
   gap: 0,
 });
 
-export const row = style([
-  mobileRow,
-  responsiveStyle({
-    tablet: tabletRow,
-  }),
-]);
+const makeRowStylesForColumns = (): Record<ColumnLength, StyleRule> => {
+  const rowStyle = {};
+
+  for (let i = 1; i <= MAX_COLS; i++) {
+    const cols = i as ColumnLength;
+    rowStyle[cols] = [
+      mobileRow,
+      responsiveStyle({
+        tablet: tabletRow(cols),
+      }),
+    ];
+  }
+
+  return rowStyle;
+};
+
+export const row = styleVariants(makeRowStylesForColumns());
 
 const getNestedStyle = (columns: number): StyleRule =>
   responsiveStyle({

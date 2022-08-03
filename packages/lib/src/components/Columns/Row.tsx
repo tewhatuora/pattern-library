@@ -2,8 +2,9 @@ import { PropsWithChildren, useContext, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
-import { ParentColumnContext } from './Column';
+import { ColumnLength, ParentColumnContext } from './Column';
 import { Space } from '../../css/atoms/atoms';
+import { MAX_COLS } from '../../css/grid';
 
 import * as styles from './Row.css';
 
@@ -13,6 +14,7 @@ export type RowProps<P> = {
   noGutters?: boolean;
   offset?: boolean;
   gutter?: Space;
+  columns?: ColumnLength;
   className?: string;
 } & Omit<BoxProps, 'className'> &
   P;
@@ -31,6 +33,7 @@ export const rowStyles = ({
   gutter = 'medium',
   noGutters,
   offset,
+  columns = MAX_COLS,
   parentCols,
   className,
 }: RowProps<{ parentCols?: number }>) => {
@@ -44,7 +47,7 @@ export const rowStyles = ({
     dynamicClasses[styles.nested[parentCols?.toString()]] = true;
   }
 
-  return clsx(dynamicClasses, styles.row, className);
+  return clsx(dynamicClasses, styles.row[columns], className);
 };
 
 /**
@@ -58,12 +61,13 @@ export const Row = ({
   noGutters,
   offset,
   className,
+  columns = MAX_COLS,
   ...boxProps
 }: PropsWithChildren<RowProps<unknown>>) => {
   const parentCols = useContext(ParentColumnContext);
   const classNames = useMemo(() => {
-    return rowStyles({ gutter, noGutters, offset, parentCols: parentCols?.columns, className });
-  }, [gutter, noGutters, offset, parentCols, className]);
+    return rowStyles({ gutter, noGutters, offset, columns, parentCols: parentCols?.columns, className });
+  }, [gutter, noGutters, offset, columns, parentCols, className]);
 
   return (
     <Box as="div" {...boxProps} className={classNames}>
