@@ -83,7 +83,7 @@ export const InputLabel = ({
               {tertiaryLabel}
             </Text>
 
-            {!!tertiaryLabelIcon && <Icon icon={tertiaryLabelIcon} variant="functionalIcons" />}
+            {!!tertiaryLabelIcon && <Icon aria-hidden="true" icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>
         ))}
     </Box>
