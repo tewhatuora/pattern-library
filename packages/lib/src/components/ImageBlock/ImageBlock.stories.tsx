@@ -37,7 +37,7 @@ export default {
       defaultValue: 'full',
     },
     imagePosition: {
-      defaultValue: 'right',
+      defaultValue: 'after',
       control: {
         type: 'radio',
         options: ['before', 'after'],
@@ -77,17 +77,17 @@ export const ThreeThirds = (args: ImageBlockProps) => {
   return (
     <Container>
       <Row>
-        <Column columns={4} desktop={4} mobile={12} tablet={12}>
+        <Column columns={4} desktop={12} mobile={12} tablet={12} wide={4}>
           <ImageBlock {...args} width="third">
             <Text as="p">Content</Text>
           </ImageBlock>
         </Column>
-        <Column columns={4} desktop={4} mobile={12} tablet={12}>
+        <Column columns={4} desktop={12} mobile={12} tablet={12} wide={4}>
           <ImageBlock {...args} width="third">
             <Text as="p">Content</Text>
           </ImageBlock>
         </Column>
-        <Column columns={4} desktop={4} mobile={12} tablet={12}>
+        <Column columns={4} desktop={12} mobile={12} tablet={12} wide={4}>
           <ImageBlock {...args} width="third">
             <Text as="p">Content</Text>
           </ImageBlock>

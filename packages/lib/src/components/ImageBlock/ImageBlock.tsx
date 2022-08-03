@@ -15,16 +15,30 @@ import * as styles from './ImageBlock.css';
 export const ImageBlockStyles = styles;
 
 type ColumnsPerBreakpoint = {
-  columns: ColumnLength;
-  mobile: ColumnLength;
-  tablet: ColumnLength;
-  desktop: ColumnLength;
+  columns?: ColumnLength;
+  mobile?: ColumnLength;
+  tablet?: ColumnLength;
+  desktop?: ColumnLength;
+  wide?: ColumnLength;
 };
 
-const rowColumns: Record<styles.WidthVariant, ColumnLength> = {
-  full: 12,
-  half: 6,
-  third: 4,
+const rowColumns: Record<styles.WidthVariant, ColumnsPerBreakpoint> = {
+  full: {
+    mobile: 12,
+    tablet: 12,
+    desktop: 12,
+  },
+  half: {
+    mobile: 12,
+    tablet: 12,
+    desktop: 6,
+  },
+  third: {
+    mobile: 12,
+    tablet: 12,
+    desktop: 12,
+    wide: 4,
+  },
 };
 
 const innerColumnLengths: Record<styles.WidthVariant, ColumnLength> = {
@@ -72,7 +86,7 @@ const Standalone = ({
   imagePosition,
   children,
 }: PropsWithChildren<Pick<ImageBlockProps, 'width' | 'imagePosition'>>) => (
-  <Row className={clsx(styles.rowVariants({ width, imagePosition }))} columns={rowColumns[width]}>
+  <Row className={clsx(styles.rowVariants({ width, imagePosition }))} {...rowColumns[width]}>
     {children}
   </Row>
 );

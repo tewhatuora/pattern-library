@@ -5,22 +5,18 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { fontFamily } from '../../hooks/typography/typography.css';
-import { tabletRow } from '../../css/grid';
 
 const width = {
   full: {
-    ...tabletRow(12),
     gridTemplateAreas: '"content content content content content content image image image image image image"',
   },
   half: {
-    ...tabletRow(6),
     gridTemplateRows: 'auto',
     gridTemplateAreas: `
           "content content content content content content"
           "image image image image image image"`,
   },
   third: {
-    ...tabletRow(4),
     gridTemplateRows: 'auto',
     gridTemplateAreas: `
       "content content content content"
