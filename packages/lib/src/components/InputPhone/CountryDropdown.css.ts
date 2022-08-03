@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -34,6 +34,7 @@ export const flagWrapperBase = style([
     left: vars.space.xsmall.tablet,
     top: '0',
     zIndex: '2',
+    backgroundColor: vars.color.primary0,
   },
   responsiveStyle({
     mobile: {
@@ -53,4 +54,8 @@ export const flagWrapper = styleVariants({
       color: vars.color.primary100,
     },
   ],
+});
+
+globalStyle(`${countryDropdown}:focus-within ${flagWrapperBase}`, {
+  backgroundColor: vars.color.primary5,
 });
