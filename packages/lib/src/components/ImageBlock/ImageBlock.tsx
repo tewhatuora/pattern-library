@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
 import { Row } from '../Columns/Row';
@@ -34,8 +35,8 @@ export type ImageBlockProps = {
   alt: string;
   src?: string | IconType;
   shape: 'square' | 'rectangle';
-  width: 'full' | 'half' | 'third';
-  imagePosition: 'left' | 'right';
+  width: styles.WidthVariant;
+  imagePosition: styles.ImagePositionVariant;
   primaryButtonLabel: string;
   secondaryButtonLabel: string;
   onPressPrimary: () => void;
@@ -72,8 +73,8 @@ export const ImageBlock = ({
   return (
     <Row>
       <Column columns={containerColumns}>
-        <Row className={styles.row[width]}>
-          <Column className={styles.contentCol[imagePosition]} columns={innerColumnLengths[width]}>
+        <Row className={clsx(styles.rowVariants({ width, imagePosition }))}>
+          <Column className={styles.contentCol} columns={innerColumnLengths[width]}>
             <Box className={styles.imageBlock}>
               <Content
                 className={styles.content}
@@ -100,7 +101,7 @@ export const ImageBlock = ({
               </Content>
             </Box>
           </Column>
-          <Column className={styles.imageCol[imagePosition]} columns={innerColumnLengths[width]}>
+          <Column className={styles.imageCol} columns={innerColumnLengths[width]}>
             <img alt={alt} className={styles.image[shape]} src={src} />
           </Column>
         </Row>
