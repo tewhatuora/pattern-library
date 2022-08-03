@@ -1,4 +1,13 @@
-import { Children, PropsWithChildren, ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  Children,
+  PropsWithChildren,
+  ReactNode,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import clsx from 'clsx';
 
@@ -20,6 +29,8 @@ import { ShieldedSite } from './ShieldedSite';
 
 import * as styles from './Footer.css';
 import { Navigation } from '../Navigation/Navigation';
+import assert from 'assert';
+
 export const FooterStyles = styles;
 
 const MAX_COLUMN_WIDTH = 320;
@@ -128,13 +139,20 @@ export const Footer = ({
       <div hidden={!showNavs}>
         <Stack space="xxlarge">
           {/* First row */}
-          <Box className={styles.firstRow} display="flex" justifyContent="spaceBetween">
+          <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween">
             <Box className={styles.govtLogoWrapper}>
               <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
             </Box>
-            <Box alignItems="center" className={styles.otherLogosWrapper} display="flex">
+            <Box className={styles.extraLogosWrapper}>
               {/* Allowed children: logos or images of some sort */}
-              {extraLogos}
+              {extraLogos?.map((logo, index) => {
+                assert(
+                  isValidElement(logo),
+                  `A logo passed to Footer through \`extraLogos\` is not a valid element. Logo: ${logo}`,
+                );
+                // eslint-disable-next-line react/no-array-index-key
+                return cloneElement(logo, { key: `footer-extra-logo-${index}` });
+              })}
             </Box>
           </Box>
 

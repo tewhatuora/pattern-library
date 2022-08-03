@@ -8,21 +8,25 @@ import { vars } from '../../themes/vars.css';
 
 export const widthVar = createVar();
 
-export const firstRow = style({
-  height: '7.2rem',
-});
+// ##### First row #####
 
 export const govtLogoWrapper = style({
   height: '7.2rem',
   width: '26.5rem',
 });
 
-export const otherLogosWrapper = style({
-  height: '7.2rem',
-  gap: vars.space.xxlarge.tablet,
-});
+export const extraLogosWrapper = style([
+  atoms({
+    display: 'flex',
+    alignItems: 'center',
+  }),
+  {
+    height: '7.2rem',
+    gap: vars.space.xxlarge.tablet,
+  },
+]);
 
-// Second Row
+// ##### Second Row #####
 
 export const secondRow = style([
   atoms({
@@ -57,7 +61,7 @@ export const hiddenNavs = style({
 
 export const tempNavigation = style({ width: 'fit-content' });
 
-// Third row
+// ##### Third row #####
 
 export const socialAndImprintWrapper = style([
   atoms({

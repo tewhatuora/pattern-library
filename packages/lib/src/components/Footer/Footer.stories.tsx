@@ -1,6 +1,9 @@
 import { Navigation } from '../Navigation/Navigation';
 import { Footer, FooterProps } from './Footer';
 
+import MohLogo from './moh-logo.svg?component';
+import UniteAgainstCovid19Logo from './unite-against-covid.svg?component';
+
 export default {
   title: 'Components/Footer',
   component: Footer,
@@ -19,6 +22,11 @@ const socialLinkHrefs = {
   tiktok: 'http://tiktok.com',
   facebook: 'http://facebook.com',
 };
+
+const extraLogos = [
+  <MohLogo key={null} props={{}} ref={null} style={{ width: '15.9rem' }} type="symbol" />,
+  <UniteAgainstCovid19Logo key={null} props={{}} ref={null} style={{ width: '6.8rem' }} type="symbol" />,
+];
 
 export const Default = (args: FooterProps) => {
   return (
@@ -47,6 +55,7 @@ export const Default = (args: FooterProps) => {
 Default.args = {
   imprintItems,
   socialLinkHrefs,
+  extraLogos,
 };
 
 export const NoNavigations = (args: FooterProps) => {
@@ -55,6 +64,7 @@ export const NoNavigations = (args: FooterProps) => {
 NoNavigations.args = {
   imprintItems,
   socialLinkHrefs,
+  extraLogos,
 };
 
 export const NoSocialLinks = (args: FooterProps) => {
@@ -87,7 +97,7 @@ export const NoSocialLinks = (args: FooterProps) => {
     </Footer>
   );
 };
-NoSocialLinks.args = { imprintItems };
+NoSocialLinks.args = { imprintItems, extraLogos };
 
 export const NoNavigationsOrSocialLinks = (args: FooterProps) => {
   return <Footer {...args} />;
