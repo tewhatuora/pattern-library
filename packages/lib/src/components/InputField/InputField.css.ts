@@ -142,9 +142,14 @@ export const input = styleVariants({
   ],
 });
 
-globalStyle(`${input.phone} ${inputBase}, ${inputBase} ${inputBase}:focus, ${inputBase} ${inputBase}:focus-within`, {
+globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
   outline: 'none',
+});
+
+globalStyle(`${input.phone} select${inputBase}`, {
+  borderTopRightRadius: '0',
+  borderBottomRightRadius: '0',
 });
 
 export const clearButtonBase = style([

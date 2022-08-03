@@ -1,0 +1,86 @@
+import { Children, PropsWithChildren, RefObject, createContext, useRef } from 'react';
+import clsx from 'clsx';
+
+import { Stack } from '../Stack/Stack';
+import { InputSearch } from '../InputSearch/InputSearch';
+import { Divider } from '../Divider/Divider';
+import { Item } from './Item';
+import { Utility, UtilityNavItemProps } from './Utility';
+import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
+
+import * as styles from './Navigation.css';
+import * as helpers from '../../css/helpers.css';
+
+export const NavigationStyles = styles;
+
+export const NavigationContext = createContext<{ element: RefObject<HTMLElement> | null }>({ element: null });
+
+export type NavigationProps = {
+  variant?: 'light' | 'dark';
+  open: boolean;
+  withSearch?: boolean;
+  searchFormAction: string;
+  searchFormMethod: 'POST' | 'GET';
+  utilityNavItems?: UtilityNavItemProps[];
+};
+
+/**
+ * Fixes on scroll at desktop.
+ * Breaks to mobile when menu items can no longer fit. This will be content specific.
+ * When Menu breaks to mobile, so does Navigation and Fly out
+ * @constructor
+ */
+export const Root = ({
+  variant = 'light',
+  open,
+  withSearch,
+  searchFormAction = '/',
+  searchFormMethod = 'GET',
+  children,
+  utilityNavItems,
+}: PropsWithChildren<NavigationProps>) => {
+  const navEl = useRef(null);
+  const hasNavItems = !!Children.count(children);
+
+  return (
+    <NavigationContext.Provider value={{ element: navEl }}>
+      <nav
+        className={clsx(styles.navigation[variant], {
+          [styles.open]: open,
+        })}
+        ref={navEl}
+      >
+        <Stack space="medium">
+          {withSearch && (
+            <form action={searchFormAction} className={clsx(helpers.upToTablet.block)} method={searchFormMethod}>
+              <InputSearch id="search" name="search" placeholder="Search" />
+            </form>
+          )}
+          {hasNavItems && (
+            <ul className={clsx(styles.navList)}>
+              <AllowedChildren
+                errorMessage="Only `Navigation.Item` components are allowed as children of `Navigation.Root`"
+                propsForChild={() => ({
+                  variant,
+                })}
+                types={[Item]}
+              >
+                {children}
+              </AllowedChildren>
+            </ul>
+          )}
+          {!!utilityNavItems?.length && (
+            <>
+              {hasNavItems && (
+                <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
+              )}
+              <Utility className={helpers.upToTablet.block} items={utilityNavItems} variant={variant} />
+            </>
+          )}
+        </Stack>
+      </nav>
+    </NavigationContext.Provider>
+  );
+};
+
+Root.displayName = 'Navigation.Root';

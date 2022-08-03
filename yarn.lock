@@ -2477,15 +2477,18 @@ __metadata:
     "@vanilla-extract/vite-plugin": ^3.0.0
     "@vitejs/plugin-react": ^1.3.2
     clsx: ^1.1.1
+    country-flag-icons: ^1.5.5
     csstype: ^3.0.10
     dedent: ^0.7.0
     deepmerge: ^4.2.2
+    focus-trap-react: ^9.0.2
     focus-visible: ^5.2.0
     glob: ^7.2.0
     jest: ^27.3.1
     jest-watch-typeahead: ^1.0.0
     lodash: ^4.17.21
     react-keyed-flatten-children: ^1.3.0
+    react-phone-number-input: ^3.2.3
     rimraf: ^3.0.2
     rooks: ^5.11.8
     ts-jest: ^27.0.7
@@ -8503,6 +8506,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "classnames@npm:2.3.1"
+  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^4.2.3":
   version: 4.2.4
   resolution: "clean-css@npm:4.2.4"
@@ -9024,6 +9034,13 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: 4be63e7117955fd88333d7460e4c466a90f556df6ef34efd59034d2463484e339666c41f02b523d574a797ec61f4a91918c5b89a316db2ea2f834e0d2d09465b
+  languageName: node
+  linkType: hard
+
+"country-flag-icons@npm:^1.5.4, country-flag-icons@npm:^1.5.5":
+  version: 1.5.5
+  resolution: "country-flag-icons@npm:1.5.5"
+  checksum: 367f38330a7f0f94836c7859575e1ae75655a04e2104ba060de75827d82bd84413fd7752c9166efa93123eb0d1dd1db1658ef22683511dcfa1c16f2caffe892d
   languageName: node
   linkType: hard
 
@@ -11835,6 +11852,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"focus-trap-react@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "focus-trap-react@npm:9.0.2"
+  dependencies:
+    focus-trap: ^6.9.4
+    tabbable: ^5.3.3
+  peerDependencies:
+    prop-types: ^15.8.1
+    react: ">=16.3.0"
+    react-dom: ">=16.3.0"
+  checksum: 984a7f1ea831a73018d4dc3af3c2e05611935846ca1c9afad2de08286df566000468786c87bd03e023ff5fff1cf36c2094bd2d0c03c6318bfa54ee3004d42c63
+  languageName: node
+  linkType: hard
+
+"focus-trap@npm:^6.9.4":
+  version: 6.9.4
+  resolution: "focus-trap@npm:6.9.4"
+  dependencies:
+    tabbable: ^5.3.3
+  checksum: 0b4cebcc11010bd9397731092bd59a981e838c710c6497374ba70571875a14ab27c0db7d60f36005ec01bdabc3b9cfeda11d30ddf5b8874596dcc95e18913b3b
+  languageName: node
+  linkType: hard
+
 "focus-visible@npm:^5.2.0":
   version: 5.2.0
   resolution: "focus-visible@npm:5.2.0"
@@ -13244,6 +13284,15 @@ __metadata:
   version: 0.1.1
   resolution: "inline-style-parser@npm:0.1.1"
   checksum: 5d545056a3e1f2bf864c928a886a0e1656a3517127d36917b973de581bd54adc91b4bf1febcb0da054f204b4934763f1a4e09308b4d55002327cf1d48ac5d966
+  languageName: node
+  linkType: hard
+
+"input-format@npm:^0.3.8":
+  version: 0.3.8
+  resolution: "input-format@npm:0.3.8"
+  dependencies:
+    prop-types: ^15.8.1
+  checksum: 22a0266504536c4c18cee1e44f45d995a7c3f8599e63f52e0cf1805eea16997508dc6182736caf8676d5e279695997ef8edc4f4e091a9f17fa365ffe6e19710e
   languageName: node
   linkType: hard
 
@@ -14994,6 +15043,13 @@ __metadata:
     prelude-ls: ~1.1.2
     type-check: ~0.3.2
   checksum: 0d084a524231a8246bb10fec48cdbb35282099f6954838604f3c7fc66f2e16fa66fd9cc2f3f20a541a113c4dafdf181e822c887c8a319c9195444e6c64ac395e
+  languageName: node
+  linkType: hard
+
+"libphonenumber-js@npm:^1.10.7":
+  version: 1.10.7
+  resolution: "libphonenumber-js@npm:1.10.7"
+  checksum: 46c5afec95c5b18f24c6a19958136922e28654287a2c3dd7d67e3bda5540f540c0c69bbfb0a9470110e636bf98cab4eada6462cf2122372da6ba47c0e8379ac6
   languageName: node
   linkType: hard
 
@@ -18756,6 +18812,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-phone-number-input@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "react-phone-number-input@npm:3.2.3"
+  dependencies:
+    classnames: ^2.3.1
+    country-flag-icons: ^1.5.4
+    input-format: ^0.3.8
+    libphonenumber-js: ^1.10.7
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 4ac6586fb6fc6ea3753b1d5d5f6b1cff0eb98cb570392a2f409bac7a8645af9511090d71b5a0ded7f1d07efa1e4a573256d56ac380f7f828347d825a59b4547b
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.11.0":
   version: 0.11.0
   resolution: "react-refresh@npm:0.11.0"
@@ -21149,6 +21221,13 @@ __metadata:
     tslib: ^2.3.1
     uuid: ^8.3.2
   checksum: 47fddf16037d11c193a27765573e8a3c608e93a45c58ce9bf92d92ccdb57a7ee54b1b2fd3f771d38c745b76ba1d108baadb89388bded898b6b5f12774ebc892d
+  languageName: node
+  linkType: hard
+
+"tabbable@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "tabbable@npm:5.3.3"
+  checksum: 1aa56e1bb617cc10616c407f4e756f0607f3e2d30f9803664d70b85db037ca27e75918ed1c71443f3dc902e21dc9f991ce4b52d63a538c9b69b3218d3babcd70
   languageName: node
   linkType: hard
 

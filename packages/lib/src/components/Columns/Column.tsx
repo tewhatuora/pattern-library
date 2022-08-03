@@ -5,6 +5,8 @@ import assert from 'assert';
 
 import { Box, BoxProps } from '../Box/Box';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
+import { Breakpoint } from '../../css/breakpoints';
 
 import * as styles from './Column.css';
 
@@ -14,12 +16,15 @@ export const ParentColumnContext = createContext({ columns: 12 });
 
 export type ColumnLength = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type BreakpointColumn = Partial<Record<Breakpoint, ColumnLength>>;
+
 export type ColumnProps = {
   columns: ColumnLength;
   start?: ColumnLength;
   center?: boolean;
   className?: string;
-} & BoxProps;
+} & BoxProps &
+  BreakpointColumn;
 
 /**
  * Column styles
@@ -43,24 +48,31 @@ export const Column = ({
   center,
   start = 1,
   className,
+  wide,
+  desktop,
+  tablet,
+  mobile,
   ...boxProps
 }: PropsWithChildren<ColumnProps>) => {
   const parentColumn = useContext(ParentColumnContext);
-  const leftoverColumns = (parentColumn.columns - columns) / 2;
+  const breakpoint = useContext(BreakpointContext);
+  const sizesForViewport = { wide, desktop, tablet, mobile };
+  const cols = (breakpoint && sizesForViewport?.[breakpoint] ? sizesForViewport?.[breakpoint] : columns) || columns;
+  const leftoverColumns = (parentColumn.columns - cols) / 2;
 
   if (center) {
     assert(
       leftoverColumns % 2 === 0,
-      `Cannot center a ${columns} column component within an ${parentColumn?.columns} column container`,
+      `Cannot center a ${cols} column component within an ${parentColumn?.columns} column container`,
     );
   }
 
   const startPos = (center ? leftoverColumns + 1 : start) as ColumnLength;
-  const classNames = columnStyles({ columns, start: startPos });
+  const classNames = columnStyles({ columns: cols, start: startPos });
 
   return (
     <ErrorBoundary>
-      <ParentColumnContext.Provider value={{ columns }}>
+      <ParentColumnContext.Provider value={{ columns: cols }}>
         <Box as="div" className={clsx(classNames, className)} {...boxProps}>
           {children}
         </Box>

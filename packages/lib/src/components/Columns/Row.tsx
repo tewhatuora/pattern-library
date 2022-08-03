@@ -14,7 +14,7 @@ export type RowProps<P> = {
   offset?: boolean;
   gutter?: Space;
   className?: string;
-} & BoxProps &
+} & Omit<BoxProps, 'className'> &
   P;
 
 /**
@@ -25,6 +25,7 @@ export type RowProps<P> = {
  * @param {Boolean} params.noGutters Remove gutters
  * @param {Boolean} params.offset Offset the row into it's parent's gutters
  * @param {Number} params.parentCols Amount of columns the parent Column has
+ * @param {String} params.className Additional className
  */
 export const rowStyles = ({
   gutter = 'medium',
@@ -65,7 +66,7 @@ export const Row = ({
   }, [gutter, noGutters, offset, parentCols, className]);
 
   return (
-    <Box as="div" className={classNames} {...boxProps}>
+    <Box as="div" {...boxProps} className={classNames}>
       {children}
     </Box>
   );
