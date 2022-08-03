@@ -47,6 +47,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       rows,
       defaultValue,
       onChange,
+      ...rest
     }: InputTextProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
@@ -62,6 +63,8 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         defaultValue,
         errorMessage,
         type: fieldType,
+        'aria-labelledby': rest['aria-labelledby'],
+        'aria-describedby': rest['aria-describedby'],
       },
       ref as RefObject<HTMLInputElement>,
     );
@@ -83,6 +86,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
         <InputField
+          {...rest}
           {...inputProps}
           clearable={clearable}
           defaultValue={defaultValue}

@@ -2477,6 +2477,7 @@ __metadata:
     "@vanilla-extract/vite-plugin": ^3.0.0
     "@vitejs/plugin-react": ^1.3.2
     clsx: ^1.1.1
+    country-flag-icons: ^1.5.5
     csstype: ^3.0.10
     dedent: ^0.7.0
     deepmerge: ^4.2.2
@@ -2486,6 +2487,7 @@ __metadata:
     jest-watch-typeahead: ^1.0.0
     lodash: ^4.17.21
     react-keyed-flatten-children: ^1.3.0
+    react-phone-number-input: ^3.2.3
     rimraf: ^3.0.2
     rooks: ^5.11.8
     ts-jest: ^27.0.7
@@ -8503,6 +8505,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "classnames@npm:2.3.1"
+  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^4.2.3":
   version: 4.2.4
   resolution: "clean-css@npm:4.2.4"
@@ -9024,6 +9033,13 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: 4be63e7117955fd88333d7460e4c466a90f556df6ef34efd59034d2463484e339666c41f02b523d574a797ec61f4a91918c5b89a316db2ea2f834e0d2d09465b
+  languageName: node
+  linkType: hard
+
+"country-flag-icons@npm:^1.5.4, country-flag-icons@npm:^1.5.5":
+  version: 1.5.5
+  resolution: "country-flag-icons@npm:1.5.5"
+  checksum: 367f38330a7f0f94836c7859575e1ae75655a04e2104ba060de75827d82bd84413fd7752c9166efa93123eb0d1dd1db1658ef22683511dcfa1c16f2caffe892d
   languageName: node
   linkType: hard
 
@@ -13247,6 +13263,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"input-format@npm:^0.3.8":
+  version: 0.3.8
+  resolution: "input-format@npm:0.3.8"
+  dependencies:
+    prop-types: ^15.8.1
+  checksum: 22a0266504536c4c18cee1e44f45d995a7c3f8599e63f52e0cf1805eea16997508dc6182736caf8676d5e279695997ef8edc4f4e091a9f17fa365ffe6e19710e
+  languageName: node
+  linkType: hard
+
 "internal-slot@npm:^1.0.3":
   version: 1.0.3
   resolution: "internal-slot@npm:1.0.3"
@@ -14994,6 +15019,13 @@ __metadata:
     prelude-ls: ~1.1.2
     type-check: ~0.3.2
   checksum: 0d084a524231a8246bb10fec48cdbb35282099f6954838604f3c7fc66f2e16fa66fd9cc2f3f20a541a113c4dafdf181e822c887c8a319c9195444e6c64ac395e
+  languageName: node
+  linkType: hard
+
+"libphonenumber-js@npm:^1.10.7":
+  version: 1.10.7
+  resolution: "libphonenumber-js@npm:1.10.7"
+  checksum: 46c5afec95c5b18f24c6a19958136922e28654287a2c3dd7d67e3bda5540f540c0c69bbfb0a9470110e636bf98cab4eada6462cf2122372da6ba47c0e8379ac6
   languageName: node
   linkType: hard
 
@@ -18753,6 +18785,22 @@ __metadata:
   version: 1.1.0
   resolution: "react-merge-refs@npm:1.1.0"
   checksum: 90884352999002d868ab9f1bcfe3222fb0f2178ed629f1da7e98e5a9b02a2c96b4aa72800db92aabd69d2483211b4be57a2088e89a11a0b660e7ada744d4ddf7
+  languageName: node
+  linkType: hard
+
+"react-phone-number-input@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "react-phone-number-input@npm:3.2.3"
+  dependencies:
+    classnames: ^2.3.1
+    country-flag-icons: ^1.5.4
+    input-format: ^0.3.8
+    libphonenumber-js: ^1.10.7
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 4ac6586fb6fc6ea3753b1d5d5f6b1cff0eb98cb570392a2f409bac7a8645af9511090d71b5a0ded7f1d07efa1e4a573256d56ac380f7f828347d825a59b4547b
   languageName: node
   linkType: hard
 

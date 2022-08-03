@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import clsx from 'clsx';
 
 import assert from 'assert';
@@ -26,7 +27,7 @@ type IconProps = {
  * @param props
  * @constructor
  */
-export const Icon = ({ icon, className, variant = 'decorativeIcons', alt, ...boxProps }: IconProps) => {
+export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, ...boxProps }: IconProps) => {
   assert(
     !!icon && validIcons.includes(icon),
     `Invalid Icon component: '${icon}'. Should be one of [${validIcons.map((c) => `'${c}'`).join(', ')}]`,
@@ -45,4 +46,4 @@ export const Icon = ({ icon, className, variant = 'decorativeIcons', alt, ...box
       <IconComponent aria-hidden="true" />
     </Box>
   );
-};
+});

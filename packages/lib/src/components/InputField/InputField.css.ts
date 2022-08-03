@@ -3,12 +3,32 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { atoms } from '../../css/atoms/atoms';
 
-export const field = style({
-  position: 'relative',
-  display: 'flex',
-  flexGrow: '1',
-});
+export const field = style([
+  atoms({
+    position: 'relative',
+    display: 'flex',
+    flexGrow: 1,
+  }),
+]);
+
+export const fieldSegments = style([
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.small.mobile,
+    },
+    tablet: {
+      gap: vars.space.xsmall.tablet,
+    },
+  }),
+]);
+
+export const fieldSegment = style([
+  atoms({
+    flexGrow: 1,
+  }),
+]);
 
 export const inputBase = style([
   responsiveStyle({
@@ -122,9 +142,14 @@ export const input = styleVariants({
   ],
 });
 
-globalStyle(`${input.phone} ${inputBase}, ${inputBase} ${inputBase}:focus, ${inputBase} ${inputBase}:focus-within`, {
+globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
   outline: 'none',
+});
+
+globalStyle(`${input.phone} select${inputBase}`, {
+  borderTopRightRadius: '0',
+  borderBottomRightRadius: '0',
 });
 
 export const clearButtonBase = style([
