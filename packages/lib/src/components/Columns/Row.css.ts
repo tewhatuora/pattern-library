@@ -1,12 +1,14 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
-import { ColumnLength } from '@/dist/types/components/Columns/Column';
+import { ColumnLength } from './Column';
 
 import { Viewport } from '../../themes/tokenType';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { Space } from '../../css/atoms/atoms';
+import { Breakpoint } from '../../css/breakpoints';
 
 import { makeStyles } from './helpers';
 import { MAX_COLS, mobileRow, tabletRow } from '../../css/grid';
@@ -36,23 +38,27 @@ export const noGutters = style({
   gap: 0,
 });
 
-const makeRowStylesForColumns = (): Record<ColumnLength, StyleRule> => {
-  const rowStyle = {};
+const makeRowStylesForColumns = (breakpoint: Breakpoint): Record<ColumnLength, StyleRule> => {
+  const rowStyle = <Record<ColumnLength, StyleRule>>{};
 
   for (let i = 1; i <= MAX_COLS; i++) {
     const cols = i as ColumnLength;
-    rowStyle[cols] = [
-      mobileRow,
-      responsiveStyle({
-        tablet: tabletRow(cols),
-      }),
-    ];
+    rowStyle[cols] = responsiveStyle({
+      [breakpoint]: tabletRow(cols),
+    });
   }
 
   return rowStyle;
 };
 
-export const row = styleVariants(makeRowStylesForColumns());
+export const responsiveRow = recipe({
+  base: style(mobileRow),
+  variants: {
+    tablet: makeRowStylesForColumns('tablet'),
+    desktop: makeRowStylesForColumns('desktop'),
+    wide: makeRowStylesForColumns('wide'),
+  },
+});
 
 const getNestedStyle = (columns: number): StyleRule =>
   responsiveStyle({

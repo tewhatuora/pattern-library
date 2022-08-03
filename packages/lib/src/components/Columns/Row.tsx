@@ -15,6 +15,9 @@ export type RowProps<P> = {
   offset?: boolean;
   gutter?: Space;
   columns?: ColumnLength;
+  tablet?: ColumnLength;
+  desktop?: ColumnLength;
+  wide?: ColumnLength;
   className?: string;
 } & Omit<BoxProps, 'className'> &
   P;
@@ -33,8 +36,10 @@ export const rowStyles = ({
   gutter = 'medium',
   noGutters,
   offset,
-  columns = MAX_COLS,
-  parentCols,
+  tablet = MAX_COLS,
+  desktop = MAX_COLS,
+  wide = MAX_COLS,
+  parentCols = MAX_COLS,
   className,
 }: RowProps<{ parentCols?: number }>) => {
   const dynamicClasses = {
@@ -43,11 +48,19 @@ export const rowStyles = ({
     [styles.offset[gutter]]: offset,
   };
 
-  if (parentCols) {
-    dynamicClasses[styles.nested[parentCols?.toString()]] = true;
+  if (parentCols !== MAX_COLS) {
+    dynamicClasses[styles.nested[parentCols.toString()]] = true;
   }
 
-  return clsx(dynamicClasses, styles.row[columns], className);
+  return clsx(
+    dynamicClasses,
+    styles.responsiveRow({
+      tablet,
+      desktop,
+      wide,
+    }),
+    className,
+  );
 };
 
 /**
@@ -61,13 +74,15 @@ export const Row = ({
   noGutters,
   offset,
   className,
-  columns = MAX_COLS,
+  tablet = MAX_COLS,
+  desktop = MAX_COLS,
+  wide = MAX_COLS,
   ...boxProps
 }: PropsWithChildren<RowProps<unknown>>) => {
   const parentCols = useContext(ParentColumnContext);
   const classNames = useMemo(() => {
-    return rowStyles({ gutter, noGutters, offset, columns, parentCols: parentCols?.columns, className });
-  }, [gutter, noGutters, offset, columns, parentCols, className]);
+    return rowStyles({ gutter, noGutters, offset, tablet, desktop, wide, parentCols: parentCols?.columns, className });
+  }, [gutter, noGutters, offset, tablet, desktop, wide, parentCols, className]);
 
   return (
     <Box as="div" {...boxProps} className={classNames}>

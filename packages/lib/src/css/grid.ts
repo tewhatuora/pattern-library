@@ -18,11 +18,12 @@ export const tabletContainer: StyleRule = {
 export const mobileRow: StyleRule = {
   display: 'flex',
   flexDirection: 'column',
+  width: '100%',
 };
 
 export const tabletRow = (cols: ColumnLength = MAX_COLS): StyleRule => ({
   display: 'grid',
   gridTemplateColumns: `repeat(${cols}, [col-start] 1fr)`,
   flexDirection: 'unset',
-  width: `${(cols / 12) * 100}%`,
+  width: `${(cols / MAX_COLS) * 100}%`,
 });
