@@ -1,10 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { InputSearch, InputSearchProps } from './InputSearch';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './InputSearch.docs.mdx';
 
 export default {
   title: 'Components/InputSearch',
   component: InputSearch,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
 };
 
 export const Uncontrolled = (args: InputSearchProps) => <InputSearch {...args} />;

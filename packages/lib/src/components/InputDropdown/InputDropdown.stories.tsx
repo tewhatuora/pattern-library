@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 import { InputDropdown, InputDropdownProps } from './InputDropdown';
 import icons from '../Icon/icons';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './InputDropdown.docs.mdx';
 
 export default {
   title: 'Components/InputDropdown',
@@ -48,6 +51,11 @@ export default {
         options: ['left', 'right'],
       },
       defaultValue: 'left',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

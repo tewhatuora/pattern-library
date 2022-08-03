@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 import { InputDate, InputDateOnChangeFn, InputDateProps, InputDateValue } from './InputDate';
 import icons from '../Icon/icons';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './InputDate.docs.mdx';
 
 export default {
   title: 'Components/InputDate',
@@ -53,6 +56,11 @@ export default {
         options: ['left', 'right'],
       },
       defaultValue: 'left',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };
