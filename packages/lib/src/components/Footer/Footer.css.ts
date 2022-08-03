@@ -26,12 +26,22 @@ export const otherLogosWrapper = style({
 
 export const secondRow = style([
   atoms({
+    display: 'flex',
+    flexDirection: { mobile: 'column', tablet: 'row' },
+    justifyContent: 'spaceBetween',
+  }),
+  { gap: vars.space.large.tablet },
+]);
+
+export const childrenWrapper = style([
+  atoms({
     display: 'grid',
     width: 'full',
   }),
   {
     gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
     columnGap: vars.space.large.tablet,
+    rowGap: vars.space.large.tablet,
   },
 ]);
 

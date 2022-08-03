@@ -1,4 +1,5 @@
-import { Footer, FooterProps, Navigation } from './Footer';
+import { Navigation } from '../Navigation/Navigation';
+import { Footer, FooterProps } from './Footer';
 
 export default {
   title: 'Components/Footer',
@@ -22,9 +23,24 @@ const socialLinkHrefs = {
 export const Default = (args: FooterProps) => {
   return (
     <Footer {...args}>
-      <Navigation />
-      <Navigation long />
-      <Navigation />
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17 Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
     </Footer>
   );
 };
@@ -44,10 +60,30 @@ NoNavigations.args = {
 export const NoSocialLinks = (args: FooterProps) => {
   return (
     <Footer {...args}>
-      <Navigation />
-      <Navigation />
-      <Navigation />
-      <Navigation />
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
     </Footer>
   );
 };
@@ -63,11 +99,36 @@ NoNavigations.args = {
 export const FiveNavigations = (args: FooterProps) => {
   return (
     <Footer {...args}>
-      <Navigation />
-      <Navigation />
-      <Navigation />
-      <Navigation />
-      <Navigation />
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
     </Footer>
   );
 };
@@ -79,12 +140,42 @@ FiveNavigations.args = {
 export const MoreThanFiveNavigationsShouldThrowError = (args: FooterProps) => {
   return (
     <Footer {...args}>
-      <Navigation />
-      <Navigation />
-      <Navigation />
-      <Navigation />
-      <Navigation />
-      <Navigation />
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
+      <Navigation.MenuList heading="List one">
+        <Navigation.Item href="#" label="Sub nav item 17" />
+        <Navigation.Item href="#" label="Sub nav item 18" />
+        <Navigation.Item href="#" label="Sub nav item 19" />
+        <Navigation.Item href="#" label="Sub nav item 20" />
+      </Navigation.MenuList>
     </Footer>
   );
 };

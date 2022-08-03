@@ -2,6 +2,8 @@ import { Children, PropsWithChildren, ReactNode, useEffect, useRef, useState } f
 
 import clsx from 'clsx';
 
+import { atoms } from '../../css/atoms/atoms';
+
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
@@ -17,7 +19,7 @@ import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
 import { ShieldedSite } from './ShieldedSite';
 
 import * as styles from './Footer.css';
-import { List } from '../List/List';
+import { Navigation } from '../Navigation/Navigation';
 export const FooterStyles = styles;
 
 const MAX_COLUMN_WIDTH = 320;
@@ -124,7 +126,7 @@ export const Footer = ({
       {hiddenChildrenForWidthCalculations}
 
       <div hidden={!showNavs}>
-        <Stack space="medium">
+        <Stack space="xxlarge">
           {/* First row */}
           <Box className={styles.firstRow} display="flex" justifyContent="spaceBetween">
             <Box className={styles.govtLogoWrapper}>
@@ -137,26 +139,32 @@ export const Footer = ({
           </Box>
 
           {/* Second row */}
-          <Box display="flex" flexDirection={{ mobile: 'column', tablet: 'row' }} justifyContent="spaceBetween">
-            <Box
-              className={clsx(styles.secondRow, { [styles.lessSpace]: numChildren === 5 })}
-              style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
-            >
-              {Children.map(children, (child) => (
-                <AllowedChildren
-                  errorMessage="Only `Navigation` components are allowed as children of `Footer`."
-                  types={[Navigation]}
-                >
-                  {child}
-                </AllowedChildren>
-              ))}
+          {numChildren > 0 && (
+            <Box className={styles.secondRow}>
+              <Box
+                className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
+                style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
+              >
+                {Children.map(children, (child) => (
+                  // Div keeps MenuItems contained because they return 2 elements, not one
+                  <div>
+                    <AllowedChildren
+                      errorMessage="Only `Navigation.MenuList` components are allowed as children of `Footer`."
+                      types={[Navigation.MenuList]}
+                    >
+                      {child}
+                    </AllowedChildren>
+                  </div>
+                ))}
+              </Box>
+              {!!socialLinks && <ShieldedSite />}
             </Box>
-            {!!socialLinks && <ShieldedSite />}
-          </Box>
+          )}
 
           {/* Third row */}
           <Box>
             <Divider
+              className={atoms({ marginBottom: 'medium' })}
               variant={
                 // Divider currently has light and dark swapped
                 (variant && (variant === 'light' ? 'dark' : 'light')) ?? 'dark'
@@ -179,25 +187,6 @@ export const Footer = ({
     </Box>
   );
 };
-
-export const Navigation = ({ numChildren = 5, long = false }: { numChildren?: number; long?: boolean }) => {
-  const text = long ? 'Lorem ipsum dolor sit amet blahblaatsuranturnyt' : 'Navigation';
-
-  const children = [];
-  for (let i = 0; i < numChildren; i++) {
-    children.push(
-      <List.Item key={`Navigation-key-${i}`} style={{ width: 'fit-content' }}>
-        {text}
-      </List.Item>,
-    );
-  }
-
-  return (
-    <List.Root className={styles.tempNavigation} type="ol">
-      {children}
-    </List.Root>
-  );
-}; // TODO: Replace with actual Navigation
 
 function byDesignOrder(a: JSX.Element, b: JSX.Element) {
   const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
@@ -232,6 +221,6 @@ function widthOfWidestElement(refs: (HTMLElement | null)[]) {
       .map((ref) => ref?.getBoundingClientRect().width) // Get width
       .filter(Boolean) // Filter out null values
       .sort()
-      .at(-1) ?? Infinity // Highest number is last, default to Infinity
+      .at(-1) ?? Infinity // Highest number is at last index, default to Infinity so it gets overrided with Math.min()
   );
 }
