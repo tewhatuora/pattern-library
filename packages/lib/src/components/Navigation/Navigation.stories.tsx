@@ -8,10 +8,18 @@ import { LinkProps } from '../Navigation/Link';
 
 import { Navigation } from './Navigation';
 import { NavigationProps } from './Root';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Navigation.docs.mdx';
 
 export default {
   title: 'Components/Navigation',
   component: Navigation,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
 };
 
 const navArgTypes = {
