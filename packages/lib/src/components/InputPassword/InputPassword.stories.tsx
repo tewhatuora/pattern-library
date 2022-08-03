@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { InputText, InputTextProps } from './InputText';
 import icons from '../Icon/icons';
-import Docs from './InputText.docs.mdx';
 
-import DocsPage from '../../../utils/DocsPage';
+import { InputPassword, InputPasswordProps } from './InputPassword';
 
 export default {
-  title: 'Components/InputText',
-  component: InputText,
+  title: 'Components/InputPassword',
+  component: InputPassword,
+
   argTypes: {
     id: {
       control: {
@@ -46,31 +45,26 @@ export default {
         type: 'boolean',
       },
     },
-    multiline: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    rows: {
-      control: {
-        type: 'number',
-      },
-    },
     label: {
       control: {
         type: 'text',
       },
+      defaultValue: 'Password',
     },
     subheading: {
       control: {
         type: 'text',
       },
     },
-    tertiaryLabel: {
-      defaultValue: 'Tertiary label',
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
     },
-    tertiaryLabelAs: {
-      defaultValue: 'button',
+    helperText: {
+      control: {
+        type: 'text',
+      },
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],
@@ -84,20 +78,11 @@ export default {
       defaultValue: 'left',
     },
   },
-  parameters: {
-    docs: {
-      page: () => <DocsPage docs={Docs} />,
-    },
-  },
 };
 
-export const Uncontrolled = (args: InputTextProps) => {
-  return <InputText {...args} />;
-};
-
-export const Controlled = (args: InputTextProps) => {
+export const Default = (args: InputPasswordProps) => {
   const [value, setValue] = useState('');
-  return <InputText {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <InputPassword {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 /**
@@ -106,11 +91,13 @@ export const Controlled = (args: InputTextProps) => {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputTextProps) => {
+export const Refs = (args: InputPasswordProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
-    ref?.current?.focus();
+    if (ref?.current) {
+      ref.current.focus();
+    }
   }, [ref]);
 
-  return <InputText {...args} ref={ref} />;
+  return <InputPassword {...args} ref={ref} />;
 };
