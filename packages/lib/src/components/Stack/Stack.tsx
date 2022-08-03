@@ -14,9 +14,9 @@ export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 export type StackProps = {
   as?: typeof validStackComponents[number];
-  className?: string;
   space: Space;
   horizontal?: boolean;
+  className?: string;
 } & BoxProps;
 
 /**

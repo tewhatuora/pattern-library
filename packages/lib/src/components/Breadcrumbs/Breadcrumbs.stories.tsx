@@ -1,5 +1,5 @@
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
-import { Link } from '../Link/Link';
+import { AnchorLink } from '../AnchorLink/AnchorLink';
 import { Text } from '../Text/Text';
 import DocsPage from '../../../utils/DocsPage';
 
@@ -25,8 +25,12 @@ export default {
 export const Default = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <Link href="#100">First</Link>
-      <Link href="#200">Second</Link>
+      <AnchorLink noIcon to="#100">
+        First
+      </AnchorLink>
+      <AnchorLink noIcon to="#200">
+        Second
+      </AnchorLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -35,15 +39,33 @@ export const Default = (args: BreadcrumbsProps) => {
 export const Truncated = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <Link href="#100">First</Link>
-      <Link href="#200">Second</Link>
-      <Link href="#300">Third</Link>
-      <Link href="#400">Fourth</Link>
-      <Link href="#400">Fifth</Link>
-      <Link href="#400">Sixth</Link>
-      <Link href="#400">Seventh</Link>
-      <Link href="#400">Eighth</Link>
-      <Link href="#400">Ninth</Link>
+      <AnchorLink noIcon to="#100">
+        First
+      </AnchorLink>
+      <AnchorLink noIcon to="#200">
+        Second
+      </AnchorLink>
+      <AnchorLink noIcon to="#300">
+        Third
+      </AnchorLink>
+      <AnchorLink noIcon to="#400">
+        Fourth
+      </AnchorLink>
+      <AnchorLink noIcon to="#400">
+        Fifth
+      </AnchorLink>
+      <AnchorLink noIcon to="#400">
+        Sixth
+      </AnchorLink>
+      <AnchorLink noIcon to="#400">
+        Seventh
+      </AnchorLink>
+      <AnchorLink noIcon to="#400">
+        Eighth
+      </AnchorLink>
+      <AnchorLink noIcon to="#400">
+        Ninth
+      </AnchorLink>
       <Text>Tenth</Text>
     </Breadcrumbs>
   );

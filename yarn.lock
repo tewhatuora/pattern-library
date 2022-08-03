@@ -2481,6 +2481,7 @@ __metadata:
     csstype: ^3.0.10
     dedent: ^0.7.0
     deepmerge: ^4.2.2
+    focus-trap-react: ^9.0.2
     focus-visible: ^5.2.0
     glob: ^7.2.0
     jest: ^27.3.1
@@ -11851,6 +11852,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"focus-trap-react@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "focus-trap-react@npm:9.0.2"
+  dependencies:
+    focus-trap: ^6.9.4
+    tabbable: ^5.3.3
+  peerDependencies:
+    prop-types: ^15.8.1
+    react: ">=16.3.0"
+    react-dom: ">=16.3.0"
+  checksum: 984a7f1ea831a73018d4dc3af3c2e05611935846ca1c9afad2de08286df566000468786c87bd03e023ff5fff1cf36c2094bd2d0c03c6318bfa54ee3004d42c63
+  languageName: node
+  linkType: hard
+
+"focus-trap@npm:^6.9.4":
+  version: 6.9.4
+  resolution: "focus-trap@npm:6.9.4"
+  dependencies:
+    tabbable: ^5.3.3
+  checksum: 0b4cebcc11010bd9397731092bd59a981e838c710c6497374ba70571875a14ab27c0db7d60f36005ec01bdabc3b9cfeda11d30ddf5b8874596dcc95e18913b3b
+  languageName: node
+  linkType: hard
+
 "focus-visible@npm:^5.2.0":
   version: 5.2.0
   resolution: "focus-visible@npm:5.2.0"
@@ -21197,6 +21221,13 @@ __metadata:
     tslib: ^2.3.1
     uuid: ^8.3.2
   checksum: 47fddf16037d11c193a27765573e8a3c608e93a45c58ce9bf92d92ccdb57a7ee54b1b2fd3f771d38c745b76ba1d108baadb89388bded898b6b5f12774ebc892d
+  languageName: node
+  linkType: hard
+
+"tabbable@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "tabbable@npm:5.3.3"
+  checksum: 1aa56e1bb617cc10616c407f4e756f0607f3e2d30f9803664d70b85db037ca27e75918ed1c71443f3dc902e21dc9f991ce4b52d63a538c9b69b3218d3babcd70
   languageName: node
   linkType: hard
 

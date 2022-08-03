@@ -12,9 +12,11 @@ export const AnchorLinkStyles = styles;
 
 export type AnchorLinkProps = {
   to: string;
+  className?: string;
   component?: FC<any>;
   size?: UseTextProps['size'];
   weight?: UseTextProps['weight'];
+  noIcon?: boolean;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -26,6 +28,8 @@ export const AnchorLink = ({
   to,
   size = 'medium',
   weight = 'regular',
+  noIcon = false,
+  className,
   component: LinkComponent,
   children,
   ...rest
@@ -36,14 +40,14 @@ export const AnchorLink = ({
   const props = {
     ...linkProps,
     ...rest,
-    className: clsx(textStyles, styles.link),
+    className: clsx(textStyles, styles.link, className),
     href: to,
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
   };
 
   const linkChildren = (
     <>
-      <Icon className={styles.icon} icon="chevron_right" key="icon" variant="functionalIcons" />
+      {!noIcon && <Icon className={styles.icon} icon="chevron_right" key="icon" variant="functionalIcons" />}
       {children}
     </>
   );

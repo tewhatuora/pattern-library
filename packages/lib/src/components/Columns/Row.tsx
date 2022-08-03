@@ -13,7 +13,8 @@ export type RowProps<P> = {
   noGutters?: boolean;
   offset?: boolean;
   gutter?: Space;
-} & BoxProps &
+  className?: string;
+} & Omit<BoxProps, 'className'> &
   P;
 
 /**
@@ -24,8 +25,15 @@ export type RowProps<P> = {
  * @param {Boolean} params.noGutters Remove gutters
  * @param {Boolean} params.offset Offset the row into it's parent's gutters
  * @param {Number} params.parentCols Amount of columns the parent Column has
+ * @param {String} params.className Additional className
  */
-export const rowStyles = ({ gutter = 'medium', noGutters, offset, parentCols }: RowProps<{ parentCols?: number }>) => {
+export const rowStyles = ({
+  gutter = 'medium',
+  noGutters,
+  offset,
+  parentCols,
+  className,
+}: RowProps<{ parentCols?: number }>) => {
   const dynamicClasses = {
     [styles.noGutters]: noGutters,
     [styles.gutter[gutter]]: !noGutters,
@@ -36,7 +44,7 @@ export const rowStyles = ({ gutter = 'medium', noGutters, offset, parentCols }: 
     dynamicClasses[styles.nested[parentCols?.toString()]] = true;
   }
 
-  return clsx(dynamicClasses, styles.row);
+  return clsx(dynamicClasses, styles.row, className);
 };
 
 /**
@@ -49,15 +57,16 @@ export const Row = ({
   gutter = 'medium',
   noGutters,
   offset,
+  className,
   ...boxProps
 }: PropsWithChildren<RowProps<unknown>>) => {
   const parentCols = useContext(ParentColumnContext);
   const classNames = useMemo(() => {
-    return rowStyles({ gutter, noGutters, offset, parentCols: parentCols?.columns });
-  }, [gutter, noGutters, offset, parentCols]);
+    return rowStyles({ gutter, noGutters, offset, parentCols: parentCols?.columns, className: className });
+  }, [gutter, noGutters, offset, parentCols, className]);
 
   return (
-    <Box as="div" className={classNames} {...boxProps}>
+    <Box as="div" {...boxProps} className={classNames}>
       {children}
     </Box>
   );

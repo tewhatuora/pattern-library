@@ -9,6 +9,7 @@ export const link = style({
   color: vars.color.info100,
   textDecoration: 'none',
   cursor: 'pointer',
+  transition: 'color 0.3s ease-out',
   selectors: {
     '&:hover': {
       color: vars.color.info75,
