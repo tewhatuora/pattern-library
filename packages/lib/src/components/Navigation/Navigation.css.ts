@@ -10,6 +10,7 @@ const base = style([
     mobile: {
       position: 'fixed',
       top: calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet),
+      height: calc.subtract('100%', calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet)),
       left: '0',
       right: '0',
       paddingTop: vars.space.medium.mobile,
@@ -19,8 +20,11 @@ const base = style([
       transform: 'translateX(100%)',
       transition: 'transform 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
       willChange: 'transform',
+      zIndex: 10,
     },
     desktop: {
+      position: 'sticky',
+      top: '0',
       paddingTop: '0',
       paddingBottom: '0',
       paddingLeft: vars.space.medium.tablet,

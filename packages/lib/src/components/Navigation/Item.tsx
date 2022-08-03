@@ -1,4 +1,14 @@
-import { FC, PropsWithChildren, createElement, useCallback, useContext, useRef, useState } from 'react';
+import {
+  FC,
+  Fragment,
+  MutableRefObject,
+  PropsWithChildren,
+  createElement,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 import clsx from 'clsx';
 import { useOutsideClick } from 'rooks';
 
@@ -12,6 +22,7 @@ import { ButtonRoot } from '../Button/Button';
 
 import * as styles from './Item.css';
 import * as helpers from '../../css/helpers.css';
+import { Breakpoint } from '../../css/breakpoints';
 
 export const NavigationItemStyles = styles;
 
@@ -38,30 +49,84 @@ export const Item = ({
   component,
   children,
 }: PropsWithChildren<NavigationItemProps>) => {
-  const breakpoint = useContext(BreakpointContext);
+  const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const ref = useRef(null);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
+  const [startTransitionOut, setStartTransitionOut] = useState(false);
+  const [focusedItem, setFocusedItem] = useState<MutableRefObject<HTMLButtonElement | null>>(ref);
+  const isDesktop = breakpoint && ['desktop', 'wide'].includes(breakpoint);
 
-  const handleToggle = useCallback(() => {
-    setSubMenuIsOpen(!subMenuIsOpen);
-  }, [subMenuIsOpen]);
-
-  const handleMouseEnter = useCallback(() => {
+  /**
+   * Set the sub menu to open/mounted state
+   */
+  const handleOpen = useCallback(() => {
     setSubMenuIsOpen(true);
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
+  /**
+   * Wait for onTransitionEnd to finish before
+   * setting menu to closed/unmounted state
+   */
+  const handleStartClose = useCallback(() => {
+    if (subMenuIsOpen) {
+      if (!isDesktop) {
+        focusedItem?.current?.focus();
+      }
+
+      setStartTransitionOut(true);
+    }
+  }, [subMenuIsOpen, focusedItem, isDesktop]);
+
+  /**
+   * Set sub menu to closed/unmounted state
+   */
+  const handleClose = useCallback(() => {
     setSubMenuIsOpen(false);
+    setStartTransitionOut(false);
   }, []);
 
-  useOutsideClick(ref, () => {
-    setSubMenuIsOpen(false);
-  });
+  /**
+   * Only close the sub menu if it's open
+   */
+  const closeSubMenuIfOpen = useCallback(() => {
+    if (subMenuIsOpen) {
+      handleStartClose();
+    }
+  }, [subMenuIsOpen, handleStartClose]);
+
+  /**
+   * Handle closing the submenu
+   * with space or enter key
+   */
+  const handleKeyboardClose = useCallback(
+    (e) => {
+      if (['Space', 'Enter'].includes(e.code)) {
+        closeSubMenuIfOpen();
+      }
+    },
+    [closeSubMenuIfOpen],
+  );
+
+  /**
+   * Handle setting focused button ref
+   * so that it can be focused when closing
+   * submenu on mobile
+   */
+  const handleFocus = useCallback(() => {
+    if (!isDesktop) {
+      setFocusedItem(ref);
+    }
+  }, [ref, isDesktop]);
+
+  /**
+   * Handle clicking outside submenu to trigger
+   * it to close, if it's open
+   */
+  useOutsideClick(ref, closeSubMenuIfOpen);
 
   const className = subNav ? styles.subNavListItem : styles.navListItem;
   const baseProps = {
-    className: clsx({
-      [styles.navListItemLink.default]: true,
+    className: clsx(styles.navListItemLink.default, {
       [styles.navListItemLink.subnav]: subNav,
     }),
     tabIndex: 0,
@@ -70,7 +135,9 @@ export const Item = ({
     ...baseProps,
     as: 'button',
     ref: ref,
-    onPress: handleToggle,
+    onFocus: handleFocus,
+    onPress: handleOpen,
+    onKeyDown: handleKeyboardClose,
   };
 
   const linkProps = {
@@ -84,10 +151,10 @@ export const Item = ({
       {label}
     </Text>,
     !subNav && !!children && (
-      <>
+      <Fragment key="icons">
         <Icon className={helpers.upToTablet.flex} icon="chevron_right" variant="functionalIcons" />
         <Icon className={clsx(helpers.desktopUp.flex, styles.chevron)} icon="chevron_down" variant="functionalIcons" />
-      </>
+      </Fragment>
     ),
   ];
 
@@ -96,28 +163,31 @@ export const Item = ({
 
   let mouseEventHandlers = {};
 
-  if (breakpoint === 'desktop' || breakpoint === 'wide') {
+  if (isDesktop && !subNav) {
     mouseEventHandlers = {
-      onMouseEnter: handleMouseEnter,
-      onMouseLeave: handleMouseLeave,
+      onMouseEnter: handleOpen,
+      onMouseLeave: handleStartClose,
     };
   }
 
   return (
     <li className={className} {...mouseEventHandlers}>
       {el}
-      <AllowedChildren
-        errorMessage="Only `Navigation.Menu` components are allowed as children of `Navigation.Item`"
-        propsForChild={() => ({
-          label,
-          variant,
-          show: subMenuIsOpen,
-          onClose: handleToggle,
-        })}
-        types={[Menu]}
-      >
-        {children}
-      </AllowedChildren>
+      {subMenuIsOpen && !subNav && (
+        <AllowedChildren
+          errorMessage="Only `Navigation.Menu` components are allowed as children of `Navigation.Item`"
+          propsForChild={() => ({
+            label,
+            variant,
+            startTransitionOut,
+            onStartClose: handleStartClose,
+            onClose: handleClose,
+          })}
+          types={[Menu]}
+        >
+          {children}
+        </AllowedChildren>
+      )}
     </li>
   );
 };

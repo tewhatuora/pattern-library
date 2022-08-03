@@ -28,9 +28,7 @@ export const Controlled = (args: InputSearchProps) => {
 export const Refs = (args: InputSearchProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
-    if (ref?.current) {
-      ref.current.focus();
-    }
+    ref?.current?.focus();
   }, [ref]);
 
   return <InputSearch {...args} ref={ref} />;

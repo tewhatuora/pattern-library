@@ -13,9 +13,9 @@ const navigationMenuContainerBase = style([
     zIndex: '2',
     top: '0',
     right: '0',
+    height: calc.subtract('100vh', calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet)),
     transition: 'width 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
     willChange: 'width',
-    height: '100vh',
     overflowY: 'scroll',
     WebkitOverflowScrolling: 'touch',
   },
@@ -37,10 +37,19 @@ export const variants = styleVariants({
     backgroundColor: vars.color.primary0,
     color: vars.color.primary100,
   },
-  dark: {
-    backgroundColor: vars.color.primary75,
-    color: vars.color.primary0,
-  },
+  dark: [
+    {
+      color: vars.color.primary0,
+    },
+    responsiveStyle({
+      mobile: {
+        backgroundColor: vars.color.primary75,
+      },
+      desktop: {
+        backgroundColor: vars.color.primary100,
+      },
+    }),
+  ],
 });
 
 /**
@@ -121,13 +130,22 @@ export const navigationMenu = styleVariants({
   ],
 });
 
+export const subNavHeading = style([
+  responsiveStyle({
+    mobile: {
+      marginBottom: calc.divide(vars.space.medium.mobile, 2),
+    },
+    desktop: {
+      marginBottom: calc.divide(vars.space.small.tablet, 2),
+    },
+  }),
+]);
+
 export const subNavList = style([
   atoms({
     reset: 'ul',
+    width: 'full',
   }),
-  {
-    width: '100%',
-  },
 ]);
 
 export const backButton = style([
@@ -136,6 +154,13 @@ export const backButton = style([
     flexDirection: 'row',
     marginBottom: 'xsmall',
   }),
+  {
+    selectors: {
+      '&:focus': {
+        outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
+      },
+    },
+  },
 ]);
 
 export const backButtonText = style([

@@ -30,9 +30,9 @@ const navListItemLinkBase = style([
     display: 'flex',
     justifyContent: 'spaceBetween',
     alignItems: 'center',
+    width: 'full',
   }),
   {
-    width: '100%',
     color: 'currentColor',
     textDecoration: 'none',
     selectors: {
@@ -67,7 +67,7 @@ const navListItemLinkBase = style([
       },
     },
     desktop: {
-      gap: '0.4rem',
+      gap: calc.divide(vars.space.xsmall.tablet, 4),
       paddingTop: vars.space.medium.tablet,
       paddingBottom: vars.space.medium.tablet,
       selectors: {
@@ -95,12 +95,12 @@ export const navListItemLink = styleVariants({
     style([
       responsiveStyle({
         mobile: {
-          paddingTop: vars.space.medium.mobile,
-          paddingBottom: vars.space.medium.mobile,
+          paddingTop: calc.divide(vars.space.medium.mobile, 2),
+          paddingBottom: calc.divide(vars.space.medium.mobile, 2),
         },
         desktop: {
-          paddingTop: vars.space.small.tablet,
-          paddingBottom: vars.space.small.tablet,
+          paddingTop: calc.divide(vars.space.small.tablet, 2),
+          paddingBottom: calc.divide(vars.space.small.tablet, 2),
           selectors: {
             '&:hover': {
               textDecoration: 'underline',

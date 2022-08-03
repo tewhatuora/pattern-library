@@ -1,4 +1,5 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, RefObject, forwardRef } from 'react';
+import { useTextField } from '@react-aria/textfield';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputField, InputFieldProps } from '../InputField/InputField';
@@ -10,7 +11,6 @@ import { Box } from '../Box/Box';
 export const InputFieldStyles = styles;
 
 type MultilineFormFieldProps = {
-  type: 'text';
   multiline?: boolean;
   rows?: number;
 };
@@ -47,9 +47,28 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       rows,
       defaultValue,
       onChange,
+      ...rest
     }: InputTextProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
+    const fieldType = multiline ? 'text' : type;
+    const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
+      {
+        id,
+        name,
+        label,
+        placeholder,
+        value,
+        description: helperText,
+        defaultValue,
+        errorMessage,
+        type: fieldType,
+        'aria-labelledby': rest['aria-labelledby'],
+        'aria-describedby': rest['aria-describedby'],
+      },
+      ref as RefObject<HTMLInputElement>,
+    );
+
     return (
       <Box flexGrow={1}>
         <InputLabel
@@ -58,6 +77,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           href={href}
           htmlFor={id}
           label={label}
+          labelProps={labelProps}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
@@ -66,6 +86,8 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
         <InputField
+          {...rest}
+          {...inputProps}
           clearable={clearable}
           defaultValue={defaultValue}
           disabled={disabled}
@@ -77,11 +99,17 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           ref={ref}
           required={required}
           rows={rows}
-          type={type}
+          type={fieldType}
           value={value}
           onChange={onChange}
         />
-        <InputMessage disabled={disabled} errorMessage={errorMessage} helperText={helperText} />
+        <InputMessage
+          descriptionProps={descriptionProps}
+          disabled={disabled}
+          errorMessage={errorMessage}
+          errorMessageProps={errorMessageProps}
+          helperText={helperText}
+        />
       </Box>
     );
   },
