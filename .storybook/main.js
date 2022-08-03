@@ -29,7 +29,7 @@ module.exports = {
       base: process.env.BASE_URL || config.base,
       plugins: [
         vanillaExtractPlugin({
-          identifiers: 'short',
+          identifiers: 'debug',
         }),
         svgr({
           svgrOptions: {
