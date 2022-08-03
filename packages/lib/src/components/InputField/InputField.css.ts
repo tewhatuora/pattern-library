@@ -3,12 +3,32 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { atoms } from '../../css/atoms/atoms';
 
-export const field = style({
-  position: 'relative',
-  display: 'flex',
-  flexGrow: '1',
-});
+export const field = style([
+  atoms({
+    position: 'relative',
+    display: 'flex',
+    flexGrow: 1,
+  }),
+]);
+
+export const fieldSegments = style([
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.small.mobile,
+    },
+    tablet: {
+      gap: vars.space.xsmall.tablet,
+    },
+  }),
+]);
+
+export const fieldSegment = style([
+  atoms({
+    flexGrow: 1,
+  }),
+]);
 
 export const inputBase = style([
   responsiveStyle({
@@ -33,7 +53,7 @@ export const inputBase = style([
     borderWidth: vars.borderWidth.small,
     borderColor: vars.color.primary50,
     borderStyle: 'solid',
-    color: vars.color.neutral50,
+    color: vars.color.primary100,
     backgroundColor: vars.color.primary0,
 
     selectors: {
@@ -77,6 +97,7 @@ export const input = styleVariants({
       position: 'relative',
       zIndex: 2,
       backgroundColor: 'transparent',
+      color: vars.color.primary100,
     },
     responsiveStyle({
       mobile: {
@@ -86,6 +107,12 @@ export const input = styleVariants({
         paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
       },
     }),
+  ],
+  dropdownPlaceholder: [
+    inputBase,
+    {
+      color: 'transparent',
+    },
   ],
   multiline: [
     inputBase,
@@ -115,20 +142,43 @@ export const input = styleVariants({
   ],
 });
 
-globalStyle(`${input.phone} ${inputBase}, ${inputBase} ${inputBase}:focus, ${inputBase} ${inputBase}:focus-within`, {
+globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
   outline: 'none',
 });
 
-export const clearButton = style({
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  display: 'flex',
-  alignItems: 'center',
-  height: vars.space.xxlarge.tablet,
-  paddingLeft: vars.space.xsmall.tablet,
-  paddingRight: vars.space.xsmall.tablet,
-  cursor: 'pointer',
-  zIndex: 2,
+globalStyle(`${input.phone} select${inputBase}`, {
+  borderTopRightRadius: '0',
+  borderBottomRightRadius: '0',
+});
+
+export const clearButtonBase = style([
+  {
+    position: 'absolute',
+    top: '0.1rem',
+    right: 0,
+    display: 'flex',
+    alignItems: 'center',
+    height: vars.space.xxlarge.tablet,
+    paddingLeft: vars.space.xsmall.tablet,
+    paddingRight: vars.space.xsmall.tablet,
+    cursor: 'pointer',
+    zIndex: 2,
+  },
+]);
+
+export const clearButton = styleVariants({
+  search: [
+    clearButtonBase,
+    responsiveStyle({
+      mobile: {
+        top: '0',
+        height: vars.space.xxlarge.tablet,
+      },
+      tablet: {
+        top: '0',
+        height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
+      },
+    }),
+  ],
 });
