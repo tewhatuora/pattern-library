@@ -16,6 +16,7 @@ export type StackProps = {
   as?: typeof validStackComponents[number];
   space: Space;
   horizontal?: boolean;
+  className?: string;
 } & BoxProps;
 
 /**
@@ -28,6 +29,7 @@ export const Stack = ({
   children,
   space = 'medium',
   horizontal = false,
+  className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
   assert(
