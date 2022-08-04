@@ -50,6 +50,7 @@ export type FooterProps = {
   extraLogos?: ReactNode[];
   imprintItems?: ImprintItem[];
   variant?: 'light' | 'dark';
+  className?: string;
 };
 
 export const Footer = ({
@@ -57,6 +58,7 @@ export const Footer = ({
   extraLogos,
   imprintItems,
   variant,
+  className,
   children,
 }: PropsWithChildren<FooterProps>) => {
   const navRefs = useRef<Array<HTMLElement | null>>([]);
@@ -140,7 +142,12 @@ export const Footer = ({
   ));
 
   return (
-    <Box as="footer" color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}>
+    <Box
+      as="footer"
+      backgroundColor={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
+      className={className}
+      color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
+    >
       {!showNavs && hiddenChildrenForWidthCalculations}
 
       <div hidden={!showNavs}>
