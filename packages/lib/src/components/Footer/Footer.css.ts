@@ -44,13 +44,13 @@ export const childrenWrapper = style([
   }),
   {
     gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
-    columnGap: vars.space.large.tablet,
+    columnGap: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 2)), // 6.4rem/64px
     rowGap: vars.space.large.tablet,
   },
 ]);
 
 export const lessSpace = style({
-  columnGap: vars.space.xlarge.mobile,
+  columnGap: vars.space.large.tablet, // 4rem/40px
 });
 
 export const hiddenNavs = style({
