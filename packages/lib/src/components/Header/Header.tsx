@@ -29,6 +29,7 @@ export type HeaderProps = {
   logoComponent: ReactNode;
   navigationOpen?: boolean;
   onToggleNavigation?: () => void;
+  onLogoClick?: () => void;
 };
 
 type MenuButtonProps = {
@@ -71,6 +72,7 @@ export const Header = ({
   utilityNavItems,
   navigationOpen,
   onToggleNavigation,
+  onLogoClick,
 }: HeaderProps) => {
   /**
    * Light/dark color
@@ -103,9 +105,9 @@ export const Header = ({
           </Box>
         )}
         <Box color={color}>
-          <a className={styles.logo} href="/">
+          <ButtonRoot className={styles.logo} onPress={onLogoClick}>
             <Logo />
-          </a>
+          </ButtonRoot>
         </Box>
       </Stack>
       <Stack className={helpers.desktopUp.flex} color={color} horizontal space="small">
