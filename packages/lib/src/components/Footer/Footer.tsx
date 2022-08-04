@@ -132,7 +132,7 @@ export const Footer = ({
 
   return (
     <Box as="footer" color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}>
-      {hiddenChildrenForWidthCalculations}
+      {!showNavs && hiddenChildrenForWidthCalculations}
 
       <div hidden={!showNavs}>
         <Stack space="xxlarge">
