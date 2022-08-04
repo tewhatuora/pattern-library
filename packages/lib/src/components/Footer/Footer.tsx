@@ -11,8 +11,6 @@ import {
 
 import clsx from 'clsx';
 
-import { atoms } from '../../css/atoms/atoms';
-
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
@@ -180,9 +178,8 @@ export const Footer = ({
           )}
 
           {/* Third row */}
-          <Box>
+          <Stack space="medium">
             <Divider
-              className={atoms({ marginBottom: 'medium' })}
               variant={
                 // Divider currently has light and dark swapped
                 (variant && (variant === 'light' ? 'dark' : 'light')) ?? 'dark'
@@ -199,7 +196,7 @@ export const Footer = ({
               {socialLinks || <ShieldedSite />}
               {imprintItemsElements}
             </Box>
-          </Box>
+          </Stack>
         </Stack>
       </div>
     </Box>
