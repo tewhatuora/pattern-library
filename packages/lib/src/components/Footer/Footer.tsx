@@ -5,6 +5,7 @@ import {
   cloneElement,
   isValidElement,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -82,30 +83,38 @@ export const Footer = ({
 
   const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
-  const socialLinks = !!socialLinkHrefs && (
-    <Box className={styles.social} display="flex" flexDirection="row">
-      {Object.entries(socialLinkHrefs)
-        .map(([key, value]) => (
-          <Box aria-label={key} as="a" href={value} key={key}>
-            <Icon className={styles.socialIcons[variant ?? 'light']} icon={key as IconType} variant="socialIcons" />
-          </Box>
-        ))
-        .sort(byDesignOrder)}
-    </Box>
+  const socialLinks = useMemo(
+    () =>
+      !!socialLinkHrefs && (
+        <Box className={styles.social} display="flex" flexDirection="row">
+          {Object.entries(socialLinkHrefs)
+            .map(([key, value]) => (
+              <Box aria-label={key} as="a" href={value} key={key}>
+                <Icon className={styles.socialIcons[variant ?? 'light']} icon={key as IconType} variant="socialIcons" />
+              </Box>
+            ))
+            .sort(byDesignOrder)}
+        </Box>
+      ),
+    [socialLinkHrefs, variant],
   );
 
-  const imprintItemsElements = !!imprintItems && (
-    <Box className={styles.imprintItems}>
-      {imprintItems?.map(({ text, href }) =>
-        href ? (
-          <Box as="a" href={href} key={text}>
-            <Text>{text}</Text>
-          </Box>
-        ) : (
-          <Text key={text}>{text}</Text>
-        ),
-      )}
-    </Box>
+  const imprintItemsElements = useMemo(
+    () =>
+      !!imprintItems && (
+        <Box className={styles.imprintItems}>
+          {imprintItems?.map(({ text, href }) =>
+            href ? (
+              <Box as="a" href={href} key={text}>
+                <Text>{text}</Text>
+              </Box>
+            ) : (
+              <Text key={text}>{text}</Text>
+            ),
+          )}
+        </Box>
+      ),
+    [imprintItems],
   );
 
   /**
