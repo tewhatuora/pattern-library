@@ -22,8 +22,19 @@ module.exports = {
     builder: '@storybook/builder-vite',
   },
   staticDirs: ['./public'],
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldRemoveUndefinedFromOptional: true,
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => {
+        return (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
+      },
+    },
+  },
   // use `mergeConfig` to recursively merge Vite options
-
   viteFinal: async (config) => {
     return mergeConfig(config, {
       base: process.env.BASE_URL || config.base,
