@@ -26,20 +26,20 @@ export const Individual = (args: IconProps) => <Icon {...args} />;
 export const InheritedColor = (args: IconProps) => {
   const { color, ...rest } = args;
   return (
-    <Box display="inlineFlex" alignItems="center" color={args.color}>
+    <Box alignItems="center" color={color} display="inlineFlex">
       <Icon {...rest} /> <Text>Inherits parent `color`</Text>
     </Box>
   );
 };
 
 const IconContainer = ({ children }) => (
-  <Box display="flex" justifyContent="spaceBetween" flexDirection="row">
+  <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
     {children}
   </Box>
 );
 
 const renderIcons = (icons, args: IconProps) => {
-  return Object.keys(icons).map((icon) => <Icon icon={icon} key={icon} color={args.color} />);
+  return Object.keys(icons).map((icon) => <Icon color={args.color} icon={icon} key={icon} />);
 };
 
 export const Decorative = (args: IconProps) => {
