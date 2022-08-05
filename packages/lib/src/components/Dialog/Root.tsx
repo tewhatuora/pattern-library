@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement, ReactNode, cloneElement, useMemo, useRef } from 'react';
+import { PropsWithChildren, ReactElement, cloneElement, useMemo, useRef } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { useOutsideClick } from 'rooks';
 
@@ -23,7 +23,6 @@ export type DialogProps = {
   icon?: IconType;
   heading?: string;
   subheading?: string;
-  content?: ReactNode;
   trigger?: ReactElement;
 } & RadixDialog.DialogProps;
 
