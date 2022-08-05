@@ -1,3 +1,4 @@
+import { RefAttributes } from 'react';
 import * as RadixTabs from '@radix-ui/react-tabs';
 
 import { ChildrenOfType } from '../../types/index';
@@ -8,10 +9,12 @@ import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 export type TabsRootProps = {
   onValueChange?: (value: string) => void;
+  /** Optional CSS className */
   className?: string;
+  /** Tabs.List | Tabs.Content components */
   children: ChildrenOfType<'List', TabsListProps> & ChildrenOfType<'Content', TabsContentProps>;
 } & Omit<RadixTabs.TabsProps, 'orientation' | 'dir' | 'asChild'> &
-  React.RefAttributes<HTMLDivElement>;
+  RefAttributes<HTMLDivElement>;
 
 /**
  * Tabs
