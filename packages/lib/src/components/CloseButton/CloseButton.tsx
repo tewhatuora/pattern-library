@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import { Icon } from '../Icon/Icon';
-import { ButtonRoot } from '../Button/Button';
+import { ButtonRoot } from '../Button/ButtonRoot';
 import { IconType } from '../Icon/icons';
 
 type CloseButtonProps = {

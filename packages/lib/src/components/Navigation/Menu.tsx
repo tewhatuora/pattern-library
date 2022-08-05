@@ -13,7 +13,7 @@ import { Container } from '../Container/Container';
 import { Row } from '../Columns/Row';
 import { Column } from '../Columns/Column';
 import { MenuList, MenuListProps } from './MenuList';
-import { ButtonRoot } from '../Button/Button';
+import { ButtonRoot } from '../Button/ButtonRoot';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 import { NavigationContext } from './Root';

@@ -18,7 +18,7 @@ import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 import { Link } from './Link';
 import { Menu } from './Menu';
-import { ButtonRoot } from '../Button/Button';
+import { ButtonRoot } from '../Button/ButtonRoot';
 
 import * as styles from './Item.css';
 import * as helpers from '../../css/helpers.css';

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import { Icon } from '../Icon/Icon';
-import { ButtonRoot } from '../Button/Button';
+import { ButtonRoot } from '../Button/ButtonRoot';
 import * as styles from './InputField.css';
 import { clearIcon } from '../Icon/Icon.css';
 
