@@ -5,6 +5,11 @@ import { InputSearch, InputSearchProps } from './InputSearch';
 export default {
   title: 'Components/InputSearch',
   component: InputSearch,
+  argTypes: {
+    id: { control: false },
+    name: { control: false },
+    onChange: { control: false },
+  },
 };
 
 export const Uncontrolled = (args: InputSearchProps) => <InputSearch {...args} />;

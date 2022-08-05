@@ -7,6 +7,9 @@ export default {
     label: {
       defaultValue: 'Tag Component',
     },
+    onClear: {
+      control: false,
+    },
   },
 };
 
@@ -17,8 +20,6 @@ export const Default = (args: TagProps) => {
       onClear={() => {
         alert('Tag closed!');
       }}
-    >
-      Tag with onClear
-    </Tag>
+    />
   );
 };

@@ -5,17 +5,15 @@ import { InputField, InputFieldProps } from './InputField';
 export default {
   title: 'Components/InputField',
   component: InputField,
+  parameters: {
+    controls: {
+      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
+  },
   argTypes: {
-    id: {
-      control: {
-        type: 'text',
-      },
-    },
-    name: {
-      control: {
-        type: 'text',
-      },
-    },
+    id: { control: false },
+    name: { control: false },
+    onChange: { control: false },
     placeholder: {
       control: {
         type: 'text',
@@ -51,6 +49,7 @@ export default {
       control: {
         type: 'number',
       },
+      if: { arg: 'multiline' },
     },
     type: {
       defaultValue: 'text',

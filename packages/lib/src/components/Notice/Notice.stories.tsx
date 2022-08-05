@@ -4,6 +4,9 @@ export default {
   title: 'Components/Notice',
   component: Notice,
   argTypes: {
+    variant: {
+      defaultValue: 'positive',
+    },
     label: {
       defaultValue: 'A static message with a lighter visual treatment than alert',
     },

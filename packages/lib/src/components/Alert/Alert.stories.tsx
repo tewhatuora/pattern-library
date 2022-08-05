@@ -9,6 +9,9 @@ export default {
         type: 'text',
       },
     },
+    onClose: {
+      control: false,
+    },
   },
 };
 

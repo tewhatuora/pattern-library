@@ -27,6 +27,12 @@ export default {
       },
       defaultValue: 'Subheading',
     },
+    trigger: {
+      control: false,
+    },
+    children: {
+      control: false,
+    },
   },
 };
 
@@ -63,7 +69,7 @@ export const Controlled = (args: DialogProps) => {
     <Dialog.Root
       {...args}
       open={open}
-      trigger={<Button onPress={() => console.log('Dialog trigger')}>Open</Button>}
+      trigger={<Button onPress={() => alert('Dialog trigger')}>Open</Button>}
       onOpenChange={(open: boolean) => {
         setOpen(open);
       }}

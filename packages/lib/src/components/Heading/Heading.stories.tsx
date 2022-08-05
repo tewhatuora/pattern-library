@@ -1,4 +1,5 @@
 import { Heading, HeadingProps } from './Heading';
+import { vars } from '../../themes/vars.css';
 
 export default {
   /* 👇 The title prop is optional.
@@ -8,8 +9,13 @@ export default {
   title: 'Typography/Heading',
   component: Heading,
   argTypes: {
+    id: { control: false },
     variant: {
       level: ['1', '2', '3', '4'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: Object.keys(vars.color),
       control: { type: 'select' },
     },
   },

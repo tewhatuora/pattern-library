@@ -5,6 +5,9 @@ export default {
   title: 'Components/RadioGroup',
   component: RadioGroup,
   argTypes: {
+    name: { control: false },
+    id: { control: false },
+    onChange: { control: false },
     error: {
       control: { type: 'boolean' },
     },

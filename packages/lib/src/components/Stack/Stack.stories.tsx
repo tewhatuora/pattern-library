@@ -1,11 +1,20 @@
 import { Stack, StackProps } from './Stack';
 import { Box } from '../Box/Box';
+import { Text } from '../Text/Text';
 import { vars } from '../../themes/vars.css';
 
 export default {
   title: 'Components/Stack',
   component: Stack,
+  parameters: {
+    controls: {
+      include: ['as', 'space', 'horizontal', 'className'],
+    },
+  },
   argTypes: {
+    as: {
+      control: false,
+    },
     space: {
       options: ['', ...Object.keys(vars.space)],
       control: { type: 'select' },
@@ -13,24 +22,29 @@ export default {
     horizontal: {
       control: { type: 'boolean' },
     },
+    className: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 };
 
 export const Default = (args: StackProps) => (
   <Stack {...args}>
-    {[...Array(5)].map((x) => (
+    {[...Array(5)].map((x, i) => (
       <Box
         alignItems="center"
-        backgroundColor="info25"
-        borderColor="info100"
+        backgroundColor="primary25"
+        borderColor="primary100"
         borderWidth="small"
-        color="info100"
+        color="primary100"
         display="flex"
         justifyContent="center"
         key={x}
         padding="medium"
       >
-        Item {x}
+        <Text>Item {i + 1}</Text>
       </Box>
     ))}
   </Stack>

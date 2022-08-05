@@ -1,33 +1,44 @@
+import { Box } from '../Box/Box';
 import { Column, ColumnProps } from './Column';
 import { Row } from './Row';
 import { Text } from '../Text/Text';
-
-const columnOptions = {
-  control: 'select',
-  options: [undefined, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-};
 
 export default {
   title: 'Layout/Column',
   component: Column,
   argTypes: {
-    mobile: columnOptions,
-    tablet: columnOptions,
-    desktop: columnOptions,
-    wide: columnOptions,
+    center: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    children: {
+      control: false,
+    },
+    className: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 };
 
 export const Default = (args: ColumnProps) => (
-  <div style={{ paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#ccc' }}>
+  <Box backgroundColor="primary5" paddingY="medium">
     <Row>
       <Column {...args}>
-        <div style={{ backgroundColor: '#eaeaea' }}>
+        <Box
+          backgroundColor="primary25"
+          borderColor="primary100"
+          borderWidth="small"
+          marginY="medium"
+          paddingY="medium"
+        >
           <Text align="center" as="div">
-            Column
+            {args.columns} column{args.columns > 1 && 's'}
           </Text>
-        </div>
+        </Box>
       </Column>
     </Row>
-  </div>
+  </Box>
 );

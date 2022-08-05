@@ -11,19 +11,16 @@ export default {
       control: { type: 'function' },
     },
     value: {
-      control: { type: 'string' },
+      control: { type: 'text' },
     },
     className: {
-      control: { type: 'string' },
+      control: { type: 'text' },
     },
     children: {
-      control: {
-        type: 'array',
-        control: { type: 'array-element' },
-      },
+      control: false,
     },
     defaultValue: {
-      control: { type: 'string' },
+      control: { type: 'text' },
     },
     activationMode: {
       control: {

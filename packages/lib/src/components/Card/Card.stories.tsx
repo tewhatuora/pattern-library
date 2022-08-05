@@ -8,6 +8,16 @@ import { Container } from '../Container/Container';
 export default {
   title: 'Components/Card',
   component: Card,
+  argTypes: {
+    children: {
+      control: false,
+    },
+    className: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 };
 
 export const Single = (args: CardProps) => {

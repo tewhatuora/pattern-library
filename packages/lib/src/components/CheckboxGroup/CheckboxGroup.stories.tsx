@@ -6,6 +6,11 @@ import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
 export default {
   title: 'Components/CheckBoxGroup',
   component: CheckboxGroup,
+  argTypes: {
+    children: {
+      control: false,
+    },
+  },
 };
 
 export const Default = (args: CheckboxGroupProps) => {

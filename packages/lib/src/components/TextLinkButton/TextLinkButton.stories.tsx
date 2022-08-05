@@ -5,6 +5,16 @@ export default {
   title: 'Components/TextLinkButton',
   component: TextLinkButton,
   argTypes: {
+    as: {
+      control: {
+        type: 'radio',
+      },
+      options: ['button', 'a'],
+      defaultValue: 'button',
+    },
+    href: {
+      if: { arg: 'as', eq: 'a' },
+    },
     icon: {
       options: ['', ...Object.keys(icons)],
       control: { type: 'select' },
@@ -19,6 +29,9 @@ export default {
         type: 'text',
       },
       defaultValue: 'Text Link',
+    },
+    onPress: {
+      control: false,
     },
   },
 };

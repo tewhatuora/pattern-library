@@ -8,14 +8,10 @@ export default {
   component: InputDate,
   argTypes: {
     id: {
-      control: {
-        type: 'text',
-      },
+      control: false,
     },
     name: {
-      control: {
-        type: 'text',
-      },
+      control: false,
     },
     label: {
       control: {
@@ -39,9 +35,13 @@ export default {
     },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
+      control: { type: 'text' },
     },
     tertiaryLabelAs: {
       defaultValue: 'button',
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],

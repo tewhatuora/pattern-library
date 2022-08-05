@@ -4,11 +4,16 @@ export default {
   title: 'Components/ToggleSwitch',
   component: ToggleSwitch,
   argTypes: {
+    id: { control: false },
+    name: { control: false },
     label: {
       defaultValue: 'ToggleSwitch Component',
     },
-    headingLabel: {
+    heading: {
       defaultValue: 'Heading',
+    },
+    onChange: {
+      control: false,
     },
   },
 };

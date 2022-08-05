@@ -3,6 +3,11 @@ import { Divider, DividerProps } from './Divider';
 export default {
   title: 'Components/Divider',
   component: Divider,
+  parameters: {
+    controls: {
+      exclude: ['asChild'],
+    },
+  },
   argTypes: {
     orientation: {
       options: ['horizontal', 'vertical'],
@@ -11,16 +16,9 @@ export default {
   },
 };
 
-const Template = (args: DividerProps) => (
+export const Default = (args: DividerProps) => (
   // Wrapper with height to be able to show the vertical variant
   <div style={{ height: 50 }}>
     <Divider {...args} />
   </div>
 );
-
-export const Default = Template.bind({});
-Default.args = {
-  variant: 'dark',
-  decorative: false,
-  orientation: 'horizontal',
-};

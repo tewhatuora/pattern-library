@@ -4,15 +4,25 @@ import { InputLabel, InputLabelProps } from './InputLabel';
 export default {
   title: 'Components/InputLabel',
   component: InputLabel,
+  parameters: {
+    controls: {
+      exclude: ['labelProps'],
+    },
+  },
   argTypes: {
-    heading: {
-      defaultValue: 'Heading',
+    htmlFor: { control: false },
+    onTertiaryLabelClick: { control: false },
+    label: {
+      defaultValue: 'Label',
     },
     subheading: {
       defaultValue: 'Subheading',
     },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],

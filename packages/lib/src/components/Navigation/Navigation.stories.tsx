@@ -23,9 +23,10 @@ const navArgTypes = {
   },
   variant: {
     control: {
-      type: 'select',
+      type: 'radio',
       options: ['light', 'dark'],
     },
+    defaultValue: 'light',
   },
   withSearch: {
     control: {
@@ -42,6 +43,9 @@ const navArgTypes = {
       type: 'select',
       options: ['GET', 'POST'],
     },
+  },
+  children: {
+    control: false,
   },
 };
 
@@ -179,7 +183,7 @@ export const LinkAsComponent = (args: LinkProps) => {
     </Navigation.Link>
   );
 };
-Link.argTypes = {
+LinkAsComponent.argTypes = {
   selected: {
     control: { type: 'boolean' },
   },
@@ -198,7 +202,11 @@ export const Side = () => {
     </Navigation.Side>
   );
 };
-Side.argTypes = {};
+Side.argTypes = {
+  children: {
+    control: false,
+  },
+};
 
 export const NavigationLinks = (args: MenuListProps) => (
   <Navigation.MenuList {...args}>

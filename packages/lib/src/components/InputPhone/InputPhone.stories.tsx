@@ -6,12 +6,23 @@ import icons from '../Icon/icons';
 export default {
   title: 'Components/InputPhone',
   component: InputPhone,
+  parameters: {
+    controls: {
+      exclude: ['htmlFor', 'labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
+  },
   argTypes: {
+    id: { control: false },
+    name: { control: false },
+    onChange: { control: false },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
     },
     tertiaryLabelAs: {
       defaultValue: 'button',
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],

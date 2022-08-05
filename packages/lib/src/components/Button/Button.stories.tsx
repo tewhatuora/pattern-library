@@ -28,6 +28,9 @@ export default {
         defaultValue: 'Button',
       },
     },
+    onPress: {
+      control: false,
+    },
   },
 };
 
