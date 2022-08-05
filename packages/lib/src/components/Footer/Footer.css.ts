@@ -112,11 +112,11 @@ export const shieldedSite = style([
   responsiveStyle({
     mobile: {
       alignSelf: 'flex-start',
-      vars: { [shieldedSiteButtonSizeVar]: '4rem' },
+      vars: { [shieldedSiteButtonSizeVar]: vars.space.xlarge.mobile },
     },
     tablet: {
       alignSelf: 'flex-end',
-      vars: { [shieldedSiteButtonSizeVar]: '6.4rem' },
+      vars: { [shieldedSiteButtonSizeVar]: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 2)) },
     },
   }),
 ]);
