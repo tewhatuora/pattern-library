@@ -20,6 +20,8 @@ import { Link } from './Link';
 import { Menu } from './Menu';
 import { ButtonRoot } from '../Button/ButtonRoot';
 
+import { ContrastVariant } from '../../types';
+
 import * as styles from './Item.css';
 import * as helpers from '../../css/helpers.css';
 import { Breakpoint } from '../../css/breakpoints';
@@ -31,7 +33,7 @@ export type NavigationItemProps = {
   selected?: boolean;
   label: string;
   subNav?: boolean;
-  variant?: 'light' | 'dark';
+  variant?: ContrastVariant;
   component?: FC<any>;
 };
 

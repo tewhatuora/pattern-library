@@ -4,13 +4,13 @@ import * as RadixAccordion from '@radix-ui/react-accordion';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { AccordionItemProps, Item } from './Item';
 
-import * as styles from './Accordion.css';
+import { ChildrenOfType, ContrastVariant } from '../../types';
 
-import { ChildrenOfType } from '../../types/index';
+import * as styles from './Accordion.css';
 
 export type AccordionRootProps = {
   type: 'single' | 'multiple';
-  variant?: 'light' | 'dark';
+  variant?: ContrastVariant;
   children: ChildrenOfType<'Item', AccordionItemProps>;
   headingLevel: 3 | 4 | 5 | 6;
 };

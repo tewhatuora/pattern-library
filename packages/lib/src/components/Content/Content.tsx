@@ -7,6 +7,8 @@ import { Text } from '../Text/Text';
 import { Stack } from '../Stack/Stack';
 import { Box } from '../Box/Box';
 
+import { ContrastVariant } from '../../types';
+
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 export type ContentProps = {
@@ -14,7 +16,7 @@ export type ContentProps = {
   headingLevel: ContentHeadingLevel;
   headingAs?: HeadingProps['as'];
   subheading?: string;
-  variant?: 'light' | 'dark';
+  variant?: ContrastVariant;
 };
 
 /**

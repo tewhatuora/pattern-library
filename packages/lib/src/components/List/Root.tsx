@@ -6,6 +6,8 @@ import assert from 'assert';
 import { Item } from './Item';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
+import { ContrastVariant } from '../../types';
+
 import * as styles from './List.css';
 
 export type ListRootProps = {
@@ -13,7 +15,7 @@ export type ListRootProps = {
   noMarkers?: boolean;
   dividers?: boolean;
   className?: string;
-  variant?: 'light' | 'dark';
+  variant?: ContrastVariant;
 };
 
 export const Root = ({

@@ -7,6 +7,8 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
+import { ContrastVariant } from '../../types';
+
 import * as styles from './Utility.css';
 
 export type UtilityNavItemProps = {
@@ -17,7 +19,7 @@ export type UtilityNavItemProps = {
 };
 
 export type UtilityProps = {
-  variant: 'light' | 'dark';
+  variant: ContrastVariant;
   className?: string;
   items: UtilityNavItemProps[];
 };
@@ -34,7 +36,7 @@ const UtilityNavItem = memo(
     label,
     component,
   }: UtilityNavItemProps & {
-    variant: 'light' | 'dark';
+    variant: ContrastVariant;
   }) => (
     <li>
       <Link className={styles.utilityLink[variant]} component={component} href={href}>
