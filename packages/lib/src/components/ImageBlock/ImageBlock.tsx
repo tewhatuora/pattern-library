@@ -32,11 +32,12 @@ const rowColumns: Record<styles.WidthVariant, ColumnsPerBreakpoint> = {
     mobile: 12,
     tablet: 12,
     desktop: 6,
+    wide: 6,
   },
   third: {
     mobile: 12,
     tablet: 12,
-    desktop: 12,
+    desktop: 4,
     wide: 4,
   },
 };
@@ -45,27 +46,6 @@ const innerColumnLengths: Record<styles.WidthVariant, ColumnLength> = {
   full: 6,
   half: 12,
   third: 12,
-};
-
-const buttonColumnLengths: Record<styles.WidthVariant, ColumnsPerBreakpoint> = {
-  full: {
-    columns: 6,
-    mobile: 12,
-    tablet: 6,
-    desktop: 3,
-  },
-  half: {
-    columns: 6,
-    mobile: 12,
-    tablet: 6,
-    desktop: 6,
-  },
-  third: {
-    columns: 12,
-    mobile: 12,
-    tablet: 12,
-    desktop: 12,
-  },
 };
 
 export type ImageBlockProps = {
@@ -127,18 +107,14 @@ export const ImageBlock = ({
           >
             <Stack space="medium">
               {children}
-              <Row className={styles.buttonRow[width]}>
-                <Column className={styles.primaryButtonColumn[width]} {...buttonColumnLengths[width]}>
-                  <Button variant="primary" onPress={onPressPrimary}>
-                    {primaryButtonLabel}
-                  </Button>
-                </Column>
-                <Column className={styles.secondaryButtonColumn[width]} {...buttonColumnLengths[width]}>
-                  <Button variant="secondary" onPress={onPressSecondary}>
-                    {secondaryButtonLabel}
-                  </Button>
-                </Column>
-              </Row>
+              <Stack className={styles.buttons[width]} space="medium">
+                <Button variant="primary" onPress={onPressPrimary}>
+                  {primaryButtonLabel}
+                </Button>
+                <Button variant="secondary" onPress={onPressSecondary}>
+                  {secondaryButtonLabel}
+                </Button>
+              </Stack>
             </Stack>
           </Content>
         </Box>

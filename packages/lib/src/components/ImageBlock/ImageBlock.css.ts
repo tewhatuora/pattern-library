@@ -228,64 +228,55 @@ export const buttonRow = styleVariants({
   },
 });
 
-export const primaryButtonColumn = styleVariants({
-  full: responsiveStyle({
-    mobile: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    desktop: {
-      display: 'block',
-    },
-  }),
-  half: responsiveStyle({
-    mobile: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    desktop: {
-      display: 'block',
-    },
-  }),
-  third: responsiveStyle({
-    mobile: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    desktop: {
-      display: 'block',
-    },
-  }),
-});
+// vertical: {
+//   flexDirection: 'column',
+// },
+// horizontal: {
+//   flexDirection: 'row',
+// },
 
-export const secondaryButtonColumn = styleVariants({
-  full: responsiveStyle({
+const buttonsBase = style(
+  responsiveStyle({
     mobile: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    desktop: {
-      display: 'block',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginRight: vars.space.xlarge.mobile,
+      marginLeft: vars.space.xlarge.mobile,
     },
   }),
-  half: responsiveStyle({
-    mobile: {
-      display: 'flex',
-      justifyContent: 'center',
-      gridRowStart: '2',
-    },
-    desktop: {
-      display: 'block',
-    },
-  }),
-  third: responsiveStyle({
-    mobile: {
-      display: 'flex',
-      justifyContent: 'center',
-      gridRowStart: '2',
-    },
-    desktop: {
-      display: 'block',
-    },
-  }),
+);
+
+export const buttons = styleVariants({
+  full: [
+    buttonsBase,
+    responsiveStyle({
+      tablet: {
+        flexDirection: 'row',
+        marginRight: '0',
+        marginLeft: '0',
+      },
+    }),
+  ],
+  half: [
+    buttonsBase,
+    responsiveStyle({
+      tablet: {
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+        marginRight: '0',
+        marginLeft: '0',
+      },
+    }),
+  ],
+  third: [
+    buttonsBase,
+    responsiveStyle({
+      tablet: {
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+        marginRight: '0',
+        marginLeft: '0',
+      },
+    }),
+  ],
 });
