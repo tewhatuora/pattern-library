@@ -8,6 +8,7 @@ import * as styles from './CheckboxGroup.css';
 export const CheckboxGroupStyles = styles;
 
 export type CheckboxGroupProps = {
+  /** Only `Checkbox` components are allowed as children of `CheckboxGroup` */
   children: ChildrenOfType<'Checkbox', CheckboxProps>;
 };
 

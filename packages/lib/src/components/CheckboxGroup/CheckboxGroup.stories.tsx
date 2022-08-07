@@ -43,7 +43,7 @@ export const Default = (args: CheckboxGroupProps) => {
       />
       <Checkbox
         checked={!!checkbox6State}
-        hasError
+        error
         heading="Checkbox"
         id="checkbox_6"
         label="with error"

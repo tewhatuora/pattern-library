@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Dialog } from './Dialog';
 import { DialogProps } from './Root';
+import { Dialog } from './Dialog';
+
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
 import icons from '../Icon/icons';

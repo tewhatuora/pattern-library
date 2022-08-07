@@ -22,12 +22,19 @@ type KeysUnder<T, K extends PropertyKey> = T extends object
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
 export type ButtonType<Props> = {
+  /** Icon to display **/
   icon?: IconType;
+  /** Where to position the icon */
   iconPosition?: 'left' | 'right';
+  /** Element type to render the Button as */
   as?: ElementType;
+  /** URL/path to link to if `as` is set to `a` */
   href?: string;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** Banner style variant */
   variant?: ColorVariant;
+  /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
 } & Props &
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &

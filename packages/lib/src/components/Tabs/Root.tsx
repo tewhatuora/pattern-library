@@ -9,9 +9,9 @@ import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 export type TabsRootProps = {
   onValueChange?: (value: string) => void;
-  /** Optional CSS className */
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
-  /** Tabs.List | Tabs.Content components */
+  /** Only Tabs.List and Tabs.Content components are allowed as children of Tabs.Root. */
   children: ChildrenOfType<'List', TabsListProps> & ChildrenOfType<'Content', TabsContentProps>;
 } & Omit<RadixTabs.TabsProps, 'orientation' | 'dir' | 'asChild'> &
   RefAttributes<HTMLDivElement>;

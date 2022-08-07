@@ -11,11 +11,17 @@ import * as styles from './AnchorLink.css';
 export const AnchorLinkStyles = styles;
 
 export type AnchorLinkProps = {
+  /** A URL/path to link to */
   to: string;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** A React component to render, e. react-router-dom `<Link />` */
   component?: FC<any>;
+  /** Font size for `<Text>` */
   size?: UseTextProps['size'];
+  /** Font weight for `<Text>` */
   weight?: UseTextProps['weight'];
+  /** Option to not display the icon */
   noIcon?: boolean;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;

@@ -7,7 +7,9 @@ import * as styles from './Card.css';
 export const CardStyles = styles;
 
 export type CardProps = {
+  /** Option to display the Card without a box-shadow */
   noShadow?: boolean;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 

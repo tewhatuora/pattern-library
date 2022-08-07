@@ -12,10 +12,15 @@ import { ContrastVariant } from '../../types';
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 export type ContentProps = {
+  /** Heading */
   heading: string;
+  /** Heading level */
   headingLevel: ContentHeadingLevel;
+  /** Element type for Heading to render as */
   headingAs?: HeadingProps['as'];
+  /** Content subheading */
   subheading?: string;
+  /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
 };
 

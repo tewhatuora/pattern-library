@@ -28,7 +28,7 @@ export default {
         type: 'boolean',
       },
     },
-    hasError: {
+    error: {
       control: {
         type: 'boolean',
       },

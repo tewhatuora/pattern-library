@@ -15,15 +15,24 @@ import * as styles from './Checkbox.css';
 export const CheckboxStyles = styles;
 
 export type CheckboxProps = {
+  /** A label for the checkbox */
   label: string;
-  id: string;
+  /** A heading for the checkbox */
   heading?: string;
+  /** Field id for the checkbox */
+  id: string;
+  /** Field name for the checkbox */
   name?: string;
+  /** Whether the checkbox is a required field or not */
   required?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
+  /** Checkbox 'checked' state */
   checked: boolean | 'indeterminate';
+  /** Disable the Checkbox */
   disabled?: boolean;
-  hasError?: boolean;
+  /** Display the Checkbox in an error state */
+  error?: boolean;
+  /** A function that will be called when toggling the Checkbox */
+  onCheckedChange?: (checked: boolean) => void;
 } & BoxProps;
 
 /**
@@ -45,7 +54,7 @@ export const Checkbox = ({
   required = false,
   checked,
   onCheckedChange,
-  hasError = false,
+  error = false,
   disabled = false,
   className,
   ...boxProps
@@ -53,11 +62,11 @@ export const Checkbox = ({
   return (
     <Box
       as="div"
-      className={clsx(styles.wrapper, { [styles.disabled]: disabled, [styles.error]: hasError }, className)}
+      className={clsx(styles.wrapper, { [styles.disabled]: disabled, [styles.error]: error }, className)}
       {...boxProps}
     >
       <CheckboxPrimitive.Root
-        aria-invalid={hasError ? 'true' : 'false'}
+        aria-invalid={error ? 'true' : 'false'}
         checked={checked}
         className={styles.checkbox}
         disabled={disabled}

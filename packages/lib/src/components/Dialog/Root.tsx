@@ -20,9 +20,13 @@ import { IconType } from '../Icon/icons';
 import * as styles from './Dialog.css';
 
 export type DialogProps = {
+  /** Icon to display in the Dialog */
   icon?: IconType;
+  /** Dialog heading */
   heading?: string;
+  /** Dialog subheading */
   subheading?: string;
+  /** Trigger element to open the dialog */
   trigger?: ReactElement;
 } & RadixDialog.DialogProps;
 
