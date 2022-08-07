@@ -27,6 +27,9 @@ module.exports = {
   viteFinal: async (config) => {
     return mergeConfig(config, {
       base: process.env.BASE_URL || config.base,
+      build: {
+        sourcemap: false
+      },
       plugins: [
         vanillaExtractPlugin({
           identifiers: 'debug',

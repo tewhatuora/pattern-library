@@ -18,6 +18,7 @@ type IconProps = {
   onClick?: () => void;
   className?: string;
   color?: string | undefined;
+  alt?: string;
 };
 
 /**
@@ -26,7 +27,7 @@ type IconProps = {
  * @param props
  * @constructor
  */
-export const Icon = memo(({ icon, className, variant = 'decorativeIcons', ...boxProps }: IconProps) => {
+export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, ...boxProps }: IconProps) => {
   assert(
     !!icon && validIcons.includes(icon),
     `Invalid Icon component: '${icon}'. Should be one of [${validIcons.map((c) => `'${c}'`).join(', ')}]`,
@@ -36,8 +37,13 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', ...box
 
   // TODO: fix typescript issue with <IconComponent />
   return (
-    <Box as="span" className={clsx(styles.icon, styles.variants({ variant }), className)} {...boxProps}>
-      <IconComponent />
+    <Box
+      aria-label={alt || undefined} // Prevents alt being passed through as an empty string
+      as="span"
+      className={clsx(styles.icon, styles.variants({ variant }), className)}
+      {...boxProps}
+    >
+      <IconComponent aria-hidden="true" />
     </Box>
   );
 });
