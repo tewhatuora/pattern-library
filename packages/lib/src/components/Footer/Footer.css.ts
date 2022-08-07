@@ -1,4 +1,5 @@
 import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -116,7 +117,9 @@ export const shieldedSite = style([
     },
     tablet: {
       alignSelf: 'flex-end',
-      vars: { [shieldedSiteButtonSizeVar]: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 2)) },
+      vars: {
+        [shieldedSiteButtonSizeVar]: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 2)),
+      },
     },
   }),
 ]);

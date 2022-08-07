@@ -17,7 +17,7 @@
     "size": "yarn build:components && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "BASE_URL=/moh-design-system/ && build-storybook --output-dir public",
+    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 BASE_URL=/moh-design-system/ && build-storybook --output-dir public",
     "styles": "node scripts/styles.js"
   },
   "lint-staged": {
