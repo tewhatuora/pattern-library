@@ -16043,6 +16043,7 @@ __metadata:
     lint-staged: 13.0.0
     prettier: ^2.4.1
     prompt: ^1.2.0
+    react-shielded: ^2.0.2
     size-limit: ^6.0.3
     storybook-addon-themes: ^6.1.0
     storybook-preset-inline-svg: ^1.0.1
@@ -18716,6 +18717,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-document-portal@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "react-document-portal@npm:1.2.1"
+  dependencies:
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ^16.6.0 || 17 || 18
+    react-dom: ^16.6.0 || 17 || 18
+  checksum: 7ab48ba78a711511960bd9935b6a2eb57389ba167f1a00ffe1dd7997cacf33ac966350f21a72f39a7e3f16a034a8cb714c08ebdffe07503434be8c2b1a9be4b1
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:^18.1.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
@@ -18944,6 +18957,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-shielded@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "react-shielded@npm:2.0.2"
+  dependencies:
+    react-document-portal: ^1.2.1
+    react-use-keypress: ^1.3.1
+  peerDependencies:
+    react: ^16.14.0 || 17 || 18
+    react-dom: ^16.14.0 || 17 || 18
+  checksum: 62cc1d01a42da92feadce94db6a2b434d6f769996883f9a0d6474e186792659b5713e49e622e34598bfe497bde78fe0b3accbcdef1686553cd693d5ca083e77e
+  languageName: node
+  linkType: hard
+
 "react-style-singleton@npm:^2.2.1":
   version: 2.2.1
   resolution: "react-style-singleton@npm:2.2.1"
@@ -18973,6 +18999,17 @@ __metadata:
   peerDependencies:
     react: ">= 0.14.0"
   checksum: c082b48f30f8ba8d0c55ed1d761910630860077c7ff5793c4c912adcb5760df06436ed0ad62be0de28113aac9ad2af55eccd995f8eee98df53382e4ced2072fb
+  languageName: node
+  linkType: hard
+
+"react-use-keypress@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "react-use-keypress@npm:1.3.1"
+  dependencies:
+    tiny-invariant: ^1.2.0
+  peerDependencies:
+    react: ^16.8.0 || 17 || 18
+  checksum: cfcea44def30f59a5699633d2c19724795e19d6bf7fa12d5a2ee79de78dc922d57d9abe7853bc48ff69af4274c12eef980560afb8c30a7acc2984843bf32546e
   languageName: node
   linkType: hard
 
@@ -21506,6 +21543,13 @@ __metadata:
   dependencies:
     setimmediate: ^1.0.4
   checksum: ec37ae299066bef6c464dcac29c7adafba1999e7227a9bdc4e105a459bee0f0b27234a46bfd7ab4041da79619e06a58433472867a913d01c26f8a203f87cee70
+  languageName: node
+  linkType: hard
+
+"tiny-invariant@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "tiny-invariant@npm:1.2.0"
+  checksum: e09a718a7c4a499ba592cdac61f015d87427a0867ca07f50c11fd9b623f90cdba18937b515d4a5e4f43dac92370498d7bdaee0d0e7a377a61095e02c4a92eade
   languageName: node
   linkType: hard
 
