@@ -104,6 +104,7 @@ export const ImageBlock = ({
             headingAs={headingAs}
             headingLevel={headingLevel}
             subheading={subheading}
+            variant="light"
           >
             <Stack space="medium">
               {children}

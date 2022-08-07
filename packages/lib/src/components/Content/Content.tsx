@@ -28,22 +28,22 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
 
     const headingElement =
       headingLevel === '5' ? (
-        <Text as={headingAs ?? 'h5'} color="primary100" ref={ref} weight="bold">
+        <Text as={headingAs ?? 'h5'} ref={ref} weight="bold">
           {heading}
         </Text>
       ) : (
-        <Heading as={headingAs} color="primary100" level={headingLevel} ref={ref}>
+        <Heading as={headingAs} level={headingLevel} ref={ref}>
           {heading}
         </Heading>
       );
 
     const subheadingElement =
       subheadingLevel === '5' ? (
-        <Text as="p" color="primary100" weight="bold">
+        <Text as="p" weight="bold">
           {heading}
         </Text>
       ) : (
-        <Heading as="p" color="primary100" level={subheadingLevel}>
+        <Heading as="p" level={subheadingLevel}>
           {subheading}
         </Heading>
       );
@@ -52,13 +52,14 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
       <Box
         className={
           // Inherit color if variant is not given
-          [variant && (variant === 'dark' ? 'primary0' : 'primary100'), className]
+          className
         }
+        color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
       >
         <Stack space="xsmall">
           {headingElement}
           {subheading && subheadingElement}
-          <Text color="primary100">{children}</Text>
+          <Text>{children}</Text>
         </Stack>
       </Box>
     );
