@@ -1,8 +1,6 @@
 image: node:16.10.0
 
 pages:
-  before_script:
-    - NODE_ENV=production NODE_OPTIONS="--max_old_space_size=4096"
   script:
     - yarn
     - yarn build-storybook
