@@ -1,0 +1,130 @@
+import { Meta } from '@storybook/addon-docs';
+import Img1 from './assets/1.1/1.png';
+import Img2 from './assets/1.1/2.png';
+import Img3 from './assets/1.1/3.png';
+import Img4 from './assets/1.1/4.png';
+import Img5 from './assets/1.1/5.png';
+
+<Meta title="Anatomic/CHANGELOG" />
+
+<style>{`
+  .container {
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+    flex-direction: unset;
+    gap: 3.2rem;
+    width: 100%;
+  }
+
+  .content {
+
+  }
+
+  .column {
+    grid-column-start: auto;
+  }
+
+  .column--2 {
+    grid-column: col-start / span 2;
+  }
+
+  .column--8 {
+    grid-column: 3 / span 8;
+  }
+
+  .column--10 {
+    grid-column: 2 / span 10;
+  }
+
+  .column--10 img {
+    display: block;
+    margin: 0 auto;
+  }
+`}</style>
+
+<div className="container">
+  <h2>v1.1.0</h2>
+  <h1>What's new?</h1>
+  <div className="row">
+    <div className="column column--2">
+      <p>4 May, 2022</p>
+    </div>
+    <div className="column column--8 content">
+      <p>Tēnā koutou beautiful people,</p>
+      <p>Miro and I have just published version 1.1 of the pattern library for all 3 libraries (MCR, MHA and Neutral).</p>
+      <p>Please swap your files to consume the latest version of the libraries in Figma following this guide:</p>
+      <p>Swap style and component libraries – Figma Help Center (I’ve also attached Alphero’s simple diagram as a PDF).</p>
+      <p>The original libraries will remain published for the time being, but they are now out of date. If you need a hand swapping libraries, feel free to sing out.</p>
+      <p>What’s new?</p>
+      <p><strong>We’ve updated the checkbox styles:</strong></p>
+      <p>Checkbox styling has been updated using the tokens in a way that allows the My Health Account library to use the yellow accent colour. This also matches the style we are happy with in CISS and RATs and injects a tiny amount of personality into them via rounded corners.</p>
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--10">
+      <img src={Img1} alt="Checkbox styles" />
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--8 content">
+      <p><strong>We’ve removed dropshadows removed from all text inputs:</strong></p>
+      <p>Dropshadows have been removed from all input fields as we discovered once we started using the library that most of the team currently use the input fields on a white background. If there’s a need, we can add it back in later as an option you toggle on or off.</p>
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--10">
+      <img src={Img2} alt="Dropshadows" />
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--8 content">
+      <p><strong>We’ve added new banner styles:</strong></p>
+      <p>A new announcement Banner component has been added. The component can already be found in production via My Covid Record and the COVID-19 Health Hub and it consists of 3 variants - Alert, Information, and Urgent. The component features an icon and text and can optionally be dismissed.</p>
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--10">
+      <img src={Img3} alt="Banner styles" />
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--8 content">
+      <p><strong>We’ve changed the focus states (on buttons and text links):</strong></p>
+      <p>The focus state colour and thickness has been updated. It's modelled after the focus styles used across My Covid Record (also mentioned above), but we will begin to roll this out across all apps for improved accessibility and consistency.</p>
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--10">
+      <img src={Img4} alt="Button focus states" />
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--8 content">
+      <p><strong>We’ve updated the footer:</strong></p>
+      <p>We have updated the layout and spacing in the footer. The same variant options are available (no social/social icons, 0-5 columns, mobile/desktop, light/dark)Discussions are underway around potentially creating a universal version that includes content so that we are able to provide all MOH apps with the exact same footer, uniting all products to feel like they are a part of the same site. That is currently in concept/discovery phase.</p>
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--10">
+      <img src={Img5} alt="Updated footer" />
+    </div>
+  </div>
+  <div className="row">
+    <div className="column column--8 content">
+      <p><strong>We’ve added paragraph spacing to the type styles:</strong></p>
+      <p>We have added paragraph spacing to the type styles for when longer pieces of text are in use. This is applied at the token level, so it can be a variable that we change per library.</p>
+      <p><strong>Focus on accessibility:</strong></p>
+      <p>We’ve also made some minor tweaks to the error and focus states across several components to improve accessibility (simply making the border wider on error, and changing the focus state to blue to match our MCR style which we’re adopting universally, but may not yet apply to every component).</p>
+      <p>We’d love to hear from you if you have any feedback or requests, or if you just want to korero about the library.</p>
+      <p>
+        Ngā mihi nui,<br/>
+        Alex
+      </p>
+    </div>
+  </div>
+</div>
