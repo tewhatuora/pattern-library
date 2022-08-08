@@ -4,6 +4,7 @@ import * as styles from '../components/Columns/Row.css';
 
 import { RowProps } from '../components/Columns/Row';
 import { ColumnLength } from '../components/Columns/Column';
+import { MAX_COLS } from '../css/grid';
 
 /**
  * Row styles
@@ -19,7 +20,10 @@ const rowStyles = ({
   gutter = 'medium',
   noGutters,
   offset,
-  parentCols,
+  tablet = MAX_COLS,
+  desktop = MAX_COLS,
+  wide = MAX_COLS,
+  parentCols = MAX_COLS,
   className,
 }: RowProps<{ parentCols?: ColumnLength }>) => {
   const dynamicClasses = {
@@ -32,7 +36,15 @@ const rowStyles = ({
     dynamicClasses[styles.nested[parentCols?.toString()]] = true;
   }
 
-  return clsx(dynamicClasses, styles.row, className);
+  return clsx(
+    dynamicClasses,
+    styles.responsiveRow({
+      tablet,
+      desktop,
+      wide,
+    }),
+    className,
+  );
 };
 
 export default rowStyles;
