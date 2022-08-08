@@ -3,10 +3,18 @@ import { Footer, FooterProps } from './Footer';
 
 import MohLogo from './moh-logo.svg?component';
 import UniteAgainstCovid19Logo from './unite-against-covid.svg?component';
+import Docs from './Footer.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/Footer',
   component: Footer,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
 };
 
 const imprintItems = [

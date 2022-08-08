@@ -4,6 +4,9 @@ import { Text } from '../Text/Text';
 import { Container } from '../Container/Container';
 import { Column } from '../Columns/Column';
 import { Row } from '../Columns/Row';
+import Docs from './ImageBlock.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 export default {
   title: 'Components/ImageBlock',
@@ -42,6 +45,11 @@ export default {
         type: 'radio',
         options: ['before', 'after'],
       },
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };

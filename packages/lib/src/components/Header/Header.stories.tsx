@@ -1,5 +1,8 @@
 import { Text } from '../Text/Text';
 import { Header, HeaderProps } from './Header';
+import Docs from './Header.docs.mdx';
+
+import DocsPage from '../../../utils/DocsPage';
 
 const logoComponent = (
   <>
@@ -30,6 +33,11 @@ export default {
           label: 'Name Surname',
         },
       ],
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
 };
