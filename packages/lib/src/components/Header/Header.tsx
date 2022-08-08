@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -27,9 +27,10 @@ export type HeaderProps = {
   searchFormMethod: 'POST' | 'GET';
   className?: string;
   logoComponent: ReactNode;
+  logoLinkComponent?: FC<any>;
+  logoLinkHref: string;
   navigationOpen?: boolean;
   onToggleNavigation?: () => void;
-  onLogoClick?: () => void;
 };
 
 type MenuButtonProps = {
@@ -69,10 +70,11 @@ export const Header = ({
   searchFormAction,
   searchFormMethod = 'GET',
   logoComponent,
+  logoLinkComponent: LogoLinkComponent,
+  logoLinkHref = '/',
   utilityNavItems,
   navigationOpen,
   onToggleNavigation,
-  onLogoClick,
 }: HeaderProps) => {
   /**
    * Light/dark color
@@ -91,6 +93,22 @@ export const Header = ({
     return <Navigation.Utility items={utilityNavItems} variant={variant} />;
   }, [utilityNavItems, variant]);
 
+  const renderLogo = useMemo(() => {
+    if (LogoLinkComponent) {
+      return (
+        <LogoLinkComponent className={styles.logo} href={logoLinkHref} to={logoLinkHref}>
+          <Logo />
+        </LogoLinkComponent>
+      );
+    }
+
+    return (
+      <a className={styles.logo} href={logoLinkHref}>
+        <Logo />
+      </a>
+    );
+  }, [LogoLinkComponent, logoLinkHref]);
+
   return (
     <header className={styles.header[variant]}>
       <Stack alignItems="center" horizontal space="small">
@@ -104,11 +122,7 @@ export const Header = ({
             )}
           </Box>
         )}
-        <Box color={color}>
-          <ButtonRoot className={styles.logo} onPress={onLogoClick}>
-            <Logo />
-          </ButtonRoot>
-        </Box>
+        <Box color={color}>{renderLogo}</Box>
       </Stack>
       <Stack className={helpers.desktopUp.flex} color={color} horizontal space="small">
         {renderUtilityNav}

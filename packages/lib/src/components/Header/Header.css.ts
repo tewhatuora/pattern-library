@@ -48,6 +48,7 @@ export const header = styleVariants({
 export const logo = style([
   {
     display: 'block',
+    color: vars.color.neutral100,
     ':visited': {
       color: 'currentColor',
     },
