@@ -7,14 +7,21 @@ import { Text } from '../Text/Text';
 import { Stack } from '../Stack/Stack';
 import { Box } from '../Box/Box';
 
+import { ContrastVariant } from '../../types';
+
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 export type ContentProps = {
+  /** Heading */
   heading: string;
+  /** Heading level */
   headingLevel: ContentHeadingLevel;
+  /** Element type for Heading to render as */
   headingAs?: HeadingProps['as'];
+  /** Content subheading */
   subheading?: string;
-  variant?: 'light' | 'dark';
+  /** Contrast variant for dark/light UI */
+  variant?: ContrastVariant;
   className?: string;
 };
 

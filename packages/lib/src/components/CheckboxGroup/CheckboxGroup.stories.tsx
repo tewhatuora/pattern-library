@@ -9,6 +9,11 @@ import Docs from './CheckboxGroup.docs.mdx';
 export default {
   title: 'Components/CheckBoxGroup',
   component: CheckboxGroup,
+  argTypes: {
+    children: {
+      control: false,
+    },
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -46,7 +51,7 @@ export const Default = (args: CheckboxGroupProps) => {
       />
       <Checkbox
         checked={!!checkbox6State}
-        hasError
+        error
         heading="Checkbox"
         id="checkbox_6"
         label="with error"

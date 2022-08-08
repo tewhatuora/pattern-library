@@ -11,6 +11,16 @@ import Docs from './Card.docs.mdx';
 export default {
   title: 'Components/Card',
   component: Card,
+  argTypes: {
+    children: {
+      control: false,
+    },
+    className: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,

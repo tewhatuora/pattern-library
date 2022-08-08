@@ -6,14 +6,19 @@ import { Icon } from '../Icon/Icon';
 import { CloseButton } from '../CloseButton/CloseButton';
 
 import * as styles from './Banner.css';
+import { ContrastVariant } from '../../types';
 
 export const BannerStyles = styles;
 
 export type BannerProps = {
+  /** Text label to show as Banner message */
   label?: string;
-  onClose?: () => void;
+  /** Banner style variant */
   variant: styles.Variant;
-  theme: styles.Theme;
+  /** Contrast variant for dark/light UI */
+  theme: ContrastVariant;
+  /** A function that will be called when closing the Alert */
+  onClose?: () => void;
 } & Pick<
   JSX.IntrinsicElements['button'],
   'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'disabled' | 'type' | 'tabIndex'

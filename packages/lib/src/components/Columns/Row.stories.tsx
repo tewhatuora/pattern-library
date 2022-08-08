@@ -1,5 +1,6 @@
 import { Row, RowProps } from './Row';
 import { Column } from './Column';
+import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { Heading } from '../Heading/Heading';
 import { Container } from '../Container/Container';
@@ -9,24 +10,24 @@ import { Card } from '../Card/Card';
 export default {
   title: 'Layout/Row',
   component: Row,
+  parameters: {
+    controls: {
+      include: ['noGutters', 'offset', 'gutter', 'className'],
+    },
+  },
 };
 
 const Example = ({ children }) => (
-  <div
-    style={{
-      padding: '2rem 0',
-      backgroundColor: '#eaeaea',
-    }}
-  >
+  <Box backgroundColor="primary25" borderColor="primary100" borderWidth="small" marginY="medium" paddingY="medium">
     <Text align="center" as="div">
       {children}
     </Text>
-  </div>
+  </Box>
 );
 
 export const Grid = (args: RowProps) => {
   return (
-    <div style={{ paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#ccc' }}>
+    <Box backgroundColor="primary5" paddingY="medium">
       <Container>
         <Row {...args}>
           <Column columns={12}>
@@ -70,13 +71,13 @@ export const Grid = (args: RowProps) => {
           </Column>
         </Row>
       </Container>
-    </div>
+    </Box>
   );
 };
 
 export const NoGutters = (args: RowProps) => {
   return (
-    <div style={{ paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#ccc' }}>
+    <Box backgroundColor="primary5" paddingY="medium">
       <Container>
         <Row {...args} noGutters>
           <Column columns={12}>
@@ -126,13 +127,13 @@ export const NoGutters = (args: RowProps) => {
           </Column>
         </Row>
       </Container>
-    </div>
+    </Box>
   );
 };
 
 export const LayoutExample = () => {
   return (
-    <div style={{ padding: '10rem 0', backgroundColor: '#f8f7ff' }}>
+    <Box backgroundColor="primary5" paddingY="medium">
       <Container>
         <Row>
           <Column columns={8}>
@@ -191,6 +192,10 @@ export const LayoutExample = () => {
           </Column>
         </Row>
       </Container>
-    </div>
+    </Box>
   );
+};
+
+LayoutExample.parameters = {
+  controls: { hideNoControlsWarning: true, exclude: /.+/g, include: [] },
 };

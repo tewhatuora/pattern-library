@@ -10,18 +10,15 @@ import Docs from './InputPassword.docs.mdx';
 export default {
   title: 'Input/InputPassword',
   component: InputPassword,
-
+  parameters: {
+    controls: {
+      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
+  },
   argTypes: {
-    id: {
-      control: {
-        type: 'text',
-      },
-    },
-    name: {
-      control: {
-        type: 'text',
-      },
-    },
+    id: { control: false },
+    name: { control: false },
+    onChange: { control: false },
     placeholder: {
       control: {
         type: 'text',
@@ -79,6 +76,12 @@ export default {
         options: ['left', 'right'],
       },
       defaultValue: 'left',
+    },
+    tertiaryLabelAs: {
+      defaultValue: 'button',
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
   },
   parameters: {

@@ -43,6 +43,9 @@ export default {
       },
       defaultValue: 'Anchor link',
     },
+    component: {
+      control: false,
+    },
   },
   parameters: {
     docs: {

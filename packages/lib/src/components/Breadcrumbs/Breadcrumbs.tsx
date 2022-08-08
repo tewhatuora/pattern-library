@@ -22,6 +22,7 @@ import * as styles from './Breadcrumbs.css';
 export const BreadcrumbsStyles = styles;
 
 export type BreadcrumbsProps = {
+  /** Option to display with a background color and additional padding */
   withBackground?: boolean;
 };
 

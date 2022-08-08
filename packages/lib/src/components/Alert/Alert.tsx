@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
@@ -11,9 +11,13 @@ import { IconType } from '../Icon/icons';
 export const AlertStyles = styles;
 
 export type AlertProps = {
+  /**  Alert style variant */
   variant: styles.Variant;
-  children?: React.ReactNode;
+  /** Text node for Alert message */
+  children?: ReactNode;
+  /** Alternative icon to display */
   alternativeIcon?: IconType;
+  /** A function that will be called when closing the Alert */
   onClose?: () => void;
 };
 

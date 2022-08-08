@@ -8,6 +8,11 @@ import Docs from './InputSearch.docs.mdx';
 export default {
   title: 'Input/InputSearch',
   component: InputSearch,
+  argTypes: {
+    id: { control: false },
+    name: { control: false },
+    onChange: { control: false },
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,

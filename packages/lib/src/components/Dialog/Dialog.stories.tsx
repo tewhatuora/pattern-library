@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Dialog } from './Dialog';
 import { DialogProps } from './Root';
+import { Dialog } from './Dialog';
+
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
 import icons from '../Icon/icons';
@@ -29,6 +30,12 @@ export default {
         type: 'text',
       },
       defaultValue: 'Subheading',
+    },
+    trigger: {
+      control: false,
+    },
+    children: {
+      control: false,
     },
   },
   parameters: {
@@ -71,7 +78,7 @@ export const Controlled = (args: DialogProps) => {
     <Dialog.Root
       {...args}
       open={open}
-      trigger={<Button onPress={() => console.log('Dialog trigger')}>Open</Button>}
+      trigger={<Button onPress={() => alert('Dialog trigger')}>Open</Button>}
       onOpenChange={(open: boolean) => {
         setOpen(open);
       }}

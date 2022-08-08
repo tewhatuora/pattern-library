@@ -13,3 +13,6 @@ export type ReactNodeNoStrings = React.ReactElement | React.ReactNodeArray | boo
 export type EmptyObject = { [k: string]: unknown };
 
 export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; type: { name: Name } })[];
+
+/** Contrast variant for dark/light UI */
+export type ContrastVariant = 'light' | 'dark';

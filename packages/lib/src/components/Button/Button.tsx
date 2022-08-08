@@ -1,11 +1,13 @@
-import { ElementType, PropsWithChildren, ReactText, Ref, RefObject, forwardRef } from 'react';
-import { useButton } from '@react-aria/button';
+import { ElementType, ReactText, Ref, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
-import { Box, BoxProps } from '../Box/Box';
+import { BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
+import { ButtonRoot } from './ButtonRoot';
+
 import { IconType } from '../Icon/icons';
+import fontWeightForButton from '../../utils/fontWeightForButton';
 
 import * as styles from './Button.css';
 
@@ -20,11 +22,19 @@ type KeysUnder<T, K extends PropertyKey> = T extends object
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
 export type ButtonType<Props> = {
+  /** Icon to display **/
   icon?: IconType;
+  /** Where to position the icon */
   iconPosition?: 'left' | 'right';
+  /** Element type to render the Button as */
   as?: ElementType;
+  /** URL/path to link to if `as` is set to `a` */
+  href?: string;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** Banner style variant */
   variant?: ColorVariant;
+  /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
 } & Props &
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
@@ -35,37 +45,7 @@ type AsLink = {
   href?: string;
 };
 
-type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
-
 export type ButtonProps = ButtonType<{ children?: ReactText }>;
-
-export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButtonElement> | null) => {
-  const { children, as = 'button', type = 'button', disabled, className, href, onPress, ...boxProps } = props;
-
-  const { buttonProps } = useButton(
-    {
-      type,
-      onPress,
-      isDisabled: disabled,
-      elementType: as,
-    },
-    ref as RefObject<HTMLButtonElement>,
-  );
-
-  return (
-    <Box
-      as={as}
-      className={clsx(styles.root, className)}
-      href={href}
-      ref={ref}
-      type={type}
-      {...buttonProps}
-      {...boxProps}
-    >
-      {children}
-    </Box>
-  );
-});
 
 /**
  * Buttons allow users to take actions, and make choices, with a single tap.
@@ -103,7 +83,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       {...boxProps}
     >
       {!!children && (
-        <Text size="medium" weight={weightFor(variant)}>
+        <Text size="medium" weight={fontWeightForButton(variant)}>
           {children}
         </Text>
       )}
@@ -114,8 +94,3 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
 });
 
 Button.displayName = 'Button';
-
-function weightFor(variant: string) {
-  if (['text', 'label'].includes(variant)) return 'link-normal';
-  return 'bold';
-}

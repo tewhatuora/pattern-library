@@ -9,7 +9,7 @@ import { ChildrenOfType } from '../../types/index';
 export type RadioGroupProps = {
   name: string;
   value?: string;
-  disabled: boolean;
+  disabled?: boolean;
   required: boolean;
   error?: boolean | string;
   onChange?: (value: string) => void;

@@ -8,6 +8,8 @@ import { Item } from './Item';
 import { Utility, UtilityNavItemProps } from './Utility';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
+import { ContrastVariant } from '../../types';
+
 import * as styles from './Navigation.css';
 import * as helpers from '../../css/helpers.css';
 
@@ -16,7 +18,7 @@ export const NavigationStyles = styles;
 export const NavigationContext = createContext<{ element: RefObject<HTMLElement> | null }>({ element: null });
 
 export type NavigationProps = {
-  variant?: 'light' | 'dark';
+  variant?: ContrastVariant;
   open: boolean;
   withSearch?: boolean;
   searchFormAction: string;

@@ -6,6 +6,7 @@ import * as styles from './Badge.css';
 export const BadgeStyles = styles;
 
 export type BadgeProps = {
+  /** Badge style variant */
   variant: styles.Variant;
 } & Pick<
   JSX.IntrinsicElements['button'],

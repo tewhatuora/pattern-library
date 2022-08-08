@@ -13,11 +13,13 @@ import { Container } from '../Container/Container';
 import { Row } from '../Columns/Row';
 import { Column } from '../Columns/Column';
 import { MenuList, MenuListProps } from './MenuList';
-import { ButtonRoot } from '../Button/Button';
+import { ButtonRoot } from '../Button/ButtonRoot';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 import { NavigationContext } from './Root';
 import { Breakpoint } from '../../css/breakpoints';
+
+import { ContrastVariant } from '../../types';
 
 import * as styles from './Menu.css';
 import * as navStyles from './Navigation.css';
@@ -28,7 +30,7 @@ export type NavigationMenuProps = {
   mini?: boolean;
   label?: string;
   startTransitionOut?: boolean;
-  variant?: 'light' | 'dark';
+  variant?: ContrastVariant;
   onClose?: () => void;
   onStartClose?: () => void;
 };

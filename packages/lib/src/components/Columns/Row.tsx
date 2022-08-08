@@ -1,9 +1,9 @@
 import { PropsWithChildren, useContext, useMemo } from 'react';
-import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import { ColumnLength, ParentColumnContext } from './Column';
 import { Space } from '../../css/atoms/atoms';
+import rowStyles from '../../utils/rowStyles';
 import { MAX_COLS } from '../../css/grid';
 
 import * as styles from './Row.css';
@@ -21,47 +21,6 @@ export type RowProps<P> = {
   className?: string;
 } & Omit<BoxProps, 'className'> &
   P;
-
-/**
- * Row styles
- * Return CSS classNames for a Row
- * @param params Row style parameters
- * @param {Space} params.gutter Gutter space token name, e.g. 'medium'
- * @param {Boolean} params.noGutters Remove gutters
- * @param {Boolean} params.offset Offset the row into it's parent's gutters
- * @param {Number} params.parentCols Amount of columns the parent Column has
- * @param {String} params.className Additional className
- */
-export const rowStyles = ({
-  gutter = 'medium',
-  noGutters,
-  offset,
-  tablet = MAX_COLS,
-  desktop = MAX_COLS,
-  wide = MAX_COLS,
-  parentCols = MAX_COLS,
-  className,
-}: RowProps<{ parentCols?: number }>) => {
-  const dynamicClasses = {
-    [styles.noGutters]: noGutters,
-    [styles.gutter[gutter]]: !noGutters,
-    [styles.offset[gutter]]: offset,
-  };
-
-  if (parentCols !== MAX_COLS) {
-    dynamicClasses[styles.nested[parentCols.toString()]] = true;
-  }
-
-  return clsx(
-    dynamicClasses,
-    styles.responsiveRow({
-      tablet,
-      desktop,
-      wide,
-    }),
-    className,
-  );
-};
 
 /**
  * Row component

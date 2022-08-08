@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 import { Box, BoxProps } from '../Box/Box';
 import { HeadingLevel, HeadingWeight, useHeading } from '../../hooks/typography';
@@ -16,7 +16,7 @@ export type HeadingProps = {
   align?: BoxProps['textAlign'];
   color?: BoxProps['color'];
   as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'p';
-  children?: React.ReactNode;
+  children?: ReactNode;
   id?: string;
 };
 

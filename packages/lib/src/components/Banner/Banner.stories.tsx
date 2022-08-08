@@ -10,6 +10,9 @@ export default {
     label: {
       defaultValue: 'Lorem ipsum dolor sit amet',
     },
+    onClose: {
+      control: false,
+    },
   },
   parameters: {
     docs: {

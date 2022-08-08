@@ -8,10 +8,6 @@ import neutral, { neutralThemeTokens } from '../packages/lib/src/themes/neutral'
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
   },
   themes: {
     default: 'Neutral',
@@ -23,21 +19,6 @@ export const parameters = {
       },
     ],
     Decorator: (props) => <ThemeProvider theme={props.themeClasses}>{props.children}</ThemeProvider>,
-  },
-};
-
-export const argTypes = {
-  as: {
-    table: {
-      disable: true,
-    },
-    control: false,
-  },
-  onPress: {
-    table: {
-      disable: true,
-    },
-    control: false,
   },
 };
 

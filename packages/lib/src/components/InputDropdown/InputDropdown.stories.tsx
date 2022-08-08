@@ -10,6 +10,11 @@ export default {
   title: 'Input/InputDropdown',
   component: InputDropdown,
   argTypes: {
+    id: { control: false },
+    name: { control: false },
+    options: { control: false },
+    onChange: { control: false },
+    onTertiaryLabelClick: { control: false },
     label: {
       control: {
         type: 'text',
@@ -40,6 +45,9 @@ export default {
     },
     tertiaryLabelAs: {
       defaultValue: 'button',
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],

@@ -1,11 +1,23 @@
 import { Text, TextProps } from './Text';
+import { vars } from '../../themes/vars.css';
 
 export default {
   title: 'Typography/Text',
   component: Text,
   argTypes: {
+    as: { control: false },
+    id: { control: false },
     align: {
       options: ['left', 'center', 'right'],
+    },
+    color: {
+      options: Object.keys(vars.color),
+      control: { type: 'select' },
+    },
+    className: {
+      control: {
+        type: 'text',
+      },
     },
   },
 };

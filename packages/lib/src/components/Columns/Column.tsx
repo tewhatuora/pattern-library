@@ -8,35 +8,35 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { Breakpoint } from '../../css/breakpoints';
 import { MAX_COLS } from '../../css/grid';
+import columnStyles from '../../utils/columnStyles';
 
 import * as styles from './Column.css';
 
 export const ColumnStyles = styles;
 
-export const ParentColumnContext = createContext({ columns: MAX_COLS });
-
 export type ColumnLength = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+export const ParentColumnContext = createContext<{ columns: ColumnLength }>({ columns: MAX_COLS });
 
 type BreakpointColumn = Partial<Record<Breakpoint, ColumnLength>>;
 
 export type ColumnProps = {
+  /** Amount of columns, e.g. 8 */
   columns: ColumnLength;
+  /** Start position for the column. E.g., to center a 6 column element within an 8 column container, use start = 1 */
   start?: ColumnLength;
+  /** Amount of columns for wide breakpoint */
+  wide?: ColumnLength;
+  /** Amount of columns for desktop breakpoint */
+  desktop?: ColumnLength;
+  /** Amount of columns for tablet breakpoint */
+  tablet?: ColumnLength;
+  /** Amount of columns for mobile breakpoint */
+  mobile?: ColumnLength;
   center?: boolean;
   className?: string;
 } & BoxProps &
   BreakpointColumn;
-
-/**
- * Column styles
- * Returns CSS classNames for a Column
- * @param params Column style parameters
- * @param {Number} params.columns Amount of columns, e.g. 8
- * @param {Number} params.start Start position for the column. E.g., to center a 6 column element within an 8 column container, use start = 1
- */
-export const columnStyles = ({ columns = MAX_COLS, start = 1 }: { columns: ColumnLength; start?: ColumnLength }) => {
-  return clsx(styles.width[columns], styles.start[start]);
-};
 
 /**
  * Column component

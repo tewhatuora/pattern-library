@@ -12,6 +12,9 @@ export default {
         type: 'text',
       },
     },
+    onClose: {
+      control: false,
+    },
   },
   parameters: {
     docs: {

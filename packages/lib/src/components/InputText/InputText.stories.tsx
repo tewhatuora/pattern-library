@@ -9,17 +9,17 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Input/InputText',
   component: InputText,
+  parameters: {
+    controls: {
+      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
+  },
   argTypes: {
-    id: {
-      control: {
-        type: 'text',
-      },
-    },
-    name: {
-      control: {
-        type: 'text',
-      },
-    },
+    id: { control: false },
+    name: { control: false },
+    options: { control: false },
+    onChange: { control: false },
+    onTertiaryLabelClick: { control: false },
     placeholder: {
       control: {
         type: 'text',
@@ -55,6 +55,7 @@ export default {
       control: {
         type: 'number',
       },
+      if: { arg: 'multiline' },
     },
     label: {
       control: {
@@ -71,6 +72,9 @@ export default {
     },
     tertiaryLabelAs: {
       defaultValue: 'button',
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],

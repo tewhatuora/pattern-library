@@ -7,6 +7,11 @@ export default {
   title: 'Components/Content',
   component: Content,
   argTypes: {
+    subheading: {
+      control: {
+        type: 'text',
+      },
+    },
     headingAs: {
       control: {
         type: 'select',

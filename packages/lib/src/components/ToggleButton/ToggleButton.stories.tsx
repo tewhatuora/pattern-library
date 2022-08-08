@@ -19,6 +19,9 @@ export default {
     valueRight: {
       defaultValue: 'Right ToggleButton',
     },
+    onChange: {
+      control: false,
+    },
   },
   parameters: {
     docs: {
