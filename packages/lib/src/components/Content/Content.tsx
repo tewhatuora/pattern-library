@@ -22,6 +22,7 @@ export type ContentProps = {
   subheading?: string;
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
+  className?: string;
 };
 
 /**
@@ -29,7 +30,7 @@ export type ContentProps = {
  * @param props
  */
 export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
-  ({ heading, headingLevel, headingAs, subheading, variant, children }, ref) => {
+  ({ heading, headingLevel, headingAs, subheading, variant, className, children }, ref) => {
     const subheadingLevel = subheadingLevelFor[headingLevel];
 
     const headingElement =
@@ -58,8 +59,9 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
       <Box
         className={
           // Inherit color if variant is not given
-          variant && (variant === 'dark' ? 'primary0' : 'primary100')
+          className
         }
+        color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
       >
         <Stack space="xsmall">
           {headingElement}

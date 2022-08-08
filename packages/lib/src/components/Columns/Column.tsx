@@ -7,14 +7,16 @@ import { Box, BoxProps } from '../Box/Box';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { Breakpoint } from '../../css/breakpoints';
+import { MAX_COLS } from '../../css/grid';
 import columnStyles from '../../utils/columnStyles';
+
 import * as styles from './Column.css';
 
 export const ColumnStyles = styles;
 
 export type ColumnLength = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export const ParentColumnContext = createContext<{ columns: ColumnLength }>({ columns: 12 });
+export const ParentColumnContext = createContext<{ columns: ColumnLength }>({ columns: MAX_COLS });
 
 type BreakpointColumn = Partial<Record<Breakpoint, ColumnLength>>;
 
@@ -43,7 +45,7 @@ export type ColumnProps = {
  */
 export const Column = ({
   children,
-  columns = 12,
+  columns = MAX_COLS,
   center,
   start = 1,
   className,

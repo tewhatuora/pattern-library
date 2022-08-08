@@ -1,9 +1,11 @@
 import { PropsWithChildren, useContext, useMemo } from 'react';
 
 import { Box, BoxProps } from '../Box/Box';
-import { ParentColumnContext } from './Column';
+import { ColumnLength, ParentColumnContext } from './Column';
 import { Space } from '../../css/atoms/atoms';
 import rowStyles from '../../utils/rowStyles';
+import { MAX_COLS } from '../../css/grid';
+
 import * as styles from './Row.css';
 
 export const RowStyles = styles;
@@ -12,6 +14,10 @@ export type RowProps<P> = {
   noGutters?: boolean;
   offset?: boolean;
   gutter?: Space;
+  columns?: ColumnLength;
+  tablet?: ColumnLength;
+  desktop?: ColumnLength;
+  wide?: ColumnLength;
   className?: string;
 } & Omit<BoxProps, 'className'> &
   P;
@@ -27,12 +33,15 @@ export const Row = ({
   noGutters,
   offset,
   className,
+  tablet = MAX_COLS,
+  desktop = MAX_COLS,
+  wide = MAX_COLS,
   ...boxProps
 }: PropsWithChildren<RowProps<unknown>>) => {
   const parentCols = useContext(ParentColumnContext);
   const classNames = useMemo(() => {
-    return rowStyles({ gutter, noGutters, offset, parentCols: parentCols?.columns, className: className });
-  }, [gutter, noGutters, offset, parentCols, className]);
+    return rowStyles({ gutter, noGutters, offset, tablet, desktop, wide, parentCols: parentCols?.columns, className });
+  }, [gutter, noGutters, offset, tablet, desktop, wide, parentCols, className]);
 
   return (
     <Box as="div" {...boxProps} className={classNames}>
