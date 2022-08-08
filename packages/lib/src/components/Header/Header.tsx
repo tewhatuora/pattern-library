@@ -10,6 +10,7 @@ import { Icon } from '../Icon/Icon';
 import { InputSearch } from '../InputSearch/InputSearch';
 import { UtilityNavItemProps } from '../Navigation/Utility';
 import { Navigation } from '../Navigation/Navigation';
+import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 
 import Logo from '../../assets/logo-moh.svg?component';
 
@@ -97,6 +98,7 @@ export const Header = ({
     if (LogoLinkComponent) {
       return (
         <LogoLinkComponent className={styles.logo} href={logoLinkHref} to={logoLinkHref}>
+          <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
           <Logo />
         </LogoLinkComponent>
       );
@@ -104,6 +106,7 @@ export const Header = ({
 
     return (
       <a className={styles.logo} href={logoLinkHref}>
+        <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
         <Logo />
       </a>
     );
