@@ -7,7 +7,7 @@ import Docs from './InputText.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/InputText',
+  title: 'Input/InputText',
   component: InputText,
   argTypes: {
     id: {

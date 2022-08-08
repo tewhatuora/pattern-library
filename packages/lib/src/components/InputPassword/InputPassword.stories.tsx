@@ -8,7 +8,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputPassword.docs.mdx';
 
 export default {
-  title: 'Components/InputPassword',
+  title: 'Input/InputPassword',
   component: InputPassword,
 
   argTypes: {

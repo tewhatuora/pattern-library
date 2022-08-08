@@ -1,7 +1,7 @@
 import { InputMessage, InputMessageProps } from './InputMessage';
 
 export default {
-  title: 'Components/InputMessage',
+  title: 'Input/InputMessage',
   component: InputMessage,
   argTypes: {
     helperText: {

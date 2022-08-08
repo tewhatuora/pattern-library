@@ -5,7 +5,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputLabel.docs.mdx';
 
 export default {
-  title: 'Components/InputLabel',
+  title: 'Input/InputLabel',
   component: InputLabel,
   argTypes: {
     heading: {

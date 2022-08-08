@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { InputField, InputFieldProps } from './InputField';
 
 export default {
-  title: 'Components/InputField',
+  title: 'Input/InputField',
   component: InputField,
   argTypes: {
     id: {
