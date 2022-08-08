@@ -34,6 +34,12 @@ export default {
         },
       ],
     },
+    logoLinkHref: {
+      defaultValue: '/',
+      control: {
+        type: 'text',
+      },
+    },
   },
   parameters: {
     docs: {
@@ -42,4 +48,14 @@ export default {
   },
 };
 
+const RouterLink = (props) => (
+  <a {...props} onClick={(e) => e.preventDefault()}>
+    {props.children}
+  </a>
+);
+
 export const Default = (args: HeaderProps) => <Header {...args} logoComponent={logoComponent} />;
+
+export const CustomLogoLinkComponent = (args: HeaderProps) => (
+  <Header {...args} logoComponent={logoComponent} logoLinkComponent={RouterLink} />
+);
