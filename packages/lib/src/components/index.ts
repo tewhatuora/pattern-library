@@ -18,6 +18,7 @@ export { Footer, FooterStyles } from './Footer/Footer';
 export { Header, HeaderStyles } from './Header/Header';
 export { Heading } from './Heading/Heading';
 export { Icon, IconStyles } from './Icon/Icon';
+export { ImageBlock, ImageBlockStyles } from './ImageBlock/ImageBlock';
 export { Inline } from './Inline/Inline';
 export { InputField, InputFieldStyles } from './InputField/InputField';
 export { InputLabel, InputLabelStyles } from './InputLabel/InputLabel';

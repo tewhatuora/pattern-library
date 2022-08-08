@@ -25,6 +25,7 @@ export const variants = recipe({
     }),
     {
       width: '100%',
+      maxWidth: '39.6rem',
       selectors: {
         '&[disabled]': {
           cursor: 'not-allowed',
