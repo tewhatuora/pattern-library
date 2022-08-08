@@ -6,11 +6,6 @@ import Docs from './Divider.docs.mdx';
 export default {
   title: 'Components/Divider',
   component: Divider,
-  parameters: {
-    controls: {
-      exclude: ['asChild'],
-    },
-  },
   argTypes: {
     orientation: {
       options: ['horizontal', 'vertical'],
@@ -18,6 +13,9 @@ export default {
     },
   },
   parameters: {
+    controls: {
+      exclude: ['asChild'],
+    },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },

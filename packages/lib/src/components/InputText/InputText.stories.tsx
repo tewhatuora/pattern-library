@@ -9,11 +9,6 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Input/InputText',
   component: InputText,
-  parameters: {
-    controls: {
-      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
-    },
-  },
   argTypes: {
     id: { control: false },
     name: { control: false },
@@ -89,6 +84,9 @@ export default {
     },
   },
   parameters: {
+    controls: {
+      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },

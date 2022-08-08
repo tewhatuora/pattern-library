@@ -9,11 +9,6 @@ import Docs from './InputPhone.docs.mdx';
 export default {
   title: 'Input/InputPhone',
   component: InputPhone,
-  parameters: {
-    controls: {
-      exclude: ['htmlFor', 'labelProps', 'descriptionProps', 'errorMessageProps'],
-    },
-  },
   argTypes: {
     id: { control: false },
     name: { control: false },
@@ -40,6 +35,9 @@ export default {
     },
   },
   parameters: {
+    controls: {
+      exclude: ['htmlFor', 'labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },

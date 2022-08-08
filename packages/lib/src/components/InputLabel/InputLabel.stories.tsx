@@ -7,11 +7,6 @@ import Docs from './InputLabel.docs.mdx';
 export default {
   title: 'Input/InputLabel',
   component: InputLabel,
-  parameters: {
-    controls: {
-      exclude: ['labelProps'],
-    },
-  },
   argTypes: {
     htmlFor: { control: false },
     onTertiaryLabelClick: { control: false },
@@ -40,6 +35,9 @@ export default {
     },
   },
   parameters: {
+    controls: {
+      exclude: ['labelProps'],
+    },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },

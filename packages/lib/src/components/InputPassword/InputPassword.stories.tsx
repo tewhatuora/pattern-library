@@ -10,11 +10,6 @@ import Docs from './InputPassword.docs.mdx';
 export default {
   title: 'Input/InputPassword',
   component: InputPassword,
-  parameters: {
-    controls: {
-      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
-    },
-  },
   argTypes: {
     id: { control: false },
     name: { control: false },
@@ -85,6 +80,9 @@ export default {
     },
   },
   parameters: {
+    controls: {
+      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
+    },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
