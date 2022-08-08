@@ -7,6 +7,7 @@ const DocsPage = (props) => {
       <Title />
       <Subtitle />
       <Docs />
+      <hr />
       <Description />
       <Primary />
       <ArgsTable story={PRIMARY_STORY} />
