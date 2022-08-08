@@ -27,9 +27,9 @@ export type StackProps = {
 export const Stack = ({
   as = 'div',
   children,
-  className,
   space = 'medium',
   horizontal = false,
+  className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
   assert(
