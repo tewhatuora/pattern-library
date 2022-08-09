@@ -8,12 +8,19 @@ import { Text } from '../Text/Text';
 import * as styles from './RadioGroup.css';
 
 export type RadioButtonProps = {
+  /** Radio button input value */
   value: string;
+  /** Label */
   label: string;
+  /** Optional heading to display with label */
   heading?: string;
+  /** id attribute */
   id: string;
+  /** Disabled state */
   disabled?: boolean;
+  /** Error state */
   error?: boolean | string;
+  /** Selected state */
   selected?: true | undefined;
 };
 

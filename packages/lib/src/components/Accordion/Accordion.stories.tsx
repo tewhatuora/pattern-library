@@ -8,6 +8,12 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Components/Accordion',
   component: Accordion.Root,
+  subcomponents: {
+    Root: Accordion.Root,
+    Item: Accordion.Item,
+    Trigger: Accordion.Trigger,
+    Content: Accordion.Content,
+  },
   argTypes: {
     type: {
       options: ['single', 'multiple'],

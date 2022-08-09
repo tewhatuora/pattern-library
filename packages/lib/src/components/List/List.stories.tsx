@@ -7,6 +7,10 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Components/List',
   component: List.Root,
+  subcomponents: {
+    Root: List.Root,
+    Item: List.Item,
+  },
   args: {
     type: 'ul',
   },

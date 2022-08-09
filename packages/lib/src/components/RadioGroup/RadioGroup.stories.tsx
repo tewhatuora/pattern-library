@@ -7,10 +7,14 @@ import Docs from './RadioGroup.docs.mdx';
 export default {
   title: 'Components/RadioGroup',
   component: RadioGroup,
+  subcomponents: {
+    RadioButton,
+  },
   argTypes: {
     name: { control: false },
     id: { control: false },
     onChange: { control: false },
+    children: { control: false },
     error: {
       control: { type: 'boolean' },
     },

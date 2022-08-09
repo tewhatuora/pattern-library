@@ -9,7 +9,9 @@ import { ChildrenOfType } from '../../types/index';
 import * as styles from './Accordion.css';
 
 export type AccordionItemProps = {
+  /** Accordion item value */
   value: string;
+  /** Only `Accordion.Trigger` and `Accordion.Content` components are allowed as children of `Accordion.Item` */
   children: ChildrenOfType<'Trigger', AccordionTriggerProps> & ChildrenOfType<'Content', AccordionContentProps>;
 };
 

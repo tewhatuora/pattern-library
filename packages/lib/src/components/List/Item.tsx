@@ -11,8 +11,11 @@ import { IconType } from '../Icon/icons';
 import * as styles from './List.css';
 
 export type ListItemProps = {
+  /** Optional icon to display in the List Item */
   icon?: IconType;
+  /** Icon position relative to the List Item text */
   iconPosition?: 'left' | 'right';
+  /** Optional heading text to display */
   heading?: string;
 } & HTMLAttributes<HTMLLIElement>;
 

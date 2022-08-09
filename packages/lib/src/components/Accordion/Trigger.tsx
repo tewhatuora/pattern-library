@@ -11,8 +11,11 @@ import { Box } from '../Box/Box';
 import { AccordionContext } from './Root';
 
 export type AccordionTriggerProps = {
+  /** Optional icon to display in Accordion Trigger */
   icon?: IconType;
+  /** Optional header label for Accordion Trigger */
   header?: string;
+  /** Accordion Trigger label */
   label: string;
 };
 
