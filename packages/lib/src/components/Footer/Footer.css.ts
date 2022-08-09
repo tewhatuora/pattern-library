@@ -9,6 +9,21 @@ import { vars } from '../../themes/vars.css';
 
 export const widthVar = createVar();
 
+const spacing = calc.multiply(vars.space.medium.tablet, 2); // 6.4rem / 64px
+
+export const footer = style(
+  responsiveStyle({
+    mobile: {
+      paddingTop: vars.space.xxlarge.mobile,
+      paddingBottom: vars.space.xxlarge.mobile,
+    },
+    tablet: {
+      paddingTop: spacing,
+      paddingBottom: spacing,
+    },
+  }),
+);
+
 // ##### First row #####
 
 export const govtLogoWrapper = style({
@@ -45,7 +60,7 @@ export const childrenWrapper = style([
   }),
   {
     gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
-    columnGap: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 2)), // 6.4rem/64px
+    columnGap: spacing,
     rowGap: vars.space.large.tablet,
   },
 ]);
