@@ -1,5 +1,6 @@
 import { Navigation } from '../Navigation/Navigation';
 import { Footer, FooterProps } from './Footer';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 import MohLogo from './moh-logo.svg?component';
 import UniteAgainstCovid19Logo from './unite-against-covid.svg?component';
@@ -10,6 +11,15 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Components/Footer',
   component: Footer,
+  argTypes: {
+    variant: {
+      defaultValue: 'light',
+      control: {
+        type: 'radio',
+        options: ['light', 'dark'],
+      },
+    },
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -157,49 +167,55 @@ FiveNavigations.args = {
 
 export const MoreThanFiveNavigationsShouldThrowError = (args: FooterProps) => {
   return (
-    <Footer {...args}>
-      <Navigation.MenuList heading="List one">
-        <Navigation.Item href="#" label="Sub nav item 17" />
-        <Navigation.Item href="#" label="Sub nav item 18" />
-        <Navigation.Item href="#" label="Sub nav item 19" />
-        <Navigation.Item href="#" label="Sub nav item 20" />
-      </Navigation.MenuList>
-      <Navigation.MenuList heading="List one">
-        <Navigation.Item href="#" label="Sub nav item 17" />
-        <Navigation.Item href="#" label="Sub nav item 18" />
-        <Navigation.Item href="#" label="Sub nav item 19" />
-        <Navigation.Item href="#" label="Sub nav item 20" />
-      </Navigation.MenuList>
-      <Navigation.MenuList heading="List one">
-        <Navigation.Item href="#" label="Sub nav item 17" />
-        <Navigation.Item href="#" label="Sub nav item 18" />
-        <Navigation.Item href="#" label="Sub nav item 19" />
-        <Navigation.Item href="#" label="Sub nav item 20" />
-      </Navigation.MenuList>
-      <Navigation.MenuList heading="List one">
-        <Navigation.Item href="#" label="Sub nav item 17" />
-        <Navigation.Item href="#" label="Sub nav item 18" />
-        <Navigation.Item href="#" label="Sub nav item 19" />
-        <Navigation.Item href="#" label="Sub nav item 20" />
-      </Navigation.MenuList>
-      <Navigation.MenuList heading="List one">
-        <Navigation.Item href="#" label="Sub nav item 17" />
-        <Navigation.Item href="#" label="Sub nav item 18" />
-        <Navigation.Item href="#" label="Sub nav item 19" />
-        <Navigation.Item href="#" label="Sub nav item 20" />
-      </Navigation.MenuList>
-      <Navigation.MenuList heading="List one">
-        <Navigation.Item href="#" label="Sub nav item 17" />
-        <Navigation.Item href="#" label="Sub nav item 18" />
-        <Navigation.Item href="#" label="Sub nav item 19" />
-        <Navigation.Item href="#" label="Sub nav item 20" />
-      </Navigation.MenuList>
-    </Footer>
+    <ErrorBoundary>
+      <Footer {...args}>
+        <Navigation.MenuList heading="List one">
+          <Navigation.Item href="#" label="Sub nav item 17" />
+          <Navigation.Item href="#" label="Sub nav item 18" />
+          <Navigation.Item href="#" label="Sub nav item 19" />
+          <Navigation.Item href="#" label="Sub nav item 20" />
+        </Navigation.MenuList>
+        <Navigation.MenuList heading="List one">
+          <Navigation.Item href="#" label="Sub nav item 17" />
+          <Navigation.Item href="#" label="Sub nav item 18" />
+          <Navigation.Item href="#" label="Sub nav item 19" />
+          <Navigation.Item href="#" label="Sub nav item 20" />
+        </Navigation.MenuList>
+        <Navigation.MenuList heading="List one">
+          <Navigation.Item href="#" label="Sub nav item 17" />
+          <Navigation.Item href="#" label="Sub nav item 18" />
+          <Navigation.Item href="#" label="Sub nav item 19" />
+          <Navigation.Item href="#" label="Sub nav item 20" />
+        </Navigation.MenuList>
+        <Navigation.MenuList heading="List one">
+          <Navigation.Item href="#" label="Sub nav item 17" />
+          <Navigation.Item href="#" label="Sub nav item 18" />
+          <Navigation.Item href="#" label="Sub nav item 19" />
+          <Navigation.Item href="#" label="Sub nav item 20" />
+        </Navigation.MenuList>
+        <Navigation.MenuList heading="List one">
+          <Navigation.Item href="#" label="Sub nav item 17" />
+          <Navigation.Item href="#" label="Sub nav item 18" />
+          <Navigation.Item href="#" label="Sub nav item 19" />
+          <Navigation.Item href="#" label="Sub nav item 20" />
+        </Navigation.MenuList>
+        <Navigation.MenuList heading="List one">
+          <Navigation.Item href="#" label="Sub nav item 17" />
+          <Navigation.Item href="#" label="Sub nav item 18" />
+          <Navigation.Item href="#" label="Sub nav item 19" />
+          <Navigation.Item href="#" label="Sub nav item 20" />
+        </Navigation.MenuList>
+      </Footer>
+    </ErrorBoundary>
   );
 };
 
 export const MoreThanSevenImprintItemsShouldThrowError = (args: FooterProps) => {
-  return <Footer {...args} />;
+  return (
+    <ErrorBoundary>
+      <Footer {...args} />
+    </ErrorBoundary>
+  );
 };
 MoreThanSevenImprintItemsShouldThrowError.args = {
   imprintItems: [...imprintItems, ...imprintItems, ...imprintItems],
