@@ -15,6 +15,14 @@ import Docs from './Navigation.docs.mdx';
 export default {
   title: 'Components/Navigation',
   component: Navigation,
+  subcomponents: {
+    Root: Navigation.Root,
+    Item: Navigation.Item,
+    Menu: Navigation.Menu,
+    MenuList: Navigation.MenuList,
+    Side: Navigation.Side,
+    Utility: Navigation.Utility,
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,

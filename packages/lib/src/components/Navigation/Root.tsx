@@ -91,4 +91,4 @@ export const Root = ({
   );
 };
 
-Root.displayName = 'Navigation.Root';
+Root.displayName = 'Root';

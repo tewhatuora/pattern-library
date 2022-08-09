@@ -27,4 +27,4 @@ export const Side = ({ children }: PropsWithChildren<unknown>) => {
   );
 };
 
-Side.displayName = 'Navigation.Side';
+Side.displayName = 'Side';

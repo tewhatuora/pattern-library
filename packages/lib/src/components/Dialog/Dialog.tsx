@@ -1,7 +1,8 @@
 import { Trigger } from '@radix-ui/react-dialog';
 
 import { Content } from './Content';
-import { Action, Actions } from './Actions';
+import { Actions } from './Actions';
+import { Action } from './Action';
 import { Root } from './Root';
 
 export * as DialogStyles from './Dialog.css';

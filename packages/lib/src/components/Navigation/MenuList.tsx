@@ -9,6 +9,7 @@ import * as styles from './Menu.css';
 export const MenuListStyles = styles;
 
 export type MenuListProps = {
+  /** Heading for menu list **/
   heading: string;
 };
 
@@ -37,4 +38,4 @@ export const MenuList = ({ heading, children }: PropsWithChildren<MenuListProps>
   );
 };
 
-MenuList.displayName = 'Navigation.MenuList';
+MenuList.displayName = 'MenuList';

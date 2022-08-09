@@ -27,12 +27,18 @@ import * as navStyles from './Navigation.css';
 export const NavigationMenuStyles = styles;
 
 export type NavigationMenuProps = {
+  /** Show sub menu as mini menu (mega menu is default) */
   mini?: boolean;
+  /** Parent navigation item's label */
   label?: string;
+  /** Start transition animation  */
   startTransitionOut?: boolean;
+  /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
-  onClose?: () => void;
+  /** Function to call when starting to close the menu */
   onStartClose?: () => void;
+  /** Function to call when the menu is closed  */
+  onClose?: () => void;
 };
 
 /**
@@ -127,12 +133,6 @@ export const Menu = ({
     return css;
   }, [dimension, measurement, offset, isMobile]);
 
-  // useEffect(() => {
-  //   if (isMobile) {
-  //     closeButton?.current?.focus();
-  //   }
-  // }, [closeButton, isMobile]);
-
   return (
     <div
       className={clsx(styles.navigationMenuContainer.default, [styles.variants[variant]], {
@@ -177,4 +177,4 @@ export const Menu = ({
   );
 };
 
-Menu.displayName = 'Navigation.Menu';
+Menu.displayName = 'Menu';

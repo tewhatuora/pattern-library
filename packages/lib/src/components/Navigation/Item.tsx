@@ -29,11 +29,17 @@ import { Breakpoint } from '../../css/breakpoints';
 export const NavigationItemStyles = styles;
 
 export type NavigationItemProps = {
+  /** URL/path to link to */
   href: string;
+  /** Selected/current/active state */
   selected?: boolean;
+  /** Navigation item label */
   label: string;
+  /** If there is a subnavigation  */
   subNav?: boolean;
+  /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
+  /** A React component to render, e. react-router-dom `<Link />` */
   component?: FC<any>;
 };
 
@@ -194,4 +200,4 @@ export const Item = ({
   );
 };
 
-Item.displayName = 'Navigation.Item';
+Item.displayName = 'Item';

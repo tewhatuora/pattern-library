@@ -123,4 +123,4 @@ export const Root = ({
   );
 };
 
-Root.displayName = 'Dialog';
+Root.displayName = 'Root';

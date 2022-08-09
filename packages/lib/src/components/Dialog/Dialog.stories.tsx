@@ -13,6 +13,12 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Components/Dialog',
   component: Dialog,
+  subcomponents: {
+    Root: Dialog.Root,
+    Content: Dialog.Content,
+    Actions: Dialog.Actions,
+    Action: Dialog.Action,
+  },
   argTypes: {
     icon: {
       options: ['', ...Object.keys(icons)],
