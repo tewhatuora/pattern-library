@@ -37,6 +37,7 @@ export const unresponsiveProperties = {
   pointerEvents: ['none'],
   height: sizes,
   width: sizes,
+  maxWidth: sizes,
   minWidth: {
     0: '0%',
   },

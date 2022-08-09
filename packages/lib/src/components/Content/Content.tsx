@@ -20,7 +20,7 @@ export type ContentProps = {
   headingAs?: HeadingProps['as'];
   /** Content subheading */
   subheading?: string;
-  /** Banner style variant */
+  /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
@@ -63,6 +63,7 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
           className
         }
         color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
+        maxWidth="full"
       >
         <Stack space="xsmall">
           {headingElement}
