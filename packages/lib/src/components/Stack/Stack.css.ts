@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
+import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 
 const variant = {
@@ -56,9 +57,12 @@ const variant = {
 };
 
 export const variants = recipe({
-  base: style({
-    display: 'flex',
-  }),
+  base: style([
+    atoms({
+      display: 'flex',
+      maxWidth: 'full',
+    }),
+  ]),
   variants: {
     space: { ...variant },
     direction: {
