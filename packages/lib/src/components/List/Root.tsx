@@ -11,10 +11,15 @@ import { ContrastVariant } from '../../types';
 import * as styles from './List.css';
 
 export type ListRootProps = {
+  /** List element type */
   type: 'ol' | 'ul';
+  /** Option to have no list item markers */
   noMarkers?: boolean;
+  /** Option to show dividers between list items */
   dividers?: boolean;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
 };
 

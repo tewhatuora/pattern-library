@@ -12,17 +12,29 @@ import { IconType } from '../Icon/icons';
 export const InputLabelStyles = styles;
 
 export type InputLabelProps = {
+  /** Label for the field */
   label: string;
+  /** Optional label subheading */
   subheading?: string;
+  /** Optional tertiary label */
   tertiaryLabel?: string;
+  /** Icon to display with the tertiary label */
   tertiaryLabelIcon?: IconType;
+  /** Where to position the icon relative to the `tertiaryLabel` */
   tertiaryLabelIconPosition?: 'left' | 'right';
-  htmlFor?: string;
-  error?: boolean;
-  disabled?: boolean;
-  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
+  /** Element type to render the tertiary label as */
   tertiaryLabelAs?: 'a' | 'button' | 'text';
+  /** HTML `for` attribute */
+  htmlFor?: string;
+  /** Error state */
+  error?: boolean;
+  /** Disabled state */
+  disabled?: boolean;
+  /** Accessibility attributes for the label */
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
+  /** URL/path for `tertiaryLabel`, if `tertiaryLabelAs` = `a` */
   href?: string | never;
+  /** Function to call when the `tertiaryLabel` is clicked, if `tertiaryLabelAs` = `button` */
   onTertiaryLabelClick?: (e: any) => void | never;
 };
 

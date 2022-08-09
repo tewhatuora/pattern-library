@@ -12,9 +12,13 @@ import { ContrastVariant } from '../../types';
 import * as styles from './Utility.css';
 
 export type UtilityNavItemProps = {
+  /** Link href/path */
   href: string;
+  /** Icon */
   icon: IconType;
+  /** Label/text content for the link */
   label: string;
+  /** Optionally render as a custom component, e.g. react-router-dom Link */
   component?: FC<any>;
 };
 

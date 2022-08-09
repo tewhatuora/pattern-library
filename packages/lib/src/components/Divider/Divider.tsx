@@ -6,6 +6,7 @@ import * as styles from './Divider.css';
 export const DividerStyles = styles;
 
 export type DividerProps = {
+  /** Contrast variant for dark/light UI */
   variant: styles.Variant;
 } & Separator.SeparatorProps;
 

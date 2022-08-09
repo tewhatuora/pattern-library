@@ -9,8 +9,11 @@ import * as styles from './Tag.css';
 export const TagStyles = styles;
 
 export type TagProps = {
+  /** Tag label */
   label: string;
+  /** Allow the tag to be clearable */
   isClearable?: boolean;
+  /** Function to call when the tag is cleared */
   onClear?: () => void;
 };
 

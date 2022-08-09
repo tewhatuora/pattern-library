@@ -19,7 +19,9 @@ export type InputPhoneOnChangeFn = (value: string) => void;
 export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
   InputMessageProps &
   OtherInputFieldProps & {
+    /** Clearable option, shows a clear button */
     clearable?: boolean;
+    /** International phone number format */
     international?: boolean;
     defaultCountry?: Country;
     onChange: InputPhoneOnChangeFn;

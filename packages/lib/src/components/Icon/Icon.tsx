@@ -13,11 +13,17 @@ export const IconStyles = styles;
 const validIcons = Object.keys(icons);
 
 type IconProps = {
+  /** Icon type */
   icon: IconType;
+  /** Size variant */
   variant?: styles.Variant;
+  /** Optional onClick handler for Icon element */
   onClick?: () => void;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** Icon color */
   color?: string | undefined;
+  /** Alternative text to use for aria-label */
   alt?: string;
 };
 

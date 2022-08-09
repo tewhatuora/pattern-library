@@ -11,12 +11,19 @@ const resolveDefaultComponent = {
 } as const;
 
 export type HeadingProps = {
+  /** Heading level for styling purposes */
   level: HeadingLevel;
+  /** Font weight token */
   weight?: HeadingWeight;
+  /** Text alignment */
   align?: BoxProps['textAlign'];
+  /** Heading color token */
   color?: BoxProps['color'];
+  /** Element type to render as, defaults to h1-h4 with level prop */
   as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'p';
+  /** Heading text/elements */
   children?: ReactNode;
+  /** id attribute for the element */
   id?: string;
 };
 

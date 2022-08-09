@@ -8,8 +8,11 @@ import * as styles from './Notice.css';
 export const NoticeStyles = styles;
 
 export type NoticeProps = {
+  /** Notice label text */
   label?: string;
+  /** Notice color variant */
   variant: styles.Variant;
+  /** Alternative icon to show */
   alternativeIcon?: IconType;
 };
 

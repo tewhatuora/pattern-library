@@ -18,11 +18,17 @@ export const NavigationStyles = styles;
 export const NavigationContext = createContext<{ element: RefObject<HTMLElement> | null }>({ element: null });
 
 export type NavigationProps = {
+  /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
+  /** Open state for mobile navigation */
   open: boolean;
+  /** Show InputSearch with mobile navigation */
   withSearch?: boolean;
+  /** Search form action */
   searchFormAction: string;
+  /** Search form method */
   searchFormMethod: 'POST' | 'GET';
+  /** Array of Utility navigation items, with href, icon, label, and an optional custom link component e.g. react-router-dom Link */
   utilityNavItems?: UtilityNavItemProps[];
 };
 

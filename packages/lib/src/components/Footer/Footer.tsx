@@ -12,6 +12,8 @@ import {
 
 import clsx from 'clsx';
 
+import { ContrastVariant } from '@/src/types';
+
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
@@ -40,6 +42,7 @@ type ImprintItem = {
 };
 
 export type FooterProps = {
+  /** Social link href/paths for Facebook, Twitter, Instagram, LinkedIn & TikTok */
   socialLinkHrefs?: {
     facebook?: string;
     twitter?: string;
@@ -47,9 +50,13 @@ export type FooterProps = {
     linkedin?: string;
     tiktok?: string;
   };
+  /** Extra logo elements */
   extraLogos?: ReactNode[];
+  /** Array of Imprint items,which can have text and href for links */
   imprintItems?: ImprintItem[];
-  variant?: 'light' | 'dark';
+  /** Contrast variant for dark/light UI */
+  variant?: ContrastVariant;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 };
 

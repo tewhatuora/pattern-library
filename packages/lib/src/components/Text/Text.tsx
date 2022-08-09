@@ -5,11 +5,17 @@ import { Box, BoxProps } from '../Box/Box';
 import { UseTextProps, useText } from '../../hooks/typography';
 
 export interface TextProps extends Pick<BoxProps, 'as'> {
+  /** id attribute for the element */
   id?: string;
+  /** Font size token */
   size?: UseTextProps['size'];
+  /** Font weight token */
   weight?: UseTextProps['weight'];
+  /** Text alignment */
   align?: BoxProps['textAlign'];
+  /** Text color token */
   color?: BoxProps['color'];
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: BoxProps['className'];
 }
 

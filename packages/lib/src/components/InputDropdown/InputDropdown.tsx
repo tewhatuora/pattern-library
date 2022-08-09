@@ -15,6 +15,7 @@ import { useText } from '../../hooks/typography';
 
 export const InputDropdownStyles = styles;
 
+/** Option for dropdown */
 export type InputOption = {
   value: string | number;
   label: string;
@@ -23,7 +24,17 @@ export type InputOption = {
 };
 
 export type InputDropdownProps = {
+  /**
+   * Options for dropdown
+   * `InputOption = {
+   *   value: string | number;
+   *   label: string;
+   *   selected?: boolean;
+   *   disabled?: boolean;
+   * }`
+   * */
   options: InputOption[];
+  /** Function to call when the value changes */
   onChange?: ChangeEventHandler<HTMLSelectElement>;
 } & InputLabelProps &
   InputMessageProps &

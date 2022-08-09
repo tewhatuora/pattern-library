@@ -10,9 +10,13 @@ import { Box } from '../Box/Box';
 
 import * as styles from '../InputField/InputField.css';
 
+/** Value object for InputDate, containing `day`, `month` & `year` */
 export type InputDateValue = {
+  /** Day value */
   day?: string;
+  /** Month value */
   month?: string;
+  /** Year value */
   year?: string;
 };
 
@@ -22,17 +26,24 @@ type InputDateRefs = {
   year?: MutableRefObject<HTMLInputElement | null>;
 };
 
+/** Function to call when either the day, month or year values change */
 export type InputDateOnChangeFn = ({ day, month, year }: InputDateValue) => void;
 
 export type InputDateProps = Omit<InputLabelProps, 'error'> &
   InputMessageProps &
   Omit<OtherInputFieldProps, 'value' | 'onChange'> & {
+    /** Field error messages for `day`, `month` & `year` */
     errors?: {
+      /** Error message for `day` value */
       day?: string | undefined;
+      /** Error message for `month` value */
       month?: string | undefined;
+      /** Error message for `year` value */
       year?: string | undefined;
     };
+    /** Value object for InputDate, containing `day`, `month` & `year` */
     value?: InputDateValue;
+    /** Function to call when either the day, month or year values change */
     onChange: InputDateOnChangeFn;
   };
 

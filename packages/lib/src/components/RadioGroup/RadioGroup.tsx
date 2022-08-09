@@ -7,12 +7,19 @@ import { RadioButton, RadioButtonProps } from './RadioButton';
 import { ChildrenOfType } from '../../types/index';
 
 export type RadioGroupProps = {
+  /** name attribute */
   name: string;
+  /** Radiogroup current value */
   value?: string;
+  /** Disabled state/attribute used to disable interaction */
   disabled?: boolean;
+  /** required attribute */
   required: boolean;
+  /** Show error state */
   error?: boolean | string;
+  /** Function to call when the value is changed */
   onChange?: (value: string) => void;
+  /** Only `RadioButton` components are allowed as children of `RadioGroup` */
   children: ChildrenOfType<'RadioButton', RadioButtonProps>;
 };
 

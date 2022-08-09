@@ -49,16 +49,25 @@ const innerColumnLengths: Record<styles.WidthVariant, ColumnLength> = {
 };
 
 export type ImageBlockProps = {
+  /** Alternative text for the image */
   alt: string;
+  /** Img source URL/path */
   src?: string | IconType;
+  /** Image shape */
   shape: 'square' | 'rectangle';
+  /** Image block width */
   width: styles.WidthVariant;
+  /** Image position relative to content */
   imagePosition: styles.ImagePositionVariant;
+  /** Label for the primary button */
   primaryButtonLabel: string;
+  /** Label for the secondary button */
   secondaryButtonLabel: string;
+  /** A function to handling pressing the primary button */
   onPressPrimary: () => void;
+  /** A function to handling pressing the secondary button */
   onPressSecondary: () => void;
-} & Omit<ContentProps, 'headingLevel'>;
+} & Omit<ContentProps, 'className' | 'headingLevel'>;
 
 const WithinParentColumn = ({ children }: PropsWithChildren<any>) => <Stack space="medium">{children}</Stack>;
 const Standalone = ({

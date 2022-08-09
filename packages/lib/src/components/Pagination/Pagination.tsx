@@ -11,8 +11,11 @@ import * as styles from './Pagination.css';
 export const PaginationStyles = styles;
 
 export type PaginationProps = {
+  /** Total number of pages */
   pages: number;
+  /** Current page number */
   current: number;
+  /** Function to call when page is changed */
   onChange?: (page: number) => void;
 };
 

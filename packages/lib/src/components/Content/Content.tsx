@@ -20,8 +20,9 @@ export type ContentProps = {
   headingAs?: HeadingProps['as'];
   /** Content subheading */
   subheading?: string;
-  /** Contrast variant for dark/light UI */
+  /** Banner style variant */
   variant?: ContrastVariant;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 };
 

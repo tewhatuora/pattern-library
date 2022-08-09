@@ -8,10 +8,15 @@ import * as styles from './ToggleButton.css';
 export const ToggleButtonStyles = styles;
 
 export type ToggleButtonProps = {
+  /** Label for left hand button */
   labelLeft: string;
+  /** Label for right hand button */
   labelRight: string;
+  /** Value to assign when left hand button is selected */
   valueLeft: string;
+  /** Value to assign when right hand button is selected */
   valueRight: string;
+  /** Function to call when the button is changed/toggles */
   onChange?: (value: string) => void;
 };
 

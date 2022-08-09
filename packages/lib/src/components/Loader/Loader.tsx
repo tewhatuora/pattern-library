@@ -1,12 +1,16 @@
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 
+import { ContrastVariant } from '../../types';
+
 import * as styles from './Loader.css';
 
 export const LoaderStyles = styles;
 
 export type LoaderProps = {
-  variant: styles.Variant;
+  /** Contrast variant for dark/light UI */
+  variant?: ContrastVariant;
+  /** Loading message */
   message: string;
 };
 

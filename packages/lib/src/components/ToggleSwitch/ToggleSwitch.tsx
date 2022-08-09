@@ -9,11 +9,17 @@ import * as styles from './ToggleSwitch.css';
 export const ToggleSwitchStyles = styles;
 
 export type ToggleSwitchProps = {
+  /** id attribute */
   id: string;
+  /** Label for the toggle switch */
   label?: string;
+  /** Set the switch to 'on' by default */
   defaultChecked?: boolean;
+  /** Heading to show above the label */
   heading?: string;
+  /** Function to call when the switch is changed/toggled */
   onChange?: (checked: boolean) => void;
+  /** name attribute */
   name?: string;
 };
 

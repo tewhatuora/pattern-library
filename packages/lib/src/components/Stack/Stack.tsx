@@ -13,9 +13,13 @@ export const StackStyles = styles;
 export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 export type StackProps = {
+  /** Element type to render as */
   as?: typeof validStackComponents[number];
+  /** A space token for spacing between children elements */
   space: Space;
+  /** Order children elements horizontally */
   horizontal?: boolean;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 } & BoxProps;
 
