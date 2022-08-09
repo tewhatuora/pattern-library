@@ -11,6 +11,9 @@ export default {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
     },
+    variant: {
+      defaultValue: 'light',
+    },
   },
   parameters: {
     controls: {

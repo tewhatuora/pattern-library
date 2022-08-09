@@ -9,10 +9,10 @@ const thicknessVar = createVar();
 
 const variant = {
   light: atoms({
-    backgroundColor: 'primary0',
+    backgroundColor: 'primary25',
   }),
   dark: atoms({
-    backgroundColor: 'primary25',
+    backgroundColor: 'primary0',
   }),
 };
 
