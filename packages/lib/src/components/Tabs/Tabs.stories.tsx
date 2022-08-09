@@ -9,6 +9,12 @@ import DocsPage from '../../../utils/DocsPage';
 export default {
   title: 'Components/Tabs',
   component: Tabs.Root,
+  subcomponents: {
+    Root: Tabs.Root,
+    List: Tabs.List,
+    Content: Tabs.Content,
+    Trigger: Tabs.Trigger,
+  },
   argTypes: {
     onValueChange: {
       control: { type: 'function' },

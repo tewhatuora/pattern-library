@@ -11,7 +11,9 @@ import { TabsTriggerProps, Trigger } from './Trigger';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 export type TabsListProps = {
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** Only `Tabs.Trigger` components are allowed as children of `Tabs.List` */
   children: ChildrenOfType<'Trigger', TabsTriggerProps>;
 } & RadixTabs.TabsListProps &
   RefAttributes<HTMLDivElement>;

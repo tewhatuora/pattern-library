@@ -9,9 +9,13 @@ import { Text } from '../Text/Text';
 import * as styles from './Tabs.css';
 
 export type TabsTriggerProps = {
+  /** Trigger label/content */
   children: string;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** Optional icon to display on the Trigger */
   icon?: IconType;
+  /** Icon position relative to the Trigger label */
   iconPosition?: 'left' | 'right';
 } & RadixTabs.TabsTriggerProps &
   RefAttributes<HTMLButtonElement>;
