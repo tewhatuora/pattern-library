@@ -19,19 +19,41 @@ export default {
       defaultValue: 'Subheading',
     },
     headingLevel: {
-      defaultValue: '1',
+      control: {
+        type: 'number',
+      },
     },
     headingAs: {
       defaultValue: 'h1',
     },
-    primaryButtonLabel: {
-      defaultValue: 'Primary',
+    primaryButton: {
+      defaultValue: {
+        label: 'Primary',
+        as: 'button',
+        href: undefined,
+        onClick: () => {
+          alert('Primary button clicked');
+        },
+      },
+      control: {
+        type: 'object',
+      },
     },
-    secondaryButtonLabel: {
-      defaultValue: 'Secondary',
+    secondaryButton: {
+      defaultValue: {
+        label: 'Secondary',
+        as: 'button',
+        href: undefined,
+        onClick: () => {
+          alert('Secondary button clicked');
+        },
+      },
+      control: {
+        type: 'object',
+      },
     },
     src: {
-      defaultValue: 'https://via.placeholder.com/600x400/404040/ffffff.png',
+      defaultValue: 'https://placehold.jp/404040/ffffff/500x500.png?text=ImageBlock',
     },
     shape: {
       defaultValue: 'square',

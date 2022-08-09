@@ -1,4 +1,4 @@
-import { PropsWithChildren, useContext, useMemo } from 'react';
+import { ElementType, PropsWithChildren, useContext, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -48,6 +48,20 @@ const innerColumnLengths: Record<styles.WidthVariant, ColumnLength> = {
   third: 12,
 };
 
+type ImageBlockButton = {
+  /** Label for the button */
+  label: string;
+  /** Element type to render the button as */
+  as: ElementType<'button' | 'a'>;
+  /** Function to call when the button is clicked */
+  onClick?: () => void;
+} & AsLink;
+
+type AsLink = {
+  /* URL/path for the button if it's rendered as an `a` */
+  href: string;
+};
+
 export type ImageBlockProps = {
   /** Alternative text for the image */
   alt: string;
@@ -59,15 +73,11 @@ export type ImageBlockProps = {
   width: styles.WidthVariant;
   /** Image position relative to content */
   imagePosition: styles.ImagePositionVariant;
-  /** Label for the primary button */
-  primaryButtonLabel: string;
+  /** Primary button */
+  primaryButton?: ImageBlockButton;
   /** Label for the secondary button */
-  secondaryButtonLabel: string;
-  /** A function to handling pressing the primary button */
-  onPressPrimary: () => void;
-  /** A function to handling pressing the secondary button */
-  onPressSecondary: () => void;
-} & Omit<ContentProps, 'className' | 'headingLevel'>;
+  secondaryButton?: ImageBlockButton;
+} & Omit<ContentProps, 'className' | 'variant'>;
 
 const WithinParentColumn = ({ children }: PropsWithChildren<any>) => <Stack space="medium">{children}</Stack>;
 const Standalone = ({
@@ -90,16 +100,15 @@ export const ImageBlock = ({
   width = 'full',
   imagePosition = 'after',
   heading,
+  headingLevel,
   headingAs,
   subheading,
-  primaryButtonLabel,
-  secondaryButtonLabel,
-  onPressPrimary,
-  onPressSecondary,
+  primaryButton,
+  secondaryButton,
   children,
 }: PropsWithChildren<ImageBlockProps>) => {
   const parentColumn = useContext(ParentColumnContext);
-  const headingLevel = useMemo(() => (width === 'full' ? '1' : '2'), [width]);
+  const contentHeadingLevel = useMemo(() => headingLevel || (width === 'full' ? '1' : '2'), [headingLevel, width]);
 
   const Wrapper = parentColumn?.columns === MAX_COLS ? Standalone : WithinParentColumn;
 
@@ -111,20 +120,36 @@ export const ImageBlock = ({
             className={styles.content}
             heading={heading}
             headingAs={headingAs}
-            headingLevel={headingLevel}
+            headingLevel={contentHeadingLevel}
             subheading={subheading}
             variant="light"
           >
             <Stack space="medium">
               {children}
-              <Stack className={styles.buttons[width]} space="medium">
-                <Button variant="primary" onPress={onPressPrimary}>
-                  {primaryButtonLabel}
-                </Button>
-                <Button variant="secondary" onPress={onPressSecondary}>
-                  {secondaryButtonLabel}
-                </Button>
-              </Stack>
+              {(!!primaryButton || !!secondaryButton) && (
+                <Stack className={styles.buttons[width]} space="medium">
+                  {!!primaryButton && (
+                    <Button
+                      as={primaryButton.as}
+                      href={primaryButton.href}
+                      variant="primary"
+                      onPress={primaryButton.onClick}
+                    >
+                      {primaryButton.label}
+                    </Button>
+                  )}
+                  {!!secondaryButton && (
+                    <Button
+                      as={secondaryButton.as}
+                      href={secondaryButton.href}
+                      variant="secondary"
+                      onPress={secondaryButton.onClick}
+                    >
+                      {secondaryButton.label}
+                    </Button>
+                  )}
+                </Stack>
+              )}
             </Stack>
           </Content>
         </Box>
