@@ -19,6 +19,7 @@ import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
 import { Stack } from '../Stack/Stack';
 import { Text } from '../Text/Text';
+import { Container } from '../Container/Container';
 
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
@@ -155,73 +156,70 @@ export const Footer = ({
       className={clsx(styles.footer, className)}
       color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
     >
-      {!showNavs && hiddenChildrenForWidthCalculations}
+      <Container>
+        {!showNavs && hiddenChildrenForWidthCalculations}
 
-      <div hidden={!showNavs}>
-        <Stack space="xxlarge">
-          {/* First row */}
-          <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween">
-            <Box className={styles.govtLogoWrapper}>
-              <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
-            </Box>
-            <Box className={styles.extraLogosWrapper}>
-              {/* Allowed children: logos or images of some sort */}
-              {extraLogos?.map((logo, index) => {
-                assert(
-                  isValidElement(logo),
-                  `A logo passed to Footer through \`extraLogos\` is not a valid element. Logo: ${logo}`,
-                );
-                // eslint-disable-next-line react/no-array-index-key
-                return cloneElement(logo, { key: `footer-extra-logo-${index}` });
-              })}
-            </Box>
-          </Box>
-
-          {/* Second row */}
-          {numChildren > 0 && (
-            <Box className={styles.secondRow}>
-              <Box
-                className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
-                style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
-              >
-                {Children.map(children, (child) => (
-                  // Div keeps MenuItems contained because they return 2 elements, not one
-                  <div>
-                    <AllowedChildren
-                      errorMessage="Only `Navigation.MenuList` components are allowed as children of `Footer`."
-                      types={[Navigation.MenuList]}
-                    >
-                      {child}
-                    </AllowedChildren>
-                  </div>
-                ))}
+        <div hidden={!showNavs}>
+          <Stack space="xxlarge">
+            {/* First row */}
+            <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween">
+              <Box className={styles.govtLogoWrapper}>
+                <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
               </Box>
-              {!!socialLinks && <ShieldedSite />}
+              <Box className={styles.extraLogosWrapper}>
+                {/* Allowed children: logos or images of some sort */}
+                {extraLogos?.map((logo, index) => {
+                  assert(
+                    isValidElement(logo),
+                    `A logo passed to Footer through \`extraLogos\` is not a valid element. Logo: ${logo}`,
+                  );
+                  // eslint-disable-next-line react/no-array-index-key
+                  return cloneElement(logo, { key: `footer-extra-logo-${index}` });
+                })}
+              </Box>
             </Box>
-          )}
 
-          {/* Third row */}
-          <Stack space="medium">
-            <Divider
-              variant={
-                // Divider currently has light and dark swapped
-                (variant && (variant === 'light' ? 'dark' : 'light')) ?? 'dark'
-              }
-            />
-            <Box className={styles.socialAndImprintWrapper}>
-              {/*
-               * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
-               * on the right even when there are no imprintItemsElements.
-               * It should also be okay for accessibility because the order of viewing the
-               * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
-               * really matter.
-               */}
-              {socialLinks || <ShieldedSite />}
-              {imprintItemsElements}
-            </Box>
+            {/* Second row */}
+            {numChildren > 0 && (
+              <Box className={styles.secondRow}>
+                <Box
+                  className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
+                  style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
+                >
+                  {Children.map(children, (child) => (
+                    // Div keeps MenuItems contained because they return 2 elements, not one
+                    <div>
+                      <AllowedChildren
+                        errorMessage="Only `Navigation.MenuList` components are allowed as children of `Footer`."
+                        types={[Navigation.MenuList]}
+                      >
+                        {child}
+                      </AllowedChildren>
+                    </div>
+                  ))}
+                </Box>
+                {!!socialLinks && <ShieldedSite />}
+              </Box>
+            )}
+
+            {/* Third row */}
+            <Stack space="medium">
+              <Divider variant={variant ?? 'light'} />
+              <Box className={styles.socialAndImprintWrapper}>
+                {/*
+                 * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
+                 * on the right even when there are no imprintItemsElements.
+                 * It should also be okay for accessibility because the order of viewing the
+                 * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
+                 * really matter.
+                 */}
+                {socialLinks || <ShieldedSite />}
+                {imprintItemsElements}
+              </Box>
+            </Stack>
           </Stack>
-        </Stack>
-      </div>
+        </div>
+      </Container>
     </Box>
   );
 };
