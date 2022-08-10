@@ -1,24 +1,10 @@
 import { Meta } from '@storybook/addon-docs';
-import { ThemeProvider } from '../packages/lib/src';
-// Themes
-import neutral, { neutralThemeTokens } from '../packages/lib/src/themes/neutral';
+import sbParameters from '../.storybook/parameters';
 import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages/lib/src/components';
 
 <Meta
   title="Overview/Introduction"
-  parameters ={{
-    themes: {
-      default: 'Neutral',
-      list: [
-        {
-          name: 'Neutral',
-          class: neutral,
-          color: neutralThemeTokens.color.primary100,
-        },
-      ],
-      Decorator: (props) => <ThemeProvider theme={props.themeClasses}>{props.children}</ThemeProvider>,
-    },
-  }}
+  parameters={sbParameters}
 />
 
 

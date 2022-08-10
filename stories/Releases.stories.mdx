@@ -4,27 +4,12 @@ import Img2 from './assets/1.1/2.png';
 import Img3 from './assets/1.1/3.png';
 import Img4 from './assets/1.1/4.png';
 import Img5 from './assets/1.1/5.png';
-
-import { ThemeProvider } from '../packages/lib/src';
-// Themes
-import neutral, { neutralThemeTokens } from '../packages/lib/src/themes/neutral';
+import sbParameters from '../.storybook/parameters';
 import { Heading, Text, Stack, Row, Column } from '../packages/lib/src/components';
 
 <Meta
   title="Overview/Releases"
-  parameters ={{
-    themes: {
-      default: 'Neutral',
-      list: [
-        {
-          name: 'Neutral',
-          class: neutral,
-          color: neutralThemeTokens.color.primary100,
-        },
-      ],
-      Decorator: (props) => <ThemeProvider theme={props.themeClasses}>{props.children}</ThemeProvider>,
-    },
-  }}
+  parameters={sbParameters}
 />
 
 <Stack space="medium">
