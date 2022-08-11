@@ -27,7 +27,7 @@ export const Root = ({
   type,
   noMarkers = false,
   dividers = false,
-  variant,
+  variant = 'light',
   className,
   children,
 }: PropsWithChildren<ListRootProps>) => {
@@ -45,7 +45,7 @@ export const Root = ({
     {
       className: clsx(styles.list, { [styles.noMarkers]: noMarkers }, className),
       'data-dividers': dividers,
-      'data - variant': variant, // Required to handle vertical padding of nested lists
+      'data-variant': variant, // Required to handle vertical padding of nested lists
       role: 'list', // Fixes <ul> in Safari when list-style is set to 'none'. See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns
     },
     <AllowedChildren
