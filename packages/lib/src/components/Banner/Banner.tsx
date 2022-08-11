@@ -45,22 +45,20 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
   const handleCloseBanner = useCallback(() => {
     setIsClosed(true);
 
-    if (typeof onClose === 'function') {
-      onClose();
-    }
+    onClose?.();
   }, [onClose, setIsClosed]);
+
+  if (isClosed) {
+    return null;
+  }
 
   return (
     <Box
       as="div"
-      className={
-        isClosed
-          ? styles.hidden
-          : styles.variants({
-              variant,
-              theme,
-            })
-      }
+      className={styles.variants({
+        variant,
+        theme,
+      })}
       {...boxProps}
     >
       <Box className={styles.bannerInner}>

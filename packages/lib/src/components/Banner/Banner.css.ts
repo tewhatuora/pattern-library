@@ -130,10 +130,6 @@ export const closeButton = style([
   }),
 ]);
 
-export const hidden = style({
-  display: 'none',
-});
-
 export const text = style([
   responsiveStyle({
     tablet: {

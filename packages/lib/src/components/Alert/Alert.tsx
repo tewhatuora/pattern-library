@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode, useCallback, useState } from 'react';
 
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
@@ -34,6 +34,22 @@ const iconMap: Record<styles.Variant, IconType> = {
  * @constructor
  */
 export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps }: PropsWithChildren<AlertProps>) => {
+  // for closing alert
+  const [isClosed, setIsClosed] = useState(false);
+
+  /**
+   * Handle closing banner
+   */
+  const handleClose = useCallback(() => {
+    setIsClosed(true);
+
+    onClose?.();
+  }, [onClose, setIsClosed]);
+
+  if (isClosed) {
+    return null;
+  }
+
   return (
     <Box
       as="div"
@@ -47,7 +63,7 @@ export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps
         <Icon className={styles.icon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
         <Text size="small">{children}</Text>
       </Box>
-      {!!onClose && <CloseButton className={styles.closeButton} onClose={onClose} />}
+      {!!onClose && <CloseButton className={styles.closeButton} onClose={handleClose} />}
     </Box>
   );
 };
