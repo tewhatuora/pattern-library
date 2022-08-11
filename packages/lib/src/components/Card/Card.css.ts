@@ -6,7 +6,6 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const card = style([
   atoms({
-    backgroundColor: 'neutral0',
     borderRadius: 'standard',
   }),
   {
@@ -24,4 +23,6 @@ export const card = style([
 
 export const variants = styleVariants({
   noShadow: [card, { boxShadow: 'none' }],
+  light: [card, atoms({ backgroundColor: 'neutral0' })],
+  dark: [card, atoms({ backgroundColor: 'primary100' })],
 });
