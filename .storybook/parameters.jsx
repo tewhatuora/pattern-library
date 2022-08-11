@@ -5,19 +5,7 @@ import myCovidRecord, { myCovidRecordThemeTokens } from '../packages/lib/src/the
 
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  backgrounds: {
-    default: 'Light',
-    values: [
-      {
-        name: 'Light',
-        value: neutralThemeTokens.color.primary5,
-      },
-      {
-        name: 'Dark',
-        value: neutralThemeTokens.color.primary100,
-      },
-    ],
-  },
+  backgrounds: { disable: true },
   themes: {
     default: 'Neutral',
     clearable: false,
