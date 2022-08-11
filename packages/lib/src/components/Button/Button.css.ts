@@ -38,7 +38,7 @@ export const variants = recipe({
         gap: vars.space.xsmall.mobile,
       },
       tablet: {
-        height: '6rem',
+        height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
         gap: vars.space.xsmall.tablet,
       },
     }),
