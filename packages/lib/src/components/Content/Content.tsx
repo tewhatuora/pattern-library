@@ -31,7 +31,7 @@ export type ContentProps = {
  * @param props
  */
 export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
-  ({ heading, headingLevel, headingAs, subheading, variant, className, children }, ref) => {
+  ({ heading, headingLevel, headingAs, subheading, variant = 'light', className, children }, ref) => {
     const subheadingLevel = subheadingLevelFor[headingLevel];
 
     const headingElement =

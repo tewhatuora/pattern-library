@@ -28,7 +28,7 @@ export const AccordionContext = createContext({ headingLevel: 3 });
  *
  * @constructor
  */
-export const Root = ({ type, variant = 'dark', headingLevel, children }: AccordionRootProps) => {
+export const Root = ({ type, variant = 'light', headingLevel, children }: AccordionRootProps) => {
   return (
     <RadixAccordion.Root className={styles.root[variant]} collapsible type={type}>
       <AccordionContext.Provider value={{ headingLevel }}>
