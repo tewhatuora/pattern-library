@@ -1,4 +1,5 @@
 import { Content, ContentProps } from './Content';
+import { ContrastWrapper } from '../Storybook/ContrastWrapper';
 import Docs from './Content.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
@@ -18,6 +19,9 @@ export default {
         options: ['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend'],
       },
     },
+    variant: {
+      defaultValue: 'light',
+    },
   },
   parameters: {
     docs: {
@@ -27,7 +31,11 @@ export default {
 };
 
 export const Default = (args: ContentProps) => {
-  return <Content {...args}>Content</Content>;
+  return (
+    <ContrastWrapper variant={args.variant}>
+      <Content {...args}>Content</Content>
+    </ContrastWrapper>
+  );
 };
 Default.args = {
   heading: 'Heading',
