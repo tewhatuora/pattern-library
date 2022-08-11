@@ -31,7 +31,7 @@ export const root = styleVariants({
     base,
     {
       vars: {
-        [colorVar]: vars.color.primary0,
+        [colorVar]: vars.color.primary100,
         [borderColorVar]: vars.color.primary0,
       },
     },
@@ -40,7 +40,7 @@ export const root = styleVariants({
     base,
     {
       vars: {
-        [colorVar]: vars.color.primary100,
+        [colorVar]: vars.color.primary0,
         [borderColorVar]: vars.color.primary25,
       },
     },
