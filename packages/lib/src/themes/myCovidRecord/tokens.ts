@@ -1,13 +1,13 @@
 /**
  * Do not edit directly
- * Generated on Thu, 11 Aug 2022 04:37:47 GMT
+ * Generated on Thu, 11 Aug 2022 04:37:45 GMT
  */
 
 import { Tokens } from '../tokenType';
 
 export const tokens: Tokens = {
-  name: 'neutral',
-  displayName: 'Neutral',
+  name: 'myCovidRecord',
+  displayName: 'My Covid Record',
   typography: {
     fontFamily: 'Fira Sans',
     fontWeight: {
@@ -49,11 +49,11 @@ export const tokens: Tokens = {
       },
       medium: {
         tablet: { fontSize: '2rem', lineHeight: '3.2rem' },
-        mobile: { fontSize: '1.8rem', lineHeight: '2.88rem' },
+        mobile: { fontSize: '1.6rem', lineHeight: '2.56rem' },
       },
       small: {
         tablet: { fontSize: '1.8rem', lineHeight: '2.88rem' },
-        mobile: { fontSize: '1.6rem', lineHeight: '2.56rem' },
+        mobile: { fontSize: '1.4rem', lineHeight: '2.24rem' },
       },
       xsmall: {
         tablet: { fontSize: '1.6rem', lineHeight: '2.56rem' },
@@ -73,35 +73,35 @@ export const tokens: Tokens = {
   border: {
     radius: {
       standard: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
-      button: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
+      button: { topLeft: '0rem', topRight: '10rem', bottomLeft: '10rem', bottomRight: '10rem' },
       inputs: { topLeft: '0.8rem', topRight: '0.8rem', bottomLeft: '0.8rem', bottomRight: '0.8rem' },
       tags: { topLeft: '10rem', topRight: '10rem', bottomLeft: '10rem', bottomRight: '10rem' },
     },
     width: { small: '0.1rem', medium: '0.2rem', large: '0.3rem', xlarge: '0.4rem' },
   },
-  shadows: { primary: '0rem 0.4rem 3rem 0rem #4040401a' },
+  shadows: { primary: '0rem 0.4rem 3rem 0rem #002e6e1a' },
   color: {
     primary0: '#ffffff',
-    primary5: '#f5f5f5',
-    primary25: '#cfcfcf',
-    primary50: '#9f9f9f',
-    primary75: '#707070',
-    primary100: '#404040',
-    primary110: '#1c1c1c',
+    primary5: '#eef1f6',
+    primary25: '#bcc8d9',
+    primary50: '#7e94b5',
+    primary75: '#3f6192',
+    primary100: '#002e6e',
+    primary110: '#001e46',
     secondary0: '#ffffff',
-    secondary5: '#f9f9f9',
-    secondary25: '#dfdfdf',
-    secondary50: '#bfbfbf',
-    secondary75: '#a0a0a0',
-    secondary100: '#808080',
-    secondary110: '#464646',
+    secondary5: '#eef4fa',
+    secondary25: '#bcd9ed',
+    secondary50: '#7eb6dc',
+    secondary75: '#3f93cc',
+    secondary100: '#0071bc',
+    secondary110: '#004878',
     tertiary0: '#ffffff',
-    tertiary5: '#f5f5f5',
-    tertiary25: '#cfcfcf',
-    tertiary50: '#9f9f9f',
-    tertiary75: '#707070',
-    tertiary100: '#404040',
-    tertiary110: '#131313',
+    tertiary5: '#eef1f6',
+    tertiary25: '#bcc8d9',
+    tertiary50: '#7e94b5',
+    tertiary75: '#3f6192',
+    tertiary100: '#002e6e',
+    tertiary110: '#001e46',
     positive0: '#ffffff',
     positive5: '#f0f5f6',
     positive25: '#c4ddd9',
