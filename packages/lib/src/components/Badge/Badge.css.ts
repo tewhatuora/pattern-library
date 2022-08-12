@@ -48,7 +48,7 @@ export const variants = recipe({
       display: 'inlineFlex',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 'button',
+      borderRadius: 'tags',
     }),
     responsiveStyle({
       mobile: {
