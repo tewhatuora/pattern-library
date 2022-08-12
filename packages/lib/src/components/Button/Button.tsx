@@ -38,7 +38,7 @@ export type ButtonType<Props> = {
   onPress?: (e: any) => void;
 } & Props &
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
-  Pick<BoxProps, 'width' | 'justifyContent'> &
+  Pick<BoxProps, 'justifyContent'> &
   AsLink;
 
 type AsLink = {
