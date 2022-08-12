@@ -48,12 +48,12 @@ export default {
 export const Uncontrolled = (args: TabsRootProps) => (
   <Tabs.Root {...args}>
     <Tabs.List>
-      <Tabs.Trigger value="tab-1">Tab 1</Tabs.Trigger>
+      <Tabs.Trigger value="tab-1">Lorem ipsum</Tabs.Trigger>
       <Tabs.Trigger icon="tick" iconPosition="left" value="tab-2">
-        Tab 2
+        Dolor sit
       </Tabs.Trigger>
       <Tabs.Trigger icon="document" iconPosition="right" value="tab-3">
-        Tab 3
+        Amet
       </Tabs.Trigger>
     </Tabs.List>
 

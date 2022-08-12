@@ -5,11 +5,18 @@ import { vars } from '../../themes/vars.css';
 
 const barHeightVar = createVar();
 
+export const container = style({
+  overflowX: 'auto',
+  overflowY: 'hidden',
+});
+
 export const list = style({
-  borderBottom: `${vars.borderWidth.medium} solid ${vars.color.primary25}`,
-  padding: 0,
   display: 'flex',
   alignItems: 'flex-end',
+  width: 'max-content',
+  minWidth: '100%',
+  padding: 0,
+  borderBottom: `${vars.borderWidth.medium} solid ${vars.color.primary25}`,
 });
 
 export const button = style({
@@ -18,6 +25,7 @@ export const button = style({
   border: 'none',
   padding: '0.6rem 1.6rem',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
 
   vars: {
     [barHeightVar]: '0',

@@ -20,13 +20,15 @@ export type TabsListProps = {
 
 export const List = ({ className, children, ...rest }: TabsListProps) => {
   return (
-    <RadixTabs.List className={clsx(styles.list, className)} {...rest}>
-      <AllowedChildren
-        errorMessage="Only `Tabs.Trigger` components are allowed as children of `Tabs.List`."
-        types={[Trigger]}
-      >
-        {children}
-      </AllowedChildren>
-    </RadixTabs.List>
+    <div className={clsx(styles.container, className)}>
+      <RadixTabs.List className={styles.list} {...rest}>
+        <AllowedChildren
+          errorMessage="Only `Tabs.Trigger` components are allowed as children of `Tabs.List`."
+          types={[Trigger]}
+        >
+          {children}
+        </AllowedChildren>
+      </RadixTabs.List>
+    </div>
   );
 };
