@@ -1,5 +1,6 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { ColumnLength } from './Column';
 
@@ -71,8 +72,9 @@ const getOffsetStyle = (gutter: Space): StyleRule =>
   responsiveStyle({
     mobile: {},
     tablet: {
-      marginLeft: `calc(-1 * ${vars.space[gutter].tablet})`,
-      marginRight: `calc(-1 * ${vars.space[gutter].tablet})`,
+      position: 'relative',
+      left: `calc(-1 * ${vars.space[gutter].tablet})`,
+      width: calc.add('100%', calc.multiply(vars.space[gutter].tablet, 2)),
     },
   });
 

@@ -1,8 +1,6 @@
 import { PropsWithChildren, createContext, useContext } from 'react';
 import clsx from 'clsx';
 
-import assert from 'assert';
-
 import { Box, BoxProps } from '../Box/Box';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
@@ -60,13 +58,6 @@ export const Column = ({
   const sizesForViewport = { wide, desktop, tablet, mobile };
   const cols = (breakpoint && sizesForViewport?.[breakpoint] ? sizesForViewport?.[breakpoint] : columns) || columns;
   const leftoverColumns = (parentColumn.columns - cols) / 2;
-
-  if (center) {
-    assert(
-      leftoverColumns % 2 === 0,
-      `Cannot center a ${cols} column component within an ${parentColumn?.columns} column container`,
-    );
-  }
 
   const startPos = (center ? leftoverColumns + 1 : start) as ColumnLength;
   const classNames = columnStyles({ columns: cols, start: startPos });

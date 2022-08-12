@@ -21,9 +21,9 @@ const rowStyles = ({
   noGutters,
   offset,
   tablet = MAX_COLS,
-  desktop = MAX_COLS,
-  wide = MAX_COLS,
-  parentCols = MAX_COLS,
+  desktop,
+  wide,
+  parentCols,
   className,
 }: RowProps<{ parentCols?: ColumnLength }>) => {
   const dynamicClasses = {

@@ -4,7 +4,6 @@ import { Box, BoxProps } from '../Box/Box';
 import { ColumnLength, ParentColumnContext } from './Column';
 import { Space } from '../../css/atoms/atoms';
 import rowStyles from '../../utils/rowStyles';
-import { MAX_COLS } from '../../css/grid';
 
 import * as styles from './Row.css';
 
@@ -33,9 +32,9 @@ export const Row = ({
   noGutters,
   offset,
   className,
-  tablet = MAX_COLS,
-  desktop = MAX_COLS,
-  wide = MAX_COLS,
+  tablet,
+  desktop,
+  wide,
   ...boxProps
 }: PropsWithChildren<RowProps<unknown>>) => {
   const parentCols = useContext(ParentColumnContext);
