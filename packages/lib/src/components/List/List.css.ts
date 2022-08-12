@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -10,14 +10,15 @@ import { vars } from '../../themes/vars.css';
  * nested lists. The variable would be overwritten by the nested list and cause
  * issues with dividers.
  */
-const listPadding = 40; // Default for Chrome and Firefox
+const listPadding = 40; //vars.space.large.tablet; // Default for Chrome and Firefox
 
 export const list = style({
   paddingInlineStart: listPadding, // Override user agent styles
 
   // Same as dividers
-  paddingTop: vars.space.small.mobile,
-  paddingBottom: vars.space.small.mobile,
+  paddingTop: '0',
+  paddingBottom: '0',
+  margin: '0',
 
   selectors: {
     /**
@@ -36,6 +37,11 @@ export const list = style({
       color: vars.color.primary0,
     },
   },
+});
+
+globalStyle(`${list} ${list}`, {
+  paddingTop: vars.space.small.mobile,
+  paddingBottom: vars.space.small.mobile,
 });
 
 export const noMarkers = style({

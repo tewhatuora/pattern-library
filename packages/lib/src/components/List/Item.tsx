@@ -8,6 +8,8 @@ import { Box } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
+import { useText } from '../../hooks/typography';
+
 import * as styles from './List.css';
 
 export type ListItemProps = {
@@ -20,8 +22,10 @@ export type ListItemProps = {
 } & HTMLAttributes<HTMLLIElement>;
 
 export const Item = ({ icon, iconPosition = 'left', heading, children, ...rest }: PropsWithChildren<ListItemProps>) => {
+  const textStyles = useText({ weight: 'bullet', size: 'medium' });
+
   return (
-    <li {...rest}>
+    <li {...rest} className={clsx(textStyles, rest.className)}>
       <Box className={clsx(styles.itemContent, styles.itemIconPosition[iconPosition])}>
         {icon && <Icon className={styles.itemIcon} icon={icon} variant="functionalIcons" />}
         <Box>
