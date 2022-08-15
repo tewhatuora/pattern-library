@@ -13,6 +13,8 @@ export type ToggleSwitchProps = {
   id: string;
   /** Label for the toggle switch */
   label?: string;
+  /** Disabled state */
+  disabled?: boolean;
   /** Set the switch to 'on' by default */
   defaultChecked?: boolean;
   /** Heading to show above the label */
@@ -39,6 +41,7 @@ export const ToggleSwitch = ({
   defaultChecked,
   heading,
   onChange,
+  disabled,
   name,
   ...boxProps
 }: ToggleSwitchProps) => {
@@ -57,6 +60,7 @@ export const ToggleSwitch = ({
       <SwitchPrimitive.Root
         className={styles.switchRoot}
         defaultChecked={defaultChecked}
+        disabled={disabled}
         id={id}
         name={name}
         onCheckedChange={onChange}

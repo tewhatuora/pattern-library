@@ -15,6 +15,11 @@ export default {
     heading: {
       defaultValue: 'Heading',
     },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
     onChange: {
       control: false,
     },

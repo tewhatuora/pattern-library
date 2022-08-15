@@ -22,18 +22,29 @@ export const button = style([
 
     selectors: {
       '&:first-child': {
-        borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
-        borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
+        borderTopLeftRadius: vars.borderRadius.topLeft.standard,
+        borderBottomLeftRadius: vars.borderRadius.bottomLeft.standard,
       },
       '&:last-child': {
-        borderTopRightRadius: vars.borderRadius.topRight.inputs,
-        borderBottomRightRadius: vars.borderRadius.bottomRight.inputs,
+        borderTopRightRadius: vars.borderRadius.topRight.standard,
+        borderBottomRightRadius: vars.borderRadius.bottomRight.standard,
       },
       '&:hover': {
         borderColor: vars.color.primary75,
       },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
       '&:focus': { borderColor: vars.color.secondary50, borderWidth: '.4rem' },
+      '&:disabled': {
+        cursor: 'not-allowed',
+        backgroundColor: vars.color.primary0,
+        color: vars.color.primary25,
+        borderColor: vars.color.primary25,
+      },
+      '&[data-state=on]:disabled': {
+        backgroundColor: vars.color.tertiary25,
+        color: vars.color.primary0,
+        borderColor: vars.color.tertiary25,
+      },
     },
   },
   responsiveStyle({

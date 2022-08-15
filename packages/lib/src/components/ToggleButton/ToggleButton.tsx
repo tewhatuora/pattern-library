@@ -16,6 +16,10 @@ export type ToggleButtonProps = {
   valueLeft: string;
   /** Value to assign when right hand button is selected */
   valueRight: string;
+  /** Optional value to be selected by default */
+  defaultValue?: string;
+  /** Disabled state */
+  disabled?: boolean;
   /** Function to call when the button is changed/toggles */
   onChange?: (value: string) => void;
 };
@@ -34,12 +38,21 @@ export const ToggleButton = ({
   labelRight,
   valueLeft,
   valueRight,
+  defaultValue,
   onChange,
+  disabled,
   ...boxProps
 }: ToggleButtonProps) => {
   return (
     <Box as="div" {...boxProps}>
-      <ToggleGroup aria-label="Text alignment" className={styles.group} type="single" onValueChange={onChange}>
+      <ToggleGroup
+        aria-label="Text alignment"
+        className={styles.group}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        type="single"
+        onValueChange={onChange}
+      >
         <ToggleGroupItem aria-label={labelLeft} className={styles.button} value={valueLeft}>
           <Text size="medium" weight="bold">
             {labelLeft}

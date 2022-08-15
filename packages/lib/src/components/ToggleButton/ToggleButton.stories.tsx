@@ -19,6 +19,16 @@ export default {
     valueRight: {
       defaultValue: 'Right ToggleButton',
     },
+    defaultValue: {
+      control: {
+        type: 'text',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
     onChange: {
       control: false,
     },

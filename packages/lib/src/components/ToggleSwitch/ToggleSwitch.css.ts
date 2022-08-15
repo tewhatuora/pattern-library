@@ -14,8 +14,8 @@ export const label = style([
   atoms({
     display: 'flex',
     flexDirection: 'column',
-    flexShrink: '0',
-    flexGrow: '1',
+    flexShrink: 0,
+    flexGrow: 1,
     alignItems: 'flexStart',
   }),
 ]);
@@ -29,7 +29,17 @@ export const switchRoot = style({
   position: 'relative',
   WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
   selectors: {
-    '&[data-state=checked]': { backgroundColor: vars.color.neutral100 },
+    '&[data-state=checked]': {
+      backgroundColor: vars.color.neutral100,
+    },
+    '&:disabled': {
+      cursor: 'not-allowed',
+      backgroundColor: vars.color.tertiary25,
+    },
+    '&[data-state=checked]:disabled': {
+      cursor: 'not-allowed',
+      backgroundColor: vars.color.tertiary50,
+    },
   },
 });
 
