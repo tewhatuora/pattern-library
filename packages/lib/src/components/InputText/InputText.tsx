@@ -78,6 +78,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
+          required={required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}

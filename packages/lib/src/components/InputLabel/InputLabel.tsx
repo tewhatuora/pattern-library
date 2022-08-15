@@ -30,6 +30,8 @@ export type InputLabelProps = {
   error?: boolean;
   /** Disabled state */
   disabled?: boolean;
+  /** Show '*' if the field is required */
+  required?: boolean;
   /** Accessibility attributes for the label */
   labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
   /** URL/path for `tertiaryLabel`, if `tertiaryLabelAs` = `a` */
@@ -61,6 +63,7 @@ export const InputLabel = ({
   href,
   error = false,
   disabled,
+  required,
   labelProps,
 }: InputLabelProps) => {
   const labelColor = error && !disabled ? 'error100' : 'primary100';
@@ -69,7 +72,7 @@ export const InputLabel = ({
     <Box display="flex" justifyContent="spaceBetween">
       <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
         <Text color={labelColor} weight="bold">
-          {label}
+          {label} {!!required && '*'}
         </Text>
         <Text color={labelColor} size="small">
           {subheading}

@@ -107,21 +107,20 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
 
     return (
       <div>
-        {!!label && (
-          <InputLabel
-            error={error || !!errorMessage}
-            href={href}
-            htmlFor={id}
-            label={label}
-            labelProps={labelProps}
-            subheading={subheading}
-            tertiaryLabel={tertiaryLabel}
-            tertiaryLabelAs={tertiaryLabelAs}
-            tertiaryLabelIcon={tertiaryLabelIcon}
-            tertiaryLabelIconPosition={tertiaryLabelIconPosition}
-            onTertiaryLabelClick={onTertiaryLabelClick}
-          />
-        )}
+        <InputLabel
+          error={error || !!errorMessage}
+          href={href}
+          htmlFor={id}
+          label={label}
+          labelProps={labelProps}
+          required={required}
+          subheading={subheading}
+          tertiaryLabel={tertiaryLabel}
+          tertiaryLabelAs={tertiaryLabelAs}
+          tertiaryLabelIcon={tertiaryLabelIcon}
+          tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+          onTertiaryLabelClick={onTertiaryLabelClick}
+        />
         <div className={fieldStyles.field}>
           <select
             {...fieldProps}

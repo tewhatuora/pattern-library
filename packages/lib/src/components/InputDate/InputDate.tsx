@@ -105,6 +105,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
+          required={required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}

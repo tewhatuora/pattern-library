@@ -36,6 +36,11 @@ export default {
         type: 'boolean',
       },
     },
+    required: {
+      control: {
+        type: 'boolean',
+      },
+    },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
       control: { type: 'text' },

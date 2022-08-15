@@ -33,6 +33,11 @@ export default {
       },
       defaultValue: 'left',
     },
+    required: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   parameters: {
     controls: {
