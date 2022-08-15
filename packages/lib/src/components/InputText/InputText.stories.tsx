@@ -82,6 +82,11 @@ export default {
       },
       defaultValue: 'left',
     },
+    type: {
+      control: {
+        type: 'text',
+      },
+    },
   },
   parameters: {
     controls: {

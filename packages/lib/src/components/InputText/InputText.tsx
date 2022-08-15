@@ -1,5 +1,5 @@
-import { ForwardedRef, RefObject, forwardRef } from 'react';
-import { useTextField } from '@react-aria/textfield';
+import { ForwardedRef, forwardRef } from 'react';
+import { useField } from '@react-aria/label';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputField, InputFieldProps } from '../InputField/InputField';
@@ -52,22 +52,19 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const fieldType = multiline ? 'text' : type;
-    const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
-      {
-        id,
-        name,
-        label,
-        placeholder,
-        value,
-        description: helperText,
-        defaultValue,
-        errorMessage,
-        type: fieldType,
-        'aria-labelledby': rest['aria-labelledby'],
-        'aria-describedby': rest['aria-describedby'],
-      },
-      ref as RefObject<HTMLInputElement>,
-    );
+    const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
+      id,
+      name,
+      label,
+      placeholder,
+      value,
+      description: helperText,
+      defaultValue,
+      errorMessage,
+      type: fieldType,
+      'aria-labelledby': rest['aria-labelledby'],
+      'aria-describedby': rest['aria-describedby'],
+    });
 
     return (
       <Box flexGrow={1}>
@@ -88,7 +85,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         />
         <InputField
           {...rest}
-          {...inputProps}
+          {...fieldProps}
           clearable={clearable}
           defaultValue={defaultValue}
           disabled={disabled}

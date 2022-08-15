@@ -64,7 +64,7 @@ export const inputBase = style([
       '&:focus, &:focus-within': {
         color: vars.color.primary100,
         borderColor: vars.color.caution100,
-        outline: `${vars.borderWidth.small} solid ${vars.color.caution100}`,
+        boxShadow: `0 0 0 0.1rem ${vars.color.caution100}`, //`${vars.borderWidth.small} solid ${vars.color.caution100}`,
       },
       '&:disabled': {
         color: vars.color.secondary50,
@@ -77,7 +77,7 @@ export const inputBase = style([
       },
       '&[aria-invalid="true"]:not([disabled])': {
         borderColor: vars.color.error100,
-        outline: `${vars.borderWidth.small} solid ${vars.color.error100}`,
+        boxShadow: `0 0 0 0.1rem ${vars.color.error100}`, //`${vars.borderWidth.small} solid ${vars.color.error100}`,
       },
     },
   },
