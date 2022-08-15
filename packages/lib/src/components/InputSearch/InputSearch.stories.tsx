@@ -51,3 +51,17 @@ Refs.argTypes = {
     defaultValue: 'Focused by default using forwardRef',
   },
 };
+
+/**
+ * Example with a form wrapping the
+ * component to handle `onSubmit`
+ * @param args
+ * @constructor
+ */
+export const SearchFormExample = (args: InputSearchProps) => {
+  return (
+    <form action="/" method="GET" onSubmit={() => alert('Search submitted')}>
+      <InputSearch {...args} />
+    </form>
+  );
+};
