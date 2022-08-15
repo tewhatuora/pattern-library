@@ -82,11 +82,13 @@ export const Checkbox = ({
       <Label className={styles.label} htmlFor={id}>
         {heading && (
           <Text size="medium" weight="bold">
-            {heading}
+            {/* Show '*' if field is required and there is a heading, without a label, or both a heading and label */}
+            {heading} {!!required && (!label || (heading && label)) && '*'}
           </Text>
         )}
         <Text size="medium" weight="regular">
-          {label}
+          {/* Show '*' if field is required and there is no heading */}
+          {label} {!!required && !heading && '*'}
         </Text>
       </Label>
     </Box>

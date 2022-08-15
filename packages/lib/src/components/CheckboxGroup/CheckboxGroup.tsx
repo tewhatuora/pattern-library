@@ -1,5 +1,8 @@
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Checkbox, CheckboxProps } from '../Checkbox/Checkbox';
+import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
+import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
+
 import { ChildrenOfType } from '../../types/index';
 import { Box } from '../Box/Box';
 
@@ -10,7 +13,8 @@ export const CheckboxGroupStyles = styles;
 export type CheckboxGroupProps = {
   /** Only `Checkbox` components are allowed as children of `CheckboxGroup` */
   children: ChildrenOfType<'Checkbox', CheckboxProps>;
-};
+} & InputLabelProps &
+  InputMessageProps;
 
 /**
  * CheckboxGroup Component
@@ -23,15 +27,55 @@ export type CheckboxGroupProps = {
  * @constructor
  */
 
-export const CheckboxGroup = ({ children, ...boxProps }: CheckboxGroupProps) => {
+export const CheckboxGroup = ({
+  errorMessage,
+  href,
+  id,
+  label,
+  labelProps,
+  required,
+  subheading,
+  descriptionProps,
+  disabled,
+  errorMessageProps,
+  helperText,
+  tertiaryLabel,
+  tertiaryLabelAs,
+  tertiaryLabelIcon,
+  tertiaryLabelIconPosition,
+  onTertiaryLabelClick,
+  children,
+  ...boxProps
+}: CheckboxGroupProps) => {
   return (
     <Box as="div" className={styles.container} {...boxProps}>
+      <InputLabel
+        error={!!errorMessage}
+        href={href}
+        htmlFor={id}
+        label={label}
+        labelProps={labelProps}
+        required={required}
+        subheading={subheading}
+        tertiaryLabel={tertiaryLabel}
+        tertiaryLabelAs={tertiaryLabelAs}
+        tertiaryLabelIcon={tertiaryLabelIcon}
+        tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+        onTertiaryLabelClick={onTertiaryLabelClick}
+      />
       <AllowedChildren
         errorMessage="Only `Checkbox` components are allowed as children of `CheckboxGroup`"
         types={[Checkbox]}
       >
         {children}
       </AllowedChildren>
+      <InputMessage
+        descriptionProps={descriptionProps}
+        disabled={disabled}
+        errorMessage={errorMessage}
+        errorMessageProps={errorMessageProps}
+        helperText={helperText}
+      />
     </Box>
   );
 };

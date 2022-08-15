@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import icons from '../Icon/icons';
+
 import { Checkbox } from '../Checkbox/Checkbox';
 import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup';
 import DocsPage from '../../../utils/DocsPage';
@@ -10,9 +12,65 @@ export default {
   title: 'Components/CheckBoxGroup',
   component: CheckboxGroup,
   argTypes: {
-    children: {
-      control: false,
+    label: {
+      control: {
+        type: 'text',
+      },
     },
+    helperText: {
+      control: {
+        type: 'text',
+      },
+    },
+    subheading: {
+      control: {
+        type: 'text',
+      },
+    },
+    tertiaryLabel: {
+      control: {
+        type: 'text',
+      },
+    },
+    tertiaryLabelAs: {
+      defaultValue: 'button',
+      control: {
+        type: 'radio',
+        options: ['a', 'button', 'text'],
+      },
+    },
+    href: {
+      if: { arg: 'tertiaryLabelAs', eq: 'a' },
+      control: {
+        type: 'text',
+      },
+    },
+    tertiaryLabelIcon: {
+      options: ['', ...Object.keys(icons)],
+      control: { type: 'select' },
+    },
+    tertiaryLabelIconPosition: {
+      control: {
+        type: 'radio',
+        options: ['left', 'right'],
+      },
+      defaultValue: 'left',
+    },
+    error: {
+      control: { type: 'boolean' },
+    },
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
+    },
+    required: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    onChange: { control: false },
+    children: { control: false },
   },
   parameters: {
     docs: {

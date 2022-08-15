@@ -3,6 +3,8 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 
 import { RadioButton, RadioButtonProps } from './RadioButton';
+import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
+import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 
 import { ChildrenOfType } from '../../types/index';
 
@@ -21,7 +23,8 @@ export type RadioGroupProps = {
   onChange?: (value: string) => void;
   /** Only `RadioButton` components are allowed as children of `RadioGroup` */
   children: ChildrenOfType<'RadioButton', RadioButtonProps>;
-};
+} & InputLabelProps &
+  InputMessageProps;
 
 /**
  * RadioGroup Component
@@ -33,8 +36,44 @@ export type RadioGroupProps = {
  * @param props
  * @constructor
  */
-export const RadioGroup = ({ name, value, required, disabled, error, onChange, children }: RadioGroupProps) => (
+export const RadioGroup = ({
+  name,
+  value,
+  required,
+  disabled,
+  error,
+  onChange,
+  errorMessage,
+  href,
+  id,
+  label,
+  labelProps,
+  subheading,
+  descriptionProps,
+  errorMessageProps,
+  helperText,
+  tertiaryLabel,
+  tertiaryLabelAs,
+  tertiaryLabelIcon,
+  tertiaryLabelIconPosition,
+  onTertiaryLabelClick,
+  children,
+}: RadioGroupProps) => (
   <RadioGroupPrimitive.Root name={name} required={required} onValueChange={onChange}>
+    <InputLabel
+      error={!!errorMessage}
+      href={href}
+      htmlFor={id}
+      label={label}
+      labelProps={labelProps}
+      required={required}
+      subheading={subheading}
+      tertiaryLabel={tertiaryLabel}
+      tertiaryLabelAs={tertiaryLabelAs}
+      tertiaryLabelIcon={tertiaryLabelIcon}
+      tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+      onTertiaryLabelClick={onTertiaryLabelClick}
+    />
     <AllowedChildren
       errorMessage="Only `RadioButton` components are allowed as children of `RadioGroup`"
       propsForChild={(child) => ({
@@ -46,6 +85,13 @@ export const RadioGroup = ({ name, value, required, disabled, error, onChange, c
     >
       {children}
     </AllowedChildren>
+    <InputMessage
+      descriptionProps={descriptionProps}
+      disabled={disabled}
+      errorMessage={errorMessage}
+      errorMessageProps={errorMessageProps}
+      helperText={helperText}
+    />
   </RadioGroupPrimitive.Root>
 );
 
