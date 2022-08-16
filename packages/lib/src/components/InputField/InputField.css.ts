@@ -24,11 +24,9 @@ export const fieldSegments = style([
   }),
 ]);
 
-export const fieldSegment = style([
-  atoms({
-    flexGrow: 1,
-  }),
-]);
+export const fieldSegment = style({
+  flex: 1,
+});
 
 export const inputBase = style([
   responsiveStyle({
