@@ -21,11 +21,14 @@ export const variants = recipe({
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
-      borderRadius: 'button',
     }),
     {
       width: '100%',
       maxWidth: '39.6rem',
+      borderTopLeftRadius: vars.borderRadius.topLeft.button,
+      borderTopRightRadius: vars.borderRadius.topRight.button,
+      borderBottomRightRadius: vars.borderRadius.bottomRight.button,
+      borderBottomLeftRadius: vars.borderRadius.bottomLeft.button,
       selectors: {
         '&[disabled]': {
           cursor: 'not-allowed',
@@ -106,39 +109,51 @@ export const variants = recipe({
         },
       ]),
       primary: {
-        color: vars.color.primary0,
-        backgroundColor: vars.color.primary100,
+        color: vars.color.tertiary0,
+        backgroundColor: vars.color.tertiary100,
         ':hover': {
+          color: vars.color.tertiary0,
           backgroundColor: vars.color.tertiary75,
         },
         ':focus': {
+          color: vars.color.tertiary0,
           backgroundColor: vars.color.tertiary75,
           outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
-          backgroundColor: vars.color.primary110,
+          color: vars.color.tertiary0,
+          backgroundColor: vars.color.tertiary110,
           outline: 'none',
         },
         selectors: {
           '&[disabled]': {
+            color: vars.color.tertiary0,
             backgroundColor: vars.color.tertiary25,
           },
         },
       },
       secondary: {
-        color: vars.color.secondary0,
+        color: vars.color.primary0,
         backgroundColor: vars.color.secondary100,
+        borderTopLeftRadius: vars.borderRadius.topRight.button,
+        borderTopRightRadius: vars.borderRadius.topLeft.button,
+        borderBottomRightRadius: vars.borderRadius.bottomLeft.button,
+        borderBottomLeftRadius: vars.borderRadius.bottomRight.button,
         ':hover': {
+          color: vars.color.primary0,
           backgroundColor: vars.color.secondary75,
         },
         ':focus': {
+          color: vars.color.primary0,
           outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
+          color: vars.color.primary0,
           backgroundColor: vars.color.secondary110,
         },
         selectors: {
           '&[disabled]': {
+            color: vars.color.primary0,
             backgroundColor: vars.color.secondary25,
           },
         },
@@ -150,13 +165,16 @@ export const variants = recipe({
         borderColor: vars.color.primary100,
         borderWidth: vars.borderWidth.small,
         ':hover': {
+          color: vars.color.primary100,
           borderColor: vars.color.primary75,
         },
         ':focus': {
+          color: vars.color.primary100,
           borderWidth: '0',
           outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
         },
         ':active': {
+          color: vars.color.primary100,
           borderColor: vars.color.primary110,
         },
         selectors: {
