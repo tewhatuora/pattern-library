@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { Text } from '../Text/Text';
 import { Header, HeaderProps } from './Header';
 import Docs from './Header.docs.mdx';
@@ -54,7 +56,23 @@ const RouterLink = (props) => (
   </a>
 );
 
-export const Default = (args: HeaderProps) => <Header {...args} logoComponent={logoComponent} />;
+export const Default = (args: HeaderProps) => {
+  const [navigationOpen, setNavigationOpen] = useState(args.navigationOpen);
+  const handleToggleNavigation = () => setNavigationOpen(!navigationOpen);
+
+  useEffect(() => {
+    setNavigationOpen(args.navigationOpen);
+  }, [args.navigationOpen]);
+
+  return (
+    <Header
+      {...args}
+      logoComponent={logoComponent}
+      navigationOpen={navigationOpen}
+      onToggleNavigation={handleToggleNavigation}
+    />
+  );
+};
 
 export const CustomLogoLinkComponent = (args: HeaderProps) => (
   <Header {...args} logoComponent={logoComponent} logoLinkComponent={RouterLink} />
