@@ -159,7 +159,7 @@ export const Footer = ({
       <Container>
         {!showNavs && hiddenChildrenForWidthCalculations}
 
-        <div hidden={!showNavs}>
+        <div className={styles.footerInner} hidden={!showNavs}>
           <Stack space="xxlarge">
             {/* First row */}
             <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween">

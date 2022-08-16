@@ -17,12 +17,25 @@ export const footer = style(
       paddingTop: vars.space.xxlarge.mobile,
       paddingBottom: vars.space.xxlarge.mobile,
     },
-    tablet: {
+    desktop: {
       paddingTop: spacing,
       paddingBottom: spacing,
     },
   }),
 );
+
+export const footerInner = style([
+  responsiveStyle({
+    mobile: {
+      paddingRight: vars.space.large.mobile,
+      paddingLeft: vars.space.large.mobile,
+    },
+    desktop: {
+      paddingRight: '0',
+      paddingLeft: '0',
+    },
+  }),
+]);
 
 // ##### First row #####
 
@@ -47,7 +60,7 @@ export const extraLogosWrapper = style([
 export const secondRow = style([
   atoms({
     display: 'flex',
-    flexDirection: { mobile: 'column', tablet: 'row' },
+    flexDirection: { mobile: 'column', desktop: 'row' },
     justifyContent: 'spaceBetween',
   }),
   { gap: vars.space.large.tablet },
@@ -58,11 +71,15 @@ export const childrenWrapper = style([
     display: 'grid',
     width: 'full',
   }),
-  {
-    gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
-    columnGap: spacing,
-    rowGap: vars.space.large.tablet,
-  },
+  responsiveStyle({
+    mobile: {
+      rowGap: vars.space.large.tablet,
+    },
+    desktop: {
+      gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
+      columnGap: spacing,
+    },
+  }),
 ]);
 
 export const lessSpace = style({
@@ -82,12 +99,12 @@ export const tempNavigation = style({ width: 'fit-content' });
 export const socialAndImprintWrapper = style([
   atoms({
     display: 'flex',
-    flexDirection: { mobile: 'columnReverse', tablet: 'rowReverse' },
+    flexDirection: { mobile: 'columnReverse', desktop: 'rowReverse' },
     justifyContent: 'spaceBetween',
   }),
   responsiveStyle({
     mobile: { gap: '4.2rem' },
-    tablet: { gap: 0 },
+    desktop: { gap: 0 },
   }),
 ]);
 
@@ -115,7 +132,7 @@ export const imprintItems = style([
       flexWrap: 'nowrap',
       gap: vars.space.small.tablet,
     },
-    tablet: {
+    desktop: {
       flexDirection: 'row',
       flexWrap: 'wrap',
     },
@@ -130,7 +147,7 @@ export const shieldedSite = style([
       alignSelf: 'flex-start',
       vars: { [shieldedSiteButtonSizeVar]: vars.space.xlarge.mobile },
     },
-    tablet: {
+    desktop: {
       alignSelf: 'flex-end',
       vars: {
         [shieldedSiteButtonSizeVar]: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 2)),
