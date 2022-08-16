@@ -74,6 +74,20 @@ export const Default = (args: HeaderProps) => {
   );
 };
 
-export const CustomLogoLinkComponent = (args: HeaderProps) => (
-  <Header {...args} logoComponent={logoComponent} logoLinkComponent={RouterLink} />
-);
+export const CustomLogoLinkComponent = (args: HeaderProps) => {
+  const [navigationOpen, setNavigationOpen] = useState(args.navigationOpen);
+  const handleToggleNavigation = () => setNavigationOpen(!navigationOpen);
+
+  useEffect(() => {
+    setNavigationOpen(args.navigationOpen);
+  }, [args.navigationOpen]);
+
+  return (
+    <Header
+      {...args}
+      logoComponent={logoComponent}
+      logoLinkComponent={RouterLink}
+      onToggleNavigation={handleToggleNavigation}
+    />
+  );
+};
