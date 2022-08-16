@@ -1,3 +1,4 @@
+import { DocsPage } from '@storybook/addon-docs/blocks';
 import { ThemeProvider } from '../packages/lib/src';
 
 import neutral, { neutralThemeTokens } from '../packages/lib/src/themes/neutral';
@@ -7,6 +8,15 @@ import myHealthAccount, { myHealthAccountThemeTokens } from '../packages/lib/src
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   backgrounds: { disable: true },
+  docs: {
+    source: {
+      type: 'dynamic',
+      excludeDecorators: true,
+    },
+    transformSource: (source) => {
+      return source.replaceAll(/\<ContrastWrapper variant\=\"dark\"\>\n|\n\<\/ContrastWrapper\>/gi, '');
+    }
+  },
   themes: {
     default: 'Neutral',
     clearable: false,
