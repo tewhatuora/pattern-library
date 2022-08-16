@@ -11,6 +11,8 @@ export type TabsRootProps = {
   onValueChange?: (value: string) => void;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
+  /** When automatic, tabs are activated when receiving focus. When manual, tabs are activated when clicked. */
+  activationMode: Pick<RadixTabs.TabsProps, 'activationMode'>;
   /** Only Tabs.List and Tabs.Content components are allowed as children of Tabs.Root. */
   children: ChildrenOfType<'List', TabsListProps> & ChildrenOfType<'Content', TabsContentProps>;
 } & Omit<RadixTabs.TabsProps, 'orientation' | 'dir' | 'asChild'> &
