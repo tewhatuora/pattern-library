@@ -11,7 +11,7 @@ type HeadingDefinition = Vars['headingLevel'];
 type TypographicDefinition = TextDefinition[keyof TextDefinition] | HeadingDefinition[keyof HeadingDefinition];
 
 export const fontFamily = style({
-  fontFamily: vars.fontFamily,
+  fontFamily: `${vars.fontFamily}, Arial, Helvetica, sans-serif`,
 });
 
 export const fontWeight = styleVariants(vars.textWeight, mapToProperty('fontWeight'));
