@@ -1,0 +1,22 @@
+{
+  "platforms": {
+    "web": {
+      "transformGroup": "js",
+      "options": {},
+      "files": [
+        {
+          "format": "typescript/vanilla-extract-tokens",
+          "destination": "tokens.ts"
+        },
+        {
+          "format": "typescript/theme-index",
+          "destination": "index.ts"
+        },
+        {
+          "format": "typescript/vanilla-extract-theme",
+          "destination": "theme.css.ts"
+        }
+      ]
+    }
+  }
+}
