@@ -1,12 +1,9 @@
 import { Meta } from '@storybook/addon-docs';
-import sbParameters from '../.storybook/parameters';
 import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages/lib/src/components';
 
 <Meta
   title="Overview/Introduction"
-  parameters={sbParameters}
 />
-
 
 <Stack space="xxlarge">
   <ImageBlock
@@ -19,7 +16,7 @@ import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages
   >
     <Text as="p">Welcome to Anatomic, the themeable Design System for Te Whatu Ora, Health New Zealand</Text>
   </ImageBlock>
-  <Stack space="medium">
+  <Stack space="medium" color="primary100">
     <Card>
       <Row>
         <Column columns={8} start={2}>
