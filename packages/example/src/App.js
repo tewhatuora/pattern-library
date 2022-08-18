@@ -1,9 +1,10 @@
-import '@mohnz/design-system/styles';
-import { ThemeProvider, neutral, Heading, Text, Button, Badge } from '@mohnz/design-system';
+import '@te-whatu-ora/anatomic/styles';
+import { ThemeProvider, Heading, Text, Button, Badge } from '@te-whatu-ora/anatomic';
+import { neutral } from '@te-whatu-ora/anatomic-themes';
 
 function App() {
   return (
-    <ThemeProvider theme={neutral}>
+    <ThemeProvider theme={neutral.className}>
       <Heading level="1">Heading one</Heading>
       <Text as="p">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut ex exercitationem magni. Aliquam

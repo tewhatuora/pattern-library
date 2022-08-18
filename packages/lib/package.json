@@ -1,7 +1,7 @@
 {
-  "name": "@mohnz/design-system",
+  "name": "@te-whatu-ora/anatomic",
   "version": "0.0.63",
-  "description": "New Zealand Ministry of Health Design system",
+  "description": "Te Whatu Ora - Anatomic Design system",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
@@ -47,6 +47,7 @@
     "@react-aria/label": "^3.3.1",
     "@react-aria/link": "^3.3.1",
     "@react-aria/textfield": "^3.6.1",
+    "@te-whatu-ora/anatomic-themes": "*",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.178",
     "@vanilla-extract/css": "^1.6.3",

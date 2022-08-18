@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace @mohnz/design-system build && yarn",
+    "build": "yarn workspace @te-whatu-ora/anatomic build && yarn",
     "start": "yarn workspace example start",
     "lint": "eslint --cache",
     "lint:fix": "yarn lint --fix",
@@ -17,8 +17,7 @@
     "size": "yarn build:components && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 BASE_URL=/moh-design-system/ && build-storybook --output-dir public",
-    "styles": "node scripts/styles.js"
+    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 BASE_URL=/moh-design-system/ && build-storybook --output-dir public"
   },
   "lint-staged": {
     "*.{js,mdx,ts,tsx}": [
