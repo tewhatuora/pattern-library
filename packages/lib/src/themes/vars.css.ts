@@ -1,7 +1,3 @@
-import { createThemeContract } from '@vanilla-extract/css';
+import { contract } from '@te-whatu-ora/anatomic-themes';
 
-import makeVanillaTheme from './makeVanillaTheme';
-
-import { tokens } from './neutral/tokens';
-
-export const vars = createThemeContract(makeVanillaTheme(tokens));
+export const vars = contract;
