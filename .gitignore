@@ -15,6 +15,11 @@ packages/lib/dist/
 packages/lib/coverage/
 packages/lib/src/components/icons/generated/
 
+packages/themes/dist
+packages/themes/node_modules
+packages/themes/tmp
+packages/themes/.yarn
+
 .yarn/*
 !.yarn/patches
 !.yarn/releases
