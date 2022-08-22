@@ -14,6 +14,8 @@ import { useText } from '../../hooks/typography';
 import * as inputStyles from '../InputField/InputField.css';
 import * as styles from './InputPhone.css';
 
+export const InputPhoneStyles = styles;
+
 export type InputPhoneOnChangeFn = (value: string) => void;
 
 export type InputPhoneProps = Omit<InputLabelProps, 'error'> &

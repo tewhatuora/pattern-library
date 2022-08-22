@@ -10,6 +10,8 @@ import { Box } from '../Box/Box';
 
 import * as styles from '../InputField/InputField.css';
 
+export const InputDateStyles = styles;
+
 /** Value object for InputDate, containing `day`, `month` & `year` */
 export type InputDateValue = {
   /** Day value */
