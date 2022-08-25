@@ -23,7 +23,7 @@
   "files": [
     "dist/**"
   ],
-  "repository": "mirror-xyz/degen",
+  "repository": "",
   "license": "MIT",
   "scripts": {
     "build": "vite build",

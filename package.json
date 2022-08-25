@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace @te-whatu-ora/anatomic build && yarn",
+    "build": "yarn workspace @te-whatu-ora/anatomic-themes build && yarn workspace @te-whatu-ora/anatomic build",
     "start": "yarn workspace example start",
     "lint": "eslint --cache",
     "lint:fix": "yarn lint --fix",

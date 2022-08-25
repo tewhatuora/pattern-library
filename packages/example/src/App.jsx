@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import '@te-whatu-ora/anatomic/styles';
+import '@te-whatu-ora/anatomic-themes/styles';
+
 import { ThemeProvider, Header, Footer, Stack, Badge, Container, Row, Column, Card, Breadcrumbs, AnchorLink, Button, InputDropdown, Heading, Text, Navigation } from '@te-whatu-ora/anatomic';
 import { neutral, myCovidRecord, myHealthAccount } from '@te-whatu-ora/anatomic-themes';
+
 
 const App = (props) => {
   const [theme, setTheme] = useState(neutral.className);
@@ -22,12 +25,14 @@ const App = (props) => {
           },
         ]}
         logoLinkHref="/"
-        logoComponent={<>
-          <Text size="small">My COVID</Text>
-          <Text size="small" weight="bold">
-            Placeholder
-          </Text>
-        </>}
+        logoComponent={
+          <>
+            <Text size="small">My COVID</Text>
+            <Text size="small" weight="bold">
+              Placeholder
+            </Text>
+          </>
+        }
         beta
         withSearch
       />
