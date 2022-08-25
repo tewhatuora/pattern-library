@@ -17,34 +17,22 @@ Install `yarn` workspace plugin:
 ```bash
 $ yarn plugin import workspace-tools
 ```
-### Usage
-In your React project, first install the library:
 
-```bash
-$ yarn add @te-whatu-ora/anatomic
-```
+## Monorepo
+This project is setup as a monorepo, with a package for the design system library -
+all of the React components and a package for the themes, generated with style-dictionary.
 
-At the root of your project, import the CSS, required theme and `ThemeProvider` component.
+### Design system library
 
-```js
-import '@te-whatu-ora/anatomic/styles';
-import { ThemeProvider, Button } from '@te-whatu-ora/anatomic';
-import { myCovidRecordTheme } from '@te-whatu-ora/anatomic-themes';
+`@te-whatu-ora/anatomic`
 
-// ...
+See the [documentation](packages/lib/README.md) for the design system package.
 
-```
-Finally, render the `ThemeProvider` component, providing the imported theme via the `theme` prop:
+### Themes
 
-```jsx
-const App = () => {
-  return (
-    <ThemeProvider theme={myCovidRecordTheme}>
-      <Button>Hello World!</Button>
-    </ThemeProvider>
-  );
-};
-```
+`@te-whatu-ora/anatomic-themes`
+
+See the [documentation](packages/themes/README.md) for the themes package.
 
 ---
 
@@ -62,3 +50,11 @@ To run storybook:
 ```bash
 $ yarn storybook
 ```
+
+Storybook will open in your browser at [http://localhost:9009/](http://localhost:9009/)
+
+---
+
+# Releasing
+
+- Update [CHANGELOG.md](CHANGELOG.md) with release notes

@@ -1,6 +1,6 @@
-`@te-whatu-ora/anatomic-themes`
+# Anatomic themes
 
-# Style Dictionary themes
+`@te-whatu-ora/anatomic-themes`
 
 ### Configuration
 
