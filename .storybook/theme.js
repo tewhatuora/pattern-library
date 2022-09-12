@@ -2,9 +2,9 @@ import { create } from '@storybook/theming';
 
 export default create({
   base: 'light',
-  brandTitle: 'Ministry of Health',
+  brandTitle: 'Anatomic',
   brandUrl: '/',
-  brandImage: './Logo.svg',
+  brandImage: './Anatomic.svg',
 
   colorPrimary: '#002E6E',
   colorSecondary: '#0071BC',
@@ -33,4 +33,5 @@ export default create({
   inputBorder: '#7E94B5',
   inputTextColor: '#002E6E',
   inputBorderRadius: 8,
+
 });
