@@ -23,7 +23,7 @@ const reducer = (input, keys, transformName = undefined) =>
         return acc;
       }, {});
     } else {
-      tokens[tokenName] = input[name][keys[0]];
+      tokens[tokenName] = sizeToRem(input[name][keys[0]]);
     }
 
     return tokens;
