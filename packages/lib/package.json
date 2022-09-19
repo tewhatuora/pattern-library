@@ -28,7 +28,6 @@
   "scripts": {
     "build": "vite build",
     "lint:types": "tsc --noEmit",
-    "publish": "yarn npm publish",
     "test": "jest"
   },
   "dependencies": {

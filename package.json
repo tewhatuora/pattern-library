@@ -1,5 +1,5 @@
 {
-  "name": "moh-design-system",
+  "name": "anatomic",
   "private": true,
   "license": "MIT",
   "workspaces": [
@@ -13,11 +13,21 @@
     "lint:format": "prettier --write",
     "lint:types": "yarn workspaces foreach -p run lint:types",
     "postinstall": "husky install",
-    "prepublish": "yarn clean && yarn build:components",
-    "size": "yarn build:components && yarn size-limit",
+    "prepublish": "yarn clean",
+    "size": "yarn build && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 BASE_URL=/moh-design-system/ && build-storybook --output-dir public"
+    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 BASE_URL=/moh-design-system/ && build-storybook --output-dir public",
+    "chromatic": "chromatic",
+    "clean": "rm -rf CURRENT_VERSION.md",
+    "patch": "yarn clean && standard-version --release-as patch --infile CURRENT_VERSION.md --header=\"\" --commit-all --path packages/lib --dry-run",
+    "minor": "yarn clean && standard-version --release-as minor --infile CURRENT_VERSION.md --header=\"\" --commit-all --path packages/lib --dry-run",
+    "major": "yarn clean && standard-version --release-as major --infile CURRENT_VERSION.md --header=\"\" --commit-all --path packages/lib --dry-run"
+  },
+  "standard-version": {
+    "scripts": {
+      "precommit": "echo \"$(cat CURRENT_VERSION.md CHANGELOG.md)\" > CHANGELOG.md && git add CHANGELOG.md"
+    }
   },
   "lint-staged": {
     "*.{js,mdx,ts,tsx}": [
