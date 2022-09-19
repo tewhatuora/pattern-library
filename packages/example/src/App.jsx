@@ -5,7 +5,7 @@ import '@te-whatu-ora/anatomic/styles';
 import '@te-whatu-ora/anatomic-themes/styles';
 
 import { ThemeProvider, Header, Stack, Container, Text, Navigation } from '@te-whatu-ora/anatomic';
-import { myHealthAccount } from '@te-whatu-ora/anatomic-themes';
+import { myCovidRecord } from '@te-whatu-ora/anatomic-themes';
 
 import Example from './Example';
 import YourDetails from './YourDetails';
@@ -18,7 +18,7 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={myHealthAccount.className}>
+    <ThemeProvider theme={myCovidRecord.className}>
       <Stack space="xxlarge" color="primary100">
       <Header
         utilityNavItems={[
@@ -95,7 +95,7 @@ const App = () => {
             <Stack space="medium">
               <Routes>
                 <Route path="/" element={<Example />} />
-                <Route path="/forms" element={<YourDetails firstName="Ayush" lastName="Franklin" dateOfBirth="19 September 2014"/>} />
+                <Route path="/forms" element={<YourDetails firstName="TYREE" lastName="GUNN" dateOfBirth="13 September 1994"/>} />
               </Routes>
             </Stack>
           </Container>
