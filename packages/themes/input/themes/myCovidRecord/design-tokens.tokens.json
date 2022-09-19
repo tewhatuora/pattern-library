@@ -242,9 +242,9 @@
       "value": {
         "smoothing": 0,
         "topLeft": 0,
-        "topRight": 100,
-        "bottomLeft": 100,
-        "bottomRight": 100
+        "topRight": 56,
+        "bottomLeft": 112,
+        "bottomRight": 56
       },
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
