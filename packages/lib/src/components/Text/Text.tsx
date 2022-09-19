@@ -13,6 +13,8 @@ export interface TextProps extends Pick<BoxProps, 'as'> {
   weight?: UseTextProps['weight'];
   /** Text alignment */
   align?: BoxProps['textAlign'];
+  /** CSS display property */
+  display?: BoxProps['display'];
   /** Text color token */
   color?: BoxProps['color'];
   /** Additional CSS className. (Use `__anatomic__` for an example) */
@@ -24,7 +26,10 @@ export interface TextProps extends Pick<BoxProps, 'as'> {
  * text content as a given HTML tag
  */
 export const Text = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
-  ({ id, as = 'span', size = 'medium', align, weight = 'regular', children, color, className }, ref) => {
+  (
+    { id, as = 'span', size = 'medium', align, display = 'block', weight = 'regular', children, color, className },
+    ref,
+  ) => {
     const textStyles = useText({ weight, size });
 
     return (
@@ -32,7 +37,7 @@ export const Text = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
         as={as}
         className={clsx(textStyles, className)}
         color={color}
-        display="block"
+        display={display}
         id={id}
         ref={ref}
         tabIndex={-1} // Allows it to be focused

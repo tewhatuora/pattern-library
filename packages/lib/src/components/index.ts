@@ -40,6 +40,7 @@ export { Row, RowStyles } from './Columns/Row';
 export { Stack, StackStyles } from './Stack/Stack';
 export { Tag, TagStyles } from './Tag/Tag';
 export { Text } from './Text/Text';
+export { TextLink } from './TextLink/TextLink';
 export { TextLinkButton } from './TextLinkButton/TextLinkButton';
 export { ToggleSwitch, ToggleSwitchStyles } from './ToggleSwitch/ToggleSwitch';
 export { ToggleButton, ToggleButtonStyles } from './ToggleButton/ToggleButton';
