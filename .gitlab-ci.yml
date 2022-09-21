@@ -54,7 +54,7 @@ stages:
 install:
   stage: install
   rules:
-    - if: '$CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+    - *run_on_all_rules
   cache:
     <<: *global_cache
     # override the policy to be able to update node_modules
@@ -65,7 +65,7 @@ install:
 build:
   stage: build
   rules:
-    - if: '$CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+    - *run_on_all_rules
   script:
     - yarn build
     - yarn build-storybook
