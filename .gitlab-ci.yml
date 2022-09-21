@@ -54,7 +54,12 @@ stages:
 install:
   stage: install
   rules:
-    - [*run_on_all_rules, rules]
+    - *run_for_new_lib_version
+    - *run_for_new_themes_version
+    - *run_for_prerelease_lib_version
+    - *run_for_prerelease_themes_version
+    - *run_for_chromatic
+    - *run_for_chromatic_main
   cache:
     <<: *global_cache
     # override the policy to be able to update node_modules
@@ -65,7 +70,12 @@ install:
 build:
   stage: build
   rules:
-    - [*run_on_all_rules, rules]
+    - *run_for_new_lib_version
+    - *run_for_new_themes_version
+    - *run_for_prerelease_lib_version
+    - *run_for_prerelease_themes_version
+    - *run_for_chromatic
+    - *run_for_chromatic_main
   script:
     - yarn build
     - yarn build-storybook
