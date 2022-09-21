@@ -69,6 +69,9 @@ install:
 
 build:
   stage: build
+  needs:
+    - job: install
+      artifacts: true
   rules:
     - *run_for_new_lib_version
     - *run_for_new_themes_version
@@ -103,6 +106,8 @@ npm_lib_publish:
   needs:
     - job: install
       artifacts: true
+    - job: build
+      artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
     - yarn publish --cwd ./packages/lib
@@ -113,6 +118,8 @@ npm_themes_publish:
   stage: publish
   needs:
     - job: install
+      artifacts: true
+    - job: build
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
@@ -125,6 +132,8 @@ npm_lib_publish_prerelease:
   stage: publish
   needs:
     - job: install
+      artifacts: true
+    - job: build
       artifacts: true
   script:
     - PRE_RELEASE_VERSION=${CI_COMMIT_TAG#*-}
@@ -139,6 +148,8 @@ npm_themes_publish_prerelease:
   stage: publish
   needs:
     - job: install
+      artifacts: true
+    - job: build
       artifacts: true
   script:
     - PRE_RELEASE_VERSION=${CI_COMMIT_TAG#*-}
