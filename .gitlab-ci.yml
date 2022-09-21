@@ -54,7 +54,7 @@ stages:
 install:
   stage: install
   rules:
-    - *run_on_all_rules
+    - [*run_on_all_rules, rules]
   cache:
     <<: *global_cache
     # override the policy to be able to update node_modules
@@ -65,7 +65,7 @@ install:
 build:
   stage: build
   rules:
-    - *run_on_all_rules
+    - [*run_on_all_rules, rules]
   script:
     - yarn build
     - yarn build-storybook
