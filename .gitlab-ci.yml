@@ -21,6 +21,9 @@ default:
       - node_modules
       - .yarn
     policy: pull
+  # Only use MoH's AWS-CommonTools-Machine-gen2-14-0 runner as it seems to be the fastest (by far) and so the cache is preserved.
+  tags:
+    - aws
 
 stages:
   - install
