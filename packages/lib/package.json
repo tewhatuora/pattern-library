@@ -61,7 +61,7 @@
     "@react-aria/label": "^3.3.1",
     "@react-aria/link": "^3.3.1",
     "@react-aria/textfield": "^3.6.1",
-    "@te-whatu-ora/anatomic-themes": "*",
+    "@te-whatu-ora/anatomic-themes": "0.0.2-beta.0",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.178",
     "@vanilla-extract/css": "^1.6.3",
