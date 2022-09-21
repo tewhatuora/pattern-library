@@ -13,7 +13,6 @@
     "lint:format": "prettier --write",
     "lint:types": "yarn workspaces foreach -p run lint:types",
     "postinstall": "husky install",
-    "prepublish": "yarn clean",
     "size": "yarn build && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
@@ -83,6 +82,5 @@
     "style-dictionary": "^3.7.0",
     "svg-inline-loader": "^0.8.2",
     "typescript": "4.4.4"
-  },
-  "packageManager": "yarn@3.2.1"
+  }
 }
