@@ -6119,7 +6119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@te-whatu-ora/anatomic-themes@*, @te-whatu-ora/anatomic-themes@workspace:*, @te-whatu-ora/anatomic-themes@workspace:packages/themes":
+"@te-whatu-ora/anatomic-themes@*, @te-whatu-ora/anatomic-themes@workspace:packages/themes":
   version: 0.0.0-use.local
   resolution: "@te-whatu-ora/anatomic-themes@workspace:packages/themes"
   dependencies:
@@ -6158,7 +6158,7 @@ __metadata:
     "@react-aria/link": ^3.3.1
     "@react-aria/textfield": ^3.6.1
     "@react-types/shared": ^3.13.1
-    "@te-whatu-ora/anatomic-themes": "workspace:*"
+    "@te-whatu-ora/anatomic-themes": "*"
     "@testing-library/dom": ^8.10.1
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.1.2
