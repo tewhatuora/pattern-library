@@ -157,3 +157,27 @@ This will run the CI/CD pipeline to:
 
 - Publish the package to `npm`.
 </details>
+
+## Prereleases
+
+For prereleases, include the `--prerelease` flag, with a tag/channel name e.g. `beta`.
+This is useful to release testable/beta versions without affecting the latest release.
+
+```bash
+$ yarn minor --prerelease beta 
+```
+For `v1.0.0`, this will publish a prerelease version to NPM as `v1.1.0-beta.0`
+
+Users can install the prerelease version with:
+
+```bash
+# yarn
+$ yarn add @te-whatu-ora/anatomic@beta
+# npm
+$ npm install @te-whatu-ora/anatomic@beta
+```
+
+`v1.0.0` will still work with
+```bash
+$ yarn add @te-whatu-ora/anatomic
+```

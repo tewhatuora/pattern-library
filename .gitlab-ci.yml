@@ -31,15 +31,19 @@ stages:
 .all_rules: &run_on_all_rules
   rules:
     - &run_for_new_lib_version # Run if semver tag is pushed to any branch
-      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
-      # New rule for prereleases?
+      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)?$/'
 
     - &run_for_new_themes_version # Run if semver tag is pushed to any branch
+      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@([0-9]+)\.([0-9]+)\.([0-9]+)?$/'
+
+    - &run_for_prerelease_lib_version # Run if prerelease semver tag is pushed to any branch
+      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
+
+    - &run_for_prerelease_themes_version # Run if prerelease semver tag is pushed to any branch
       if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/'
-      # New rule for prereleases?
 
     - &run_for_chromatic
-      if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       when: always
 
     - &run_for_chromatic_main
@@ -68,8 +72,7 @@ chromatic_publish_auto_accept_changes:
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes --dry-run
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: always
+    - *run_for_chromatic
 
 #👇Checks if the branch is not main and runs Chromatic
 chromatic_publish:
@@ -77,9 +80,7 @@ chromatic_publish:
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --dry-run
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: always
-      allow_failure: true
+    - *run_for_chromatic_main
 
 npm_lib_publish:
   rules:
@@ -90,7 +91,7 @@ npm_lib_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - # yarn publish --cwd ./packages/lib
+    - yarn publish --cwd ./packages/lib --dry-run
 
 npm_themes_publish:
   rules:
@@ -101,16 +102,43 @@ npm_themes_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - # yarn publish --cwd ./packages/themes
+    - yarn publish --cwd ./packages/themes --dry-run
+
+
+npm_lib_publish_prerelease:
+  rules:
+    - *run_for_prerelease_lib_version
+  stage: publish
+  needs:
+    - job: install
+      artifacts: true
+  script:
+    - PRE_RELEASE_VERSION=${CI_COMMIT_TAG#*-}
+    - TAG_NAME=${PRE_RELEASE_VERSION%.*}
+    - echo $TAG_NAME
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - yarn publish --cwd ./packages/lib --tag $TAG_NAME --dry-run
+
+npm_themes_publish_prerelease:
+  rules:
+    - *run_for_prerelease_themes_version
+  stage: publish
+  needs:
+    - job: install
+      artifacts: true
+  script:
+    - PRE_RELEASE_VERSION=${CI_COMMIT_TAG#*-}
+    - TAG_NAME=${PRE_RELEASE_VERSION%.*}
+    - echo $TAG_NAME
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - yarn publish --cwd ./packages/themes --tag $TAG_NAME --dry-run
 
 release:
   rules:
     - *run_for_new_lib_version
+    - *run_for_prerelease_lib_version
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  needs:
-    - install
-    - npm_lib_publish
   script:
     - echo "Running release_job for $CI_COMMIT_TAG"
 
