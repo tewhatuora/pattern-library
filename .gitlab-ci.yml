@@ -2,7 +2,6 @@
 #
 pages:
   script:
-    - env
     - yarn
     - BASE_URL=/moh-design-system/ yarn build-storybook
   artifacts:
