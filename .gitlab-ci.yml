@@ -66,7 +66,7 @@ install:
     # override the policy to be able to update node_modules
     policy: pull-push
   script:
-    - yarn install
+    - yarn install --immutable --inline-builds
 
 build:
   stage: build
