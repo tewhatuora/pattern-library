@@ -79,31 +79,33 @@ Please read the [contributing guide](./CONTRIBUTING.md) before working on this r
 
 Checkout the `main` branch. `git checkout main && git pull`.
 
-To release a new version, run one of the following:
+<details>
+<summary>@te-whatu-ora/anatomic</summary>
+To release a new version of the `@te-whatu-ora/anatomic` package on NPM, run one of the following from within `packages/lib`:
 
 **PATCH** version when you make backwards compatible bug fixes:
 ```bash
 # Patch version v1.0.0 => v1.0.1
-$ yarn patch
+$ yarn run patch
 ```
 
 **MINOR** version when you add functionality in a backwards compatible manner:
 ```bash
 # Minor version v1.0.0 => v1.1.0
-$ yarn minor
+$ yarn run minor
 ```
 
 **MAJOR** version when you make incompatible API changes:
 ```bash
 # Major version v1.0.0 => v2.0.0
-$ yarn major
+$ yarn run major
 ```
 
 This will:
 - Bump the package version to the appropriate semver version.
-- Update the `CHANGELOG.md` with the commits/release notes seperated out into sections based on commit types.
-- Commit the changed files: `package.json`, `CHANGELOG.md` & `CURRENT_VERSION.md`.
-- Tag the commit with the new semver version number, e.g.: `v1.0.1`.
+  - Update the `CHANGELOG.md` with the commits/release notes seperated out into sections based on commit types.
+  - Commit the changed files: `package.json`, `CHANGELOG.md` & `CURRENT_VERSION.md`.
+  - Tag the commit with the new semver version number, e.g.: `v1.0.1`.
 
 Next, push the commit **_and_** the new tag to origin/remote.
 
@@ -114,4 +116,44 @@ $ git push origin v1.0.1
 This will run the CI/CD pipeline to:
 
 - Publish the package to `npm`.
-- Create a [release in GitLab](https://gitlab.com/healthnz-ult/c3/anatomic/-/releases), with the new version's release notes.
+  - Create a [release in GitLab](https://gitlab.com/healthnz-ult/c3/anatomic/-/releases), with the new version's release notes.
+- </details>
+
+
+<details>
+<summary>@te-whatu-ora/anatomic-themes</summary>
+To release a new version of the `@te-whatu-ora/anatomic-themes` package on NPM, run one of the following from within `packages/themes`:
+
+**PATCH** version when you make backwards compatible bug fixes:
+```bash
+# Patch version v1.0.0 => v1.0.1
+$ yarn run patch
+```
+
+**MINOR** version when you add functionality in a backwards compatible manner:
+```bash
+# Minor version v1.0.0 => v1.1.0
+$ yarn run minor
+```
+
+**MAJOR** version when you make incompatible API changes:
+```bash
+# Major version v1.0.0 => v2.0.0
+$ yarn run major
+```
+
+This will:
+- Bump the package version to the appropriate semver version.
+  - Commit the changed files: `package.json`
+  - Tag the commit with the package name and new semver version number, e.g.: `@te-whatu-ora/anatomic-themes@1.0.1`.
+
+Next, push the commit **_and_** the new tag to origin/remote.
+
+```bash
+$ git push origin v1.0.1
+```
+
+This will run the CI/CD pipeline to:
+
+- Publish the package to `npm`.
+</details>
