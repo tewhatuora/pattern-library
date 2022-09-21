@@ -19,6 +19,7 @@ default:
         - yarn.lock
     paths:
       - node_modules
+      - .yarn
     policy: pull
 
 stages:
