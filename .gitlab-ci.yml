@@ -74,7 +74,7 @@ build:
 chromatic_publish_auto_accept_changes:
   stage: test
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes --dry-run
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
   rules:
     - *run_for_chromatic
 
@@ -82,7 +82,7 @@ chromatic_publish_auto_accept_changes:
 chromatic_publish:
   stage: test
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --dry-run
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
   rules:
     - *run_for_chromatic_main
 
@@ -95,7 +95,7 @@ npm_lib_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/lib --dry-run
+    - yarn publish --cwd ./packages/lib
 
 npm_themes_publish:
   rules:
@@ -106,7 +106,7 @@ npm_themes_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/themes --dry-run
+    - yarn publish --cwd ./packages/themes
 
 
 npm_lib_publish_prerelease:
@@ -121,7 +121,7 @@ npm_lib_publish_prerelease:
     - TAG_NAME=${PRE_RELEASE_VERSION%.*}
     - echo $TAG_NAME
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/lib --tag $TAG_NAME --dry-run
+    - yarn publish --cwd ./packages/lib --tag $TAG_NAME
 
 npm_themes_publish_prerelease:
   rules:
@@ -135,7 +135,7 @@ npm_themes_publish_prerelease:
     - TAG_NAME=${PRE_RELEASE_VERSION%.*}
     - echo $TAG_NAME
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/themes --tag $TAG_NAME --dry-run
+    - yarn publish --cwd ./packages/themes --tag $TAG_NAME
 
 release:
   rules:
