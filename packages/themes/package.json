@@ -14,9 +14,9 @@
   "scripts": {
     "build": "node scripts/generate.js && vite build && rm -rf ./tmp",
     "test": "jest",
-    "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --dry-run",
-    "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --dry-run",
-    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --dry-run"
+    "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
+    "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
+    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",

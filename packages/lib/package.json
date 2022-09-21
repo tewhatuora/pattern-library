@@ -36,9 +36,9 @@
     "lint:types": "tsc --noEmit",
     "test": "jest",
     "clean": "rm -rf ../../CURRENT_VERSION.md",
-    "patch": "yarn clean && standard-version --release-as patch --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --dry-run",
-    "minor": "yarn clean && standard-version --release-as minor --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --dry-run",
-    "major": "yarn clean && standard-version --release-as major --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --dry-run"
+    "patch": "yarn clean && standard-version --release-as patch --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
+    "minor": "yarn clean && standard-version --release-as minor --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
+    "major": "yarn clean && standard-version --release-as major --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify"
   },
   "standard-version": {
     "scripts": {
