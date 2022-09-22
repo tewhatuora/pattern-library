@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic",
-  "version": "0.0.64-beta.2",
+  "version": "0.0.64-beta.3",
   "description": "Te Whatu Ora - Anatomic Design system",
   "keywords": [
     "te whatu ora",
@@ -61,7 +61,7 @@
     "@react-aria/label": "^3.3.1",
     "@react-aria/link": "^3.3.1",
     "@react-aria/textfield": "^3.6.1",
-    "@te-whatu-ora/anatomic-themes": "^0.0.2-beta.13",
+    "@te-whatu-ora/anatomic-themes": "^0.0.2-beta.17",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.178",
     "@vanilla-extract/css": "^1.6.3",
