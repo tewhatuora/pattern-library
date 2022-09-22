@@ -114,7 +114,8 @@ npm_lib_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/lib
+    - yarn pack --filename pkg.tgz
+    - yarn publish pkg.tgz --cwd ./packages/lib
 
 npm_themes_publish:
   rules:
@@ -127,7 +128,8 @@ npm_themes_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/themes
+    - yarn pack --filename pkg.tgz
+    - yarn publish pkg.tgz --cwd ./packages/themes
 
 
 npm_lib_publish_prerelease:
@@ -144,7 +146,8 @@ npm_lib_publish_prerelease:
     - TAG_NAME=${PRE_RELEASE_VERSION%.*}
     - echo $TAG_NAME
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/lib --tag $TAG_NAME
+    - yarn pack --filename pkg.tgz
+    - yarn publish pkg.tgz --cwd ./packages/lib --tag $TAG_NAME
 
 npm_themes_publish_prerelease:
   rules:
@@ -160,7 +163,8 @@ npm_themes_publish_prerelease:
     - TAG_NAME=${PRE_RELEASE_VERSION%.*}
     - echo $TAG_NAME
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/themes --tag $TAG_NAME
+    - yarn pack --filename pkg.tgz
+    - yarn publish pkg.tgz --cwd ./packages/themes --tag $TAG_NAME
 
 release:
   rules:
