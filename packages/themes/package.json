@@ -43,7 +43,7 @@
     "*.css.ts"
   ],
   "files": [
-    "dist/**"
+    "dist"
   ],
   "type": "module"
 }

@@ -27,7 +27,7 @@
     "*.css.ts"
   ],
   "files": [
-    "dist/**"
+    "dist"
   ],
   "repository": "",
   "license": "MIT",
