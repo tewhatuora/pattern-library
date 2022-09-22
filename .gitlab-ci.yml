@@ -86,10 +86,15 @@ build:
   script:
     - yarn build
     - yarn build-storybook
+  artifacts:
+    untracked: true
 
 #👇Checks if the branch is main and runs Chromatic with the flag to accept all changes.
 chromatic_publish_auto_accept_changes:
   stage: test
+  needs:
+    - job: build
+      artifacts: true
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
   rules:
@@ -98,6 +103,9 @@ chromatic_publish_auto_accept_changes:
 #👇Checks if the branch is not main and runs Chromatic
 chromatic_publish:
   stage: test
+  needs:
+    - job: build
+      artifacts: true
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
   rules:
@@ -114,8 +122,7 @@ npm_lib_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn pack --filename pkg.tgz
-    - yarn publish pkg.tgz --cwd ./packages/lib
+    - yarn publish --cwd ./packages/lib
 
 npm_themes_publish:
   rules:
@@ -128,8 +135,7 @@ npm_themes_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn pack --filename pkg.tgz
-    - yarn publish pkg.tgz --cwd ./packages/themes
+    - yarn publish --cwd ./packages/themes
 
 
 npm_lib_publish_prerelease:
@@ -146,8 +152,7 @@ npm_lib_publish_prerelease:
     - TAG_NAME=${PRE_RELEASE_VERSION%.*}
     - echo $TAG_NAME
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn pack --filename pkg.tgz
-    - yarn publish pkg.tgz --cwd ./packages/lib --tag $TAG_NAME
+    - yarn publish --cwd ./packages/lib --tag $TAG_NAME
 
 npm_themes_publish_prerelease:
   rules:
@@ -163,8 +168,7 @@ npm_themes_publish_prerelease:
     - TAG_NAME=${PRE_RELEASE_VERSION%.*}
     - echo $TAG_NAME
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn pack --filename pkg.tgz
-    - yarn publish pkg.tgz --cwd ./packages/themes --tag $TAG_NAME
+    - yarn publish --cwd ./packages/themes --tag $TAG_NAME
 
 release:
   rules:
