@@ -1,8 +1,7 @@
 # Te Whatu Ora Anatomic design system
 
 [![npm version](https://badge.fury.io/js/@te-whatu-ora%2Fanatomic.svg)](https://badge.fury.io/js/@te-whatu-ora%2Fanatomic)
-[![pipeline](https://gitlab.com/healthnz-ult/c3/anatomic/badges/main/pipeline.svg)](https://gitlab.com/healthnz-ult/c3/anatomic/-/pipelines/)
-[![storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://-.chromatic.com/)
+[![storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://main--630296ff1edaa813b72e85c0.chromatic.com/)
 
 ## Inspirations
 
