@@ -16,7 +16,7 @@
     "size": "yarn build && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 && build-storybook --output-dir public",
+    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 && build-storybook",
     "chromatic": "chromatic"
   },
   "lint-staged": {
