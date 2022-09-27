@@ -155,7 +155,7 @@ export const Item = ({
   };
 
   const elements = [
-    <Text key={label} weight={selected ? 'bold' : 'regular'}>
+    <Text key={label} size="small" weight={selected ? 'bold' : 'regular'}>
       {label}
     </Text>,
     !subNav && !!children && (
