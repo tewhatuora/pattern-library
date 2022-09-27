@@ -2,8 +2,6 @@ import { Navigation } from '../Navigation/Navigation';
 import { Footer, FooterProps } from './Footer';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
-import MohLogo from './moh-logo.svg?component';
-import UniteAgainstCovid19Logo from './unite-against-covid.svg?component';
 import Docs from './Footer.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
@@ -41,11 +39,6 @@ const socialLinkHrefs = {
   facebook: 'http://facebook.com',
 };
 
-const extraLogos = [
-  <MohLogo key={null} props={{}} ref={null} style={{ width: '15.9rem' }} type="symbol" />,
-  <UniteAgainstCovid19Logo key={null} props={{}} ref={null} style={{ width: '6.8rem' }} type="symbol" />,
-];
-
 export const Default = (args: FooterProps) => {
   return (
     <Footer {...args}>
@@ -73,7 +66,6 @@ export const Default = (args: FooterProps) => {
 Default.args = {
   imprintItems,
   socialLinkHrefs,
-  extraLogos,
 };
 
 export const NoNavigations = (args: FooterProps) => {
@@ -82,7 +74,6 @@ export const NoNavigations = (args: FooterProps) => {
 NoNavigations.args = {
   imprintItems,
   socialLinkHrefs,
-  extraLogos,
 };
 
 export const NoSocialLinks = (args: FooterProps) => {
@@ -115,7 +106,7 @@ export const NoSocialLinks = (args: FooterProps) => {
     </Footer>
   );
 };
-NoSocialLinks.args = { imprintItems, extraLogos };
+NoSocialLinks.args = { imprintItems };
 
 export const NoNavigationsOrSocialLinks = (args: FooterProps) => {
   return <Footer {...args} />;

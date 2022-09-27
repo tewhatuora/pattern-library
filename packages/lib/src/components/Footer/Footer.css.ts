@@ -39,21 +39,15 @@ export const footerInner = style([
 
 // ##### First row #####
 
-export const govtLogoWrapper = style({
-  height: '7.2rem',
-  width: '26.5rem',
+export const logoWrapper = style({
+  height: '8rem',
+  width: '17.2rem',
 });
 
-export const extraLogosWrapper = style([
-  atoms({
-    display: 'flex',
-    alignItems: 'center',
-  }),
-  {
-    height: '7.2rem',
-    gap: vars.space.xxlarge.tablet,
-  },
-]);
+export const govtLogoWrapper = style({
+  height: '8rem',
+  width: '27.2rem',
+});
 
 // ##### Second Row #####
 

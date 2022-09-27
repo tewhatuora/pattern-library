@@ -1,14 +1,4 @@
-import {
-  Children,
-  PropsWithChildren,
-  ReactNode,
-  cloneElement,
-  isValidElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { Children, PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -26,12 +16,13 @@ import { IconType } from '../Icon/icons';
 
 import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
 import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
+import TeWhatuOraLogoLight from './te-whatu-ora-logo-light.svg?component';
+import TeWhatuOraLogoDark from './te-whatu-ora-logo-dark.svg?component';
 
 import { ShieldedSite } from './ShieldedSite';
 
 import * as styles from './Footer.css';
 import { Navigation } from '../Navigation/Navigation';
-import assert from 'assert';
 
 export const FooterStyles = styles;
 
@@ -51,8 +42,6 @@ export type FooterProps = {
     linkedin?: string;
     tiktok?: string;
   };
-  /** Extra logo elements */
-  extraLogos?: ReactNode[];
   /** Array of Imprint items,which can have text and href for links */
   imprintItems?: ImprintItem[];
   /** Contrast variant for dark/light UI */
@@ -63,7 +52,6 @@ export type FooterProps = {
 
 export const Footer = ({
   socialLinkHrefs,
-  extraLogos,
   imprintItems,
   variant,
   className,
@@ -91,6 +79,7 @@ export const Footer = ({
     throw new Error('There can only be up to 7 imprint items as props of `Footer`.');
   }
 
+  const TeWhatuOraLogo = variant === 'dark' ? TeWhatuOraLogoLight : TeWhatuOraLogoDark;
   const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
   const socialLinks = useMemo(
@@ -163,19 +152,11 @@ export const Footer = ({
           <Stack space="xxlarge">
             {/* First row */}
             <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween">
+              <Box className={styles.logoWrapper}>
+                <TeWhatuOraLogo key={null} props={{}} ref={null} type="symbol" />
+              </Box>
               <Box className={styles.govtLogoWrapper}>
                 <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
-              </Box>
-              <Box className={styles.extraLogosWrapper}>
-                {/* Allowed children: logos or images of some sort */}
-                {extraLogos?.map((logo, index) => {
-                  assert(
-                    isValidElement(logo),
-                    `A logo passed to Footer through \`extraLogos\` is not a valid element. Logo: ${logo}`,
-                  );
-                  // eslint-disable-next-line react/no-array-index-key
-                  return cloneElement(logo, { key: `footer-extra-logo-${index}` });
-                })}
               </Box>
             </Box>
 
