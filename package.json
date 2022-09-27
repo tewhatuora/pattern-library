@@ -1,5 +1,5 @@
 {
-  "name": "moh-design-system",
+  "name": "te-whatu-ora",
   "private": true,
   "license": "MIT",
   "workspaces": [
@@ -13,11 +13,11 @@
     "lint:format": "prettier --write",
     "lint:types": "yarn workspaces foreach -p run lint:types",
     "postinstall": "husky install",
-    "prepublish": "yarn clean && yarn build:components",
-    "size": "yarn build:components && yarn size-limit",
+    "size": "yarn build && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 BASE_URL=/moh-design-system/ && build-storybook --output-dir public"
+    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 && build-storybook",
+    "chromatic": "chromatic"
   },
   "lint-staged": {
     "*.{js,mdx,ts,tsx}": [
@@ -53,6 +53,7 @@
     "@vanilla-extract/webpack-plugin": "^2.1.10",
     "babel-loader": "^8.2.4",
     "change-case": "^4.1.2",
+    "chromatic": "^6.9.0",
     "dedent": "^0.7.0",
     "eslint": "^8.16.0",
     "eslint-config-next": "^12.1.6",
@@ -81,6 +82,5 @@
     "style-dictionary": "^3.7.0",
     "svg-inline-loader": "^0.8.2",
     "typescript": "4.4.4"
-  },
-  "packageManager": "yarn@3.2.1"
+  }
 }

@@ -1,11 +1,191 @@
-image: node:16.10.0
-
+#image: node:16.10.0
+#
 pages:
   script:
     - yarn
-    - yarn build-storybook
+    - BASE_URL=/moh-design-system/ yarn build-storybook
   artifacts:
     paths:
       - public
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_URL == "https://gitlab.com/alphero/moh-design-system"'
+
+default:
+  image: node:16
+  # Cache node_modules
+  cache: &global_cache
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+      - .yarn
+    policy: pull
+  # Only use MoH's AWS-CommonTools-Machine-gen2-14-0 runner as it seems to be the fastest (by far) and so the cache is preserved.
+  tags:
+    - aws
+
+stages:
+  - install
+  - build
+  - test
+  - publish
+  - release
+
+.all_rules: &run_on_all_rules
+  rules:
+    - &run_for_new_lib_version # Run if semver tag is pushed to any branch
+      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+
+    - &run_for_new_themes_version # Run if semver tag is pushed to any branch
+      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@c?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+
+    - &run_for_prerelease_lib_version # Run if prerelease semver tag is pushed to any branch
+      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+
+    - &run_for_prerelease_themes_version # Run if prerelease semver tag is pushed to any branch
+      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+
+    - &run_for_chromatic
+      if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      when: always
+
+    - &run_for_chromatic_main
+      if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      when: always
+      allow_failure: true
+
+install:
+  stage: install
+  rules:
+    - *run_for_new_lib_version
+    - *run_for_new_themes_version
+    - *run_for_prerelease_lib_version
+    - *run_for_prerelease_themes_version
+    - *run_for_chromatic
+    - *run_for_chromatic_main
+  cache:
+    <<: *global_cache
+    # override the policy to be able to update node_modules
+    policy: pull-push
+  script:
+    - yarn install
+
+build:
+  stage: build
+  needs:
+    - job: install
+      artifacts: true
+  rules:
+    - *run_for_new_lib_version
+    - *run_for_new_themes_version
+    - *run_for_prerelease_lib_version
+    - *run_for_prerelease_themes_version
+    - *run_for_chromatic
+    - *run_for_chromatic_main
+  script:
+    - yarn build
+    - yarn build-storybook
+  artifacts:
+    untracked: true
+
+#👇Checks if the branch is main and runs Chromatic with the flag to accept all changes.
+chromatic_publish_auto_accept_changes:
+  stage: test
+  needs:
+    - job: build
+      artifacts: true
+  script:
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
+  rules:
+    - *run_for_chromatic
+
+#👇Checks if the branch is not main and runs Chromatic
+chromatic_publish:
+  stage: test
+  needs:
+    - job: build
+      artifacts: true
+  script:
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
+  rules:
+    - *run_for_chromatic_main
+
+npm_lib_publish:
+  rules:
+    - *run_for_new_lib_version
+  stage: publish
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  script:
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - yarn publish --cwd ./packages/lib
+
+npm_themes_publish:
+  rules:
+    - *run_for_new_themes_version
+  stage: publish
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  script:
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - yarn publish --cwd ./packages/themes
+
+
+npm_lib_publish_prerelease:
+  rules:
+    - *run_for_prerelease_lib_version
+  stage: publish
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  script:
+    - PRE_RELEASE_VERSION=${CI_COMMIT_TAG#*.[0-9]*-}
+    - TAG_NAME=${PRE_RELEASE_VERSION%.*}
+    - echo $TAG_NAME
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - yarn publish --cwd ./packages/lib --tag $TAG_NAME
+
+npm_themes_publish_prerelease:
+  rules:
+    - *run_for_prerelease_themes_version
+  stage: publish
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  script:
+    - PRE_RELEASE_VERSION=${CI_COMMIT_TAG#*.[0-9]*-}
+    - TAG_NAME=${PRE_RELEASE_VERSION%.*}
+    - echo $TAG_NAME
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - yarn publish --cwd ./packages/themes --tag $TAG_NAME
+
+release:
+  rules:
+    - *run_for_new_lib_version
+    - *run_for_prerelease_lib_version
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "Running release_job for $CI_COMMIT_TAG"
+
+  release:
+    name: '$CI_COMMIT_TAG'
+    tag_name: '$CI_COMMIT_TAG'
+    ref: '$CI_COMMIT_SHA'
+    description: 'CURRENT_VERSION.md'
+    assets:
+      links:
+        - name: '@te-whatu-ora/anatomic'
+          url: 'https://www.npmjs.com/package/@te-whatu-ora/anatomic'
+          link_type: 'other' # optional
