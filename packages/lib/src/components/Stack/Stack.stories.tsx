@@ -4,7 +4,7 @@ import { Text } from '../Text/Text';
 import { vars } from '../../themes/vars.css';
 
 export default {
-  title: 'Components/Stack',
+  title: 'Layout/Stack',
   component: Stack,
   parameters: {
     controls: {

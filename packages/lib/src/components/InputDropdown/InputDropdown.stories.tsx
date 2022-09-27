@@ -7,7 +7,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputDropdown.docs.mdx';
 
 export default {
-  title: 'Input/InputDropdown',
+  title: 'Forms/InputDropdown',
   component: InputDropdown,
   argTypes: {
     id: { control: false },

@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './RadioGroup.docs.mdx';
 
 export default {
-  title: 'Components/RadioGroup',
+  title: 'Forms/RadioGroup',
   component: RadioGroup,
   subcomponents: {
     RadioButton,

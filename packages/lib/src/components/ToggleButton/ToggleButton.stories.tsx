@@ -4,7 +4,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './ToggleButton.docs.mdx';
 
 export default {
-  title: 'Components/ToggleButton',
+  title: 'Forms/ToggleButton',
   component: ToggleButton,
   argTypes: {
     labelLeft: {

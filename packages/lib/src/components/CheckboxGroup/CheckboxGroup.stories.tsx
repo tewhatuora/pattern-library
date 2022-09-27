@@ -9,7 +9,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './CheckboxGroup.docs.mdx';
 
 export default {
-  title: 'Components/CheckBoxGroup',
+  title: 'Forms/CheckBoxGroup',
   component: CheckboxGroup,
   argTypes: {
     label: {
