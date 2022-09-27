@@ -19,7 +19,7 @@ export default {
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
-    chromatic: { viewports: [1340] },
+    chromatic: { viewports: [1100] },
   },
 };
 
