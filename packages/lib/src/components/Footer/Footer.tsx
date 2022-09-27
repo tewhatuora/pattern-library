@@ -105,10 +105,14 @@ export const Footer = ({
           {imprintItems?.map(({ text, href }) =>
             href ? (
               <Box as="a" href={href} key={text}>
-                <Text>{text}</Text>
+                <Text size="small" weight="regular">
+                  {text}
+                </Text>
               </Box>
             ) : (
-              <Text key={text}>{text}</Text>
+              <Text key={text} size="small" weight="regular">
+                {text}
+              </Text>
             ),
           )}
         </Box>

@@ -26,7 +26,7 @@ export default {
 };
 
 const imprintItems = [
-  { text: '© Ministry of Health | Manatū Hauora' },
+  { text: '© Te Whatu Ora | Health New Zealand' },
   { text: 'Copyright', href: '#' },
   { text: 'Privacy policy', href: '#' },
 ];
