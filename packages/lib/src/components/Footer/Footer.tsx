@@ -151,7 +151,7 @@ export const Footer = ({
         <div className={styles.footerInner} hidden={!showNavs}>
           <Stack space="xxlarge">
             {/* First row */}
-            <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween">
+            <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
               <Box className={styles.logoWrapper}>
                 <TeWhatuOraLogo key={null} props={{}} ref={null} type="symbol" />
               </Box>
