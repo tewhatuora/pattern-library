@@ -7,7 +7,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputDate.docs.mdx';
 
 export default {
-  title: 'Input/InputDate',
+  title: 'Forms/InputDate',
   component: InputDate,
   argTypes: {
     id: {

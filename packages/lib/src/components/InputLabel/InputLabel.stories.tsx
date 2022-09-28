@@ -5,7 +5,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputLabel.docs.mdx';
 
 export default {
-  title: 'Input/InputLabel',
+  title: 'Forms/InputLabel',
   component: InputLabel,
   argTypes: {
     htmlFor: { control: false },

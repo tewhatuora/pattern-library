@@ -7,7 +7,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputPhone.docs.mdx';
 
 export default {
-  title: 'Input/InputPhone',
+  title: 'Forms/InputPhone',
   component: InputPhone,
   argTypes: {
     id: { control: false },
