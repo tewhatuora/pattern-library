@@ -20,7 +20,7 @@ export type MenuListProps = {
 export const MenuList = ({ heading, children }: PropsWithChildren<MenuListProps>) => {
   return (
     <>
-      <Text className={styles.subNavHeading} weight="bold">
+      <Text className={styles.subNavHeading} size="medium" weight="bold">
         {heading}
       </Text>
       <ul className={styles.subNavList}>
