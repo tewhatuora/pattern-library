@@ -46,15 +46,38 @@ export const Default = (args: CheckboxProps) => {
   return <Checkbox {...args} />;
 };
 
-export const Checked = (args: CheckboxProps) => <Checkbox {...args} checked label="Checked" />;
-export const Indeterminate = (args: CheckboxProps) => (
-  <Checkbox {...args} checked indeterminate label="Indeterminate" />
-);
-export const Disabled = (args: CheckboxProps) => <Checkbox {...args} disabled label="Disabled" />;
-export const Error = (args: CheckboxProps) => <Checkbox {...args} error label="Error" />;
+export const Checked = (args: CheckboxProps) => <Checkbox {...args} />;
+Checked.args = {
+  checked: true,
+  label: 'Checked',
+};
+export const Indeterminate = (args: CheckboxProps) => <Checkbox {...args} />;
+Indeterminate.args = {
+  checked: true,
+  indeterminate: true,
+  label: 'Indeterminate',
+};
+export const Disabled = (args: CheckboxProps) => <Checkbox {...args} />;
+Disabled.args = {
+  disabled: true,
+  label: 'Disabled',
+};
+export const CheckedAndDisabled = (args: CheckboxProps) => <Checkbox {...args} />;
+CheckedAndDisabled.args = {
+  disabled: true,
+  checked: true,
+  heading: 'Checked',
+  label: 'Disabled',
+};
+export const Error = (args: CheckboxProps) => <Checkbox {...args} />;
+Error.args = {
+  error: true,
+  label: 'Error',
+};
 
 Default.args = {
   checked: true,
+  indeterminate: false,
   label: 'Label',
   heading: 'Heading',
   required: false,
