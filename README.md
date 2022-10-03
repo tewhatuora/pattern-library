@@ -9,12 +9,19 @@
 
 ## Setup
 
-### Development
-
 Checkout this repository, and install the dependencies:
 ```bash
 $ yarn
 ```
+
+Add the MOH remote repository:
+```bash
+$ git remote add https://gitlab.com/healthnz-ult/c3/anatomic.git
+```
+
+---
+
+## Development
 
 Storybook v6.5 with the Vite builder needs to run on Node 16. You will get an error trying to run/build Storybook on a Node version that isn’t `16.14.2`.
 
