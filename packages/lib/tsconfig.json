@@ -9,7 +9,8 @@
       "!/*": ["../*"],
       "@/*": ["./*"]
     },
-    "types": ["@testing-library/jest-dom", "jest"]
+    "types": ["@testing-library/jest-dom", "jest"],
+    "skipLibCheck": true
   },
   "include": [
     "./"
