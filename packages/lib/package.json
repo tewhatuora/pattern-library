@@ -2,6 +2,22 @@
   "name": "@te-whatu-ora/anatomic",
   "version": "0.0.64-beta.4",
   "description": "Te Whatu Ora - Anatomic Design system",
+  "homepage": "https://main--630296ff1edaa813b72e85c0.chromatic.com/",
+  "author": "Kyle Beattie <kyle.beattie@alphero.com>",
+  "contributors": [
+    {
+      "name" : "Kyle Beattie",
+      "email" : "kyle.beattie@alphero.com"
+    },
+    {
+      "name" : "Chris Meekin",
+      "email" : "chris.meekin@alphero.com"
+    },
+    {
+      "name" : "Chris McArdle",
+      "email" : "chris.mcardle@alphero.com"
+    }
+  ],
   "keywords": [
     "te whatu ora",
     "ui toolkit",
