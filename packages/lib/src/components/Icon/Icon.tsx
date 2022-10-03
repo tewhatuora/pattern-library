@@ -1,18 +1,19 @@
-import { memo } from 'react';
+import { ElementType, memo } from 'react';
 import clsx from 'clsx';
 
 import assert from 'assert';
 
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import icons, { IconType } from './icons';
 
 import * as styles from './Icon.css';
+import { Color } from '../../types';
 
 export const IconStyles = styles;
 
 const validIcons = Object.keys(icons);
 
-type IconProps = {
+export type IconProps = {
   /** Icon type */
   icon: IconType;
   /** Size variant */
@@ -22,10 +23,10 @@ type IconProps = {
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
   /** Icon color */
-  color?: string | undefined;
+  color?: Color;
   /** Alternative text to use for aria-label */
   alt?: string;
-};
+} & BoxProps;
 
 /**
  * Icon component to render
@@ -39,9 +40,8 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, .
     `Invalid Icon component: '${icon}'. Should be one of [${validIcons.map((c) => `'${c}'`).join(', ')}]`,
   );
 
-  const IconComponent = icons[icon];
+  const IconComponent = icons[icon] as ElementType;
 
-  // TODO: fix typescript issue with <IconComponent />
   return (
     <Box
       aria-label={alt || undefined} // Prevents alt being passed through as an empty string

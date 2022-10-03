@@ -9,17 +9,51 @@
 
 ## Setup
 
-### Development
-
 Checkout this repository, and install the dependencies:
 ```bash
 $ yarn
 ```
 
-Install `yarn` workspace plugin:
+Add the MOH remote repository:
 ```bash
-$ yarn plugin import workspace-tools
+$ git remote add https://gitlab.com/healthnz-ult/c3/anatomic.git
 ```
+
+---
+
+## Development
+
+Storybook v6.5 with the Vite builder needs to run on Node 16. You will get an error trying to run/build Storybook on a Node version that isn’t `16`.
+
+Use NVM to install and use Node 
+```bash
+$ nvm install 16
+```
+
+### Pre commit hooks
+
+The repo has a pre-commit hook setup, which uses `lint-staged` to run `prettier` to format code, `eslint` for linting and `tsc` for TypeScript type checking.
+
+These can be run separately and individually too:
+
+```bash
+# Prettier: format code
+$ yarn lint:format
+# ESLint: Lint code
+$ yarn lint:fix
+# TSC: Type check
+$ yarn lint:types
+```
+
+### Build
+
+Building the packages is done via GitLab CI, but if you want/need to build the packages, the following will build both the `themes` and `lib` packages:
+
+```bash
+$ yarn build
+```
+
+This is useful when making theme changes and reflecting the changes in the lib package.
 
 ## Monorepo
 This project is setup as a monorepo, with a package for the design system library -

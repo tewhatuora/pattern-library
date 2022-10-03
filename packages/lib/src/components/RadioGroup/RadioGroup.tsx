@@ -11,7 +11,7 @@ import { ChildrenOfType } from '../../types/index';
 export type RadioGroupProps = {
   /** name attribute */
   name: string;
-  /** Radiogroup current value */
+  /** RadioGroup current value */
   value?: string;
   /** Disabled state/attribute used to disable interaction */
   disabled?: boolean;
@@ -77,9 +77,9 @@ export const RadioGroup = ({
     <AllowedChildren
       errorMessage="Only `RadioButton` components are allowed as children of `RadioGroup`"
       propsForChild={(child) => ({
-        selected: child.props.value === value,
-        disabled: child.props.disabled || disabled,
-        error: child.props.error || error,
+        selected: child?.props?.value === value,
+        disabled: child?.props?.disabled || disabled,
+        error: child?.props?.error || error,
       })}
       types={[RadioButton]}
     >

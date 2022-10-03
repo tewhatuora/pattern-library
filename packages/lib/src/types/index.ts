@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { vars } from '../themes/vars.css';
+
 export type AllOrNone<T> = T | { [K in keyof T]?: never };
 
 /*
@@ -16,3 +18,5 @@ export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; typ
 
 /** Contrast variant for dark/light UI */
 export type ContrastVariant = 'light' | 'dark';
+
+export type Color = keyof typeof vars.color;

@@ -30,8 +30,8 @@ export const variants = recipe({
   base: style([
     atoms({
       display: 'flex',
-      flexShrink: '0',
-      flexGrow: '1',
+      flexShrink: 0,
+      flexGrow: 1,
     }),
     responsiveStyle({
       tablet: {

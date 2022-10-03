@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { InputText, InputTextProps } from './InputText';
+import { Textarea } from './Textarea';
+import { InputTextProps } from '../InputText/InputText';
 import icons from '../Icon/icons';
-import Docs from './InputText.docs.mdx';
+import Docs from './Textarea.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Forms/InputText',
-  component: InputText,
+  title: 'Forms/Textarea',
+  component: Textarea,
   argTypes: {
     id: { control: false },
     name: { control: false },
@@ -59,11 +60,6 @@ export default {
         type: 'boolean',
       },
     },
-    multiline: {
-      control: {
-        type: 'boolean',
-      },
-    },
     rows: {
       control: {
         type: 'number',
@@ -98,7 +94,7 @@ export default {
   },
   parameters: {
     controls: {
-      exclude: ['labelProps', 'descriptionProps', 'errorMessageProps'],
+      exclude: ['multiline', 'labelProps', 'descriptionProps', 'errorMessageProps'],
     },
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -106,7 +102,7 @@ export default {
   },
 };
 export const Default = (args: InputTextProps) => {
-  return <InputText {...args} />;
+  return <Textarea {...args} />;
 };
 
 /**
@@ -116,25 +112,33 @@ export const Default = (args: InputTextProps) => {
  * @constructor
  */
 export const WithFocus = (args: InputTextProps) => {
-  const ref = useRef<HTMLInputElement | null>(null);
+  const ref = useRef<HTMLTextAreaElement | null>(null);
   useEffect(() => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputText {...args} defaultValue="Focus" ref={ref} />;
+  return <Textarea {...args} defaultValue="Focus" ref={ref} />;
 };
 
 export const Filled = (args: InputTextProps) => {
   const [value, setValue] = useState('Filled');
-  return <InputText {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <Textarea {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 export const Error = (args: InputTextProps) => {
   const [value, setValue] = useState('Filled');
-  return <InputText {...args} error value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <Textarea {...args} error value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 export const Disabled = (args: InputTextProps) => {
   const [value, setValue] = useState('Filled');
-  return <InputText {...args} disabled value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <Textarea {...args} disabled value={value} onChange={(e) => setValue(e.target.value)} />;
+};
+
+export const Clearable = (args: InputTextProps) => {
+  const [value, setValue] = useState('Clearable');
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+  return <Textarea {...args} clearable value={value} onChange={handleChange} />;
 };

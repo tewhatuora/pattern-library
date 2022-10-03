@@ -145,6 +145,7 @@ export const input = styleVariants({
 globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
   outline: 'none',
+  boxShadow: 'none',
 });
 
 globalStyle(`${input.phone} select${inputBase}`, {
@@ -167,7 +168,7 @@ export const clearButtonBase = style([
   },
 ]);
 
-export const clearButton = styleVariants({
+export const clearButton: Record<string, string> = styleVariants({
   search: [
     clearButtonBase,
     responsiveStyle({
@@ -182,3 +183,5 @@ export const clearButton = styleVariants({
     }),
   ],
 });
+
+export type ClearButtonVariant = keyof typeof clearButton;

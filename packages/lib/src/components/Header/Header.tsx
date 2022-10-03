@@ -1,7 +1,7 @@
-import { FC, ReactNode, useMemo } from 'react';
+import { ElementType, FC, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { Box, BoxProps } from '../Box/Box';
+import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 import { Badge } from '../Badge/Badge';
 import { ButtonRoot } from '../Button/ButtonRoot';
@@ -14,10 +14,12 @@ import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 
 import Logo from '../../assets/logo-moh.svg?component';
 
-import { ContrastVariant } from '../../types';
+import { Color, ContrastVariant } from '../../types';
 
 import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
+
+const LogoEl = Logo as ElementType;
 
 export const HeaderStyles = styles;
 
@@ -50,7 +52,7 @@ export type HeaderProps = {
 
 type MenuButtonProps = {
   open?: boolean;
-  color: BoxProps['color'];
+  color: Color;
   onToggle?: () => void;
 };
 
@@ -113,7 +115,7 @@ export const Header = ({
       return (
         <LogoLinkComponent className={styles.logo} href={logoLinkHref} to={logoLinkHref}>
           <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
-          <Logo />
+          <LogoEl />
         </LogoLinkComponent>
       );
     }
@@ -121,7 +123,7 @@ export const Header = ({
     return (
       <a className={styles.logo} href={logoLinkHref}>
         <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
-        <Logo />
+        <LogoEl />
       </a>
     );
   }, [LogoLinkComponent, logoLinkHref]);

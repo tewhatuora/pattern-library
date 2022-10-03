@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef, useCallback, useState } from 'react';
 
 import { InputLabelProps } from '../InputLabel/InputLabel';
-import { OtherInputFieldProps } from '../InputField/InputField';
+import { BaseInputFieldProps, OtherInputFieldProps } from '../InputField/InputField';
 import { InputMessageProps } from '../InputMessage/InputMessage';
 import { InputText } from '../InputText/InputText';
 
@@ -15,7 +15,8 @@ export type InputPasswordProps = Omit<
   'tertiaryLabel' | 'tertiaryLabelAs' | 'onTertiaryLabelClick' | 'href' | 'htmlFor'
 > &
   InputMessageProps &
-  OtherInputFieldProps;
+  OtherInputFieldProps &
+  Pick<BaseInputFieldProps, 'clearable'>;
 
 /**
  * An input field for entering a password.

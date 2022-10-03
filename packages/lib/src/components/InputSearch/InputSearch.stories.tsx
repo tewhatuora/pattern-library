@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { InputSearch, InputSearchProps } from './InputSearch';
 import DocsPage from '../../../utils/DocsPage';
@@ -20,17 +20,7 @@ export default {
   },
 };
 
-export const Uncontrolled = (args: InputSearchProps) => <InputSearch {...args} />;
-
-export const Controlled = (args: InputSearchProps) => {
-  const [value, setValue] = useState<string | undefined>('');
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  return <InputSearch {...args} value={value} onChange={handleChange} />;
-};
+export const Default = (args: InputSearchProps) => <InputSearch {...args} />;
 
 /**
  * Example with forwarding a ref, and using it
@@ -38,7 +28,7 @@ export const Controlled = (args: InputSearchProps) => {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputSearchProps) => {
+export const WithFocus = (args: InputSearchProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     ref?.current?.focus();
@@ -46,10 +36,20 @@ export const Refs = (args: InputSearchProps) => {
 
   return <InputSearch {...args} ref={ref} />;
 };
-Refs.argTypes = {
+WithFocus.argTypes = {
   placeholder: {
-    defaultValue: 'Focused by default using forwardRef',
+    defaultValue: 'Search',
   },
+};
+
+export const Filled = (args: InputSearchProps) => {
+  const [value, setValue] = useState<string | undefined>('Filled');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  return <InputSearch {...args} value={value} onChange={handleChange} />;
 };
 
 /**

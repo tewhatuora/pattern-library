@@ -42,6 +42,22 @@ export default {
   },
 };
 
+export const Primary = (args: ButtonProps) => (
+  <Button {...args} variant="primary">
+    {args.children || 'Button'}
+  </Button>
+);
+export const Secondary = (args: ButtonProps) => (
+  <Button {...args} variant="secondary">
+    {args.children || 'Button'}
+  </Button>
+);
+export const Tertiary = (args: ButtonProps) => (
+  <Button {...args} variant="tertiary">
+    {args.children || 'Button'}
+  </Button>
+);
+
 export const Default = (args: ButtonProps) => <Button {...args}>{args.children || 'Button'}</Button>;
 export const OnPress = (args: ButtonProps) => (
   <Button

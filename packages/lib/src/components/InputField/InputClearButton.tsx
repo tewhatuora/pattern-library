@@ -1,3 +1,4 @@
+import { HTMLInputTypeAttribute } from 'react';
 import clsx from 'clsx';
 
 import { Icon } from '../Icon/Icon';
@@ -8,6 +9,7 @@ import { clearIcon } from '../Icon/Icon.css';
 export const InputClearButtonStyles = styles;
 
 export type InputClearButtonProps = {
+  fieldType?: HTMLInputTypeAttribute;
   clearButton?: string;
   onClear: () => void;
 };

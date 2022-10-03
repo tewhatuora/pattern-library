@@ -21,7 +21,7 @@ export type InputTextProps = InputLabelProps & InputMessageProps & InputFieldPro
  * Form field wrapper
  * @constructor
  */
-export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
+export const InputText = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputTextProps>(
   (
     {
       type = 'text',
@@ -49,19 +49,14 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       onChange,
       ...rest
     }: InputTextProps,
-    ref: ForwardedRef<HTMLInputElement>,
+    ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const fieldType = multiline ? 'text' : type;
     const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
       id,
-      name,
       label,
-      placeholder,
-      value,
       description: helperText,
-      defaultValue,
       errorMessage,
-      type: fieldType,
       'aria-labelledby': rest['aria-labelledby'],
       'aria-describedby': rest['aria-describedby'],
     });

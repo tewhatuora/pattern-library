@@ -11,14 +11,22 @@ export default {
   argTypes: {
     id: { control: false },
     helperText: {
-      defaultValue: 'Helper text',
+      control: false,
     },
     errorMessage: {
-      defaultValue: 'Error message',
+      control: false,
     },
   },
 };
 
 export const Default = (args: InputMessageProps) => {
-  return <InputMessage {...args} />;
+  return <InputMessage {...args} errorMessage="Error message" helperText="Helper text" />;
+};
+
+export const HelperText = (args: InputMessageProps) => {
+  return <InputMessage {...args} helperText="Helper text" />;
+};
+
+export const ErrorMessage = (args: InputMessageProps) => {
+  return <InputMessage {...args} errorMessage="Error message" />;
 };

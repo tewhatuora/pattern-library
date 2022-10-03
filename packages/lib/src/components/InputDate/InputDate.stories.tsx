@@ -17,16 +17,19 @@ export default {
       control: false,
     },
     label: {
+      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     subheading: {
+      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
+      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
@@ -70,57 +73,11 @@ export default {
   },
 };
 
-export const Uncontrolled = (args: InputDateProps) => <InputDate {...args} />;
-Uncontrolled.argTypes = {
+export const Default = (args: InputDateProps) => <InputDate {...args} />;
+Default.argTypes = {
   errorMessage: {
     control: {
       type: 'text',
-    },
-  },
-};
-
-export const Controlled = (args: InputDateProps) => {
-  const [day, setDay] = useState<string | undefined>('');
-  const [month, setMonth] = useState<string | undefined>('');
-  const [year, setYear] = useState<string | undefined>('');
-
-  const handleChange: InputDateOnChangeFn = ({ day, month, year }: InputDateValue) => {
-    setDay(day);
-    setMonth(month);
-    setYear(year);
-  };
-
-  const errors = {
-    day: !day || parseInt(day, 10) < 1 || parseInt(day, 10) > 31 ? 'Day is wrong' : undefined,
-    month: !month || parseInt(month, 10) < 1 || parseInt(month, 10) > 12 ? 'Month is wrong' : undefined,
-    year: !year || year.length > 4 ? 'Year is wrong' : undefined,
-  };
-
-  let errorMessage = undefined;
-
-  if (args.required) {
-    if (!day && !month && !year) {
-      errorMessage = 'Day, month & year are required';
-    } else {
-      errorMessage = errors.day || errors.month || errors.year;
-    }
-  }
-
-  return (
-    <InputDate
-      {...args}
-      errorMessage={errorMessage}
-      errors={errorMessage ? errors : undefined}
-      name="date"
-      value={{ day, month, year }}
-      onChange={handleChange}
-    />
-  );
-};
-Controlled.argTypes = {
-  required: {
-    control: {
-      type: 'boolean',
     },
   },
 };
@@ -131,7 +88,7 @@ Controlled.argTypes = {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputDateProps) => {
+export const WithFocus = (args: InputDateProps) => {
   const day = useRef<HTMLInputElement | null>(null);
   const month = useRef<HTMLInputElement | null>(null);
   const year = useRef<HTMLInputElement | null>(null);
@@ -147,3 +104,30 @@ export const Refs = (args: InputDateProps) => {
 
   return <InputDate {...args} ref={ref} />;
 };
+
+export const Filled = (args: InputDateProps) => {
+  const [day, setDay] = useState<string | undefined>('30');
+  const [month, setMonth] = useState<string | undefined>('09');
+  const [year, setYear] = useState<string | undefined>('2022');
+
+  const handleChange: InputDateOnChangeFn = ({ day, month, year }: InputDateValue) => {
+    setDay(day);
+    setMonth(month);
+    setYear(year);
+  };
+
+  return <InputDate {...args} value={{ day, month, year }} onChange={handleChange} />;
+};
+export const SingleError = (args: InputDateProps) => (
+  <InputDate {...args} errorMessage="Day is required" errors={{ day: 'Day is required ' }} />
+);
+export const FullError = (args: InputDateProps) => (
+  <InputDate
+    {...args}
+    errorMessage="Please enter a date"
+    errors={{ day: 'Day is required', month: 'Month is required', year: 'Year is required' }}
+  />
+);
+export const Disabled = (args: InputDateProps) => (
+  <InputDate {...args} disabled value={{ day: '30', month: '09', year: '2022' }} />
+);
