@@ -2,6 +2,7 @@ import { Column } from '../Columns/Column';
 import { Row } from '../Columns/Row';
 import { Card, CardProps } from './Card';
 import { Text } from '../Text/Text';
+import { Stack } from '../Stack/Stack';
 
 import { Container } from '../Container/Container';
 import DocsPage from '../../../utils/DocsPage';
@@ -63,44 +64,46 @@ export const GridLayout = (args: CardProps) => {
 
   return (
     <Container>
-      <Row>
-        <Column columns={12}>
-          <Card {...args}>{child}</Card>
-        </Column>
-      </Row>
-      <Row>
-        <Column columns={6}>
-          <Card {...args}>{child}</Card>
-        </Column>
-        <Column columns={6}>
-          <Card {...args}>{child}</Card>
-        </Column>
-      </Row>
-      <Row>
-        <Column columns={4}>
-          <Card {...args}>{child}</Card>
-        </Column>
-        <Column columns={4}>
-          <Card {...args}>{child}</Card>
-        </Column>
-        <Column columns={4}>
-          <Card {...args}>{child}</Card>
-        </Column>
-      </Row>
-      <Row>
-        <Column columns={3}>
-          <Card {...args}>{child}</Card>
-        </Column>
-        <Column columns={3}>
-          <Card {...args}>{child}</Card>
-        </Column>
-        <Column columns={3}>
-          <Card {...args}>{child}</Card>
-        </Column>
-        <Column columns={3}>
-          <Card {...args}>{child}</Card>
-        </Column>
-      </Row>
+      <Stack space="medium">
+        <Row>
+          <Column columns={12}>
+            <Card {...args}>{child}</Card>
+          </Column>
+        </Row>
+        <Row>
+          <Column columns={6}>
+            <Card {...args}>{child}</Card>
+          </Column>
+          <Column columns={6}>
+            <Card {...args}>{child}</Card>
+          </Column>
+        </Row>
+        <Row>
+          <Column columns={4}>
+            <Card {...args}>{child}</Card>
+          </Column>
+          <Column columns={4}>
+            <Card {...args}>{child}</Card>
+          </Column>
+          <Column columns={4}>
+            <Card {...args}>{child}</Card>
+          </Column>
+        </Row>
+        <Row>
+          <Column columns={3}>
+            <Card {...args}>{child}</Card>
+          </Column>
+          <Column columns={3}>
+            <Card {...args}>{child}</Card>
+          </Column>
+          <Column columns={3}>
+            <Card {...args}>{child}</Card>
+          </Column>
+          <Column columns={3}>
+            <Card {...args}>{child}</Card>
+          </Column>
+        </Row>
+      </Stack>
     </Container>
   );
 };
