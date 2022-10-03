@@ -23,7 +23,6 @@
   },
   "include": [
     "packages/lib/**/*",
-    "packages/themes/**/*",
     "*.mdx"
   ],
   "exclude": ["node_modules"]
