@@ -31,7 +31,7 @@
     "vite-tsconfig-paths": "^3.3.17"
   },
   "main": "./dist/index.cjs.js",
-  "module": "./dist/index.ess.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
