@@ -23,11 +23,11 @@ $ git remote add https://gitlab.com/healthnz-ult/c3/anatomic.git
 
 ## Development
 
-Storybook v6.5 with the Vite builder needs to run on Node 16. You will get an error trying to run/build Storybook on a Node version that isn’t `16.14.2`.
+Storybook v6.5 with the Vite builder needs to run on Node 16. You will get an error trying to run/build Storybook on a Node version that isn’t `16`.
 
 Use NVM to install and use Node 
 ```bash
-$ nvm install 16.14.2
+$ nvm install 16
 ```
 
 ### Pre commit hooks
