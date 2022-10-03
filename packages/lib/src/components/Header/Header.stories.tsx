@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { Text } from '../Text/Text';
 import { Header, HeaderProps } from './Header';
@@ -50,9 +50,9 @@ export default {
   },
 };
 
-const RouterLink = (props) => (
-  <a {...props} onClick={(e) => e.preventDefault()}>
-    {props.children}
+const RouterLink = ({ children, ...rest }: PropsWithChildren<any>) => (
+  <a {...rest} onClick={(e) => e.preventDefault()}>
+    {children}
   </a>
 );
 

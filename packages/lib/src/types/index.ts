@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { contract } from '@te-whatu-ora/anatomic-themes';
 
 export type AllOrNone<T> = T | { [K in keyof T]?: never };
 
@@ -16,3 +17,5 @@ export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; typ
 
 /** Contrast variant for dark/light UI */
 export type ContrastVariant = 'light' | 'dark';
+
+export type Color = keyof typeof contract.color;

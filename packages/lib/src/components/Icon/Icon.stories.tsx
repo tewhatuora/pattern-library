@@ -1,7 +1,9 @@
+import { PropsWithChildren } from 'react';
+
 import { Icon, IconProps } from './Icon';
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
-import icons, { decorative, functional, social } from './icons';
+import icons, { IconMap, IconType, decorative, functional, social } from './icons';
 import { vars } from '../../themes/vars.css';
 
 export default {
@@ -32,14 +34,17 @@ export const InheritedColor = (args: IconProps) => {
   );
 };
 
-const IconContainer = ({ children }) => (
+const IconContainer = ({ children }: PropsWithChildren<any>) => (
   <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
     {children}
   </Box>
 );
 
-const renderIcons = (icons, args: IconProps) => {
-  return Object.keys(icons).map((icon) => <Icon color={args.color} icon={icon} key={icon} />);
+const renderIcons = (icons: IconMap, args: IconProps) => {
+  return Object.keys(icons).map((value) => {
+    const icon = value as IconType;
+    return <Icon color={args.color} icon={icon} key={icon} />;
+  });
 };
 
 export const Decorative = (args: IconProps) => {

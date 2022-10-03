@@ -6,16 +6,11 @@ import { Action } from './Action';
 
 const order = ['primary', 'secondary', 'tertiary'];
 
-type DialogActionsProps = {
-  /** Only Dialog.Action components are allowed as children of Dialog.Actions */
-  children: typeof Action;
-};
-
 /**
  * Dialog action buttons
  * @constructor
  */
-export const Actions = ({ children }: PropsWithChildren<DialogActionsProps>) => {
+export const Actions = ({ children }: PropsWithChildren<any>) => {
   const sorted = Children.toArray(children).sort((a, b): number => {
     const aChild = cloneElement(a as ReactElement);
     const bChild = cloneElement(b as ReactElement);

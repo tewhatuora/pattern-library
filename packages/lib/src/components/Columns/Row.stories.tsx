@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import { Row, RowProps } from './Row';
 import { Column } from './Column';
 import { Box } from '../Box/Box';
@@ -17,7 +19,7 @@ export default {
   },
 };
 
-const Example = ({ children }) => (
+const Example = ({ children }: PropsWithChildren<any>) => (
   <Box backgroundColor="primary25" borderColor="primary100" borderWidth="small" marginY="medium" paddingY="medium">
     <Text align="center" as="div">
       {children}
@@ -25,7 +27,7 @@ const Example = ({ children }) => (
   </Box>
 );
 
-export const Grid = (args: RowProps) => {
+export const Grid = (args: RowProps<unknown>) => {
   return (
     <Box backgroundColor="primary5" paddingY="medium">
       <Container>
@@ -75,7 +77,7 @@ export const Grid = (args: RowProps) => {
   );
 };
 
-export const NoGutters = (args: RowProps) => {
+export const NoGutters = (args: RowProps<unknown>) => {
   return (
     <Box backgroundColor="primary5" paddingY="medium">
       <Container>

@@ -1,3 +1,4 @@
+import { ElementType } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import { Label } from '@radix-ui/react-label';
@@ -26,7 +27,9 @@ export type CheckboxProps = {
   /** Whether the checkbox is a required field or not */
   required?: boolean;
   /** Checkbox 'checked' state */
-  checked: boolean | 'indeterminate';
+  checked: boolean;
+  /** Checkbox 'indeterminate' state */
+  indeterminate?: boolean;
   /** Disable the Checkbox */
   disabled?: boolean;
   /** Display the Checkbox in an error state */
@@ -53,12 +56,16 @@ export const Checkbox = ({
   id,
   required = false,
   checked,
+  indeterminate,
   onCheckedChange,
   error = false,
   disabled = false,
   className,
   ...boxProps
 }: CheckboxProps) => {
+  const IndeterminateIconEl = IndeterminateIcon as ElementType;
+  const TickIconEl = TickIcon as ElementType;
+
   return (
     <Box
       as="div"
@@ -76,7 +83,7 @@ export const Checkbox = ({
         onCheckedChange={onCheckedChange}
       >
         <CheckboxPrimitive.Indicator className={styles.indicator}>
-          {checked === 'indeterminate' ? <IndeterminateIcon /> : <TickIcon />}
+          {checked && indeterminate ? <IndeterminateIconEl /> : <TickIconEl />}
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
       <Label className={styles.label} htmlFor={id}>

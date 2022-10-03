@@ -80,18 +80,24 @@ export default {
 };
 
 export const Default = (args: CheckboxGroupProps) => {
-  const [checkbox1State, setCheckbox1State] = useState<boolean | 'indeterminate'>(true);
-  const [checkbox2State, setCheckbox2State] = useState<boolean | 'indeterminate'>(false);
-  const [checkbox3State, setCheckbox3State] = useState<boolean | 'indeterminate'>('indeterminate');
-  const [checkbox4State, setCheckbox4State] = useState<boolean | 'indeterminate'>(false);
-  const [checkbox5State, setCheckbox5State] = useState<boolean | 'indeterminate'>(false);
-  const [checkbox6State, setCheckbox6State] = useState<boolean | 'indeterminate'>(false);
+  const [checkbox1State, setCheckbox1State] = useState<boolean>(true);
+  const [checkbox2State, setCheckbox2State] = useState<boolean>(false);
+  const [checkbox3State, setCheckbox3State] = useState<boolean>(true);
+  const [checkbox4State, setCheckbox4State] = useState<boolean>(false);
+  const [checkbox5State, setCheckbox5State] = useState<boolean>(false);
+  const [checkbox6State, setCheckbox6State] = useState<boolean>(false);
 
   return (
     <CheckboxGroup {...args}>
       <Checkbox checked={!!checkbox1State} id="checkbox_1" label="Checkbox 1" onCheckedChange={setCheckbox1State} />
       <Checkbox checked={!!checkbox2State} id="checkbox_2" label="Checkbox 2" onCheckedChange={setCheckbox2State} />
-      <Checkbox checked={!!checkbox3State} id="checkbox_4" label="Checkbox 3" onCheckedChange={setCheckbox3State} />
+      <Checkbox
+        checked={checkbox3State}
+        id="checkbox_4"
+        indeterminate
+        label="Checkbox 3"
+        onCheckedChange={setCheckbox3State}
+      />
       <Checkbox
         checked={!!checkbox4State}
         heading="Checkbox"
