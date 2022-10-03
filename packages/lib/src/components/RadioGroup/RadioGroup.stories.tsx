@@ -15,16 +15,19 @@ export default {
     name: { control: false },
     id: { control: false },
     label: {
+      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     helperText: {
+      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
     },
     subheading: {
+      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
@@ -91,9 +94,29 @@ export const Default = (args: RadioGroupProps) => {
   );
 };
 
+export const Filled = (args: RadioGroupProps) => {
+  return (
+    <RadioGroup {...args} value="one">
+      <RadioButton id="value_one" label="Content one" value="one" />
+      <RadioButton id="value_two" label="Content two" value="two" />
+      <RadioButton id="value_three" label="Content three" value="three" />
+    </RadioGroup>
+  );
+};
+
+export const Error = (args: RadioGroupProps) => {
+  return (
+    <RadioGroup {...args} errorMessage="Error message" value="one">
+      <RadioButton id="value_one" label="Content one" value="one" />
+      <RadioButton id="value_two" label="Content two" value="two" />
+      <RadioButton id="value_three" label="Content three" value="three" />
+    </RadioGroup>
+  );
+};
+
 export const Disabled = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} value="one" onChange={(value) => alert(value)}>
+    <RadioGroup {...args} disabled value="one">
       <RadioButton disabled id="value_one" label="Content one" value="one" />
       <RadioButton disabled id="value_two" label="Content two" value="two" />
       <RadioButton disabled id="value_three" label="Content three" value="three" />

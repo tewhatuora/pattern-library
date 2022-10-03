@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { InputField, InputFieldProps } from './InputField';
 
@@ -58,16 +58,11 @@ export default {
   },
 };
 
-export const Uncontrolled = (args: InputFieldProps) => {
+export const Default = (args: InputFieldProps) => {
   return <InputField {...args} />;
 };
-
-export const Controlled = (args: InputFieldProps) => {
-  const [value, setValue] = useState('');
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-  return <InputField {...args} value={value} onChange={handleChange} />;
+export const WithPlaceholder = (args: InputFieldProps) => {
+  return <InputField {...args} placeholder="Placeholder" />;
 };
 
 /**
@@ -76,11 +71,27 @@ export const Controlled = (args: InputFieldProps) => {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputFieldProps) => {
+export const WithFocus = (args: InputFieldProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputField {...args} placeholder="Focused by default using forwardRef" ref={ref} />;
+  return <InputField {...args} defaultValue="Focus" ref={ref} />;
+};
+export const Filled = (args: InputFieldProps) => {
+  return <InputField {...args} defaultValue="Filled" />;
+};
+export const Error = (args: InputFieldProps) => {
+  return <InputField {...args} defaultValue="Filled" error />;
+};
+export const Disabled = (args: InputFieldProps) => {
+  return <InputField {...args} defaultValue="Filled" disabled />;
+};
+export const Clearable = (args: InputFieldProps) => {
+  const [value, setValue] = useState('Clearable');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+  return <InputField {...args} clearable value={value} onChange={handleChange} />;
 };

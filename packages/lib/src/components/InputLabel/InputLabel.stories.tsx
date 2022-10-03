@@ -14,10 +14,14 @@ export default {
       defaultValue: 'Label',
     },
     subheading: {
-      defaultValue: 'Subheading',
+      control: {
+        type: 'string',
+      },
     },
     tertiaryLabel: {
-      defaultValue: 'Tertiary label',
+      control: {
+        type: 'string',
+      },
     },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
@@ -51,4 +55,29 @@ export default {
 
 export const Default = (args: InputLabelProps) => {
   return <InputLabel {...args} />;
+};
+
+export const Heading = (args: InputLabelProps) => {
+  return <InputLabel {...args} label="Heading" />;
+};
+export const WithError = (args: InputLabelProps) => {
+  return <InputLabel {...args} error label="Heading" />;
+};
+export const WithSubHeading = (args: InputLabelProps) => {
+  return <InputLabel {...args} label="Heading" subheading="Subheading" />;
+};
+export const WithSubHeadingAndError = (args: InputLabelProps) => {
+  return <InputLabel {...args} error label="Heading" subheading="Subheading" />;
+};
+export const WithTertiaryLabel = (args: InputLabelProps) => {
+  return <InputLabel {...args} label="Heading" tertiaryLabel="Tertiary label" />;
+};
+export const WithTertiaryLabelAndError = (args: InputLabelProps) => {
+  return <InputLabel {...args} error label="Heading" tertiaryLabel="Tertiary label" />;
+};
+export const WithSubHeadingAndTertiaryLabel = (args: InputLabelProps) => {
+  return <InputLabel {...args} label="Heading" subheading="Subheading" tertiaryLabel="Tertiary label" />;
+};
+export const WithSubHeadingAndTertiaryLabelAndError = (args: InputLabelProps) => {
+  return <InputLabel {...args} error label="Heading" subheading="Subheading" tertiaryLabel="Tertiary label" />;
 };

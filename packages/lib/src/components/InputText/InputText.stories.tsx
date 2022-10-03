@@ -15,6 +15,24 @@ export default {
     options: { control: false },
     onChange: { control: false },
     onTertiaryLabelClick: { control: false },
+    label: {
+      defaultValue: 'Label',
+      control: {
+        type: 'text',
+      },
+    },
+    subheading: {
+      defaultValue: 'Subheading',
+      control: {
+        type: 'text',
+      },
+    },
+    helperText: {
+      defaultValue: 'Helper text',
+      control: {
+        type: 'text',
+      },
+    },
     placeholder: {
       control: {
         type: 'text',
@@ -52,16 +70,6 @@ export default {
       },
       if: { arg: 'multiline' },
     },
-    label: {
-      control: {
-        type: 'text',
-      },
-    },
-    subheading: {
-      control: {
-        type: 'text',
-      },
-    },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
     },
@@ -97,14 +105,8 @@ export default {
     },
   },
 };
-
-export const Uncontrolled = (args: InputTextProps) => {
+export const Default = (args: InputTextProps) => {
   return <InputText {...args} />;
-};
-
-export const Controlled = (args: InputTextProps) => {
-  const [value, setValue] = useState('');
-  return <InputText {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 /**
@@ -113,11 +115,26 @@ export const Controlled = (args: InputTextProps) => {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputTextProps) => {
+export const WithFocus = (args: InputTextProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputText {...args} ref={ref} />;
+  return <InputText {...args} defaultValue="Focus" ref={ref} />;
+};
+
+export const Filled = (args: InputTextProps) => {
+  const [value, setValue] = useState('Filled');
+  return <InputText {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+};
+
+export const Error = (args: InputTextProps) => {
+  const [value, setValue] = useState('Filled');
+  return <InputText {...args} error value={value} onChange={(e) => setValue(e.target.value)} />;
+};
+
+export const Disabled = (args: InputTextProps) => {
+  const [value, setValue] = useState('Filled');
+  return <InputText {...args} disabled value={value} onChange={(e) => setValue(e.target.value)} />;
 };

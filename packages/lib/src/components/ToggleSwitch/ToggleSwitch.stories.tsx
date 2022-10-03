@@ -10,10 +10,7 @@ export default {
     id: { control: false },
     name: { control: false },
     label: {
-      defaultValue: 'ToggleSwitch Component',
-    },
-    heading: {
-      defaultValue: 'Heading',
+      defaultValue: 'Label',
     },
     disabled: {
       control: {
@@ -31,6 +28,9 @@ export default {
   },
 };
 
-export const Default = (args: ToggleSwitchProps) => {
-  return <ToggleSwitch {...args} />;
-};
+export const Default = (args: ToggleSwitchProps) => <ToggleSwitch {...args} />;
+export const WithHeading = (args: ToggleSwitchProps) => <ToggleSwitch {...args} heading="Heading" />;
+export const Checked = (args: ToggleSwitchProps) => <ToggleSwitch {...args} defaultChecked heading="Heading" />;
+export const Disabled = (args: ToggleSwitchProps) => (
+  <ToggleSwitch {...args} defaultChecked disabled heading="Heading" />
+);

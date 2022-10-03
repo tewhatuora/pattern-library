@@ -41,22 +41,24 @@ export default {
       },
     },
     label: {
+      defaultValue: 'Label',
       control: {
         type: 'text',
       },
-      defaultValue: 'Password',
     },
     subheading: {
-      control: {
-        type: 'text',
-      },
-    },
-    errorMessage: {
+      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
+      defaultValue: 'Helper text',
+      control: {
+        type: 'text',
+      },
+    },
+    errorMessage: {
       control: {
         type: 'text',
       },
@@ -100,7 +102,7 @@ export const Default = (args: InputPasswordProps) => {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputPasswordProps) => {
+export const WithFocus = (args: InputPasswordProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     if (ref?.current) {
@@ -108,5 +110,11 @@ export const Refs = (args: InputPasswordProps) => {
     }
   }, [ref]);
 
-  return <InputPassword {...args} ref={ref} />;
+  return <InputPassword {...args} defaultValue="Password1234" ref={ref} />;
 };
+
+export const Filled = (args: InputPasswordProps) => <InputPassword {...args} defaultValue="Password1234" />;
+export const Error = (args: InputPasswordProps) => (
+  <InputPassword {...args} defaultValue="Password1234" errorMessage="Your email or password is incorrect" />
+);
+export const Disabled = (args: InputPasswordProps) => <InputPassword {...args} defaultValue="Password1234" disabled />;

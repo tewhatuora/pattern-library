@@ -16,16 +16,19 @@ export default {
     onChange: { control: false },
     onTertiaryLabelClick: { control: false },
     label: {
+      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     subheading: {
+      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
+      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
@@ -68,38 +71,41 @@ export default {
   },
 };
 
+const options = [
+  {
+    value: '',
+    label: '',
+  },
+  {
+    value: '1',
+    label: 'Option one',
+  },
+  {
+    value: '2',
+    label: 'Option two',
+  },
+  {
+    value: 'filled',
+    label: 'Filled',
+  },
+  {
+    value: '3',
+    label: 'Option three (disabled)',
+    disabled: true,
+  },
+  {
+    value: '4',
+    label: 'Option four',
+  },
+];
+
 export const Default = (args: InputDropdownProps) => {
   const [value, setValue] = useState(undefined);
   const handleChange = (e: any) => {
     setValue(e.target.value);
   };
 
-  return (
-    <InputDropdown
-      {...args}
-      options={[
-        {
-          value: '1',
-          label: 'Option one',
-        },
-        {
-          value: '2',
-          label: 'Option two',
-        },
-        {
-          value: '3',
-          label: 'Option three (disabled)',
-          disabled: true,
-        },
-        {
-          value: '4',
-          label: 'Option four',
-        },
-      ]}
-      value={value}
-      onChange={handleChange}
-    />
-  );
+  return <InputDropdown {...args} options={options} value={value} onChange={handleChange} />;
 };
 
 /**
@@ -108,7 +114,7 @@ export const Default = (args: InputDropdownProps) => {
  * @param args
  * @constructor
  */
-export const Refs = (args: InputDropdownProps) => {
+export const WithFocus = (args: InputDropdownProps) => {
   const ref = useRef<HTMLSelectElement | null>(null);
   useEffect(() => {
     if (ref?.current) {
@@ -116,25 +122,34 @@ export const Refs = (args: InputDropdownProps) => {
     }
   }, [ref]);
 
+  return <InputDropdown {...args} options={options} placeholder="Filled" ref={ref} />;
+};
+
+export const Filled = (args: InputDropdownProps) => {
+  const [value, setValue] = useState('filled');
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
+  return <InputDropdown {...args} options={options} value={value} onChange={handleChange} />;
+};
+
+export const Error = (args: InputDropdownProps) => {
+  const [value, setValue] = useState('filled');
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
   return (
-    <InputDropdown
-      {...args}
-      options={[
-        {
-          value: 1,
-          label: 'Option one',
-        },
-        {
-          value: 2,
-          label: 'Option two',
-        },
-        {
-          value: '3',
-          label: 'Option three',
-        },
-      ]}
-      placeholder="Focused by default using forwardRef"
-      ref={ref}
-    />
+    <InputDropdown {...args} errorMessage="Error message" options={options} value={value} onChange={handleChange} />
   );
+};
+
+export const Disabled = (args: InputDropdownProps) => {
+  const [value, setValue] = useState('filled');
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
+  return <InputDropdown {...args} disabled options={options} value={value} onChange={handleChange} />;
 };
