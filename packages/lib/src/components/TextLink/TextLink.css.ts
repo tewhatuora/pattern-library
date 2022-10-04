@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
@@ -20,3 +20,13 @@ export const link = style([
     },
   },
 ]);
+
+export const iconPosition = styleVariants({
+  left: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+  },
+  right: {
+    flexDirection: 'row',
+  },
+});
