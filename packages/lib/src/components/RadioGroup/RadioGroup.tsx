@@ -16,7 +16,7 @@ export type RadioGroupProps = {
   /** Disabled state/attribute used to disable interaction */
   disabled?: boolean;
   /** required attribute */
-  required: boolean;
+  required?: boolean;
   /** Show error state */
   error?: boolean | string;
   /** Function to call when the value is changed */

@@ -16,8 +16,8 @@ import { IconType } from '../Icon/icons';
 
 import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
 import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
-import TeWhatuOraLogoLight from './te-whatu-ora-logo-light.svg?component';
-import TeWhatuOraLogoDark from './te-whatu-ora-logo-dark.svg?component';
+import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
+import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
 import { ShieldedSite } from './ShieldedSite';
 

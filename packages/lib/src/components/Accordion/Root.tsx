@@ -1,10 +1,10 @@
-import { createContext } from 'react';
+import { PropsWithChildren, createContext } from 'react';
 import * as RadixAccordion from '@radix-ui/react-accordion';
 
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
-import { AccordionItemProps, Item } from './Item';
+import { Item } from './Item';
 
-import { ChildrenOfType, ContrastVariant } from '../../types';
+import { ContrastVariant } from '../../types';
 
 import * as styles from './Accordion.css';
 
@@ -13,8 +13,6 @@ export type AccordionRootProps = {
   type: 'single' | 'multiple';
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
-  /** Only `Accordion.Item` components are allowed as children of `Accordion.Root` */
-  children: ChildrenOfType<'Item', AccordionItemProps>;
   /** Heading level */
   headingLevel: 3 | 4 | 5 | 6;
 };
@@ -28,7 +26,7 @@ export const AccordionContext = createContext({ headingLevel: 3 });
  *
  * @constructor
  */
-export const Root = ({ type, variant = 'light', headingLevel, children }: AccordionRootProps) => {
+export const Root = ({ type, variant = 'light', headingLevel, children }: PropsWithChildren<AccordionRootProps>) => {
   return (
     <RadixAccordion.Root className={styles.root[variant]} collapsible type={type}>
       <AccordionContext.Provider value={{ headingLevel }}>

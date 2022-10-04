@@ -45,13 +45,30 @@ export const Default = (args: ToggleButtonProps) => {
 };
 
 export const LeftSelected = (args: ToggleButtonProps) => {
-  return <ToggleButton {...args} defaultValue="Left ToggleButton" />;
+  return <ToggleButton {...args} />;
+};
+LeftSelected.args = {
+  defaultValue: 'Left ToggleButton',
 };
 
 export const RightSelected = (args: ToggleButtonProps) => {
-  return <ToggleButton {...args} defaultValue="Right ToggleButton" />;
+  return <ToggleButton {...args} />;
+};
+RightSelected.args = {
+  defaultValue: 'Right ToggleButton',
 };
 
 export const Disabled = (args: ToggleButtonProps) => {
-  return <ToggleButton {...args} defaultValue="Right ToggleButton" disabled />;
+  return <ToggleButton {...args} />;
+};
+Disabled.args = {
+  disabled: true,
+};
+
+export const DisabledAndSelected = (args: ToggleButtonProps) => {
+  return <ToggleButton {...args} />;
+};
+DisabledAndSelected.args = {
+  defaultValue: 'Right ToggleButton',
+  disabled: true,
 };

@@ -10,7 +10,7 @@ import { IconType } from '../Icon/icons';
 
 import * as styles from './TextLink.css';
 
-export const TagStyles = styles;
+export const TextLinkStyles = styles;
 
 export interface TextLinkProps extends Pick<BoxProps, 'as'> {
   /** Font size token */
@@ -27,6 +27,8 @@ export interface TextLinkProps extends Pick<BoxProps, 'as'> {
   href?: string;
   /** Icon to display **/
   icon?: IconType;
+  /** Where to position the icon */
+  iconPosition?: 'left' | 'right';
 }
 
 /**
@@ -45,12 +47,18 @@ export const TextLink = ({
   weight = 'link-normal',
   children,
   icon,
+  iconPosition = 'right',
   className,
 }: PropsWithChildren<TextLinkProps>) => {
   const textStyles = useText({ weight, size });
 
   return (
-    <Box as="a" className={clsx(textStyles, styles.link, className)} href={href} textAlign={align}>
+    <Box
+      as="a"
+      className={clsx(textStyles, styles.link, styles.iconPosition[iconPosition], className)}
+      href={href}
+      textAlign={align}
+    >
       {children}
       {!!icon && <Icon icon={icon} variant="functionalIcons" />}
     </Box>
