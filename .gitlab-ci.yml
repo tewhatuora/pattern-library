@@ -41,10 +41,10 @@ stages:
       if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@c?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
 
     - &run_for_prerelease_lib_version # Run if prerelease semver tag is pushed to any branch
-      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))+(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
 
     - &run_for_prerelease_themes_version # Run if prerelease semver tag is pushed to any branch
-      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))+(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
 
     - &run_for_chromatic
       if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
