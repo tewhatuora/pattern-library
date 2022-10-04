@@ -26,7 +26,7 @@ export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
     /** International phone number format */
     international?: boolean;
     defaultCountry?: Country;
-    onChange: InputPhoneOnChangeFn;
+    onChange?: InputPhoneOnChangeFn;
   };
 
 /**

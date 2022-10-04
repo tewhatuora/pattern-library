@@ -27,6 +27,8 @@ export interface TextLinkProps extends Pick<BoxProps, 'as'> {
   href?: string;
   /** Icon to display **/
   icon?: IconType;
+  /** Where to position the icon */
+  iconPosition?: 'left' | 'right';
 }
 
 /**

@@ -46,7 +46,7 @@ export type InputDateProps = Omit<InputLabelProps, 'error'> &
     /** Value object for InputDate, containing `day`, `month` & `year` */
     value?: InputDateValue;
     /** Function to call when either the day, month or year values change */
-    onChange: InputDateOnChangeFn;
+    onChange?: InputDateOnChangeFn;
   };
 
 /**
