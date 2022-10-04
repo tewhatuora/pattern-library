@@ -29,8 +29,25 @@ export default {
 };
 
 export const Default = (args: ToggleSwitchProps) => <ToggleSwitch {...args} />;
-export const WithHeading = (args: ToggleSwitchProps) => <ToggleSwitch {...args} heading="Heading" />;
-export const Checked = (args: ToggleSwitchProps) => <ToggleSwitch {...args} defaultChecked heading="Heading" />;
-export const Disabled = (args: ToggleSwitchProps) => (
+export const WithHeading = (args: ToggleSwitchProps) => <ToggleSwitch {...args} />;
+WithHeading.args = {
+  heading: 'Heading',
+};
+export const Checked = (args: ToggleSwitchProps) => <ToggleSwitch {...args} />;
+Checked.args = {
+  defaultChecked: true,
+  heading: 'Heading',
+};
+export const Disabled = (args: ToggleSwitchProps) => <ToggleSwitch {...args} />;
+Disabled.args = {
+  disabled: true,
+  heading: 'Heading',
+};
+export const DisabledAndChecked = (args: ToggleSwitchProps) => (
   <ToggleSwitch {...args} defaultChecked disabled heading="Heading" />
 );
+DisabledAndChecked.args = {
+  defaultChecked: true,
+  disabled: true,
+  heading: 'Heading',
+};

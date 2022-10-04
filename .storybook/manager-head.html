@@ -96,4 +96,10 @@
     .search-field code {
         display: none;
     }
+
+    .docblock-argstable td label input + span,
+    .docblock-argstable td label input:checked~span:last-of-type,
+    .docblock-argstable td label input:not(:checked)~span:first-of-type {
+      color: #fff;
+    }
 </style>
