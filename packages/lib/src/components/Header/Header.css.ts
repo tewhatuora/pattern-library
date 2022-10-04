@@ -1,4 +1,4 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../themes/vars.css';
@@ -48,24 +48,16 @@ export const header = styleVariants({
 export const logo = style([
   {
     display: 'block',
-    color: vars.color.neutral100,
-    ':visited': {
-      color: 'currentColor',
-    },
   },
   responsiveStyle({
     mobile: {
       width: '10rem',
     },
     tablet: {
-      width: '14rem',
+      width: '16.4rem',
     },
   }),
 ]);
-
-globalStyle(`${logo} svg path`, {
-  fill: 'currentColor',
-});
 
 export const searchForm = style([
   atoms({

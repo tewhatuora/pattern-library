@@ -12,14 +12,13 @@ import { UtilityNavItemProps } from '../Navigation/Utility';
 import { Navigation } from '../Navigation/Navigation';
 import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 
-import Logo from '../../assets/logo-moh.svg?component';
+import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
+import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
 import { Color, ContrastVariant } from '../../types';
 
 import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
-
-const LogoEl = Logo as ElementType;
 
 export const HeaderStyles = styles;
 
@@ -111,6 +110,8 @@ export const Header = ({
   }, [utilityNavItems, variant]);
 
   const renderLogo = useMemo(() => {
+    const LogoEl = variant === 'light' ? (TeWhatuOraLogoDark as ElementType) : (TeWhatuOraLogoLight as ElementType);
+
     if (LogoLinkComponent) {
       return (
         <LogoLinkComponent className={styles.logo} href={logoLinkHref} to={logoLinkHref}>
@@ -126,7 +127,7 @@ export const Header = ({
         <LogoEl />
       </a>
     );
-  }, [LogoLinkComponent, logoLinkHref]);
+  }, [LogoLinkComponent, logoLinkHref, variant]);
 
   return (
     <header className={styles.header[variant]}>
