@@ -122,7 +122,7 @@ npm_lib_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/lib
+    - yarn publish --cwd ./packages/lib --tag latest
 
 npm_themes_publish:
   rules:
@@ -135,7 +135,7 @@ npm_themes_publish:
       artifacts: true
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-    - yarn publish --cwd ./packages/themes
+    - yarn publish --cwd ./packages/themes --tag latest
 
 
 npm_lib_publish_prerelease:
