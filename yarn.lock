@@ -3801,6 +3801,11 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
+"@te-whatu-ora/anatomic-themes@^0.0.2-beta.17":
+  version "0.0.2-beta.17"
+  resolved "https://registry.yarnpkg.com/@te-whatu-ora/anatomic-themes/-/anatomic-themes-0.0.2-beta.17.tgz#90c66718d0337e9f9ad2e173d78e97f5463c831f"
+  integrity sha512-YzD8MmoC+NnF6TX64h+4pYym81Lq1hw0bNC8MthCxSGFvTiWKjexuCDKumhPKzveq/rS0EvNboRc0fwOJ3gziw==
+
 "@testing-library/dom@^8.0.0", "@testing-library/dom@^8.10.1", "@testing-library/dom@^8.3.0":
   version "8.18.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.18.1.tgz#80f91be02bc171fe5a3a7003f88207be31ac2cf3"

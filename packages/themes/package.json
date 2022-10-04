@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic-themes",
-  "version": "0.0.2-beta.17",
+  "version": "1.0.0",
   "description": "Te Whatu Ora - Anatomic Design system. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
@@ -13,16 +13,16 @@
   "author": "Kyle Beattie <kyle.beattie@alphero.com>",
   "contributors": [
     {
-      "name" : "Kyle Beattie",
-      "email" : "kyle.beattie@alphero.com"
+      "name": "Kyle Beattie",
+      "email": "kyle.beattie@alphero.com"
     },
     {
-      "name" : "Chris Meekin",
-      "email" : "chris.meekin@alphero.com"
+      "name": "Chris Meekin",
+      "email": "chris.meekin@alphero.com"
     },
     {
-      "name" : "Chris McArdle",
-      "email" : "chris.mcardle@alphero.com"
+      "name": "Chris McArdle",
+      "email": "chris.mcardle@alphero.com"
     }
   ],
   "license": "MIT",
