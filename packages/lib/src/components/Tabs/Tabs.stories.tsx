@@ -2,9 +2,11 @@ import { useState } from 'react';
 
 import { TabsRootProps } from './Root';
 import { Tabs } from './Tabs';
+import { Text } from '../Text/Text';
 
 import Docs from './Tabs.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
+import { vars } from '../../themes/vars.css';
 
 export default {
   title: 'Components/Tabs',
@@ -30,6 +32,11 @@ export default {
     },
     defaultValue: {
       control: { type: 'text' },
+    },
+    space: {
+      defaultValue: 'medium',
+      options: ['', ...Object.keys(vars.space)],
+      control: { type: 'select' },
     },
     activationMode: {
       control: {
@@ -58,13 +65,13 @@ export const Uncontrolled = (args: TabsRootProps) => (
     </Tabs.List>
 
     <Tabs.Content value="tab-1">
-      <p>Tab 1 content</p>
+      <Text as="p">Tab 1 content</Text>
     </Tabs.Content>
     <Tabs.Content value="tab-2">
-      <p>Tab 2 content</p>
+      <Text as="p">Tab 2 content</Text>
     </Tabs.Content>
     <Tabs.Content value="tab-3">
-      <p>Tab 3 content</p>
+      <Text as="p">Tab 3 content</Text>
     </Tabs.Content>
   </Tabs.Root>
 );
@@ -85,13 +92,13 @@ export const Controlled = (args: TabsRootProps) => {
       </Tabs.List>
 
       <Tabs.Content value="tab-1">
-        <p>Tab 1 content</p>
+        <Text as="p">Tab 1 content</Text>
       </Tabs.Content>
       <Tabs.Content value="tab-2">
-        <p>Tab 2 content</p>
+        <Text as="p">Tab 2 content</Text>
       </Tabs.Content>
       <Tabs.Content value="tab-3">
-        <p>Tab 3 content</p>
+        <Text as="p">Tab 3 content</Text>
       </Tabs.Content>
     </Tabs.Root>
   );
