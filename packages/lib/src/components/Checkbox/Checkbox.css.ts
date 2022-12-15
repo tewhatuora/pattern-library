@@ -1,5 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 
@@ -8,7 +10,7 @@ export const wrapper = style([
     display: 'flex',
   }),
   {
-    marginBottom: '2rem',
+    marginBottom: rem(20),
 
     selectors: {
       '&[aria-invalid="true"]': {
@@ -28,9 +30,9 @@ export const error = style({
 
 export const checkbox = style({
   all: 'unset',
-  width: '2.2rem',
-  height: '2.2rem',
-  borderRadius: '0.4rem',
+  width: rem(22),
+  height: rem(22),
+  borderRadius: rem(4),
   borderStyle: 'solid',
   borderWidth: vars.borderWidth.medium,
   display: 'flex',
@@ -43,7 +45,7 @@ export const checkbox = style({
   backgroundColor: vars.color.primary0,
 
   ':focus': {
-    boxShadow: `0 0 0 0.4rem #BFBFBF`,
+    boxShadow: `0 0 0 ${rem(4)} #BFBFBF`,
     backgroundColor: vars.color.tertiary5,
   },
 
@@ -84,7 +86,7 @@ export const indicator = style({
 });
 
 globalStyle(`${indicator} > svg`, {
-  width: '1.2rem',
+  width: rem(12),
   fill: vars.color.primary0,
 });
 

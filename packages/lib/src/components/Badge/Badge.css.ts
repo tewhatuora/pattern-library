@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -52,12 +54,12 @@ export const variants = recipe({
     }),
     responsiveStyle({
       mobile: {
-        height: '2.2rem',
+        height: rem(22),
         paddingLeft: vars.space.xsmall.mobile,
         paddingRight: vars.space.xsmall.mobile,
       },
       tablet: {
-        height: '2.6rem',
+        height: rem(26),
         paddingLeft: vars.space.xsmall.tablet,
         paddingRight: vars.space.xsmall.tablet,
       },

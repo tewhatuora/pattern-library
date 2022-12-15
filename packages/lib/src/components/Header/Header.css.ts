@@ -1,6 +1,8 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -51,10 +53,10 @@ export const logo = style([
   },
   responsiveStyle({
     mobile: {
-      width: '10rem',
+      width: rem(100),
     },
     tablet: {
-      width: '16.4rem',
+      width: rem(164),
     },
   }),
 ]);

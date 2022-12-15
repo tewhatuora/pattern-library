@@ -6,8 +6,8 @@
  * @return {string} size in rem units
  */
 function sizeToRem(size) {
-  const num = Number(size) / 10;
-  const rem = parseFloat(num.toFixed(2).toString());
+  const num = Number(size) / 16;
+  const rem = parseFloat(num.toFixed(3).toString());
   return `${rem}rem`;
 }
 

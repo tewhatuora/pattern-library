@@ -1,6 +1,8 @@
 import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -9,7 +11,7 @@ import { vars } from '../../themes/vars.css';
 
 export const widthVar = createVar();
 
-const spacing = calc.multiply(vars.space.medium.tablet, 2); // 6.4rem / 64px
+const spacing = calc.multiply(vars.space.medium.tablet, 2); // 4rem / 64px
 
 export const footer = style(
   responsiveStyle({
@@ -40,13 +42,13 @@ export const footerInner = style([
 // ##### First row #####
 
 export const logoWrapper = style({
-  height: '8rem',
-  width: '17.2rem',
+  height: rem(80),
+  width: rem(172),
 });
 
 export const govtLogoWrapper = style({
-  height: '8rem',
-  width: '27.2rem',
+  height: rem(80),
+  width: rem(272),
 });
 
 // ##### Second Row #####
@@ -77,7 +79,7 @@ export const childrenWrapper = style([
 ]);
 
 export const lessSpace = style({
-  columnGap: vars.space.large.tablet, // 4rem/40px
+  columnGap: vars.space.large.tablet, // 2.5rem/40px
 });
 
 export const hiddenNavs = style({
@@ -97,13 +99,13 @@ export const socialAndImprintWrapper = style([
     justifyContent: 'spaceBetween',
   }),
   responsiveStyle({
-    mobile: { gap: '4.2rem' },
+    mobile: { gap: rem(42) },
     desktop: { gap: 0 },
   }),
 ]);
 
 export const social = style({
-  gap: '2.2rem', // It's the same for all breakpoints and doesn't match any tokens
+  gap: rem(22), // It's the same for all breakpoints and doesn't match any tokens
 });
 
 export const socialIcons = styleVariants({

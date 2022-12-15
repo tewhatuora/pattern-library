@@ -2,6 +2,7 @@ import { StyleRule } from '@vanilla-extract/css';
 
 import { vars } from '../themes/vars.css';
 import { ColumnLength } from '../components/Columns/Column';
+import { rem } from './helpers';
 
 export const MAX_COLS = 12;
 
@@ -11,8 +12,8 @@ export const mobileContainer: StyleRule = {
 };
 
 export const tabletContainer: StyleRule = {
-  marginLeft: '12rem',
-  marginRight: '12rem',
+  marginLeft: rem(120),
+  marginRight: rem(120),
 };
 
 export const mobileRow: StyleRule = {
