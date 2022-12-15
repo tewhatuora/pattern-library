@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
@@ -22,8 +24,8 @@ export const label = style([
 
 export const switchRoot = style({
   all: 'unset',
-  width: '5.1rem',
-  height: '3.1rem',
+  width: rem(51),
+  height: rem(31),
   backgroundColor: vars.color.tertiary75,
   borderRadius: vars.borderRadius.topLeft.tags,
   position: 'relative',
@@ -45,16 +47,16 @@ export const switchRoot = style({
 
 export const switchThumb = style([
   {
-    width: '2.7rem',
-    height: '2.7rem',
+    width: rem(27),
+    height: rem(27),
     display: 'block',
     backgroundColor: vars.color.neutral0,
     borderRadius: vars.borderRadiusAll.tags,
     transition: 'transform 100ms ease-out',
-    transform: 'translateX(0.25rem)',
+    transform: `translateX(${rem(2.5)})`,
     willChange: 'transform',
     selectors: {
-      '&[data-state=checked]': { transform: 'translateX(2.2rem)' },
+      '&[data-state=checked]': { transform: `translateX(${rem(22)})` },
     },
   },
 ]);

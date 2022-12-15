@@ -1,5 +1,7 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -15,10 +17,10 @@ export const countryDropdown = style([
   },
   responsiveStyle({
     mobile: {
-      width: '8.4rem',
+      width: rem(84),
     },
     tablet: {
-      width: '11.6rem',
+      width: rem(116),
     },
   }),
 ]);
@@ -29,7 +31,7 @@ export const flagWrapperBase = style([
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '4.4rem',
+    width: rem(44),
     height: '100%',
     left: vars.space.xsmall.tablet,
     top: '0',
@@ -38,10 +40,10 @@ export const flagWrapperBase = style([
   },
   responsiveStyle({
     mobile: {
-      width: '3.6rem',
+      width: rem(36),
     },
     tablet: {
-      width: '4.4rem',
+      width: rem(44),
     },
   }),
 ]);

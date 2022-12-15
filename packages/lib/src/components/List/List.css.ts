@@ -1,6 +1,8 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
@@ -127,10 +129,10 @@ export const itemIcon = style([
   // Make the icon line up with the text
   responsiveStyle({
     mobile: {
-      transform: 'translateY(0.1rem)',
+      transform: `translateY(${rem(1)})`,
     },
     tablet: {
-      transform: 'translateY(0.4rem)',
+      transform: `translateY(${rem(4)})`,
     },
   }),
 ]);

@@ -3,6 +3,8 @@ import { style } from '@vanilla-extract/css';
 
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
@@ -24,7 +26,7 @@ export const variants = recipe({
     }),
     {
       width: '100%',
-      maxWidth: '39.6rem',
+      maxWidth: rem(396),
       borderTopLeftRadius: vars.borderRadius.topLeft.button,
       borderTopRightRadius: vars.borderRadius.topRight.button,
       borderBottomRightRadius: vars.borderRadius.bottomRight.button,
