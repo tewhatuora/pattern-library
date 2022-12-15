@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import { UseTextProps, useText } from '../../hooks/typography';
+import * as styles from './Text.css';
 
 export interface TextProps extends Pick<BoxProps, 'as'> {
   /** id attribute for the element */
@@ -35,7 +36,7 @@ export const Text = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
     return (
       <Box
         as={as}
-        className={clsx(textStyles, className)}
+        className={clsx(textStyles, styles.text, className)}
         color={color}
         display={display}
         id={id}

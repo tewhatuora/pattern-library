@@ -19,6 +19,11 @@ export const list = style([
   }),
 ]);
 
+export const boldText = style({
+  fontWeight: 'bold',
+  background: 'red',
+});
+
 export const crumb = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
@@ -29,6 +34,17 @@ export const crumb = style({
     '&:last-of-type, &:first-of-type': {
       flexShrink: '0',
     },
+    [`${boldText} &`]: {
+      fontWeight: 'bold',
+    },
+    // [`${boldLinks} > &:first-child > &`]: {
+    //   color: 'green',
+    //   fontWeight: 'bold',
+    // },
+    // [`${boldLinks} &`]: {
+    //   color: 'yellow',
+    //   fontWeight: 'bold',
+    // },
   },
 });
 
