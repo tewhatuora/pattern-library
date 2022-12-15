@@ -4,7 +4,6 @@ import clsx from 'clsx';
 
 import { ContrastVariant } from '@/src/types';
 
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
 import { Stack } from '../Stack/Stack';
@@ -22,7 +21,6 @@ import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?componen
 import { ShieldedSite } from './ShieldedSite';
 
 import * as styles from './Footer.css';
-import { Navigation } from '../Navigation/Navigation';
 
 export const FooterStyles = styles;
 
@@ -173,14 +171,7 @@ export const Footer = ({
                 >
                   {Children.map(children, (child) => (
                     // Div keeps MenuItems contained because they return 2 elements, not one
-                    <div>
-                      <AllowedChildren
-                        errorMessage="Only `Navigation.MenuList` components are allowed as children of `Footer`."
-                        types={[Navigation.MenuList]}
-                      >
-                        {child}
-                      </AllowedChildren>
-                    </div>
+                    <div>{child}</div>
                   ))}
                 </Box>
                 {!!socialLinks && <ShieldedSite />}

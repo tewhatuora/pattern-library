@@ -6,7 +6,7 @@ import { rem } from '@/src/css/helpers';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
-
+import { atoms } from '../../css/atoms/atoms';
 /**
  * I used a const instead of a CSS variable because it wasn't working with
  * nested lists. The variable would be overwritten by the nested list and cause
@@ -56,6 +56,29 @@ export const noMarkers = style({
  * `item` classes with the `data-variant` selector because it would
  * be significantly more verbose.
  */
+
+export const dividersNoTop = style({
+  selectors: {
+    [`${list} > &:first-of-type`]: {
+      paddingTop: '0',
+    },
+    [`${list} > &:first-of-type:before`]: {
+      content: 'none',
+    },
+  },
+});
+
+export const dividersNoBottom = style({
+  selectors: {
+    [`${list} > &:last-of-type`]: {
+      paddingBottom: '0',
+    },
+    [`${list} > &:last-of-type:after`]: {
+      content: 'none',
+    },
+  },
+});
+
 export const dividers = style({
   position: 'relative',
 
@@ -127,6 +150,45 @@ export const itemIconPosition = styleVariants({
     flexDirection: 'row-reverse',
   },
 });
+
+export const linkContent = style({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+});
+
+export const link = style([
+  atoms({
+    display: 'inlineFlex',
+    color: 'primary100',
+    alignItems: 'center',
+  }),
+  {
+    gap: calc.divide(vars.space.xsmall.tablet, 4),
+    textDecoration: 'none',
+    transition: 'color 0.3s ease-out',
+    ':hover': {
+      color: vars.color.info75,
+      fontWeight: vars.textWeight['link-hover&focus'],
+      textDecoration: 'underline',
+    },
+  },
+]);
+
+export const linkIcon = style([
+  atoms({
+    color: 'primary100',
+  }),
+  {
+    marginTop: '.25rem',
+    transition: 'color 0.3s ease-out',
+    ':hover': {
+      color: vars.color.info75,
+    },
+  },
+]);
 
 /**
  * Helper for styles that affect both the ::before and ::after pseudo-elements of an element.
