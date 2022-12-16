@@ -3,6 +3,18 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
+export const boldText = style({
+  //
+});
+
+export const boldLinks = style({
+  //
+});
+
+export const noVisited = style({
+  //
+});
+
 export const link = style({
   display: 'inline-flex',
   alignItems: 'center',
@@ -20,6 +32,15 @@ export const link = style({
     },
     '&:visited': {
       color: vars.color.visited100,
+    },
+    [`${boldText} &`]: {
+      fontWeight: 'bold',
+    },
+    [`${boldLinks} &`]: {
+      fontWeight: 'bold',
+    },
+    [`${noVisited} &`]: {
+      color: vars.color.info100,
     },
   },
 });

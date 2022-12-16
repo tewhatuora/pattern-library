@@ -11,7 +11,7 @@ const sbParameters = {
   backgrounds: { disable: true },
   docs: {
     source: {
-      type: 'dynamic',
+      type: 'code',
       excludeDecorators: true,
     },
     transformSource: (source) => {

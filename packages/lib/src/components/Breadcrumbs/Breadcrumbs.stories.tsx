@@ -37,6 +37,48 @@ export const Default = (args: BreadcrumbsProps) => {
   );
 };
 
+export const BoldText = (args: BreadcrumbsProps) => {
+  return (
+    <Breadcrumbs {...args} boldText>
+      <AnchorLink noIcon to="#100">
+        First
+      </AnchorLink>
+      <AnchorLink noIcon to="#200">
+        Second
+      </AnchorLink>
+      <Text>Third</Text>
+    </Breadcrumbs>
+  );
+};
+
+export const BoldLinks = (args: BreadcrumbsProps) => {
+  return (
+    <Breadcrumbs {...args} boldLinks>
+      <AnchorLink noIcon to="#100">
+        First
+      </AnchorLink>
+      <AnchorLink noIcon to="#200">
+        Second
+      </AnchorLink>
+      <Text>Third</Text>
+    </Breadcrumbs>
+  );
+};
+
+export const NoVistedStyle = (args: BreadcrumbsProps) => {
+  return (
+    <Breadcrumbs {...args} noVisited>
+      <AnchorLink noIcon to="#100">
+        First
+      </AnchorLink>
+      <AnchorLink noIcon to="#200">
+        Second
+      </AnchorLink>
+      <Text>Third</Text>
+    </Breadcrumbs>
+  );
+};
+
 export const Truncated = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
