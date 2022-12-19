@@ -1,5 +1,24 @@
-import { Header, Navigation, Container, Stack, Text, ImageBlock, Footer } from '../../packages/lib/src/components';
 import { useState } from 'react';
+
+import {
+  Container,
+  Footer,
+  Header,
+  ImageBlock,
+  InputSearch,
+  Navigation,
+  Stack,
+  Text,
+} from '../../packages/lib/src/components';
+
+const ExampleLogo = () => (
+  <>
+    <Text size="small">LOGO</Text>
+    <Text size="small" weight="bold">
+      Placeholder
+    </Text>
+  </>
+);
 
 const LandingPage = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -9,36 +28,40 @@ const LandingPage = () => {
   };
 
   return (
-    <div style={{ paddingTop: '9.6rem' }}>
-      <Stack space="xxlarge" color="primary100">
-        <Header
-          utilityNavItems={[
-            {
-              href: '#',
-              icon: 'language',
-              label: 'Language',
-            },
-            {
-              href: '#',
-              icon: 'person',
-              label: 'Name Surname',
-            },
-          ]}
-          logoLinkHref="/"
-          logoComponent={
-            <>
-              <Text size="small">LOGO</Text>
-              <Text size="small" weight="bold">
-                Placeholder
-              </Text>
-            </>
-          }
-          onToggleNavigation={handleToggleNavigation}
-          searchFormAction="/"
-          searchFormMethod="GET"
-          withSearch
-        />
-        <Stack space="xlarge" backgroundColor="primary5">
+    <div style={{ paddingTop: '6rem' }}>
+      <Stack color="primary100" space="xxlarge">
+        <Header.Root>
+          <Header.Left>
+            <Header.Logo>
+              <ExampleLogo />
+            </Header.Logo>
+
+            <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+          </Header.Left>
+
+          <Header.Right>
+            <Navigation.Utility
+              items={[
+                {
+                  href: '#',
+                  icon: 'language',
+                  label: 'Language',
+                },
+                {
+                  href: '#',
+                  icon: 'person',
+                  label: 'Name Surname',
+                },
+              ]}
+              variant="light"
+            />
+
+            <InputSearch id="search" name="search" placeholder="Search" />
+          </Header.Right>
+
+          <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+        </Header.Root>
+        <Stack backgroundColor="primary5" space="xlarge">
           <Navigation.Root open={navigationOpen} searchFormAction="/" searchFormMethod="GET" withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
               <Navigation.Menu>
@@ -85,12 +108,12 @@ const LandingPage = () => {
           <Container>
             <Stack space="medium">
               <ImageBlock
-                src="https://placehold.jp/404040/ffffff/500x500.png?text=ImageBlock"
-                shape="square"
                 heading="Heading"
-                subheading="Subheading"
                 primaryButton={{ label: 'Primary', as: 'button' }}
                 secondaryButton={{ label: 'Secondary', as: 'button' }}
+                shape="square"
+                src="https://placehold.jp/404040/ffffff/500x500.png?text=ImageBlock"
+                subheading="Subheading"
               >
                 <Text>Content</Text>
               </ImageBlock>

@@ -1,25 +1,36 @@
 import { useState } from 'react';
+
 import {
-  Header,
-  Navigation,
-  Container,
-  Row,
-  Column,
-  Stack,
-  Text,
-  Footer,
-  Card,
+  Alert,
   Button,
+  Card,
+  Column,
+  Container,
+  Footer,
+  Header,
   Heading,
-  InputText,
-  InputPhone,
   InputDate,
   InputDropdown,
-  TextLink,
-  RadioGroup,
+  InputPhone,
+  InputSearch,
+  InputText,
+  Navigation,
   RadioButton,
-  Alert,
+  RadioGroup,
+  Row,
+  Stack,
+  Text,
+  TextLink,
 } from '../../packages/lib/src/components';
+
+const ExampleLogo = () => (
+  <>
+    <Text size="small">LOGO</Text>
+    <Text size="small" weight="bold">
+      Placeholder
+    </Text>
+  </>
+);
 
 const FormPage = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -29,36 +40,40 @@ const FormPage = () => {
   };
 
   return (
-    <div style={{ paddingTop: '9.6rem' }}>
-      <Stack space="xxlarge" color="primary100">
-        <Header
-          utilityNavItems={[
-            {
-              href: '#',
-              icon: 'language',
-              label: 'Language',
-            },
-            {
-              href: '#',
-              icon: 'person',
-              label: 'Name Surname',
-            },
-          ]}
-          logoLinkHref="/"
-          logoComponent={
-            <>
-              <Text size="small">LOGO</Text>
-              <Text size="small" weight="bold">
-                Placeholder
-              </Text>
-            </>
-          }
-          onToggleNavigation={handleToggleNavigation}
-          searchFormAction="/"
-          searchFormMethod="GET"
-          withSearch
-        />
-        <Stack space="xlarge" backgroundColor="primary5">
+    <div style={{ paddingTop: '6rem' }}>
+      <Stack color="primary100" space="xxlarge">
+        <Header.Root>
+          <Header.Left>
+            <Header.Logo>
+              <ExampleLogo />
+            </Header.Logo>
+
+            <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+          </Header.Left>
+
+          <Header.Right>
+            <Navigation.Utility
+              items={[
+                {
+                  href: '#',
+                  icon: 'language',
+                  label: 'Language',
+                },
+                {
+                  href: '#',
+                  icon: 'person',
+                  label: 'Name Surname',
+                },
+              ]}
+              variant="light"
+            />
+
+            <InputSearch id="search" name="search" placeholder="Search" />
+          </Header.Right>
+
+          <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+        </Header.Root>
+        <Stack backgroundColor="primary5" space="xlarge">
           <Navigation.Root open={navigationOpen} searchFormAction="/" searchFormMethod="GET" withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
               <Navigation.Menu>
@@ -105,17 +120,17 @@ const FormPage = () => {
           <Container>
             <Stack space="medium">
               <Row>
-                <Column columns={8} center>
+                <Column center columns={8}>
                   <Stack space="large">
                     <Stack space="xsmall">
-                      <TextLink icon="arrow_left" iconPosition="left" href="/">
+                      <TextLink href="/" icon="arrow_left" iconPosition="left">
                         Normal
                       </TextLink>
                       <Heading level="2">Heading</Heading>
                     </Stack>
                     <Card>
                       <Row>
-                        <Column columns={6} center>
+                        <Column center columns={6}>
                           <Stack space="medium">
                             <Heading level="3">Heading</Heading>
                             <Text as="p">
@@ -125,17 +140,17 @@ const FormPage = () => {
                             </Text>
                             <form action="/" method="POST">
                               <Stack space="medium">
-                                <InputText type="text" label="Heading" name="heading" id="heading" />
+                                <InputText id="heading" label="Heading" name="heading" type="text" />
                                 <InputText
-                                  type="text"
+                                  errorMessage="Error message"
+                                  helperText="Helper text"
+                                  id="heading2"
                                   label="Heading"
                                   name="heading2"
-                                  id="heading2"
-                                  helperText="Helper text"
-                                  errorMessage="Error message"
+                                  type="text"
                                 />
-                                <InputPhone label="Phone" name="phone" id="phone" placeholder="e.g. 027 345 0000" />
-                                <InputDate label="Date" name="date" helperText="For example, 31 3 1980" />
+                                <InputPhone id="phone" label="Phone" name="phone" placeholder="e.g. 027 345 0000" />
+                                <InputDate helperText="For example, 31 3 1980" label="Date" name="date" />
                                 <InputDropdown
                                   label="Heading"
                                   name="heading3"
@@ -158,16 +173,16 @@ const FormPage = () => {
                                     },
                                   ]}
                                 />
-                                <RadioGroup name="radio1" label="Heading" helperText="Helper text">
+                                <RadioGroup helperText="Helper text" label="Heading" name="radio1">
                                   <RadioButton id="value_one" label="Content one" value="one" />
                                   <RadioButton id="value_two" label="Content two" value="two" />
                                   <RadioButton id="value_three" label="Content three" value="three" />
                                 </RadioGroup>
                                 <RadioGroup
-                                  name="radio2"
-                                  label="Heading"
-                                  helperText="Helper text"
                                   errorMessage="Error message"
+                                  helperText="Helper text"
+                                  label="Heading"
+                                  name="radio2"
                                 >
                                   <RadioButton id="value_one" label="Content one" value="one" />
                                   <RadioButton id="value_two" label="Content two" value="two" />
@@ -199,7 +214,7 @@ const FormPage = () => {
               </Row>
             </Stack>
           </Container>
-          <p></p>
+          <p />
         </Stack>
         <Footer
           imprintItems={[

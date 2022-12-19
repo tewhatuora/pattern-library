@@ -15,7 +15,7 @@ export { CheckboxGroup, CheckboxGroupStyles } from './CheckboxGroup/CheckboxGrou
 export { Column, ColumnStyles } from './Columns/Column';
 export { Container, ContainerStyles } from './Container/Container';
 export { Footer, FooterStyles } from './Footer/Footer';
-export { Header, HeaderStyles } from './Header/Header';
+export * as Header from './Header/Header';
 export { Heading } from './Heading/Heading';
 export { Icon, IconStyles } from './Icon/Icon';
 export { ImageBlock, ImageBlockStyles } from './ImageBlock/ImageBlock';

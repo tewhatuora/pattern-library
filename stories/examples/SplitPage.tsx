@@ -1,19 +1,30 @@
+import { useState } from 'react';
+
 import {
-  Header,
-  Navigation,
-  Container,
-  Row,
+  Accordion,
+  Button,
+  Card,
   Column,
+  Container,
+  Footer,
+  Header,
+  Heading,
+  InputSearch,
+  List,
+  Navigation,
+  Row,
   Stack,
   Text,
-  Footer,
-  Accordion,
-  Card,
-  List,
-  Button,
-  Heading,
 } from '../../packages/lib/src/components';
-import { useState } from 'react';
+
+const ExampleLogo = () => (
+  <>
+    <Text size="small">LOGO</Text>
+    <Text size="small" weight="bold">
+      Placeholder
+    </Text>
+  </>
+);
 
 const SplitPage = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -23,36 +34,40 @@ const SplitPage = () => {
   };
 
   return (
-    <div style={{ paddingTop: '9.6rem' }}>
-      <Stack space="xxlarge" color="primary100">
-        <Header
-          utilityNavItems={[
-            {
-              href: '#',
-              icon: 'language',
-              label: 'Language',
-            },
-            {
-              href: '#',
-              icon: 'person',
-              label: 'Name Surname',
-            },
-          ]}
-          logoLinkHref="/"
-          logoComponent={
-            <>
-              <Text size="small">LOGO</Text>
-              <Text size="small" weight="bold">
-                Placeholder
-              </Text>
-            </>
-          }
-          onToggleNavigation={handleToggleNavigation}
-          searchFormAction="/"
-          searchFormMethod="GET"
-          withSearch
-        />
-        <Stack space="xlarge" backgroundColor="primary5">
+    <div style={{ paddingTop: '6rem' }}>
+      <Stack color="primary100" space="xxlarge">
+        <Header.Root>
+          <Header.Left>
+            <Header.Logo>
+              <ExampleLogo />
+            </Header.Logo>
+
+            <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+          </Header.Left>
+
+          <Header.Right>
+            <Navigation.Utility
+              items={[
+                {
+                  href: '#',
+                  icon: 'language',
+                  label: 'Language',
+                },
+                {
+                  href: '#',
+                  icon: 'person',
+                  label: 'Name Surname',
+                },
+              ]}
+              variant="light"
+            />
+
+            <InputSearch id="search" name="search" placeholder="Search" />
+          </Header.Right>
+
+          <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+        </Header.Root>
+        <Stack backgroundColor="primary5" space="xlarge">
           <Navigation.Root open={navigationOpen} searchFormAction="/" searchFormMethod="GET" withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
               <Navigation.Menu>
@@ -105,7 +120,7 @@ const SplitPage = () => {
                     <Stack space="large">
                       <Card>
                         <Row>
-                          <Column columns={6} center>
+                          <Column center columns={6}>
                             <Stack space="medium">
                               <Heading level="3">Heading</Heading>
                               <Text as="p">
@@ -128,7 +143,7 @@ const SplitPage = () => {
                       <Heading level="2">Heading</Heading>
                       <Stack space="xsmall">
                         <Card>
-                          <Accordion.Root type="single" headingLevel={4}>
+                          <Accordion.Root headingLevel={4} type="single">
                             <Accordion.Item value="item-1">
                               <Accordion.Trigger icon="document" label="Content" />
                               <Accordion.Content>
@@ -138,7 +153,7 @@ const SplitPage = () => {
                           </Accordion.Root>
                         </Card>
                         <Card>
-                          <Accordion.Root type="single" headingLevel={4}>
+                          <Accordion.Root headingLevel={4} type="single">
                             <Accordion.Item value="item-2">
                               <Accordion.Trigger icon="document" label="Content" />
                               <Accordion.Content>
@@ -148,7 +163,7 @@ const SplitPage = () => {
                           </Accordion.Root>
                         </Card>
                         <Card>
-                          <Accordion.Root type="single" headingLevel={4}>
+                          <Accordion.Root headingLevel={4} type="single">
                             <Accordion.Item value="item-2">
                               <Accordion.Trigger icon="document" label="Content" />
                               <Accordion.Content>
@@ -161,7 +176,7 @@ const SplitPage = () => {
                       <Heading level="2">Heading</Heading>
                       <Stack space="xsmall">
                         <Card>
-                          <Accordion.Root type="single" headingLevel={4}>
+                          <Accordion.Root headingLevel={4} type="single">
                             <Accordion.Item value="item-1">
                               <Accordion.Trigger icon="document" label="Content" />
                               <Accordion.Content>
@@ -171,7 +186,7 @@ const SplitPage = () => {
                           </Accordion.Root>
                         </Card>
                         <Card>
-                          <Accordion.Root type="single" headingLevel={4}>
+                          <Accordion.Root headingLevel={4} type="single">
                             <Accordion.Item value="item-2">
                               <Accordion.Trigger icon="document" label="Content" />
                               <Accordion.Content>
@@ -181,7 +196,7 @@ const SplitPage = () => {
                           </Accordion.Root>
                         </Card>
                         <Card>
-                          <Accordion.Root type="single" headingLevel={4}>
+                          <Accordion.Root headingLevel={4} type="single">
                             <Accordion.Item value="item-2">
                               <Accordion.Trigger icon="document" label="Content" />
                               <Accordion.Content>
@@ -191,7 +206,7 @@ const SplitPage = () => {
                           </Accordion.Root>
                         </Card>
                       </Stack>
-                      <p></p>
+                      <p />
                     </Stack>
                   </Stack>
                 </Column>
@@ -199,7 +214,7 @@ const SplitPage = () => {
                   <Stack space="small">
                     <Heading level="2">Heading</Heading>
                     <Card>
-                      <List.Root type="ul" noMarkers dividers>
+                      <List.Root dividers noMarkers type="ul">
                         <List.Item>Content</List.Item>
                         <List.Item>Content</List.Item>
                         <List.Item>Content</List.Item>
@@ -214,7 +229,7 @@ const SplitPage = () => {
               </Row>
             </Stack>
           </Container>
-          <p></p>
+          <p />
         </Stack>
         <Footer
           imprintItems={[
