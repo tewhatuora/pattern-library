@@ -1,4 +1,4 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
@@ -7,6 +7,7 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
 import { atoms } from '../../css/atoms/atoms';
+import type { ListRootProps } from './Root';
 /**
  * I used a const instead of a CSS variable because it wasn't working with
  * nested lists. The variable would be overwritten by the nested list and cause
@@ -14,7 +15,7 @@ import { atoms } from '../../css/atoms/atoms';
  */
 const listPadding = 40; //vars.space.large.tablet; // Default for Chrome and Firefox
 
-export const list = style({
+const base = style({
   paddingInlineStart: listPadding, // Override user agent styles
 
   // Same as dividers
@@ -38,12 +39,27 @@ export const list = style({
     '&[data-variant="dark"]': {
       color: vars.color.primary0,
     },
+
+    '& &': {
+      paddingTop: vars.space.small.mobile,
+      paddingBottom: vars.space.small.mobile,
+    },
   },
 });
 
-globalStyle(`${list} ${list}`, {
-  paddingTop: vars.space.small.mobile,
-  paddingBottom: vars.space.small.mobile,
+export const list = styleVariants<Record<ListRootProps['type'], ComplexStyleRule>>({
+  ul: [
+    base,
+    {
+      listStyleType: 'disc',
+    },
+  ],
+  ol: [
+    base,
+    {
+      listStyleType: 'decimal',
+    },
+  ],
 });
 
 export const noMarkers = style({
@@ -59,10 +75,10 @@ export const noMarkers = style({
 
 export const dividersNoTop = style({
   selectors: {
-    [`${list} > &:first-of-type`]: {
+    [`${base} > &:first-of-type`]: {
       paddingTop: '0',
     },
-    [`${list} > &:first-of-type:before`]: {
+    [`${base} > &:first-of-type:before`]: {
       content: 'none',
     },
   },
@@ -70,10 +86,10 @@ export const dividersNoTop = style({
 
 export const dividersNoBottom = style({
   selectors: {
-    [`${list} > &:last-of-type`]: {
+    [`${base} > &:last-of-type`]: {
       paddingBottom: '0',
     },
-    [`${list} > &:last-of-type:after`]: {
+    [`${base} > &:last-of-type:after`]: {
       content: 'none',
     },
   },
@@ -115,7 +131,7 @@ export const dividers = style({
       left: 0,
     },
 
-    [beforeAndAfterOf(`${list}[data-variant="dark"] &`)]: {
+    [beforeAndAfterOf(`${base}[data-variant="dark"] &`)]: {
       backgroundColor: vars.color.primary0,
     },
   },

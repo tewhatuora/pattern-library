@@ -59,7 +59,7 @@ export const Root = ({
     type,
     {
       className: clsx(
-        styles.list,
+        styles.list[type],
         { [styles.noMarkers]: noMarkers },
 
         className,
