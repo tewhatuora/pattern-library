@@ -38,6 +38,7 @@ export { RadioGroup } from './RadioGroup/RadioGroup';
 export { RadioButton } from './RadioGroup/RadioButton';
 export { Row, RowStyles } from './Columns/Row';
 export { Stack, StackStyles } from './Stack/Stack';
+export type { StackProps } from './Stack/Stack';
 export { Tabs, TabsStyles } from './Tabs/Tabs';
 export { Tag, TagStyles } from './Tag/Tag';
 export { Text } from './Text/Text';
