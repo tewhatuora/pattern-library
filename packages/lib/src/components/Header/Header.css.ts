@@ -7,6 +7,13 @@ import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 
+const HEADER_HEIGHT = calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet);
+
+export const wrapper = style({
+  width: '100%',
+  height: HEADER_HEIGHT,
+});
+
 export const base = style([
   atoms({
     display: 'flex',
@@ -14,7 +21,7 @@ export const base = style([
     justifyContent: 'spaceBetween',
   }),
   {
-    height: calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet),
+    height: HEADER_HEIGHT,
   },
   responsiveStyle({
     mobile: {

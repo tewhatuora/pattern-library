@@ -76,7 +76,9 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'light', cla
 
   return (
     <HeaderContext.Provider value={{ variant, color }}>
-      <header className={clsx(styles.header[variant], className)} ref={ref} {...props} />
+      <header className={styles.wrapper} ref={ref}>
+        <div className={clsx(styles.header[variant], className)} {...props} />
+      </header>
     </HeaderContext.Provider>
   );
 });
