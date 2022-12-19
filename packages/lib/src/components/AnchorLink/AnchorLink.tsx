@@ -23,6 +23,8 @@ export type AnchorLinkProps = {
   weight?: UseTextProps['weight'];
   /** Option to not display the icon */
   noIcon?: boolean;
+  /** Option to not display the visited styles */
+  noVisited?: boolean;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -35,6 +37,7 @@ export const AnchorLink = ({
   size = 'medium',
   weight = 'regular',
   noIcon = false,
+  noVisited = false,
   className,
   component: LinkComponent,
   children,
@@ -46,7 +49,7 @@ export const AnchorLink = ({
   const props = {
     ...linkProps,
     ...rest,
-    className: clsx(textStyles, styles.link, className),
+    className: clsx(textStyles, styles.link({ noVisited }), className),
     href: to,
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
   };
