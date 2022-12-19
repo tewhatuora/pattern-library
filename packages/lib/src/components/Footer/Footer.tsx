@@ -21,8 +21,11 @@ import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?componen
 import { ShieldedSite } from './ShieldedSite';
 
 import * as styles from './Footer.css';
+import { Navigation } from '../Navigation/Navigation';
+import { MenuListProps } from '../Navigation/MenuList';
+import { NavigationItemProps } from '../Navigation/Item';
 
-export const FooterStyles = styles;
+const FooterStyles = styles;
 
 const MAX_COLUMN_WIDTH = 320;
 
@@ -31,7 +34,13 @@ type ImprintItem = {
   href?: string;
 };
 
-export type FooterProps = {
+/* -------------------------------------------------------------------------------------------------
+ * Footer
+ * -----------------------------------------------------------------------------------------------*/
+
+const FOOTER_NAME = 'Footer';
+
+type FooterProps = {
   /** Social link href/paths for Facebook, Twitter, Instagram, LinkedIn & TikTok */
   socialLinkHrefs?: {
     facebook?: string;
@@ -48,13 +57,7 @@ export type FooterProps = {
   className?: string;
 };
 
-export const Footer = ({
-  socialLinkHrefs,
-  imprintItems,
-  variant,
-  className,
-  children,
-}: PropsWithChildren<FooterProps>) => {
+const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }: PropsWithChildren<FooterProps>) => {
   const navRefs = useRef<Array<HTMLElement | null>>([]);
 
   const [maxChildWidth, setMaxChildWidth] = useState(0);
@@ -200,6 +203,36 @@ export const Footer = ({
   );
 };
 
+Footer.displayName = FOOTER_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * FooterList
+ * -----------------------------------------------------------------------------------------------*/
+
+const FOOTER_LIST_NAME = 'FooterList';
+
+type FooterListProps = PropsWithChildren<MenuListProps>;
+
+const FooterList = (props: FooterListProps) => {
+  return <Navigation.MenuList {...props} />;
+};
+
+FooterList.displayName = FOOTER_LIST_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * FooterListItem
+ * -----------------------------------------------------------------------------------------------*/
+
+const FOOTER_LIST_ITEM_NAME = 'FooterListItem';
+
+type FooterListItemProps = PropsWithChildren<NavigationItemProps>;
+
+const FooterListItem = (props: FooterListItemProps) => {
+  return <Navigation.Item subNav {...props} />;
+};
+
+FooterListItem.displayName = FOOTER_LIST_ITEM_NAME;
+
 function byDesignOrder(a: JSX.Element, b: JSX.Element) {
   const socialLinksOrder = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
 
@@ -236,3 +269,19 @@ function widthOfWidestElement(refs: (HTMLElement | null)[]) {
       .at(-1) ?? Infinity // Highest number is at last index, default to Infinity so it gets overrided with Math.min()
   );
 }
+
+const Root = Footer;
+const List = FooterList;
+const ListItem = FooterListItem;
+
+export {
+  FooterStyles,
+  Footer,
+  FooterList,
+  FooterListItem,
+  //
+  Root,
+  List,
+  ListItem,
+};
+export type { FooterProps, FooterListProps, FooterListItemProps };
