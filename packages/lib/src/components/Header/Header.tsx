@@ -1,75 +1,57 @@
-import { ElementType, FC, ReactNode, useMemo } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  ElementType,
+  PropsWithChildren,
+  createContext,
+  forwardRef,
+  useContext,
+  useMemo,
+} from 'react';
 import clsx from 'clsx';
 
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import { Text } from '../Text/Text';
-import { Badge } from '../Badge/Badge';
-import { ButtonRoot } from '../Button/ButtonRoot';
-import { Stack } from '../Stack/Stack';
+import { ButtonRoot, ButtonRootProps } from '../Button/ButtonRoot';
+import { Stack, StackProps } from '../Stack/Stack';
 import { Icon } from '../Icon/Icon';
-import { InputSearch } from '../InputSearch/InputSearch';
-import { UtilityNavItemProps } from '../Navigation/Utility';
-import { Navigation } from '../Navigation/Navigation';
 import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 
 import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
-import { Color, ContrastVariant } from '../../types';
+import type { Color, ContrastVariant } from '../../types';
 
 import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
 
-export const HeaderStyles = styles;
+type HeaderContextType = {
+  /** Contrast variant for dark/light UI */
+  variant: ContrastVariant;
+  color: Color;
+};
 
-export type HeaderProps = {
+const HeaderContext = createContext<HeaderContextType | undefined>(undefined);
+
+const useHeader = () => {
+  const context = useContext(HeaderContext);
+
+  if (!context) {
+    throw new Error('Header components must be used inside of a `Header`.');
+  }
+
+  return context;
+};
+
+/* -------------------------------------------------------------------------------------------------
+ * Header
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_NAME = 'Header';
+
+type HeaderProps = {
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
-  /** Show a beta badge with logo component */
-  beta?: boolean;
-  /** Show the header with an InputSearch */
-  withSearch?: boolean;
-  /** Array of Utility navigation items, with href, icon, label, and an optional custom link component e.g. react-router-dom Link */
-  utilityNavItems?: UtilityNavItemProps[];
-  /** Search form action */
-  searchFormAction: string;
-  /** Search form method */
-  searchFormMethod: 'POST' | 'GET';
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
-  className?: string;
-  /** Custom component for your logo */
-  logoComponent: ReactNode;
-  /** Optionally render link for main logo as a custom component, e.g. react-router-dom Link */
-  logoLinkComponent?: FC<any>;
-  /** href/path for main logo */
-  logoLinkHref: string;
-  /** Open/active state for mobile navigation */
-  navigationOpen?: boolean;
-  /** Function to toggle the open/active state for mobile navigation */
-  onToggleNavigation?: () => void;
-};
-
-type MenuButtonProps = {
-  open?: boolean;
-  color: Color;
-  onToggle?: () => void;
-};
-
-/**
- * Menu open/close button
- * @param open
- * @param color
- * @param onToggle
- * @constructor
- */
-const MenuButton = ({ open, color, onToggle }: MenuButtonProps) => {
-  return (
-    <ButtonRoot className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton)} onPress={onToggle}>
-      <Text color={color}>{open ? 'Close' : 'Menu'}</Text>
-      <Icon color={color} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
-    </ButtonRoot>
-  );
-};
+} & ComponentPropsWithoutRef<'header'>;
 
 /**
  * Found at the top of all mobile and desktop pages
@@ -79,19 +61,7 @@ const MenuButton = ({ open, color, onToggle }: MenuButtonProps) => {
  *
  * @constructor
  */
-export const Header = ({
-  variant = 'light',
-  withSearch,
-  beta,
-  searchFormAction,
-  searchFormMethod = 'GET',
-  logoComponent,
-  logoLinkComponent: LogoLinkComponent,
-  logoLinkHref = '/',
-  utilityNavItems,
-  navigationOpen,
-  onToggleNavigation,
-}: HeaderProps) => {
+const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'light', className, ...props }, ref) => {
   /**
    * Light/dark color
    */
@@ -99,62 +69,162 @@ export const Header = ({
     return variant === 'light' ? 'primary100' : 'primary0';
   }, [variant]);
 
-  /**
-   * Utility navigation items
-   */
-  const renderUtilityNav = useMemo(() => {
-    if (!utilityNavItems?.length) {
-      return null;
-    }
-    return <Navigation.Utility items={utilityNavItems} variant={variant} />;
-  }, [utilityNavItems, variant]);
+  return (
+    <HeaderContext.Provider value={{ variant, color }}>
+      <header className={styles.wrapper} ref={ref}>
+        <div className={clsx(styles.header[variant], className)} {...props} />
+      </header>
+    </HeaderContext.Provider>
+  );
+});
 
-  const renderLogo = useMemo(() => {
+Header.displayName = HEADER_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * HeaderTeWhatuOraLogo
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_TE_WHATU_ORA_LOGO_NAME = 'HeaderTeWhatuOraLogo';
+
+type HeaderTeWhatuOraLogoProps = ComponentPropsWithoutRef<'a'>;
+
+const HeaderTeWhatuOraLogo = forwardRef<HTMLAnchorElement, HeaderTeWhatuOraLogoProps>(
+  ({ className, ...props }, ref) => {
+    const { variant } = useHeader();
+
     const LogoEl = variant === 'light' ? (TeWhatuOraLogoDark as ElementType) : (TeWhatuOraLogoLight as ElementType);
 
-    if (LogoLinkComponent) {
-      return (
-        <LogoLinkComponent className={styles.logo} href={logoLinkHref} to={logoLinkHref}>
-          <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
-          <LogoEl />
-        </LogoLinkComponent>
-      );
-    }
-
     return (
-      <a className={styles.logo} href={logoLinkHref}>
+      <a className={clsx(styles.logo, className)} ref={ref} {...props}>
         <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
         <LogoEl />
       </a>
     );
-  }, [LogoLinkComponent, logoLinkHref, variant]);
+  },
+);
+
+HeaderTeWhatuOraLogo.displayName = HEADER_TE_WHATU_ORA_LOGO_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * HeaderLeft
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_LEFT_NAME = 'HeaderLeft';
+
+type HeaderLeftProps = PropsWithChildren<Partial<StackProps>>;
+
+const HeaderLeft = (props: HeaderLeftProps) => {
+  return <Stack alignItems="center" horizontal space="small" {...props} />;
+};
+
+HeaderLeft.displayName = HEADER_LEFT_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * HeaderRight
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_RIGHT_NAME = 'HeaderRight';
+
+type HeaderRightProps = PropsWithChildren<Partial<StackProps>>;
+
+const HeaderRight = ({ className, ...props }: HeaderRightProps) => {
+  const { color } = useHeader();
 
   return (
-    <header className={styles.header[variant]}>
-      <Stack alignItems="center" horizontal space="small">
-        {!!logoComponent && (
-          <Box color={color} display="flex" flexDirection="column">
-            {logoComponent}
-            {beta && (
-              <span>
-                <Badge variant="info">Beta</Badge>
-              </span>
-            )}
-          </Box>
-        )}
-        <Box color={color}>{renderLogo}</Box>
-      </Stack>
-      <Stack className={helpers.desktopUp.flex} color={color} horizontal space="small">
-        {renderUtilityNav}
-        {withSearch && (
-          <form action={searchFormAction} className={styles.searchForm} method={searchFormMethod}>
-            <InputSearch id="search" name="search" placeholder="Search" />
-          </form>
-        )}
-      </Stack>
-      <MenuButton color={color} open={navigationOpen} onToggle={onToggleNavigation} />
-    </header>
+    <Stack
+      alignItems="center"
+      className={clsx(helpers.tabletUp.flex, className)}
+      color={color}
+      horizontal
+      space="small"
+      {...props}
+    />
   );
 };
 
-Header.displayName = 'Header';
+HeaderRight.displayName = HEADER_RIGHT_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * HeaderLogo
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_LOGO_NAME = 'HeaderLogo';
+
+type HeaderLogoProps = BoxProps;
+
+const HeaderLogo = forwardRef<HTMLElement, HeaderLogoProps>((props, ref) => {
+  const { color } = useHeader();
+
+  return <Box alignItems="flexStart" color={color} display="flex" flexDirection="column" ref={ref} {...props} />;
+});
+
+HeaderLogo.displayName = HEADER_LOGO_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * HeaderMenuButton
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_MENU_BUTTON_NAME = 'HeaderMenuButton';
+
+type HeaderMenuButtonProps = {
+  open?: boolean;
+  onToggle?: () => void;
+} & ButtonRootProps;
+
+/**
+ * Menu open/close button
+ * @param open
+ * @param color
+ * @param onToggle
+ * @constructor
+ */
+const HeaderMenuButton = ({ open, onToggle, className, ...props }: HeaderMenuButtonProps) => {
+  const { color } = useHeader();
+
+  return (
+    <ButtonRoot
+      className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className)}
+      onPress={onToggle}
+      {...props}
+    >
+      <Text color={color}>{open ? 'Close' : 'Menu'}</Text>
+      <Icon color={color} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
+    </ButtonRoot>
+  );
+};
+
+HeaderMenuButton.displayName = HEADER_MENU_BUTTON_NAME;
+
+/* -----------------------------------------------------------------------------------------------*/
+
+const Root = Header;
+const Left = HeaderLeft;
+const Right = HeaderRight;
+const Logo = HeaderLogo;
+const TeWhatuOraLogo = HeaderTeWhatuOraLogo;
+const MenuButton = HeaderMenuButton;
+
+export {
+  useHeader,
+  Header,
+  HeaderLeft,
+  HeaderRight,
+  HeaderLogo,
+  HeaderTeWhatuOraLogo,
+  HeaderMenuButton,
+  //
+  Root,
+  Left,
+  Right,
+  Logo,
+  TeWhatuOraLogo,
+  MenuButton,
+};
+export type {
+  HeaderProps,
+  HeaderLeftProps,
+  HeaderRightProps,
+  HeaderLogoProps,
+  HeaderTeWhatuOraLogoProps,
+  HeaderMenuButtonProps,
+};

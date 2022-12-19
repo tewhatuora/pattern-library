@@ -8,11 +8,11 @@ import type { Space } from '../../css/atoms/atoms';
 
 import * as styles from './Stack.css';
 
-export const StackStyles = styles;
+const StackStyles = styles;
 
 export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
-export type StackProps = {
+type StackProps = {
   /** Element type to render as */
   as?: typeof validStackComponents[number];
   /** A space token for spacing between children elements */
@@ -28,7 +28,7 @@ export type StackProps = {
  * children components, separated by a
  * `space provided as a prop
  */
-export const Stack = ({
+const Stack = ({
   as = 'div',
   children,
   space = 'medium',
@@ -57,3 +57,6 @@ export const Stack = ({
     </Box>
   );
 };
+
+export { Stack, StackStyles };
+export type { StackProps };
