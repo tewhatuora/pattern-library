@@ -7,7 +7,7 @@ import { ButtonType } from './Button';
 
 import * as styles from './Button.css';
 
-type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
+export type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
 
 /**
  * Accessible button component without Button UI styles

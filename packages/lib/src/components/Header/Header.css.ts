@@ -22,6 +22,7 @@ export const base = style([
   }),
   {
     height: HEADER_HEIGHT,
+    columnGap: vars.space.xsmall.tablet,
   },
   responsiveStyle({
     mobile: {

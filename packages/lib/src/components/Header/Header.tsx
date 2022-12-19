@@ -11,7 +11,7 @@ import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import { Text } from '../Text/Text';
-import { ButtonRoot } from '../Button/ButtonRoot';
+import { ButtonRoot, ButtonRootProps } from '../Button/ButtonRoot';
 import { Stack, StackProps } from '../Stack/Stack';
 import { Icon } from '../Icon/Icon';
 import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
@@ -23,11 +23,6 @@ import type { Color, ContrastVariant } from '../../types';
 
 import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
-
-type MenuButtonProps = {
-  open?: boolean;
-  onToggle?: () => void;
-};
 
 type HeaderContextType = {
   /** Contrast variant for dark/light UI */
@@ -93,18 +88,20 @@ const HEADER_TE_WHATU_ORA_LOGO_NAME = 'HeaderTeWhatuOraLogo';
 
 type HeaderTeWhatuOraLogoProps = ComponentPropsWithoutRef<'a'>;
 
-const HeaderTeWhatuOraLogo = forwardRef<HTMLAnchorElement, HeaderTeWhatuOraLogoProps>((props, ref) => {
-  const { variant } = useHeader();
+const HeaderTeWhatuOraLogo = forwardRef<HTMLAnchorElement, HeaderTeWhatuOraLogoProps>(
+  ({ className, ...props }, ref) => {
+    const { variant } = useHeader();
 
-  const LogoEl = variant === 'light' ? (TeWhatuOraLogoDark as ElementType) : (TeWhatuOraLogoLight as ElementType);
+    const LogoEl = variant === 'light' ? (TeWhatuOraLogoDark as ElementType) : (TeWhatuOraLogoLight as ElementType);
 
-  return (
-    <a className={styles.logo} ref={ref} {...props}>
-      <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
-      <LogoEl />
-    </a>
-  );
-});
+    return (
+      <a className={clsx(styles.logo, className)} ref={ref} {...props}>
+        <ScreenReadersOnly>Ministry of Health | Manatū Hauora</ScreenReadersOnly>
+        <LogoEl />
+      </a>
+    );
+  },
+);
 
 HeaderTeWhatuOraLogo.displayName = HEADER_TE_WHATU_ORA_LOGO_NAME;
 
@@ -130,11 +127,18 @@ const HEADER_RIGHT_NAME = 'HeaderRight';
 
 type HeaderRightProps = PropsWithChildren<Partial<StackProps>>;
 
-const HeaderRight = (props: HeaderRightProps) => {
+const HeaderRight = ({ className, ...props }: HeaderRightProps) => {
   const { color } = useHeader();
 
   return (
-    <Stack alignItems="center" className={helpers.desktopUp.flex} color={color} horizontal space="small" {...props} />
+    <Stack
+      alignItems="center"
+      className={clsx(helpers.tabletUp.flex, className)}
+      color={color}
+      horizontal
+      space="small"
+      {...props}
+    />
   );
 };
 
@@ -162,7 +166,10 @@ HeaderLogo.displayName = HEADER_LOGO_NAME;
 
 const HEADER_MENU_BUTTON_NAME = 'HeaderMenuButton';
 
-type HeaderMenuButtonProps = MenuButtonProps;
+type HeaderMenuButtonProps = {
+  open?: boolean;
+  onToggle?: () => void;
+} & ButtonRootProps;
 
 /**
  * Menu open/close button
@@ -171,11 +178,15 @@ type HeaderMenuButtonProps = MenuButtonProps;
  * @param onToggle
  * @constructor
  */
-const HeaderMenuButton = ({ open, onToggle }: HeaderMenuButtonProps) => {
+const HeaderMenuButton = ({ open, onToggle, className, ...props }: HeaderMenuButtonProps) => {
   const { color } = useHeader();
 
   return (
-    <ButtonRoot className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton)} onPress={onToggle}>
+    <ButtonRoot
+      className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className)}
+      onPress={onToggle}
+      {...props}
+    >
       <Text color={color}>{open ? 'Close' : 'Menu'}</Text>
       <Icon color={color} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
     </ButtonRoot>
