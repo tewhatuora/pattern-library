@@ -106,7 +106,7 @@ export const content = style({
 
   selectors: {
     '&[data-state="open"]': {
-      animation: `${slideDown} ${animationDuration} forwards`,
+      animation: `${slideDown} ${animationDuration}`,
     },
     '&[data-state="closed"]': {
       animation: `${slideUp} ${animationDuration} forwards`,
