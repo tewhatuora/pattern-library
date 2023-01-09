@@ -2,7 +2,6 @@ import { ElementType, ReactText, Ref, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
-import { BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from './ButtonRoot';
 
@@ -38,7 +37,6 @@ export type ButtonType<Props> = {
   onPress?: (e: any) => void;
 } & Props &
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
-  Pick<BoxProps, 'justifyContent'> &
   AsLink;
 
 type AsLink = {
@@ -62,7 +60,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     iconPosition = 'right',
     href,
     onPress,
-    ...boxProps
   } = props;
 
   return (
@@ -80,7 +77,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       ref={ref}
       type={type}
       onPress={onPress}
-      {...boxProps}
     >
       {!!children && (
         <Text size="medium" weight={fontWeightForButton(variant)}>
