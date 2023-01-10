@@ -9,7 +9,7 @@ import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-export const widthVar = createVar();
+// export const widthVar = createVar();
 
 const spacing = calc.multiply(vars.space.medium.tablet, 2); // 4rem / 64px
 
@@ -64,16 +64,32 @@ export const secondRow = style([
 
 export const childrenWrapper = style([
   atoms({
-    display: 'grid',
+    // display: 'grid',
+    display: 'flex',
     width: 'full',
   }),
   responsiveStyle({
     mobile: {
-      rowGap: vars.space.large.tablet,
+      gap: vars.space.large.tablet,
+      flexWrap: 'wrap',
     },
     desktop: {
-      gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
-      columnGap: spacing,
+      // gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
+      flexWrap: 'nowrap',
+      gap: spacing,
+    },
+  }),
+]);
+
+export const secondRowChild = style([
+  responsiveStyle({
+    mobile: {
+      flexBasis: '100%',
+      maxWidth: 'unset',
+    },
+    desktop: {
+      flexBasis: 320,
+      maxWidth: 320,
     },
   }),
 ]);

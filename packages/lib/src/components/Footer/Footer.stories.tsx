@@ -43,7 +43,7 @@ export const Default = (args: FooterProps) => {
   return (
     <Footer {...args}>
       <FooterList heading="List one">
-        <FooterListItem href="#" label="Sub nav item 17 Sub nav item 17" />
+        <FooterListItem href="#" label="Sub nav item 17" />
         <FooterListItem href="#" label="Sub nav item 18" />
         <FooterListItem href="#" label="Sub nav item 19" />
         <FooterListItem href="#" label="Sub nav item 20" />
