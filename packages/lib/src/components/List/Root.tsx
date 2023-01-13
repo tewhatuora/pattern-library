@@ -65,8 +65,6 @@ export const Root = ({
         className,
       ),
       'data-dividers': dividers,
-      'data-dividersNoTop': dividersNoTop,
-      'data-dividersNoBottom': dividersNoBottom,
       'data-variant': variant, // Required to handle vertical padding of nested lists
       role: 'list', // Fixes <ul> in Safari when list-style is set to 'none'. See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns
     },
