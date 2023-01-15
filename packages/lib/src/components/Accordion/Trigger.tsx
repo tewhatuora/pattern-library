@@ -21,7 +21,7 @@ export type AccordionTriggerProps = {
 
 export const Trigger = ({ icon, header, label }: AccordionTriggerProps) => {
   const { headingLevel } = useContext(AccordionContext);
-  const boxElement = `h${headingLevel?.toString()}` || ('h6' as ElementType<any>);
+  const boxElement = (`h${headingLevel?.toString()}` as ElementType<any>) || ('h6' as ElementType<any>);
 
   return (
     <RadixAccordion.Header asChild className={styles.header}>
