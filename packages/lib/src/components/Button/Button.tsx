@@ -58,6 +58,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     iconPosition = 'right',
     href,
     onPress,
+    ...rest
   } = props;
 
   return (
@@ -75,6 +76,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       ref={ref}
       type={type}
       onPress={onPress}
+      {...rest}
     >
       {!!children && (
         <Text size="medium" weight={fontWeightForButton(variant)}>
