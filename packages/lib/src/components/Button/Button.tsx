@@ -1,4 +1,4 @@
-import { ElementType, ReactText, Ref, forwardRef } from 'react';
+import { ElementType, ReactNode, Ref, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
@@ -20,7 +20,7 @@ type KeysUnder<T, K extends PropertyKey> = T extends object
 
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
-export type ButtonType<Props> = {
+export type ButtonProps = {
   /** Icon to display **/
   icon?: IconType;
   /** Where to position the icon */
@@ -35,15 +35,13 @@ export type ButtonType<Props> = {
   variant?: ColorVariant;
   /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
-} & Props &
-  Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
+  children?: ReactNode | undefined;
+} & Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   AsLink;
 
 type AsLink = {
   href?: string;
 };
-
-export type ButtonProps = ButtonType<{ children?: ReactText }>;
 
 /**
  * Buttons allow users to take actions, and make choices, with a single tap.
