@@ -1,5 +1,5 @@
 // import { Children, PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react';
-import { Children, PropsWithChildren, useMemo } from 'react';
+import { Children, FC, PropsWithChildren, useMemo } from 'react';
 
 import clsx from 'clsx';
 
@@ -33,6 +33,8 @@ const FooterStyles = styles;
 type ImprintItem = {
   text: string;
   href?: string;
+  /** A React component to render, e. react-router-dom `<Link />` */
+  component?: FC<any>;
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -104,19 +106,29 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
     () =>
       !!imprintItems && (
         <Box className={styles.imprintItems}>
-          {imprintItems?.map(({ text, href }) =>
-            href ? (
-              <Box as="a" href={href} key={text}>
-                <Text size="small" weight="regular">
+          {imprintItems?.map(({ text, href, component: ImprintComponent }) => {
+            if (ImprintComponent) {
+              return (
+                <Text key={text} size="small" weight="regular">
+                  <ImprintComponent>{text}</ImprintComponent>
+                </Text>
+              );
+            } else if (href) {
+              return (
+                <Box as="a" href={href} key={text}>
+                  <Text size="small" weight="regular">
+                    {text}
+                  </Text>
+                </Box>
+              );
+            } else {
+              return (
+                <Text key={text} size="small" weight="regular">
                   {text}
                 </Text>
-              </Box>
-            ) : (
-              <Text key={text} size="small" weight="regular">
-                {text}
-              </Text>
-            ),
-          )}
+              );
+            }
+          })}
         </Box>
       ),
     [imprintItems],
