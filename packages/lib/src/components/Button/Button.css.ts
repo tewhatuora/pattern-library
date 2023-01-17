@@ -26,7 +26,6 @@ export const variants = recipe({
     }),
     {
       width: '100%',
-      maxWidth: rem(396),
       borderTopLeftRadius: vars.borderRadius.topLeft.button,
       borderTopRightRadius: vars.borderRadius.topRight.button,
       borderBottomRightRadius: vars.borderRadius.bottomRight.button,
@@ -45,6 +44,7 @@ export const variants = recipe({
       tablet: {
         height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
         gap: vars.space.xsmall.tablet,
+        maxWidth: rem(396),
       },
     }),
   ]),
