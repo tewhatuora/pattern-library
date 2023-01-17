@@ -25,6 +25,8 @@ export type AnchorLinkProps = {
   noIcon?: boolean;
   /** Option to not display the visited styles */
   noVisited?: boolean;
+  /** Option to show underline when not hovered */
+  showUnderline?: boolean;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -39,6 +41,7 @@ export const AnchorLink = ({
   noIcon = false,
   noVisited = false,
   className,
+  showUnderline = false,
   component: LinkComponent,
   children,
   ...rest
@@ -49,7 +52,7 @@ export const AnchorLink = ({
   const props = {
     ...linkProps,
     ...rest,
-    className: clsx(textStyles, styles.link({ noVisited }), className),
+    className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
     href: to,
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
   };

@@ -26,10 +26,10 @@ export default {
 export const Default = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <AnchorLink noIcon to="#100">
+      <AnchorLink noIcon showUnderline to="#100">
         First
       </AnchorLink>
-      <AnchorLink noIcon to="#200">
+      <AnchorLink noIcon showUnderline to="#200">
         Second
       </AnchorLink>
       <Text>Third</Text>
@@ -40,10 +40,10 @@ export const Default = (args: BreadcrumbsProps) => {
 export const BoldText = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} boldText>
-      <AnchorLink noIcon to="#100">
+      <AnchorLink noIcon showUnderline to="#100">
         First
       </AnchorLink>
-      <AnchorLink noIcon to="#200">
+      <AnchorLink noIcon showUnderline to="#200">
         Second
       </AnchorLink>
       <Text>Third</Text>
@@ -54,10 +54,10 @@ export const BoldText = (args: BreadcrumbsProps) => {
 export const BoldLinks = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} boldLinks>
-      <AnchorLink noIcon to="#100">
+      <AnchorLink noIcon showUnderline to="#100">
         First
       </AnchorLink>
-      <AnchorLink noIcon to="#200">
+      <AnchorLink noIcon showUnderline to="#200">
         Second
       </AnchorLink>
       <Text>Third</Text>
@@ -68,10 +68,10 @@ export const BoldLinks = (args: BreadcrumbsProps) => {
 export const NoVistedStyle = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} noVisited>
-      <AnchorLink noIcon to="#100">
+      <AnchorLink noIcon showUnderline to="#100">
         First
       </AnchorLink>
-      <AnchorLink noIcon to="#200">
+      <AnchorLink noIcon showUnderline to="#200">
         Second
       </AnchorLink>
       <Text>Third</Text>
@@ -82,31 +82,31 @@ export const NoVistedStyle = (args: BreadcrumbsProps) => {
 export const Truncated = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <AnchorLink noIcon to="#100">
+      <AnchorLink noIcon showUnderline to="#100">
         First
       </AnchorLink>
-      <AnchorLink noIcon to="#200">
+      <AnchorLink noIcon showUnderline to="#200">
         Second
       </AnchorLink>
-      <AnchorLink noIcon to="#300">
+      <AnchorLink noIcon showUnderline to="#300">
         Third
       </AnchorLink>
-      <AnchorLink noIcon to="#400">
+      <AnchorLink noIcon showUnderline to="#400">
         Fourth
       </AnchorLink>
-      <AnchorLink noIcon to="#400">
+      <AnchorLink noIcon showUnderline to="#400">
         Fifth
       </AnchorLink>
-      <AnchorLink noIcon to="#400">
+      <AnchorLink noIcon showUnderline to="#400">
         Sixth
       </AnchorLink>
-      <AnchorLink noIcon to="#400">
+      <AnchorLink noIcon showUnderline to="#400">
         Seventh
       </AnchorLink>
-      <AnchorLink noIcon to="#400">
+      <AnchorLink noIcon showUnderline to="#400">
         Eighth
       </AnchorLink>
-      <AnchorLink noIcon to="#400">
+      <AnchorLink noIcon showUnderline to="#400">
         Ninth
       </AnchorLink>
       <Text>Tenth</Text>

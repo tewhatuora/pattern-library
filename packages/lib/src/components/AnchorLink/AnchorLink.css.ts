@@ -56,6 +56,16 @@ export const link = recipe({
         },
       },
     },
+    underline: {
+      true: {
+        textDecoration: 'underline',
+
+        '&:hover': {
+          textDecoration: 'none',
+        },
+      },
+      false: {},
+    },
   },
 
   defaultVariants: {
