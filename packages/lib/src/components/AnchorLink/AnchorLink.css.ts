@@ -58,11 +58,12 @@ export const link = recipe({
     },
     underline: {
       true: {
-        textDecoration: 'underline',
-
-        '&:hover': {
-          textDecoration: 'none',
+        selectors: {
+          '&:hover': {
+            textDecoration: 'none',
+          },
         },
+        textDecoration: 'underline',
       },
       false: {},
     },
