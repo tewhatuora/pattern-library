@@ -140,7 +140,7 @@ export const imprintItems = style([
   {},
   responsiveStyle({
     mobile: {
-      flexDirection: 'column',
+      flexDirection: 'column-reverse',
       flexWrap: 'nowrap',
       gap: vars.space.small.tablet,
     },
