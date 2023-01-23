@@ -9,7 +9,6 @@ import { Box } from '../Box/Box';
 import { Divider } from '../Divider/Divider';
 import { Stack } from '../Stack/Stack';
 import { Text } from '../Text/Text';
-import { Container } from '../Container/Container';
 
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
@@ -165,56 +164,54 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
       className={clsx(styles.footer, className)}
       color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
     >
-      <Container>
-        {/* {!showNavs && hiddenChildrenForWidthCalculations} */}
+      {/* {!showNavs && hiddenChildrenForWidthCalculations} */}
 
-        {/* <div className={styles.footerInner} hidden={!showNavs}> */}
-        <div className={styles.footerInner}>
-          <Stack space="xxlarge">
-            {/* First row */}
-            <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
-              <Box className={styles.logoWrapper}>
-                <TeWhatuOraLogo key={null} props={{}} ref={null} type="symbol" />
-              </Box>
-              <Box className={styles.govtLogoWrapper}>
-                <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
-              </Box>
+      {/* <div className={styles.footerInner} hidden={!showNavs}> */}
+      <div className={styles.footerInner}>
+        <Stack space="xxlarge">
+          {/* First row */}
+          <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
+            <Box className={styles.logoWrapper}>
+              <TeWhatuOraLogo key={null} props={{}} ref={null} type="symbol" />
             </Box>
+            <Box className={styles.govtLogoWrapper}>
+              <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
+            </Box>
+          </Box>
 
-            {/* Second row */}
-            {numChildren > 0 && (
-              <Box className={styles.secondRow}>
-                <Box
-                  className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
-                  // style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
-                >
-                  {Children.map(children, (child) => (
-                    // Div keeps MenuItems contained because they return 2 elements, not one
-                    <div className={styles.secondRowChild}>{child}</div>
-                  ))}
-                </Box>
-                {!!socialLinks && <ShieldedSite />}
+          {/* Second row */}
+          {numChildren > 0 && (
+            <Box className={styles.secondRow}>
+              <Box
+                className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
+                // style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
+              >
+                {Children.map(children, (child) => (
+                  // Div keeps MenuItems contained because they return 2 elements, not one
+                  <div className={styles.secondRowChild}>{child}</div>
+                ))}
               </Box>
-            )}
+              {!!socialLinks && <ShieldedSite />}
+            </Box>
+          )}
 
-            {/* Third row */}
-            <Stack space="medium">
-              <Divider variant={variant ?? 'light'} />
-              <Box className={styles.socialAndImprintWrapper}>
-                {/*
-                 * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
-                 * on the right even when there are no imprintItemsElements.
-                 * It should also be okay for accessibility because the order of viewing the
-                 * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
-                 * really matter.
-                 */}
-                {socialLinks || <ShieldedSite />}
-                {imprintItemsElements}
-              </Box>
-            </Stack>
+          {/* Third row */}
+          <Stack space="medium">
+            <Divider variant={variant ?? 'light'} />
+            <Box className={styles.socialAndImprintWrapper}>
+              {/*
+               * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
+               * on the right even when there are no imprintItemsElements.
+               * It should also be okay for accessibility because the order of viewing the
+               * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
+               * really matter.
+               */}
+              {socialLinks || <ShieldedSite />}
+              {imprintItemsElements}
+            </Box>
           </Stack>
-        </div>
-      </Container>
+        </Stack>
+      </div>
     </Box>
   );
 };

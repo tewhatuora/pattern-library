@@ -2,6 +2,7 @@ import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/c
 import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
+import { mobileContainer, tabletContainer } from '@/src/css/grid';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -31,10 +32,12 @@ export const footerInner = style([
     mobile: {
       paddingRight: vars.space.large.mobile,
       paddingLeft: vars.space.large.mobile,
+      ...mobileContainer,
     },
     desktop: {
       paddingRight: '0',
       paddingLeft: '0',
+      ...tabletContainer,
     },
   }),
 ]);
