@@ -76,6 +76,9 @@ export const Root = ({
         <ThemeProvider theme={theme}>
           <RadixDialog.Overlay className={styles.overlay} />
           <RadixDialog.Content className={styles.dialog} onPointerDownOutside={() => onOpenChange?.(false)}>
+            <RadixDialog.Close className={styles.closeButton}>
+              <Icon icon="cross" variant="functionalIcons" />
+            </RadixDialog.Close>
             <Stack alignItems="center" display="flex" flexDirection="column" space="medium">
               {!!icon && <Icon icon={icon} variant="decorativeIcons" />}
               <RadixDialog.Title asChild>
@@ -95,9 +98,6 @@ export const Root = ({
                 {children}
               </AllowedChildren>
             </Stack>
-            <RadixDialog.Close className={styles.closeButton}>
-              <Icon icon="cross" variant="functionalIcons" />
-            </RadixDialog.Close>
           </RadixDialog.Content>
         </ThemeProvider>
       </RadixDialog.Portal>
