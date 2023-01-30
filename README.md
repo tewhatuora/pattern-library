@@ -19,6 +19,23 @@ Add the MOH remote repository:
 $ git remote add https://gitlab.com/healthnz-ult/c3/anatomic.git
 ```
 
+Build the themes package. First, navigate to the themes package:
+```shell
+cd package/themes
+```
+
+Next, build the package with:
+```shell
+yarn build
+```
+
+Then navigate back to the root of the project:
+```shell
+cd ../..
+```
+
+And now Storybook will work.
+
 ---
 
 ## Development
@@ -56,8 +73,8 @@ $ yarn build
 This is useful when making theme changes and reflecting the changes in the lib package.
 
 ## Monorepo
-This project is setup as a monorepo, with a package for the design system library -
-all of the React components and a package for the themes, generated with style-dictionary.
+This project is set up as a monorepo, with a package for the design system library -
+all the React components and a package for the themes, generated with style-dictionary.
 
 ### Design system library
 
