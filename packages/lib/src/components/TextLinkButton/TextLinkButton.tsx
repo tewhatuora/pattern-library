@@ -1,4 +1,8 @@
+import clsx from 'clsx';
+
 import { Button, ButtonProps } from '../Button/Button';
+
+import * as styles from './TextLinkButton.css';
 
 export type TextLinkButtonProps = Omit<ButtonProps, 'variant' | 'disabled' | 'width' | 'justifyContent'>;
 
@@ -11,10 +15,8 @@ export type TextLinkButtonProps = Omit<ButtonProps, 'variant' | 'disabled' | 'wi
  * @param props
  * @constructor
  */
-export const TextLinkButton = (props: TextLinkButtonProps) => (
-  <Button {...props} variant="text">
-    {props.children}
-  </Button>
+export const TextLinkButton = ({ className, ...rest }: TextLinkButtonProps) => (
+  <Button className={clsx(styles.TextLinkButton, className)} {...rest} variant="link" />
 );
 
 export default TextLinkButton;

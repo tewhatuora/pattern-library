@@ -67,7 +67,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       className={clsx(
         styles.variants({
           color: variant,
-          icon: iconPosition,
         }),
         className,
       )}
@@ -78,13 +77,19 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       onPress={onPress}
       {...rest}
     >
+      {!!icon && iconPosition === 'left' && (
+        <Icon className={styles.icon['left']} icon={icon} variant="functionalIcons" />
+      )}
+
       {!!children && (
         <Text size="medium" weight={fontWeightForButton(variant)}>
           {children}
         </Text>
       )}
 
-      {!!icon && <Icon icon={icon} variant="functionalIcons" />}
+      {!!icon && iconPosition === 'right' && (
+        <Icon className={styles.icon['right']} icon={icon} variant="functionalIcons" />
+      )}
     </ButtonRoot>
   );
 });
