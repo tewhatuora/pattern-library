@@ -1,5 +1,5 @@
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-import { style } from '@vanilla-extract/css';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
 
 import { calc } from '@vanilla-extract/css-utils';
 
@@ -13,6 +13,8 @@ export const root = style({
   color: 'inherit',
   cursor: 'pointer',
 });
+
+const gapVar = createVar();
 
 export const variants = recipe({
   base: style([
@@ -39,41 +41,27 @@ export const variants = recipe({
     responsiveStyle({
       mobile: {
         height: vars.space.xxlarge.tablet,
-        gap: vars.space.xsmall.mobile,
+        vars: {
+          [gapVar]: vars.space.xsmall.mobile,
+        },
       },
       tablet: {
         height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
-        gap: vars.space.xsmall.tablet,
         maxWidth: rem(396),
+        vars: {
+          [gapVar]: vars.space.xsmall.tablet,
+        },
       },
     }),
   ]),
   variants: {
-    icon: {
-      right: {
-        flexDirection: 'row',
-      },
-      left: {
-        flexDirection: 'row-reverse',
-      },
-    },
     color: {
-      text: style([
-        responsiveStyle({
-          mobile: {
-            height: 'auto',
-            gap: calc.divide(vars.space.xsmall.mobile, 2),
-            padding: calc.divide(vars.space.xsmall.mobile, 2),
-          },
-          tablet: {
-            height: 'auto',
-            gap: calc.multiply(vars.space.xsmall.mobile, 1.25),
-            padding: calc.divide(vars.space.xsmall.mobile, 2),
-          },
-        }),
+      // Used in TextLinkButton and InputPassword
+      link: style([
         {
           display: 'inline-flex',
           width: 'auto',
+          height: 'auto',
           color: vars.color.info100,
           borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
           ':hover': {
@@ -84,31 +72,18 @@ export const variants = recipe({
             outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
           },
         },
-      ]),
-      label: style([
         responsiveStyle({
           mobile: {
-            height: 'auto',
-            gap: calc.divide(vars.space.xsmall.mobile, 2),
+            vars: {
+              [gapVar]: calc.divide(vars.space.xsmall.mobile, 2),
+            },
           },
           tablet: {
-            height: 'auto',
-            gap: calc.multiply(vars.space.xsmall.mobile, 1.25),
+            vars: {
+              [gapVar]: calc.multiply(vars.space.xsmall.mobile, 1.25),
+            },
           },
         }),
-        {
-          display: 'inline-flex',
-          width: 'auto',
-          color: vars.color.info100,
-          borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
-          ':hover': {
-            color: vars.color.info75,
-            textDecoration: 'underline',
-          },
-          ':focus': {
-            outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
-          },
-        },
       ]),
       primary: {
         color: vars.color.tertiary0,
@@ -190,8 +165,19 @@ export const variants = recipe({
   },
   defaultVariants: {
     color: 'primary',
-    icon: 'right',
   },
 });
 
 export type Variants = RecipeVariants<typeof variants>;
+
+/* ###############################
+ * Margins are used instead of flex gap because iOS Safari <14.5 does not support it.
+ *
+ * This is the most readable solution I thought of. I think this is clearer than using `flex-directon: row-reverse;`
+ *  which would require a variant on the ButtonRoot and a variant (or conditional className) on the Icon (because
+ *  you have to choose whether the margin is to the left or right).
+ */
+export const icon = styleVariants({
+  left: { marginRight: gapVar },
+  right: { marginLeft: gapVar },
+});
