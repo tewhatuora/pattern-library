@@ -106,27 +106,34 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
       !!imprintItems && (
         <Box className={styles.imprintItems}>
           {imprintItems?.map(({ text, href, component: ImprintComponent }) => {
+            let result;
             if (ImprintComponent) {
-              return (
-                <Text key={text} size="small" weight="regular">
+              result = (
+                <Text size="small" weight="regular">
                   <ImprintComponent>{text}</ImprintComponent>
                 </Text>
               );
             } else if (href) {
-              return (
-                <Box as="a" href={href} key={text}>
+              result = (
+                <Box as="a" href={href}>
                   <Text size="small" weight="regular">
                     {text}
                   </Text>
                 </Box>
               );
             } else {
-              return (
-                <Text key={text} size="small" weight="regular">
+              result = (
+                <Text size="small" weight="regular">
                   {text}
                 </Text>
               );
             }
+
+            return (
+              <Box className={styles.imprintItem} key={text}>
+                {result}
+              </Box>
+            );
           })}
         </Box>
       ),

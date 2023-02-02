@@ -140,12 +140,10 @@ export const imprintItems = style([
   atoms({
     display: 'flex',
   }),
-  {},
   responsiveStyle({
     mobile: {
       flexDirection: 'column-reverse',
       flexWrap: 'nowrap',
-      gap: vars.space.small.tablet,
     },
     desktop: {
       flexDirection: 'row',
@@ -153,6 +151,32 @@ export const imprintItems = style([
     },
   }),
 ]);
+
+export const imprintItem = style(
+  responsiveStyle({
+    mobile: {
+      selectors: {
+        // `flex-direction: column-reverse` so it's :first-child, not :last-child
+        [`${imprintItems} > &:not(:first-child)`]: {
+          marginBottom: vars.space.small.tablet,
+        },
+      },
+    },
+    desktop: {
+      selectors: {
+        [`${imprintItems} > &:not(:last-child)`]: {
+          marginRight: vars.space.small.tablet,
+
+          // marginBottom is needed because with row-reverse, this selector is not targeting the visually top item.
+          // And that top item needs the bottom margin to push away the lower items.
+          // It doesn't matter if the bottom item has padding on desktop because there is nothing below it (at
+          // least, for now...)
+          marginBottom: vars.space.small.tablet,
+        },
+      },
+    },
+  }),
+);
 
 const shieldedSiteButtonSizeVar = createVar();
 
