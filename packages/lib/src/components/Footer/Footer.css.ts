@@ -94,6 +94,7 @@ export const secondRowNavigationChild = style([
       },
     },
     desktop: {
+      // As per spec, keeps all columns the same width with a max of 320px
       flexBasis: 320,
       maxWidth: 320,
       selectors: {
