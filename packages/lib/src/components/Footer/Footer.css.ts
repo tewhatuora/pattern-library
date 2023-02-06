@@ -13,6 +13,7 @@ import { vars } from '../../themes/vars.css';
 // export const widthVar = createVar();
 
 const spacing = calc.multiply(vars.space.medium.tablet, 2); // 4rem / 64px
+const lessSpacing = calc.multiply(vars.space.medium.tablet, 1.25); // 2.5rem / 40px, for when there's 5 columns
 
 export const footer = style(
   responsiveStyle({
@@ -62,10 +63,9 @@ export const secondRow = style([
     flexDirection: { mobile: 'column', desktop: 'row' },
     justifyContent: 'spaceBetween',
   }),
-  { gap: vars.space.large.tablet },
 ]);
 
-export const childrenWrapper = style([
+export const secondRowNavigationWrapper = style([
   atoms({
     // display: 'grid',
     display: 'flex',
@@ -73,33 +73,72 @@ export const childrenWrapper = style([
   }),
   responsiveStyle({
     mobile: {
-      gap: vars.space.large.tablet,
       flexWrap: 'wrap',
     },
     desktop: {
       // gridTemplateColumns: `repeat(auto-fill, ${widthVar})`,
       flexWrap: 'nowrap',
-      gap: spacing,
     },
   }),
 ]);
 
-export const secondRowChild = style([
+export const secondRowNavigationChild = style([
   responsiveStyle({
     mobile: {
       flexBasis: '100%',
       maxWidth: 'unset',
+      selectors: {
+        '&:not(:first-child)': {
+          marginTop: vars.space.large.tablet,
+        },
+      },
     },
     desktop: {
       flexBasis: 320,
       maxWidth: 320,
+      selectors: {
+        '&:not(:first-child)': {
+          marginTop: 0,
+          marginLeft: spacing,
+        },
+      },
     },
   }),
 ]);
 
-export const lessSpace = style({
-  columnGap: vars.space.large.tablet, // 2.5rem/40px
-});
+export const lessSpace = style(
+  responsiveStyle({
+    desktop: {
+      selectors: {
+        '&:not(:first-child)': {
+          marginTop: 0,
+          marginLeft: lessSpacing,
+        },
+      },
+    },
+  }),
+);
+
+export const secondRowChild = style([
+  { display: 'flex' },
+  responsiveStyle({
+    mobile: {
+      selectors: {
+        '&:not(:first-child)': {
+          marginTop: vars.space.large.tablet,
+        },
+      },
+    },
+    desktop: {
+      selectors: {
+        '&:not(:first-child)': {
+          marginTop: 0,
+          marginLeft: spacing,
+        },
+      },
+    },
+  }),
+]);
 
 export const hiddenNavs = style({
   position: 'absolute',
@@ -117,14 +156,36 @@ export const socialAndImprintWrapper = style([
     flexDirection: { mobile: 'columnReverse', desktop: 'rowReverse' },
     justifyContent: 'spaceBetween',
   }),
-  responsiveStyle({
-    mobile: { gap: rem(42) },
-    desktop: { gap: 0 },
-  }),
 ]);
 
-export const social = style({
-  gap: rem(22), // It's the same for all breakpoints and doesn't match any tokens
+export const socialAndImprintChild = style(
+  responsiveStyle({
+    mobile: {
+      selectors: {
+        // :last-child because the parent has rowReverse, so it's the opposite
+        '&:not(:last-child)': {
+          marginTop: rem(42),
+        },
+      },
+    },
+    desktop: {
+      selectors: {
+        // :last-child because the parent has rowReverse, so it's the opposite
+        '&:not(:last-child)': {
+          marginTop: 0,
+          marginLeft: rem(42),
+        },
+      },
+    },
+  }),
+);
+
+export const socialIcon = style({
+  selectors: {
+    '&:not(:first-child)': {
+      marginLeft: rem(22), // It's the same for all breakpoints and doesn't match any tokens
+    },
+  },
 });
 
 export const socialIcons = styleVariants({

@@ -88,10 +88,10 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
   const socialLinks = useMemo(
     () =>
       !!socialLinkHrefs && (
-        <Box className={styles.social} display="flex" flexDirection="row">
+        <Box display="flex" flexDirection="row">
           {Object.entries(socialLinkHrefs)
             .map(([key, value]) => (
-              <Box aria-label={key} as="a" href={value} key={key}>
+              <Box aria-label={key} as="a" className={styles.socialIcon} href={value} key={key}>
                 <Icon className={styles.socialIcons[variant ?? 'light']} icon={key as IconType} variant="socialIcons" />
               </Box>
             ))
@@ -190,15 +190,21 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
           {numChildren > 0 && (
             <Box className={styles.secondRow}>
               <Box
-                className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
+                className={clsx(styles.secondRowNavigationWrapper, styles.secondRowChild)}
                 // style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
               >
                 {Children.map(children, (child) => (
                   // Div keeps MenuItems contained because they return 2 elements, not one
-                  <div className={styles.secondRowChild}>{child}</div>
+                  <div className={clsx(styles.secondRowNavigationChild, { [styles.lessSpace]: numChildren >= 5 })}>
+                    {child}
+                  </div>
                 ))}
               </Box>
-              {!!socialLinks && <ShieldedSite />}
+              {!!socialLinks && (
+                <Box className={styles.secondRowChild}>
+                  <ShieldedSite />
+                </Box>
+              )}
             </Box>
           )}
 
@@ -213,8 +219,8 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
                * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
                * really matter.
                */}
-              {socialLinks || <ShieldedSite />}
-              {imprintItemsElements}
+              <Box className={styles.socialAndImprintChild}>{socialLinks || <ShieldedSite />}</Box>
+              <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
             </Box>
           </Stack>
         </Stack>
