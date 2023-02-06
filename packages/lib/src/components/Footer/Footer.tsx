@@ -1,4 +1,3 @@
-// import { Children, PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react';
 import { Children, FC, PropsWithChildren, useMemo } from 'react';
 
 import clsx from 'clsx';
@@ -26,8 +25,6 @@ import { MenuListProps } from '../Navigation/MenuList';
 import { NavigationItemProps } from '../Navigation/Item';
 
 const FooterStyles = styles;
-
-// const MAX_COLUMN_WIDTH = 320;
 
 type ImprintItem = {
   text: string;
@@ -60,18 +57,6 @@ type FooterProps = {
 };
 
 const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }: PropsWithChildren<FooterProps>) => {
-  // const navRefs = useRef<Array<HTMLElement | null>>([]);
-
-  // const [maxChildWidth, setMaxChildWidth] = useState(0);
-
-  // To hide calculating the column widths. See `hiddenChildrenForWidthCalculations`
-  // const [showNavs, setShowNavs] = useState(false);
-
-  // useEffect(() => {
-  //   setMaxChildWidth(Math.min(widthOfWidestElement(navRefs.current), MAX_COLUMN_WIDTH));
-  //   setShowNavs(true); // Should get batched with the setter above
-  // }, []);
-
   const numChildren = Children.count(children);
 
   if (numChildren > 5) {
@@ -88,10 +73,10 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
   const socialLinks = useMemo(
     () =>
       !!socialLinkHrefs && (
-        <Box className={styles.social} display="flex" flexDirection="row">
+        <Box display="flex" flexDirection="row">
           {Object.entries(socialLinkHrefs)
             .map(([key, value]) => (
-              <Box aria-label={key} as="a" href={value} key={key}>
+              <Box aria-label={key} as="a" className={styles.socialIcon} href={value} key={key}>
                 <Icon className={styles.socialIcons[variant ?? 'light']} icon={key as IconType} variant="socialIcons" />
               </Box>
             ))
@@ -106,56 +91,40 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
       !!imprintItems && (
         <Box className={styles.imprintItems}>
           {imprintItems?.map(({ text, href, component: ImprintComponent }) => {
+            let result;
+
             if (ImprintComponent) {
-              return (
-                <Text key={text} size="small" weight="regular">
+              result = (
+                <Text size="small" weight="regular">
                   <ImprintComponent>{text}</ImprintComponent>
                 </Text>
               );
             } else if (href) {
-              return (
-                <Box as="a" href={href} key={text}>
+              result = (
+                <Box as="a" href={href}>
                   <Text size="small" weight="regular">
                     {text}
                   </Text>
                 </Box>
               );
             } else {
-              return (
-                <Text key={text} size="small" weight="regular">
+              result = (
+                <Text size="small" weight="regular">
                   {text}
                 </Text>
               );
             }
+
+            return (
+              <Box className={styles.imprintItem} key={text}>
+                {result}
+              </Box>
+            );
           })}
         </Box>
       ),
     [imprintItems],
   );
-
-  /**
-   * This solves this design requirement:
-   *
-   * > The columns themselves should flex with the screen width but have a
-   * > max-width of 320px. The width should not be defined by the content, but
-   * > by a parent element so the sizes can be the same across all columns.
-   *
-   * CSS grid and flexbox cannot do this alone. The only way I found to achieve
-   * this is to render the children in a separate, hidden context, measure their
-   * intrinsic width to find the widest one, then set a CSS variable to set all
-   * columns to that width.
-   *
-   * This causes some layout issues, where for a second the elements would
-   * display incorrectly. The `showNavs` state only makes the Footer content
-   * visible once the calculation has been done.
-   *
-   * Update (11/1/2022) - Moved to a flex only solution
-   */
-  // const hiddenChildrenForWidthCalculations = Children.map(children, (child) => (
-  //   <Box aria-hidden className={styles.hiddenNavs} ref={(element) => navRefs.current.push(element)}>
-  //     {child}
-  //   </Box>
-  // ));
 
   return (
     <Box
@@ -164,9 +133,6 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
       className={clsx(styles.footer, className)}
       color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
     >
-      {/* {!showNavs && hiddenChildrenForWidthCalculations} */}
-
-      {/* <div className={styles.footerInner} hidden={!showNavs}> */}
       <div className={styles.footerInner}>
         <Stack space="xxlarge">
           {/* First row */}
@@ -182,16 +148,19 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
           {/* Second row */}
           {numChildren > 0 && (
             <Box className={styles.secondRow}>
-              <Box
-                className={clsx(styles.childrenWrapper, { [styles.lessSpace]: numChildren === 5 })}
-                // style={{ ...setCssVariable(styles.widthVar, `${maxChildWidth / 10}rem`) }}
-              >
+              <Box className={clsx(styles.secondRowNavigationWrapper, styles.secondRowChild)}>
                 {Children.map(children, (child) => (
                   // Div keeps MenuItems contained because they return 2 elements, not one
-                  <div className={styles.secondRowChild}>{child}</div>
+                  <div className={clsx(styles.secondRowNavigationChild, { [styles.lessSpace]: numChildren >= 5 })}>
+                    {child}
+                  </div>
                 ))}
               </Box>
-              {!!socialLinks && <ShieldedSite />}
+              {!!socialLinks && (
+                <Box className={styles.secondRowChild}>
+                  <ShieldedSite />
+                </Box>
+              )}
             </Box>
           )}
 
@@ -206,8 +175,8 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
                * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
                * really matter.
                */}
-              {socialLinks || <ShieldedSite />}
-              {imprintItemsElements}
+              <Box className={styles.socialAndImprintChild}>{socialLinks || <ShieldedSite />}</Box>
+              <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
             </Box>
           </Stack>
         </Stack>
@@ -254,34 +223,6 @@ function byDesignOrder(a: JSX.Element, b: JSX.Element) {
     socialLinksOrder.findIndex((v) => v === b.key?.toString())
   );
 }
-
-/**
- * Helper function for setting vanilla extract CSS variables in the style tag.
- *
- * When referencing the CSS variables, it includes the `var(...)` wrapper, which
- * should be omitted when set. This strips that off.
- * @param cssVariable
- * @param value
- * @returns
- */
-// function setCssVariable(cssVariable: string, value: string) {
-//   return { [cssVariable.slice(4, styles.widthVar.length - 1)]: value };
-// }
-
-/**
- * Helper function that gets the width of the widest given element.
- * @param refs
- * @returns
- */
-// function widthOfWidestElement(refs: (HTMLElement | null)[]) {
-//   return (
-//     refs
-//       .map((ref) => ref?.getBoundingClientRect().width) // Get width
-//       .filter(Boolean) // Filter out null values
-//       .sort()
-//       .at(-1) ?? Infinity // Highest number is at last index, default to Infinity so it gets overrided with Math.min()
-//   );
-// }
 
 const Root = Footer;
 const List = FooterList;
