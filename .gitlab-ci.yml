@@ -107,12 +107,13 @@ chromatic_publish:
     - job: build
       artifacts: true
   script:
-    - echo $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-    - echo $CI_COMMIT_REF_SLUG
-    - echo $CI_COMMIT_REF_NAME
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
+    - yarn chromatic --branch-name $CI_COMMIT_REF_SLUG
   rules:
     - *run_for_chromatic_main
+  environment:
+    name: storybook-preview/$CI_COMMIT_REF_SLUG
+    url: https://$CI_COMMIT_REF_SLUG--63e2dc298c48a90e1a5ae1d5.chromatic.com
+
 
 npm_lib_publish:
   rules:
