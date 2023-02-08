@@ -51,7 +51,7 @@ stages:
       when: always
 
     - &run_for_chromatic_main
-      if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: always
       allow_failure: true
 
@@ -107,6 +107,9 @@ chromatic_publish:
     - job: build
       artifacts: true
   script:
+    - echo $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - echo $CI_COMMIT_REF_SLUG
+    - echo $CI_COMMIT_REF_NAME
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
   rules:
     - *run_for_chromatic_main
