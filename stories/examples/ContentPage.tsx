@@ -1,22 +1,33 @@
-import {
-  Header,
-  Navigation,
-  Container,
-  Row,
-  Column,
-  Stack,
-  Text,
-  Footer,
-  Accordion,
-  Card,
-  Tabs,
-  Button,
-  Heading,
-  Divider,
-  Breadcrumbs,
-  AnchorLink,
-} from '../../packages/lib/src/components';
 import { useState } from 'react';
+
+import {
+  Accordion,
+  AnchorLink,
+  Breadcrumbs,
+  Button,
+  Card,
+  Column,
+  Container,
+  Divider,
+  Footer,
+  Header,
+  Heading,
+  InputSearch,
+  Navigation,
+  Row,
+  Stack,
+  Tabs,
+  Text,
+} from '../../packages/lib/src/components';
+
+const ExampleLogo = () => (
+  <>
+    <Text size="small">LOGO</Text>
+    <Text size="small" weight="bold">
+      Placeholder
+    </Text>
+  </>
+);
 
 const ContentPage = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -26,36 +37,41 @@ const ContentPage = () => {
   };
 
   return (
-    <div style={{ paddingTop: '9.6rem' }}>
-      <Stack space="xxlarge" color="primary100">
-        <Header
-          utilityNavItems={[
-            {
-              href: '#',
-              icon: 'language',
-              label: 'Language',
-            },
-            {
-              href: '#',
-              icon: 'person',
-              label: 'Name Surname',
-            },
-          ]}
-          logoLinkHref="/"
-          logoComponent={
-            <>
-              <Text size="small">LOGO</Text>
-              <Text size="small" weight="bold">
-                Placeholder
-              </Text>
-            </>
-          }
-          onToggleNavigation={handleToggleNavigation}
-          searchFormAction="/"
-          searchFormMethod="GET"
-          withSearch
-        />
-        <Stack space="xlarge" backgroundColor="primary5">
+    <div style={{ paddingTop: '6rem' }}>
+      <Stack color="primary100" space="xxlarge">
+        <Header.Root>
+          <Header.Left>
+            <Header.Logo>
+              <ExampleLogo />
+            </Header.Logo>
+
+            <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+          </Header.Left>
+
+          <Header.Right>
+            <Navigation.Utility
+              items={[
+                {
+                  href: '#',
+                  icon: 'language',
+                  label: 'Language',
+                },
+                {
+                  href: '#',
+                  icon: 'person',
+                  label: 'Name Surname',
+                },
+              ]}
+              variant="light"
+            />
+
+            <InputSearch id="search" name="search" placeholder="Search" />
+          </Header.Right>
+
+          <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+        </Header.Root>
+
+        <Stack backgroundColor="primary5" space="xlarge">
           <Navigation.Root open={navigationOpen} searchFormAction="/" searchFormMethod="GET" withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
               <Navigation.Menu>
@@ -133,12 +149,12 @@ const ContentPage = () => {
                 <Text>Tenth</Text>
               </Breadcrumbs>
               <Row>
-                <Column columns={8} center>
+                <Column center columns={8}>
                   <Stack space="large">
                     <Heading level="2">Heading</Heading>
                     <Card>
                       <Row>
-                        <Column columns={6} center>
+                        <Column center columns={6}>
                           <Stack space="medium">
                             <Heading level="3">Heading</Heading>
                             <Text as="p">
@@ -152,7 +168,7 @@ const ContentPage = () => {
                               porro quaerat quasi quia, repellendus unde vel voluptatibus.
                             </Text>
                             <Heading level="3">Heading</Heading>
-                            <Accordion.Root type="single" headingLevel={4}>
+                            <Accordion.Root headingLevel={4} type="single">
                               <Accordion.Item value="item-1">
                                 <Accordion.Trigger icon="document" label="Content" />
                                 <Accordion.Content>
@@ -206,9 +222,9 @@ const ContentPage = () => {
                     <Heading level="2">Heading</Heading>
                     <Card>
                       <Row>
-                        <Column columns={6} center>
+                        <Column center columns={6}>
                           <Stack space="medium">
-                            <Tabs.Root space="medium" defaultValue="tab-1" activationMode="automatic">
+                            <Tabs.Root activationMode="automatic" defaultValue="tab-1" space="medium">
                               <Tabs.List>
                                 <Tabs.Trigger value="tab-1">Tab item</Tabs.Trigger>
                                 <Tabs.Trigger value="tab-2">Tab item</Tabs.Trigger>
@@ -301,7 +317,7 @@ const ContentPage = () => {
               </Row>
             </Stack>
           </Container>
-          <p></p>
+          <p />
         </Stack>
         <Footer
           imprintItems={[

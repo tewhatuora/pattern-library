@@ -1,9 +1,18 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
+
+const HEADER_HEIGHT = calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet);
+
+export const wrapper = style({
+  width: '100%',
+  height: HEADER_HEIGHT,
+});
 
 export const base = style([
   atoms({
@@ -12,7 +21,8 @@ export const base = style([
     justifyContent: 'spaceBetween',
   }),
   {
-    height: calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet),
+    height: HEADER_HEIGHT,
+    columnGap: vars.space.xsmall.tablet,
   },
   responsiveStyle({
     mobile: {
@@ -51,10 +61,10 @@ export const logo = style([
   },
   responsiveStyle({
     mobile: {
-      width: '10rem',
+      width: rem(100),
     },
     tablet: {
-      width: '16.4rem',
+      width: rem(164),
     },
   }),
 ]);

@@ -53,14 +53,14 @@ export const TextLink = ({
   const textStyles = useText({ weight, size });
 
   return (
-    <Box
-      as="a"
-      className={clsx(textStyles, styles.link, styles.iconPosition[iconPosition], className)}
-      href={href}
-      textAlign={align}
-    >
-      {children}
-      {!!icon && <Icon icon={icon} variant="functionalIcons" />}
+    <Box as="a" className={clsx(textStyles, styles.link, className)} href={href} textAlign={align}>
+      {!!icon && iconPosition === 'left' && (
+        <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
+      )}
+      <span>{children}</span>
+      {!!icon && iconPosition === 'right' && (
+        <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
+      )}
     </Box>
   );
 };

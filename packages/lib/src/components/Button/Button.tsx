@@ -1,8 +1,7 @@
-import { ElementType, ReactText, Ref, forwardRef } from 'react';
+import { ElementType, ReactNode, Ref, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
-import { BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from './ButtonRoot';
 
@@ -21,7 +20,7 @@ type KeysUnder<T, K extends PropertyKey> = T extends object
 
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
-export type ButtonType<Props> = {
+export type ButtonProps = {
   /** Icon to display **/
   icon?: IconType;
   /** Where to position the icon */
@@ -36,16 +35,13 @@ export type ButtonType<Props> = {
   variant?: ColorVariant;
   /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
-} & Props &
-  Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
-  Pick<BoxProps, 'justifyContent'> &
+  children?: ReactNode | undefined;
+} & Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   AsLink;
 
 type AsLink = {
   href?: string;
 };
-
-export type ButtonProps = ButtonType<{ children?: ReactText }>;
 
 /**
  * Buttons allow users to take actions, and make choices, with a single tap.
@@ -62,7 +58,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     iconPosition = 'right',
     href,
     onPress,
-    ...boxProps
+    ...rest
   } = props;
 
   return (
@@ -71,7 +67,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       className={clsx(
         styles.variants({
           color: variant,
-          icon: iconPosition,
         }),
         className,
       )}
@@ -80,15 +75,21 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       ref={ref}
       type={type}
       onPress={onPress}
-      {...boxProps}
+      {...rest}
     >
+      {!!icon && iconPosition === 'left' && (
+        <Icon className={styles.icon['left']} icon={icon} variant="functionalIcons" />
+      )}
+
       {!!children && (
         <Text size="medium" weight={fontWeightForButton(variant)}>
           {children}
         </Text>
       )}
 
-      {!!icon && <Icon icon={icon} variant="functionalIcons" />}
+      {!!icon && iconPosition === 'right' && (
+        <Icon className={styles.icon['right']} icon={icon} variant="functionalIcons" />
+      )}
     </ButtonRoot>
   );
 });

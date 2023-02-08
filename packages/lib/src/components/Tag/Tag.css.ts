@@ -1,11 +1,13 @@
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 
-const offset = '0.4rem';
+const offset = rem(4);
 
 export const tag = style([
   atoms({
@@ -36,7 +38,7 @@ export const closeButton = style([
     background: 'none',
     cursor: 'pointer',
     color: 'white',
-    width: '2.5rem',
+    width: rem(25),
   },
   responsiveStyle({
     mobile: { paddingLeft: vars.space.xsmall.mobile },

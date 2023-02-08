@@ -2,15 +2,17 @@ import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-const offset = 0.2;
-const offsetSmall = `${offset}rem`;
-const offsetLarge = `${offset * 2}rem`;
+const offset = 2;
+const offsetSmall = rem(offset);
+const offsetLarge = rem(offset * 2);
 
 const variant = {
   alert: atoms({

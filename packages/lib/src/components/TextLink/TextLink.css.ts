@@ -1,12 +1,14 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
+
+import { recipe } from '@vanilla-extract/recipes';
 
 import { vars } from '../../themes/vars.css';
 import { atoms } from '../../css/atoms/atoms';
 
 export const link = style([
   atoms({
-    display: 'inlineFlex',
+    display: 'inline',
     color: 'info100',
     alignItems: 'center',
   }),
@@ -21,12 +23,20 @@ export const link = style([
   },
 ]);
 
-export const iconPosition = styleVariants({
-  left: {
-    flexDirection: 'row-reverse',
-    justifyContent: 'flex-end',
+export const inlineIcon = recipe({
+  base: {
+    verticalAlign: 'middle',
+    transform: 'translateY(-9%)',
+    display: 'inline-flex',
   },
-  right: {
-    flexDirection: 'row',
+  variants: {
+    iconPosition: {
+      left: {
+        marginRight: '0.5rem',
+      },
+      right: {
+        marginLeft: '0.5rem',
+      },
+    },
   },
 });

@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react';
 
 import { Text } from '../Text/Text';
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
-import { Item } from './Item';
 
 import * as styles from './Menu.css';
 
@@ -23,17 +21,7 @@ export const MenuList = ({ heading, children }: PropsWithChildren<MenuListProps>
       <Text className={styles.subNavHeading} size="medium" weight="bold">
         {heading}
       </Text>
-      <ul className={styles.subNavList}>
-        <AllowedChildren
-          errorMessage="Only `Navigation.Item` components are allowed as children of `Navigation.MenuList`"
-          propsForChild={() => ({
-            subNav: true,
-          })}
-          types={[Item]}
-        >
-          {children}
-        </AllowedChildren>
-      </ul>
+      <ul className={styles.subNavList}>{children}</ul>
     </>
   );
 };

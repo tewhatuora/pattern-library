@@ -1,12 +1,14 @@
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { vars } from '../../themes/vars.css';
 
 export const message = style({
   display: 'flex',
   flexDirection: 'column',
-  marginTop: '0.4rem',
+  marginTop: rem(4),
 });
 
 export const helperText = style({

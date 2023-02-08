@@ -1,9 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 import { atoms } from '../../css/atoms/atoms';
-import { container } from '../Container/Container.css';
 
 export const overlay = style({
   position: 'fixed',
@@ -17,30 +18,30 @@ export const overlay = style({
 });
 
 export const dialog = style([
-  container,
   {
     position: 'fixed',
-    left: '0',
-    right: '0',
-    top: '0',
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-    zIndex: 1200,
-  },
-]);
+    top: '50vh',
+    left: '50vw',
+    transform: 'translate(-50%, -50%)',
 
-export const content = style([
-  {
-    position: 'relative',
+    width: '100vw',
+    maxWidth: rem(824),
+    boxSizing: 'border-box',
+    zIndex: 1200,
+
     borderRadius: vars.borderRadiusAll.standard,
     backgroundColor: vars.color.primary0,
   },
+  /* The calc functions below ensure that the dialog box has a 'margin'
+   at the sides, we've avoid using margin to ensure the dialog stays 
+   centered and positioned correctly using the vw/vh units and transform */
   responsiveStyle({
     mobile: {
+      width: `calc(100% - ${vars.space.small.mobile} - ${vars.space.small.mobile})`,
       padding: vars.space.small.mobile,
     },
     tablet: {
+      width: `calc(100% - ${rem(120)} - ${rem(120)})`,
       padding: vars.space.large.tablet,
     },
   }),

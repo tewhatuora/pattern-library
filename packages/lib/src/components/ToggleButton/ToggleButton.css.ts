@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
@@ -33,7 +35,7 @@ export const button = style([
         borderColor: vars.color.primary75,
       },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
-      '&:focus': { borderColor: vars.color.secondary50, borderWidth: '.4rem' },
+      '&:focus': { borderColor: vars.color.secondary50, borderWidth: rem(4) },
       '&:disabled': {
         cursor: 'not-allowed',
         backgroundColor: vars.color.primary0,
@@ -49,10 +51,10 @@ export const button = style([
   },
   responsiveStyle({
     mobile: {
-      width: '15rem',
+      width: rem(150),
     },
     tablet: {
-      width: '42rem',
+      width: rem(420),
     },
   }),
 ]);
