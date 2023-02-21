@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 
+import { forwardRef } from 'react';
+
 import { Button, ButtonProps } from '../Button/Button';
 
 import * as styles from './TextLinkButton.css';
@@ -15,8 +17,8 @@ export type TextLinkButtonProps = Omit<ButtonProps, 'variant' | 'disabled' | 'wi
  * @param props
  * @constructor
  */
-export const TextLinkButton = ({ className, ...rest }: TextLinkButtonProps) => (
-  <Button className={clsx(styles.TextLinkButton, className)} {...rest} variant="link" />
-);
+export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>(({ className, ...rest }, ref) => (
+  <Button className={clsx(styles.TextLinkButton, className)} ref={ref} {...rest} variant="link" />
+));
 
 export default TextLinkButton;
