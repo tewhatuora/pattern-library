@@ -41,6 +41,7 @@ export interface TextLinkProps extends Pick<BoxProps, 'as'> {
  * @constructor
  */
 export const TextLink = ({
+  as = 'a',
   href,
   size = 'medium',
   align,
@@ -53,7 +54,7 @@ export const TextLink = ({
   const textStyles = useText({ weight, size });
 
   return (
-    <Box as="a" className={clsx(textStyles, styles.link, className)} href={href} textAlign={align}>
+    <Box as={as} className={clsx(textStyles, styles.link, className)} href={href} textAlign={align}>
       {!!icon && iconPosition === 'left' && (
         <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
       )}
