@@ -71,14 +71,28 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'light', cla
 
   return (
     <HeaderContext.Provider value={{ variant, color }}>
-      <header className={styles.wrapper} ref={ref}>
-        <div className={clsx(styles.header[variant], className)} {...props} />
-      </header>
+      <header className={clsx(styles.wrapper, className)} {...props} ref={ref} />
     </HeaderContext.Provider>
   );
 });
 
 Header.displayName = HEADER_NAME;
+
+/* -------------------------------------------------------------------------------------------------
+ * HeaderMain
+ * -----------------------------------------------------------------------------------------------*/
+
+const HEADER_MAIN_NAME = 'HeaderMain';
+
+type HeaderMainProps = ComponentPropsWithoutRef<'div'>;
+
+const HeaderMain = forwardRef<HTMLDivElement, HeaderMainProps>(({ className, ...props }, ref) => {
+  const { variant } = useHeader();
+
+  return <div className={clsx(styles.header[variant], className)} ref={ref} {...props} />;
+});
+
+HeaderMain.displayName = HEADER_MAIN_NAME;
 
 /* -------------------------------------------------------------------------------------------------
  * HeaderTeWhatuOraLogo
@@ -198,6 +212,7 @@ HeaderMenuButton.displayName = HEADER_MENU_BUTTON_NAME;
 /* -----------------------------------------------------------------------------------------------*/
 
 const Root = Header;
+const Main = HeaderMain;
 const Left = HeaderLeft;
 const Right = HeaderRight;
 const Logo = HeaderLogo;
@@ -207,6 +222,7 @@ const MenuButton = HeaderMenuButton;
 export {
   useHeader,
   Header,
+  HeaderMain,
   HeaderLeft,
   HeaderRight,
   HeaderLogo,
@@ -214,6 +230,7 @@ export {
   HeaderMenuButton,
   //
   Root,
+  Main,
   Left,
   Right,
   Logo,
@@ -222,6 +239,7 @@ export {
 };
 export type {
   HeaderProps,
+  HeaderMainProps,
   HeaderLeftProps,
   HeaderRightProps,
   HeaderLogoProps,

@@ -42,33 +42,35 @@ export const Default = () => {
 
   return (
     <Header.Root variant="light">
-      <Header.Left>
-        <Header.Logo>
-          <ExampleLogo />
-          <Badge variant="info">Beta</Badge>
-        </Header.Logo>
-        <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
-      </Header.Left>
+      <Header.Main>
+        <Header.Left>
+          <Header.Logo>
+            <ExampleLogo />
+            <Badge variant="info">Beta</Badge>
+          </Header.Logo>
+          <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+        </Header.Left>
 
-      <Header.Right>
-        <Navigation.Utility
-          items={[
-            {
-              href: '#',
-              icon: 'language',
-              label: 'Language',
-            },
-            {
-              href: '#',
-              icon: 'person',
-              label: 'Name Surname',
-            },
-          ]}
-          variant="light"
-        />
+        <Header.Right>
+          <Navigation.Utility
+            items={[
+              {
+                href: '#',
+                icon: 'language',
+                label: 'Language',
+              },
+              {
+                href: '#',
+                icon: 'person',
+                label: 'Name Surname',
+              },
+            ]}
+            variant="light"
+          />
 
-        <InputSearch id="search" name="search" placeholder="Search" />
-      </Header.Right>
+          <InputSearch id="search" name="search" placeholder="Search" />
+        </Header.Right>
+      </Header.Main>
 
       <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} />
     </Header.Root>

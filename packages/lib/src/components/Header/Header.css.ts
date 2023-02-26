@@ -10,8 +10,11 @@ import { atoms } from '../../css/atoms/atoms';
 const HEADER_HEIGHT = calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet);
 
 export const wrapper = style({
+  position: 'sticky',
+  top: '0',
+  right: '0',
+  left: '0',
   width: '100%',
-  height: HEADER_HEIGHT,
 });
 
 export const base = style([
@@ -26,10 +29,6 @@ export const base = style([
   },
   responsiveStyle({
     mobile: {
-      position: 'fixed',
-      left: '0',
-      right: '0',
-      top: '0',
       paddingLeft: vars.space.small.mobile,
       paddingRight: vars.space.small.mobile,
     },
