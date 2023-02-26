@@ -132,7 +132,7 @@ export const closeButton = style([
   }),
 ]);
 
-export const text = style([
+export const childrenWrapper = style([
   responsiveStyle({
     tablet: {
       marginTop: offsetLarge,

@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 
-import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { CloseButton } from '../CloseButton/CloseButton';
@@ -11,12 +10,10 @@ import { ContrastVariant } from '../../types';
 export const BannerStyles = styles;
 
 export type BannerProps = {
-  /** Text label to show as Banner message */
-  label?: string;
   /** Banner style variant */
   variant: styles.Variant;
   /** Contrast variant for dark/light UI */
-  theme: ContrastVariant;
+  theme?: ContrastVariant;
   /** A function that will be called when closing the Alert */
   onClose?: () => void;
 } & Pick<
@@ -32,12 +29,27 @@ export type BannerProps = {
  * @param props
  * @constructor
  */
-export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...boxProps }: BannerProps) => {
+export const Banner = ({ variant = 'alert', theme = 'dark', onClose, children, ...boxProps }: BannerProps) => {
   // for closing banner if set true banner hidden
   const [isClosed, setIsClosed] = useState(false);
 
   //icon for display depending on variant
   const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
+
+  let bannerLabel = 'Announcement';
+  switch (variant) {
+    case 'informative':
+      bannerLabel = 'Announcement';
+      break;
+    case 'alert':
+      bannerLabel = 'Alert';
+      break;
+    case 'urgent':
+      bannerLabel = 'Urgent alert';
+      break;
+    default:
+      bannerLabel = 'Announcement';
+  }
 
   /**
    * Handle closing banner
@@ -54,7 +66,8 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
 
   return (
     <Box
-      as="div"
+      aria-label={bannerLabel}
+      as="aside"
       className={styles.variants({
         variant,
         theme,
@@ -63,9 +76,7 @@ export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...b
     >
       <Box className={styles.bannerInner}>
         <Icon className={styles.icon} icon={bannerIcon} variant="decorativeIcons" />
-        <Text className={styles.text} size="medium" weight="regular">
-          {label}
-        </Text>
+        <div className={styles.childrenWrapper}>{children}</div>
       </Box>
 
       {!!onClose && (
