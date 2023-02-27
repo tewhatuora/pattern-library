@@ -3,10 +3,6 @@ import { Children, PropsWithChildren, cloneElement, createElement, isValidElemen
 
 import assert from 'assert';
 
-import { Item } from './Item';
-import { Link } from './Link';
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
-
 import { ContrastVariant } from '../../types';
 
 import * as styles from './List.css';
@@ -68,12 +64,7 @@ export const Root = ({
       'data-variant': variant, // Required to handle vertical padding of nested lists
       role: 'list', // Fixes <ul> in Safari when list-style is set to 'none'. See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns
     },
-    <AllowedChildren
-      errorMessage="Only `List.Item` and `List.Root` components are allowed as children of `List.Root`."
-      types={[Link, Item, Root]}
-    >
-      {newChildren}
-    </AllowedChildren>,
+    newChildren,
   );
 
   return listEl;
