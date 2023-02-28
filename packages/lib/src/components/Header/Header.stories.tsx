@@ -70,9 +70,8 @@ export const Default = () => {
 
           <InputSearch id="search" name="search" placeholder="Search" />
         </Header.Right>
+        <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} />
       </Header.Main>
-
-      <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} />
     </Header.Root>
   );
 };
