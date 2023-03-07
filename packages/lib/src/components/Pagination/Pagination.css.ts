@@ -8,32 +8,49 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
-export const pages = style([
+const base = style([
   responsiveStyle({
     mobile: {
       display: 'flex',
       alignItems: 'center',
     },
-    tablet: {
-      display: 'none',
-    },
   }),
 ]);
 
-export const pageLinks = style([
+export const pages = styleVariants({
+  controlled: [base],
+  uncontrolled: [
+    base,
+    responsiveStyle({
+      tablet: {
+        display: 'none',
+      },
+    }),
+  ],
+});
+
+const pageLinksBase = style([
   atoms({
+    display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
   }),
-  responsiveStyle({
-    mobile: {
-      display: 'none',
-    },
-    tablet: {
-      display: 'flex',
-    },
-  }),
 ]);
+
+export const pageLinks = styleVariants({
+  controlled: [pageLinksBase],
+  uncontrolled: [
+    pageLinksBase,
+    responsiveStyle({
+      mobile: {
+        display: 'none',
+      },
+      tablet: {
+        display: 'flex',
+      },
+    }),
+  ],
+});
 
 export const page = style({
   width: vars.space.xlarge.tablet,
