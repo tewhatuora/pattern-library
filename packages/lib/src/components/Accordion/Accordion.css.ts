@@ -71,6 +71,10 @@ export const trigger = style([
     // Override button styles
     border: 'none',
     backgroundColor: 'transparent',
+
+    ':focus': {
+      outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+    },
   },
   responsiveStyle({
     mobile: {
