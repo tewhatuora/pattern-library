@@ -10,10 +10,7 @@ import { atoms } from '../../css/atoms/atoms';
 const HEADER_HEIGHT = calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet);
 
 export const wrapper = style({
-  position: 'sticky',
-  top: '0',
-  right: '0',
-  left: '0',
+  position: 'relative',
   width: '100%',
 });
 
