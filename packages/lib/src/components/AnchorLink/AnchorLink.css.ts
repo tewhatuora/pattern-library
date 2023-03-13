@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 import { recipe } from '@vanilla-extract/recipes';
 
+import { calc } from '@vanilla-extract/css-utils';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -25,13 +27,14 @@ export const link = recipe({
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
         color: vars.color.info75,
         textDecoration: 'underline',
       },
       '&:focus, &:focus-within': {
-        outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+        outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
       },
       [`${boldText} &`]: {
         fontWeight: 'bold',

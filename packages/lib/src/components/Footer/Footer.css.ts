@@ -240,6 +240,13 @@ export const imprintItem = style(
   }),
 );
 
+export const imprintLink = style({
+  borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+  ':focus': {
+    outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+  },
+});
+
 const shieldedSiteButtonSizeVar = createVar();
 
 export const shieldedSite = style([

@@ -16,9 +16,15 @@ export const link = style([
     gap: calc.divide(vars.space.xsmall.tablet, 4),
     textDecoration: 'underline',
     transition: 'color 0.3s ease-out',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     ':hover': {
       color: vars.color.info75,
       fontWeight: vars.textWeight['link-hover&focus'],
+    },
+    ':focus': {
+      color: vars.color.info75,
+      fontWeight: vars.textWeight['link-hover&focus'],
+      outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
     },
   },
 ]);

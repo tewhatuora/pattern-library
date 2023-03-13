@@ -96,12 +96,12 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
             if (ImprintComponent) {
               result = (
                 <Text size="small" weight="regular">
-                  <ImprintComponent>{text}</ImprintComponent>
+                  <ImprintComponent className={styles.imprintLink}>{text}</ImprintComponent>
                 </Text>
               );
             } else if (href) {
               result = (
-                <Box as="a" href={href}>
+                <Box as="a" className={styles.imprintLink} href={href}>
                   <Text size="small" weight="regular">
                     {text}
                   </Text>

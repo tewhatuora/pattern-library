@@ -6,7 +6,7 @@ import { rem } from '@/src/css/helpers';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
-import { atoms } from '../../css/atoms/atoms';
+
 import type { ListRootProps } from './Root';
 /**
  * I used a const instead of a CSS variable because it wasn't working with
@@ -175,36 +175,29 @@ export const linkContent = style({
   alignItems: 'flex-start',
 });
 
-export const link = style([
-  atoms({
-    display: 'inlineFlex',
-    color: 'primary100',
-    alignItems: 'center',
-  }),
-  {
-    gap: calc.divide(vars.space.xsmall.tablet, 4),
-    textDecoration: 'none',
-    transition: 'color 0.3s ease-out',
-    ':hover': {
+export const link = style({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'space-between',
+  alignItems: 'baseline',
+  gap: calc.divide(vars.space.xsmall.tablet, 4),
+  textDecoration: 'none',
+  transition: 'color 0.3s ease-out',
+  borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+
+  ':focus': {
+    outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+  },
+
+  selectors: {
+    '&:hover, &:focus': {
       color: vars.color.info75,
       fontWeight: vars.textWeight['link-hover&focus'],
       textDecoration: 'underline',
     },
   },
-]);
-
-export const linkIcon = style([
-  atoms({
-    color: 'primary100',
-  }),
-  {
-    marginTop: '.25rem',
-    transition: 'color 0.3s ease-out',
-    ':hover': {
-      color: vars.color.info75,
-    },
-  },
-]);
+});
 
 /**
  * Helper for styles that affect both the ::before and ::after pseudo-elements of an element.

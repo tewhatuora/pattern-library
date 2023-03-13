@@ -26,16 +26,12 @@ export const Link = ({ icon, heading, href, children, ...rest }: PropsWithChildr
 
   return (
     <li {...rest} className={clsx(textStyles, rest.className)}>
-      <Box className={clsx(styles.linkContent)}>
-        <Box as="a" className={clsx(textStyles, styles.link)} href={href}>
+      <Box as="a" className={clsx(textStyles, styles.link)} href={href}>
+        <span>
           {heading && <Text weight="bold">{heading}</Text>}
           <Text>{children}</Text>
-        </Box>
-        {icon && (
-          <Box as="a" className={clsx(textStyles, styles.linkIcon)} href={href}>
-            <Icon className={styles.itemIcon} icon={icon} variant="functionalIcons" />
-          </Box>
-        )}
+        </span>
+        {icon && <Icon className={clsx(styles.itemIcon)} icon={icon} variant="functionalIcons" />}
       </Box>
     </li>
   );

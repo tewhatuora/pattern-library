@@ -115,6 +115,7 @@ export const closeButton = style([
     border: 'none',
     background: 'none',
     cursor: 'pointer',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
   },
   responsiveStyle({
     mobile: {

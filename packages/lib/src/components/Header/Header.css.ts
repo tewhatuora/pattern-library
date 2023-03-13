@@ -54,6 +54,10 @@ export const header = styleVariants({
 export const logo = style([
   {
     display: 'block',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+    ':focus': {
+      outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+    },
   },
   responsiveStyle({
     mobile: {

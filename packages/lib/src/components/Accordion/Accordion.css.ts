@@ -1,5 +1,7 @@
 import { createVar, keyframes, style, styleVariants } from '@vanilla-extract/css';
 
+import { calc } from '@vanilla-extract/css-utils';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
@@ -71,6 +73,7 @@ export const trigger = style([
     // Override button styles
     border: 'none',
     backgroundColor: 'transparent',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
 
     ':focus': {
       outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,

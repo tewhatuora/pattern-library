@@ -12,6 +12,9 @@ import { vars } from '../../themes/vars.css';
 export const root = style({
   color: 'inherit',
   cursor: 'pointer',
+  ':focus': {
+    outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+  },
 });
 
 const gapVar = createVar();
@@ -69,7 +72,7 @@ export const variants = recipe({
             textDecoration: 'underline',
           },
           ':focus': {
-            outline: `${vars.borderWidth.medium} solid ${vars.color.secondary50}`,
+            outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
           },
         },
         responsiveStyle({
