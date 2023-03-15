@@ -362,7 +362,7 @@
       "110": {
         "description": "",
         "type": "color",
-        "value": "#1c1c1cff",
+        "value": "#15284cff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -400,7 +400,7 @@
       "25": {
         "description": "",
         "type": "color",
-        "value": "#fff9efff",
+        "value": "#c8d2e5ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -412,7 +412,7 @@
       "50": {
         "description": "",
         "type": "color",
-        "value": "#faeaccff",
+        "value": "#8b9ec2ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -424,7 +424,7 @@
       "75": {
         "description": "",
         "type": "color",
-        "value": "#ecd19dff",
+        "value": "#485f8cff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -436,7 +436,7 @@
       "100": {
         "description": "",
         "type": "color",
-        "value": "#ebc06dff",
+        "value": "#15284cff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -448,7 +448,7 @@
       "110": {
         "description": "",
         "type": "color",
-        "value": "#e1a531ff",
+        "value": "#00091aff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -510,7 +510,7 @@
       "75": {
         "description": "",
         "type": "color",
-        "value": "#043c60ff",
+        "value": "#3f88b8ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -522,7 +522,7 @@
       "100": {
         "description": "",
         "type": "color",
-        "value": "#15284cff",
+        "value": "#00558cff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -534,7 +534,7 @@
       "110": {
         "description": "",
         "type": "color",
-        "value": "#131313ff",
+        "value": "#15284cff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -694,7 +694,7 @@
       "100": {
         "description": "",
         "type": "color",
-        "value": "#0071bcff",
+        "value": "#00558cff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -780,7 +780,7 @@
       "100": {
         "description": "",
         "type": "color",
-        "value": "#ee933eff",
+        "value": "#fdf2ccff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1178,7 +1178,7 @@
             "fontSize": 32,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 800,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1224,7 +1224,7 @@
             "fontSize": 24,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 800,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1270,7 +1270,7 @@
             "fontSize": 20,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 800,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1336,7 +1336,7 @@
             "fontSize": 20,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 500,
+            "fontWeight": 600,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1358,7 +1358,7 @@
             "fontSize": 20,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 500,
+            "fontWeight": 600,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1380,7 +1380,7 @@
             "fontSize": 20,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 600,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1588,7 +1588,7 @@
             "fontSize": 32,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 400,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1612,7 +1612,7 @@
             "fontSize": 24,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 800,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1658,7 +1658,7 @@
             "fontSize": 20,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 800,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1704,7 +1704,7 @@
             "fontSize": 16,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 800,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1770,7 +1770,7 @@
             "fontSize": 16,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 500,
+            "fontWeight": 600,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1792,7 +1792,7 @@
             "fontSize": 16,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 500,
+            "fontWeight": 600,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1814,7 +1814,7 @@
             "fontSize": 16,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 700,
+            "fontWeight": 600,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -2149,7 +2149,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 800
           },
           "fontStyle": {
             "type": "string",
@@ -2243,7 +2243,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 800
           },
           "fontStyle": {
             "type": "string",
@@ -2337,7 +2337,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 800
           },
           "fontStyle": {
             "type": "string",
@@ -2475,7 +2475,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 500
+            "value": 600
           },
           "fontStyle": {
             "type": "string",
@@ -2521,7 +2521,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 500
+            "value": 600
           },
           "fontStyle": {
             "type": "string",
@@ -2567,7 +2567,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 600
           },
           "fontStyle": {
             "type": "string",
@@ -2991,7 +2991,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 400
           },
           "fontStyle": {
             "type": "string",
@@ -3039,7 +3039,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 800
           },
           "fontStyle": {
             "type": "string",
@@ -3133,7 +3133,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 800
           },
           "fontStyle": {
             "type": "string",
@@ -3227,7 +3227,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 800
           },
           "fontStyle": {
             "type": "string",
@@ -3365,7 +3365,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 500
+            "value": 600
           },
           "fontStyle": {
             "type": "string",
@@ -3411,7 +3411,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 500
+            "value": 600
           },
           "fontStyle": {
             "type": "string",
@@ -3457,7 +3457,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 700
+            "value": 600
           },
           "fontStyle": {
             "type": "string",
