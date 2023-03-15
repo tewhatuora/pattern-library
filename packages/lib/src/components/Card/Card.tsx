@@ -1,8 +1,10 @@
 import { PropsWithChildren, useMemo } from 'react';
 import clsx from 'clsx';
 
+import { atoms } from '@/src/css/atoms/atoms';
+
 import { Box } from '../Box/Box';
-import { ContrastVariant } from '../../types';
+import { Color, ContrastVariant } from '../../types';
 
 import * as styles from './Card.css';
 
@@ -13,7 +15,7 @@ export type CardProps = {
   variant?: ContrastVariant;
   /** Option to display the Card without a box-shadow */
   noShadow?: boolean;
-  border?: boolean;
+  border?: Color;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
@@ -24,7 +26,7 @@ export type CardProps = {
  */
 export const Card = ({
   noShadow = false,
-  border = false,
+  border,
   variant = 'light',
   children,
   className,
@@ -35,6 +37,7 @@ export const Card = ({
       styles.variants[variant],
       {
         [styles.variants.noShadow]: noShadow,
+        [atoms({ borderColor: border })]: border,
         [styles.border]: border,
       },
       className,

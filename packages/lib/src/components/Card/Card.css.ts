@@ -27,4 +27,4 @@ export const variants = styleVariants({
   dark: [card, atoms({ backgroundColor: 'primary100' })],
 });
 
-export const border = atoms({ borderWidth: 'small', borderColor: 'primary50' });
+export const border = atoms({ borderWidth: 'small' });
