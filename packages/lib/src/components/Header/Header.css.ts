@@ -7,7 +7,8 @@ import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 
-const HEADER_HEIGHT = calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet);
+const HEADER_HEIGHT_MOBILE = rem(62);
+const HEADER_HEIGHT_TABLET = rem(76);
 
 export const wrapper = style({
   position: 'relative',
@@ -21,15 +22,16 @@ export const base = style([
     justifyContent: 'spaceBetween',
   }),
   {
-    height: HEADER_HEIGHT,
     columnGap: vars.space.xsmall.tablet,
   },
   responsiveStyle({
     mobile: {
+      height: HEADER_HEIGHT_MOBILE,
       paddingLeft: vars.space.small.mobile,
       paddingRight: vars.space.small.mobile,
     },
     tablet: {
+      height: HEADER_HEIGHT_TABLET,
       paddingLeft: vars.space.medium.tablet,
       paddingRight: vars.space.medium.tablet,
     },
