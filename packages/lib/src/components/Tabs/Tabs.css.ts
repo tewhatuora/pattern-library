@@ -3,6 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 
 const barHeightVar = createVar();
@@ -47,7 +49,7 @@ export const button = style({
   },
 
   ':focus-visible': {
-    outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
+    outline: `${vars.borderWidth.medium} solid ${focusColor}`,
   },
 
   selectors: {

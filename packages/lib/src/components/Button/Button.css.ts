@@ -5,6 +5,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
@@ -13,7 +15,7 @@ export const root = style({
   color: 'inherit',
   cursor: 'pointer',
   ':focus': {
-    outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+    outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
   },
 });
 
@@ -72,7 +74,7 @@ export const variants = recipe({
             textDecoration: 'underline',
           },
           ':focus': {
-            outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+            outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
           },
         },
         responsiveStyle({
@@ -98,7 +100,7 @@ export const variants = recipe({
         ':focus': {
           color: vars.color.tertiary0,
           backgroundColor: vars.color.tertiary75,
-          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
         },
         ':active': {
           color: vars.color.tertiary0,
@@ -125,7 +127,7 @@ export const variants = recipe({
         },
         ':focus': {
           color: vars.color.primary0,
-          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
         },
         ':active': {
           color: vars.color.primary0,
@@ -151,7 +153,7 @@ export const variants = recipe({
         ':focus': {
           color: vars.color.primary100,
           borderWidth: '0',
-          outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+          outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
         },
         ':active': {
           color: vars.color.primary100,

@@ -3,6 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { tabletContainer, tabletRow } from '../../css/grid';
@@ -159,7 +161,7 @@ export const backButton = style([
   {
     selectors: {
       '&:focus': {
-        outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
+        outline: `${vars.borderWidth.medium} solid ${focusColor}`,
       },
     },
   },

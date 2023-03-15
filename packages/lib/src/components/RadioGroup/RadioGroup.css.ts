@@ -2,6 +2,8 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -39,7 +41,7 @@ export const radioButton = style([
         backgroundColor: vars.color.primary25,
       },
       '&:focus': {
-        outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
+        outline: `${vars.borderWidth.medium} solid ${focusColor}`,
       },
       '&[disabled]': {
         borderColor: vars.color.primary50,

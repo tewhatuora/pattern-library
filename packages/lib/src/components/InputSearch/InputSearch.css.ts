@@ -3,13 +3,15 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 
 const focusStyle = {
-  outline: `${vars.borderWidth.small} solid ${vars.color.caution100}`,
-  boxShadow: `inset 0 0 0 ${rem(1)} ${vars.color.caution100}`,
+  outline: `${vars.borderWidth.small} solid ${focusColor}`,
+  boxShadow: `inset 0 0 0 ${rem(1)} ${focusColor}`,
   zIndex: 2,
 };
 

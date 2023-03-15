@@ -4,6 +4,8 @@ import { calc } from '@vanilla-extract/css-utils';
 import { rem } from '@/src/css/helpers';
 import { mobileContainer, tabletContainer } from '@/src/css/grid';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -243,7 +245,7 @@ export const imprintItem = style(
 export const imprintLink = style({
   borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
   ':focus': {
-    outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+    outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
   },
 });
 

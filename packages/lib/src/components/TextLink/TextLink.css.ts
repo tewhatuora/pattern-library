@@ -3,6 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { recipe } from '@vanilla-extract/recipes';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { atoms } from '../../css/atoms/atoms';
 
@@ -24,7 +26,7 @@ export const link = style([
     ':focus': {
       color: vars.color.info75,
       fontWeight: vars.textWeight['link-hover&focus'],
-      outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+      outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
     },
   },
 ]);

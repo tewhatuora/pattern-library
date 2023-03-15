@@ -2,6 +2,8 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 import { calc } from '@vanilla-extract/css-utils';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { fontFamily, fontWeight, text } from '../../hooks/typography/typography.css';
@@ -27,7 +29,7 @@ const base = style([
         textDecoration: 'underline',
       },
       '&:focus': {
-        outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+        outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
       },
     },
   },

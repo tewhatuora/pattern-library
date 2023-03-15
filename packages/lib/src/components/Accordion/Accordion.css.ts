@@ -2,6 +2,8 @@ import { createVar, keyframes, style, styleVariants } from '@vanilla-extract/css
 
 import { calc } from '@vanilla-extract/css-utils';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
@@ -76,7 +78,7 @@ export const trigger = style([
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
 
     ':focus': {
-      outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+      outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
     },
   },
   responsiveStyle({

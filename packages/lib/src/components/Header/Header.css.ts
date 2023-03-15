@@ -3,6 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -58,7 +60,7 @@ export const logo = style([
     display: 'block',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     ':focus': {
-      outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+      outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
     },
   },
   responsiveStyle({

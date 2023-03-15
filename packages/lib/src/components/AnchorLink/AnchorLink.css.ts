@@ -4,6 +4,8 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { calc } from '@vanilla-extract/css-utils';
 
+import { focusColor } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -34,7 +36,7 @@ export const link = recipe({
         textDecoration: 'underline',
       },
       '&:focus, &:focus-within': {
-        outline: `${vars.borderWidth.xlarge} solid ${vars.color.secondary50}`,
+        outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
       },
       [`${boldText} &`]: {
         fontWeight: 'bold',
