@@ -13,6 +13,7 @@ export type CardProps = {
   variant?: ContrastVariant;
   /** Option to display the Card without a box-shadow */
   noShadow?: boolean;
+  border?: boolean;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
@@ -21,17 +22,24 @@ export type CardProps = {
  * Card for building 2D layouts using grids or to contain content.
  * @constructor
  */
-export const Card = ({ noShadow = false, variant = 'light', children, className }: PropsWithChildren<CardProps>) => {
+export const Card = ({
+  noShadow = false,
+  border = false,
+  variant = 'light',
+  children,
+  className,
+}: PropsWithChildren<CardProps>) => {
   const cardClassNames = useMemo(() => {
     return clsx(
       styles.card,
       styles.variants[variant],
       {
         [styles.variants.noShadow]: noShadow,
+        [styles.border]: border,
       },
       className,
     );
-  }, [noShadow, variant, className]);
+  }, [noShadow, variant, className, border]);
 
   return (
     <Box as="div" className={cardClassNames}>
