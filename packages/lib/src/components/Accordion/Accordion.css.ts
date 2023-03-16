@@ -2,7 +2,7 @@ import { createVar, keyframes, style, styleVariants } from '@vanilla-extract/css
 
 import { calc } from '@vanilla-extract/css-utils';
 
-import { focusColor } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -77,8 +77,8 @@ export const trigger = style([
     backgroundColor: 'transparent',
     borderRadius: calc.divide(vars.borderRadius.topLeft.standard, 2),
 
-    ':focus': {
-      outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
+    selectors: {
+      ...focusSelectorsStyles,
     },
   },
   responsiveStyle({

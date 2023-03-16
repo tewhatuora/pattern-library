@@ -4,7 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { calc } from '@vanilla-extract/css-utils';
 
-import { focusColor } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -35,15 +35,14 @@ export const link = recipe({
         color: vars.color.info75,
         textDecoration: 'underline',
       },
-      '&:focus, &:focus-within': {
-        outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
-      },
       [`${boldText} &`]: {
         fontWeight: 'bold',
       },
       [`${boldLinks} &`]: {
         fontWeight: 'bold',
       },
+
+      ...focusSelectorsStyles,
     },
   },
 

@@ -3,7 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusColor } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 
@@ -48,10 +48,6 @@ export const button = style({
     backgroundColor: vars.color.primary100,
   },
 
-  ':focus-visible': {
-    outline: `${vars.borderWidth.medium} solid ${focusColor}`,
-  },
-
   selectors: {
     '&[data-state="active"]:not(:focus-visible)': {
       fontWeight: vars.textWeight.bold,
@@ -59,6 +55,8 @@ export const button = style({
         [barHeightVar]: vars.borderWidth.xlarge,
       },
     },
+
+    ...focusSelectorsStyles,
   },
 });
 

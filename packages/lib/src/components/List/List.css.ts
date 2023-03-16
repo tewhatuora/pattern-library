@@ -3,7 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusColor } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -188,16 +188,14 @@ export const link = style({
   transition: 'color 0.3s ease-out',
   borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
 
-  ':focus': {
-    outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
-  },
-
   selectors: {
     '&:hover, &:focus': {
       color: vars.color.info75,
       fontWeight: vars.textWeight['link-hover&focus'],
       textDecoration: 'underline',
     },
+
+    ...focusSelectorsStyles,
   },
 });
 

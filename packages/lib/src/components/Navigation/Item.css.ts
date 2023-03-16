@@ -1,7 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import { focusColor } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -42,9 +42,6 @@ const navListItemLinkBase = style([
         textDecoration: 'none',
         color: 'currentColor',
       },
-      '&:focus': {
-        outline: `${vars.borderWidth.medium} solid ${focusColor}`,
-      },
       '&:after': {
         content: '""',
         position: 'absolute',
@@ -53,6 +50,8 @@ const navListItemLinkBase = style([
       '&:visited': {
         color: 'currentColor',
       },
+
+      ...focusSelectorsStyles,
     },
   },
   responsiveStyle({

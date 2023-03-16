@@ -2,7 +2,7 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusColor } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
@@ -40,13 +40,11 @@ export const radioButton = style([
         borderColor: vars.color.primary75,
         backgroundColor: vars.color.primary25,
       },
-      '&:focus': {
-        outline: `${vars.borderWidth.medium} solid ${focusColor}`,
-      },
       '&[disabled]': {
         borderColor: vars.color.primary50,
         cursor: 'not-allowed',
       },
+      ...focusSelectorsStyles,
     },
   },
 ]);
