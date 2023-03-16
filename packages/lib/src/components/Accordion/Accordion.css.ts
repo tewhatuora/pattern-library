@@ -75,7 +75,7 @@ export const trigger = style([
     // Override button styles
     border: 'none',
     backgroundColor: 'transparent',
-    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+    borderRadius: calc.divide(vars.borderRadius.topLeft.standard, 2),
 
     ':focus': {
       outline: `${vars.borderWidth.xlarge} solid ${focusColor}`,
