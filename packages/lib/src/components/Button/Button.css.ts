@@ -148,7 +148,6 @@ export const variants = recipe({
         },
         ':focus': {
           color: vars.color.primary100,
-          borderWidth: '0',
         },
         ':active': {
           color: vars.color.primary100,
