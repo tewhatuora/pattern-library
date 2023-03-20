@@ -138,10 +138,12 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
           {/* First row */}
           <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
             <Box className={styles.logoWrapper}>
-              <TeWhatuOraLogo key={null} props={{}} ref={null} type="symbol" />
+              {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
+              <TeWhatuOraLogo focusable={false} role="img" />
             </Box>
             <Box className={styles.govtLogoWrapper}>
-              <NZGovtLogo key={null} props={{}} ref={null} type="symbol" />
+              {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
+              <NZGovtLogo focusable={false} role="img" />
             </Box>
           </Box>
 
