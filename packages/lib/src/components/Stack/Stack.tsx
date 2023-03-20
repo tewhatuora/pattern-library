@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren, useContext } from 'react';
+import { Children, ElementType, PropsWithChildren, useContext } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
@@ -19,7 +19,9 @@ export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 type StackProps = {
   /** Element type to render as */
-  as?: typeof validStackComponents[number];
+  as?: (typeof validStackComponents)[number];
+  /** Element type to render child wrapper as */
+  childWrapperAs?: ElementType;
   /** A space token for spacing between children elements */
   space: Space;
   /** Order children elements horizontally */
@@ -35,6 +37,7 @@ type StackProps = {
  */
 const Stack = ({
   as = 'div',
+  childWrapperAs = 'div',
   children,
   space = 'medium',
   horizontal = false,
@@ -62,7 +65,9 @@ const Stack = ({
       {Children.map(children, (child) => (
         // Wrapped the children in a <Box> instead of passing the className directly because sometimes children
         // don't accept classNames. Also, I don't want to override their margin.
-        <Box className={styles.child[direction]}>{child}</Box>
+        <Box as={childWrapperAs} className={styles.child[direction]}>
+          {child}
+        </Box>
       ))}
     </Box>
   );

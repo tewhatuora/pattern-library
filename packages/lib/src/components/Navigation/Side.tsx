@@ -1,6 +1,5 @@
-import { Children, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
-import { Box } from '../Box/Box';
 import { Stack } from '../Stack/Stack';
 
 /**
@@ -9,10 +8,8 @@ import { Stack } from '../Stack/Stack';
  */
 export const Side = ({ children }: PropsWithChildren<unknown>) => {
   return (
-    <Stack as="ul" space="small">
-      {Children.map(children, (child) => (
-        <Box as="li">{child}</Box>
-      ))}
+    <Stack as="ul" childWrapperAs="li" space="small">
+      {children}
     </Stack>
   );
 };
