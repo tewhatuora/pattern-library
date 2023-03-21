@@ -92,13 +92,13 @@ export const trigger = style([
 ]);
 
 export const icon = style({
+  marginRight: vars.space.small.mobile,
   flexShrink: 0,
 });
 
 export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
-  gap: vars.space.small.mobile,
 });
 
 export const chevron = style({

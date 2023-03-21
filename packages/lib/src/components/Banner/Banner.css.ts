@@ -46,7 +46,7 @@ export const variants = recipe({
     atoms({
       display: 'flex',
       flexShrink: 0,
-      flexGrow: 1,
+      // flexGrow: 1,
       alignItems: 'flexStart',
       justifyContent: 'spaceBetween',
     }),
