@@ -14,8 +14,8 @@ import { IconType } from '../Icon/icons';
 
 import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
 import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
-import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
-import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
+// import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
+// import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
 import { ShieldedSite } from './ShieldedSite';
 
@@ -50,13 +50,21 @@ type FooterProps = {
   };
   /** Array of Imprint items,which can have text and href for links */
   imprintItems?: ImprintItem[];
+  legalCopy?: string;
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
 };
 
-const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }: PropsWithChildren<FooterProps>) => {
+const Footer = ({
+  socialLinkHrefs,
+  imprintItems,
+  legalCopy,
+  variant,
+  className,
+  children,
+}: PropsWithChildren<FooterProps>) => {
   const numChildren = Children.count(children);
 
   if (numChildren > 5) {
@@ -67,7 +75,7 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
     throw new Error('There can only be up to 7 imprint items as props of `Footer`.');
   }
 
-  const TeWhatuOraLogo = variant === 'dark' ? TeWhatuOraLogoLight : TeWhatuOraLogoDark;
+  // const TeWhatuOraLogo = variant === 'dark' ? TeWhatuOraLogoLight : TeWhatuOraLogoDark;
   const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
   const socialLinks = useMemo(
@@ -88,8 +96,15 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
 
   const imprintItemsElements = useMemo(
     () =>
-      !!imprintItems && (
+      legalCopy || !!imprintItems ? (
         <Box className={styles.imprintItems}>
+          {legalCopy ? (
+            <Box className={clsx(styles.imprintItem, styles.legalCopy)}>
+              <Text size="small" weight="regular">
+                {legalCopy}
+              </Text>
+            </Box>
+          ) : null}
           {imprintItems?.map(({ text, href, component: ImprintComponent }) => {
             let result;
 
@@ -122,8 +137,8 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
             );
           })}
         </Box>
-      ),
-    [imprintItems],
+      ) : null,
+    [imprintItems, legalCopy],
   );
 
   return (
@@ -136,11 +151,7 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
       <div className={styles.footerInner}>
         <Stack space="xxlarge">
           {/* First row */}
-          <Box display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
-            <Box className={styles.logoWrapper}>
-              {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
-              <TeWhatuOraLogo focusable={false} role="img" />
-            </Box>
+          <Box display="flex" flexWrap="wrap" justifyContent="flexEnd" marginBottom="xsmall">
             <Box className={styles.govtLogoWrapper}>
               {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
               <NZGovtLogo focusable={false} role="img" />
@@ -188,7 +199,6 @@ const Footer = ({ socialLinkHrefs, imprintItems, variant, className, children }:
 };
 
 Footer.displayName = FOOTER_NAME;
-
 /* -------------------------------------------------------------------------------------------------
  * FooterList
  * -----------------------------------------------------------------------------------------------*/

@@ -200,13 +200,24 @@ export const socialIcons = styleVariants({
   },
 });
 
+export const legalCopy = style([
+  responsiveStyle({
+    mobile: {
+      order: 1,
+    },
+    desktop: {
+      order: 0,
+    },
+  }),
+]);
+
 export const imprintItems = style([
   atoms({
     display: 'flex',
   }),
   responsiveStyle({
     mobile: {
-      flexDirection: 'column-reverse',
+      flexDirection: 'column',
       flexWrap: 'nowrap',
     },
     desktop: {
