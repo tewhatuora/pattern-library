@@ -143,8 +143,8 @@ export const variants = recipe({
         borderColor: vars.color.primary100,
         borderWidth: vars.borderWidth.small,
         ':hover': {
-          color: vars.color.primary100,
-          borderColor: vars.color.primary75,
+          color: vars.color.info75,
+          borderColor: vars.color.info75,
         },
         ':focus': {
           color: vars.color.primary100,

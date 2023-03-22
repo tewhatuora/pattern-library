@@ -246,6 +246,9 @@ export const imprintLink = style({
   borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
 
   selectors: {
+    '&:hover': {
+      textDecoration: 'underline',
+    },
     ...focusSelectorsStyles,
   },
 });
