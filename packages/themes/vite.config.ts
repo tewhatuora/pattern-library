@@ -13,7 +13,7 @@ export default defineConfig({
   },
   plugins: [
     vanillaExtractPlugin({
-      identifiers: 'short',
+      identifiers: 'debug',
     }),
     tsconfigPaths(),
     dts({
