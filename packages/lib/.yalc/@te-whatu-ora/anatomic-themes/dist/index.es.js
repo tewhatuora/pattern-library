@@ -291,18 +291,18 @@ const tokens$1 = {
   typography: {
     fontFamily: "Poppins",
     fontWeight: {
-      black: "900",
+      black: "700",
       bold: "700",
       regular: "400",
       medium: "500",
-      "link-normal": "600",
-      "link-hover&focus": "600",
-      button: "600",
+      "link-normal": "700",
+      "link-hover&focus": "700",
+      button: "700",
       bullet: "400",
       number: "400"
     },
     heading: {
-      weight: { black: "900", bold: "800", regular: "400" },
+      weight: { black: "700", bold: "700", regular: "400" },
       level: {
         "1": {
           tablet: { fontSize: "3.125rem", lineHeight: "3.594rem" },
@@ -330,11 +330,11 @@ const tokens$1 = {
       },
       small: {
         tablet: { fontSize: "0.875rem", lineHeight: "1.4rem" },
-        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
+        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
       },
       xsmall: {
         tablet: { fontSize: "0.75rem", lineHeight: "1.2rem" },
-        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
+        mobile: { fontSize: "0.75rem", lineHeight: "1.2rem" }
       }
     }
   },

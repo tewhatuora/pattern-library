@@ -1064,15 +1064,66 @@
     }
   },
   "grid": {
-    "desktop": {
+    "desktop - 3xl": {
       "description": null,
       "type": "custom-grid",
       "value": {
         "pattern": "columns",
-        "gutterSize": 32,
+        "sectionSize": 60,
+        "gutterSize": 120,
+        "alignment": "center",
+        "count": 10
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:e2aa4ad806d185feeeeda8b980aa670ead9dfd7e,",
+          "exportKey": "grid"
+        }
+      }
+    },
+    "desktop - 2xl": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
+        "pattern": "columns",
+        "gutterSize": 120,
         "alignment": "stretch",
-        "count": 12,
+        "count": 10,
         "offset": 120
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:33b10398ace944ca64041338ad2d425fa9e81b10,",
+          "exportKey": "grid"
+        }
+      }
+    },
+    "desktop - xl": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
+        "pattern": "columns",
+        "gutterSize": 64,
+        "alignment": "stretch",
+        "count": 10,
+        "offset": 64
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:34a7fbcc1f2135673c808c71a9ddee7760013240,",
+          "exportKey": "grid"
+        }
+      }
+    },
+    "desktop - l": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
+        "pattern": "columns",
+        "gutterSize": 24,
+        "alignment": "stretch",
+        "count": 10,
+        "offset": 24
       },
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
@@ -1097,6 +1148,23 @@
           "exportKey": "grid"
         }
       }
+    },
+    "desktop - xl (retired)": {
+      "description": null,
+      "type": "custom-grid",
+      "value": {
+        "pattern": "columns",
+        "gutterSize": 32,
+        "alignment": "stretch",
+        "count": 10,
+        "offset": 32
+      },
+      "extensions": {
+        "org.lukasoppermann.figmaDesignTokens": {
+          "styleId": "S:d9adf3d21e6ce3a2af7e1a527ec4716985b308cc,",
+          "exportKey": "grid"
+        }
+      }
     }
   },
   "font": {
@@ -1108,7 +1176,7 @@
             "fontSize": 50,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 900,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1132,7 +1200,7 @@
             "fontSize": 32,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1178,7 +1246,7 @@
             "fontSize": 24,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1224,7 +1292,7 @@
             "fontSize": 20,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1270,7 +1338,7 @@
             "fontSize": 16,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1336,7 +1404,7 @@
             "fontSize": 16,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 600,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1358,7 +1426,7 @@
             "fontSize": 16,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 600,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1380,7 +1448,7 @@
             "fontSize": 16,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 600,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1542,7 +1610,7 @@
             "fontSize": 40,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 900,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1566,7 +1634,7 @@
             "fontSize": 32,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 900,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1612,7 +1680,7 @@
             "fontSize": 24,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1658,7 +1726,7 @@
             "fontSize": 20,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1704,7 +1772,7 @@
             "fontSize": 16,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 800,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1770,7 +1838,7 @@
             "fontSize": 16,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 600,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1792,7 +1860,7 @@
             "fontSize": 16,
             "textDecoration": "underline",
             "fontFamily": "Poppins",
-            "fontWeight": 600,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1814,7 +1882,7 @@
             "fontSize": 16,
             "textDecoration": "none",
             "fontFamily": "Poppins",
-            "fontWeight": 600,
+            "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
@@ -1857,14 +1925,14 @@
         "bold": {
           "type": "custom-fontStyle",
           "value": {
-            "fontSize": 16,
+            "fontSize": 14,
             "textDecoration": "none",
             "fontFamily": "Poppins",
             "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
-            "lineHeight": 25.6,
+            "lineHeight": 22.4,
             "paragraphIndent": 0,
             "paragraphSpacing": 8,
             "textCase": "none"
@@ -1879,14 +1947,14 @@
         "regular": {
           "type": "custom-fontStyle",
           "value": {
-            "fontSize": 16,
+            "fontSize": 14,
             "textDecoration": "none",
             "fontFamily": "Poppins",
             "fontWeight": 400,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
-            "lineHeight": 25.6,
+            "lineHeight": 22.4,
             "paragraphIndent": 0,
             "paragraphSpacing": 8,
             "textCase": "none"
@@ -1903,14 +1971,14 @@
         "bold": {
           "type": "custom-fontStyle",
           "value": {
-            "fontSize": 14,
+            "fontSize": 12,
             "textDecoration": "none",
             "fontFamily": "Poppins",
             "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
-            "lineHeight": 22.4,
+            "lineHeight": 19.2,
             "paragraphIndent": 0,
             "paragraphSpacing": 8,
             "textCase": "none"
@@ -1925,14 +1993,14 @@
         "regular": {
           "type": "custom-fontStyle",
           "value": {
-            "fontSize": 14,
+            "fontSize": 12,
             "textDecoration": "none",
             "fontFamily": "Poppins",
             "fontWeight": 400,
             "fontStyle": "normal",
             "fontStretch": "normal",
             "letterSpacing": 0,
-            "lineHeight": 22.4,
+            "lineHeight": 19.2,
             "paragraphIndent": 0,
             "paragraphSpacing": 8,
             "textCase": "none"
@@ -1985,7 +2053,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 900
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2033,7 +2101,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2127,7 +2195,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2221,7 +2289,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2315,7 +2383,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2453,7 +2521,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 600
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2499,7 +2567,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 600
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2545,7 +2613,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 600
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2875,7 +2943,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 900
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -2923,7 +2991,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 900
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3017,7 +3085,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3111,7 +3179,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3205,7 +3273,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 800
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3343,7 +3411,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 600
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3389,7 +3457,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 600
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3435,7 +3503,7 @@
           },
           "fontWeight": {
             "type": "number",
-            "value": 600
+            "value": 700
           },
           "fontStyle": {
             "type": "string",
@@ -3517,7 +3585,7 @@
         "bold": {
           "fontSize": {
             "type": "dimension",
-            "value": 16
+            "value": 14
           },
           "textDecoration": {
             "type": "string",
@@ -3545,7 +3613,7 @@
           },
           "lineHeight": {
             "type": "dimension",
-            "value": 25.6
+            "value": 22.4
           },
           "paragraphIndent": {
             "type": "dimension",
@@ -3563,7 +3631,7 @@
         "regular": {
           "fontSize": {
             "type": "dimension",
-            "value": 16
+            "value": 14
           },
           "textDecoration": {
             "type": "string",
@@ -3591,7 +3659,7 @@
           },
           "lineHeight": {
             "type": "dimension",
-            "value": 25.6
+            "value": 22.4
           },
           "paragraphIndent": {
             "type": "dimension",
@@ -3611,7 +3679,7 @@
         "bold": {
           "fontSize": {
             "type": "dimension",
-            "value": 14
+            "value": 12
           },
           "textDecoration": {
             "type": "string",
@@ -3639,7 +3707,7 @@
           },
           "lineHeight": {
             "type": "dimension",
-            "value": 22.4
+            "value": 19.2
           },
           "paragraphIndent": {
             "type": "dimension",
@@ -3657,7 +3725,7 @@
         "regular": {
           "fontSize": {
             "type": "dimension",
-            "value": 14
+            "value": 12
           },
           "textDecoration": {
             "type": "string",
@@ -3685,7 +3753,7 @@
           },
           "lineHeight": {
             "type": "dimension",
-            "value": 22.4
+            "value": 19.2
           },
           "paragraphIndent": {
             "type": "dimension",
