@@ -8,9 +8,10 @@ import { focusSelectorsStyles } from '@/src/utils/custom';
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
+import { BUTTON_HEIGHT_MOBILE, BUTTON_HEIGHT_TABLET } from '../Button/Button.css';
 
-const HEADER_HEIGHT_MOBILE = rem(62);
-const HEADER_HEIGHT_TABLET = rem(76);
+const HEADER_HEIGHT_MOBILE = calc.add(BUTTON_HEIGHT_MOBILE, rem(16));
+const HEADER_HEIGHT_TABLET = calc.add(BUTTON_HEIGHT_TABLET, rem(16));
 
 export const wrapper = style({
   position: 'relative',
