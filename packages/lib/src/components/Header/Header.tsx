@@ -125,10 +125,20 @@ HeaderTeWhatuOraLogo.displayName = HEADER_TE_WHATU_ORA_LOGO_NAME;
 
 const HEADER_LEFT_NAME = 'HeaderLeft';
 
-type HeaderLeftProps = PropsWithChildren<Partial<StackProps>>;
+type HeaderLeftProps = PropsWithChildren<Partial<StackProps>> & {
+  hasLeftMargin?: boolean;
+};
 
-const HeaderLeft = (props: HeaderLeftProps) => {
-  return <Stack alignItems="center" horizontal space="small" {...props} />;
+const HeaderLeft = ({ className, hasLeftMargin = true, ...props }: HeaderLeftProps) => {
+  return (
+    <Stack
+      alignItems="center"
+      className={clsx(className, { [styles.headerLeftMargin]: hasLeftMargin })}
+      horizontal
+      space="small"
+      {...props}
+    />
+  );
 };
 
 HeaderLeft.displayName = HEADER_LEFT_NAME;
@@ -139,17 +149,21 @@ HeaderLeft.displayName = HEADER_LEFT_NAME;
 
 const HEADER_RIGHT_NAME = 'HeaderRight';
 
-type HeaderRightProps = PropsWithChildren<Partial<StackProps>>;
+type HeaderRightProps = PropsWithChildren<Partial<StackProps>> & {
+  hasRightMargin?: boolean;
+};
 
-const HeaderRight = ({ className, ...props }: HeaderRightProps) => {
+const HeaderRight = ({ className, hasRightMargin = true, ...props }: HeaderRightProps) => {
   const { color } = useHeader();
 
   return (
     <Stack
       alignItems="center"
-      className={clsx(helpers.tabletUp.flex, className)}
+      className={clsx(className, { [styles.headerRightMargin]: hasRightMargin })}
       color={color}
+      display="flex"
       horizontal
+      marginRight={hasRightMargin ? { mobile: 'small', tablet: 'medium' } : undefined}
       space="small"
       {...props}
     />

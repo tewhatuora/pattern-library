@@ -30,13 +30,9 @@ export const base = style([
   responsiveStyle({
     mobile: {
       height: HEADER_HEIGHT_MOBILE,
-      paddingLeft: vars.space.small.mobile,
-      paddingRight: vars.space.small.mobile,
     },
     tablet: {
       height: HEADER_HEIGHT_TABLET,
-      paddingLeft: vars.space.medium.tablet,
-      paddingRight: vars.space.medium.tablet,
     },
   }),
 ]);
@@ -90,3 +86,24 @@ export const mobileMenuButton = style([
     gap: vars.space.xsmall.mobile,
   },
 ]);
+
+export const headerLeftMargin = style(
+  responsiveStyle({
+    mobile: {
+      marginLeft: vars.space.small.mobile,
+    },
+    tablet: {
+      marginLeft: vars.space.medium.tablet,
+    },
+  }),
+);
+export const headerRightMargin = style(
+  responsiveStyle({
+    mobile: {
+      marginRight: vars.space.small.mobile,
+    },
+    tablet: {
+      marginRight: vars.space.medium.tablet,
+    },
+  }),
+);
