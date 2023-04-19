@@ -20,12 +20,12 @@ const variant = {
     backgroundColor: 'caution100',
   }),
   urgent: atoms({
-    color: 'error0',
+    color: 'primary0',
     backgroundColor: 'error100',
   }),
   informative: atoms({
-    color: 'error0',
-    backgroundColor: 'neutral75',
+    color: 'primary0',
+    backgroundColor: 'primary100',
   }),
 };
 
@@ -34,7 +34,7 @@ const theme = {
     backgroundColor: 'secondary0',
   }),
   dark: atoms({
-    backgroundColor: 'primary110',
+    backgroundColor: 'primary100',
   }),
 };
 
@@ -73,7 +73,7 @@ export const variants = recipe({
         theme: 'light',
       },
       style: {
-        color: 'error0',
+        color: 'primary0',
         backgroundColor: 'error100',
       },
     },
@@ -83,8 +83,8 @@ export const variants = recipe({
         theme: 'light',
       },
       style: {
-        color: 'error0',
-        backgroundColor: 'neutral75',
+        color: 'primary0',
+        backgroundColor: 'primary100',
       },
     },
   ],

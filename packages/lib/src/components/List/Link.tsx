@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { HTMLAttributes, PropsWithChildren, forwardRef } from 'react';
 
 import { Text } from '../Text/Text';
 
@@ -21,18 +21,20 @@ export type ListItemProps = {
   href: string;
 } & HTMLAttributes<HTMLLIElement>;
 
-export const Link = ({ icon, heading, href, children, ...rest }: PropsWithChildren<ListItemProps>) => {
-  const textStyles = useText({ weight: 'bullet', size: 'medium' });
+export const Link = forwardRef<HTMLAnchorElement, PropsWithChildren<ListItemProps>>(
+  ({ icon, heading, href, children, tabIndex, ...rest }, ref) => {
+    const textStyles = useText({ weight: 'bullet', size: 'medium' });
 
-  return (
-    <li {...rest} className={clsx(textStyles, rest.className)}>
-      <Box as="a" className={clsx(textStyles, styles.link)} href={href}>
-        <span>
-          {heading && <Text weight="bold">{heading}</Text>}
-          <Text>{children}</Text>
-        </span>
-        {icon && <Icon className={clsx(styles.itemIcon)} icon={icon} variant="functionalIcons" />}
-      </Box>
-    </li>
-  );
-};
+    return (
+      <li {...rest} className={clsx(textStyles, rest.className)}>
+        <Box as="a" className={clsx(textStyles, styles.link)} href={href} ref={ref} tabIndex={tabIndex}>
+          <span>
+            {heading && <Text weight="bold">{heading}</Text>}
+            <Text>{children}</Text>
+          </span>
+          {icon && <Icon className={clsx(styles.itemIcon)} icon={icon} variant="functionalIcons" />}
+        </Box>
+      </li>
+    );
+  },
+);

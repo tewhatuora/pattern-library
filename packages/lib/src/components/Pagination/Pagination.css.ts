@@ -13,6 +13,7 @@ const base = style([
     mobile: {
       display: 'flex',
       alignItems: 'center',
+      textAlign: 'center',
     },
   }),
 ]);
@@ -90,7 +91,7 @@ export const buttonContainer = style(
       },
     },
     tablet: {
-      width: rem(180),
+      width: rem(130),
     },
   }),
 );

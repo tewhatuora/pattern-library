@@ -11,6 +11,9 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
+export const BUTTON_HEIGHT_MOBILE = vars.space.xxlarge.tablet;
+export const BUTTON_HEIGHT_TABLET = calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4));
+
 export const root = style({
   color: 'inherit',
   cursor: 'pointer',
@@ -46,13 +49,13 @@ export const variants = recipe({
     },
     responsiveStyle({
       mobile: {
-        height: vars.space.xxlarge.tablet,
+        height: BUTTON_HEIGHT_MOBILE,
         vars: {
           [gapVar]: vars.space.xsmall.mobile,
         },
       },
       tablet: {
-        height: calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4)),
+        height: BUTTON_HEIGHT_TABLET,
         maxWidth: rem(396),
         vars: {
           [gapVar]: vars.space.xsmall.tablet,

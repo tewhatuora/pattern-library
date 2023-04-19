@@ -291,60 +291,60 @@ const tokens$1 = {
   typography: {
     fontFamily: "Poppins",
     fontWeight: {
-      black: "900",
+      black: "700",
       bold: "700",
       regular: "400",
       medium: "500",
-      "link-normal": "600",
-      "link-hover&focus": "600",
-      button: "600",
+      "link-normal": "700",
+      "link-hover&focus": "700",
+      button: "700",
       bullet: "400",
       number: "400"
     },
     heading: {
-      weight: { black: "900", bold: "800", regular: "400" },
+      weight: { black: "700", bold: "700", regular: "400" },
       level: {
         "1": {
-          tablet: { fontSize: "7.5rem", lineHeight: "8.625rem" },
+          tablet: { fontSize: "3.125rem", lineHeight: "3.594rem" },
           mobile: { fontSize: "2.5rem", lineHeight: "2.875rem" }
         },
-        "2": { tablet: { fontSize: "2.5rem", lineHeight: "3rem" }, mobile: { fontSize: "2rem", lineHeight: "2.4rem" } },
+        "2": { tablet: { fontSize: "2rem", lineHeight: "2.4rem" }, mobile: { fontSize: "2rem", lineHeight: "2.4rem" } },
         "3": {
-          tablet: { fontSize: "2rem", lineHeight: "2.4rem" },
+          tablet: { fontSize: "1.5rem", lineHeight: "1.8rem" },
           mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
         },
         "4": {
-          tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
+          tablet: { fontSize: "1.25rem", lineHeight: "1.625rem" },
           mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
         }
       }
     },
     text: {
       large: {
-        tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
+        tablet: { fontSize: "1.25rem", lineHeight: "1.625rem" },
         mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
       },
       medium: {
-        tablet: { fontSize: "1.25rem", lineHeight: "2rem" },
-        mobile: { fontSize: "1.125rem", lineHeight: "1.8rem" }
-      },
-      small: {
-        tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
+        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
         mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
       },
-      xsmall: {
-        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
+      small: {
+        tablet: { fontSize: "0.875rem", lineHeight: "1.4rem" },
         mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
+      },
+      xsmall: {
+        tablet: { fontSize: "0.75rem", lineHeight: "1.2rem" },
+        mobile: { fontSize: "0.75rem", lineHeight: "1.2rem" }
       }
     }
   },
   space: {
-    xlarge: { mobile: "2.5rem", tablet: "3rem" },
-    large: { mobile: "2rem", tablet: "2.5rem" },
-    medium: { mobile: "1.5rem", tablet: "2rem" },
-    small: { mobile: "1rem", tablet: "1.5rem" },
-    xxlarge: { tablet: "3.5rem", mobile: "3rem" },
-    xsmall: { tablet: "1rem", mobile: "0.5rem" }
+    xlarge: { mobile: "2.5rem", tablet: "2.5rem" },
+    large: { mobile: "2rem", tablet: "2rem" },
+    medium: { mobile: "1.5rem", tablet: "1.5rem" },
+    small: { mobile: "1rem", tablet: "1rem" },
+    xxlarge: { tablet: "3rem", mobile: "3rem" },
+    xsmall: { tablet: "0.5rem", mobile: "0.5rem" }
   },
   transitions: { fast: "transform .125s ease, opacity .125s ease" },
   border: {

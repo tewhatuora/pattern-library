@@ -62,13 +62,22 @@ const Stack = ({
       })}
       {...boxProps}
     >
-      {Children.map(children, (child) => (
-        // Wrapped the children in a <Box> instead of passing the className directly because sometimes children
-        // don't accept classNames. Also, I don't want to override their margin.
-        <Box as={childWrapperAs} className={styles.child[direction]}>
-          {child}
-        </Box>
-      ))}
+      {Children.map(children, (child) =>
+        child ? (
+          // Wrapped the children in a <Box> instead of passing the className directly because sometimes children
+          // don't accept classNames. Also, I don't want to override their margin.
+          <Box
+            alignItems={boxProps.alignItems}
+            as={childWrapperAs}
+            className={styles.child[direction]}
+            display="flex"
+            flexDirection={direction === 'vertical' ? 'column' : 'row'}
+            justifyContent={boxProps.justifyContent}
+          >
+            {child}
+          </Box>
+        ) : null,
+      )}
     </Box>
   );
 };
