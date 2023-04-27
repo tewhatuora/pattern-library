@@ -88,7 +88,7 @@
 
   We have updated the layout and spacing in the footer. The same variant options are available (no social/social icons, 0-5 columns, mobile/desktop, light/dark)Discussions are underway around potentially creating a universal version that includes content so that we are able to provide all MOH apps with the exact same footer, uniting all products to feel like they are a part of the same site. That is currently in concept/discovery phase.
 
-  <!-- ![Updated footer](./1.1/5.png "Updated footer") -->
+  ![Updated footer](./1.1/5.png "Updated footer")
 
   **We’ve added paragraph spacing to the type styles:**
 
