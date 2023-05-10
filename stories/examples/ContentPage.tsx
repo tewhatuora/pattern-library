@@ -1,22 +1,21 @@
+import { useState } from 'react';
+
 import {
-  Header,
-  Navigation,
-  Container,
-  Row,
+  AnchorLink,
+  Breadcrumbs,
+  Button,
+  Card,
   Column,
+  Container,
+  Divider,
+  Header,
+  Heading,
+  InputSearch,
+  Navigation,
+  Row,
   Stack,
   Text,
-  Footer,
-  Accordion,
-  Card,
-  Tabs,
-  Button,
-  Heading,
-  Divider,
-  Breadcrumbs,
-  AnchorLink,
 } from '../../packages/lib/src/components';
-import { useState } from 'react';
 
 const ContentPage = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
@@ -26,36 +25,37 @@ const ContentPage = () => {
   };
 
   return (
-    <div style={{ paddingTop: '9.6rem' }}>
-      <Stack space="xxlarge" color="primary100">
-        <Header
-          utilityNavItems={[
-            {
-              href: '#',
-              icon: 'language',
-              label: 'Language',
-            },
-            {
-              href: '#',
-              icon: 'person',
-              label: 'Name Surname',
-            },
-          ]}
-          logoLinkHref="/"
-          logoComponent={
-            <>
-              <Text size="small">LOGO</Text>
-              <Text size="small" weight="bold">
-                Placeholder
-              </Text>
-            </>
-          }
-          onToggleNavigation={handleToggleNavigation}
-          searchFormAction="/"
-          searchFormMethod="GET"
-          withSearch
-        />
-        <Stack space="xlarge" backgroundColor="primary5">
+    <div style={{ paddingTop: '6rem' }}>
+      <Stack color="primary100" space="xxlarge">
+        <Header.Root>
+          <Header.Left>
+            <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+          </Header.Left>
+
+          <Header.Right>
+            <Navigation.Utility
+              items={[
+                {
+                  href: '#',
+                  icon: 'language',
+                  label: 'Language',
+                },
+                {
+                  href: '#',
+                  icon: 'person',
+                  label: 'Name Surname',
+                },
+              ]}
+              variant="light"
+            />
+
+            <InputSearch id="search" name="search" placeholder="Search" />
+          </Header.Right>
+
+          <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+        </Header.Root>
+
+        <Stack backgroundColor="primary5" space="xlarge">
           <Navigation.Root open={navigationOpen} searchFormAction="/" searchFormMethod="GET" withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
               <Navigation.Menu>
@@ -133,12 +133,12 @@ const ContentPage = () => {
                 <Text>Tenth</Text>
               </Breadcrumbs>
               <Row>
-                <Column columns={8} center>
+                <Column center columns={8}>
                   <Stack space="large">
                     <Heading level="2">Heading</Heading>
                     <Card>
                       <Row>
-                        <Column columns={6} center>
+                        <Column center columns={6}>
                           <Stack space="medium">
                             <Heading level="3">Heading</Heading>
                             <Text as="p">
@@ -152,32 +152,6 @@ const ContentPage = () => {
                               porro quaerat quasi quia, repellendus unde vel voluptatibus.
                             </Text>
                             <Heading level="3">Heading</Heading>
-                            <Accordion.Root type="single" headingLevel={4}>
-                              <Accordion.Item value="item-1">
-                                <Accordion.Trigger icon="document" label="Content" />
-                                <Accordion.Content>
-                                  <Text>Content</Text>
-                                </Accordion.Content>
-                              </Accordion.Item>
-                              <Accordion.Item value="item-2">
-                                <Accordion.Trigger icon="document" label="Content" />
-                                <Accordion.Content>
-                                  <Text>Content</Text>
-                                </Accordion.Content>
-                              </Accordion.Item>
-                              <Accordion.Item value="item-3">
-                                <Accordion.Trigger icon="document" label="Content" />
-                                <Accordion.Content>
-                                  <Text>Content</Text>
-                                </Accordion.Content>
-                              </Accordion.Item>
-                              <Accordion.Item value="item-4">
-                                <Accordion.Trigger icon="document" label="Content" />
-                                <Accordion.Content>
-                                  <Text>Content</Text>
-                                </Accordion.Content>
-                              </Accordion.Item>
-                            </Accordion.Root>
                             <Heading level="3">Heading</Heading>
                             <Text as="p">
                               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
@@ -204,106 +178,14 @@ const ContentPage = () => {
                       </Row>
                     </Card>
                     <Heading level="2">Heading</Heading>
-                    <Card>
-                      <Row>
-                        <Column columns={6} center>
-                          <Stack space="medium">
-                            <Tabs.Root space="medium" defaultValue="tab-1" activationMode="automatic">
-                              <Tabs.List>
-                                <Tabs.Trigger value="tab-1">Tab item</Tabs.Trigger>
-                                <Tabs.Trigger value="tab-2">Tab item</Tabs.Trigger>
-                                <Tabs.Trigger value="tab-3">Tab item</Tabs.Trigger>
-                                <Tabs.Trigger value="tab-4">Tab item</Tabs.Trigger>
-                                <Tabs.Trigger value="tab-5">Tab item</Tabs.Trigger>
-                              </Tabs.List>
-                              <Tabs.Content value="tab-1">
-                                <Stack space="medium">
-                                  <Heading level="3">Tab one</Heading>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                </Stack>
-                              </Tabs.Content>
-                              <Tabs.Content value="tab-2">
-                                <Stack space="medium">
-                                  <Heading level="3">Tab two</Heading>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                </Stack>
-                              </Tabs.Content>
-                              <Tabs.Content value="tab-3">
-                                <Stack space="medium">
-                                  <Heading level="3">Tab three</Heading>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                </Stack>
-                              </Tabs.Content>
-                              <Tabs.Content value="tab-4">
-                                <Stack space="medium">
-                                  <Heading level="3">Tab four</Heading>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                </Stack>
-                              </Tabs.Content>
-                              <Tabs.Content value="tab-5">
-                                <Stack space="medium">
-                                  <Heading level="3">Tab five</Heading>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                  <Text as="p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis
-                                    consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio
-                                    perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.
-                                  </Text>
-                                </Stack>
-                              </Tabs.Content>
-                            </Tabs.Root>
-                          </Stack>
-                        </Column>
-                      </Row>
-                    </Card>
                   </Stack>
                 </Column>
               </Row>
             </Stack>
           </Container>
-          <p></p>
+          <p />
         </Stack>
-        <Footer
+        {/* <Footer
           imprintItems={[
             { text: '© Te Whatu Ora | Health New Zealand' },
             { text: 'Copyright', href: '#' },
@@ -347,7 +229,7 @@ const ContentPage = () => {
             <Navigation.Item href="#" label="Sub nav item 19" />
             <Navigation.Item href="#" label="Sub nav item 20" />
           </Navigation.MenuList>
-        </Footer>
+        </Footer> */}
       </Stack>
     </div>
   );

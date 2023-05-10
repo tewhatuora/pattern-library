@@ -1,8 +1,62 @@
-### Description
+import LinkTo from '@storybook/addon-links/react';
+
+## Description
+
 The Header is a foundational component. It is the primary form of navigation and is found at the top of all mobile and desktop pages.
 
-### When to use it
+## When to use it
+
 The Header must be pinned to the top of all screens.
 
-### When not to use it
+## When not to use it
+
 Do not place a Header over the background element of a Modal Dialog.
+
+## API Reference
+
+### Root
+
+Contains all the parts of the header.
+
+The direct children for the `Header.Root` should be:
+
+- `Header.Left`
+- `Header.Right`
+- `Header.MenuButton`
+
+### Left
+
+Contains the content for left side of the header.
+
+The direct children for the `Header.Left` should be:
+
+- `Header.Logo`
+- `Header.TeWhatuOraLogo`
+
+### Logo
+
+Contains the website's logo and optionally a beta <LinkTo kind="Components/Badge">Badge</LinkTo>
+
+The direct children for the `Header.Logo` should be:
+
+- Your website's logo
+- Optionally a beta <LinkTo kind="Components/Badge">Badge</LinkTo>
+
+### TeWhatuOraLogo
+
+The logo for Te Whatu Ora, styled for the header, wrapped in an anchor tag.
+
+This is wrapped in an anchor tag, and accepts any anchor tag props.
+
+### Right
+
+Contains the content for right side of the header.
+
+The direct children for the `Header.Right` should be:
+
+- `Navigation.Utility`
+- <LinkTo kind="Forms/InputSearch">InputSearch</LinkTo>
+
+### MenuButton
+
+The menu button for the header. Is only visible on mobile.

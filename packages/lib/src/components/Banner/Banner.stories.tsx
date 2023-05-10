@@ -2,14 +2,12 @@ import { Banner, BannerProps } from './Banner';
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './Banner.docs.mdx';
+import { Text } from '../Text/Text';
 
 export default {
   title: 'Components/Banner',
   component: Banner,
   argTypes: {
-    label: {
-      defaultValue: 'Lorem ipsum dolor sit amet',
-    },
     onClose: {
       control: false,
     },
@@ -25,7 +23,13 @@ export const Default = (args: BannerProps) => {
   const text = args.variant || 'banner';
   const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
 
-  return <Banner {...args}>{label}</Banner>;
+  return (
+    <Banner {...args}>
+      <Text size="medium" weight="regular">
+        {label}
+      </Text>
+    </Banner>
+  );
 };
 
 export const OnClose = (args: BannerProps) => {
@@ -36,7 +40,9 @@ export const OnClose = (args: BannerProps) => {
         alert('Banner closed!');
       }}
     >
-      Banner with onClose
+      <Text size="medium" weight="regular">
+        Banner with onClose
+      </Text>
     </Banner>
   );
 };

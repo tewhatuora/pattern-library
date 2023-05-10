@@ -1,12 +1,16 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
+import { focusSelectorsStyles } from '@/src/utils/custom';
+
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const container = style([
   {
-    marginBottom: '2rem',
+    marginBottom: rem(20),
   },
   atoms({
     display: 'flex',
@@ -23,9 +27,9 @@ export const radioButton = style([
   }),
   {
     overflow: 'hidden',
-    width: '2.4rem',
-    height: '2.4rem',
-    marginTop: '0.4rem',
+    width: rem(24),
+    height: rem(24),
+    marginTop: rem(4),
     borderStyle: 'solid',
     borderWidth: vars.borderWidth.small,
     borderRadius: '100%',
@@ -36,13 +40,11 @@ export const radioButton = style([
         borderColor: vars.color.primary75,
         backgroundColor: vars.color.primary25,
       },
-      '&:focus': {
-        outline: `${vars.borderWidth.medium} solid ${vars.color.caution100}`,
-      },
       '&[disabled]': {
         borderColor: vars.color.primary50,
         cursor: 'not-allowed',
       },
+      ...focusSelectorsStyles,
     },
   },
 ]);
@@ -72,8 +74,8 @@ export const indicator = style([
       '&:after': {
         content: '""',
         display: 'block',
-        width: '0.8rem',
-        height: '0.8rem',
+        width: rem(8),
+        height: rem(8),
         borderRadius: '50%',
         backgroundColor: vars.color.primary0,
       },
@@ -95,7 +97,7 @@ export const label = style([
   },
   responsiveStyle({
     mobile: {
-      marginTop: '0.4rem',
+      marginTop: rem(4),
     },
     tablet: {
       marginTop: '0',

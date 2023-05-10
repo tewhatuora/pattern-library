@@ -1,5 +1,9 @@
 import { createVar, keyframes, style, styleVariants } from '@vanilla-extract/css';
 
+import { calc } from '@vanilla-extract/css-utils';
+
+import { focusSelectorsStyles } from '@/src/utils/custom';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
@@ -71,6 +75,11 @@ export const trigger = style([
     // Override button styles
     border: 'none',
     backgroundColor: 'transparent',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.standard, 2),
+
+    selectors: {
+      ...focusSelectorsStyles,
+    },
   },
   responsiveStyle({
     mobile: {
@@ -83,13 +92,13 @@ export const trigger = style([
 ]);
 
 export const icon = style({
+  marginRight: vars.space.small.mobile,
   flexShrink: 0,
 });
 
 export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
-  gap: vars.space.small.mobile,
 });
 
 export const chevron = style({
@@ -106,7 +115,7 @@ export const content = style({
 
   selectors: {
     '&[data-state="open"]': {
-      animation: `${slideDown} ${animationDuration} forwards`,
+      animation: `${slideDown} ${animationDuration}`,
     },
     '&[data-state="closed"]': {
       animation: `${slideUp} ${animationDuration} forwards`,

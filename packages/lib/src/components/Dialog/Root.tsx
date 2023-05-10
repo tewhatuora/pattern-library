@@ -1,12 +1,9 @@
-import { PropsWithChildren, ReactElement, cloneElement, useMemo, useRef } from 'react';
+import { PropsWithChildren, ReactElement, cloneElement, useMemo } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { useOutsideClick } from 'rooks';
 
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Stack } from '../Stack/Stack';
 import { Icon } from '../Icon/Icon';
-import { Column } from '../Columns/Column';
-import { Row } from '../Columns/Row';
 import { Content } from './Content';
 import { Actions } from './Actions';
 import { useTheme } from '../ThemeProvider/ThemeContext';
@@ -49,7 +46,6 @@ export const Root = ({
   trigger,
   children,
 }: PropsWithChildren<DialogProps>) => {
-  const ref = useRef(null);
   const theme = useTheme();
   const headingClassName = useHeading({ level: '2' });
   const subheadingClassName = useHeading({ level: '4' });
@@ -73,49 +69,35 @@ export const Root = ({
     );
   }, [trigger, onOpenChange]);
 
-  useOutsideClick(ref, () => {
-    onOpenChange?.(false);
-  });
-
   return (
     <RadixDialog.Root defaultOpen={defaultOpen} open={open} onOpenChange={onOpenChange}>
       {renderTrigger}
       <RadixDialog.Portal>
         <ThemeProvider theme={theme}>
           <RadixDialog.Overlay className={styles.overlay} />
-          <RadixDialog.Content className={styles.dialog}>
-            <Row flexGrow={1}>
-              <Column center columns={8}>
-                <div className={styles.content} ref={ref}>
-                  <Row offset>
-                    <Column center columns={4}>
-                      <RadixDialog.Close className={styles.closeButton}>
-                        <Icon icon="cross" variant="functionalIcons" />
-                      </RadixDialog.Close>
-                      <Stack alignItems="center" display="flex" flexDirection="column" space="medium">
-                        {!!icon && <Icon icon={icon} variant="decorativeIcons" />}
-                        <RadixDialog.Title asChild>
-                          <Box as="span" className={headingClassName}>
-                            {heading}
-                          </Box>
-                        </RadixDialog.Title>
-                        {!!subheading && (
-                          <Box as="span" className={subheadingClassName}>
-                            {subheading}
-                          </Box>
-                        )}
-                        <AllowedChildren
-                          errorMessage="Only `Dialog.Content` and `Dialog.Actions` components are allowed as children of `Dialog.Root`"
-                          types={[Content, Actions]}
-                        >
-                          {children}
-                        </AllowedChildren>
-                      </Stack>
-                    </Column>
-                  </Row>
-                </div>
-              </Column>
-            </Row>
+          <RadixDialog.Content className={styles.dialog} onPointerDownOutside={() => onOpenChange?.(false)}>
+            <RadixDialog.Close className={styles.closeButton}>
+              <Icon icon="cross" variant="functionalIcons" />
+            </RadixDialog.Close>
+            <Stack alignItems="center" display="flex" flexDirection="column" space="medium">
+              {!!icon && <Icon icon={icon} variant="decorativeIcons" />}
+              <RadixDialog.Title asChild>
+                <Box as="span" className={headingClassName}>
+                  {heading}
+                </Box>
+              </RadixDialog.Title>
+              {!!subheading && (
+                <Box as="span" className={subheadingClassName}>
+                  {subheading}
+                </Box>
+              )}
+              <AllowedChildren
+                errorMessage="Only `Dialog.Content` and `Dialog.Actions` components are allowed as children of `Dialog.Root`"
+                types={[Content, Actions]}
+              >
+                {children}
+              </AllowedChildren>
+            </Stack>
           </RadixDialog.Content>
         </ThemeProvider>
       </RadixDialog.Portal>

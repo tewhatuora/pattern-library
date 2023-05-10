@@ -2,15 +2,17 @@ import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-const offset = 0.2;
-const offsetSmall = `${offset}rem`;
-const offsetLarge = `${offset * 2}rem`;
+const offset = 2;
+const offsetSmall = rem(offset);
+const offsetLarge = rem(offset * 2);
 
 const variant = {
   alert: atoms({
@@ -18,12 +20,12 @@ const variant = {
     backgroundColor: 'caution100',
   }),
   urgent: atoms({
-    color: 'error0',
+    color: 'primary0',
     backgroundColor: 'error100',
   }),
   informative: atoms({
-    color: 'error0',
-    backgroundColor: 'neutral75',
+    color: 'primary0',
+    backgroundColor: 'primary100',
   }),
 };
 
@@ -32,7 +34,7 @@ const theme = {
     backgroundColor: 'secondary0',
   }),
   dark: atoms({
-    backgroundColor: 'primary110',
+    backgroundColor: 'primary100',
   }),
 };
 
@@ -44,7 +46,7 @@ export const variants = recipe({
     atoms({
       display: 'flex',
       flexShrink: 0,
-      flexGrow: 1,
+      // flexGrow: 1,
       alignItems: 'flexStart',
       justifyContent: 'spaceBetween',
     }),
@@ -71,7 +73,7 @@ export const variants = recipe({
         theme: 'light',
       },
       style: {
-        color: 'error0',
+        color: 'primary0',
         backgroundColor: 'error100',
       },
     },
@@ -81,8 +83,8 @@ export const variants = recipe({
         theme: 'light',
       },
       style: {
-        color: 'error0',
-        backgroundColor: 'neutral75',
+        color: 'primary0',
+        backgroundColor: 'primary100',
       },
     },
   ],
@@ -113,6 +115,7 @@ export const closeButton = style([
     border: 'none',
     background: 'none',
     cursor: 'pointer',
+    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
   },
   responsiveStyle({
     mobile: {
@@ -130,7 +133,7 @@ export const closeButton = style([
   }),
 ]);
 
-export const text = style([
+export const childrenWrapper = style([
   responsiveStyle({
     tablet: {
       marginTop: offsetLarge,

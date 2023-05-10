@@ -1,4 +1,4 @@
-import { ElementType, PropsWithChildren, useContext, useMemo } from 'react';
+import { PropsWithChildren, useContext, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -52,7 +52,7 @@ type ImageBlockButton = {
   /** Label for the button */
   label: string;
   /** Element type to render the button as */
-  as: ElementType<'button' | 'a'>;
+  as: Extract<keyof JSX.IntrinsicElements, 'button' | 'a'>;
   /** Function to call when the button is clicked */
   onClick?: () => void;
 } & AsLink;

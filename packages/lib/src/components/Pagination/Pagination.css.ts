@@ -1,37 +1,57 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import * as buttonStyles from '../Button/Button.css';
 
 import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
-export const pages = style([
+const base = style([
   responsiveStyle({
     mobile: {
       display: 'flex',
       alignItems: 'center',
-    },
-    tablet: {
-      display: 'none',
+      textAlign: 'center',
     },
   }),
 ]);
 
-export const pageLinks = style([
+export const pages = styleVariants({
+  controlled: [base],
+  uncontrolled: [
+    base,
+    responsiveStyle({
+      tablet: {
+        display: 'none',
+      },
+    }),
+  ],
+});
+
+const pageLinksBase = style([
   atoms({
+    display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
   }),
-  responsiveStyle({
-    mobile: {
-      display: 'none',
-    },
-    tablet: {
-      display: 'flex',
-    },
-  }),
 ]);
+
+export const pageLinks = styleVariants({
+  controlled: [pageLinksBase],
+  uncontrolled: [
+    pageLinksBase,
+    responsiveStyle({
+      mobile: {
+        display: 'none',
+      },
+      tablet: {
+        display: 'flex',
+      },
+    }),
+  ],
+});
 
 export const page = style({
   width: vars.space.xlarge.tablet,
@@ -62,7 +82,7 @@ export const buttonContainer = style(
   responsiveStyle({
     mobile: {
       display: 'flex',
-      width: '12rem',
+      width: rem(120),
       height: vars.space.xxlarge.tablet,
       selectors: {
         '&:last-of-type': {
@@ -71,7 +91,7 @@ export const buttonContainer = style(
       },
     },
     tablet: {
-      width: '18rem',
+      width: rem(130),
     },
   }),
 );
@@ -108,8 +128,8 @@ export const button = styleVariants({
 });
 
 const dot = {
-  width: '0.3rem',
-  height: '0.3rem',
+  width: rem(3),
+  height: rem(3),
   borderRadius: '50%',
   backgroundColor: vars.color.primary100,
 };
@@ -122,14 +142,14 @@ export const ellipsis = style([
       content: '""',
       position: 'absolute',
       top: '0',
-      left: '-0.6rem',
+      left: rem(-6),
       ...dot,
     },
     ':after': {
       content: '""',
       position: 'absolute',
       top: '0',
-      right: '-0.6rem',
+      right: rem(-6),
       ...dot,
     },
   },

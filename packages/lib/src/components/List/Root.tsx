@@ -3,9 +3,6 @@ import { Children, PropsWithChildren, cloneElement, createElement, isValidElemen
 
 import assert from 'assert';
 
-import { Item } from './Item';
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
-
 import { ContrastVariant } from '../../types';
 
 import * as styles from './List.css';
@@ -17,6 +14,11 @@ export type ListRootProps = {
   noMarkers?: boolean;
   /** Option to show dividers between list items */
   dividers?: boolean;
+
+  /** Option to disable divider on first item */
+  dividersNoTop?: boolean;
+  /** Option to disable divider on last item */
+  dividersNoBottom?: boolean;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
   /** Contrast variant for dark/light UI */
@@ -27,6 +29,8 @@ export const Root = ({
   type,
   noMarkers = false,
   dividers = false,
+  dividersNoTop = false,
+  dividersNoBottom = false,
   variant = 'light',
   className,
   children,
@@ -37,23 +41,30 @@ export const Root = ({
       'A child of `List.Root` is an invalid React element. Check that the children are all valid.',
     );
 
-    return cloneElement(child, { className: clsx(child.props.className, { [styles.dividers]: dividers }) });
+    return cloneElement(child, {
+      className: clsx(
+        child.props.className,
+        { [styles.dividers]: dividers },
+        { [styles.dividersNoTop]: dividersNoTop },
+        { [styles.dividersNoBottom]: dividersNoBottom },
+      ),
+    });
   });
 
   const listEl = createElement(
     type,
     {
-      className: clsx(styles.list, { [styles.noMarkers]: noMarkers }, className),
+      className: clsx(
+        styles.list[type],
+        { [styles.noMarkers]: noMarkers },
+
+        className,
+      ),
       'data-dividers': dividers,
       'data-variant': variant, // Required to handle vertical padding of nested lists
       role: 'list', // Fixes <ul> in Safari when list-style is set to 'none'. See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns
     },
-    <AllowedChildren
-      errorMessage="Only `List.Item` and `List.Root` components are allowed as children of `List.Root`."
-      types={[Item, Root]}
-    >
-      {newChildren}
-    </AllowedChildren>,
+    newChildren,
   );
 
   return listEl;

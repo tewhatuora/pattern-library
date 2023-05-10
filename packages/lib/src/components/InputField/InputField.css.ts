@@ -1,6 +1,8 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -62,7 +64,7 @@ export const inputBase = style([
       '&:focus, &:focus-within': {
         color: vars.color.primary100,
         borderColor: vars.color.caution100,
-        boxShadow: `0 0 0 0.1rem ${vars.color.caution100}`,
+        boxShadow: `0 0 0 ${rem(1)} ${vars.color.caution100}`,
         outline: 'none',
       },
       '&:disabled': {
@@ -76,7 +78,7 @@ export const inputBase = style([
       },
       '&[aria-invalid="true"]:not([disabled])': {
         borderColor: vars.color.error100,
-        boxShadow: `0 0 0 0.1rem ${vars.color.error100}`,
+        boxShadow: `0 0 0 ${rem(1)} ${vars.color.error100}`,
         outline: 'none',
       },
     },
@@ -121,15 +123,15 @@ export const input = styleVariants({
     },
     responsiveStyle({
       mobile: {
-        paddingTop: '1.4rem',
-        paddingBottom: '1.4rem',
-        minHeight: '13.1rem',
+        paddingTop: rem(14),
+        paddingBottom: rem(14),
+        minHeight: rem(131),
         lineHeight: vars.textSize.medium.mobile.lineHeight,
       },
       tablet: {
-        paddingTop: '1.2rem',
-        paddingBottom: '1.2rem',
-        minHeight: '16.6rem',
+        paddingTop: rem(12),
+        paddingBottom: rem(12),
+        minHeight: rem(166),
         lineHeight: vars.textSize.medium.tablet.lineHeight,
       },
     }),
@@ -156,7 +158,7 @@ globalStyle(`${input.phone} select${inputBase}`, {
 export const clearButtonBase = style([
   {
     position: 'absolute',
-    top: '0.1rem',
+    top: rem(1),
     right: 0,
     display: 'flex',
     alignItems: 'center',

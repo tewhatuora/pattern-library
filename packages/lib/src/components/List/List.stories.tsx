@@ -11,6 +11,7 @@ export default {
   subcomponents: {
     Root: List.Root,
     Item: List.Item,
+    Link: List.Link,
   },
   args: {
     type: 'ul',
@@ -124,6 +125,44 @@ export const WrappingLines = (args: ListRootProps) => {
             Suspendisse.
           </List.Item>
         </List.Root>
+      </List.Root>
+    </ContrastWrapper>
+  );
+};
+
+export const LinkLists = (args: ListRootProps) => {
+  return (
+    <ContrastWrapper variant={args.variant}>
+      <List.Root {...args}>
+        <List.Link href="#" icon="tick">
+          First link
+        </List.Link>
+        <List.Link href="#" icon="alert">
+          Secondary link
+        </List.Link>
+        <List.Link href="#" icon="tick">
+          Third link that is a bit longer lorem ipsum dolor set amet
+        </List.Link>
+        <List.Link href="#">Forth link with no icon</List.Link>
+      </List.Root>
+    </ContrastWrapper>
+  );
+};
+
+export const LinkListsDivider = (args: ListRootProps) => {
+  return (
+    <ContrastWrapper variant={args.variant}>
+      <List.Root dividers dividersNoBottom dividersNoTop noMarkers {...args}>
+        <List.Link href="#" icon="tick">
+          First link
+        </List.Link>
+        <List.Link href="#" icon="alert">
+          Secondary link
+        </List.Link>
+        <List.Link href="#" icon="tick">
+          Third link that is a bit longer lorem ipsum dolor set amet
+        </List.Link>
+        <List.Link href="#">Forth link with no icon</List.Link>
       </List.Root>
     </ContrastWrapper>
   );

@@ -11,6 +11,8 @@ import * as styles from './Pagination.css';
 export const PaginationStyles = styles;
 
 export type PaginationProps = {
+  /** Determines whether to show the pagination buttons. Overrides CSS media queries. */
+  showPageButtons?: boolean;
   /** Total number of pages */
   pages: number;
   /** Current page number */
@@ -44,7 +46,7 @@ const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) 
  * @param props
  * @constructor
  */
-export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) => {
+export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: PaginationProps) => {
   const { items, showPrevious, showNext } = usePagination({ current, pages });
 
   /**
@@ -105,12 +107,18 @@ export const Pagination = ({ current = 1, pages, onChange }: PaginationProps) =>
           </Button>
         )}
       </Box>
-      <Text className={styles.pages}>
-        {current} of {pages}
-      </Text>
-      <Box as="ul" className={styles.pageLinks}>
-        {renderPageButtons}
-      </Box>
+      {/* Never show page label when `showPageButtons === true` */}
+      {showPageButtons === false || showPageButtons === undefined ? (
+        <Text className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
+          {current} of {pages}
+        </Text>
+      ) : null}
+      {/* Never show page buttons when `showPageButtons === false` */}
+      {showPageButtons === true || showPageButtons === undefined ? (
+        <Box as="ul" className={styles.pageLinks[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
+          {renderPageButtons}
+        </Box>
+      ) : null}
       <Box className={styles.buttonContainer}>
         {showNext && (
           <Button aria-label="Go to next page" className={styles.button.primary} onPress={handleNext}>

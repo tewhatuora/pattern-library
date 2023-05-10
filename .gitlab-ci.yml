@@ -22,8 +22,8 @@ default:
       - .yarn
     policy: pull
   # Only use MoH's AWS-CommonTools-Machine-gen2-14-0 runner as it seems to be the fastest (by far) and so the cache is preserved.
-  tags:
-    - aws
+  # tags:
+  #   - aws
 
 stages:
   - install
@@ -51,7 +51,7 @@ stages:
       when: always
 
     - &run_for_chromatic_main
-      if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: always
       allow_failure: true
 
@@ -107,9 +107,13 @@ chromatic_publish:
     - job: build
       artifacts: true
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
+    - yarn chromatic --branch-name $CI_COMMIT_REF_SLUG
   rules:
     - *run_for_chromatic_main
+  environment:
+    name: storybook-preview/$CI_COMMIT_REF_SLUG
+    url: https://$CI_COMMIT_REF_SLUG--63e2dc298c48a90e1a5ae1d5.chromatic.com
+
 
 npm_lib_publish:
   rules:

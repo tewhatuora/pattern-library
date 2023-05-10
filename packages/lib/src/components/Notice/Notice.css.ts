@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -10,7 +12,7 @@ import { vars } from '../../themes/vars.css';
 /**
  * Align icon to text offset
  */
-const offset = '0.2rem';
+const offset = rem(2);
 
 const variant = {
   positive: atoms({
