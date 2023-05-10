@@ -78,7 +78,7 @@
     "@react-aria/label": "^3.3.1",
     "@react-aria/link": "^3.3.1",
     "@react-aria/textfield": "^3.6.1",
-    "@te-whatu-ora/anatomic-themes": "1.0.1",
+    "@te-whatu-ora/anatomic-themes": "^1.0.1",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.178",
     "@vanilla-extract/css": "^1.6.3",
