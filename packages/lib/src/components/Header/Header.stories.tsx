@@ -1,12 +1,16 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Meta } from '@storybook/react';
 
 import { Text } from '../Text/Text';
-import { Header, HeaderProps } from './Header';
+import * as Header from './Header';
 import Docs from './Header.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
+import { Navigation } from '../Navigation/Navigation';
+import { InputSearch } from '../InputSearch/InputSearch';
+import { Badge } from '../Badge/Badge';
 
-const logoComponent = (
+const ExampleLogo = () => (
   <>
     <Text size="small">My COVID</Text>
     <Text size="small" weight="bold">
@@ -17,77 +21,57 @@ const logoComponent = (
 
 export default {
   title: 'Components/Header',
-  component: Header,
-  argTypes: {
-    utilityNavItems: {
-      control: {
-        type: 'array',
-      },
-      defaultValue: [
-        {
-          href: '#',
-          icon: 'language',
-          label: 'Language',
-        },
-        {
-          href: '#',
-          icon: 'person',
-          label: 'Name Surname',
-        },
-      ],
-    },
-    logoLinkHref: {
-      defaultValue: '/',
-      control: {
-        type: 'text',
-      },
-    },
-  },
+  component: Header.Root,
+  decorators: [
+    // The `Header` has fixed position, so need to wrap it in a transform so it renders inside the story.
+    (Story) => (
+      <div style={{ width: '100%', height: '6rem', transform: 'translate(0,0)' }}>
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
-};
+} as Meta;
 
-const RouterLink = ({ children, ...rest }: PropsWithChildren<any>) => (
-  <a {...rest} onClick={(e) => e.preventDefault()}>
-    {children}
-  </a>
-);
-
-export const Default = (args: HeaderProps) => {
-  const [navigationOpen, setNavigationOpen] = useState(args.navigationOpen);
-  const handleToggleNavigation = () => setNavigationOpen(!navigationOpen);
-
-  useEffect(() => {
-    setNavigationOpen(args.navigationOpen);
-  }, [args.navigationOpen]);
+export const Default = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Header
-      {...args}
-      logoComponent={logoComponent}
-      navigationOpen={navigationOpen}
-      onToggleNavigation={handleToggleNavigation}
-    />
-  );
-};
+    <Header.Root variant="light">
+      <Header.Main>
+        <Header.Left>
+          <Header.Logo>
+            <ExampleLogo />
+            <Badge variant="info">Beta</Badge>
+          </Header.Logo>
+          <Header.TeWhatuOraLogo href="https://www.tewhatuora.govt.nz/" />
+        </Header.Left>
 
-export const CustomLogoLinkComponent = (args: HeaderProps) => {
-  const [navigationOpen, setNavigationOpen] = useState(args.navigationOpen);
-  const handleToggleNavigation = () => setNavigationOpen(!navigationOpen);
+        <Header.Right>
+          <Navigation.Utility
+            items={[
+              {
+                href: '#',
+                icon: 'language',
+                label: 'Language',
+              },
+              {
+                href: '#',
+                icon: 'person',
+                label: 'Name Surname',
+              },
+            ]}
+            variant="light"
+          />
 
-  useEffect(() => {
-    setNavigationOpen(args.navigationOpen);
-  }, [args.navigationOpen]);
-
-  return (
-    <Header
-      {...args}
-      logoComponent={logoComponent}
-      logoLinkComponent={RouterLink}
-      onToggleNavigation={handleToggleNavigation}
-    />
+          <InputSearch id="search" name="search" placeholder="Search" />
+        </Header.Right>
+        <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} />
+      </Header.Main>
+    </Header.Root>
   );
 };

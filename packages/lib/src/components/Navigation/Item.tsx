@@ -141,7 +141,6 @@ export const Item = ({
   };
   const buttonProps = {
     ...baseProps,
-    as: 'button',
     ref: ref,
     onFocus: handleFocus,
     onPress: handleOpen,

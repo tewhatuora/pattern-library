@@ -1,6 +1,5 @@
-import { useCallback, useState } from 'react';
+import { forwardRef, useCallback, useState } from 'react';
 
-import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { CloseButton } from '../CloseButton/CloseButton';
@@ -11,12 +10,10 @@ import { ContrastVariant } from '../../types';
 export const BannerStyles = styles;
 
 export type BannerProps = {
-  /** Text label to show as Banner message */
-  label?: string;
   /** Banner style variant */
   variant: styles.Variant;
   /** Contrast variant for dark/light UI */
-  theme: ContrastVariant;
+  theme?: ContrastVariant;
   /** A function that will be called when closing the Alert */
   onClose?: () => void;
 } & Pick<
@@ -32,52 +29,69 @@ export type BannerProps = {
  * @param props
  * @constructor
  */
-export const Banner = ({ label, variant = 'alert', theme = 'dark', onClose, ...boxProps }: BannerProps) => {
-  // for closing banner if set true banner hidden
-  const [isClosed, setIsClosed] = useState(false);
+export const Banner = forwardRef<HTMLDivElement, BannerProps>(
+  ({ variant = 'alert', theme = 'dark', onClose, children, ...boxProps }, ref) => {
+    // for closing banner if set true banner hidden
+    const [isClosed, setIsClosed] = useState(false);
 
-  //icon for display depending on variant
-  const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
+    //icon for display depending on variant
+    const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
 
-  /**
-   * Handle closing banner
-   */
-  const handleCloseBanner = useCallback(() => {
-    setIsClosed(true);
+    let bannerLabel = 'Announcement';
+    switch (variant) {
+      case 'informative':
+        bannerLabel = 'Announcement';
+        break;
+      case 'alert':
+        bannerLabel = 'Alert';
+        break;
+      case 'urgent':
+        bannerLabel = 'Urgent alert';
+        break;
+      default:
+        bannerLabel = 'Announcement';
+    }
 
-    onClose?.();
-  }, [onClose, setIsClosed]);
+    /**
+     * Handle closing banner
+     */
+    const handleCloseBanner = useCallback(() => {
+      setIsClosed(true);
 
-  if (isClosed) {
-    return null;
-  }
+      onClose?.();
+    }, [onClose, setIsClosed]);
 
-  return (
-    <Box
-      as="div"
-      className={styles.variants({
-        variant,
-        theme,
-      })}
-      {...boxProps}
-    >
-      <Box className={styles.bannerInner}>
-        <Icon className={styles.icon} icon={bannerIcon} variant="decorativeIcons" />
-        <Text className={styles.text} size="medium" weight="regular">
-          {label}
-        </Text>
+    if (isClosed) {
+      return null;
+    }
+
+    return (
+      <Box
+        aria-label={bannerLabel}
+        as="aside"
+        className={styles.variants({
+          variant,
+          theme,
+        })}
+        ref={ref}
+        {...boxProps}
+      >
+        <Box className={styles.bannerInner}>
+          <Icon className={styles.icon} icon={bannerIcon} variant="decorativeIcons" />
+          <div className={styles.childrenWrapper}>{children}</div>
+        </Box>
+
+        {!!onClose && (
+          <CloseButton
+            className={styles.closeButton}
+            icon="cross"
+            variant="functionalIcons"
+            onClose={handleCloseBanner}
+          />
+        )}
       </Box>
-
-      {!!onClose && (
-        <CloseButton
-          className={styles.closeButton}
-          icon="cross"
-          variant="functionalIcons"
-          onClose={handleCloseBanner}
-        />
-      )}
-    </Box>
-  );
-};
+    );
+  },
+);
 
 Banner.displayName = 'Banner';

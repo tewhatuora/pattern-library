@@ -5,6 +5,7 @@ import { Text } from '../Text/Text';
 
 import * as styles from './Breadcrumbs.css';
 import { sprinkles } from '../../css/atoms/sprinkles.css';
+import * as stylesText from '../Text/Text.css';
 
 /**
  * Breadcrumb separator
@@ -16,7 +17,9 @@ export const Separator = memo(({ hidden }: { hidden?: boolean }) => (
       [sprinkles({ display: 'none' })]: hidden,
     })}
   >
-    <Text weight="regular">/</Text>
+    <Text className={stylesText.ignoreWeightOverride} weight="regular">
+      /
+    </Text>
   </li>
 ));
 

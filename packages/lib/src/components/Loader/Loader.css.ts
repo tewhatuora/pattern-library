@@ -1,5 +1,7 @@
 import { keyframes, style, styleVariants } from '@vanilla-extract/css';
 
+import { rem } from '@/src/css/helpers';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -9,12 +11,12 @@ const rotate = keyframes({
 });
 
 export const container = style({
-  width: '22.4rem',
+  width: rem(224),
 });
 
 const spinnerStyles = style([
   {
-    marginBottom: '1.6rem',
+    marginBottom: rem(16),
     animation: `${rotate} 1s linear infinite`,
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
@@ -23,13 +25,13 @@ const spinnerStyles = style([
   },
   responsiveStyle({
     mobile: {
-      width: '3.6rem',
-      height: '3.6rem',
+      width: rem(36),
+      height: rem(36),
       borderWidth: vars.borderWidth.medium,
     },
     desktop: {
-      width: '7.2rem',
-      height: '7.2rem',
+      width: rem(72),
+      height: rem(72),
       borderWidth: vars.borderWidth.large,
     },
   }),

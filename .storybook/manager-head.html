@@ -97,9 +97,20 @@
         display: none;
     }
 
-    .docblock-argstable td label input + span,
-    .docblock-argstable td label input:checked~span:last-of-type,
-    .docblock-argstable td label input:not(:checked)~span:first-of-type {
-      color: #fff;
+    /*
+    ##### Boolean switch text colour override #####
+
+    As of writing, the text colour of a Storybook boolean switch control cannot be customised in the theme API.
+    An open issue from 2021 has no responses: https://github.com/storybookjs/storybook/issues/15888
+
+    This override targets just the text of the switches.
+    The switch labels have a title with "Change to true" or "Change to false", that I'm confident aren't used elsewhere.
+
+    Creating a selector with greater specificity is *really* messy.
+    Because this is so specific, I think it warrants the use of !important.
+    */
+    label[title="Change to true"] span,
+    label[title="Change to false"] span {
+        color: #fff !important;
     }
 </style>

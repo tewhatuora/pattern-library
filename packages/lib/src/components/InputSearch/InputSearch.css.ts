@@ -1,13 +1,17 @@
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { rem } from '@/src/css/helpers';
+
+import { focusColor, focusOutline } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 
 const focusStyle = {
-  outline: `${vars.borderWidth.small} solid ${vars.color.caution100}`,
-  boxShadow: `inset 0 0 0 0.1rem ${vars.color.caution100}`,
+  outline: focusOutline,
+  boxShadow: `inset 0 0 0 ${rem(1)} ${focusColor}`,
   zIndex: 2,
 };
 
@@ -17,6 +21,11 @@ const controlStyle = style({
   zIndex: 1,
   selectors: {
     '&:focus': focusStyle,
+    '&:focus:not(:focus-visible)': {
+      outline: 'none',
+      boxShadow: 'none',
+      zIndex: 2,
+    },
   },
 });
 

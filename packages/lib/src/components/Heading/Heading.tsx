@@ -1,5 +1,7 @@
 import { ReactNode, forwardRef } from 'react';
 
+import clsx from 'clsx';
+
 import { Box, BoxProps } from '../Box/Box';
 import { HeadingLevel, HeadingWeight, useHeading } from '../../hooks/typography';
 
@@ -25,17 +27,19 @@ export type HeadingProps = {
   children?: ReactNode;
   /** id attribute for the element */
   id?: string;
+  /** classname override */
+  className?: string;
 };
 
 /**
  * Heading component for h1, h2, h3, h4 elements
  */
 export const Heading = forwardRef<HTMLElement, HeadingProps>(
-  ({ level, weight, align, as, children, id, color }, ref) => {
+  ({ level, weight, align, as, children, id, color, className }, ref) => {
     return (
       <Box
         as={as ?? resolveDefaultComponent[level]}
-        className={useHeading({ weight, level })}
+        className={clsx(useHeading({ weight, level }), className)}
         color={color}
         id={id}
         ref={ref}
