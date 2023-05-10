@@ -1,6 +1,8 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
@@ -165,7 +167,9 @@ export const imageBase = style([
       left: '0',
       height: '100%',
       width: '100%',
-      background: `repeating-conic-gradient(${vars.color.primary5} 0% 25%, ${vars.color.primary0} 0% 50%) 50% / 4rem 4rem`,
+      background: `repeating-conic-gradient(${vars.color.primary5} 0% 25%, ${vars.color.primary0} 0% 50%) 50% / ${rem(
+        40,
+      )} ${rem(40)}`,
     },
     ':after': {
       content: '"Broken image of " attr(alt)',

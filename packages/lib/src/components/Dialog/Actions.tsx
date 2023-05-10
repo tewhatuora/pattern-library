@@ -1,8 +1,6 @@
 import { Children, PropsWithChildren, ReactElement, cloneElement } from 'react';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
-import { Action } from './Action';
 
 const order = ['primary', 'secondary', 'tertiary'];
 
@@ -21,12 +19,12 @@ export const Actions = ({ children }: PropsWithChildren<any>) => {
 
   return (
     <ErrorBoundary>
-      <AllowedChildren
+      {/* <AllowedChildren
         errorMessage="Only Dialog.Action components are allowed as children of Dialog.Actions"
         types={[Action]}
-      >
-        {sorted}
-      </AllowedChildren>
+      > */}
+      {sorted}
+      {/* </AllowedChildren> */}
     </ErrorBoundary>
   );
 };

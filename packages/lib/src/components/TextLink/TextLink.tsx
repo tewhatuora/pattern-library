@@ -12,7 +12,7 @@ import * as styles from './TextLink.css';
 
 export const TextLinkStyles = styles;
 
-export interface TextLinkProps extends Pick<BoxProps, 'as'> {
+export type TextLinkProps = Omit<BoxProps, 'size'> & {
   /** Font size token */
   size?: UseTextProps['size'];
   /** Font weight token */
@@ -29,7 +29,7 @@ export interface TextLinkProps extends Pick<BoxProps, 'as'> {
   icon?: IconType;
   /** Where to position the icon */
   iconPosition?: 'left' | 'right';
-}
+};
 
 /**
  * TextLinkButton
@@ -41,6 +41,7 @@ export interface TextLinkProps extends Pick<BoxProps, 'as'> {
  * @constructor
  */
 export const TextLink = ({
+  as = 'a',
   href,
   size = 'medium',
   align,
@@ -49,18 +50,19 @@ export const TextLink = ({
   icon,
   iconPosition = 'right',
   className,
+  ...props
 }: PropsWithChildren<TextLinkProps>) => {
   const textStyles = useText({ weight, size });
 
   return (
-    <Box
-      as="a"
-      className={clsx(textStyles, styles.link, styles.iconPosition[iconPosition], className)}
-      href={href}
-      textAlign={align}
-    >
-      {children}
-      {!!icon && <Icon icon={icon} variant="functionalIcons" />}
+    <Box as={as} className={clsx(textStyles, styles.link, className)} href={href} textAlign={align} {...props}>
+      {!!icon && iconPosition === 'left' && (
+        <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
+      )}
+      <span>{children}</span>
+      {!!icon && iconPosition === 'right' && (
+        <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
+      )}
     </Box>
   );
 };

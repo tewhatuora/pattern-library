@@ -29,3 +29,5 @@ packages/themes/.yarn
 
 .idea
 *.iml
+
+.yalc

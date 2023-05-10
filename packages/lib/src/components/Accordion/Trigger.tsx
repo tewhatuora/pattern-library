@@ -1,6 +1,6 @@
 import * as RadixAccordion from '@radix-ui/react-accordion';
 
-import { ElementType, useContext } from 'react';
+import { ElementType, forwardRef, useContext } from 'react';
 
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
@@ -19,14 +19,14 @@ export type AccordionTriggerProps = {
   label: string;
 };
 
-export const Trigger = ({ icon, header, label }: AccordionTriggerProps) => {
+export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ icon, header, label }, ref) => {
   const { headingLevel } = useContext(AccordionContext);
-  const boxElement = `h${headingLevel?.toString()}` || ('h6' as ElementType<any>);
+  const boxElement = (`h${headingLevel?.toString()}` as ElementType<any>) || ('h6' as ElementType<any>);
 
   return (
     <RadixAccordion.Header asChild className={styles.header}>
       <Box as={boxElement}>
-        <RadixAccordion.Trigger className={styles.trigger}>
+        <RadixAccordion.Trigger className={styles.trigger} ref={ref}>
           <div className={styles.headerContainer}>
             {!!icon && <Icon className={styles.icon} icon={icon} variant="functionalIcons" />}
 
@@ -48,4 +48,4 @@ export const Trigger = ({ icon, header, label }: AccordionTriggerProps) => {
       </Box>
     </RadixAccordion.Header>
   );
-};
+});

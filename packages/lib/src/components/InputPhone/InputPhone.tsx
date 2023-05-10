@@ -119,7 +119,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             ref={ref as LegacyRef<any>}
             required={required}
             value={value}
-            onChange={onChange}
+            onChange={onChange || (() => null)}
           />
           {!!clearable && !!value?.length && <InputClearButton onClear={handleClear} />}
         </div>

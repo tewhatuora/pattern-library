@@ -1,60 +1,9 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
-import { vars } from '../../themes/vars.css';
 
-const variant = {
-  xxlarge: responsiveStyle({
-    mobile: {
-      gap: vars.space.xxlarge.mobile,
-    },
-    tablet: {
-      gap: vars.space.xxlarge.tablet,
-    },
-  }),
-  xlarge: responsiveStyle({
-    mobile: {
-      gap: vars.space.xlarge.mobile,
-    },
-    tablet: {
-      gap: vars.space.xlarge.tablet,
-    },
-  }),
-  large: responsiveStyle({
-    mobile: {
-      gap: vars.space.large.mobile,
-    },
-    tablet: {
-      gap: vars.space.large.tablet,
-    },
-  }),
-  medium: responsiveStyle({
-    mobile: {
-      gap: vars.space.medium.mobile,
-    },
-    tablet: {
-      gap: vars.space.medium.tablet,
-    },
-  }),
-  small: responsiveStyle({
-    mobile: {
-      gap: vars.space.small.mobile,
-    },
-    tablet: {
-      gap: vars.space.small.tablet,
-    },
-  }),
-  xsmall: responsiveStyle({
-    mobile: {
-      gap: vars.space.xsmall.mobile,
-    },
-    tablet: {
-      gap: vars.space.xsmall.tablet,
-    },
-  }),
-};
+export const marginVar = createVar();
 
 export const variants = recipe({
   base: style([
@@ -64,13 +13,37 @@ export const variants = recipe({
     }),
   ]),
   variants: {
-    space: { ...variant },
     direction: {
       vertical: {
         flexDirection: 'column',
       },
       horizontal: {
         flexDirection: 'row',
+      },
+    },
+  },
+});
+
+/**
+ * To avoid using flex gap, each child must have a class that sets margin on it.
+ * I would use a selector on the `variants` class above, but vanilla extract doesn't let selectors target children
+ * (i.e. '& > *:not(:first-child)').
+ * Instead, I have to give each child a class.
+ */
+export const child = styleVariants({
+  vertical: {
+    margin: 0,
+    selectors: {
+      [`&:not(:first-child)`]: {
+        marginTop: marginVar,
+      },
+    },
+  },
+  horizontal: {
+    margin: 0,
+    selectors: {
+      [`&:not(:first-child)`]: {
+        marginLeft: marginVar,
       },
     },
   },

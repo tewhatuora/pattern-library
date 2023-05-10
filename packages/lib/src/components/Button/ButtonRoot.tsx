@@ -3,11 +3,11 @@ import { useButton } from '@react-aria/button';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
-import { ButtonType } from './Button';
+import { ButtonProps } from './Button';
 
 import * as styles from './Button.css';
 
-type ButtonRootProps = PropsWithChildren<ButtonType<Record<string, unknown>>>;
+export type ButtonRootProps = PropsWithChildren<ButtonProps>;
 
 /**
  * Accessible button component without Button UI styles

@@ -1,10 +1,15 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
+
+import { rem } from '@/src/css/helpers';
+
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
 
+import type { ListRootProps } from './Root';
 /**
  * I used a const instead of a CSS variable because it wasn't working with
  * nested lists. The variable would be overwritten by the nested list and cause
@@ -12,7 +17,7 @@ import { vars } from '../../themes/vars.css';
  */
 const listPadding = 40; //vars.space.large.tablet; // Default for Chrome and Firefox
 
-export const list = style({
+const base = style({
   paddingInlineStart: listPadding, // Override user agent styles
 
   // Same as dividers
@@ -36,12 +41,27 @@ export const list = style({
     '&[data-variant="dark"]': {
       color: vars.color.primary0,
     },
+
+    '& &': {
+      paddingTop: vars.space.small.mobile,
+      paddingBottom: vars.space.small.mobile,
+    },
   },
 });
 
-globalStyle(`${list} ${list}`, {
-  paddingTop: vars.space.small.mobile,
-  paddingBottom: vars.space.small.mobile,
+export const list = styleVariants<Record<ListRootProps['type'], ComplexStyleRule>>({
+  ul: [
+    base,
+    {
+      listStyleType: 'disc',
+    },
+  ],
+  ol: [
+    base,
+    {
+      listStyleType: 'decimal',
+    },
+  ],
 });
 
 export const noMarkers = style({
@@ -54,6 +74,29 @@ export const noMarkers = style({
  * `item` classes with the `data-variant` selector because it would
  * be significantly more verbose.
  */
+
+export const dividersNoTop = style({
+  selectors: {
+    [`${base} > &:first-of-type`]: {
+      paddingTop: '0',
+    },
+    [`${base} > &:first-of-type:before`]: {
+      content: 'none',
+    },
+  },
+});
+
+export const dividersNoBottom = style({
+  selectors: {
+    [`${base} > &:last-of-type`]: {
+      paddingBottom: '0',
+    },
+    [`${base} > &:last-of-type:after`]: {
+      content: 'none',
+    },
+  },
+});
+
 export const dividers = style({
   position: 'relative',
 
@@ -90,7 +133,7 @@ export const dividers = style({
       left: 0,
     },
 
-    [beforeAndAfterOf(`${list}[data-variant="dark"] &`)]: {
+    [beforeAndAfterOf(`${base}[data-variant="dark"] &`)]: {
       backgroundColor: vars.color.primary0,
     },
   },
@@ -104,10 +147,10 @@ export const itemIcon = style([
   // Make the icon line up with the text
   responsiveStyle({
     mobile: {
-      transform: 'translateY(0.1rem)',
+      transform: `translateY(${rem(1)})`,
     },
     tablet: {
-      transform: 'translateY(0.4rem)',
+      transform: `translateY(${rem(4)})`,
     },
   }),
 ]);
@@ -123,6 +166,36 @@ export const itemIconPosition = styleVariants({
   },
   right: {
     flexDirection: 'row-reverse',
+  },
+});
+
+export const linkContent = style({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+});
+
+export const link = style({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'space-between',
+  alignItems: 'baseline',
+  gap: calc.divide(vars.space.xsmall.tablet, 4),
+  textDecoration: 'none',
+  transition: 'color 0.3s ease-out',
+  borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+
+  selectors: {
+    '&:hover, &:focus': {
+      color: vars.color.info75,
+      fontWeight: vars.textWeight['link-hover&focus'],
+      textDecoration: 'underline',
+    },
+
+    ...focusSelectorsStyles,
   },
 });
 
