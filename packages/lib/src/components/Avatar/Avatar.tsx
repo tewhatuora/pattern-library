@@ -1,13 +1,15 @@
+import clsx from 'clsx';
+
 import { Text } from '../Text/Text';
-import { FontSizeVariant } from '../../types';
+import { AvatarVariant } from '../../types';
 
 import * as styles from './Avatar.css';
 
 export const AvatarStyles = styles;
 
 export type AvatarProps = {
-  /** Font size variant for small/large */
-  variant?: FontSizeVariant;
+  /** Avatar size variant for small/large. */
+  variant?: AvatarVariant;
   /** Avatar user initial */
   initial: string;
 };
@@ -18,8 +20,9 @@ export type AvatarProps = {
  * @constructor
  */
 export const Avatar = ({ variant = 'small', initial }: AvatarProps) => {
+  const avatarClassNames = clsx(styles.styledAvatar, styles.avatarSize[variant]);
   return (
-    <div className={styles.styledAvatar}>
+    <div className={avatarClassNames}>
       <Text className={styles.initial[variant]}>{initial}</Text>
     </div>
   );
