@@ -4,7 +4,7 @@ import { DialogProps } from './Root';
 import { Dialog } from './Dialog';
 
 import { Text } from '../Text/Text';
-import { Button } from '../Button/Button';
+import { Button } from '../Button/RadixButton';
 import icons from '../Icon/icons';
 import Docs from './Dialog.docs.mdx';
 
