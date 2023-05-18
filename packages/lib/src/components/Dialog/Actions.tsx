@@ -17,16 +17,7 @@ export const Actions = ({ children }: PropsWithChildren<any>) => {
     return 0;
   });
 
-  return (
-    <ErrorBoundary>
-      {/* <AllowedChildren
-        errorMessage="Only Dialog.Action components are allowed as children of Dialog.Actions"
-        types={[Action]}
-      > */}
-      {sorted}
-      {/* </AllowedChildren> */}
-    </ErrorBoundary>
-  );
+  return <ErrorBoundary>{sorted}</ErrorBoundary>;
 };
 
 Actions.displayName = 'Actions';

@@ -1,4 +1,4 @@
-import { ElementType, ReactNode, Ref, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
@@ -35,6 +35,8 @@ export type ButtonProps = {
   variant?: ColorVariant;
   /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
+  /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
+  onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   children?: ReactNode | undefined;
 } & Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   AsLink;
@@ -57,9 +59,20 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     icon,
     iconPosition = 'right',
     href,
+    onClick,
     onPress,
     ...rest
   } = props;
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Call the onPress prop if it's provided
+    // OnClick used for Radix components
+    if (onClick) {
+      onClick(e);
+    } else if (onPress) {
+      onPress(e);
+    }
+  };
 
   return (
     <ButtonRoot
@@ -74,7 +87,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       href={href}
       ref={ref}
       type={type}
-      onPress={onPress}
+      onPress={handleClick}
       {...rest}
     >
       {!!icon && iconPosition === 'left' && (
