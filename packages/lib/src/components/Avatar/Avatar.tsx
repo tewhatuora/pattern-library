@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 
+import { ComponentPropsWithoutRef } from 'react';
+
 import { Text } from '../Text/Text';
 import { AvatarVariant } from '../../types';
 
@@ -7,7 +9,7 @@ import * as styles from './Avatar.css';
 
 export const AvatarStyles = styles;
 
-export type AvatarProps = {
+export type AvatarProps = ComponentPropsWithoutRef<'div'> & {
   /** Avatar size variant for small/large. */
   variant?: AvatarVariant;
   /** Avatar user initial */
@@ -19,11 +21,13 @@ export type AvatarProps = {
  * @param props
  * @constructor
  */
-export const Avatar = ({ variant = 'small', initial }: AvatarProps) => {
-  const avatarClassNames = clsx(styles.styledAvatar, styles.avatarSize[variant]);
+export const Avatar = ({ variant = 'small', initial, className, ...props }: AvatarProps) => {
+  const avatarClassNames = clsx(styles.styledAvatar, styles.avatarSize[variant], className);
   return (
-    <div className={avatarClassNames}>
-      <Text className={styles.initial[variant]}>{initial}</Text>
+    <div className={avatarClassNames} {...props}>
+      <Text className={styles.initial[variant]} weight="black">
+        {initial}
+      </Text>
     </div>
   );
 };

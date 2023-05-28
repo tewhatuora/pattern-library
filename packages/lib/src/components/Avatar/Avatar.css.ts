@@ -9,7 +9,6 @@ export const styledAvatar = style({
   alignItems: 'center',
   justifyContent: 'center',
 
-  fontWeight: 900,
   textTransform: 'capitalize',
   borderRadius: '50%',
   transition: 'background-color .3s ease-out',
