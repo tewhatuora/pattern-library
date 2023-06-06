@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Sun, 28 May 2023 23:05:51 GMT
+ * Generated on Tue, 06 Jun 2023 03:45:28 GMT
  */
 declare const _default: string;
 export default _default;
