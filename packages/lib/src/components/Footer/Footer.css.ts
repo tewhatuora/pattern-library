@@ -55,6 +55,10 @@ export const logoWrapper = style({
 export const govtLogoWrapper = style({
   height: rem(80),
   width: rem(272),
+
+  selectors: {
+    ...focusSelectorsStyles,
+  },
 });
 
 // ##### Second Row #####
