@@ -5,6 +5,11 @@
       "version": "1.0.0",
       "signature": "afb689a42900d78cdca1779f29fbbae6",
       "file": true
+    },
+    "@te-whatu-ora/anatomic": {
+      "version": "1.0.0",
+      "signature": "fa672e60e82d3c089d66afa2e90e2f7f",
+      "file": true
     }
   }
 }
