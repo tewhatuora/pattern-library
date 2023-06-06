@@ -1,7 +1,7 @@
 import { PropsWithChildren, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { atoms } from '@/src/css/atoms/atoms';
+import { atoms } from '../../css/atoms/atoms';
 
 import { Box, BoxProps } from '../Box/Box';
 import { Color, ContrastVariant } from '../../types';

@@ -152,10 +152,10 @@ const Footer = ({
         <Stack space="xxlarge">
           {/* First row */}
           <Box display="flex" flexWrap="wrap" marginBottom="xsmall">
-            <Box className={styles.govtLogoWrapper}>
+            <a className={styles.govtLogoWrapper} href="https://www.govt.nz/">
               {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
               <NZGovtLogo focusable={false} role="img" />
-            </Box>
+            </a>
           </Box>
 
           {/* Second row */}
