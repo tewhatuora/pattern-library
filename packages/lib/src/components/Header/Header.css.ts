@@ -85,7 +85,19 @@ export const mobileMenuButton = style([
   {
     gap: vars.space.xsmall.mobile,
   },
+  responsiveStyle({
+    mobile: {
+      marginRight: vars.space.small.mobile,
+    },
+    tablet: {
+      marginRight: vars.space.medium.tablet,
+    },
+  }),
 ]);
+
+export const mobileMenuButtonText = style({
+  width: rem(50),
+});
 
 export const headerLeftMargin = style(
   responsiveStyle({
