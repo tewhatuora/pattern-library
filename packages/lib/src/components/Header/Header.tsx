@@ -19,7 +19,7 @@ import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
-import type { ContrastVariant } from '../../types';
+import type { Color, ContrastVariant } from '../../types';
 
 import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
@@ -27,7 +27,7 @@ import * as styles from './Header.css';
 type HeaderContextType = {
   /** Contrast variant for dark/light UI */
   variant: ContrastVariant;
-  color: BoxProps['color'];
+  color: Color;
 };
 
 const HeaderContext = createContext<HeaderContextType | undefined>(undefined);
