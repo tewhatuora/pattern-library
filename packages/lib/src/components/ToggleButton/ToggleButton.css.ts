@@ -9,6 +9,11 @@ export const group = style({
   display: 'flex',
 });
 
+export const buttonText = style({
+  paddingLeft: rem(4),
+  paddingRight: rem(4),
+});
+
 export const button = style([
   {
     all: 'unset',
@@ -35,7 +40,13 @@ export const button = style([
         borderColor: vars.color.primary75,
       },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
-      '&:focus': { borderColor: vars.color.secondary50, borderWidth: rem(4) },
+      '&:focus': {
+        borderColor: vars.color.secondary50,
+        outlineWidth: rem(4),
+        outlineStyle: 'solid',
+        outlineOffset: rem(-4),
+        outlineColor: vars.color.secondary50,
+      },
       '&:disabled': {
         cursor: 'not-allowed',
         backgroundColor: vars.color.primary0,
