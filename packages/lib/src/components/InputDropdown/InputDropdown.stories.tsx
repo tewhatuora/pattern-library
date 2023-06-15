@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { InputDropdown, InputDropdownProps } from './InputDropdown';
 import icons from '../Icon/icons';
@@ -105,7 +105,7 @@ export const Default = (args: InputDropdownProps) => {
     setValue(e.target.value);
   };
 
-  return <InputDropdown {...args} options={options} value={value} onChange={handleChange} />;
+  return <InputDropdown {...args} name="select_1" options={options} value={value} onChange={handleChange} />;
 };
 
 /**
@@ -122,7 +122,7 @@ export const WithFocus = (args: InputDropdownProps) => {
     }
   }, [ref]);
 
-  return <InputDropdown {...args} options={options} placeholder="Filled" ref={ref} />;
+  return <InputDropdown {...args} name="select_2" options={options} placeholder="Filled" ref={ref} />;
 };
 
 export const Filled = (args: InputDropdownProps) => {
@@ -131,7 +131,7 @@ export const Filled = (args: InputDropdownProps) => {
     setValue(e.target.value);
   };
 
-  return <InputDropdown {...args} options={options} value={value} onChange={handleChange} />;
+  return <InputDropdown {...args} name="select_3" options={options} value={value} onChange={handleChange} />;
 };
 
 export const Error = (args: InputDropdownProps) => {
@@ -141,7 +141,14 @@ export const Error = (args: InputDropdownProps) => {
   };
 
   return (
-    <InputDropdown {...args} errorMessage="Error message" options={options} value={value} onChange={handleChange} />
+    <InputDropdown
+      {...args}
+      errorMessage="Error message"
+      name="select_4"
+      options={options}
+      value={value}
+      onChange={handleChange}
+    />
   );
 };
 
@@ -151,5 +158,32 @@ export const Disabled = (args: InputDropdownProps) => {
     setValue(e.target.value);
   };
 
-  return <InputDropdown {...args} disabled options={options} value={value} onChange={handleChange} />;
+  return <InputDropdown {...args} disabled name="select_5" options={options} value={value} onChange={handleChange} />;
+};
+
+export const OnFocusAndBlurEvent = (args: InputDropdownProps) => {
+  const [value, setValue] = useState('filled');
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLSelectElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLSelectElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+
+  return (
+    <InputDropdown
+      {...args}
+      name="select_6"
+      options={options}
+      value={value}
+      onChange={handleChange}
+      onSelectBlur={handleBlur}
+      onSelectFocus={handleFocus}
+    />
+  );
 };

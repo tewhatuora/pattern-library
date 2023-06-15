@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { InputPhone, InputPhoneOnChangeFn, InputPhoneProps } from './InputPhone';
 import icons from '../Icon/icons';
@@ -95,3 +95,14 @@ export const Error = (args: InputPhoneProps) => (
   <InputPhone {...args} errorMessage="Please enter a valid phone number" value="+6421123456" />
 );
 export const Disabled = (args: InputPhoneProps) => <InputPhone {...args} disabled value="+6421123456" />;
+
+export const OnFocusAndBlurEvent = (args: InputPhoneProps) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+  return <InputPhone {...args} value="+6421123456" onBlur={handleBlur} onFocus={handleFocus} />;
+};
