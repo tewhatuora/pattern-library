@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { InputDate, InputDateOnChangeFn, InputDateProps, InputDateValue } from './InputDate';
 import icons from '../Icon/icons';
@@ -102,7 +102,7 @@ export const WithFocus = (args: InputDateProps) => {
     }
   }, [ref]);
 
-  return <InputDate {...args} ref={ref} />;
+  return <InputDate id="input_date_1" {...args} ref={ref} />;
 };
 
 export const Filled = (args: InputDateProps) => {
@@ -116,18 +116,31 @@ export const Filled = (args: InputDateProps) => {
     setYear(year);
   };
 
-  return <InputDate {...args} value={{ day, month, year }} onChange={handleChange} />;
+  return <InputDate {...args} id="input_date_2" value={{ day, month, year }} onChange={handleChange} />;
 };
 export const SingleError = (args: InputDateProps) => (
-  <InputDate {...args} errorMessage="Day is required" errors={{ day: 'Day is required ' }} />
+  <InputDate {...args} errorMessage="Day is required" errors={{ day: 'Day is required ' }} id="input_date_3" />
 );
 export const FullError = (args: InputDateProps) => (
   <InputDate
     {...args}
     errorMessage="Please enter a date"
     errors={{ day: 'Day is required', month: 'Month is required', year: 'Year is required' }}
+    id="input_date_4"
   />
 );
 export const Disabled = (args: InputDateProps) => (
-  <InputDate {...args} disabled value={{ day: '30', month: '09', year: '2022' }} />
+  <InputDate {...args} disabled id="input_date_5" value={{ day: '30', month: '09', year: '2022' }} />
 );
+
+export const OnFocusAndBlurEvent = (args: InputDateProps) => {
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  return <InputDate {...args} onBlur={handleBlur} onFocus={handleFocus} />;
+};

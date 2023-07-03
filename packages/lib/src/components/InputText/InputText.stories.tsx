@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { InputText, InputTextProps } from './InputText';
 import icons from '../Icon/icons';
@@ -137,4 +137,15 @@ export const Error = (args: InputTextProps) => {
 export const Disabled = (args: InputTextProps) => {
   const [value, setValue] = useState('Filled');
   return <InputText {...args} disabled value={value} onChange={(e) => setValue(e.target.value)} />;
+};
+
+export const OnFocusAndBlurEvent = (args: InputTextProps) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+  return <InputText {...args} onBlur={handleBlur} onFocus={handleFocus} />;
 };
