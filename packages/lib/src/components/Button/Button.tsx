@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from './ButtonRoot';
+import { UseTextProps } from '../../hooks/typography';
 
 import { IconType } from '../Icon/icons';
 import fontWeightForButton from '../../utils/fontWeightForButton';
@@ -21,6 +22,8 @@ type KeysUnder<T, K extends PropertyKey> = T extends object
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
 export type ButtonProps = {
+  /** Font weight for `<Text>` */
+  weight?: UseTextProps['weight'];
   /** Icon to display **/
   icon?: IconType;
   /** Where to position the icon */
@@ -57,6 +60,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     disabled,
     className,
     icon,
+    weight = fontWeightForButton(variant),
     iconPosition = 'right',
     href,
     onClick,
@@ -95,7 +99,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       )}
 
       {!!children && (
-        <Text size="medium" weight={fontWeightForButton(variant)}>
+        <Text size="medium" weight={weight}>
           {children}
         </Text>
       )}
