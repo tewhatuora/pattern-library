@@ -1,12 +1,21 @@
 import { style } from '@vanilla-extract/css';
 
+import { calc } from '@vanilla-extract/css-utils';
+
 import { rem } from '@/src/css/helpers';
+
+import { focusOutline } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 export const group = style({
   display: 'flex',
+});
+
+export const buttonText = style({
+  paddingLeft: rem(4),
+  paddingRight: rem(4),
 });
 
 export const button = style([
@@ -35,7 +44,14 @@ export const button = style([
         borderColor: vars.color.primary75,
       },
       '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
-      '&:focus': { borderColor: vars.color.secondary50, borderWidth: rem(4) },
+      '&:focus': {
+        outline: focusOutline,
+        outlineOffset: calc.multiply(vars.borderWidth.xlarge, -1),
+      },
+      '&:focus:not(:focus-visible)': {
+        outline: 'none',
+      },
+
       '&:disabled': {
         cursor: 'not-allowed',
         backgroundColor: vars.color.primary0,
