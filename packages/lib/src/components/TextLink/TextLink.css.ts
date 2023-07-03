@@ -3,41 +3,78 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { recipe } from '@vanilla-extract/recipes';
 
-import { focusOutline } from '@/src/utils/custom';
+import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
-import { atoms } from '../../css/atoms/atoms';
 
-export const link = style([
-  atoms({
-    display: 'inline',
-    color: 'info100',
+export const boldText = style({
+  //
+});
+
+export const boldLinks = style({
+  //
+});
+
+export const noVisited = style({
+  //
+});
+
+export const link = recipe({
+  base: {
+    display: 'inline-flex',
     alignItems: 'center',
-  }),
-  {
-    gap: calc.divide(vars.space.xsmall.tablet, 4),
-    textDecoration: 'underline',
+    color: vars.color.info100,
+    textDecoration: 'none',
+    cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
-    ':hover': {
-      color: vars.color.info75,
-      fontWeight: vars.textWeight['link-hover&focus'],
-    },
-
     selectors: {
-      '&:focus': {
+      '&:hover': {
         color: vars.color.info75,
-        fontWeight: vars.textWeight['link-hover&focus'],
-        outline: focusOutline,
+        textDecoration: 'underline',
       },
-      '&:focus:not(:focus-visible)': {
-        color: 'info100',
-        fontWeight: vars.textWeight['link-normal'],
-        outline: 'none',
+      [`${boldText} &`]: {
+        fontWeight: 'bold',
       },
+      [`${boldLinks} &`]: {
+        fontWeight: 'bold',
+      },
+
+      ...focusSelectorsStyles,
     },
   },
-]);
+
+  variants: {
+    noVisited: {
+      true: {},
+      false: {
+        selectors: {
+          '&:visited': {
+            color: vars.color.visited100,
+          },
+          [`${noVisited} &`]: {
+            color: vars.color.info100,
+          },
+        },
+      },
+    },
+    underline: {
+      true: {
+        selectors: {
+          '&:hover': {
+            textDecoration: 'none',
+          },
+        },
+        textDecoration: 'underline',
+      },
+      false: {},
+    },
+  },
+
+  defaultVariants: {
+    noVisited: false,
+  },
+});
 
 export const inlineIcon = recipe({
   base: {

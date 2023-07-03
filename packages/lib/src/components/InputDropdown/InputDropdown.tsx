@@ -34,8 +34,12 @@ export type InputDropdownProps = {
    * }`
    * */
   options: InputOption[];
+  /** Function to call when the field is left */
+  onSelectBlur?: ChangeEventHandler<HTMLSelectElement>;
   /** Function to call when the value changes */
   onChange?: ChangeEventHandler<HTMLSelectElement>;
+  /** Function to call when the field is focused */
+  onSelectFocus?: ChangeEventHandler<HTMLSelectElement>;
 } & InputLabelProps &
   InputMessageProps &
   OtherInputFieldProps &
@@ -66,7 +70,9 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       tertiaryLabelIcon,
       tertiaryLabelIconPosition,
       onTertiaryLabelClick,
+      onSelectBlur,
       onChange,
+      onSelectFocus,
       options,
       ...props
     }: InputDropdownProps,
@@ -139,7 +145,9 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             name={name}
             required={required}
             value={value}
+            onBlur={onSelectBlur}
             onChange={onChange}
+            onFocus={onSelectFocus}
             {...props}
             ref={ref}
           >

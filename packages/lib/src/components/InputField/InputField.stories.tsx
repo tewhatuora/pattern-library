@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { InputField, InputFieldProps } from './InputField';
 
@@ -13,7 +13,9 @@ export default {
   argTypes: {
     id: { control: false },
     name: { control: false },
+    onBlurEvt: { control: false },
     onChange: { control: false },
+    onFocusEvt: { control: false },
     placeholder: {
       control: {
         type: 'text',
@@ -94,4 +96,14 @@ export const Clearable = (args: InputFieldProps) => {
     setValue(e.target.value);
   };
   return <InputField {...args} clearable value={value} onChange={handleChange} />;
+};
+export const OnFocusAndBlurEvent = (args: InputFieldProps) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+  return <InputField {...args} name="FocusAndBlur" onBlur={handleBlur} onFocus={handleFocus} />;
 };

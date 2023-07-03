@@ -6,7 +6,14 @@ import { Button, ButtonProps } from '../Button/Button';
 
 import * as styles from './TextLinkButton.css';
 
-export type TextLinkButtonProps = Omit<ButtonProps, 'variant' | 'disabled' | 'width' | 'justifyContent'>;
+import { UseTextProps } from '../../hooks/typography';
+
+export type TextLinkButtonProps = {
+  /** Font weight for `<Text>` */
+  weight?: UseTextProps['weight'];
+  /** Option to show underline when not hovered */
+  showUnderline?: boolean;
+} & Omit<ButtonProps, 'variant' | 'disabled' | 'width' | 'justifyContent'>;
 
 /**
  * TextLinkButton
@@ -17,8 +24,18 @@ export type TextLinkButtonProps = Omit<ButtonProps, 'variant' | 'disabled' | 'wi
  * @param props
  * @constructor
  */
-export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>(({ className, ...rest }, ref) => (
-  <Button className={clsx(styles.TextLinkButton, className)} ref={ref} {...rest} variant="link" />
-));
+export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>(
+  ({ weight, className, showUnderline = false, ...rest }, ref) => {
+    return (
+      <Button
+        className={clsx(styles.link({ underline: showUnderline }), styles.TextLinkButton, className)}
+        ref={ref}
+        {...rest}
+        variant="link"
+        weight={weight}
+      />
+    );
+  },
+);
 
 export default TextLinkButton;

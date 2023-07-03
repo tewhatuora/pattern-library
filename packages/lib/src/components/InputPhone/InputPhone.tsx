@@ -55,7 +55,9 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       tertiaryLabelIcon,
       tertiaryLabelIconPosition,
       onTertiaryLabelClick,
+      onFocus,
       onChange,
+      onBlur,
     }: InputPhoneProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
@@ -119,7 +121,9 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             ref={ref as LegacyRef<any>}
             required={required}
             value={value}
+            onBlur={onBlur}
             onChange={onChange || (() => null)}
+            onFocus={onFocus}
           />
           {!!clearable && !!value?.length && <InputClearButton onClear={handleClear} />}
         </div>
