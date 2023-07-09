@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import { ElementType, forwardRef } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import { Label } from '@radix-ui/react-label';
@@ -27,7 +27,7 @@ export type CheckboxProps = {
   /** Whether the checkbox is a required field or not */
   required?: boolean;
   /** Checkbox 'checked' state */
-  checked: boolean;
+  checked?: boolean;
   /** Checkbox 'indeterminate' state */
   indeterminate?: boolean;
   /** Disable the Checkbox */
@@ -49,57 +49,67 @@ export type CheckboxProps = {
  * @constructor
  */
 
-export const Checkbox = ({
-  label,
-  heading,
-  name,
-  id,
-  required = false,
-  checked,
-  indeterminate,
-  onCheckedChange,
-  error = false,
-  disabled = false,
-  className,
-  ...boxProps
-}: CheckboxProps) => {
-  const IndeterminateIconEl = IndeterminateIcon as ElementType;
-  const TickIconEl = TickIcon as ElementType;
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
+  (
+    {
+      label,
+      heading,
+      name,
+      id,
+      required = false,
+      checked,
+      indeterminate,
+      onCheckedChange,
+      error = false,
+      disabled = false,
+      className,
+      value,
+      onChange,
+      ...boxProps
+    },
+    ref,
+  ) => {
+    const IndeterminateIconEl = IndeterminateIcon as ElementType;
+    const TickIconEl = TickIcon as ElementType;
 
-  return (
-    <Box
-      as="div"
-      className={clsx(styles.wrapper, { [styles.disabled]: disabled, [styles.error]: error }, className)}
-      {...boxProps}
-    >
-      <CheckboxPrimitive.Root
-        aria-invalid={error ? 'true' : 'false'}
-        checked={checked}
-        className={styles.checkbox}
-        disabled={disabled}
-        id={id}
-        name={name}
-        required={required}
-        onCheckedChange={onCheckedChange}
+    return (
+      <Box
+        as="div"
+        className={clsx(styles.wrapper, { [styles.disabled]: disabled, [styles.error]: error }, className)}
+        {...boxProps}
       >
-        <CheckboxPrimitive.Indicator className={styles.indicator}>
-          {checked && indeterminate ? <IndeterminateIconEl /> : <TickIconEl />}
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Root>
-      <Label className={styles.label} htmlFor={id}>
-        {heading && (
-          <Text size="medium" weight="bold">
-            {/* Show '*' if field is required and there is a heading, without a label, or both a heading and label */}
-            {heading} {!!required && (!label || (heading && label)) && '*'}
+        <CheckboxPrimitive.Root
+          aria-invalid={error ? 'true' : 'false'}
+          checked={checked}
+          className={styles.checkbox}
+          disabled={disabled}
+          id={id}
+          name={name}
+          ref={ref}
+          required={required}
+          value={value}
+          onChange={onChange}
+          onCheckedChange={onCheckedChange}
+        >
+          <CheckboxPrimitive.Indicator className={styles.indicator}>
+            {checked && indeterminate ? <IndeterminateIconEl /> : <TickIconEl />}
+          </CheckboxPrimitive.Indicator>
+        </CheckboxPrimitive.Root>
+        <Label className={styles.label} htmlFor={id}>
+          {heading && (
+            <Text size="medium" weight="bold">
+              {/* Show '*' if field is required and there is a heading, without a label, or both a heading and label */}
+              {heading} {!!required && (!label || (heading && label)) && '*'}
+            </Text>
+          )}
+          <Text size="medium" weight="regular">
+            {/* Show '*' if field is required and there is no heading */}
+            {label} {!!required && !heading && '*'}
           </Text>
-        )}
-        <Text size="medium" weight="regular">
-          {/* Show '*' if field is required and there is no heading */}
-          {label} {!!required && !heading && '*'}
-        </Text>
-      </Label>
-    </Box>
-  );
-};
+        </Label>
+      </Box>
+    );
+  },
+);
 
 Checkbox.displayName = 'Checkbox';
