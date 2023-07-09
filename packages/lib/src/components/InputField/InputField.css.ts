@@ -3,6 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusSelectorsStyles } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -61,12 +63,6 @@ export const inputBase = style([
         borderColor: vars.color.primary100,
         color: vars.color.primary100,
       },
-      '&:focus, &:focus-within': {
-        color: vars.color.primary100,
-        borderColor: vars.color.caution100,
-        boxShadow: `0 0 0 ${rem(1)} ${vars.color.caution100}`,
-        outline: 'none',
-      },
       '&:disabled': {
         color: vars.color.secondary50,
         borderColor: vars.color.secondary50,
@@ -79,8 +75,8 @@ export const inputBase = style([
       '&[aria-invalid="true"]:not([disabled])': {
         borderColor: vars.color.error100,
         boxShadow: `0 0 0 ${rem(1)} ${vars.color.error100}`,
-        outline: 'none',
       },
+      ...focusSelectorsStyles,
     },
   },
 ]);
