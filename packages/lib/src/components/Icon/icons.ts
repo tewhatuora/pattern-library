@@ -3,6 +3,7 @@ import { FunctionComponent, ReactSVGElement } from 'react';
 import Alert from '../../icons/Alert.svg?component';
 import AlertFilled from '../../icons/AlertFilled.svg?component';
 import Blood from '../../icons/Blood.svg?component';
+import Child from '../../icons/Child.svg?component';
 import Document from '../../icons/Document.svg?component';
 import Email from '../../icons/Email.svg?component';
 import Exempt from '../../icons/Exempt.svg?component';
@@ -53,6 +54,7 @@ export type IconType =
   | 'alert'
   | 'alert_filled'
   | 'blood'
+  | 'child'
   | 'document'
   | 'email'
   | 'exempt'
@@ -104,6 +106,7 @@ export const decorative: IconMap = {
   alert: Alert,
   alert_filled: AlertFilled,
   blood: Blood,
+  child: Child,
   document: Document,
   email: Email,
   exempt: Exempt,
