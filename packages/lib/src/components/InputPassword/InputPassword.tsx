@@ -40,7 +40,9 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       disabled,
       clearable,
       defaultValue,
+      onBlur,
       onChange,
+      onFocus,
     }: InputPasswordProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
@@ -73,7 +75,9 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
         tertiaryLabelIconPosition={tertiaryLabelIconPosition}
         type={type}
         value={value}
+        onBlur={onBlur}
         onChange={onChange}
+        onFocus={onFocus}
         onTertiaryLabelClick={handleToggle}
       />
     );

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, useEffect, useRef, useState } from 'react';
 
 import icons from '../Icon/icons';
 
@@ -118,3 +118,14 @@ export const Error = (args: InputPasswordProps) => (
   <InputPassword {...args} defaultValue="Password1234" errorMessage="Your email or password is incorrect" />
 );
 export const Disabled = (args: InputPasswordProps) => <InputPassword {...args} defaultValue="Password1234" disabled />;
+
+export const OnFocusAndBlurEvent = (args: InputPasswordProps) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+  return <InputPassword {...args} defaultValue="Password1234" onBlur={handleBlur} onFocus={handleFocus} />;
+};

@@ -200,7 +200,7 @@ This will:
 Next, push the commit **_and_** the new tag to origin/remote.
 
 ```bash
-$ git push origin v1.0.1
+$ git push origin @te-whatu-ora/anatomic-themes@1.0.1
 ```
 
 This will run the CI/CD pipeline to:

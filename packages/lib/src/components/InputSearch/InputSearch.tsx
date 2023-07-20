@@ -19,7 +19,7 @@ const INPUT_TYPE = 'search';
  */
 export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
   (
-    { id, name, placeholder, value, defaultValue, onChange, ...rest }: InputSearchProps,
+    { id, name, placeholder, value, defaultValue, onBlur, onChange, onFocus, ...rest }: InputSearchProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const { inputProps } = useTextField(
@@ -48,7 +48,9 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
           ref={ref}
           type={INPUT_TYPE}
           value={value}
+          onBlur={onBlur}
           onChange={onChange}
+          onFocus={onFocus}
         />
         <Button className={styles.button} icon="search" type="submit" variant="primary" />
       </Box>

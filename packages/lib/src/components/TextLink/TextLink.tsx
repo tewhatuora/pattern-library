@@ -1,7 +1,7 @@
-import { PropsWithChildren } from 'react';
+import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
 import clsx from 'clsx';
+import { AriaLinkOptions, useLink } from '@react-aria/link';
 
-import { Box, BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 
 import { UseTextProps, useText } from '../../hooks/typography';
@@ -12,57 +12,81 @@ import * as styles from './TextLink.css';
 
 export const TextLinkStyles = styles;
 
-export type TextLinkProps = Omit<BoxProps, 'size'> & {
+export type TextLinkProps = {
+  /** A URL/path to link to */
+  to: string;
+  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  className?: string;
+  /** A React component to render, e. react-router-dom `<Link />` */
+  component?: FC<any>;
   /** Font size token */
   size?: UseTextProps['size'];
   /** Font weight token */
   weight?: UseTextProps['weight'];
-  /** Text alignment */
-  align?: BoxProps['textAlign'];
-  /** CSS display property */
-  display?: BoxProps['display'];
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
-  className?: BoxProps['className'];
-  /** URL/path to link to if `as` is set to `a` */
-  href?: string;
+  /** Option to not display the visited styles */
+  noVisited?: boolean;
+  /** Option to show underline when not hovered */
+  showUnderline?: boolean;
   /** Icon to display **/
   icon?: IconType;
   /** Where to position the icon */
   iconPosition?: 'left' | 'right';
-};
+} & AriaLinkOptions &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
 
 /**
- * TextLinkButton
- * A semantic button that looks like a link.
- * Because this is a button - we don’t
- * require a ‘pressed state’ as we do
- * with our link components.
+ * TextLink
+ * Links to a specified link on a different page.
  * @param props
  * @constructor
  */
 export const TextLink = ({
-  as = 'a',
-  href,
+  to,
   size = 'medium',
-  align,
-  weight = 'link-normal',
-  children,
+  weight = 'regular',
   icon,
   iconPosition = 'right',
+  noVisited = false,
   className,
-  ...props
+  showUnderline = false,
+  component: LinkComponent,
+  children,
+  ...rest
 }: PropsWithChildren<TextLinkProps>) => {
+  const ref = useRef<HTMLElement>(null);
   const textStyles = useText({ weight, size });
+  const { linkProps } = useLink({ ...rest }, ref);
+  const props = {
+    ...linkProps,
+    ...rest,
+    className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
+    href: to,
+    rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
+  };
 
-  return (
-    <Box as={as} className={clsx(textStyles, styles.link, className)} href={href} textAlign={align} {...props}>
+  const linkChildren = (
+    <>
       {!!icon && iconPosition === 'left' && (
         <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
       )}
-      <span>{children}</span>
+      {children}
       {!!icon && iconPosition === 'right' && (
         <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
       )}
-    </Box>
+    </>
+  );
+
+  if (LinkComponent) {
+    return (
+      <LinkComponent {...props} ref={ref as RefObject<any>}>
+        {linkChildren}
+      </LinkComponent>
+    );
+  }
+
+  return (
+    <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
+      {linkChildren}
+    </a>
   );
 };

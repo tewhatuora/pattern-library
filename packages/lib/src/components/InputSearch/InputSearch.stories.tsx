@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { InputSearch, InputSearchProps } from './InputSearch';
 import DocsPage from '../../../utils/DocsPage';
@@ -64,4 +64,16 @@ export const SearchFormExample = (args: InputSearchProps) => {
       <InputSearch {...args} />
     </form>
   );
+};
+
+export const OnFocusAndBlurEvent = (args: InputSearchProps) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+
+  return <InputSearch {...args} onBlur={handleBlur} onFocus={handleFocus} />;
 };

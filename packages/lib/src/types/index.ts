@@ -19,4 +19,6 @@ export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; typ
 /** Contrast variant for dark/light UI */
 export type ContrastVariant = 'light' | 'dark';
 
+export type AvatarVariant = 'small' | 'large';
+
 export type Color = keyof typeof vars.color;
