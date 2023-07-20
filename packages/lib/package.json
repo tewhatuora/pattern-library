@@ -43,7 +43,8 @@
     "*.css.ts"
   ],
   "files": [
-    "dist"
+    "dist",
+    ".yalc"
   ],
   "repository": "",
   "license": "MIT",
