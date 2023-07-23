@@ -69,6 +69,12 @@ export const link = recipe({
       },
       false: {},
     },
+    inlineIcon: {
+      true: {
+        display: 'inline',
+      },
+      false: {},
+    },
   },
 
   defaultVariants: {
@@ -79,7 +85,6 @@ export const link = recipe({
 export const inlineIcon = recipe({
   base: {
     verticalAlign: 'middle',
-    transform: 'translateY(-9%)',
     display: 'inline-flex',
   },
   variants: {
@@ -90,6 +95,12 @@ export const inlineIcon = recipe({
       right: {
         marginLeft: '0.5rem',
       },
+    },
+    inlineIcon: {
+      true: {
+        transform: 'translateY(-9%)',
+      },
+      false: {},
     },
   },
 });
