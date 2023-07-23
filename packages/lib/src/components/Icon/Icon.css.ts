@@ -9,6 +9,7 @@ export const icon = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  flexShrink: 0,
 });
 
 const variant = {
