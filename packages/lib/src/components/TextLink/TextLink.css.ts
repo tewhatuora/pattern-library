@@ -21,7 +21,7 @@ export const noVisited = style({
 
 export const link = recipe({
   base: {
-    display: 'inline-flex',
+    display: 'inline',
     alignItems: 'center',
     color: vars.color.info100,
     textDecoration: 'none',
@@ -69,12 +69,6 @@ export const link = recipe({
       },
       false: {},
     },
-    inlineIcon: {
-      true: {
-        display: 'inline',
-      },
-      false: {},
-    },
   },
 
   defaultVariants: {
@@ -86,6 +80,7 @@ export const inlineIcon = recipe({
   base: {
     verticalAlign: 'middle',
     display: 'inline-flex',
+    transform: 'translateY(-9%)',
   },
   variants: {
     iconPosition: {
@@ -95,12 +90,6 @@ export const inlineIcon = recipe({
       right: {
         marginLeft: '0.5rem',
       },
-    },
-    inlineIcon: {
-      true: {
-        transform: 'translateY(-9%)',
-      },
-      false: {},
     },
   },
 });

@@ -31,8 +31,6 @@ export type TextLinkProps = {
   icon?: IconType;
   /** Where to position the icon */
   iconPosition?: 'left' | 'right';
-  /** Is the icon aligned with the text */
-  inlineIcon?: boolean;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -48,7 +46,6 @@ export const TextLink = ({
   weight = 'regular',
   icon,
   iconPosition = 'right',
-  inlineIcon = true,
   noVisited = false,
   className,
   showUnderline = false,
@@ -62,7 +59,7 @@ export const TextLink = ({
   const props = {
     ...linkProps,
     ...rest,
-    className: clsx(textStyles, styles.link({ noVisited, inlineIcon, underline: showUnderline }), className),
+    className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
     href: to,
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
   };
@@ -70,19 +67,11 @@ export const TextLink = ({
   const linkChildren = (
     <>
       {!!icon && iconPosition === 'left' && (
-        <Icon
-          className={styles.inlineIcon({ inlineIcon, iconPosition: 'left' })}
-          icon={icon}
-          variant="functionalIcons"
-        />
+        <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
       )}
       {children}
       {!!icon && iconPosition === 'right' && (
-        <Icon
-          className={styles.inlineIcon({ inlineIcon, iconPosition: 'right' })}
-          icon={icon}
-          variant="functionalIcons"
-        />
+        <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
       )}
     </>
   );
