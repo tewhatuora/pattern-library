@@ -22,7 +22,6 @@ export const noVisited = style({
 export const link = recipe({
   base: {
     display: 'inline',
-    alignItems: 'center',
     color: vars.color.info100,
     textDecoration: 'none',
     cursor: 'pointer',
