@@ -21,8 +21,7 @@ export const noVisited = style({
 
 export const link = recipe({
   base: {
-    display: 'inline-flex',
-    alignItems: 'center',
+    display: 'inline',
     color: vars.color.info100,
     textDecoration: 'none',
     cursor: 'pointer',
@@ -79,8 +78,8 @@ export const link = recipe({
 export const inlineIcon = recipe({
   base: {
     verticalAlign: 'middle',
-    transform: 'translateY(-9%)',
     display: 'inline-flex',
+    transform: 'translateY(-9%)',
   },
   variants: {
     iconPosition: {
