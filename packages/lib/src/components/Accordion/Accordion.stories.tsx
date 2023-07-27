@@ -30,7 +30,7 @@ export default {
   },
 };
 
-export const Default = (args: Omit<AccordionRootProps, 'children'>) => {
+export const Default = (args: AccordionRootProps) => {
   return (
     <ContrastWrapper variant={args.variant}>
       <Accordion.Root {...args}>

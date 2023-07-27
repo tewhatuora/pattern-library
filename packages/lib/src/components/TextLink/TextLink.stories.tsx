@@ -1,26 +1,30 @@
-import { PropsWithChildren } from 'react';
+import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
-import icons from '../Icon/icons';
 import { TextLink, TextLinkProps } from './TextLink';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './TextLink.docs.mdx';
 
 export default {
   title: 'Components/TextLink',
   component: TextLink,
   argTypes: {
-    href: {
+    to: {
       control: {
         type: 'text',
       },
       defaultValue: '#',
     },
-    icon: {
-      options: ['', ...Object.keys(icons)],
-      control: { type: 'select' },
+    target: {
+      control: {
+        type: 'select',
+        options: ['_self', '_blank', '_parent', '_top'],
+      },
     },
-    iconPosition: {
-      options: ['left', 'right'],
-      defaultValue: 'right',
-      control: { type: 'radio' },
+    rel: {
+      control: {
+        type: 'text',
+      },
     },
     children: {
       control: {
@@ -28,17 +32,31 @@ export default {
       },
       defaultValue: 'Text link',
     },
+    'aria-label': {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Text link',
+    },
+    component: {
+      control: false,
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
   },
 };
 
-export const Default = (args: PropsWithChildren<TextLinkProps>) => {
-  return <TextLink {...args}>{args.children}</TextLink>;
-};
+export const Default = (args: TextLinkProps) => <TextLink {...args} />;
 
-export const WithIcon = (args: PropsWithChildren<TextLinkProps>) => {
+const RouterLink = forwardRef((props: PropsWithChildren<TextLinkProps>, ref: ForwardedRef<any>) => {
   return (
-    <TextLink icon="info" iconPosition="left" {...args}>
-      {args.children}
-    </TextLink>
+    <a {...props} ref={ref} onClick={(e) => e.preventDefault()}>
+      {props.children}
+    </a>
   );
-};
+});
+
+export const AsComponent = (args: TextLinkProps) => <TextLink {...args} component={RouterLink} />;

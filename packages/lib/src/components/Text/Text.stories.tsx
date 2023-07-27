@@ -34,7 +34,7 @@ export const WithLink = (args: TextProps) => (
   <Text {...args}>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nisi pariatur ratione tempora. Adipisci commodi
     corporis, debitis dolores ducimus,{' '}
-    <TextLink href="#" icon="link">
+    <TextLink icon="link" to="#">
       enim ex explicabo harum
     </TextLink>{' '}
     impedit labore maiores nisi obcaecati omnis soluta.

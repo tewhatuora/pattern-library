@@ -6,16 +6,12 @@ import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages
 />
 
 <Stack space="xxlarge">
-  <ImageBlock
-    width="full"
-    shape="rectangle"
-    heading="Build. Contribute. Evolve."
-    src="/"
-    alt="Anatomic Design System"
-    imagePosition="after"
-  >
-    <Text as="p">Welcome to Anatomic, the themeable Design System for Te Whatu Ora, Health New Zealand</Text>
-  </ImageBlock>
+  <Column columns={4}>
+    <Stack space="medium">
+        <Heading level="1">Build.<br/>Contribute.<br/>Evolve.</Heading>
+        <Text as="p">Welcome to Anatomic, the themeable Design System for Te Whatu Ora, Health New Zealand</Text>
+    </Stack>
+  </Column>
   <Stack space="medium" color="primary100">
     <Card>
       <Row>
@@ -24,9 +20,6 @@ import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages
             <Heading level="4">Components</Heading>
             <Text as="p">Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences.</Text>
           </Stack>
-        </Column>
-        <Column columns={2}>
-          image
         </Column>
       </Row>
     </Card>
@@ -38,9 +31,6 @@ import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages
             <Text as="p">Design tokens are coded names that represent design decisions for elements like color, spacing, and typography. Applying them to our components allows us to use them across multiple brands or themes.</Text>
           </Stack>
         </Column>
-        <Column columns={2}>
-          image
-        </Column>
       </Row>
     </Card>
     <Card>
@@ -51,9 +41,6 @@ import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages
             <Text as="p">Design tokens are coded names that represent design decisions for elements like color, spacing, and typography. Applying them to our components allows us to use them across multiple brands or themes.</Text>
           </Stack>
         </Column>
-        <Column columns={2}>
-          image
-        </Column>
       </Row>
     </Card>
     <Card>
@@ -63,9 +50,6 @@ import { Heading, Text, Row, Column, Stack, ImageBlock, Card } from '../packages
             <Heading level="4">Accessibility</Heading>
             <Text as="p">Design tokens are coded names that represent design decisions for elements like color, spacing, and typography. Applying them to our components allows us to use them across multiple brands or themes.</Text>
           </Stack>
-        </Column>
-        <Column columns={2}>
-          image
         </Column>
       </Row>
     </Card>

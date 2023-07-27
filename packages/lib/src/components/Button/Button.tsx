@@ -1,9 +1,10 @@
-import { ElementType, ReactNode, Ref, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from './ButtonRoot';
+import { UseTextProps } from '../../hooks/typography';
 
 import { IconType } from '../Icon/icons';
 import fontWeightForButton from '../../utils/fontWeightForButton';
@@ -21,6 +22,8 @@ type KeysUnder<T, K extends PropertyKey> = T extends object
 type ColorVariant = KeysUnder<styles.Variants, 'color'>;
 
 export type ButtonProps = {
+  /** Font weight for `<Text>` */
+  weight?: UseTextProps['weight'];
   /** Icon to display **/
   icon?: IconType;
   /** Where to position the icon */
@@ -35,6 +38,8 @@ export type ButtonProps = {
   variant?: ColorVariant;
   /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
+  /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
+  onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   children?: ReactNode | undefined;
 } & Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   AsLink;
@@ -55,11 +60,23 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     disabled,
     className,
     icon,
+    weight = fontWeightForButton(variant),
     iconPosition = 'right',
     href,
+    onClick,
     onPress,
     ...rest
   } = props;
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Call the onPress prop if it's provided
+    // OnClick used for Radix components
+    if (onClick) {
+      onClick(e);
+    } else if (onPress) {
+      onPress(e);
+    }
+  };
 
   return (
     <ButtonRoot
@@ -74,7 +91,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       href={href}
       ref={ref}
       type={type}
-      onPress={onPress}
+      onPress={handleClick}
       {...rest}
     >
       {!!icon && iconPosition === 'left' && (
@@ -82,7 +99,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       )}
 
       {!!children && (
-        <Text size="medium" weight={fontWeightForButton(variant)}>
+        <Text size="medium" weight={weight}>
           {children}
         </Text>
       )}

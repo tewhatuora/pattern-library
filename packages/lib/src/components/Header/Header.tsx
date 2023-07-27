@@ -215,7 +215,9 @@ const HeaderMenuButton = ({ open, onToggle, className, ...props }: HeaderMenuBut
       onPress={onToggle}
       {...props}
     >
-      <Text color={color}>{open ? 'Close' : 'Menu'}</Text>
+      <Text className={styles.mobileMenuButtonText} color={color}>
+        {open ? 'Close' : 'Menu'}
+      </Text>
       <Icon color={color} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
     </ButtonRoot>
   );
