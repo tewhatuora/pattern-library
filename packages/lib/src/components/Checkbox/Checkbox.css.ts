@@ -39,7 +39,6 @@ export const checkbox = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  flexShrink: 0,
   cursor: 'pointer',
   flexShrink: '0',
 
