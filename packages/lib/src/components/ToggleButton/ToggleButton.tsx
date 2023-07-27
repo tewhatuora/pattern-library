@@ -54,12 +54,12 @@ export const ToggleButton = ({
         onValueChange={onChange}
       >
         <ToggleGroupItem aria-label={labelLeft} className={styles.button} value={valueLeft}>
-          <Text size="medium" weight="bold">
+          <Text className={styles.buttonText} size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
         <ToggleGroupItem aria-label={labelRight} className={styles.button} value={valueRight}>
-          <Text size="medium" weight="bold">
+          <Text className={styles.buttonText} size="medium" weight="bold">
             {labelRight}
           </Text>
         </ToggleGroupItem>

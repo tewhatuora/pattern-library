@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, useEffect, useRef, useState } from 'react';
 
 import { Textarea } from './Textarea';
 import { InputTextProps } from '../InputText/InputText';
@@ -141,4 +141,15 @@ export const Clearable = (args: InputTextProps) => {
     setValue(e.target.value);
   };
   return <Textarea {...args} clearable value={value} onChange={handleChange} />;
+};
+
+export const OnFocusAndBlurEvent = (args: InputTextProps) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = '';
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    e.target.style.backgroundColor = 'yellow';
+  };
+  return <Textarea {...args} onBlur={handleBlur} onFocus={handleFocus} />;
 };

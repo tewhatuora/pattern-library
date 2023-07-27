@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic-themes",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Te Whatu Ora - Anatomic Design system. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
@@ -51,5 +51,5 @@
     "dist"
   ],
   "type": "module",
-  "yalcSig": "597a4dc3af7954e1a1b39dd0b7c332a1"
+  "yalcSig": "3d689593aae4ba8a0c00ee49c26c8b61"
 }

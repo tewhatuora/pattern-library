@@ -39,6 +39,7 @@ export const checkbox = style({
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
+  flexShrink: '0',
 
   // Will be overridden by the selectors below
   borderColor: vars.color.primary100,

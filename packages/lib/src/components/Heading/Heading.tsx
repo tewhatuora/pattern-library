@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react';
 
 import clsx from 'clsx';
 
@@ -12,7 +12,7 @@ const resolveDefaultComponent = {
   '4': 'h4',
 } as const;
 
-export type HeadingProps = {
+export type HeadingProps = ComponentPropsWithoutRef<'h1'> & {
   /** Heading level for styling purposes */
   level: HeadingLevel;
   /** Font weight token */
@@ -35,7 +35,7 @@ export type HeadingProps = {
  * Heading component for h1, h2, h3, h4 elements
  */
 export const Heading = forwardRef<HTMLElement, HeadingProps>(
-  ({ level, weight, align, as, children, id, color, className }, ref) => {
+  ({ level, weight, align, as, children, id, color, className, ...props }, ref) => {
     return (
       <Box
         as={as ?? resolveDefaultComponent[level]}
@@ -43,8 +43,8 @@ export const Heading = forwardRef<HTMLElement, HeadingProps>(
         color={color}
         id={id}
         ref={ref}
-        tabIndex={-1} // Allows it to be focused
         textAlign={align}
+        {...props}
       >
         {children}
       </Box>

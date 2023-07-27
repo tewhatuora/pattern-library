@@ -4011,7 +4011,7 @@
   integrity sha512-YzD8MmoC+NnF6TX64h+4pYym81Lq1hw0bNC8MthCxSGFvTiWKjexuCDKumhPKzveq/rS0EvNboRc0fwOJ3gziw==
 
 "@te-whatu-ora/anatomic-themes@file:packages/lib/.yalc/@te-whatu-ora/anatomic-themes":
-  version "1.0.0"
+  version "3.0.0"
 
 "@te-whatu-ora/anatomic@^0.0.64-beta.1":
   version "0.0.64-beta.4"

@@ -1,4 +1,4 @@
-import { ForwardedRef, MutableRefObject, forwardRef, useCallback } from 'react';
+import { FocusEventHandler, ForwardedRef, MutableRefObject, forwardRef, useCallback } from 'react';
 import { useField } from '@react-aria/label';
 import clsx from 'clsx';
 
@@ -47,6 +47,10 @@ export type InputDateProps = Omit<InputLabelProps, 'error'> &
     value?: InputDateValue;
     /** Function to call when either the day, month or year values change */
     onChange?: InputDateOnChangeFn;
+    /** Function to call when either the day, month or year fields is left */
+    onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    /** Function to call when either the day, month or year fields are focused */
+    onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   };
 
 /**
@@ -73,6 +77,8 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
       tertiaryLabelIconPosition,
       onTertiaryLabelClick,
       onChange,
+      onBlur,
+      onFocus,
     }: InputDateProps,
     ref: ForwardedRef<InputDateRefs>,
   ) => {
@@ -87,6 +93,13 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
       errorMessage,
     });
 
+    const handleFocus = useCallback(
+      (e) => {
+        onFocus?.(e);
+      },
+      [onFocus],
+    );
+
     const handleChange = useCallback(
       (e) => {
         const field: 'day' | 'month' | 'year' = e.target.name.split(`${name}_`)?.[1];
@@ -97,6 +110,13 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
         onChange?.(newValue);
       },
       [name, value, onChange],
+    );
+
+    const handleBlur = useCallback(
+      (e) => {
+        onBlur?.(e);
+      },
+      [onBlur],
     );
 
     return (
@@ -133,7 +153,9 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               required={required}
               type="number"
               value={value?.day}
+              onBlur={handleBlur}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
           </Box>
           <Box className={styles.fieldSegment}>
@@ -153,7 +175,9 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               required={required}
               type="number"
               value={value?.month}
+              onBlur={handleBlur}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
           </Box>
           <Box className={styles.fieldSegment}>
@@ -172,7 +196,9 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               required={required}
               type="number"
               value={value?.year}
+              onBlur={handleBlur}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
           </Box>
         </div>

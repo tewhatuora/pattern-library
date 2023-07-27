@@ -38,7 +38,7 @@ stages:
       if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
 
     - &run_for_new_themes_version # Run if semver tag is pushed to any branch
-      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@c?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      if: '$CI_COMMIT_TAG =~ /^@te-whatu-ora\/anatomic-themes@([0-9]+)\.([0-9]+)\.([0-9]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
 
     - &run_for_prerelease_lib_version # Run if prerelease semver tag is pushed to any branch
       if: '$CI_COMMIT_TAG =~ /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))+(?:\+[0-9A-Za-z-]+)?$/ && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
@@ -51,7 +51,7 @@ stages:
       when: always
 
     - &run_for_chromatic_main
-      if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_PROJECT_URL == "https://gitlab.com/healthnz-ult/c3/anatomic"'
+      if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: always
       allow_failure: true
 
@@ -107,9 +107,12 @@ chromatic_publish:
     - job: build
       artifacts: true
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
+    - yarn chromatic --branch-name $CI_COMMIT_REF_SLUG
   rules:
     - *run_for_chromatic_main
+  environment:
+    name: storybook-preview/$CI_COMMIT_REF_SLUG
+    url: https://$CI_COMMIT_REF_SLUG--63e2dc298c48a90e1a5ae1d5.chromatic.com
 
 npm_lib_publish:
   rules:
@@ -136,7 +139,6 @@ npm_themes_publish:
   script:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
     - yarn publish --cwd ./packages/themes --tag latest
-
 
 npm_lib_publish_prerelease:
   rules:

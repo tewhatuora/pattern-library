@@ -1,6 +1,7 @@
 import {
   ChangeEvent,
   ChangeEventHandler,
+  FocusEventHandler,
   ForwardedRef,
   HTMLInputTypeAttribute,
   InputHTMLAttributes,
@@ -47,6 +48,10 @@ export type BaseInputFieldProps = {
   defaultValue?: string;
   /** Function to call when the field value changes */
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  /** Function to call when the field is left */
+  onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  /** Function to call when the field is focused */
+  onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
 
 export type InputFieldProps = BaseInputFieldProps & InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>;
@@ -72,7 +77,9 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       multiline,
       type = 'text',
       rows,
+      onBlur,
       onChange,
+      onFocus,
       value,
       ...props
     }: InputFieldProps,
@@ -103,7 +110,9 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       required,
       type,
       rows,
+      onBlur,
       onChange,
+      onFocus,
       'aria-invalid': error,
       ...valueProps,
       ...props,
