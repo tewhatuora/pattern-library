@@ -291,7 +291,7 @@ const tokens$1 = {
   typography: {
     fontFamily: "Poppins",
     fontWeight: {
-      black: "700",
+      black: "900",
       bold: "700",
       regular: "400",
       medium: "500",
@@ -302,82 +302,85 @@ const tokens$1 = {
       number: "400"
     },
     heading: {
-      weight: { black: "700", bold: "700", regular: "400" },
+      weight: { black: "900", bold: "700", regular: "400" },
       level: {
         "1": {
-          tablet: { fontSize: "3.125rem", lineHeight: "3.594rem" },
-          mobile: { fontSize: "2.5rem", lineHeight: "2.875rem" }
+          tablet: { fontSize: "2.625rem", lineHeight: "3.019rem" },
+          mobile: { fontSize: "2rem", lineHeight: "2.3rem" }
         },
-        "2": { tablet: { fontSize: "2rem", lineHeight: "2.4rem" }, mobile: { fontSize: "2rem", lineHeight: "2.4rem" } },
+        "2": {
+          tablet: { fontSize: "1.875rem", lineHeight: "2.25rem" },
+          mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
+        },
         "3": {
           tablet: { fontSize: "1.5rem", lineHeight: "1.8rem" },
-          mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
+          mobile: { fontSize: "1.25rem", lineHeight: "1.5rem" }
         },
         "4": {
           tablet: { fontSize: "1.25rem", lineHeight: "1.625rem" },
-          mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
+          mobile: { fontSize: "1.125rem", lineHeight: "1.462rem" }
         }
       }
     },
     text: {
       large: {
         tablet: { fontSize: "1.25rem", lineHeight: "1.625rem" },
-        mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
+        mobile: { fontSize: "1.125rem", lineHeight: "1.462rem" }
       },
       medium: {
-        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
+        tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
         mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
       },
       small: {
-        tablet: { fontSize: "0.875rem", lineHeight: "1.4rem" },
+        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
         mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
       },
       xsmall: {
-        tablet: { fontSize: "0.75rem", lineHeight: "1.2rem" },
+        tablet: { fontSize: "0.875rem", lineHeight: "1.4rem" },
         mobile: { fontSize: "0.75rem", lineHeight: "1.2rem" }
       }
     }
   },
   space: {
-    xlarge: { mobile: "2.5rem", tablet: "2.5rem" },
-    large: { mobile: "2rem", tablet: "2rem" },
-    medium: { mobile: "1.5rem", tablet: "1.5rem" },
-    small: { mobile: "1rem", tablet: "1rem" },
-    xxlarge: { tablet: "3rem", mobile: "3rem" },
-    xsmall: { tablet: "0.5rem", mobile: "0.5rem" }
+    xlarge: { mobile: "2.5rem", tablet: "3rem" },
+    large: { mobile: "2rem", tablet: "2.5rem" },
+    medium: { mobile: "1.5rem", tablet: "2rem" },
+    small: { mobile: "1rem", tablet: "1.5rem" },
+    xxlarge: { tablet: "3.5rem", mobile: "3rem" },
+    xsmall: { tablet: "1rem", mobile: "0.5rem" }
   },
   transitions: { fast: "transform .125s ease, opacity .125s ease" },
   border: {
     radius: {
-      standard: { topLeft: "0rem", topRight: "0rem", bottomLeft: "0rem", bottomRight: "0rem" },
-      button: { topLeft: "1.875rem", topRight: "1.875rem", bottomLeft: "1.875rem", bottomRight: "1.875rem" },
+      standard: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" },
+      button: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
       inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      tags: { topLeft: "6.25rem", topRight: "6.25rem", bottomLeft: "6.25rem", bottomRight: "6.25rem" }
+      tags: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" }
     },
     width: { small: "0.063rem", medium: "0.125rem", large: "0.188rem", xlarge: "0.25rem" }
   },
   shadows: { primary: "0rem 0.25rem 1.875rem 0rem #4040401a" },
   color: {
     primary0: "#ffffff",
-    primary5: "#f6fbfc",
-    primary25: "#eef5f8",
-    primary50: "#c8e3ec",
-    primary75: "#3f88b8",
-    primary100: "#00558c",
+    primary5: "#f3f9f9",
+    primary25: "#e6f2f4",
+    primary50: "#c2dfe3",
+    primary75: "#49a1ab",
+    primary100: "#0c818f",
     primary110: "#15284c",
     secondary0: "#ffffff",
-    secondary5: "#fffefb",
-    secondary25: "#c8d2e5",
-    secondary50: "#8b9ec2",
-    secondary75: "#485f8c",
+    secondary5: "#f3f4f6",
+    secondary25: "#e7e9ed",
+    secondary50: "#c4c9d2",
+    secondary75: "#505e79",
     secondary100: "#15284c",
     secondary110: "#00091a",
     tertiary0: "#ffffff",
-    tertiary5: "#dbeaf4",
-    tertiary25: "#99c6e3",
-    tertiary50: "#2c6f9a",
-    tertiary75: "#3f88b8",
-    tertiary100: "#00558c",
+    tertiary5: "#f3f9f9",
+    tertiary25: "#e6f2fa",
+    tertiary50: "#c2dfe3",
+    tertiary75: "#49a1ab",
+    tertiary100: "#0c818f",
     tertiary110: "#15284c",
     positive0: "#ffffff",
     positive5: "#f8fdf9",

@@ -3,7 +3,7 @@
   "packages": {
     "@te-whatu-ora/anatomic-themes": {
       "version": "3.0.0",
-      "signature": "3d689593aae4ba8a0c00ee49c26c8b61",
+      "signature": "9a4c92ddc1082095e86873b139d316b6",
       "file": true,
       "replaced": "^2.0.0"
     }

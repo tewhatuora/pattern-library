@@ -98,6 +98,9 @@ declare const _default: (tokens: Tokens) => {
         annotation5: string;
         annotation0: string;
         visited100: string;
+        focus100: string;
+        textprimary: string;
+        textsecondary: string;
     };
     readonly shadow: {
         primary: string;

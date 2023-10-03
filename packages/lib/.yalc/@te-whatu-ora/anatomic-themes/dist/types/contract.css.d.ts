@@ -227,6 +227,9 @@ export declare const contract: {
         annotation5: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         annotation0: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         visited100: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        focus100: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        textprimary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        textsecondary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     };
     readonly shadow: {
         primary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
