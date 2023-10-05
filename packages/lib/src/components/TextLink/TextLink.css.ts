@@ -22,14 +22,14 @@ export const noVisited = style({
 export const link = recipe({
   base: {
     display: 'inline',
-    color: vars.color.info100,
+    color: 'black',
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
-        color: vars.color.info75,
+        color: vars.color.secondary75,
         textDecoration: 'underline',
       },
       [`${boldText} &`]: {
@@ -52,7 +52,7 @@ export const link = recipe({
             color: vars.color.visited100,
           },
           [`${noVisited} &`]: {
-            color: vars.color.info100,
+            color: 'black',
           },
         },
       },
