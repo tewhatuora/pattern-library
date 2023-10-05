@@ -7,7 +7,7 @@ import { fontFamily } from '../../hooks/typography/typography.css';
 
 export const list = style([
   {
-    color: vars.color.primary100,
+    color: 'black',
   },
   responsiveStyle({
     mobile: {
@@ -27,7 +27,7 @@ export const boldText = style({
 export const crumb = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  color: vars.color.primary100,
+  color: 'black',
   fontWeight: vars.textWeight.regular,
 
   selectors: {
@@ -69,7 +69,7 @@ export const separator = style(
 const defaultStyles = style([
   fontFamily,
   {
-    color: vars.color.primary100,
+    color: 'black',
   },
 ]);
 

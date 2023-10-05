@@ -35,7 +35,7 @@ export const root = styleVariants({
     base,
     {
       vars: {
-        [colorVar]: vars.color.primary100,
+        [colorVar]: 'black',
         [borderColorVar]: vars.color.primary0,
       },
     },
