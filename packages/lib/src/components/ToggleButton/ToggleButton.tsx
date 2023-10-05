@@ -20,6 +20,7 @@ export type ToggleButtonProps = {
   defaultValue?: string;
   /** Disabled state */
   disabled?: boolean;
+  value?: string;
   /** Function to call when the button is changed/toggles */
   onChange?: (value: string) => void;
 };
@@ -39,6 +40,7 @@ export const ToggleButton = ({
   valueLeft,
   valueRight,
   defaultValue,
+  value,
   onChange,
   disabled,
   ...boxProps
@@ -51,6 +53,7 @@ export const ToggleButton = ({
         defaultValue={defaultValue}
         disabled={disabled}
         type="single"
+        value={value}
         onValueChange={onChange}
       >
         <ToggleGroupItem aria-label={labelLeft} className={styles.button} value={valueLeft}>
