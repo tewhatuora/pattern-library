@@ -18,14 +18,14 @@ const base = style([
   fontWeight.regular,
   text.medium,
   {
-    color: vars.color.primary75,
+    color: 'black',
     textDecoration: 'none',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
 
     selectors: {
       '&:hover': {
-        color: vars.color.primary100,
+        color: vars.color.secondary75,
         textDecoration: 'underline',
       },
       ...focusSelectorsStyles,
@@ -39,7 +39,7 @@ export const link = styleVariants({
     base,
     {
       fontWeight: vars.textWeight.bold,
-      color: vars.color.primary100,
+      color: 'black',
     },
   ],
 });
