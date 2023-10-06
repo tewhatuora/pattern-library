@@ -1,8 +1,6 @@
 import { ElementType, forwardRef } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
-import { Label } from '@radix-ui/react-label';
-
 import clsx from 'clsx';
 
 import { Text } from '../Text/Text';
@@ -17,7 +15,7 @@ export const CheckboxStyles = styles;
 
 export type CheckboxProps = {
   /** A label for the checkbox */
-  label: string;
+  label?: string | JSX.Element;
   /** A heading for the checkbox */
   heading?: string;
   /** Field id for the checkbox */
@@ -36,7 +34,7 @@ export type CheckboxProps = {
   error?: boolean;
   /** A function that will be called when toggling the Checkbox */
   onCheckedChange?: (checked: boolean) => void;
-} & BoxProps;
+} & Omit<BoxProps, 'label'>;
 
 /**
  * Checkbox Component
@@ -53,6 +51,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   (
     {
       label,
+      children,
       heading,
       name,
       id,
@@ -95,18 +94,22 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
             {checked && indeterminate ? <IndeterminateIconEl /> : <TickIconEl />}
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
-        <Label className={styles.label} htmlFor={id}>
+        <label className={styles.label} htmlFor={id}>
           {heading && (
             <Text size="medium" weight="bold">
               {/* Show '*' if field is required and there is a heading, without a label, or both a heading and label */}
               {heading} {!!required && (!label || (heading && label)) && '*'}
             </Text>
           )}
-          <Text size="medium" weight="regular">
-            {/* Show '*' if field is required and there is no heading */}
-            {label} {!!required && !heading && '*'}
-          </Text>
-        </Label>
+          {label ? (
+            <Text size="medium" weight="regular">
+              {/* Show '*' if field is required and there is no heading */}
+              {label} {!!required && !heading && '*'}
+            </Text>
+          ) : (
+            children
+          )}
+        </label>
       </Box>
     );
   },
