@@ -31,6 +31,7 @@ export type InputMessageProps = {
  * @constructor
  */
 export const InputMessage = ({
+  id,
   className,
   helperText,
   errorMessage,
@@ -43,7 +44,7 @@ export const InputMessage = ({
   }
 
   return (
-    <div className={clsx(styles.message, className)}>
+    <div className={clsx(styles.message, className)} id={id}>
       {!!helperText && (
         <Text className={styles.helperText} size="xsmall" weight="regular">
           <span {...descriptionProps}>{helperText}</span>
