@@ -55,7 +55,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
   const {
     children,
     as = 'button',
-    type = 'button',
     variant = 'primary',
     disabled,
     className,
@@ -90,7 +89,6 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       disabled={disabled}
       href={href}
       ref={ref}
-      type={type}
       onPress={handleClick}
       {...rest}
     >

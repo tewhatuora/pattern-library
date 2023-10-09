@@ -63,7 +63,6 @@ export const InputLabel = ({
   href,
   error = false,
   disabled,
-  required,
   labelProps,
 }: InputLabelProps) => {
   const labelColor = error && !disabled ? 'error100' : 'primary100';
@@ -72,7 +71,7 @@ export const InputLabel = ({
     <Box display="flex" justifyContent="spaceBetween">
       <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
         <Text color={labelColor} weight="bold">
-          {label} {!!required && '*'}
+          {label}
         </Text>
         <Text color={labelColor} size="small">
           {subheading}
