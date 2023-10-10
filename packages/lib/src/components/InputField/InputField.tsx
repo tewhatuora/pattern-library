@@ -120,7 +120,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
         {
           [styles.input.base]: true,
           [styles.input.multiline]: multiline,
-          [styles.input.clearable]: hasClearButton,
+          [styles.input.clearable]: clearable,
         },
         textSizeClasses,
         props.className,
