@@ -14,7 +14,7 @@ export const container = style([
   },
   atoms({
     display: 'flex',
-    color: 'primary100',
+    color: 'neutral100',
     borderColor: 'primary100',
   }),
 ]);

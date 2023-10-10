@@ -55,13 +55,13 @@ export const inputBase = style([
     borderWidth: vars.borderWidth.small,
     borderColor: vars.color.primary50,
     borderStyle: 'solid',
-    color: vars.color.primary100,
+    color: vars.color.neutral100,
     backgroundColor: vars.color.primary0,
 
     selectors: {
       '&:active': {
         borderColor: vars.color.primary100,
-        color: vars.color.primary100,
+        color: vars.color.neutral100,
       },
       '&:disabled': {
         color: vars.color.secondary50,
@@ -100,7 +100,7 @@ export const input = styleVariants({
       position: 'relative',
       zIndex: 2,
       backgroundColor: 'transparent',
-      color: vars.color.primary100,
+      color: vars.color.neutral100,
     },
     responsiveStyle({
       mobile: {

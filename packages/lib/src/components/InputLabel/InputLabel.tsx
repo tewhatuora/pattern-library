@@ -65,7 +65,7 @@ export const InputLabel = ({
   disabled,
   labelProps,
 }: InputLabelProps) => {
-  const labelColor = error && !disabled ? 'error100' : 'primary100';
+  const labelColor = error && !disabled ? 'error100' : 'neutral100';
 
   return (
     <Box display="flex" justifyContent="spaceBetween">
