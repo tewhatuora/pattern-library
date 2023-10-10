@@ -29,6 +29,7 @@ export const button = style([
     color: vars.color.primary100,
     paddingTop: vars.space.xsmall.tablet,
     paddingBottom: vars.space.xsmall.tablet,
+    cursor: 'pointer',
     width: '100%',
 
     selectors: {
