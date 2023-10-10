@@ -5,6 +5,14 @@ import { rem } from '@/src/css/helpers';
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
+export const countryDropdownSelect = style({
+  selectors: {
+    '&:focus': {
+      backgroundColor: 'transparent',
+    },
+  },
+});
+
 export const countryDropdown = style([
   {
     position: 'relative',

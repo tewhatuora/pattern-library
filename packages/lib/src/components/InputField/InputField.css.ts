@@ -99,7 +99,7 @@ export const input = styleVariants({
     {
       position: 'relative',
       zIndex: 2,
-      backgroundColor: 'transparent',
+      // backgroundColor: 'transparent',
       color: vars.color.neutral100,
     },
     responsiveStyle({

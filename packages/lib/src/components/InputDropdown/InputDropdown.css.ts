@@ -12,7 +12,7 @@ export const chevron = style([
     transform: 'translateY(-50%)',
     color: vars.color.primary100,
     cursor: 'pointer',
-    zIndex: 1,
+    zIndex: 2,
   },
   responsiveStyle({
     mobile: {

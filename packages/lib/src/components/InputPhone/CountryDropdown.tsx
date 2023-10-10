@@ -43,6 +43,7 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
     <div className={styles.countryDropdown}>
       <InputDropdown
         {...props}
+        className={styles.countryDropdownSelect}
         id="countryCode"
         name="countryCode"
         options={countryOptions}
