@@ -6,6 +6,7 @@ import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const countryDropdownSelect = style({
+  backgroundColor: 'transparent',
   selectors: {
     '&:focus': {
       backgroundColor: 'transparent',
@@ -16,7 +17,7 @@ export const countryDropdownSelect = style({
 export const countryDropdown = style([
   {
     position: 'relative',
-    backgroundColor: vars.color.primary0,
+    // backgroundColor: vars.color.primary0,
     borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
     borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
     flexShrink: 0,
