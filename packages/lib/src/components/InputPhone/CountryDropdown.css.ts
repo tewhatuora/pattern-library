@@ -9,6 +9,9 @@ export const countryDropdown = style([
   {
     position: 'relative',
     backgroundColor: vars.color.primary0,
+    borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
+    borderBottomLeftRadius: vars.borderRadius.bottomLeft.inputs,
+    flexShrink: 0,
     selectors: {
       '&:focus-within': {
         backgroundColor: vars.color.primary5,
@@ -31,19 +34,20 @@ export const flagWrapperBase = style([
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: rem(44),
     height: '100%',
-    left: vars.space.xsmall.tablet,
     top: '0',
     zIndex: '2',
     backgroundColor: vars.color.primary0,
+    pointerEvents: 'none',
   },
   responsiveStyle({
     mobile: {
+      left: 16,
       width: rem(36),
     },
     tablet: {
-      width: rem(44),
+      left: 16,
+      width: rem(60),
     },
   }),
 ]);
@@ -57,6 +61,20 @@ export const flagWrapper = styleVariants({
     },
   ],
 });
+
+export const flagIcon = style([
+  {
+    display: 'flex',
+  },
+  responsiveStyle({
+    mobile: {
+      width: rem(36),
+    },
+    tablet: {
+      width: rem(42),
+    },
+  }),
+]);
 
 globalStyle(`${countryDropdown}:focus-within ${flagWrapperBase}`, {
   backgroundColor: vars.color.primary5,

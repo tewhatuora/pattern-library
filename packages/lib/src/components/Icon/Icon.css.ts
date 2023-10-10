@@ -14,32 +14,32 @@ export const icon = style({
 const variant = {
   decorativeIcons: responsiveStyle({
     mobile: {
-      height: vars.space.medium.mobile,
-      width: vars.space.medium.mobile,
+      height: 24,
+      width: 24,
     },
     tablet: {
-      height: vars.space.large.tablet,
-      width: vars.space.large.tablet,
+      height: 40,
+      width: 40,
     },
   }),
   functionalIcons: responsiveStyle({
     mobile: {
-      height: vars.space.small.mobile,
-      width: vars.space.small.mobile,
+      height: 16,
+      width: 16,
     },
     tablet: {
-      height: vars.space.small.tablet,
-      width: vars.space.small.tablet,
+      height: 24,
+      width: 24,
     },
   }),
   socialIcons: responsiveStyle({
     mobile: {
-      height: vars.space.large.mobile,
-      width: vars.space.large.mobile,
+      height: 32,
+      width: 32,
     },
     tablet: {
-      height: vars.space.large.tablet,
-      width: vars.space.large.tablet,
+      height: 32,
+      width: 32,
     },
   }),
   tagIcon: responsiveStyle({

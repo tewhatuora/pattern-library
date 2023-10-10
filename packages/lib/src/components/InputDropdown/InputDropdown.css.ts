@@ -16,11 +16,11 @@ export const chevron = style([
   },
   responsiveStyle({
     mobile: {
-      right: vars.space.xsmall.mobile,
+      right: 8,
     },
-    tablet: {
-      right: vars.space.xsmall.tablet,
-    },
+    // tablet: {
+    //   right: vars.space.xsmall.tablet,
+    // },
   }),
 ]);
 

@@ -43,14 +43,14 @@ export const inputBase = style([
   }),
   {
     appearance: 'none',
-    overflow: 'hidden',
+    // overflow: 'hidden',
     width: '100%',
-    height: vars.space.xxlarge.tablet,
-    lineHeight: vars.space.xxlarge.tablet,
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: vars.space.xsmall.tablet,
-    paddingRight: vars.space.xsmall.tablet,
+    // height: rem(),
+    lineHeight: 1.6,
+    paddingTop: 14,
+    paddingBottom: 14,
+    paddingLeft: 16,
+    paddingRight: 16,
     borderRadius: vars.borderRadiusAll.inputs,
     borderWidth: vars.borderWidth.small,
     borderColor: vars.color.primary50,
@@ -85,9 +85,14 @@ export const input = styleVariants({
   base: [inputBase],
   clearable: [
     inputBase,
-    {
-      paddingRight: calc.multiply(vars.space.xsmall.tablet, 3),
-    },
+    responsiveStyle({
+      mobile: {
+        paddingRight: 48,
+      },
+      tablet: {
+        paddingRight: 56,
+      },
+    }),
   ],
   dropdown: [
     inputBase,
@@ -99,10 +104,10 @@ export const input = styleVariants({
     },
     responsiveStyle({
       mobile: {
-        paddingRight: calc(vars.space.xsmall.mobile).multiply(2).add(vars.space.small.mobile).toString(),
+        paddingRight: 32,
       },
       tablet: {
-        paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
+        paddingRight: 40,
       },
     }),
   ],
@@ -140,12 +145,20 @@ export const input = styleVariants({
   ],
 });
 
+export const errorBorder = style({
+  borderColor: vars.color.error100,
+  boxShadow: `0 0 0 ${rem(1)} ${vars.color.error100}`,
+});
+
 globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
-  outline: 'none',
   boxShadow: 'none',
 });
 
+globalStyle(`${input.phone} input${inputBase}`, {
+  borderTopLeftRadius: '0',
+  borderBottomLeftRadius: '0',
+});
 globalStyle(`${input.phone} select${inputBase}`, {
   borderTopRightRadius: '0',
   borderBottomRightRadius: '0',
@@ -154,14 +167,19 @@ globalStyle(`${input.phone} select${inputBase}`, {
 export const clearButtonBase = style([
   {
     position: 'absolute',
-    top: rem(1),
-    right: 0,
+    top: '50%',
+    right: 16,
     display: 'flex',
     alignItems: 'center',
-    height: vars.space.xxlarge.tablet,
-    paddingLeft: vars.space.xsmall.tablet,
-    paddingRight: vars.space.xsmall.tablet,
+    justifyContent: 'center',
+    minWidth: 24,
+    minHeight: 24,
+    // height: vars.space.xxlarge.tablet,
+    // paddingLeft: vars.space.xsmall.tablet,
+    // paddingRight: vars.space.xsmall.tablet,
+    borderRadius: '50%',
     cursor: 'pointer',
+    transform: 'translateY(-50%)',
     zIndex: 2,
   },
 ]);

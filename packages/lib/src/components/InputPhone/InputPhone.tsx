@@ -100,11 +100,13 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           <PhoneInput
             id={id}
             {...inputProps}
+            aria-invalid={!!errorMessage}
             className={clsx(
               inputStyles.input.phone,
               styles.input,
               {
                 [inputStyles.input.base]: !errorMessage,
+                [inputStyles.errorBorder]: !!errorMessage,
               },
               textSizeClasses,
             )}
@@ -115,7 +117,6 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             displayInitialValueAsLocalNumber
             inputComponent={InputField}
             international={international}
-            invalid={(!!errorMessage).toString()}
             name={name}
             placeholder={placeholder}
             ref={ref as LegacyRef<any>}

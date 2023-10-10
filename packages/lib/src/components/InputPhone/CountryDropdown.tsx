@@ -26,7 +26,9 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
   );
 
   const Flag = useMemo(() => {
-    return hasFlag(value || '') ? Flags[value as keyof FlagComponent] : () => <Icon icon="international" />;
+    return hasFlag(value || '')
+      ? Flags[value as keyof FlagComponent]
+      : () => <Icon icon="international" style={{ width: 'auto', height: 'auto' }} />;
   }, [value]);
 
   const countryOptions = useMemo(() => {
@@ -53,7 +55,9 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
           [styles.flagWrapper.international]: !value || value == 'International',
         })}
       >
-        <Flag />
+        <div className={styles.flagIcon}>
+          <Flag />
+        </div>
       </div>
     </div>
   );
