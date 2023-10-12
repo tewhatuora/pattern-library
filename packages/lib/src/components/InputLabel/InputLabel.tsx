@@ -1,4 +1,4 @@
-import { LabelHTMLAttributes } from 'react';
+import { ElementType, LabelHTMLAttributes } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -12,6 +12,7 @@ import { IconType } from '../Icon/icons';
 export const InputLabelStyles = styles;
 
 export type InputLabelProps = {
+  as?: ElementType;
   /** Label for the field */
   label: string;
   /** Optional label subheading */
@@ -52,6 +53,7 @@ export type InputLabelProps = {
  * @constructor
  */
 export const InputLabel = ({
+  as = 'label',
   label,
   subheading,
   tertiaryLabel,
@@ -69,7 +71,7 @@ export const InputLabel = ({
 
   return (
     <Box display="flex" justifyContent="spaceBetween">
-      <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
+      <Box as={as} htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
         <Text color={labelColor} weight="bold">
           {label}
         </Text>
