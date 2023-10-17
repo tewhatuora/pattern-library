@@ -28,7 +28,7 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
   const Flag = useMemo(() => {
     return hasFlag(value || '')
       ? Flags[value as keyof FlagComponent]
-      : () => <Icon icon="international" style={{ width: 'auto', height: 'auto' }} />;
+      : () => <Icon icon="international" style={{ width: '100%', height: 'auto' }} />;
   }, [value]);
 
   const countryOptions = useMemo(() => {
@@ -57,7 +57,8 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
         })}
       >
         <div className={styles.flagIcon}>
-          <Flag />
+          {/* @ts-expect-error The `style` prop does exist, we just don't have the types for `Flag` */}
+          <Flag style={{ width: '100%' }} />
         </div>
       </div>
     </div>
