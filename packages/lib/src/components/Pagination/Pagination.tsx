@@ -109,7 +109,10 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
       </Box>
       {/* Never show page label when `showPageButtons === true` */}
       {showPageButtons === false || showPageButtons === undefined ? (
-        <Text className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
+        <Text
+          className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}
+          color="neutral100"
+        >
           {current} of {pages}
         </Text>
       ) : null}
