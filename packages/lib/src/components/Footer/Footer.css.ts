@@ -2,11 +2,10 @@ import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/c
 import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
-import { mobileContainer, tabletContainer } from '@/src/css/grid';
 
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
-import { responsiveStyle } from '../../css/responsiveStyle';
+import { breakpointQuery, responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
@@ -30,20 +29,23 @@ export const footer = style(
   }),
 );
 
-export const footerInner = style([
-  responsiveStyle({
-    mobile: {
-      paddingRight: vars.space.large.mobile,
-      paddingLeft: vars.space.large.mobile,
-      ...mobileContainer,
+export const footerInner = style({
+  vars: {
+    '--footer-padding': '16px',
+  },
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: 'calc(100% - calc(var(--footer-padding) * 2))',
+  maxWidth: 1200,
+
+  '@media': {
+    [breakpointQuery.tablet]: {
+      vars: {
+        '--footer-padding': '24px',
+      },
     },
-    desktop: {
-      paddingRight: '0',
-      paddingLeft: '0',
-      ...tabletContainer,
-    },
-  }),
-]);
+  },
+});
 
 // ##### First row #####
 
