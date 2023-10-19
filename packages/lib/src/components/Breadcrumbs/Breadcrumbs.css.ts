@@ -8,6 +8,7 @@ import { fontFamily } from '../../hooks/typography/typography.css';
 export const list = style([
   {
     color: 'black',
+    flexWrap: 'wrap',
   },
   responsiveStyle({
     mobile: {
