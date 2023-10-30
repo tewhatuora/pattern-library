@@ -48,7 +48,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       helperText,
       clearable,
       international,
-      defaultCountry = 'NZ',
+      defaultCountry,
       href,
       tertiaryLabel,
       tertiaryLabelAs,
