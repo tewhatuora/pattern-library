@@ -1,10 +1,18 @@
 import { FocusEvent, useEffect, useRef, useState } from 'react';
 
+import { FieldValues, useForm } from 'react-hook-form';
+
 import { InputPhone, InputPhoneOnChangeFn, InputPhoneProps } from './InputPhone';
+import {
+  InputPhoneReactHookForm,
+  InputPhoneReactHookFormOnChangeFn,
+  InputPhoneReactHookFormProps,
+} from './InputPhoneReactHookForm';
 import icons from '../Icon/icons';
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './InputPhone.docs.mdx';
+import { Text } from '../Text/Text';
 
 export default {
   title: 'Forms/InputPhone',
@@ -105,4 +113,23 @@ export const OnFocusAndBlurEvent = (args: InputPhoneProps) => {
     e.target.style.backgroundColor = 'yellow';
   };
   return <InputPhone {...args} value="+6421123456" onBlur={handleBlur} onFocus={handleFocus} />;
+};
+
+export const ReactHookForm = <T extends FieldValues>(
+  args: Omit<InputPhoneReactHookFormProps<T>, 'control' | 'name'>,
+) => {
+  const [value, setValue] = useState<string | undefined>('');
+
+  const { control, watch } = useForm<{ phoneNumber: string }>();
+
+  const handleChange: InputPhoneReactHookFormOnChangeFn = (value: string) => {
+    setValue(value);
+  };
+
+  return (
+    <>
+      <InputPhoneReactHookForm {...args} control={control} name="phoneNumber" value={value} onChange={handleChange} />
+      <Text>Phone number: {watch('phoneNumber')}</Text>
+    </>
+  );
 };
