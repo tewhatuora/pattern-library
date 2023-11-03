@@ -14,7 +14,7 @@ import { IconType } from '../Icon/icons';
 
 import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
 import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
-// import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
+import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 // import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
 import { ShieldedSite } from './ShieldedSite';
@@ -75,7 +75,6 @@ const Footer = ({
     throw new Error('There can only be up to 7 imprint items as props of `Footer`.');
   }
 
-  // const TeWhatuOraLogo = variant === 'dark' ? TeWhatuOraLogoLight : TeWhatuOraLogoDark;
   const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
   const socialLinks = useMemo(
@@ -149,12 +148,16 @@ const Footer = ({
       color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
     >
       <div className={styles.footerInner}>
-        <Stack space="xxlarge">
+        <Stack space="xlarge">
           {/* First row */}
-          <Box display="flex" flexWrap="wrap" marginBottom="xsmall">
+          <Box alignItems="center" className={styles.logoWrapper} display="flex" flexWrap="wrap">
             <a className={styles.govtLogoWrapper} href="https://www.govt.nz/">
               {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
               <NZGovtLogo focusable={false} role="img" />
+            </a>
+            <a className={styles.teWhatuOraLogoWrapper} href="https://www.tewhatuora.govt.nz/">
+              {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
+              <TeWhatuOraLogoLight focusable={false} role="img" />
             </a>
           </Box>
 
