@@ -26,15 +26,16 @@ export const boldText = style({
 });
 
 export const crumb = style({
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
+  // whiteSpace: 'nowrap',
+  // overflow: 'hidden',
   color: 'black',
   fontWeight: vars.textWeight.regular,
+  wordBreak: 'break-word',
 
   selectors: {
-    '&:last-of-type, &:first-of-type': {
-      flexShrink: '0',
-    },
+    // '&:last-of-type, &:first-of-type': {
+    //   flexShrink: '0',
+    // },
     [`${boldText} &`]: {
       fontWeight: 'bold',
     },
