@@ -1,4 +1,4 @@
-import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback } from 'react';
+import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import PhoneInput, { Country } from 'react-phone-number-input';
 import { useTextField } from '@react-aria/textfield';
 import clsx from 'clsx';
@@ -48,7 +48,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       helperText,
       clearable,
       international,
-      defaultCountry = 'NZ',
+      defaultCountry,
       href,
       tertiaryLabel,
       tertiaryLabelAs,
@@ -61,6 +61,10 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     }: InputPhoneProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
+    const internalRef = useRef<HTMLInputElement>(null);
+
+    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
+
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
     const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
       {
@@ -73,11 +77,14 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
         errorMessage,
         type: 'tel',
       },
-      ref as RefObject<HTMLInputElement>,
+      internalRef as RefObject<HTMLInputElement>,
     );
 
     const handleClear = useCallback(() => {
       onChange?.('');
+
+      // Focus input on clear
+      internalRef.current?.focus();
     }, [onChange]);
 
     return (
@@ -100,11 +107,13 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           <PhoneInput
             id={id}
             {...inputProps}
+            aria-invalid={!!errorMessage}
             className={clsx(
               inputStyles.input.phone,
               styles.input,
               {
                 [inputStyles.input.base]: !errorMessage,
+                [inputStyles.errorBorder]: !!errorMessage,
               },
               textSizeClasses,
             )}
@@ -115,10 +124,9 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             displayInitialValueAsLocalNumber
             inputComponent={InputField}
             international={international}
-            invalid={(!!errorMessage).toString()}
             name={name}
             placeholder={placeholder}
-            ref={ref as LegacyRef<any>}
+            ref={internalRef as LegacyRef<any>}
             required={required}
             value={value}
             onBlur={onBlur}

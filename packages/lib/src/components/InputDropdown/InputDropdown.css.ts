@@ -12,15 +12,16 @@ export const chevron = style([
     transform: 'translateY(-50%)',
     color: vars.color.primary100,
     cursor: 'pointer',
-    zIndex: 1,
+    pointerEvents: 'none',
+    zIndex: 2,
   },
   responsiveStyle({
     mobile: {
-      right: vars.space.xsmall.mobile,
+      right: 8,
     },
-    tablet: {
-      right: vars.space.xsmall.tablet,
-    },
+    // tablet: {
+    //   right: vars.space.xsmall.tablet,
+    // },
   }),
 ]);
 

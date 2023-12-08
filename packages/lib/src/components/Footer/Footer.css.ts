@@ -2,11 +2,10 @@ import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/c
 import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
-import { mobileContainer, tabletContainer } from '@/src/css/grid';
 
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
-import { responsiveStyle } from '../../css/responsiveStyle';
+import { breakpointQuery, responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
@@ -20,47 +19,57 @@ const lessSpacing = calc.multiply(vars.space.medium.tablet, 1.25); // 2.5rem / 4
 export const footer = style(
   responsiveStyle({
     mobile: {
-      paddingTop: vars.space.xxlarge.mobile,
-      paddingBottom: vars.space.xxlarge.mobile,
+      paddingTop: vars.space.xlarge.mobile,
+      paddingBottom: vars.space.xlarge.mobile,
     },
     desktop: {
-      paddingTop: spacing,
-      paddingBottom: spacing,
+      paddingTop: vars.space.xlarge.mobile,
+      paddingBottom: vars.space.xlarge.mobile,
     },
   }),
 );
 
-export const footerInner = style([
-  responsiveStyle({
-    mobile: {
-      paddingRight: vars.space.large.mobile,
-      paddingLeft: vars.space.large.mobile,
-      ...mobileContainer,
+export const footerInner = style({
+  vars: {
+    '--footer-padding': '16px',
+  },
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: 'calc(100% - calc(var(--footer-padding) * 2))',
+  maxWidth: 1200,
+
+  '@media': {
+    [breakpointQuery.tablet]: {
+      vars: {
+        '--footer-padding': '24px',
+      },
     },
-    desktop: {
-      paddingRight: '0',
-      paddingLeft: '0',
-      ...tabletContainer,
-    },
-  }),
-]);
+  },
+});
 
 // ##### First row #####
+const rowGapLogo = 24;
 
 export const logoWrapper = style({
-  height: rem(80),
-  width: rem(172),
+  marginTop: -rowGapLogo,
 });
 
 export const govtLogoWrapper = style({
-  height: rem(80),
-  width: rem(272),
+  width: rem(200),
+  height: rem(46),
+  marginTop: rowGapLogo,
+  marginRight: 40,
 
   selectors: {
     ...focusSelectorsStyles,
   },
 });
 
+export const teWhatuOraLogoWrapper = style({
+  width: rem(115),
+  height: rem(53.5),
+  marginTop: rowGapLogo,
+});
 // ##### Second Row #####
 
 export const secondRow = style([
@@ -162,6 +171,7 @@ export const socialAndImprintWrapper = style([
     display: 'flex',
     flexDirection: { mobile: 'columnReverse', desktop: 'rowReverse' },
     justifyContent: 'spaceBetween',
+    alignItems: { mobile: 'flexStart', desktop: 'center' },
   }),
 ]);
 
@@ -216,6 +226,9 @@ export const legalCopy = style([
 ]);
 
 export const imprintItems = style([
+  {
+    marginBottom: calc.multiply(vars.space.small.tablet, -1),
+  },
   atoms({
     display: 'flex',
   }),
@@ -231,7 +244,7 @@ export const imprintItems = style([
   }),
 ]);
 
-export const imprintItem = style(
+export const imprintItem = style([
   responsiveStyle({
     mobile: {
       selectors: {
@@ -255,7 +268,7 @@ export const imprintItem = style(
       },
     },
   }),
-);
+]);
 
 export const imprintLink = style({
   borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),

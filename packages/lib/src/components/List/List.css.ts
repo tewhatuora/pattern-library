@@ -190,7 +190,7 @@ export const link = style({
 
   selectors: {
     '&:hover, &:focus': {
-      color: vars.color.info75,
+      color: vars.color.primary100,
       fontWeight: vars.textWeight['link-hover&focus'],
       textDecoration: 'underline',
     },

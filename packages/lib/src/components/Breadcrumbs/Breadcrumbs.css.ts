@@ -7,7 +7,8 @@ import { fontFamily } from '../../hooks/typography/typography.css';
 
 export const list = style([
   {
-    color: vars.color.primary100,
+    color: 'black',
+    flexWrap: 'wrap',
   },
   responsiveStyle({
     mobile: {
@@ -25,15 +26,16 @@ export const boldText = style({
 });
 
 export const crumb = style({
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  color: vars.color.primary100,
+  // whiteSpace: 'nowrap',
+  // overflow: 'hidden',
+  color: 'black',
   fontWeight: vars.textWeight.regular,
+  wordBreak: 'break-word',
 
   selectors: {
-    '&:last-of-type, &:first-of-type': {
-      flexShrink: '0',
-    },
+    // '&:last-of-type, &:first-of-type': {
+    //   flexShrink: '0',
+    // },
     [`${boldText} &`]: {
       fontWeight: 'bold',
     },
@@ -69,7 +71,7 @@ export const separator = style(
 const defaultStyles = style([
   fontFamily,
   {
-    color: vars.color.primary100,
+    color: 'black',
   },
 ]);
 

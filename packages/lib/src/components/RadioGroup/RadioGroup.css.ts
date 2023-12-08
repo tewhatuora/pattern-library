@@ -14,7 +14,7 @@ export const container = style([
   },
   atoms({
     display: 'flex',
-    color: 'primary100',
+    color: 'neutral100',
     borderColor: 'primary100',
   }),
 ]);
@@ -67,8 +67,8 @@ export const indicator = style([
     position: 'relative',
   }),
   {
-    width: '100%',
-    height: '100%',
+    width: `calc(${rem(24)} - 2px)`, // Fixes iOS13 issue where indicator doesn't fill the height of the radio button
+    height: `calc(${rem(24)} - 2px)`, // Fixes iOS13 issue where indicator doesn't fill the height of the radio button
     backgroundColor: vars.color.primary100,
     transition: 'backgroundColor 0.3s ease-out',
     selectors: {

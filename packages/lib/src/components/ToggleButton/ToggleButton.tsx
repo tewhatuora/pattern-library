@@ -1,5 +1,7 @@
 import { ToggleGroup, ToggleGroupItem } from '@radix-ui/react-toggle-group';
 
+import { forwardRef } from 'react';
+
 import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 
@@ -20,6 +22,10 @@ export type ToggleButtonProps = {
   defaultValue?: string;
   /** Disabled state */
   disabled?: boolean;
+  value?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
   /** Function to call when the button is changed/toggles */
   onChange?: (value: string) => void;
 };
@@ -33,32 +39,37 @@ export type ToggleButtonProps = {
  * @param props
  * @constructor
  */
-export const ToggleButton = ({
-  labelLeft,
-  labelRight,
-  valueLeft,
-  valueRight,
-  defaultValue,
-  onChange,
-  disabled,
-  ...boxProps
-}: ToggleButtonProps) => {
+export const ToggleButton = forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
+  const { labelLeft, labelRight, valueLeft, valueRight, defaultValue, value, onChange, disabled, ...boxProps } = props;
   return (
     <Box as="div" {...boxProps}>
       <ToggleGroup
-        aria-label="Text alignment"
+        aria-label={props['aria-label']}
+        aria-labelledby={props['aria-labelledby']}
         className={styles.group}
         defaultValue={defaultValue}
         disabled={disabled}
+        ref={ref}
         type="single"
+        value={value}
         onValueChange={onChange}
       >
-        <ToggleGroupItem aria-label={labelLeft} className={styles.button} value={valueLeft}>
+        <ToggleGroupItem
+          aria-describedby={props['aria-describedby']}
+          aria-label={labelLeft}
+          className={styles.button}
+          value={valueLeft}
+        >
           <Text className={styles.buttonText} size="medium" weight="bold">
             {labelLeft}
           </Text>
         </ToggleGroupItem>
-        <ToggleGroupItem aria-label={labelRight} className={styles.button} value={valueRight}>
+        <ToggleGroupItem
+          aria-describedby={props['aria-describedby']}
+          aria-label={labelRight}
+          className={styles.button}
+          value={valueRight}
+        >
           <Text className={styles.buttonText} size="medium" weight="bold">
             {labelRight}
           </Text>
@@ -66,6 +77,6 @@ export const ToggleButton = ({
       </ToggleGroup>
     </Box>
   );
-};
+});
 
 ToggleButton.displayName = 'ToggleButton';

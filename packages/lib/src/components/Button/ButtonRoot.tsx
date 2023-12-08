@@ -25,16 +25,11 @@ export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButto
     ref as RefObject<HTMLButtonElement>,
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { role, ...restButtonProps } = buttonProps;
+
   return (
-    <Box
-      {...buttonProps}
-      {...boxProps}
-      as={as}
-      className={clsx(styles.root, className)}
-      href={href}
-      ref={ref}
-      type={type}
-    >
+    <Box {...restButtonProps} {...boxProps} as={as} className={clsx(styles.root, className)} href={href} ref={ref}>
       {children}
     </Box>
   );

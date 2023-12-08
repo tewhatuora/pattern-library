@@ -12,7 +12,7 @@ export const message = style({
 });
 
 export const helperText = style({
-  color: vars.color.primary100,
+  color: vars.color.neutral100,
 });
 
 export const errorMessage = style({

@@ -26,6 +26,8 @@ export { InputDate, InputDateStyles } from './InputDate/InputDate';
 export { InputDropdown, InputDropdownStyles } from './InputDropdown/InputDropdown';
 export { InputPassword } from './InputPassword/InputPassword';
 export { InputPhone, InputPhoneStyles } from './InputPhone/InputPhone';
+export { InputPhoneReactHookForm } from './InputPhone/InputPhoneReactHookForm';
+export type { InputPhoneReactHookFormProps } from './InputPhone/InputPhoneReactHookForm';
 export { InputSearch, InputSearchStyles } from './InputSearch/InputSearch';
 export { InputText } from './InputText/InputText';
 export { List, ListStyles } from './List/List';

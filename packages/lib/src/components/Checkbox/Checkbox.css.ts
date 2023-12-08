@@ -1,5 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
+import { focusSelectorsStyles } from '@/src/utils/custom';
 import { rem } from '@/src/css/helpers';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -45,11 +46,6 @@ export const checkbox = style({
   borderColor: vars.color.primary100,
   backgroundColor: vars.color.primary0,
 
-  ':focus': {
-    boxShadow: `0 0 0 ${rem(4)} #BFBFBF`,
-    backgroundColor: vars.color.tertiary5,
-  },
-
   ':hover': {
     backgroundColor: vars.color.tertiary25,
     borderColor: vars.color.primary110,
@@ -76,6 +72,9 @@ export const checkbox = style({
     '&[aria-invalid="true"], &[aria-invalid="true"]:hover': {
       borderColor: vars.color.error100,
     },
+
+    // Focus styles
+    ...focusSelectorsStyles,
   },
 });
 

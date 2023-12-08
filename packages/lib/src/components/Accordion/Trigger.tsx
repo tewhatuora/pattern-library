@@ -28,7 +28,7 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
       <Box as={boxElement}>
         <RadixAccordion.Trigger className={styles.trigger} ref={ref}>
           <div className={styles.headerContainer}>
-            {!!icon && <Icon className={styles.icon} icon={icon} variant="functionalIcons" />}
+            {!!icon && <Icon className={styles.icon} color="primary100" icon={icon} variant="functionalIcons" />}
 
             {/* Div to keep the header text vertical. */}
             <div>
