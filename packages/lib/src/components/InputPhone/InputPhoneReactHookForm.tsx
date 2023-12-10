@@ -180,6 +180,7 @@ const InputPhoneReactHookFormInner = <T extends FieldValues = FieldValues>(
           defaultCountry={defaultCountry}
           disabled={disabled}
           displayInitialValueAsLocalNumber
+          focusInputOnCountrySelection={false}
           inputComponent={InputField}
           international={international}
           name={name}
