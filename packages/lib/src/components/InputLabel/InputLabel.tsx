@@ -92,7 +92,7 @@ export const InputLabel = ({
 
         {tertiaryLabel && tertiaryLabelAs === 'text' ? (
           <Box as="span" className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition])}>
-            <Text size="medium" weight="link-normal">
+            <Text size="medium" weight="regular">
               {tertiaryLabel}
             </Text>
 
