@@ -1,6 +1,6 @@
 import { ThemeProvider } from '../packages/lib/src';
 
-import { neutral, myCovidRecord, myHealthAccount, myRecord } from '@te-whatu-ora/anatomic-themes';
+import { neutral, myCovidRecord, myHealthAccount, myHealthRecord } from '@te-whatu-ora/anatomic-themes';
 
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -37,8 +37,8 @@ const sbParameters = {
       },
       {
         name: 'My Health Record',
-        class: myRecord.className,
-        color: myRecord.tokens.color.primary100,
+        class: myHealthRecord.className,
+        color: myHealthRecord.tokens.color.primary100,
       },
     ],
     target: 'root',
