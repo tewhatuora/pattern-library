@@ -5,7 +5,7 @@ import { Box, BoxProps } from '../Box/Box';
 import { UseTextProps, useText } from '../../hooks/typography';
 import * as styles from './Text.css';
 
-export type TextProps = ComponentPropsWithoutRef<'span'> &
+export type TextProps = Omit<ComponentPropsWithoutRef<'span'>, 'color'> &
   Pick<BoxProps, 'as'> & {
     /** id attribute for the element */
     id?: string;
