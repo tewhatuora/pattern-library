@@ -1,4 +1,4 @@
-import { LabelHTMLAttributes } from 'react';
+import { ElementType, LabelHTMLAttributes } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -12,6 +12,7 @@ import { IconType } from '../Icon/icons';
 export const InputLabelStyles = styles;
 
 export type InputLabelProps = {
+  as?: ElementType;
   /** Label for the field */
   label: string;
   /** Optional label subheading */
@@ -52,6 +53,7 @@ export type InputLabelProps = {
  * @constructor
  */
 export const InputLabel = ({
+  as = 'label',
   label,
   subheading,
   tertiaryLabel,
@@ -70,29 +72,24 @@ export const InputLabel = ({
 
   return (
     <Box className={styles.wrapper} display="flex" justifyContent="spaceBetween">
-      <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
-        <Text className={state && styles.labels[state]} weight="bold">
-          {label} {!!required && '*'}
-        </Text>
-        <Text className={state && styles.labels[state]} size="small">
-          {subheading}
-        </Text>
-      </Box>
+      <Box
+        as={as}
+        display="flex"
+        htmlFor={htmlFor || labelProps?.htmlFor}
+        id={labelProps?.id}
+        justifyContent="spaceBetween"
+        width={tertiaryLabelAs === 'text' ? 'full' : undefined}
+      >
+        <span>
+          <Text className={state && styles.labels[state]} weight="bold">
+            {label} {!!required && '*'}
+          </Text>
+          <Text className={state && styles.labels[state]} size="small">
+            {subheading}
+          </Text>
+        </span>
 
-      {tertiaryLabel &&
-        (tertiaryLabelAs !== 'text' ? (
-          <Button
-            as={tertiaryLabelAs}
-            className={clsx(styles.tertiaryLabel)}
-            href={href}
-            icon={tertiaryLabelIcon}
-            iconPosition={tertiaryLabelIconPosition}
-            variant="link"
-            onPress={onTertiaryLabelClick}
-          >
-            {tertiaryLabel}
-          </Button>
-        ) : (
+        {tertiaryLabel && tertiaryLabelAs === 'text' ? (
           <Box
             as="span"
             className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition], {
@@ -103,7 +100,22 @@ export const InputLabel = ({
 
             {!!tertiaryLabelIcon && <Icon aria-hidden="true" icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>
-        ))}
+        ) : null}
+      </Box>
+
+      {tertiaryLabel && tertiaryLabelAs !== 'text' ? (
+        <Button
+          as={tertiaryLabelAs}
+          className={clsx(styles.tertiaryLabel)}
+          href={href}
+          icon={tertiaryLabelIcon}
+          iconPosition={tertiaryLabelIconPosition}
+          variant="link"
+          onPress={onTertiaryLabelClick}
+        >
+          {tertiaryLabel}
+        </Button>
+      ) : null}
     </Box>
   );
 };
