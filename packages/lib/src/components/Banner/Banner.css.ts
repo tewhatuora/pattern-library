@@ -15,31 +15,21 @@ const offsetSmall = rem(offset);
 const offsetLarge = rem(offset * 2);
 
 const variant = {
-  alert: atoms({
-    color: 'primary110',
-    backgroundColor: 'caution100',
-  }),
-  urgent: atoms({
-    color: 'primary0',
-    backgroundColor: 'error100',
-  }),
-  informative: atoms({
-    color: 'primary0',
-    backgroundColor: 'primary100',
-  }),
-};
-
-const theme = {
-  light: atoms({
-    backgroundColor: 'secondary0',
-  }),
-  dark: atoms({
-    backgroundColor: 'primary100',
-  }),
+  alert: {
+    color: vars.color.semantic.notifications.banner.content.caution,
+    backgroundColor: vars.color.semantic.notifications.banner.background.caution,
+  },
+  urgent: {
+    color: vars.color.semantic.notifications.banner.content.critical,
+    backgroundColor: vars.color.semantic.notifications.banner.background.critical,
+  },
+  informative: {
+    color: vars.color.semantic.notifications.banner.content.informative,
+    backgroundColor: vars.color.semantic.notifications.banner.background.informative,
+  },
 };
 
 export type Variant = keyof typeof variant;
-export type Theme = keyof typeof theme;
 
 export const variants = recipe({
   base: style([
@@ -53,41 +43,7 @@ export const variants = recipe({
   ]),
   variants: {
     variant,
-    theme,
   },
-  //for light theme only although no tokens yet, uses the dark theme tokens
-  compoundVariants: [
-    {
-      variants: {
-        variant: 'alert',
-        theme: 'light',
-      },
-      style: {
-        color: 'primary110',
-        backgroundColor: 'caution100',
-      },
-    },
-    {
-      variants: {
-        variant: 'urgent',
-        theme: 'light',
-      },
-      style: {
-        color: 'primary0',
-        backgroundColor: 'error100',
-      },
-    },
-    {
-      variants: {
-        variant: 'informative',
-        theme: 'light',
-      },
-      style: {
-        color: 'primary0',
-        backgroundColor: 'primary100',
-      },
-    },
-  ],
 });
 
 export type Variants = RecipeVariants<typeof variants>;
