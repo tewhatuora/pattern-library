@@ -25,14 +25,14 @@ export const link = recipe({
   base: {
     display: 'inline-flex',
     alignItems: 'center',
-    color: vars.color.info100,
+    color: vars.color.semantic.text.links.active,
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
-        color: vars.color.info75,
+        color: vars.color.semantic.text.links.hover,
         textDecoration: 'underline',
       },
       [`${boldText} &`]: {
