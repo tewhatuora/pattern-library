@@ -105,6 +105,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
               styles.input,
               {
                 [inputStyles.input.base]: !errorMessage,
+                'PhoneInput--error': errorMessage,
               },
               textSizeClasses,
             )}

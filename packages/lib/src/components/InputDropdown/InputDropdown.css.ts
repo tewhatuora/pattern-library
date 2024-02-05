@@ -16,7 +16,7 @@ export const chevron = style([
   },
   responsiveStyle({
     mobile: {
-      right: vars.space.xsmall.mobile,
+      right: vars.space.small.mobile,
     },
     tablet: {
       right: vars.space.xsmall.tablet,
