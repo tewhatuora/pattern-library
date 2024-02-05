@@ -12,3 +12,12 @@ export const focusSelectorsStyles = {
     outline: 'none',
   },
 };
+
+export const getFocusSelectors = (color: string) => ({
+  '&:focus': {
+    outline: `${vars.borderWidth.xlarge} solid ${color}`,
+  },
+  '&:focus:not(:focus-visible)': {
+    outline: 'none',
+  },
+});
