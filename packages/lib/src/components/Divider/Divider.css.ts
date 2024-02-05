@@ -2,21 +2,9 @@ import { createVar, style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 import { vars } from '../../themes/vars.css';
-import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 const thicknessVar = createVar();
-
-const variant = {
-  light: atoms({
-    backgroundColor: 'primary25',
-  }),
-  dark: atoms({
-    backgroundColor: 'primary0',
-  }),
-};
-
-export type Variant = keyof typeof variant;
 
 const dividerStyle = style({
   vars: {
@@ -51,7 +39,14 @@ export const variants = recipe({
     }),
   ]),
   variants: {
-    variant,
+    variant: {
+      light: {
+        backgroundColor: vars.color.semantic.structure.divider.dark,
+      },
+      dark: {
+        backgroundColor: vars.color.semantic.structure.divider.light,
+      },
+    },
   },
 });
 
