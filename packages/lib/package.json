@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic",
-  "version": "3.1.0",
+  "version": "4.0.0-beta.0",
   "description": "Te Whatu Ora - Anatomic Design system",
   "homepage": "https://main--630296ff1edaa813b72e85c0.chromatic.com/",
   "author": "Kyle Beattie <kyle.beattie@alphero.com>",
@@ -54,7 +54,8 @@
     "clean": "rm -rf ../../CURRENT_VERSION.md",
     "patch": "yarn clean && standard-version --release-as patch --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
     "minor": "yarn clean && standard-version --release-as minor --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
-    "major": "yarn clean && standard-version --release-as major --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify"
+    "major": "yarn clean && standard-version --release-as major --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
+    "major:beta": "yarn clean && standard-version --release-as major --prerelease beta --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify"
   },
   "standard-version": {
     "scripts": {
