@@ -1,6 +1,8 @@
 import { createVar, globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import { recipe } from '@vanilla-extract/recipes';
+
 import { rem } from '@/src/css/helpers';
 import { mobileContainer, tabletContainer } from '@/src/css/grid';
 
@@ -17,8 +19,8 @@ import { vars } from '../../themes/vars.css';
 const spacing = calc.multiply(vars.space.medium.tablet, 2); // 4rem / 64px
 const lessSpacing = calc.multiply(vars.space.medium.tablet, 1.25); // 2.5rem / 40px, for when there's 5 columns
 
-export const footer = style(
-  responsiveStyle({
+export const footer = recipe({
+  base: responsiveStyle({
     mobile: {
       paddingTop: vars.space.xxlarge.mobile,
       paddingBottom: vars.space.xxlarge.mobile,
@@ -28,7 +30,19 @@ export const footer = style(
       paddingBottom: spacing,
     },
   }),
-);
+  variants: {
+    variant: {
+      light: {
+        backgroundColor: vars.color.semantic.structure.background['footer-light'],
+        color: vars.color.semantic.text.copy.dark,
+      },
+      dark: {
+        backgroundColor: vars.color.semantic.structure.background['footer-dark'],
+        color: vars.color.semantic.text.copy.light,
+      },
+    },
+  },
+});
 
 export const footerInner = style([
   responsiveStyle({
@@ -193,10 +207,10 @@ export const socialIcon = style({
 
 export const socialIcons = styleVariants({
   light: {
-    color: vars.color.neutral25,
+    color: vars.color.semantic.icons.black,
   },
   dark: {
-    color: vars.color.neutral0,
+    color: vars.color.semantic.icons.light,
   },
 });
 
