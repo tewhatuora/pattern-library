@@ -3,7 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusSelectorsStyles } from '@/src/utils/custom';
+import { getFocusSelectors } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 
@@ -39,7 +39,7 @@ const base = style({
     },
 
     '&[data-variant="dark"]': {
-      color: vars.color.primary0,
+      color: vars.color.semantic.text.copy.light,
     },
 
     '& &': {
@@ -113,7 +113,7 @@ export const dividers = style({
       right: 0,
 
       height: vars.borderWidth.small,
-      backgroundColor: vars.color.primary25,
+      backgroundColor: vars.color.semantic.structure.divider.dark,
     },
 
     '&::before': {
@@ -134,7 +134,7 @@ export const dividers = style({
     },
 
     [beforeAndAfterOf(`${base}[data-variant="dark"] &`)]: {
-      backgroundColor: vars.color.primary0,
+      backgroundColor: vars.color.semantic.structure.divider.light,
     },
   },
 });
@@ -190,12 +190,12 @@ export const link = style({
 
   selectors: {
     '&:hover, &:focus': {
-      color: vars.color.info75,
+      color: vars.color.semantic.text.links.hover,
       fontWeight: vars.textWeight['link-hover&focus'],
       textDecoration: 'underline',
     },
 
-    ...focusSelectorsStyles,
+    ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
   },
 });
 
