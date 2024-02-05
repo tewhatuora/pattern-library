@@ -8,7 +8,9 @@ import {
   createElement,
   forwardRef,
   useCallback,
+  useImperativeHandle,
   useMemo,
+  useRef,
 } from 'react';
 import clsx from 'clsx';
 
@@ -85,6 +87,13 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
     }: InputFieldProps,
     ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    const internalRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
+    useImperativeHandle<HTMLInputElement | HTMLTextAreaElement | null, HTMLInputElement | HTMLTextAreaElement | null>(
+      ref,
+      () => internalRef.current,
+    );
+
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
 
     const valueProps = useMemo(() => {
@@ -96,6 +105,9 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
 
     const handleClear = useCallback(() => {
       onChange?.({ target: { name, value: '' } } as ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+
+      // Focus input on clear
+      internalRef.current?.focus();
     }, [name, onChange]);
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
@@ -125,7 +137,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
         textSizeClasses,
         props.className,
       ),
-      ref,
+      ref: internalRef,
     });
 
     return (
