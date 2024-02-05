@@ -71,6 +71,7 @@ export const variants = recipe({
           height: 'auto',
           color: vars.color.semantic.text.links.active,
           borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+          borderWidth: 0,
           ':hover': {
             color: vars.color.semantic.text.links.hover,
             textDecoration: 'underline',
