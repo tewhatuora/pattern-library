@@ -11,14 +11,14 @@ import { boldLinks, noVisited } from '../AnchorLink/AnchorLink.css';
 export const link = recipe({
   base: {
     display: 'inline',
-    color: vars.color.info100,
+    color: vars.color.semantic.text.links.active,
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
-        color: vars.color.info75,
+        color: vars.color.semantic.text.links.hover,
         textDecoration: 'underline',
       },
       [`${boldText} &`]: {
@@ -38,10 +38,10 @@ export const link = recipe({
       false: {
         selectors: {
           '&:visited': {
-            color: vars.color.visited100,
+            color: vars.color.semantic.text.links.visited,
           },
           [`${noVisited} &`]: {
-            color: vars.color.info100,
+            color: vars.color.semantic.text.links.active,
           },
         },
       },
