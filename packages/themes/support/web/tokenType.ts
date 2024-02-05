@@ -34,8 +34,6 @@ type FontWeight =
 type FontWeightValue = '400' | '500' | '600' | '700' | '800' | '900';
 
 export interface Tokens {
-  name: string;
-  displayName: string;
   typography: {
     fontFamily: string;
     fontWeight: Record<FontWeight, FontWeightValue>;
@@ -160,5 +158,173 @@ export interface Tokens {
     annotation0: string;
 
     visited100: string;
+
+    // NEW
+    focus100: string;
+    transparent100: string;
+
+    semantic: {
+      structure: {
+        background: {
+          base: string;
+          footer: string;
+          header1: string;
+          header2: string;
+          'header-dark': string;
+          'header-light': string;
+        };
+        divider: { dark: string; light: string };
+      };
+      card: { background: string; border: string };
+      text: {
+        copy: {
+          dark: string;
+          light: string;
+          error: string;
+          disabled: string;
+          placeholder: string;
+          placeholder2: string;
+        };
+        links: { active: string; visited: string; hover: string };
+      };
+      button: {
+        primary: {
+          background: {
+            normal: string;
+            hover: string;
+            focused: string;
+            pressed: string;
+            disabled: string;
+          };
+          border: { focus: string };
+          content: { normal: string; disabled: string };
+        };
+        secondary: {
+          background: {
+            normal: string;
+            hover: string;
+            focused: string;
+            pressed: string;
+            disabled: string;
+          };
+          border: { focus: string };
+          content: { normal: string; disabled: string };
+        };
+        tertiary: {
+          background: {
+            normal: string;
+            hover: string;
+            pressed: string;
+            focused: string;
+            disabled: string;
+          };
+          border: {
+            normal: string;
+            hover: string;
+            pressed: string;
+            focused: string;
+            disabled: string;
+            focus: string;
+          };
+          content: { normal: string; disabled: string };
+        };
+        'text-link': { border: { focus: string } };
+        search: { background: { normal: string; hover: string; focused: string }; border: { focus: string } };
+      };
+      notifications: {
+        message: {
+          background: {
+            positive: string;
+            informative: string;
+            caution: string;
+            critical: string;
+            neutral: string;
+          };
+          content: {
+            positive: string;
+            informative: string;
+            caution: string;
+            critical: string;
+            neutral: string;
+          };
+        };
+        alert: {
+          background: {
+            positive: string;
+            informative: string;
+            caution: string;
+            critical: string;
+            neutral: string;
+          };
+          content: {
+            positive: string;
+            informative: string;
+            neutral: string;
+            caution: string;
+            critical: string;
+          };
+        };
+      };
+      inputs: {
+        elements: {
+          background: {
+            normal: string;
+            selected: string;
+            'selected-hover': string;
+            unselected: string;
+            'unselected-hover': string;
+            disabled: string;
+          };
+          border: { normal: string; hover: string; disabled: string; error: string; focus: string };
+        };
+        fields: {
+          background: { normal: string; hover: string };
+          border: {
+            normal: string;
+            empty: string;
+            error: string;
+            focus: string;
+            active: string;
+            light: string;
+            dark: string;
+          };
+        };
+      };
+      controls: {
+        background: {
+          dark: string;
+          light: string;
+          light2: string;
+          light3: string;
+          active: string;
+          inactive: string;
+        };
+        content: { light: string; dark: string };
+        border: {
+          light: string;
+          dark: string;
+          active: string;
+          inactive: string;
+          focus: string;
+          hover: string;
+        };
+      };
+      icons: { dark: string; light: string; grey: string; black: string };
+      menu: {
+        background: { light: string; pressed: string; light2: string };
+        content: {
+          item: { normal: string; hover: string };
+          button: { dark: string; light: string; light2: string; hover: string };
+        };
+        border: { focus: string };
+        list: {
+          background: { light: string; darkened: string; normal: string };
+          item: { normal: string; hover: string; darkened: string };
+          content: { normal: string; darkened: string };
+          border: { divider: string };
+        };
+        button: { dark: string; light: string; hover: string };
+      };
+    };
   };
 }
