@@ -127,16 +127,11 @@ export const Breadcrumbs = memo(
     }, [indexToCheck, breadcrumbIsHidden, toggleBreadcrumbVisibility, children]);
 
     return (
-      <Box
-        aria-label="Breadcrumb"
-        as="nav"
-        className={withBackground ? styles.breadcrumbs.withBackground : styles.breadcrumbs}
-      >
+      <Box aria-label="Breadcrumb" as="nav" className={styles.breadcrumbs({ background: withBackground })}>
         <Box
           as="ol"
           className={clsx(
             styles.list,
-            { [stylesAnchorLink.boldText]: boldText },
             { [stylesText.boldText]: boldText },
             { [stylesAnchorLink.noVisited]: noVisited },
             { [stylesAnchorLink.boldLinks]: boldLinks },

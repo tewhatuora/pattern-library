@@ -8,10 +8,7 @@ import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
-
-export const boldText = style({
-  //
-});
+import { boldText } from '../Text/Text.css';
 
 export const boldLinks = style({
   //

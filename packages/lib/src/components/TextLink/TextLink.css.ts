@@ -1,4 +1,3 @@
-import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { recipe } from '@vanilla-extract/recipes';
@@ -6,18 +5,8 @@ import { recipe } from '@vanilla-extract/recipes';
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
-
-export const boldText = style({
-  //
-});
-
-export const boldLinks = style({
-  //
-});
-
-export const noVisited = style({
-  //
-});
+import { boldText } from '../Text/Text.css';
+import { boldLinks, noVisited } from '../AnchorLink/AnchorLink.css';
 
 export const link = recipe({
   base: {
