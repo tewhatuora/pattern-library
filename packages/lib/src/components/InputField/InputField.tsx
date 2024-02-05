@@ -112,7 +112,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
 
-    const hasClearButton = Boolean(clearable && value?.length);
+    const hasClearButton = Boolean(!disabled && clearable && value?.length);
 
     const inputElement = createElement(inputEl, {
       disabled,
