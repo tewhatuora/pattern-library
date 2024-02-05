@@ -2,6 +2,8 @@ import { createVar, keyframes, style, styleVariants } from '@vanilla-extract/css
 
 import { calc } from '@vanilla-extract/css-utils';
 
+import { recipe } from '@vanilla-extract/recipes';
+
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -24,9 +26,6 @@ const colorVar = createVar();
 const borderColorVar = createVar();
 
 const base = style({
-  borderColor: borderColorVar,
-  borderWidth: vars.borderWidth.small,
-  borderStyle: 'none',
   color: colorVar,
 });
 
@@ -35,8 +34,8 @@ export const root = styleVariants({
     base,
     {
       vars: {
-        [colorVar]: vars.color.primary100,
-        [borderColorVar]: vars.color.primary0,
+        [colorVar]: vars.color.semantic.text.copy.dark,
+        [borderColorVar]: vars.color.semantic.structure.divider.dark,
       },
     },
   ],
@@ -44,8 +43,8 @@ export const root = styleVariants({
     base,
     {
       vars: {
-        [colorVar]: vars.color.primary0,
-        [borderColorVar]: vars.color.primary25,
+        [colorVar]: vars.color.semantic.text.copy.light,
+        [borderColorVar]: vars.color.semantic.structure.divider.light,
       },
     },
   ],
@@ -54,7 +53,7 @@ export const root = styleVariants({
 export const item = style({
   selectors: {
     '&:not(:last-child)': {
-      borderBottom: `${vars.borderWidth.small} solid ${vars.color.primary25}`,
+      borderBottom: `${vars.borderWidth.small} solid ${borderColorVar}`,
     },
   },
 });
@@ -91,9 +90,21 @@ export const trigger = style([
   }),
 ]);
 
-export const icon = style({
-  marginRight: vars.space.small.mobile,
-  flexShrink: 0,
+export const icon = recipe({
+  base: {
+    marginRight: vars.space.small.mobile,
+    flexShrink: 0,
+  },
+  variants: {
+    variant: {
+      light: {
+        color: vars.color.semantic.icons.dark,
+      },
+      dark: {
+        color: vars.color.semantic.icons.light,
+      },
+    },
+  },
 });
 
 export const headerContainer = style({
