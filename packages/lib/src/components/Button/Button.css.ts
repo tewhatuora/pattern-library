@@ -197,6 +197,18 @@ export type Variants = RecipeVariants<typeof variants>;
  *  you have to choose whether the margin is to the left or right).
  */
 export const icon = styleVariants({
-  left: { marginRight: gapVar },
-  right: { marginLeft: gapVar },
+  left: {
+    selectors: {
+      '&:not(:only-child)': {
+        marginRight: gapVar,
+      },
+    },
+  },
+  right: {
+    selectors: {
+      '&:not(:only-child)': {
+        marginLeft: gapVar,
+      },
+    },
+  },
 });

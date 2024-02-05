@@ -36,16 +36,8 @@ export const container = style([
   }),
   {
     borderRadius: vars.borderRadiusAll.inputs,
-    border: `${vars.borderWidth.small} solid ${vars.color.primary50}`,
+    border: `${vars.borderWidth.small} solid ${vars.color.semantic.inputs.fields.border.normal}`,
   },
-  responsiveStyle({
-    mobile: {
-      boxShadow: vars.shadow.primary,
-    },
-    tablet: {
-      boxShadow: 'none',
-    },
-  }),
 ]);
 
 export const input = style([
