@@ -66,15 +66,15 @@ export const InputLabel = ({
   required,
   labelProps,
 }: InputLabelProps) => {
-  const labelColor = error && !disabled ? 'error100' : 'primary100';
+  const state = disabled ? 'disabled' : error ? 'error' : undefined;
 
   return (
-    <Box display="flex" justifyContent="spaceBetween">
+    <Box className={styles.wrapper} display="flex" justifyContent="spaceBetween">
       <Box as="label" htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
-        <Text color={labelColor} weight="bold">
+        <Text className={state && styles.labels[state]} weight="bold">
           {label} {!!required && '*'}
         </Text>
-        <Text color={labelColor} size="small">
+        <Text className={state && styles.labels[state]} size="small">
           {subheading}
         </Text>
       </Box>
@@ -93,10 +93,13 @@ export const InputLabel = ({
             {tertiaryLabel}
           </Button>
         ) : (
-          <Box as="span" className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition])}>
-            <Text size="medium" weight="link-normal">
-              {tertiaryLabel}
-            </Text>
+          <Box
+            as="span"
+            className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition], {
+              [styles.labels.disabled]: disabled,
+            })}
+          >
+            <Text size="small">{tertiaryLabel}</Text>
 
             {!!tertiaryLabelIcon && <Icon aria-hidden="true" icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>
