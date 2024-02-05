@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
@@ -12,11 +12,15 @@ const offset = rem(4);
 export const tag = style([
   atoms({
     display: 'flex',
-    backgroundColor: 'primary0',
-    borderColor: 'primary100',
+
     borderWidth: 'small',
     borderRadius: 'tags',
   }),
+  {
+    color: vars.color.semantic.controls.content.dark,
+    backgroundColor: vars.color.semantic.controls.background.light,
+    borderColor: vars.color.semantic.controls.border.active,
+  },
   responsiveStyle({
     mobile: {
       width: 'max-content',
@@ -45,6 +49,10 @@ export const closeButton = style([
     tablet: { paddingLeft: vars.space.xsmall.mobile },
   }),
 ]);
+
+globalStyle(`${closeButton} circle`, {
+  fill: vars.color.semantic.icons.dark,
+});
 
 export const icon = style({
   display: 'flex',
