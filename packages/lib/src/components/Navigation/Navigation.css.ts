@@ -50,14 +50,14 @@ export const navigation = styleVariants({
     base,
     {
       backgroundColor: vars.color.primary5,
-      color: vars.color.primary100,
+      color: vars.color.semantic.text.copy.dark,
     },
   ],
   dark: [
     base,
     {
       backgroundColor: vars.color.primary75,
-      color: vars.color.primary0,
+      color: vars.color.semantic.text.copy.light,
     },
   ],
 });
