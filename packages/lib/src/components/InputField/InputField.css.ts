@@ -3,6 +3,8 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { focusSelectorsStyles, getFocusSelectors } from '@/src/utils/custom';
+
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
@@ -41,7 +43,6 @@ export const inputBase = style([
   }),
   {
     appearance: 'none',
-    overflow: 'hidden',
     width: '100%',
     height: vars.space.xxlarge.tablet,
     lineHeight: vars.space.xxlarge.tablet,
@@ -51,36 +52,26 @@ export const inputBase = style([
     paddingRight: vars.space.xsmall.tablet,
     borderRadius: vars.borderRadiusAll.inputs,
     borderWidth: vars.borderWidth.small,
-    borderColor: vars.color.primary50,
+    borderColor: vars.color.semantic.inputs.fields.border.normal,
     borderStyle: 'solid',
-    color: vars.color.primary100,
-    backgroundColor: vars.color.primary0,
+    color: vars.color.semantic.text.copy.dark,
+    backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
     selectors: {
-      '&:active': {
-        borderColor: vars.color.primary100,
-        color: vars.color.primary100,
-      },
-      '&:focus, &:focus-within': {
-        color: vars.color.primary100,
-        borderColor: vars.color.caution100,
-        boxShadow: `0 0 0 ${rem(1)} ${vars.color.caution100}`,
-        outline: 'none',
-      },
       '&:disabled': {
-        color: vars.color.secondary50,
-        borderColor: vars.color.secondary50,
-        backgroundColor: vars.color.primary0,
+        color: vars.color.semantic.text.copy.disabled,
+        borderColor: vars.color.semantic.inputs.fields.border.disabled,
+        backgroundColor: vars.color.semantic.inputs.fields.background.normal,
         cursor: 'not-allowed',
       },
       '&::placeholder': {
-        color: vars.color.neutral50,
+        color: vars.color.semantic.text.copy.placeholder,
       },
       '&[aria-invalid="true"]:not([disabled])': {
-        borderColor: vars.color.error100,
-        boxShadow: `0 0 0 ${rem(1)} ${vars.color.error100}`,
-        outline: 'none',
+        borderColor: vars.color.semantic.inputs.fields.border.error,
+        boxShadow: `0 0 0 ${rem(1)} ${vars.color.semantic.inputs.fields.border.error}`,
       },
+      ...getFocusSelectors(vars.color.semantic.inputs.fields.highlight.focus),
     },
   },
 ]);
@@ -99,14 +90,20 @@ export const input = styleVariants({
       position: 'relative',
       zIndex: 2,
       backgroundColor: 'transparent',
-      color: vars.color.primary100,
+      color: vars.color.semantic.text.copy.dark,
     },
     responsiveStyle({
       mobile: {
-        paddingRight: calc(vars.space.xsmall.mobile).multiply(2).add(vars.space.small.mobile).toString(),
+        paddingRight: calc(vars.space.small.mobile) // Functional icon width
+          .add(vars.space.small.mobile) // + icon right
+          .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
+          .toString(),
       },
       tablet: {
-        paddingRight: calc(vars.space.xsmall.tablet).multiply(2).add(vars.space.small.tablet).toString(),
+        paddingRight: calc(vars.space.small.tablet) // Functional icon width
+          .add(vars.space.xsmall.tablet) // + icon right
+          .add(vars.space.xsmall.tablet) // + gap between copy and icon (icon right)
+          .toString(),
       },
     }),
   ],
@@ -146,13 +143,26 @@ export const input = styleVariants({
 
 globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
-  outline: 'none',
   boxShadow: 'none',
+});
+
+globalStyle(`${input.phone} input${inputBase}`, {
+  borderTopLeftRadius: '0',
+  borderBottomLeftRadius: '0',
 });
 
 globalStyle(`${input.phone} select${inputBase}`, {
   borderTopRightRadius: '0',
   borderBottomRightRadius: '0',
+});
+
+globalStyle(`.PhoneInput--disabled.${input.phone}`, {
+  borderColor: vars.color.semantic.inputs.elements.border.disabled,
+});
+
+globalStyle(`.PhoneInput--error.${input.phone}`, {
+  borderColor: vars.color.semantic.inputs.fields.border.error,
+  boxShadow: `0 0 0 ${rem(1)} ${vars.color.semantic.inputs.fields.border.error}`,
 });
 
 export const clearButtonBase = style([
@@ -165,8 +175,12 @@ export const clearButtonBase = style([
     height: vars.space.xxlarge.tablet,
     paddingLeft: vars.space.xsmall.tablet,
     paddingRight: vars.space.xsmall.tablet,
+    borderRadius: vars.borderRadiusAll.inputs,
     cursor: 'pointer',
     zIndex: 2,
+    selectors: {
+      ...focusSelectorsStyles,
+    },
   },
 ]);
 
