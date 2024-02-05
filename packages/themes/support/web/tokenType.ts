@@ -166,25 +166,17 @@ export interface Tokens {
     semantic: {
       structure: {
         background: {
-          base: string;
-          footer: string;
-          header1: string;
-          header2: string;
           'header-dark': string;
           'header-light': string;
+          base: string;
+          'footer-light': string;
+          'footer-dark': string;
         };
         divider: { dark: string; light: string };
       };
       card: { background: string; border: string };
       text: {
-        copy: {
-          dark: string;
-          light: string;
-          error: string;
-          disabled: string;
-          placeholder: string;
-          placeholder2: string;
-        };
+        copy: { dark: string; light: string; error: string; disabled: string; placeholder: string };
         links: { active: string; visited: string; hover: string };
       };
       button: {
@@ -196,8 +188,15 @@ export interface Tokens {
             pressed: string;
             disabled: string;
           };
-          border: { focus: string };
           content: { normal: string; disabled: string };
+          highlight: { focus: string };
+          border: {
+            normal: string;
+            hover: string;
+            focused: string;
+            pressed: string;
+            disabled: string;
+          };
         };
         secondary: {
           background: {
@@ -207,8 +206,15 @@ export interface Tokens {
             pressed: string;
             disabled: string;
           };
-          border: { focus: string };
           content: { normal: string; disabled: string };
+          highlight: { focus: string };
+          border: {
+            normal: string;
+            hover: string;
+            focused: string;
+            pressed: string;
+            disabled: string;
+          };
         };
         tertiary: {
           background: {
@@ -218,48 +224,47 @@ export interface Tokens {
             focused: string;
             disabled: string;
           };
-          border: {
-            normal: string;
-            hover: string;
-            pressed: string;
-            focused: string;
-            disabled: string;
-            focus: string;
-          };
+          border: { normal: string; hover: string; pressed: string; focused: string; disabled: string };
           content: { normal: string; disabled: string };
+          highlight: { focus: string };
         };
-        'text-link': { border: { focus: string } };
-        search: { background: { normal: string; hover: string; focused: string }; border: { focus: string } };
+        search: {
+          background: { normal: string; hover: string; focused: string };
+          highlight: { focus: string };
+        };
+        'text-link': { highlight: { focus: string } };
       };
       notifications: {
-        message: {
-          background: {
-            positive: string;
-            informative: string;
-            caution: string;
-            critical: string;
-            neutral: string;
-          };
-          content: {
-            positive: string;
-            informative: string;
-            caution: string;
-            critical: string;
-            neutral: string;
-          };
-        };
         alert: {
           background: {
             positive: string;
             informative: string;
             caution: string;
             critical: string;
-            neutral: string;
           };
           content: {
             positive: string;
             informative: string;
-            neutral: string;
+            caution: string;
+            critical: string;
+          };
+          icons: {
+            positive: string;
+            informative: string;
+            caution: string;
+            critical: string;
+          };
+        };
+        banner: {
+          background: {
+            positive: string;
+            informative: string;
+            caution: string;
+            critical: string;
+          };
+          content: {
+            positive: string;
+            informative: string;
             caution: string;
             critical: string;
           };
@@ -275,55 +280,30 @@ export interface Tokens {
             'unselected-hover': string;
             disabled: string;
           };
-          border: { normal: string; hover: string; disabled: string; error: string; focus: string };
+          border: { normal: string; hover: string; disabled: string; error: string };
+          highlight: { focus: string };
         };
         fields: {
           background: { normal: string; hover: string };
-          border: {
-            normal: string;
-            empty: string;
-            error: string;
-            focus: string;
-            active: string;
-            light: string;
-            dark: string;
-          };
+          border: { error: string; normal: string; disabled: string };
+          highlight: { focus: string };
         };
       };
       controls: {
-        background: {
-          dark: string;
-          light: string;
-          light2: string;
-          light3: string;
-          active: string;
-          inactive: string;
-        };
+        background: { light: string; light2: string; active: string; inactive: string };
         content: { light: string; dark: string };
-        border: {
-          light: string;
-          dark: string;
-          active: string;
-          inactive: string;
-          focus: string;
-          hover: string;
-        };
+        border: { active: string; inactive: string; hover: string };
+        highlight: { focus: string };
       };
       icons: { dark: string; light: string; grey: string; black: string };
       menu: {
-        background: { light: string; pressed: string; light2: string };
-        content: {
-          item: { normal: string; hover: string };
-          button: { dark: string; light: string; light2: string; hover: string };
-        };
-        border: { focus: string };
         list: {
-          background: { light: string; darkened: string; normal: string };
-          item: { normal: string; hover: string; darkened: string };
+          background: { darkened: string; normal: string };
           content: { normal: string; darkened: string };
           border: { divider: string };
         };
         button: { dark: string; light: string; hover: string };
+        highlight: { focus: string };
       };
     };
   };
