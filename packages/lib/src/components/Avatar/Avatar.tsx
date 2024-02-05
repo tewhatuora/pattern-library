@@ -25,7 +25,7 @@ export const Avatar = ({ variant = 'small', initial, className, ...props }: Avat
   const avatarClassNames = clsx(styles.styledAvatar, styles.avatarSize[variant], className);
   return (
     <div className={avatarClassNames} {...props}>
-      <Text className={styles.initial[variant]} weight="black">
+      <Text className={styles.initial[variant]} weight="bold">
         {initial}
       </Text>
     </div>
