@@ -8,8 +8,8 @@ import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
-import * as styles from './InputDropdown.css';
 import * as fieldStyles from '../InputField/InputField.css';
+import * as styles from './InputDropdown.css';
 
 import { useText } from '../../hooks/typography';
 

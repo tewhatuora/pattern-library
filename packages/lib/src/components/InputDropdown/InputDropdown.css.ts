@@ -10,7 +10,7 @@ export const chevron = style([
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
-    color: vars.color.primary100,
+    color: vars.color.semantic.icons.dark,
     cursor: 'pointer',
     zIndex: 1,
   },
@@ -31,7 +31,7 @@ export const placeholder = style([
     lineHeight: vars.space.xxlarge.tablet,
     paddingLeft: vars.space.xsmall.tablet,
     paddingRight: vars.space.xsmall.tablet,
-    color: vars.color.neutral50,
+    color: vars.color.semantic.text.copy.placeholder,
   },
   responsiveStyle({
     mobile: {
