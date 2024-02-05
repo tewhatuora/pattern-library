@@ -73,6 +73,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       onSelectBlur,
       onChange,
       onSelectFocus,
+      className,
       options,
       ...props
     }: InputDropdownProps,
@@ -138,6 +139,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
                 [fieldStyles.input.dropdownPlaceholder]: shouldShowPlaceholder,
               },
               textSizeClasses,
+              className,
             )}
             defaultValue={defaultValue}
             disabled={disabled}

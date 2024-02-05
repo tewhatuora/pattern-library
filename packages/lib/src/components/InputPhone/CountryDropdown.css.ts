@@ -18,6 +18,7 @@ export const countryDropdown = style([
   {
     position: 'relative',
     backgroundColor: vars.color.semantic.inputs.fields.background.normal,
+    color: 'transparent',
     borderTopLeftRadius: vars.borderRadius.topLeft.inputs,
     borderBottomLeftRadius: vars.borderRadius.topLeft.inputs,
     flexShrink: 0,
@@ -53,6 +54,10 @@ export const countryDropdown = style([
   }),
 ]);
 
+export const select = style({
+  color: 'transparent', // hides the select option text
+});
+
 globalStyle(`.PhoneInput--disabled .${countryDropdown}`, {
   borderColor: vars.color.semantic.inputs.elements.border.disabled,
 });
@@ -66,7 +71,6 @@ export const flagWrapperBase = style([
     height: '100%',
     top: '0',
     zIndex: '2',
-    backgroundColor: vars.color.primary0,
     pointerEvents: 'none',
   },
   responsiveStyle({
@@ -89,8 +93,4 @@ export const flagWrapper = styleVariants({
       color: vars.color.semantic.icons.dark,
     },
   ],
-});
-
-globalStyle(`${countryDropdown}:hover ${flagWrapperBase}`, {
-  backgroundColor: vars.color.semantic.inputs.fields.background.hover,
 });
