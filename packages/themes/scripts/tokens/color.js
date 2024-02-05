@@ -1,5 +1,3 @@
-// import _ from 'lodash';
-
 /**
  * Format color tokens
  * @param {Object} tokens Color tokens
