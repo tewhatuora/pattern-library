@@ -127,6 +127,20 @@ Please read the [contributing guide](./CONTRIBUTING.md) before working on this r
 
 ### Releasing
 
+The process is the same for publishing a release for `@te-whatu-ora/anatomic` & `@te-whatu-ora/anatomic-themes`.
+
+TLDR:
+
+1. `cd` into the appropriate package (`cd packages/lib` OR `cd packages/themes`)
+2. run the appropriate version bump script for the release:
+   1. backward-compatible bugfixes only: `yarn run patch`
+   2. added new backward-compatible functionality: `yarn run minor`
+   3. added breaking changes: `yarn run major`
+   4. prerelease beta release with breaking changes: `yarn run major:beta`
+3. push the tag(s) created by step 2
+
+Package-specific documentation:
+
 Checkout the `main` branch. `git checkout main && git pull`.
 
 <details>
