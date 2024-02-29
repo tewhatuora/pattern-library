@@ -74,7 +74,7 @@ export const colorProperties = {
   color: colors,
   backgroundColor: colors,
   borderColor: colors,
-} as const;
+} as Record<'color' | 'backgroundColor' | 'borderColor', Omit<typeof vars.color, 'semantic'>>;
 
 export type ColorProperties = keyof typeof colorProperties;
 type ResponsiveSpace = Record<Space, StyleRule>;
