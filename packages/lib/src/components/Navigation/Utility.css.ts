@@ -45,16 +45,16 @@ export const utilityLink = styleVariants({
   light: [
     utilityLinkBase,
     {
-      color: vars.color.primary100,
+      color: vars.color.semantic.text.copy.dark,
     },
   ],
   dark: [
     utilityLinkBase,
     {
-      color: vars.color.primary0,
+      color: vars.color.semantic.text.copy.light,
       selectors: {
         '&:hover': {
-          color: vars.color.primary0,
+          color: vars.color.semantic.text.copy.light,
         },
       },
     },

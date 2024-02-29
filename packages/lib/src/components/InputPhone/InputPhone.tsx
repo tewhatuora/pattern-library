@@ -48,7 +48,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       helperText,
       clearable,
       international,
-      defaultCountry,
+      defaultCountry = 'NZ',
       href,
       tertiaryLabel,
       tertiaryLabelAs,
@@ -107,13 +107,13 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           <PhoneInput
             id={id}
             {...inputProps}
-            aria-invalid={!!errorMessage}
             className={clsx(
               inputStyles.input.phone,
               styles.input,
               {
                 [inputStyles.input.base]: !errorMessage,
-                [inputStyles.errorBorder]: !!errorMessage,
+                'PhoneInput--error': errorMessage,
+                [styles.clearable]: clearable,
               },
               textSizeClasses,
             )}
@@ -125,6 +125,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             focusInputOnCountrySelection={false}
             inputComponent={InputField}
             international={international}
+            invalid={(!!errorMessage).toString()}
             name={name}
             placeholder={placeholder}
             ref={internalRef as LegacyRef<any>}

@@ -17,7 +17,10 @@ export type AccordionRootProps = ComponentPropsWithoutRef<typeof RadixAccordion.
   headingLevel: number;
 };
 
-export const AccordionContext = createContext({ headingLevel: 3 });
+export const AccordionContext = createContext<{ headingLevel: number; variant: 'light' | 'dark' }>({
+  headingLevel: 3,
+  variant: 'light',
+});
 
 /**
  * Expandable and collapsible content.
@@ -39,7 +42,7 @@ export const Root = ({
       collapsible
       {...props}
     >
-      <AccordionContext.Provider value={{ headingLevel }}>
+      <AccordionContext.Provider value={{ headingLevel, variant }}>
         <AllowedChildren
           errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"
           types={[Item]}

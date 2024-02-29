@@ -1,4 +1,3 @@
-import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { recipe } from '@vanilla-extract/recipes';
@@ -6,30 +5,20 @@ import { recipe } from '@vanilla-extract/recipes';
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
-
-export const boldText = style({
-  //
-});
-
-export const boldLinks = style({
-  //
-});
-
-export const noVisited = style({
-  //
-});
+import { boldText } from '../Text/Text.css';
+import { boldLinks, noVisited } from '../AnchorLink/AnchorLink.css';
 
 export const link = recipe({
   base: {
     display: 'inline',
-    color: 'black',
+    color: vars.color.semantic.text.links.active,
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
-        color: vars.color.secondary75,
+        color: vars.color.semantic.text.links.hover,
         textDecoration: 'underline',
       },
       [`${boldText} &`]: {
@@ -49,10 +38,10 @@ export const link = recipe({
       false: {
         selectors: {
           '&:visited': {
-            color: vars.color.visited100,
+            color: vars.color.semantic.text.links.visited,
           },
           [`${noVisited} &`]: {
-            color: 'black',
+            color: vars.color.semantic.text.links.active,
           },
         },
       },
@@ -78,8 +67,8 @@ export const link = recipe({
 export const inlineIcon = recipe({
   base: {
     verticalAlign: 'middle',
-    transform: 'translateY(-9%)',
     display: 'inline-flex',
+    transform: 'translateY(-9%)',
   },
   variants: {
     iconPosition: {

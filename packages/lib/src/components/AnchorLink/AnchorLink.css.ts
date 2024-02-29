@@ -8,10 +8,7 @@ import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
-
-export const boldText = style({
-  //
-});
+import { boldText } from '../Text/Text.css';
 
 export const boldLinks = style({
   //
@@ -25,14 +22,14 @@ export const link = recipe({
   base: {
     display: 'inline-flex',
     alignItems: 'center',
-    color: 'black',
+    color: vars.color.semantic.text.links.active,
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
-        color: vars.color.secondary75,
+        color: vars.color.semantic.text.links.hover,
         textDecoration: 'underline',
       },
       [`${boldText} &`]: {
@@ -52,10 +49,10 @@ export const link = recipe({
       false: {
         selectors: {
           '&:visited': {
-            color: vars.color.visited100,
+            color: vars.color.semantic.text.links.visited,
           },
           [`${noVisited} &`]: {
-            color: 'black',
+            color: vars.color.semantic.text.links.active,
           },
         },
       },

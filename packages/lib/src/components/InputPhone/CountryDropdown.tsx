@@ -43,7 +43,7 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
     <div className={styles.countryDropdown}>
       <InputDropdown
         {...props}
-        className={styles.countryDropdownSelect}
+        className={styles.select}
         id="countryCode"
         name="countryCode"
         options={countryOptions}
@@ -56,10 +56,8 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
           [styles.flagWrapper.international]: !value || value == 'International',
         })}
       >
-        <div className={styles.flagIcon}>
-          {/* @ts-expect-error The `style` prop does exist, we just don't have the types for `Flag` */}
-          <Flag style={{ width: '100%' }} />
-        </div>
+        {/* @ts-expect-error The `style` prop does exist, we just don't have the types for `Flag` */}
+        <Flag style={{ width: '100%' }} />
       </div>
     </div>
   );

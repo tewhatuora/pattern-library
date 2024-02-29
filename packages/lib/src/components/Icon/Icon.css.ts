@@ -9,6 +9,7 @@ export const icon = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  flexShrink: 0,
 });
 
 const variant = {
@@ -78,7 +79,7 @@ globalStyle(`${icon} > svg`, {
 export const clearIcon = style({});
 
 globalStyle(`${clearIcon} > svg path`, {
-  fill: vars.color.primary0,
+  fill: vars.color.semantic.icons.light,
 });
 globalStyle(`${clearIcon} > svg circle`, {
   fill: 'currentColor',

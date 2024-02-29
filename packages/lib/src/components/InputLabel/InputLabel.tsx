@@ -64,13 +64,14 @@ export const InputLabel = ({
   htmlFor,
   href,
   error = false,
+  required,
   disabled,
   labelProps,
 }: InputLabelProps) => {
-  const labelColor = error && !disabled ? 'error100' : 'neutral100';
+  const state = disabled ? 'disabled' : error ? 'error' : undefined;
 
   return (
-    <Box display="flex" justifyContent="spaceBetween">
+    <Box className={styles.wrapper} display="flex" justifyContent="spaceBetween">
       <Box
         as={as}
         display="flex"
@@ -80,21 +81,22 @@ export const InputLabel = ({
         width={tertiaryLabelAs === 'text' ? 'full' : undefined}
       >
         <span>
-          <Text color={labelColor} weight="bold">
-            {label}
+          <Text className={state && styles.labels[state]} weight="bold">
+            {label} {!!required && '*'}
           </Text>
-          {subheading ? (
-            <Text color={labelColor} size="small">
-              {subheading}
-            </Text>
-          ) : null}
+          <Text className={state && styles.labels[state]} size="small">
+            {subheading}
+          </Text>
         </span>
 
         {tertiaryLabel && tertiaryLabelAs === 'text' ? (
-          <Box as="span" className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition])}>
-            <Text size="medium" weight="regular">
-              {tertiaryLabel}
-            </Text>
+          <Box
+            as="span"
+            className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition], {
+              [styles.labels.disabled]: disabled,
+            })}
+          >
+            <Text size="small">{tertiaryLabel}</Text>
 
             {!!tertiaryLabelIcon && <Icon aria-hidden="true" icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>

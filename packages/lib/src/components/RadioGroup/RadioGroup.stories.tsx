@@ -127,6 +127,7 @@ export const Error = (args: RadioGroupProps) => {
 };
 Error.args = {
   errorMessage: 'Error message',
+  error: true,
 };
 
 export const Disabled = (args: RadioGroupProps) => {

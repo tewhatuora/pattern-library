@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { focusSelectorsStyles } from '@/src/utils/custom';
 import { rem } from '@/src/css/helpers';
+import { getFocusSelectors } from '@/src/utils/custom';
 
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
@@ -15,18 +15,17 @@ export const wrapper = style([
 
     selectors: {
       '&[aria-invalid="true"]': {
-        color: vars.color.error100,
+        color: vars.color.semantic.text.copy.error,
       },
     },
   },
 ]);
 
 export const disabled = style({
-  color: vars.color.primary50,
+  color: vars.color.semantic.text.copy.disabled,
 });
-
 export const error = style({
-  color: vars.color.error100,
+  color: vars.color.semantic.text.copy.error,
 });
 
 export const checkbox = style({
@@ -43,43 +42,41 @@ export const checkbox = style({
   flexShrink: '0',
 
   // Will be overridden by the selectors below
-  borderColor: vars.color.primary100,
-  backgroundColor: vars.color.primary0,
+  borderColor: vars.color.semantic.inputs.elements.border.normal,
+  backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
   ':hover': {
-    backgroundColor: vars.color.tertiary25,
-    borderColor: vars.color.primary110,
+    backgroundColor: vars.color.semantic.inputs.elements.background['unselected-hover'],
+    borderColor: vars.color.semantic.inputs.elements.border.hover,
   },
 
   selectors: {
     '&:not([data-state="unchecked"])': {
-      backgroundColor: vars.color.primary100,
+      backgroundColor: vars.color.semantic.inputs.elements.background.selected,
     },
     '&:not([data-state="unchecked"]):hover': {
-      backgroundColor: vars.color.primary110,
+      backgroundColor: vars.color.semantic.inputs.elements.background['selected-hover'],
     },
 
     // The following override `&:not([data-state="unchecked"]):hover`.
     // Otherwise the disabled and error hover styles are wrong.
     '&:disabled, &:disabled:hover': {
       cursor: 'not-allowed',
-      borderColor: vars.color.tertiary50,
-      backgroundColor: vars.color.primary0,
+      borderColor: vars.color.semantic.inputs.elements.border.disabled,
+      backgroundColor: vars.color.semantic.inputs.fields.background.normal,
     },
     '&:disabled:not([data-state="unchecked"]), &:disabled:not([data-state="unchecked"]):hover': {
-      backgroundColor: vars.color.tertiary50,
+      backgroundColor: vars.color.semantic.inputs.elements.background.disabled,
     },
     '&[aria-invalid="true"], &[aria-invalid="true"]:hover': {
-      borderColor: vars.color.error100,
+      borderColor: vars.color.semantic.inputs.elements.border.error,
     },
-
-    // Focus styles
-    ...focusSelectorsStyles,
+    ...getFocusSelectors(vars.color.semantic.inputs.elements.highlight.focus),
   },
 });
 
 export const indicator = style({
-  color: vars.color.primary0,
+  color: vars.color.semantic.icons.light,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -87,7 +84,7 @@ export const indicator = style({
 
 globalStyle(`${indicator} > svg`, {
   width: rem(12),
-  fill: vars.color.primary0,
+  fill: vars.color.semantic.icons.light,
 });
 
 export const label = style({

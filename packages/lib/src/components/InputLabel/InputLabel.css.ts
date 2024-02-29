@@ -5,6 +5,19 @@ import { calc } from '@vanilla-extract/css-utils';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
+export const wrapper = style({
+  color: vars.color.semantic.text.copy.dark,
+});
+
+export const labels = styleVariants({
+  error: {
+    color: vars.color.semantic.text.copy.error,
+  },
+  disabled: {
+    color: vars.color.semantic.text.copy.disabled,
+  },
+});
+
 /**
  * Adapted from the `Button.css.txt` `label` variant.
  */
@@ -24,7 +37,6 @@ export const tertiaryLabel = style([
     alignItems: 'center',
     alignSelf: 'flex-start',
     width: 'auto',
-    color: vars.color.neutral100,
   },
 ]);
 

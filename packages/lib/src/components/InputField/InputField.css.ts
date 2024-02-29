@@ -3,7 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusSelectorsStyles } from '@/src/utils/custom';
+import { focusSelectorsStyles, getFocusSelectors } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -43,40 +43,35 @@ export const inputBase = style([
   }),
   {
     appearance: 'none',
-    // overflow: 'hidden',
     width: '100%',
-    // height: rem(),
-    lineHeight: 1.6,
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingLeft: 16,
-    paddingRight: 16,
+    height: vars.space.xxlarge.tablet,
+    lineHeight: vars.space.xxlarge.tablet,
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingLeft: vars.space.xsmall.tablet,
+    paddingRight: vars.space.xsmall.tablet,
     borderRadius: vars.borderRadiusAll.inputs,
     borderWidth: vars.borderWidth.small,
-    borderColor: vars.color.primary50,
+    borderColor: vars.color.semantic.inputs.fields.border.normal,
     borderStyle: 'solid',
-    color: vars.color.neutral100,
-    backgroundColor: vars.color.primary0,
+    color: vars.color.semantic.text.copy.dark,
+    backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
     selectors: {
-      '&:active': {
-        borderColor: vars.color.primary100,
-        color: vars.color.neutral100,
-      },
       '&:disabled': {
-        color: vars.color.secondary50,
-        borderColor: vars.color.secondary50,
-        backgroundColor: vars.color.primary0,
+        color: vars.color.semantic.text.copy.disabled,
+        borderColor: vars.color.semantic.inputs.fields.border.disabled,
+        backgroundColor: vars.color.semantic.inputs.fields.background.normal,
         cursor: 'not-allowed',
       },
       '&::placeholder': {
-        color: vars.color.neutral50,
+        color: vars.color.semantic.text.copy.placeholder,
       },
       '&[aria-invalid="true"]:not([disabled])': {
-        borderColor: vars.color.error100,
-        boxShadow: `0 0 0 ${rem(1)} ${vars.color.error100}`,
+        borderColor: vars.color.semantic.inputs.fields.border.error,
+        boxShadow: `0 0 0 ${rem(1)} ${vars.color.semantic.inputs.fields.border.error}`,
       },
-      ...focusSelectorsStyles,
+      ...getFocusSelectors(vars.color.semantic.inputs.fields.highlight.focus),
     },
   },
 ]);
@@ -85,29 +80,30 @@ export const input = styleVariants({
   base: [inputBase],
   clearable: [
     inputBase,
-    responsiveStyle({
-      mobile: {
-        paddingRight: 48,
-      },
-      tablet: {
-        paddingRight: 56,
-      },
-    }),
+    {
+      paddingRight: calc.multiply(vars.space.xsmall.tablet, 3),
+    },
   ],
   dropdown: [
     inputBase,
     {
       position: 'relative',
       zIndex: 2,
-      // backgroundColor: 'transparent',
-      color: vars.color.neutral100,
+      backgroundColor: 'transparent',
+      color: vars.color.semantic.text.copy.dark,
     },
     responsiveStyle({
       mobile: {
-        paddingRight: 32,
+        paddingRight: calc(vars.space.small.mobile) // Functional icon width
+          .add(vars.space.small.mobile) // + icon right
+          .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
+          .toString(),
       },
       tablet: {
-        paddingRight: 40,
+        paddingRight: calc(vars.space.small.tablet) // Functional icon width
+          .add(vars.space.xsmall.tablet) // + icon right
+          .add(vars.space.xsmall.tablet) // + gap between copy and icon (icon right)
+          .toString(),
       },
     }),
   ],
@@ -145,11 +141,6 @@ export const input = styleVariants({
   ],
 });
 
-export const errorBorder = style({
-  borderColor: vars.color.error100,
-  boxShadow: `0 0 0 ${rem(1)} ${vars.color.error100}`,
-});
-
 globalStyle(`${input.phone} ${inputBase}`, {
   border: 'none',
   boxShadow: 'none',
@@ -159,28 +150,37 @@ globalStyle(`${input.phone} input${inputBase}`, {
   borderTopLeftRadius: '0',
   borderBottomLeftRadius: '0',
 });
+
 globalStyle(`${input.phone} select${inputBase}`, {
   borderTopRightRadius: '0',
   borderBottomRightRadius: '0',
 });
 
+globalStyle(`.PhoneInput--disabled.${input.phone}`, {
+  borderColor: vars.color.semantic.inputs.elements.border.disabled,
+});
+
+globalStyle(`.PhoneInput--error.${input.phone}`, {
+  borderColor: vars.color.semantic.inputs.fields.border.error,
+  boxShadow: `0 0 0 ${rem(1)} ${vars.color.semantic.inputs.fields.border.error}`,
+});
+
 export const clearButtonBase = style([
   {
     position: 'absolute',
-    top: '50%',
-    right: 16,
+    top: rem(1),
+    right: 0,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: 24,
-    minHeight: 24,
-    // height: vars.space.xxlarge.tablet,
-    // paddingLeft: vars.space.xsmall.tablet,
-    // paddingRight: vars.space.xsmall.tablet,
-    borderRadius: '50%',
+    height: vars.space.xxlarge.tablet,
+    paddingLeft: vars.space.xsmall.tablet,
+    paddingRight: vars.space.xsmall.tablet,
+    borderRadius: vars.borderRadiusAll.inputs,
     cursor: 'pointer',
-    transform: 'translateY(-50%)',
     zIndex: 2,
+    selectors: {
+      ...focusSelectorsStyles,
+    },
   },
 ]);
 

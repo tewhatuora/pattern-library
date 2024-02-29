@@ -29,6 +29,7 @@ const iconMap: Record<string, IconType> = {
   positive: 'tick',
   info: 'info',
   critical: 'warning',
+  caution: 'alert',
 };
 
 export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
@@ -41,7 +42,7 @@ export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxPro
       role="status"
       {...boxProps}
     >
-      <Icon className={styles.icon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
+      <Icon className={styles.icon({ variant })} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
       <Text size="medium" weight="regular">
         {label}
       </Text>

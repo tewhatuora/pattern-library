@@ -3,7 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusSelectorsStyles } from '@/src/utils/custom';
+import { focusSelectorsStyles, getFocusSelectors } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -41,13 +41,15 @@ export const header = styleVariants({
   dark: [
     base,
     {
-      backgroundColor: vars.color.primary100,
+      backgroundColor: vars.color.semantic.structure.background['header-dark'],
+      color: vars.color.semantic.text.copy.light,
     },
   ],
   light: [
     base,
     {
-      backgroundColor: vars.color.primary0,
+      backgroundColor: vars.color.semantic.structure.background['header-light'],
+      color: vars.color.semantic.text.copy.dark,
     },
   ],
 });
@@ -84,6 +86,9 @@ export const mobileMenuButton = style([
   }),
   {
     gap: vars.space.xsmall.mobile,
+    selectors: {
+      ...getFocusSelectors(vars.color.semantic.menu.highlight.focus),
+    },
   },
   responsiveStyle({
     mobile: {

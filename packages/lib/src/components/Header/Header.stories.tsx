@@ -30,6 +30,15 @@ export default {
       </div>
     ),
   ],
+  argTypes: {
+    variant: {
+      defaultValue: 'light',
+      control: {
+        type: 'radio',
+        options: ['light', 'dark'],
+      },
+    },
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -37,11 +46,11 @@ export default {
   },
 } as Meta;
 
-export const Default = () => {
+export const Default = (args: Header.HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Header.Root variant="light">
+    <Header.Root {...args}>
       <Header.Main>
         <Header.Left>
           <Header.Logo>
@@ -65,7 +74,7 @@ export const Default = () => {
                 label: 'Name Surname',
               },
             ]}
-            variant="light"
+            variant={args.variant!}
           />
 
           <InputSearch id="search" name="search" placeholder="Search" />

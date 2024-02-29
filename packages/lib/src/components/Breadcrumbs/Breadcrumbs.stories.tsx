@@ -1,9 +1,10 @@
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
-import { AnchorLink } from '../AnchorLink/AnchorLink';
+
 import { Text } from '../Text/Text';
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './Breadcrumbs.docs.mdx';
+import { TextLink } from '../TextLink/TextLink';
 
 export default {
   title: 'Components/Breadcrumbs',
@@ -26,12 +27,12 @@ export default {
 export const Default = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <AnchorLink noIcon showUnderline to="#100">
+      <TextLink showUnderline to="#100">
         First
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#200">
+      </TextLink>
+      <TextLink showUnderline to="#200">
         Second
-      </AnchorLink>
+      </TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -40,12 +41,12 @@ export const Default = (args: BreadcrumbsProps) => {
 export const BoldText = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} boldText>
-      <AnchorLink noIcon showUnderline to="#100">
+      <TextLink showUnderline to="#100">
         First
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#200">
+      </TextLink>
+      <TextLink showUnderline to="#200">
         Second
-      </AnchorLink>
+      </TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -54,12 +55,12 @@ export const BoldText = (args: BreadcrumbsProps) => {
 export const BoldLinks = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} boldLinks>
-      <AnchorLink noIcon showUnderline to="#100">
+      <TextLink showUnderline to="#100">
         First
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#200">
+      </TextLink>
+      <TextLink showUnderline to="#200">
         Second
-      </AnchorLink>
+      </TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -68,12 +69,12 @@ export const BoldLinks = (args: BreadcrumbsProps) => {
 export const NoVistedStyle = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} noVisited>
-      <AnchorLink noIcon showUnderline to="#100">
+      <TextLink showUnderline to="#100">
         First
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#200">
+      </TextLink>
+      <TextLink showUnderline to="#200">
         Second
-      </AnchorLink>
+      </TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -82,33 +83,33 @@ export const NoVistedStyle = (args: BreadcrumbsProps) => {
 export const Truncated = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <AnchorLink noIcon showUnderline to="#100">
+      <TextLink showUnderline to="#100">
         First
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#200">
+      </TextLink>
+      <TextLink showUnderline to="#200">
         Second
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#300">
+      </TextLink>
+      <TextLink showUnderline to="#300">
         Third
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#400">
+      </TextLink>
+      <TextLink showUnderline to="#400">
         Fourth
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#400">
+      </TextLink>
+      <TextLink showUnderline to="#400">
         Fifth
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#400">
+      </TextLink>
+      <TextLink showUnderline to="#400">
         Sixth
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#400">
+      </TextLink>
+      <TextLink showUnderline to="#400">
         Seventh
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#400">
+      </TextLink>
+      <TextLink showUnderline to="#400">
         Eighth
-      </AnchorLink>
-      <AnchorLink noIcon showUnderline to="#400">
+      </TextLink>
+      <TextLink showUnderline to="#400">
         Ninth
-      </AnchorLink>
+      </TextLink>
       <Text>Tenth</Text>
     </Breadcrumbs>
   );

@@ -41,25 +41,25 @@ export const spinner = styleVariants({
   light: [
     spinnerStyles,
     {
-      borderLeftColor: vars.color.primary0,
-      borderTopColor: vars.color.primary0,
+      borderLeftColor: vars.color.semantic.controls.background.light,
+      borderTopColor: vars.color.semantic.controls.background.light,
     },
   ],
   dark: [
     spinnerStyles,
     {
-      borderLeftColor: vars.color.primary100,
-      borderTopColor: vars.color.primary100,
+      borderLeftColor: vars.color.semantic.controls.background.active,
+      borderTopColor: vars.color.semantic.controls.background.active,
     },
   ],
 });
 
 export const label = styleVariants({
   light: {
-    color: vars.color.primary0,
+    color: vars.color.semantic.controls.background.light,
   },
   dark: {
-    color: vars.color.primary100,
+    color: vars.color.semantic.controls.background.active,
   },
 });
 

@@ -7,8 +7,8 @@ import sizeToRem from '../utils/sizeToRem.js';
  * @return {Object} Formatted color tokens
  */
 const shadows = (tokens) => {
-  return Object.keys(tokens).reduce((acc, key) => {
-    const rule = tokens[key];
+  return Object.keys(tokens.shadow).reduce((acc, key) => {
+    const rule = tokens.shadow[key];
 
     acc[key] = trim(
       `${rule.shadowType === 'innerShadow' ? 'inset' : ''} ${sizeToRem(rule.offsetX)} ${sizeToRem(

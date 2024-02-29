@@ -5,10 +5,7 @@ import * as styles from './Divider.css';
 
 export const DividerStyles = styles;
 
-export type DividerProps = {
-  /** Contrast variant for dark/light UI */
-  variant: styles.Variant;
-} & Separator.SeparatorProps;
+export type DividerProps = styles.Variants & Separator.SeparatorProps;
 
 /**
  * A section break in content. Built on top of the [Radix UI Separator

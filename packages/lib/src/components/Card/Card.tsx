@@ -1,14 +1,16 @@
 import { PropsWithChildren, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { atoms } from '../../css/atoms/atoms';
+import { vars } from '../../themes/vars.css';
 
 import { Box, BoxProps } from '../Box/Box';
-import { Color, ContrastVariant } from '../../types';
+import { ContrastVariant } from '../../types';
 
 import * as styles from './Card.css';
 
 export const CardStyles = styles;
+
+type Color = Exclude<keyof typeof vars.color, 'semantic'>;
 
 export type CardProps = {
   /** Contrast variant for dark/light UI */
@@ -40,15 +42,18 @@ export const Card = ({
       styles.variants[variant],
       {
         [styles.variants.noShadow]: noShadow,
-        [atoms({ borderColor: border })]: border,
-        [styles.border]: border,
       },
       className,
     );
-  }, [noShadow, variant, className, border]);
+  }, [noShadow, variant, className]);
 
   return (
-    <Box as={as} className={cardClassNames} {...boxProps}>
+    <Box
+      as={as}
+      className={cardClassNames}
+      style={border ? { borderColor: vars.color[border] } : undefined}
+      {...boxProps}
+    >
       {children}
     </Box>
   );

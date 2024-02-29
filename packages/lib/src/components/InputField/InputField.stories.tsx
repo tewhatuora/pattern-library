@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { InputField, InputFieldProps } from './InputField';
 
@@ -61,10 +61,18 @@ export default {
 };
 
 export const Default = (args: InputFieldProps) => {
-  return <InputField {...args} />;
+  const [value, setValue] = useState('');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+  return <InputField {...args} value={value} onChange={handleChange} />;
 };
 export const WithPlaceholder = (args: InputFieldProps) => {
-  return <InputField {...args} placeholder="Placeholder" />;
+  const [value, setValue] = useState('');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+  return <InputField {...args} placeholder="Placeholder" value={value} onChange={handleChange} />;
 };
 
 /**
@@ -75,20 +83,41 @@ export const WithPlaceholder = (args: InputFieldProps) => {
  */
 export const WithFocus = (args: InputFieldProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
+  const [value, setValue] = useState('Focus');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   useEffect(() => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputField {...args} defaultValue="Focus" ref={ref} />;
+  return <InputField {...args} defaultValue="Focus" ref={ref} value={value} onChange={handleChange} />;
 };
 export const Filled = (args: InputFieldProps) => {
-  return <InputField {...args} defaultValue="Filled" />;
+  const [value, setValue] = useState('Filled');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  return <InputField {...args} defaultValue="Filled" value={value} onChange={handleChange} />;
 };
 export const Error = (args: InputFieldProps) => {
-  return <InputField {...args} defaultValue="Filled" error />;
+  const [value, setValue] = useState('Filled');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  return <InputField {...args} defaultValue="Filled" error value={value} onChange={handleChange} />;
 };
 export const Disabled = (args: InputFieldProps) => {
-  return <InputField {...args} defaultValue="Filled" disabled />;
+  const [value, setValue] = useState('Filled');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  return <InputField {...args} defaultValue="Filled" disabled value={value} onChange={handleChange} />;
 };
 export const Clearable = (args: InputFieldProps) => {
   const [value, setValue] = useState('Clearable');
@@ -98,12 +127,10 @@ export const Clearable = (args: InputFieldProps) => {
   return <InputField {...args} clearable value={value} onChange={handleChange} />;
 };
 export const OnFocusAndBlurEvent = (args: InputFieldProps) => {
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    e.target.style.backgroundColor = '';
+  const [value, setValue] = useState('');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
 
-  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
-    e.target.style.backgroundColor = 'yellow';
-  };
-  return <InputField {...args} name="FocusAndBlur" onBlur={handleBlur} onFocus={handleFocus} />;
+  return <InputField {...args} name="FocusAndBlur" value={value} onChange={handleChange} />;
 };

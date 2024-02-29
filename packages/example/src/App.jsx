@@ -5,7 +5,7 @@ import '@te-whatu-ora/anatomic/styles';
 import '@te-whatu-ora/anatomic-themes/styles';
 
 import { ThemeProvider, Header, Stack, Container, Text, Navigation } from '@te-whatu-ora/anatomic';
-import { myCovidRecord } from '@te-whatu-ora/anatomic-themes';
+import { neutral } from '@te-whatu-ora/anatomic-themes';
 
 import Example from './Example';
 import YourDetails from './YourDetails';
@@ -18,7 +18,7 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={myCovidRecord.className}>
+    <ThemeProvider theme={neutral.className}>
       <Stack space="xxlarge" color="primary100">
       <Header
         utilityNavItems={[
