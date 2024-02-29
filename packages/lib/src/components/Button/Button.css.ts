@@ -62,7 +62,7 @@ export const variants = recipe({
     }),
   ]),
   variants: {
-    color: {
+    variant: {
       // Used in TextLinkButton and InputPassword
       link: style([
         {
@@ -183,7 +183,7 @@ export const variants = recipe({
     },
   },
   defaultVariants: {
-    color: 'primary',
+    variant: 'primary',
   },
 });
 
