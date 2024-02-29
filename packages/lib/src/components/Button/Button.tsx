@@ -13,14 +13,6 @@ import * as styles from './Button.css';
 
 export const ButtonStyles = styles;
 
-type KeysUnder<T, K extends PropertyKey> = T extends object
-  ? {
-      [P in keyof T]-?: (P extends K ? keyof T[P] : any) | KeysUnder<T[P], K>;
-    }[keyof T]
-  : any;
-
-type ColorVariant = KeysUnder<styles.Variants, 'color'>;
-
 export type ButtonProps = {
   /** Font weight for `<Text>` */
   weight?: UseTextProps['weight'];
@@ -34,14 +26,13 @@ export type ButtonProps = {
   href?: string;
   /** Additional CSS className. (Use `__anatomic__` for an example) */
   className?: string;
-  /** Banner style variant */
-  variant?: ColorVariant;
   /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;
   /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
   onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   children?: ReactNode | undefined;
-} & Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
+} & styles.Variants &
+  Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
   AsLink;
 
 type AsLink = {
@@ -83,7 +74,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       as={as}
       className={clsx(
         styles.variants({
-          color: variant,
+          variant,
         }),
         className,
       )}
