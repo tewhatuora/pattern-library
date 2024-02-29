@@ -71,37 +71,49 @@ export const InputLabel = ({
 
   return (
     <Box display="flex" justifyContent="spaceBetween">
-      <Box as={as} htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
-        <Text color={labelColor} weight="bold">
-          {label}
-        </Text>
-        <Text color={labelColor} size="small">
-          {subheading}
-        </Text>
-      </Box>
+      <Box
+        as={as}
+        display="flex"
+        htmlFor={htmlFor || labelProps?.htmlFor}
+        id={labelProps?.id}
+        justifyContent="spaceBetween"
+        width={tertiaryLabelAs === 'text' ? 'full' : undefined}
+      >
+        <span>
+          <Text color={labelColor} weight="bold">
+            {label}
+          </Text>
+          {subheading ? (
+            <Text color={labelColor} size="small">
+              {subheading}
+            </Text>
+          ) : null}
+        </span>
 
-      {tertiaryLabel &&
-        (tertiaryLabelAs !== 'text' ? (
-          <Button
-            as={tertiaryLabelAs}
-            className={clsx(styles.tertiaryLabel)}
-            href={href}
-            icon={tertiaryLabelIcon}
-            iconPosition={tertiaryLabelIconPosition}
-            variant="link"
-            onPress={onTertiaryLabelClick}
-          >
-            {tertiaryLabel}
-          </Button>
-        ) : (
+        {tertiaryLabel && tertiaryLabelAs === 'text' ? (
           <Box as="span" className={clsx(styles.tertiaryLabel, styles.iconPosition[tertiaryLabelIconPosition])}>
-            <Text size="medium" weight="link-normal">
+            <Text size="medium" weight="regular">
               {tertiaryLabel}
             </Text>
 
             {!!tertiaryLabelIcon && <Icon aria-hidden="true" icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>
-        ))}
+        ) : null}
+      </Box>
+
+      {tertiaryLabel && tertiaryLabelAs !== 'text' ? (
+        <Button
+          as={tertiaryLabelAs}
+          className={clsx(styles.tertiaryLabel)}
+          href={href}
+          icon={tertiaryLabelIcon}
+          iconPosition={tertiaryLabelIconPosition}
+          variant="link"
+          onPress={onTertiaryLabelClick}
+        >
+          {tertiaryLabel}
+        </Button>
+      ) : null}
     </Box>
   );
 };

@@ -122,6 +122,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             defaultCountry={defaultCountry}
             disabled={disabled}
             displayInitialValueAsLocalNumber
+            focusInputOnCountrySelection={false}
             inputComponent={InputField}
             international={international}
             name={name}

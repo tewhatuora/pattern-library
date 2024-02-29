@@ -24,7 +24,7 @@ export const tertiaryLabel = style([
     alignItems: 'center',
     alignSelf: 'flex-start',
     width: 'auto',
-    color: vars.color.info100,
+    color: vars.color.neutral100,
   },
 ]);
 
