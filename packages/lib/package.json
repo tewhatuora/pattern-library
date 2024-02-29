@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-custom",
   "description": "Te Whatu Ora - Anatomic Design system",
   "homepage": "https://main--630296ff1edaa813b72e85c0.chromatic.com/",
   "author": "Kyle Beattie <kyle.beattie@alphero.com>",
@@ -79,7 +79,7 @@
     "@react-aria/label": "^3.3.1",
     "@react-aria/link": "^3.3.1",
     "@react-aria/textfield": "^3.6.1",
-    "@te-whatu-ora/anatomic-themes": "4.0.0",
+    "@te-whatu-ora/anatomic-themes": "file:.yalc/@te-whatu-ora/anatomic-themes",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.178",
     "@vanilla-extract/css": "^1.6.3",

@@ -227,6 +227,247 @@ export declare const contract: {
         annotation5: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         annotation0: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         visited100: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        focus100: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        transparent100: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        semantic: {
+            structure: {
+                background: {
+                    'header-dark': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    'header-light': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    'footer-light': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    'footer-dark': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+                divider: {
+                    dark: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    light: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+            };
+            card: {
+                background: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                border: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            };
+            text: {
+                copy: {
+                    dark: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    light: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    error: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    placeholder: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+                links: {
+                    active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    visited: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+            };
+            button: {
+                primary: {
+                    background: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        pressed: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    content: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    border: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        pressed: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                secondary: {
+                    background: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        pressed: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    content: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    border: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        pressed: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                tertiary: {
+                    background: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        pressed: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    border: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        pressed: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    content: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                search: {
+                    background: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        focused: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                'text-link': {
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+            };
+            notifications: {
+                alert: {
+                    background: {
+                        positive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        informative: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        caution: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        critical: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    content: {
+                        positive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        informative: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        caution: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        critical: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    icons: {
+                        positive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        informative: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        caution: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        critical: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                banner: {
+                    background: {
+                        positive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        informative: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        caution: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        critical: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    content: {
+                        positive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        informative: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        caution: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        critical: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+            };
+            inputs: {
+                elements: {
+                    background: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        selected: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        'selected-hover': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        unselected: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        'unselected-hover': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    border: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        error: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                fields: {
+                    background: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    border: {
+                        error: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        disabled: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    highlight: {
+                        focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+            };
+            controls: {
+                background: {
+                    light: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    light2: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    inactive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+                content: {
+                    light: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    dark: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+                border: {
+                    active: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    inactive: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+                highlight: {
+                    focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+            };
+            icons: {
+                dark: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                light: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                grey: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                black: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+            };
+            menu: {
+                list: {
+                    background: {
+                        darkened: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    content: {
+                        normal: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                        darkened: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                    border: {
+                        divider: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    };
+                };
+                button: {
+                    dark: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    light: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    hover: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+                highlight: {
+                    focus: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                };
+            };
+        };
     };
     readonly shadow: {
         primary: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;

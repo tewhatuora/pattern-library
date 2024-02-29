@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic-themes",
-  "version": "3.0.0",
+  "version": "4.0.0-custom",
   "description": "Te Whatu Ora - Anatomic Design system. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
@@ -32,7 +32,8 @@
     "lint:types": "tsc --noEmit",
     "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
     "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
-    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify"
+    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
+    "major:beta": "standard-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify"
   },
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
@@ -51,5 +52,5 @@
     "dist"
   ],
   "type": "module",
-  "yalcSig": "75ae95e05b17783e446e87f372671630"
+  "yalcSig": "a4aa882270b2375635f8d5ef1744ec6a"
 }

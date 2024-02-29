@@ -18,8 +18,6 @@ export declare type TextDefinition = Record<TextBreakpoint, FontSizeText>;
 declare type FontWeight = 'regular' | 'medium' | 'bold' | 'black' | 'link-normal' | 'link-hover&focus' | 'button' | 'bullet' | 'number';
 declare type FontWeightValue = '400' | '500' | '600' | '700' | '800' | '900';
 export interface Tokens {
-    name: string;
-    displayName: string;
     typography: {
         fontFamily: string;
         fontWeight: Record<FontWeight, FontWeightValue>;
@@ -135,6 +133,247 @@ export interface Tokens {
         annotation5: string;
         annotation0: string;
         visited100: string;
+        focus100: string;
+        transparent100: string;
+        semantic: {
+            structure: {
+                background: {
+                    'header-dark': string;
+                    'header-light': string;
+                    base: string;
+                    'footer-light': string;
+                    'footer-dark': string;
+                };
+                divider: {
+                    dark: string;
+                    light: string;
+                };
+            };
+            card: {
+                background: string;
+                border: string;
+            };
+            text: {
+                copy: {
+                    dark: string;
+                    light: string;
+                    error: string;
+                    disabled: string;
+                    placeholder: string;
+                };
+                links: {
+                    active: string;
+                    visited: string;
+                    hover: string;
+                };
+            };
+            button: {
+                primary: {
+                    background: {
+                        normal: string;
+                        hover: string;
+                        focused: string;
+                        pressed: string;
+                        disabled: string;
+                    };
+                    content: {
+                        normal: string;
+                        disabled: string;
+                    };
+                    highlight: {
+                        focus: string;
+                    };
+                    border: {
+                        normal: string;
+                        hover: string;
+                        focused: string;
+                        pressed: string;
+                        disabled: string;
+                    };
+                };
+                secondary: {
+                    background: {
+                        normal: string;
+                        hover: string;
+                        focused: string;
+                        pressed: string;
+                        disabled: string;
+                    };
+                    content: {
+                        normal: string;
+                        disabled: string;
+                    };
+                    highlight: {
+                        focus: string;
+                    };
+                    border: {
+                        normal: string;
+                        hover: string;
+                        focused: string;
+                        pressed: string;
+                        disabled: string;
+                    };
+                };
+                tertiary: {
+                    background: {
+                        normal: string;
+                        hover: string;
+                        pressed: string;
+                        focused: string;
+                        disabled: string;
+                    };
+                    border: {
+                        normal: string;
+                        hover: string;
+                        pressed: string;
+                        focused: string;
+                        disabled: string;
+                    };
+                    content: {
+                        normal: string;
+                        disabled: string;
+                    };
+                    highlight: {
+                        focus: string;
+                    };
+                };
+                search: {
+                    background: {
+                        normal: string;
+                        hover: string;
+                        focused: string;
+                    };
+                    highlight: {
+                        focus: string;
+                    };
+                };
+                'text-link': {
+                    highlight: {
+                        focus: string;
+                    };
+                };
+            };
+            notifications: {
+                alert: {
+                    background: {
+                        positive: string;
+                        informative: string;
+                        caution: string;
+                        critical: string;
+                    };
+                    content: {
+                        positive: string;
+                        informative: string;
+                        caution: string;
+                        critical: string;
+                    };
+                    icons: {
+                        positive: string;
+                        informative: string;
+                        caution: string;
+                        critical: string;
+                    };
+                };
+                banner: {
+                    background: {
+                        positive: string;
+                        informative: string;
+                        caution: string;
+                        critical: string;
+                    };
+                    content: {
+                        positive: string;
+                        informative: string;
+                        caution: string;
+                        critical: string;
+                    };
+                };
+            };
+            inputs: {
+                elements: {
+                    background: {
+                        normal: string;
+                        selected: string;
+                        'selected-hover': string;
+                        unselected: string;
+                        'unselected-hover': string;
+                        disabled: string;
+                    };
+                    border: {
+                        normal: string;
+                        hover: string;
+                        disabled: string;
+                        error: string;
+                    };
+                    highlight: {
+                        focus: string;
+                    };
+                };
+                fields: {
+                    background: {
+                        normal: string;
+                        hover: string;
+                    };
+                    border: {
+                        error: string;
+                        normal: string;
+                        disabled: string;
+                    };
+                    highlight: {
+                        focus: string;
+                    };
+                };
+            };
+            controls: {
+                background: {
+                    light: string;
+                    light2: string;
+                    active: string;
+                    inactive: string;
+                };
+                content: {
+                    light: string;
+                    dark: string;
+                };
+                border: {
+                    active: string;
+                    inactive: string;
+                    hover: string;
+                };
+                highlight: {
+                    focus: string;
+                };
+            };
+            icons: {
+                dark: string;
+                light: string;
+                grey: string;
+                black: string;
+            };
+            menu: {
+                list: {
+                    background: {
+                        darkened: string;
+                        normal: string;
+                    };
+                    content: {
+                        normal: string;
+                        darkened: string;
+                    };
+                    border: {
+                        divider: string;
+                    };
+                };
+                button: {
+                    dark: string;
+                    light: string;
+                    hover: string;
+                };
+                highlight: {
+                    focus: string;
+                };
+            };
+        };
     };
 }
 export {};

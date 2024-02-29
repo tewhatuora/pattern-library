@@ -1,450 +1,18 @@
-var contract = { space: { xlarge: { mobile: "var(--dvavbi0)", tablet: "var(--dvavbi1)" }, large: { mobile: "var(--dvavbi2)", tablet: "var(--dvavbi3)" }, medium: { mobile: "var(--dvavbi4)", tablet: "var(--dvavbi5)" }, small: { mobile: "var(--dvavbi6)", tablet: "var(--dvavbi7)" }, xxlarge: { tablet: "var(--dvavbi8)", mobile: "var(--dvavbi9)" }, xsmall: { tablet: "var(--dvavbia)", mobile: "var(--dvavbib)" } }, borderRadius: { topLeft: { standard: "var(--dvavbic)", button: "var(--dvavbid)", inputs: "var(--dvavbie)", tags: "var(--dvavbif)" }, topRight: { standard: "var(--dvavbig)", button: "var(--dvavbih)", inputs: "var(--dvavbii)", tags: "var(--dvavbij)" }, bottomLeft: { standard: "var(--dvavbik)", button: "var(--dvavbil)", inputs: "var(--dvavbim)", tags: "var(--dvavbin)" }, bottomRight: { standard: "var(--dvavbio)", button: "var(--dvavbip)", inputs: "var(--dvavbiq)", tags: "var(--dvavbir)" } }, borderRadiusAll: { standard: "var(--dvavbis)", button: "var(--dvavbit)", inputs: "var(--dvavbiu)", tags: "var(--dvavbiv)" }, borderWidth: { small: "var(--dvavbiw)", medium: "var(--dvavbix)", large: "var(--dvavbiy)", xlarge: "var(--dvavbiz)" }, fontFamily: "var(--dvavbi10)", textSize: { large: { tablet: { fontSize: "var(--dvavbi11)", lineHeight: "var(--dvavbi12)" }, mobile: { fontSize: "var(--dvavbi13)", lineHeight: "var(--dvavbi14)" } }, medium: { tablet: { fontSize: "var(--dvavbi15)", lineHeight: "var(--dvavbi16)" }, mobile: { fontSize: "var(--dvavbi17)", lineHeight: "var(--dvavbi18)" } }, small: { tablet: { fontSize: "var(--dvavbi19)", lineHeight: "var(--dvavbi1a)" }, mobile: { fontSize: "var(--dvavbi1b)", lineHeight: "var(--dvavbi1c)" } }, xsmall: { tablet: { fontSize: "var(--dvavbi1d)", lineHeight: "var(--dvavbi1e)" }, mobile: { fontSize: "var(--dvavbi1f)", lineHeight: "var(--dvavbi1g)" } } }, textWeight: { black: "var(--dvavbi1h)", bold: "var(--dvavbi1i)", regular: "var(--dvavbi1j)", medium: "var(--dvavbi1k)", "link-normal": "var(--dvavbi1l)", "link-hover&focus": "var(--dvavbi1m)", button: "var(--dvavbi1n)", bullet: "var(--dvavbi1o)", number: "var(--dvavbi1p)" }, headingLevel: { "1": { tablet: { fontSize: "var(--dvavbi1q)", lineHeight: "var(--dvavbi1r)" }, mobile: { fontSize: "var(--dvavbi1s)", lineHeight: "var(--dvavbi1t)" } }, "2": { tablet: { fontSize: "var(--dvavbi1u)", lineHeight: "var(--dvavbi1v)" }, mobile: { fontSize: "var(--dvavbi1w)", lineHeight: "var(--dvavbi1x)" } }, "3": { tablet: { fontSize: "var(--dvavbi1y)", lineHeight: "var(--dvavbi1z)" }, mobile: { fontSize: "var(--dvavbi20)", lineHeight: "var(--dvavbi21)" } }, "4": { tablet: { fontSize: "var(--dvavbi22)", lineHeight: "var(--dvavbi23)" }, mobile: { fontSize: "var(--dvavbi24)", lineHeight: "var(--dvavbi25)" } } }, headingWeight: { weak: "var(--dvavbi26)", regular: "var(--dvavbi27)" }, color: { primary0: "var(--dvavbi28)", primary5: "var(--dvavbi29)", primary25: "var(--dvavbi2a)", primary50: "var(--dvavbi2b)", primary75: "var(--dvavbi2c)", primary100: "var(--dvavbi2d)", primary110: "var(--dvavbi2e)", secondary0: "var(--dvavbi2f)", secondary5: "var(--dvavbi2g)", secondary25: "var(--dvavbi2h)", secondary50: "var(--dvavbi2i)", secondary75: "var(--dvavbi2j)", secondary100: "var(--dvavbi2k)", secondary110: "var(--dvavbi2l)", tertiary0: "var(--dvavbi2m)", tertiary5: "var(--dvavbi2n)", tertiary25: "var(--dvavbi2o)", tertiary50: "var(--dvavbi2p)", tertiary75: "var(--dvavbi2q)", tertiary100: "var(--dvavbi2r)", tertiary110: "var(--dvavbi2s)", positive0: "var(--dvavbi2t)", positive5: "var(--dvavbi2u)", positive25: "var(--dvavbi2v)", positive50: "var(--dvavbi2w)", positive75: "var(--dvavbi2x)", positive100: "var(--dvavbi2y)", positive110: "var(--dvavbi2z)", info0: "var(--dvavbi30)", info5: "var(--dvavbi31)", info25: "var(--dvavbi32)", info50: "var(--dvavbi33)", info75: "var(--dvavbi34)", info100: "var(--dvavbi35)", info110: "var(--dvavbi36)", caution0: "var(--dvavbi37)", caution5: "var(--dvavbi38)", caution25: "var(--dvavbi39)", caution50: "var(--dvavbi3a)", caution75: "var(--dvavbi3b)", caution100: "var(--dvavbi3c)", caution110: "var(--dvavbi3d)", error0: "var(--dvavbi3e)", error5: "var(--dvavbi3f)", error25: "var(--dvavbi3g)", error50: "var(--dvavbi3h)", error75: "var(--dvavbi3i)", error100: "var(--dvavbi3j)", error110: "var(--dvavbi3k)", neutral0: "var(--dvavbi3l)", neutral5: "var(--dvavbi3m)", neutral25: "var(--dvavbi3n)", neutral50: "var(--dvavbi3o)", neutral75: "var(--dvavbi3p)", neutral100: "var(--dvavbi3q)", annotation0: "var(--dvavbi3r)", annotation5: "var(--dvavbi3s)", annotation25: "var(--dvavbi3t)", annotation50: "var(--dvavbi3u)", annotation75: "var(--dvavbi3v)", annotation100: "var(--dvavbi3w)", annotation110: "var(--dvavbi3x)", visited100: "var(--dvavbi3y)" }, shadow: { primary: "var(--dvavbi3z)" }, transition: { fast: "var(--dvavbi40)" } };
-var theme_css_ts_vanilla$3 = "";
-var theme_css$3 = "_1i6nlnu0";
-const tokens$3 = {
-  typography: {
-    fontFamily: "Fira Sans",
-    fontWeight: {
-      black: "900",
-      bold: "700",
-      regular: "400",
-      medium: "500",
-      "link-normal": "500",
-      "link-hover&focus": "500",
-      button: "700",
-      bullet: "400",
-      number: "400"
-    },
-    heading: {
-      weight: { black: "900", bold: "700", regular: "400" },
-      level: {
-        "1": {
-          tablet: { fontSize: "7.5rem", lineHeight: "8.625rem" },
-          mobile: { fontSize: "2.5rem", lineHeight: "2.875rem" }
-        },
-        "2": { tablet: { fontSize: "2.5rem", lineHeight: "3rem" }, mobile: { fontSize: "2rem", lineHeight: "2.4rem" } },
-        "3": {
-          tablet: { fontSize: "2rem", lineHeight: "2.4rem" },
-          mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
-        },
-        "4": {
-          tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
-          mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
-        }
-      }
-    },
-    text: {
-      large: {
-        tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
-        mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
-      },
-      medium: {
-        tablet: { fontSize: "1.25rem", lineHeight: "2rem" },
-        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
-      },
-      small: {
-        tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
-        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
-      },
-      xsmall: {
-        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
-        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
-      }
-    }
-  },
-  space: {
-    xlarge: { mobile: "2.5rem", tablet: "3rem" },
-    large: { mobile: "2rem", tablet: "2.5rem" },
-    medium: { mobile: "1.5rem", tablet: "2rem" },
-    small: { mobile: "1rem", tablet: "1.5rem" },
-    xxlarge: { tablet: "3.5rem", mobile: "3rem" },
-    xsmall: { tablet: "1rem", mobile: "0.5rem" }
-  },
-  transitions: { fast: "transform .125s ease, opacity .125s ease" },
-  border: {
-    radius: {
-      standard: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      button: { topLeft: "0rem", topRight: "3.5rem", bottomLeft: "7rem", bottomRight: "3.5rem" },
-      inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      tags: { topLeft: "6.25rem", topRight: "6.25rem", bottomLeft: "6.25rem", bottomRight: "6.25rem" }
-    },
-    width: { small: "0.063rem", medium: "0.125rem", large: "0.188rem", xlarge: "0.25rem" }
-  },
-  shadows: { primary: "0rem 0.25rem 1.875rem 0rem #002e6e1a" },
-  color: {
-    primary0: "#ffffff",
-    primary5: "#eef1f6",
-    primary25: "#bcc8d9",
-    primary50: "#7e94b5",
-    primary75: "#3f6192",
-    primary100: "#002e6e",
-    primary110: "#001e46",
-    secondary0: "#ffffff",
-    secondary5: "#eef4fa",
-    secondary25: "#bcd9ed",
-    secondary50: "#7eb6dc",
-    secondary75: "#3f93cc",
-    secondary100: "#0071bc",
-    secondary110: "#004878",
-    tertiary0: "#ffffff",
-    tertiary5: "#eef1f6",
-    tertiary25: "#bcc8d9",
-    tertiary50: "#7e94b5",
-    tertiary75: "#3f6192",
-    tertiary100: "#002e6e",
-    tertiary110: "#001e46",
-    positive0: "#ffffff",
-    positive5: "#f0f5f6",
-    positive25: "#c4ddd9",
-    positive50: "#8dbeb4",
-    positive75: "#569f90",
-    positive100: "#1f816c",
-    positive110: "#16594b",
-    info0: "#ffffff",
-    info5: "#eef4fa",
-    info25: "#bcd9ed",
-    info50: "#7eb6dc",
-    info75: "#3f93cc",
-    info100: "#0071bc",
-    info110: "#005c99",
-    caution0: "#000000",
-    caution5: "#fbf8f2",
-    caution25: "#fbebc8",
-    caution50: "#fbdb93",
-    caution75: "#fcca5e",
-    caution100: "#fcba29",
-    caution110: "#cd9821",
-    error0: "#ffffff",
-    error5: "#faf0f0",
-    error25: "#f3c3be",
-    error50: "#ec8b7f",
-    error75: "#e4533f",
-    error100: "#dd1b00",
-    error110: "#c71800",
-    neutral0: "#ffffff",
-    neutral5: "#f2f2f2",
-    neutral25: "#bfbfbf",
-    neutral50: "#808080",
-    neutral75: "#404040",
-    neutral100: "#000000",
-    annotation0: "#ffffff",
-    annotation5: "#f8f7ff",
-    annotation25: "#ded7ff",
-    annotation50: "#bdb0ff",
-    annotation75: "#9c88ff",
-    annotation100: "#7b61ff",
-    annotation110: "#644ecf",
-    visited100: "#5c1893"
-  }
-};
-var index$3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  className: theme_css$3,
-  tokens: tokens$3
-}, Symbol.toStringTag, { value: "Module" }));
-var theme_css_ts_vanilla$2 = "";
-var theme_css$2 = "izg9j30";
-const tokens$2 = {
-  typography: {
-    fontFamily: "Fira Sans",
-    fontWeight: {
-      black: "900",
-      bold: "700",
-      regular: "400",
-      medium: "500",
-      "link-normal": "500",
-      "link-hover&focus": "500",
-      button: "700",
-      bullet: "400",
-      number: "400"
-    },
-    heading: {
-      weight: { black: "900", bold: "700", regular: "400" },
-      level: {
-        "1": {
-          tablet: { fontSize: "7.5rem", lineHeight: "8.625rem" },
-          mobile: { fontSize: "2.5rem", lineHeight: "2.875rem" }
-        },
-        "2": { tablet: { fontSize: "2.5rem", lineHeight: "3rem" }, mobile: { fontSize: "2rem", lineHeight: "2.4rem" } },
-        "3": {
-          tablet: { fontSize: "2rem", lineHeight: "2.4rem" },
-          mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
-        },
-        "4": {
-          tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
-          mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
-        }
-      }
-    },
-    text: {
-      large: {
-        tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
-        mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
-      },
-      medium: {
-        tablet: { fontSize: "1.25rem", lineHeight: "2rem" },
-        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
-      },
-      small: {
-        tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
-        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
-      },
-      xsmall: {
-        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
-        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
-      }
-    }
-  },
-  space: {
-    xlarge: { mobile: "2.5rem", tablet: "3rem" },
-    large: { mobile: "2rem", tablet: "2.5rem" },
-    medium: { mobile: "1.5rem", tablet: "2rem" },
-    small: { mobile: "1rem", tablet: "1.5rem" },
-    xxlarge: { tablet: "3.5rem", mobile: "3rem" },
-    xsmall: { tablet: "1rem", mobile: "0.5rem" }
-  },
-  transitions: { fast: "transform .125s ease, opacity .125s ease" },
-  border: {
-    radius: {
-      standard: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      button: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      tags: { topLeft: "6.25rem", topRight: "6.25rem", bottomLeft: "6.25rem", bottomRight: "6.25rem" }
-    },
-    width: { small: "0.063rem", medium: "0.125rem", large: "0.188rem", xlarge: "0.25rem" }
-  },
-  shadows: { primary: "0rem 0.25rem 1.875rem 0rem #002e6e1a" },
-  color: {
-    primary0: "#ffffff",
-    primary5: "#eef4fa",
-    primary25: "#bcc8d9",
-    primary50: "#7e94b5",
-    primary75: "#3f6192",
-    primary100: "#002e6e",
-    primary110: "#00204d",
-    secondary0: "#ffffff",
-    secondary5: "#eef4fa",
-    secondary25: "#bcd9ed",
-    secondary50: "#7eb6dc",
-    secondary75: "#3f93cc",
-    secondary100: "#0071bc",
-    secondary110: "#004f83",
-    tertiary0: "#002e6e",
-    tertiary5: "#fff8ea",
-    tertiary25: "#fbebc8",
-    tertiary50: "#fbdb93",
-    tertiary75: "#fcca5e",
-    tertiary100: "#fcba29",
-    tertiary110: "#f0a500",
-    positive0: "#ffffff",
-    positive5: "#f0f5f6",
-    positive25: "#c4ddd9",
-    positive50: "#8dbeb4",
-    positive75: "#569f90",
-    positive100: "#1f816c",
-    positive110: "#16594b",
-    info0: "#ffffff",
-    info5: "#eef4fa",
-    info25: "#bcd9ed",
-    info50: "#7eb6dc",
-    info75: "#3f93cc",
-    info100: "#0071bc",
-    info110: "#005c99",
-    caution0: "#000000",
-    caution5: "#fbf8f2",
-    caution25: "#fbebc8",
-    caution50: "#fbdb93",
-    caution75: "#fcca5e",
-    caution100: "#fcba29",
-    caution110: "#cd9821",
-    error0: "#ffffff",
-    error5: "#faf0f0",
-    error25: "#f3c3be",
-    error50: "#ec8b7f",
-    error75: "#e4533f",
-    error100: "#dd1b00",
-    error110: "#c71800",
-    neutral0: "#ffffff",
-    neutral5: "#f2f2f2",
-    neutral25: "#bfbfbf",
-    neutral50: "#808080",
-    neutral75: "#404040",
-    neutral100: "#000000",
-    annotation0: "#ffffff",
-    annotation5: "#f8f7ff",
-    annotation25: "#ded7ff",
-    annotation50: "#bdb0ff",
-    annotation75: "#9c88ff",
-    annotation100: "#7b61ff",
-    annotation110: "#644ecf",
-    visited100: "#5c1893"
-  }
-};
-var index$2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  className: theme_css$2,
-  tokens: tokens$2
-}, Symbol.toStringTag, { value: "Module" }));
+var contract = { space: { xxlarge: { tablet: "var(--dvavbi0)", mobile: "var(--dvavbi1)" }, large: { tablet: "var(--dvavbi2)", mobile: "var(--dvavbi3)" }, medium: { tablet: "var(--dvavbi4)", mobile: "var(--dvavbi5)" }, small: { tablet: "var(--dvavbi6)", mobile: "var(--dvavbi7)" }, xlarge: { tablet: "var(--dvavbi8)", mobile: "var(--dvavbi9)" }, xsmall: { tablet: "var(--dvavbia)", mobile: "var(--dvavbib)" } }, borderRadius: { topLeft: { button: "var(--dvavbic)", inputs: "var(--dvavbid)", standard: "var(--dvavbie)", tags: "var(--dvavbif)" }, topRight: { button: "var(--dvavbig)", inputs: "var(--dvavbih)", standard: "var(--dvavbii)", tags: "var(--dvavbij)" }, bottomLeft: { button: "var(--dvavbik)", inputs: "var(--dvavbil)", standard: "var(--dvavbim)", tags: "var(--dvavbin)" }, bottomRight: { button: "var(--dvavbio)", inputs: "var(--dvavbip)", standard: "var(--dvavbiq)", tags: "var(--dvavbir)" } }, borderRadiusAll: { button: "var(--dvavbis)", inputs: "var(--dvavbit)", standard: "var(--dvavbiu)", tags: "var(--dvavbiv)" }, borderWidth: { large: "var(--dvavbiw)", medium: "var(--dvavbix)", small: "var(--dvavbiy)", xlarge: "var(--dvavbiz)" }, fontFamily: "var(--dvavbi10)", textSize: { large: { tablet: { fontSize: "var(--dvavbi11)", lineHeight: "var(--dvavbi12)" }, mobile: { fontSize: "var(--dvavbi13)", lineHeight: "var(--dvavbi14)" } }, medium: { tablet: { fontSize: "var(--dvavbi15)", lineHeight: "var(--dvavbi16)" }, mobile: { fontSize: "var(--dvavbi17)", lineHeight: "var(--dvavbi18)" } }, small: { tablet: { fontSize: "var(--dvavbi19)", lineHeight: "var(--dvavbi1a)" }, mobile: { fontSize: "var(--dvavbi1b)", lineHeight: "var(--dvavbi1c)" } }, xsmall: { tablet: { fontSize: "var(--dvavbi1d)", lineHeight: "var(--dvavbi1e)" }, mobile: { fontSize: "var(--dvavbi1f)", lineHeight: "var(--dvavbi1g)" } } }, textWeight: { black: "var(--dvavbi1h)", bold: "var(--dvavbi1i)", regular: "var(--dvavbi1j)", bullet: "var(--dvavbi1k)", button: "var(--dvavbi1l)", "link-hover&focus": "var(--dvavbi1m)", "link-normal": "var(--dvavbi1n)", medium: "var(--dvavbi1o)", number: "var(--dvavbi1p)" }, headingLevel: { "1": { tablet: { fontSize: "var(--dvavbi1q)", lineHeight: "var(--dvavbi1r)" }, mobile: { fontSize: "var(--dvavbi1s)", lineHeight: "var(--dvavbi1t)" } }, "2": { tablet: { fontSize: "var(--dvavbi1u)", lineHeight: "var(--dvavbi1v)" }, mobile: { fontSize: "var(--dvavbi1w)", lineHeight: "var(--dvavbi1x)" } }, "3": { tablet: { fontSize: "var(--dvavbi1y)", lineHeight: "var(--dvavbi1z)" }, mobile: { fontSize: "var(--dvavbi20)", lineHeight: "var(--dvavbi21)" } }, "4": { tablet: { fontSize: "var(--dvavbi22)", lineHeight: "var(--dvavbi23)" }, mobile: { fontSize: "var(--dvavbi24)", lineHeight: "var(--dvavbi25)" } } }, headingWeight: { weak: "var(--dvavbi26)", regular: "var(--dvavbi27)" }, color: { annotation0: "var(--dvavbi28)", annotation5: "var(--dvavbi29)", annotation25: "var(--dvavbi2a)", annotation50: "var(--dvavbi2b)", annotation75: "var(--dvavbi2c)", annotation100: "var(--dvavbi2d)", annotation110: "var(--dvavbi2e)", caution0: "var(--dvavbi2f)", caution5: "var(--dvavbi2g)", caution25: "var(--dvavbi2h)", caution50: "var(--dvavbi2i)", caution75: "var(--dvavbi2j)", caution100: "var(--dvavbi2k)", caution110: "var(--dvavbi2l)", error0: "var(--dvavbi2m)", error5: "var(--dvavbi2n)", error25: "var(--dvavbi2o)", error50: "var(--dvavbi2p)", error75: "var(--dvavbi2q)", error100: "var(--dvavbi2r)", error110: "var(--dvavbi2s)", focus100: "var(--dvavbi2t)", info0: "var(--dvavbi2u)", info5: "var(--dvavbi2v)", info25: "var(--dvavbi2w)", info50: "var(--dvavbi2x)", info75: "var(--dvavbi2y)", info100: "var(--dvavbi2z)", info110: "var(--dvavbi30)", semantic: { button: { primary: { background: { disabled: "var(--dvavbi31)", focused: "var(--dvavbi32)", hover: "var(--dvavbi33)", normal: "var(--dvavbi34)", pressed: "var(--dvavbi35)" }, border: { disabled: "var(--dvavbi36)", focused: "var(--dvavbi37)", hover: "var(--dvavbi38)", normal: "var(--dvavbi39)", pressed: "var(--dvavbi3a)" }, content: { disabled: "var(--dvavbi3b)", normal: "var(--dvavbi3c)" }, highlight: { focus: "var(--dvavbi3d)" } }, search: { background: { focused: "var(--dvavbi3e)", hover: "var(--dvavbi3f)", normal: "var(--dvavbi3g)" }, highlight: { focus: "var(--dvavbi3h)" } }, secondary: { background: { disabled: "var(--dvavbi3i)", focused: "var(--dvavbi3j)", hover: "var(--dvavbi3k)", normal: "var(--dvavbi3l)", pressed: "var(--dvavbi3m)" }, border: { disabled: "var(--dvavbi3n)", focused: "var(--dvavbi3o)", hover: "var(--dvavbi3p)", normal: "var(--dvavbi3q)", pressed: "var(--dvavbi3r)" }, content: { disabled: "var(--dvavbi3s)", normal: "var(--dvavbi3t)" }, highlight: { focus: "var(--dvavbi3u)" } }, tertiary: { background: { disabled: "var(--dvavbi3v)", focused: "var(--dvavbi3w)", hover: "var(--dvavbi3x)", normal: "var(--dvavbi3y)", pressed: "var(--dvavbi3z)" }, border: { disabled: "var(--dvavbi40)", focused: "var(--dvavbi41)", hover: "var(--dvavbi42)", normal: "var(--dvavbi43)", pressed: "var(--dvavbi44)" }, content: { disabled: "var(--dvavbi45)", normal: "var(--dvavbi46)" }, highlight: { focus: "var(--dvavbi47)" } }, "text-link": { highlight: { focus: "var(--dvavbi48)" } } }, card: { background: "var(--dvavbi49)", border: "var(--dvavbi4a)" }, controls: { background: { active: "var(--dvavbi4b)", inactive: "var(--dvavbi4c)", light: "var(--dvavbi4d)", light2: "var(--dvavbi4e)" }, border: { active: "var(--dvavbi4f)", hover: "var(--dvavbi4g)", inactive: "var(--dvavbi4h)" }, content: { dark: "var(--dvavbi4i)", light: "var(--dvavbi4j)" }, highlight: { focus: "var(--dvavbi4k)" } }, icons: { black: "var(--dvavbi4l)", dark: "var(--dvavbi4m)", grey: "var(--dvavbi4n)", light: "var(--dvavbi4o)" }, inputs: { elements: { background: { disabled: "var(--dvavbi4p)", normal: "var(--dvavbi4q)", selected: "var(--dvavbi4r)", "selected-hover": "var(--dvavbi4s)", unselected: "var(--dvavbi4t)", "unselected-hover": "var(--dvavbi4u)" }, border: { disabled: "var(--dvavbi4v)", error: "var(--dvavbi4w)", hover: "var(--dvavbi4x)", normal: "var(--dvavbi4y)" }, highlight: { focus: "var(--dvavbi4z)" } }, fields: { background: { hover: "var(--dvavbi50)", normal: "var(--dvavbi51)" }, border: { disabled: "var(--dvavbi52)", error: "var(--dvavbi53)", normal: "var(--dvavbi54)" }, highlight: { focus: "var(--dvavbi55)" } } }, menu: { button: { dark: "var(--dvavbi56)", hover: "var(--dvavbi57)", light: "var(--dvavbi58)" }, highlight: { focus: "var(--dvavbi59)" }, list: { background: { darkened: "var(--dvavbi5a)", normal: "var(--dvavbi5b)" }, border: { divider: "var(--dvavbi5c)" }, content: { darkened: "var(--dvavbi5d)", normal: "var(--dvavbi5e)" } } }, notifications: { alert: { background: { caution: "var(--dvavbi5f)", critical: "var(--dvavbi5g)", informative: "var(--dvavbi5h)", positive: "var(--dvavbi5i)" }, content: { caution: "var(--dvavbi5j)", critical: "var(--dvavbi5k)", informative: "var(--dvavbi5l)", positive: "var(--dvavbi5m)" }, icons: { caution: "var(--dvavbi5n)", critical: "var(--dvavbi5o)", informative: "var(--dvavbi5p)", positive: "var(--dvavbi5q)" } }, banner: { background: { caution: "var(--dvavbi5r)", critical: "var(--dvavbi5s)", informative: "var(--dvavbi5t)", positive: "var(--dvavbi5u)" }, content: { caution: "var(--dvavbi5v)", critical: "var(--dvavbi5w)", informative: "var(--dvavbi5x)", positive: "var(--dvavbi5y)" } } }, structure: { background: { base: "var(--dvavbi5z)", "footer-dark": "var(--dvavbi60)", "footer-light": "var(--dvavbi61)", "header-dark": "var(--dvavbi62)", "header-light": "var(--dvavbi63)" }, divider: { dark: "var(--dvavbi64)", light: "var(--dvavbi65)" } }, text: { copy: { dark: "var(--dvavbi66)", disabled: "var(--dvavbi67)", error: "var(--dvavbi68)", light: "var(--dvavbi69)", placeholder: "var(--dvavbi6a)" }, links: { active: "var(--dvavbi6b)", hover: "var(--dvavbi6c)", visited: "var(--dvavbi6d)" } } }, neutral0: "var(--dvavbi6e)", neutral5: "var(--dvavbi6f)", neutral25: "var(--dvavbi6g)", neutral50: "var(--dvavbi6h)", neutral75: "var(--dvavbi6i)", neutral100: "var(--dvavbi6j)", positive0: "var(--dvavbi6k)", positive5: "var(--dvavbi6l)", positive25: "var(--dvavbi6m)", positive50: "var(--dvavbi6n)", positive75: "var(--dvavbi6o)", positive100: "var(--dvavbi6p)", positive110: "var(--dvavbi6q)", primary0: "var(--dvavbi6r)", primary5: "var(--dvavbi6s)", primary25: "var(--dvavbi6t)", primary50: "var(--dvavbi6u)", primary75: "var(--dvavbi6v)", primary100: "var(--dvavbi6w)", primary110: "var(--dvavbi6x)", secondary0: "var(--dvavbi6y)", secondary5: "var(--dvavbi6z)", secondary25: "var(--dvavbi70)", secondary50: "var(--dvavbi71)", secondary75: "var(--dvavbi72)", secondary100: "var(--dvavbi73)", secondary110: "var(--dvavbi74)", tertiary0: "var(--dvavbi75)", tertiary5: "var(--dvavbi76)", tertiary25: "var(--dvavbi77)", tertiary50: "var(--dvavbi78)", tertiary75: "var(--dvavbi79)", tertiary100: "var(--dvavbi7a)", tertiary110: "var(--dvavbi7b)", transparent100: "var(--dvavbi7c)", visited100: "var(--dvavbi7d)" }, shadow: { primary: "var(--dvavbi7e)" }, transition: { fast: "var(--dvavbi7f)" } };
 var theme_css_ts_vanilla$1 = "";
-var theme_css$1 = "_84n4e20";
+var theme_css$1 = "_1xl11j0";
 const tokens$1 = {
   typography: {
-    fontFamily: "Poppins",
-    fontWeight: {
-      black: "900",
-      bold: "700",
-      regular: "400",
-      medium: "500",
-      "link-normal": "700",
-      "link-hover&focus": "700",
-      button: "700",
-      bullet: "400",
-      number: "400"
-    },
-    heading: {
-      weight: { black: "900", bold: "700", regular: "400" },
-      level: {
-        "1": {
-          tablet: { fontSize: "2.625rem", lineHeight: "3.019rem" },
-          mobile: { fontSize: "2rem", lineHeight: "2.3rem" }
-        },
-        "2": {
-          tablet: { fontSize: "1.875rem", lineHeight: "2.25rem" },
-          mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
-        },
-        "3": {
-          tablet: { fontSize: "1.5rem", lineHeight: "1.8rem" },
-          mobile: { fontSize: "1.25rem", lineHeight: "1.5rem" }
-        },
-        "4": {
-          tablet: { fontSize: "1.25rem", lineHeight: "1.625rem" },
-          mobile: { fontSize: "1.125rem", lineHeight: "1.462rem" }
-        }
-      }
-    },
-    text: {
-      large: {
-        tablet: { fontSize: "1.25rem", lineHeight: "1.625rem" },
-        mobile: { fontSize: "1.125rem", lineHeight: "1.462rem" }
-      },
-      medium: {
-        tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
-        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
-      },
-      small: {
-        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
-        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
-      },
-      xsmall: {
-        tablet: { fontSize: "0.875rem", lineHeight: "1.4rem" },
-        mobile: { fontSize: "0.75rem", lineHeight: "1.2rem" }
-      }
-    }
-  },
-  space: {
-    xlarge: { mobile: "2.5rem", tablet: "3rem" },
-    large: { mobile: "2rem", tablet: "2.5rem" },
-    medium: { mobile: "1.5rem", tablet: "2rem" },
-    small: { mobile: "1rem", tablet: "1.5rem" },
-    xxlarge: { tablet: "3.5rem", mobile: "3rem" },
-    xsmall: { tablet: "1rem", mobile: "0.5rem" }
-  },
-  transitions: { fast: "transform .125s ease, opacity .125s ease" },
-  border: {
-    radius: {
-      standard: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" },
-      button: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      tags: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" }
-    },
-    width: { small: "0.063rem", medium: "0.125rem", large: "0.188rem", xlarge: "0.25rem" }
-  },
-  shadows: { primary: "0rem 0.25rem 1.875rem 0rem #4040401a" },
-  color: {
-    primary0: "#ffffff",
-    primary5: "#f3f9f9",
-    primary25: "#e6f2f4",
-    primary50: "#c2dfe3",
-    primary75: "#49a1ab",
-    primary100: "#0c818f",
-    primary110: "#15284c",
-    secondary0: "#ffffff",
-    secondary5: "#f3f4f6",
-    secondary25: "#e7e9ed",
-    secondary50: "#c4c9d2",
-    secondary75: "#505e79",
-    secondary100: "#15284c",
-    secondary110: "#00091a",
-    tertiary0: "#ffffff",
-    tertiary5: "#f3f9f9",
-    tertiary25: "#e6f2fa",
-    tertiary50: "#c2dfe3",
-    tertiary75: "#49a1ab",
-    tertiary100: "#0c818f",
-    tertiary110: "#15284c",
-    positive0: "#ffffff",
-    positive5: "#f8fdf9",
-    positive25: "#edf9f0",
-    positive50: "#c4e5cd",
-    positive75: "#93d6a6",
-    positive100: "#72b986",
-    positive110: "#519965",
-    info0: "#ffffff",
-    info5: "#eef4fa",
-    info25: "#bcd9ed",
-    info50: "#7eb6dc",
-    info75: "#3f93cc",
-    info100: "#00558c",
-    info110: "#005c99",
-    caution0: "#00558c",
-    caution5: "#fff9e3",
-    caution25: "#fff4cb",
-    caution50: "#fbe9a2",
-    caution75: "#ffdf70",
-    caution100: "#fcca5e",
-    caution110: "#f6b424",
-    error0: "#ffffff",
-    error5: "#fff3f3",
-    error25: "#ffdada",
-    error50: "#ff9f9f",
-    error75: "#e95757",
-    error100: "#d02323",
-    error110: "#ab0000",
-    neutral0: "#ffffff",
-    neutral5: "#f2f2f2",
-    neutral25: "#bfbfbf",
-    neutral50: "#808080",
-    neutral75: "#404040",
-    neutral100: "#000000",
-    annotation0: "#ffffff",
-    annotation5: "#faf5fa",
-    annotation25: "#e2d4e9",
-    annotation50: "#dabce9",
-    annotation75: "#c68ce2",
-    annotation100: "#9d3bcc",
-    annotation110: "#7938ad",
-    visited100: "#5c1893"
-  }
-};
-var index$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  className: theme_css$1,
-  tokens: tokens$1
-}, Symbol.toStringTag, { value: "Module" }));
-var theme_css_ts_vanilla = "";
-var theme_css = "_1xl11j0";
-const tokens = {
-  typography: {
     fontFamily: "Fira Sans",
     fontWeight: {
       black: "900",
       bold: "700",
       regular: "400",
-      medium: "500",
-      "link-normal": "500",
-      "link-hover&focus": "500",
-      button: "700",
       bullet: "400",
+      button: "700",
+      "link-hover&focus": "500",
+      "link-normal": "500",
+      medium: "500",
       number: "400"
     },
     heading: {
@@ -472,7 +40,7 @@ const tokens = {
       },
       medium: {
         tablet: { fontSize: "1.25rem", lineHeight: "2rem" },
-        mobile: { fontSize: "1.125rem", lineHeight: "1.8rem" }
+        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
       },
       small: {
         tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
@@ -485,25 +53,185 @@ const tokens = {
     }
   },
   space: {
-    xlarge: { mobile: "2.5rem", tablet: "3rem" },
-    large: { mobile: "2rem", tablet: "2.5rem" },
-    medium: { mobile: "1.5rem", tablet: "2rem" },
-    small: { mobile: "1rem", tablet: "1.5rem" },
     xxlarge: { tablet: "3.5rem", mobile: "3rem" },
+    large: { tablet: "2.5rem", mobile: "2rem" },
+    medium: { tablet: "2rem", mobile: "1.5rem" },
+    small: { tablet: "1.5rem", mobile: "1rem" },
+    xlarge: { tablet: "3rem", mobile: "2.5rem" },
     xsmall: { tablet: "1rem", mobile: "0.5rem" }
   },
   transitions: { fast: "transform .125s ease, opacity .125s ease" },
   border: {
     radius: {
-      standard: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      button: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
+      button: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" },
       inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
+      standard: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
       tags: { topLeft: "6.25rem", topRight: "6.25rem", bottomLeft: "6.25rem", bottomRight: "6.25rem" }
     },
-    width: { small: "0.063rem", medium: "0.125rem", large: "0.188rem", xlarge: "0.25rem" }
+    width: { large: "0.188rem", medium: "0.125rem", small: "0.063rem", xlarge: "0.25rem" }
   },
   shadows: { primary: "0rem 0.25rem 1.875rem 0rem #4040401a" },
   color: {
+    annotation0: "#ffffff",
+    annotation5: "#f8f7ff",
+    annotation25: "#ded7ff",
+    annotation50: "#bdb0ff",
+    annotation75: "#9c88ff",
+    annotation100: "#7b61ff",
+    annotation110: "#644ecf",
+    caution0: "#000000",
+    caution5: "#fbf8f2",
+    caution25: "#fbebc8",
+    caution50: "#fbdb93",
+    caution75: "#fcca5e",
+    caution100: "#fcba29",
+    caution110: "#cd9821",
+    error0: "#ffffff",
+    error5: "#faf0f0",
+    error25: "#f3c3be",
+    error50: "#ec8b7f",
+    error75: "#e4533f",
+    error100: "#dd1b00",
+    error110: "#c71800",
+    focus100: "#4398ff",
+    info0: "#ffffff",
+    info5: "#eef4fa",
+    info25: "#bcd9ed",
+    info50: "#7eb6dc",
+    info75: "#3f93cc",
+    info100: "#0071bc",
+    info110: "#005c99",
+    semantic: {
+      button: {
+        primary: {
+          background: {
+            disabled: "#cfcfcf",
+            focused: "#707070",
+            hover: "#707070",
+            normal: "#404040",
+            pressed: "#808080"
+          },
+          border: {
+            disabled: "rgba(255, 255, 255, 0)",
+            focused: "rgba(255, 255, 255, 0)",
+            hover: "rgba(255, 255, 255, 0)",
+            normal: "rgba(255, 255, 255, 0)",
+            pressed: "rgba(255, 255, 255, 0)"
+          },
+          content: { disabled: "#ffffff", normal: "#ffffff" },
+          highlight: { focus: "#4398ff" }
+        },
+        search: {
+          background: { focused: "#404040", hover: "#707070", normal: "#404040" },
+          highlight: { focus: "#4398ff" }
+        },
+        secondary: {
+          background: {
+            disabled: "#dfdfdf",
+            focused: "#a0a0a0",
+            hover: "#a0a0a0",
+            normal: "#808080",
+            pressed: "#464646"
+          },
+          border: {
+            disabled: "rgba(255, 255, 255, 0)",
+            focused: "rgba(255, 255, 255, 0)",
+            hover: "rgba(255, 255, 255, 0)",
+            normal: "rgba(255, 255, 255, 0)",
+            pressed: "rgba(255, 255, 255, 0)"
+          },
+          content: { disabled: "#ffffff", normal: "#ffffff" },
+          highlight: { focus: "#4398ff" }
+        },
+        tertiary: {
+          background: {
+            disabled: "#ffffff",
+            focused: "#ffffff",
+            hover: "#ffffff",
+            normal: "#ffffff",
+            pressed: "#ffffff"
+          },
+          border: { disabled: "#cfcfcf", focused: "#404040", hover: "#707070", normal: "#404040", pressed: "#464646" },
+          content: { disabled: "#cfcfcf", normal: "#404040" },
+          highlight: { focus: "#4398ff" }
+        },
+        "text-link": { highlight: { focus: "#4398ff" } }
+      },
+      card: { background: "#ffffff", border: "#cfcfcf" },
+      controls: {
+        background: { active: "#404040", inactive: "#cfcfcf", light: "#ffffff", light2: "#f5f5f5" },
+        border: { active: "#404040", hover: "#9f9f9f", inactive: "#cfcfcf" },
+        content: { dark: "#404040", light: "#ffffff" },
+        highlight: { focus: "#4398ff" }
+      },
+      icons: { black: "#232323", dark: "#404040", grey: "#808080", light: "#ffffff" },
+      inputs: {
+        elements: {
+          background: {
+            disabled: "#9f9f9f",
+            normal: "#ffffff",
+            selected: "#404040",
+            "selected-hover": "#808080",
+            unselected: "#cfcfcf",
+            "unselected-hover": "#cfcfcf"
+          },
+          border: { disabled: "#9f9f9f", error: "#dd1b00", hover: "#808080", normal: "#404040" },
+          highlight: { focus: "#4398ff" }
+        },
+        fields: {
+          background: { hover: "#f5f5f5", normal: "#ffffff" },
+          border: { disabled: "#9f9f9f", error: "#dd1b00", normal: "#404040" },
+          highlight: { focus: "#4398ff" }
+        }
+      },
+      menu: {
+        button: { dark: "#404040", hover: "#bcd9ed", light: "#ffffff" },
+        highlight: { focus: "#4398ff" },
+        list: {
+          background: { darkened: "#bcd9ed", normal: "#eef4fa" },
+          border: { divider: "#7eb6dc" },
+          content: { darkened: "#005c99", normal: "#0071bc" }
+        }
+      },
+      notifications: {
+        alert: {
+          background: { caution: "#fbf8f2", critical: "#faf0f0", informative: "#eef4fa", positive: "#f0f5f6" },
+          content: { caution: "#000000", critical: "#c71800", informative: "#0071bc", positive: "#1f816c" },
+          icons: { caution: "#cd9821", critical: "#c71800", informative: "#0071bc", positive: "#1f816c" }
+        },
+        banner: {
+          background: { caution: "#fcba29", critical: "#dd1b00", informative: "#404040", positive: "#1f816c" },
+          content: { caution: "#000000", critical: "#ffffff", informative: "#ffffff", positive: "#ffffff" }
+        }
+      },
+      structure: {
+        background: {
+          base: "#ffffff",
+          "footer-dark": "#404040",
+          "footer-light": "#ffffff",
+          "header-dark": "#808080",
+          "header-light": "#ffffff"
+        },
+        divider: { dark: "#cfcfcf", light: "#ffffff" }
+      },
+      text: {
+        copy: { dark: "#232323", disabled: "#cfcfcf", error: "#dd1b00", light: "#ffffff", placeholder: "#9f9f9f" },
+        links: { active: "#0071bc", hover: "#3f93cc", visited: "#5c1893" }
+      }
+    },
+    neutral0: "#ffffff",
+    neutral5: "#f2f2f2",
+    neutral25: "#bfbfbf",
+    neutral50: "#808080",
+    neutral75: "#404040",
+    neutral100: "#232323",
+    positive0: "#ffffff",
+    positive5: "#f0f5f6",
+    positive25: "#c4ddd9",
+    positive50: "#8dbeb4",
+    positive75: "#569f90",
+    positive100: "#1f816c",
+    positive110: "#16594b",
     primary0: "#ffffff",
     primary5: "#f5f5f5",
     primary25: "#cfcfcf",
@@ -525,40 +253,88 @@ const tokens = {
     tertiary75: "#707070",
     tertiary100: "#404040",
     tertiary110: "#131313",
-    positive0: "#ffffff",
-    positive5: "#f0f5f6",
-    positive25: "#c4ddd9",
-    positive50: "#8dbeb4",
-    positive75: "#569f90",
-    positive100: "#1f816c",
-    positive110: "#16594b",
-    info0: "#ffffff",
-    info5: "#eef4fa",
-    info25: "#bcd9ed",
-    info50: "#7eb6dc",
-    info75: "#3f93cc",
-    info100: "#0071bc",
-    info110: "#005c99",
-    caution0: "#000000",
-    caution5: "#fbf8f2",
-    caution25: "#fbebc8",
-    caution50: "#fbdb93",
-    caution75: "#fcca5e",
-    caution100: "#fcba29",
-    caution110: "#cd9821",
-    error0: "#ffffff",
-    error5: "#faf0f0",
-    error25: "#f3c3be",
-    error50: "#ec8b7f",
-    error75: "#e4533f",
-    error100: "#dd1b00",
-    error110: "#c71800",
-    neutral0: "#ffffff",
-    neutral5: "#f2f2f2",
-    neutral25: "#bfbfbf",
-    neutral50: "#808080",
-    neutral75: "#404040",
-    neutral100: "#000000",
+    transparent100: "rgba(255, 255, 255, 0)",
+    visited100: "#5c1893"
+  }
+};
+var index$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  className: theme_css$1,
+  tokens: tokens$1
+}, Symbol.toStringTag, { value: "Module" }));
+var theme_css_ts_vanilla = "";
+var theme_css = "_16j8zcr0";
+const tokens = {
+  typography: {
+    fontFamily: "Poppins",
+    fontWeight: {
+      black: "900",
+      bold: "700",
+      regular: "400",
+      bullet: "400",
+      button: "700",
+      "link-hover&focus": "500",
+      "link-normal": "500",
+      medium: "500",
+      number: "400"
+    },
+    heading: {
+      weight: { black: "900", bold: "700", regular: "400" },
+      level: {
+        "1": {
+          tablet: { fontSize: "7.5rem", lineHeight: "8.625rem" },
+          mobile: { fontSize: "2.5rem", lineHeight: "2.875rem" }
+        },
+        "2": { tablet: { fontSize: "2.5rem", lineHeight: "3rem" }, mobile: { fontSize: "2rem", lineHeight: "2.4rem" } },
+        "3": {
+          tablet: { fontSize: "2rem", lineHeight: "2.4rem" },
+          mobile: { fontSize: "1.5rem", lineHeight: "1.8rem" }
+        },
+        "4": {
+          tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
+          mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
+        }
+      }
+    },
+    text: {
+      large: {
+        tablet: { fontSize: "1.5rem", lineHeight: "1.95rem" },
+        mobile: { fontSize: "1.25rem", lineHeight: "1.625rem" }
+      },
+      medium: {
+        tablet: { fontSize: "1.25rem", lineHeight: "2rem" },
+        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
+      },
+      small: {
+        tablet: { fontSize: "1.125rem", lineHeight: "1.8rem" },
+        mobile: { fontSize: "1rem", lineHeight: "1.6rem" }
+      },
+      xsmall: {
+        tablet: { fontSize: "1rem", lineHeight: "1.6rem" },
+        mobile: { fontSize: "0.875rem", lineHeight: "1.4rem" }
+      }
+    }
+  },
+  space: {
+    xxlarge: { tablet: "3.5rem", mobile: "3rem" },
+    large: { tablet: "2.5rem", mobile: "2rem" },
+    medium: { tablet: "2rem", mobile: "1.5rem" },
+    small: { tablet: "1.5rem", mobile: "1rem" },
+    xlarge: { tablet: "3rem", mobile: "2.5rem" },
+    xsmall: { tablet: "1rem", mobile: "0.5rem" }
+  },
+  transitions: { fast: "transform .125s ease, opacity .125s ease" },
+  border: {
+    radius: {
+      button: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" },
+      inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
+      standard: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
+      tags: { topLeft: "6.25rem", topRight: "6.25rem", bottomLeft: "6.25rem", bottomRight: "6.25rem" }
+    },
+    width: { large: "0.188rem", medium: "0.125rem", small: "0.063rem", xlarge: "0.25rem" }
+  },
+  shadows: { primary: "0rem 0.25rem 1.875rem 0rem #4040401a" },
+  color: {
     annotation0: "#ffffff",
     annotation5: "#f8f7ff",
     annotation25: "#ded7ff",
@@ -566,6 +342,181 @@ const tokens = {
     annotation75: "#9c88ff",
     annotation100: "#7b61ff",
     annotation110: "#644ecf",
+    caution0: "#000000",
+    caution5: "#fff9e3",
+    caution25: "#fff4cb",
+    caution50: "#fbe9a2",
+    caution75: "#ffdf70",
+    caution100: "#fcca5e",
+    caution110: "#f6b424",
+    error0: "#ffffff",
+    error5: "#fff3f3",
+    error25: "#ffdada",
+    error50: "#ff9f9f",
+    error75: "#e95757",
+    error100: "#d02323",
+    error110: "#ab0000",
+    focus100: "#4398ff",
+    info0: "#ffffff",
+    info5: "#eef4fa",
+    info25: "#bcd9ed",
+    info50: "#7eb6dc",
+    info75: "#3f93cc",
+    info100: "#00558c",
+    info110: "#005c99",
+    semantic: {
+      button: {
+        primary: {
+          background: {
+            disabled: "#e6f2fa",
+            focused: "#49a1ab",
+            hover: "#49a1ab",
+            normal: "#0c818f",
+            pressed: "#15284c"
+          },
+          border: {
+            disabled: "rgba(255, 255, 255, 0)",
+            focused: "rgba(255, 255, 255, 0)",
+            hover: "rgba(255, 255, 255, 0)",
+            normal: "rgba(255, 255, 255, 0)",
+            pressed: "rgba(255, 255, 255, 0)"
+          },
+          content: { disabled: "#0c818f", normal: "#ffffff" },
+          highlight: { focus: "#4398ff" }
+        },
+        search: {
+          background: { focused: "#0c818f", hover: "#49a1ab", normal: "#0c818f" },
+          highlight: { focus: "#4398ff" }
+        },
+        secondary: {
+          background: {
+            disabled: "#e7e9ed",
+            focused: "#505e79",
+            hover: "#505e79",
+            normal: "#15284c",
+            pressed: "#00091a"
+          },
+          border: {
+            disabled: "rgba(255, 255, 255, 0)",
+            focused: "rgba(255, 255, 255, 0)",
+            hover: "rgba(255, 255, 255, 0)",
+            normal: "rgba(255, 255, 255, 0)",
+            pressed: "rgba(255, 255, 255, 0)"
+          },
+          content: { disabled: "#ffffff", normal: "#ffffff" },
+          highlight: { focus: "#4398ff" }
+        },
+        tertiary: {
+          background: {
+            disabled: "#ffffff",
+            focused: "#ffffff",
+            hover: "#ffffff",
+            normal: "#ffffff",
+            pressed: "#ffffff"
+          },
+          border: { disabled: "#e6f2f4", focused: "#0c818f", hover: "#49a1ab", normal: "#0c818f", pressed: "#00091a" },
+          content: { disabled: "#e6f2f4", normal: "#0c818f" },
+          highlight: { focus: "#4398ff" }
+        },
+        "text-link": { highlight: { focus: "#4398ff" } }
+      },
+      card: { background: "#ffffff", border: "#e6f2f4" },
+      controls: {
+        background: { active: "#0c818f", inactive: "#c2dfe3", light: "#ffffff", light2: "#f3f9f9" },
+        border: { active: "#0c818f", hover: "#c2dfe3", inactive: "#e6f2fa" },
+        content: { dark: "#0c818f", light: "#ffffff" },
+        highlight: { focus: "#4398ff" }
+      },
+      icons: { black: "#000000", dark: "#0c818f", grey: "#808080", light: "#ffffff" },
+      inputs: {
+        elements: {
+          background: {
+            disabled: "#808080",
+            normal: "#ffffff",
+            selected: "#0c818f",
+            "selected-hover": "#15284c",
+            unselected: "#c2dfe3",
+            "unselected-hover": "#e6f2fa"
+          },
+          border: { disabled: "#808080", error: "#d02323", hover: "#15284c", normal: "#0c818f" },
+          highlight: { focus: "#4398ff" }
+        },
+        fields: {
+          background: { hover: "#f3f9f9", normal: "#ffffff" },
+          border: { disabled: "#c2dfe3", error: "#d02323", normal: "#0c818f" },
+          highlight: { focus: "#4398ff" }
+        }
+      },
+      menu: {
+        button: { dark: "#0c818f", hover: "#bcd9ed", light: "#ffffff" },
+        highlight: { focus: "#4398ff" },
+        list: {
+          background: { darkened: "#bcd9ed", normal: "#eef4fa" },
+          border: { divider: "#7eb6dc" },
+          content: { darkened: "#005c99", normal: "#00558c" }
+        }
+      },
+      notifications: {
+        alert: {
+          background: { caution: "#fff9e3", critical: "#fff3f3", informative: "#eef4fa", positive: "#f8fdf9" },
+          content: { caution: "#000000", critical: "#ab0000", informative: "#00558c", positive: "#000000" },
+          icons: { caution: "#f6b424", critical: "#ab0000", informative: "#00558c", positive: "#519965" }
+        },
+        banner: {
+          background: { caution: "#fcca5e", critical: "#d02323", informative: "#00558c", positive: "#72b986" },
+          content: { caution: "#000000", critical: "#ffffff", informative: "#ffffff", positive: "#000000" }
+        }
+      },
+      structure: {
+        background: {
+          base: "#ffffff",
+          "footer-dark": "#15284c",
+          "footer-light": "#ffffff",
+          "header-dark": "#15284c",
+          "header-light": "#ffffff"
+        },
+        divider: { dark: "#e6f2f4", light: "#ffffff" }
+      },
+      text: {
+        copy: { dark: "#000000", disabled: "#808080", error: "#d02323", light: "#ffffff", placeholder: "#404040" },
+        links: { active: "#00558c", hover: "#3f93cc", visited: "#5c1893" }
+      }
+    },
+    neutral0: "#ffffff",
+    neutral5: "#f2f2f2",
+    neutral25: "#bfbfbf",
+    neutral50: "#808080",
+    neutral75: "#404040",
+    neutral100: "#000000",
+    positive0: "#000000",
+    positive5: "#f8fdf9",
+    positive25: "#edf9f0",
+    positive50: "#c4e5cd",
+    positive75: "#93d6a6",
+    positive100: "#72b986",
+    positive110: "#519965",
+    primary0: "#ffffff",
+    primary5: "#f3f9f9",
+    primary25: "#e6f2f4",
+    primary50: "#c2dfe3",
+    primary75: "#49a1ab",
+    primary100: "#0c818f",
+    primary110: "#0b7481",
+    secondary0: "#ffffff",
+    secondary5: "#f3f4f6",
+    secondary25: "#e7e9ed",
+    secondary50: "#c4c9d2",
+    secondary75: "#505e79",
+    secondary100: "#15284c",
+    secondary110: "#00091a",
+    tertiary0: "#ffffff",
+    tertiary5: "#f3f9f9",
+    tertiary25: "#e6f2fa",
+    tertiary50: "#c2dfe3",
+    tertiary75: "#49a1ab",
+    tertiary100: "#0c818f",
+    tertiary110: "#15284c",
+    transparent100: "rgba(255, 255, 255, 0)",
     visited100: "#5c1893"
   }
 };
@@ -574,4 +525,4 @@ var index = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty(
   className: theme_css,
   tokens
 }, Symbol.toStringTag, { value: "Module" }));
-export { contract, index$3 as myCovidRecord, index$2 as myHealthAccount, index$1 as myRecord, index as neutral };
+export { contract, index$1 as neutral, index as webSelfService };
