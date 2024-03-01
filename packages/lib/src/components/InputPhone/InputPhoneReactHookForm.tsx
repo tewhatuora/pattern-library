@@ -40,6 +40,8 @@ export type InputPhoneReactHookFormProps<T extends FieldValues = FieldValues> = 
     international?: boolean;
     defaultCountry?: Country;
     onChange?: InputPhoneReactHookFormOnChangeFn;
+    /** show asterisk when field is required (default: `true`) */
+    showRequiredAsterisk?: boolean;
     name: FieldPath<T>;
     control: Control<T>;
   };
@@ -57,6 +59,7 @@ const InputPhoneReactHookFormInner = <T extends FieldValues = FieldValues>(
     value,
     disabled,
     required,
+    showRequiredAsterisk = true,
     subheading,
     placeholder,
     helperText,
@@ -152,7 +155,7 @@ const InputPhoneReactHookFormInner = <T extends FieldValues = FieldValues>(
         htmlFor={id}
         label={label}
         labelProps={labelProps}
-        required={required}
+        required={showRequiredAsterisk && required}
         subheading={subheading}
         tertiaryLabel={tertiaryLabel}
         tertiaryLabelAs={tertiaryLabelAs}
@@ -170,7 +173,8 @@ const InputPhoneReactHookFormInner = <T extends FieldValues = FieldValues>(
             styles.input,
             {
               [inputStyles.input.base]: !errorMessage,
-              [inputStyles.errorBorder]: !!errorMessage,
+              'PhoneInput--error': errorMessage,
+              [styles.clearable]: clearable,
             },
             textSizeClasses,
           )}
