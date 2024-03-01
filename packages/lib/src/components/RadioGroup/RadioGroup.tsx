@@ -17,6 +17,8 @@ export type RadioGroupProps = {
   disabled?: boolean;
   /** required attribute */
   required?: boolean;
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
   /** Show error state */
   error?: boolean | string;
   /** Function to call when the value is changed */
@@ -40,6 +42,7 @@ export const RadioGroup = ({
   name,
   value,
   required,
+  showRequiredAsterisk = true,
   disabled,
   error,
   onChange,
@@ -66,7 +69,7 @@ export const RadioGroup = ({
       htmlFor={id}
       label={label}
       labelProps={labelProps}
-      required={required}
+      required={showRequiredAsterisk && required}
       subheading={subheading}
       tertiaryLabel={tertiaryLabel}
       tertiaryLabelAs={tertiaryLabelAs}

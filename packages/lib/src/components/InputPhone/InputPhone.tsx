@@ -27,6 +27,8 @@ export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
     international?: boolean;
     defaultCountry?: Country;
     onChange?: InputPhoneOnChangeFn;
+    /** show asterisk when field is required (default: `true`) */
+    showRequiredAsterisk?: boolean;
   };
 
 /**
@@ -43,6 +45,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       value,
       disabled,
       required,
+      showRequiredAsterisk = true,
       subheading,
       placeholder,
       helperText,
@@ -95,7 +98,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
-          required={required}
+          required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
