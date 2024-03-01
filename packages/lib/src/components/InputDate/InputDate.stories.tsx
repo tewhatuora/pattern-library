@@ -44,6 +44,11 @@ export default {
         type: 'boolean',
       },
     },
+    showRequiredAsterisk: {
+      control: {
+        type: 'boolean',
+      },
+    },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
       control: { type: 'text' },

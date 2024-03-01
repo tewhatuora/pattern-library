@@ -51,6 +51,8 @@ export type InputDateProps = Omit<InputLabelProps, 'error'> &
     onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     /** Function to call when either the day, month or year fields are focused */
     onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    /** show asterisk when field is required (default: `true`) */
+    showRequiredAsterisk?: boolean;
   };
 
 /**
@@ -67,6 +69,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
       label,
       disabled,
       required,
+      showRequiredAsterisk = true,
       value,
       subheading,
       helperText,
@@ -127,7 +130,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
-          required={required}
+          required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
@@ -151,6 +154,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               pattern="[0-9]*"
               ref={dayRef}
               required={required}
+              showRequiredAsterisk={showRequiredAsterisk}
               type="number"
               value={value?.day}
               onBlur={handleBlur}
@@ -173,6 +177,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               pattern="[0-9]*"
               ref={monthRef}
               required={required}
+              showRequiredAsterisk={showRequiredAsterisk}
               type="number"
               value={value?.month}
               onBlur={handleBlur}
@@ -194,6 +199,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               pattern="[0-9]*"
               ref={yearRef}
               required={required}
+              showRequiredAsterisk={showRequiredAsterisk}
               type="number"
               value={value?.year}
               onBlur={handleBlur}
