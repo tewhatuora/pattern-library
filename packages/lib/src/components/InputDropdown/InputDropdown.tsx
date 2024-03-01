@@ -40,6 +40,8 @@ export type InputDropdownProps = {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   /** Function to call when the field is focused */
   onSelectFocus?: ChangeEventHandler<HTMLSelectElement>;
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
 } & InputLabelProps &
   InputMessageProps &
   OtherInputFieldProps &
@@ -61,6 +63,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       defaultValue,
       value = '',
       required,
+      showRequiredAsterisk = true,
       label,
       subheading,
       placeholder,
@@ -120,7 +123,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
-          required={required}
+          required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
