@@ -136,6 +136,7 @@ export const input = styleVariants({
   phone: [
     inputBase,
     {
+      height: 'auto',
       padding: '0',
     },
   ],
