@@ -43,7 +43,7 @@ export type TextLinkProps = {
 export const TextLink = ({
   to,
   size = 'medium',
-  weight = 'regular',
+  weight = 'link-normal',
   icon,
   iconPosition = 'right',
   noVisited = false,
