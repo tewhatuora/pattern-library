@@ -46,7 +46,7 @@ export const TextLink = forwardRef<HTMLAnchorElement, PropsWithChildren<TextLink
     {
       to,
       size = 'medium',
-      weight = 'regular',
+      weight = 'link-normal',
       icon,
       iconPosition = 'right',
       noVisited = false,

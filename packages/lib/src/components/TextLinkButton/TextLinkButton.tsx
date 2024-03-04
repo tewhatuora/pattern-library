@@ -25,7 +25,7 @@ export type TextLinkButtonProps = {
  * @constructor
  */
 export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>(
-  ({ weight, className, showUnderline = false, ...rest }, ref) => {
+  ({ weight = 'link-normal', className, showUnderline = false, ...rest }, ref) => {
     return (
       <Button
         className={clsx(styles.link({ underline: showUnderline }), styles.TextLinkButton, className)}
