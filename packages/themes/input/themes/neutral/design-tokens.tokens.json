@@ -1870,6 +1870,18 @@
             },
             "type": "color",
             "value": "#ffffffff"
+          },
+          "overlay": {
+            "blendMode": "normal",
+            "description": "",
+            "extensions": {
+              "org.lukasoppermann.figmaDesignTokens": {
+                "exportKey": "color",
+                "styleId": "S:a38a5efd0b5ee4724edf0ab7b7473f064720d8f2,"
+              }
+            },
+            "type": "color",
+            "value": "#404040b3"
           }
         },
         "divider": {
@@ -2432,6 +2444,20 @@
         },
         "type": "color",
         "value": "#ffffff00"
+      },
+      "primary": {
+        "70": {
+          "blendMode": "normal",
+          "description": "",
+          "extensions": {
+            "org.lukasoppermann.figmaDesignTokens": {
+              "exportKey": "color",
+              "styleId": "S:b7745e0909690f57fcb5dc83e866eb4312fb5cb5,"
+            }
+          },
+          "type": "color",
+          "value": "#404040b3"
+        }
       }
     },
     "visited": {
