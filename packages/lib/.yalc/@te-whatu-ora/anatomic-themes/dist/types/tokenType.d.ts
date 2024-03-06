@@ -21,6 +21,7 @@ export interface Tokens {
     typography: {
         fontFamily: string;
         fontWeight: Record<FontWeight, FontWeightValue>;
+        textDecoration: Record<FontWeight, string>;
         heading: {
             weight: {
                 black: FontWeightValue;

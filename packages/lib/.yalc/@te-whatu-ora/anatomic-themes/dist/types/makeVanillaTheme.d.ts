@@ -18,24 +18,13 @@ declare const _default: (tokens: Tokens) => {
     };
     readonly fontFamily: string;
     readonly textSize: {
-        xsmall: import("./tokenType").TextDefinition; /**
-         * Reduce borderRadius token names
-         * to an object where the key is a
-         * border-radius corner name e.g `topLeft`
-         * and the value is an object where the
-         * keys are the token names e.g `button`
-         * and the value is token value.
-         * e.g {
-         *   topLeft: {
-         *     button: '0.8rem'
-         *   }
-         * }
-         */
+        xsmall: import("./tokenType").TextDefinition;
         small: import("./tokenType").TextDefinition;
         medium: import("./tokenType").TextDefinition;
         large: import("./tokenType").TextDefinition;
     };
     readonly textWeight: Record<"number" | "button" | "regular" | "medium" | "bold" | "black" | "link-normal" | "link-hover&focus" | "bullet", "400" | "500" | "600" | "700" | "800" | "900">;
+    readonly textDecoration: Record<"number" | "button" | "regular" | "medium" | "bold" | "black" | "link-normal" | "link-hover&focus" | "bullet", string>;
     readonly headingLevel: {
         '1': import("./tokenType").TextDefinition;
         '2': import("./tokenType").TextDefinition;

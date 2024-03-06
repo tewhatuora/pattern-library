@@ -117,6 +117,17 @@ export declare const contract: {
         "link-hover&focus": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
         bullet: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
     };
+    readonly textDecoration: {
+        number: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        button: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        regular: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        medium: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        bold: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        black: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "link-normal": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        "link-hover&focus": `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+        bullet: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+    };
     readonly headingLevel: {
         1: {
             mobile: {
