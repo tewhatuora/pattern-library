@@ -64,6 +64,7 @@ export default (tokens: Tokens) => {
     fontFamily: rest.typography.fontFamily,
     textSize: rest.typography.text,
     textWeight: rest.typography.fontWeight,
+    textDecoration: rest.typography.textDecoration,
     headingLevel: rest.typography.heading.level,
     headingWeight: {
       weak: rest.typography.fontWeight.regular,

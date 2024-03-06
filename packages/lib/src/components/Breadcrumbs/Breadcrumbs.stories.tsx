@@ -27,12 +27,8 @@ export default {
 export const Default = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <TextLink showUnderline to="#100">
-        First
-      </TextLink>
-      <TextLink showUnderline to="#200">
-        Second
-      </TextLink>
+      <TextLink to="#100">First</TextLink>
+      <TextLink to="#200">Second</TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -41,12 +37,8 @@ export const Default = (args: BreadcrumbsProps) => {
 export const BoldText = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} boldText>
-      <TextLink showUnderline to="#100">
-        First
-      </TextLink>
-      <TextLink showUnderline to="#200">
-        Second
-      </TextLink>
+      <TextLink to="#100">First</TextLink>
+      <TextLink to="#200">Second</TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -55,12 +47,8 @@ export const BoldText = (args: BreadcrumbsProps) => {
 export const BoldLinks = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} boldLinks>
-      <TextLink showUnderline to="#100">
-        First
-      </TextLink>
-      <TextLink showUnderline to="#200">
-        Second
-      </TextLink>
+      <TextLink to="#100">First</TextLink>
+      <TextLink to="#200">Second</TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -69,12 +57,8 @@ export const BoldLinks = (args: BreadcrumbsProps) => {
 export const NoVistedStyle = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args} noVisited>
-      <TextLink showUnderline to="#100">
-        First
-      </TextLink>
-      <TextLink showUnderline to="#200">
-        Second
-      </TextLink>
+      <TextLink to="#100">First</TextLink>
+      <TextLink to="#200">Second</TextLink>
       <Text>Third</Text>
     </Breadcrumbs>
   );
@@ -83,33 +67,15 @@ export const NoVistedStyle = (args: BreadcrumbsProps) => {
 export const Truncated = (args: BreadcrumbsProps) => {
   return (
     <Breadcrumbs {...args}>
-      <TextLink showUnderline to="#100">
-        First
-      </TextLink>
-      <TextLink showUnderline to="#200">
-        Second
-      </TextLink>
-      <TextLink showUnderline to="#300">
-        Third
-      </TextLink>
-      <TextLink showUnderline to="#400">
-        Fourth
-      </TextLink>
-      <TextLink showUnderline to="#400">
-        Fifth
-      </TextLink>
-      <TextLink showUnderline to="#400">
-        Sixth
-      </TextLink>
-      <TextLink showUnderline to="#400">
-        Seventh
-      </TextLink>
-      <TextLink showUnderline to="#400">
-        Eighth
-      </TextLink>
-      <TextLink showUnderline to="#400">
-        Ninth
-      </TextLink>
+      <TextLink to="#100">First</TextLink>
+      <TextLink to="#200">Second</TextLink>
+      <TextLink to="#300">Third</TextLink>
+      <TextLink to="#400">Fourth</TextLink>
+      <TextLink to="#400">Fifth</TextLink>
+      <TextLink to="#400">Sixth</TextLink>
+      <TextLink to="#400">Seventh</TextLink>
+      <TextLink to="#400">Eighth</TextLink>
+      <TextLink to="#400">Ninth</TextLink>
       <Text>Tenth</Text>
     </Breadcrumbs>
   );

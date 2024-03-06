@@ -12,14 +12,14 @@ export const link = recipe({
   base: {
     display: 'inline',
     color: vars.color.semantic.text.links.active,
-    textDecoration: 'none',
+    textDecoration: vars.textDecoration['link-normal'],
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
       '&:hover': {
         color: vars.color.semantic.text.links.hover,
-        textDecoration: 'underline',
+        textDecoration: vars.textDecoration['link-hover&focus'],
       },
       [`${boldText} &`]: {
         fontWeight: 'bold',
