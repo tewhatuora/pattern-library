@@ -70,11 +70,12 @@ export const variants = recipe({
           width: 'auto',
           height: 'auto',
           color: vars.color.semantic.text.links.active,
+          textDecoration: vars.textDecoration['link-normal'],
           borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
           borderWidth: 0,
           ':hover': {
             color: vars.color.semantic.text.links.hover,
-            textDecoration: 'underline',
+            textDecoration: vars.textDecoration['link-hover&focus'],
           },
           selectors: {
             ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
