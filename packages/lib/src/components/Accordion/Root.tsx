@@ -8,14 +8,15 @@ import { ContrastVariant } from '../../types';
 
 import * as styles from './Accordion.css';
 
-export type AccordionRootProps = ComponentPropsWithoutRef<typeof RadixAccordion.Root> & {
-  // /** Accordion type - single allows only one item open at a time*/
-  // type: 'single' | 'multiple';
-  /** Contrast variant for dark/light UI */
-  variant?: ContrastVariant;
-  /** Heading level */
-  headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
-};
+export type AccordionRootProps = (RadixAccordion.AccordionSingleProps | RadixAccordion.AccordionMultipleProps) &
+  ComponentPropsWithoutRef<'div'> & {
+    // /** Accordion type - single allows only one item open at a time*/
+    // type: 'single' | 'multiple';
+    /** Contrast variant for dark/light UI */
+    variant?: ContrastVariant;
+    /** Heading level */
+    headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
+  };
 
 export const AccordionContext = createContext<{ headingLevel: number; variant: 'light' | 'dark' }>({
   headingLevel: 3,
@@ -36,12 +37,7 @@ export const Root = ({
   ...props
 }: PropsWithChildren<AccordionRootProps>) => {
   return (
-    <RadixAccordion.Root
-      className={styles.root[variant]}
-      // @ts-expect-error this is fine
-      collapsible
-      {...props}
-    >
+    <RadixAccordion.Root className={styles.root[variant]} {...props}>
       <AccordionContext.Provider value={{ headingLevel, variant }}>
         <AllowedChildren
           errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"

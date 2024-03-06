@@ -22,6 +22,13 @@ export default {
       defaultValue: 'multiple',
       control: { type: 'radio' },
     },
+    defaultValue: {
+      control: 'text',
+    },
+    collapsible: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
   },
   parameters: {
     docs: {
@@ -66,7 +73,8 @@ export const Default = (args: AccordionRootProps) => {
   );
 };
 Default.args = {
-  type: 'multiple',
-  variant: 'dark',
-  headingLevel: 6,
+  type: undefined,
+  defaultValue: undefined,
+  variant: 'light',
+  headingLevel: 3,
 };
