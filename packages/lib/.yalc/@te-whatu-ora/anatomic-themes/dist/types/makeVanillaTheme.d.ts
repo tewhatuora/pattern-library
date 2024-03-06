@@ -120,6 +120,7 @@ declare const _default: (tokens: Tokens) => {
                     base: string;
                     'footer-light': string;
                     'footer-dark': string;
+                    overlay: string;
                 };
                 divider: {
                     dark: string;

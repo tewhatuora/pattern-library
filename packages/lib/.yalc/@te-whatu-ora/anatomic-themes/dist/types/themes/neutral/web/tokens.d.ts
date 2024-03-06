@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 01 Mar 2024 02:53:34 GMT
+ * Generated on Wed, 06 Mar 2024 03:27:31 GMT
  */
 import { Tokens } from '../../../tokenType';
 export declare const tokens: Tokens;

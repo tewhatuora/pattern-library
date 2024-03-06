@@ -12,7 +12,7 @@ export const overlay = style({
   top: '0',
   width: '100%',
   height: '100%',
-  backgroundColor: vars.color.primary100,
+  backgroundColor: vars.color.semantic.structure.background.overlay,
   opacity: '0.7',
   zIndex: 1000,
 });

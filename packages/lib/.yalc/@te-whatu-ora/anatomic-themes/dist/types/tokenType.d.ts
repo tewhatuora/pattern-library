@@ -143,6 +143,7 @@ export interface Tokens {
                     base: string;
                     'footer-light': string;
                     'footer-dark': string;
+                    overlay: string;
                 };
                 divider: {
                     dark: string;

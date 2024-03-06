@@ -237,6 +237,7 @@ export declare const contract: {
                     base: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
                     'footer-light': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
                     'footer-dark': `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
+                    overlay: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;
                 };
                 divider: {
                     dark: `var(--${string})` | `var(--${string}, ${string})` | `var(--${string}, ${number})`;

@@ -570,7 +570,7 @@
                 }
               },
               "type": "color",
-              "value": "#0c818fff"
+              "value": "#505e79ff"
             },
             "normal": {
               "blendMode": "normal",
@@ -790,7 +790,7 @@
                 }
               },
               "type": "color",
-              "value": "#ffffffff"
+              "value": "#505e79ff"
             },
             "normal": {
               "blendMode": "normal",
@@ -956,7 +956,7 @@
                 }
               },
               "type": "color",
-              "value": "#e6f2f4ff"
+              "value": "#505e79ff"
             },
             "normal": {
               "blendMode": "normal",
@@ -1026,7 +1026,7 @@
             }
           },
           "type": "color",
-          "value": "#e6f2f4ff"
+          "value": "#c4c9d2ff"
         }
       },
       "controls": {
@@ -1870,6 +1870,18 @@
             },
             "type": "color",
             "value": "#ffffffff"
+          },
+          "overlay": {
+            "blendMode": "normal",
+            "description": "",
+            "extensions": {
+              "org.lukasoppermann.figmaDesignTokens": {
+                "exportKey": "color",
+                "styleId": "S:da8659c4d3e0f905496d63d5aac3dfd7ce0cc63e,"
+              }
+            },
+            "type": "color",
+            "value": "#0c818fb3"
           }
         },
         "divider": {
@@ -1883,7 +1895,7 @@
               }
             },
             "type": "color",
-            "value": "#e6f2f4ff"
+            "value": "#c4c9d2ff"
           },
           "light": {
             "blendMode": "normal",
@@ -1959,7 +1971,7 @@
               }
             },
             "type": "color",
-            "value": "#404040ff"
+            "value": "#505e79ff"
           }
         },
         "links": {
@@ -1985,7 +1997,7 @@
               }
             },
             "type": "color",
-            "value": "#3f93ccff"
+            "value": "#0c818fff"
           },
           "visited": {
             "blendMode": "normal",
@@ -2432,6 +2444,20 @@
         },
         "type": "color",
         "value": "#ffffff00"
+      },
+      "primary": {
+        "70": {
+          "blendMode": "normal",
+          "description": "",
+          "extensions": {
+            "org.lukasoppermann.figmaDesignTokens": {
+              "exportKey": "color",
+              "styleId": "S:5167d9bebe490fcbba1105f999150b9eaa4971c7,"
+            }
+          },
+          "type": "color",
+          "value": "#0c818fb3"
+        }
       }
     },
     "visited": {
