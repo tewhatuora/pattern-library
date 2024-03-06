@@ -11,7 +11,10 @@ const color = (tokens) => {
       return acc;
     } else {
       for (const subkey of Object.keys(tokens[key])) {
-        acc[`${key}${subkey}`] = tokens[key][subkey];
+        // ignore `transparent.primary.100` token
+        if (`${key}${subkey}` !== 'transparentprimary') {
+          acc[`${key}${subkey}`] = tokens[key][subkey];
+        }
       }
     }
     return acc;
