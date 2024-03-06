@@ -51,9 +51,13 @@ export const root = styleVariants({
 });
 
 export const item = style({
+  borderWidth: vars.borderWidth.small,
+  borderStyle: 'solid',
+  borderColor: vars.color.semantic.card.border,
+  borderRadius: vars.borderRadiusAll.standard,
   selectors: {
-    '&:not(:last-child)': {
-      borderBottom: `${vars.borderWidth.small} solid ${borderColorVar}`,
+    '& + &': {
+      marginTop: vars.space.xsmall.tablet,
     },
   },
 });

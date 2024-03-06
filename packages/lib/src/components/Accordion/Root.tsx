@@ -14,7 +14,7 @@ export type AccordionRootProps = ComponentPropsWithoutRef<typeof RadixAccordion.
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
   /** Heading level */
-  headingLevel: 3 | 4 | 5 | 6;
+  headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
 export const AccordionContext = createContext<{ headingLevel: number; variant: 'light' | 'dark' }>({
