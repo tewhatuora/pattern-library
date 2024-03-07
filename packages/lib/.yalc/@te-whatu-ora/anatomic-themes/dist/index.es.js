@@ -352,9 +352,9 @@ const tokens = {
   transitions: { fast: "transform .125s ease, opacity .125s ease" },
   border: {
     radius: {
-      button: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" },
+      button: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
       inputs: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
-      standard: { topLeft: "0.5rem", topRight: "0.5rem", bottomLeft: "0.5rem", bottomRight: "0.5rem" },
+      standard: { topLeft: "0.25rem", topRight: "0.25rem", bottomLeft: "0.25rem", bottomRight: "0.25rem" },
       tags: { topLeft: "6.25rem", topRight: "6.25rem", bottomLeft: "6.25rem", bottomRight: "6.25rem" }
     },
     width: { large: "0.188rem", medium: "0.125rem", small: "0.063rem", xlarge: "0.25rem" }
