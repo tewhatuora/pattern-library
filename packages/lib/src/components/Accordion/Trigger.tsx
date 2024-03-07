@@ -43,7 +43,7 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
             </div>
           </div>
 
-          <Icon className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
+          <Icon className={styles.chevron({ variant })} icon="chevron_down" variant="functionalIcons" />
         </RadixAccordion.Trigger>
       </Box>
     </RadixAccordion.Header>
