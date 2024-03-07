@@ -4135,9 +4135,6 @@
   resolved "https://registry.yarnpkg.com/@te-whatu-ora/anatomic-themes/-/anatomic-themes-0.0.2-beta.17.tgz#90c66718d0337e9f9ad2e173d78e97f5463c831f"
   integrity sha512-YzD8MmoC+NnF6TX64h+4pYym81Lq1hw0bNC8MthCxSGFvTiWKjexuCDKumhPKzveq/rS0EvNboRc0fwOJ3gziw==
 
-"@te-whatu-ora/anatomic-themes@file:packages/lib/.yalc/@te-whatu-ora/anatomic-themes":
-  version "4.0.0-custom"
-
 "@te-whatu-ora/anatomic@^0.0.64-beta.1":
   version "0.0.64-beta.4"
   resolved "https://registry.yarnpkg.com/@te-whatu-ora/anatomic/-/anatomic-0.0.64-beta.4.tgz#f2d24c7e9ebe4da7ae043403213710c7c4b957d3"
