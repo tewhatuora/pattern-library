@@ -50,17 +50,28 @@ export const root = styleVariants({
   ],
 });
 
-export const item = style({
-  borderWidth: vars.borderWidth.small,
-  borderStyle: 'solid',
-  borderColor: vars.color.semantic.card.border,
-  borderRadius: vars.borderRadiusAll.standard,
-  selectors: {
-    '& + &': {
-      marginTop: vars.space.xsmall.tablet,
+export const item = style([
+  responsiveStyle({
+    mobile: {
+      borderWidth: vars.borderWidth.small,
+      borderStyle: 'solid',
+      borderColor: vars.color.semantic.card.border,
+      borderRadius: vars.borderRadiusAll.standard,
+      selectors: {
+        '& + &': {
+          marginTop: vars.space.small.mobile,
+        },
+      },
     },
-  },
-});
+    tablet: {
+      selectors: {
+        '& + &': {
+          marginTop: vars.space.small.tablet,
+        },
+      },
+    },
+  }),
+]);
 
 export const header = style({
   margin: 0,
