@@ -1,10 +1,11 @@
 import { StyleRule } from '@vanilla-extract/css';
 
+import { Viewport } from '@te-whatu-ora/anatomic-themes/dist/types/tokenType';
+
 import { vars } from '../../themes/vars.css';
 import { ResponsiveStyle, responsiveStyle } from '../../css/responsiveStyle';
 
 import { Space } from './atoms';
-import { Viewport } from '../../themes/tokenType';
 
 const sizes = {
   full: '100%',
@@ -15,6 +16,9 @@ const borderWidth = vars.borderWidth;
 const borderRadiusAll = vars.borderRadiusAll;
 const borderRadius = vars.borderRadius;
 const borderStyle = ['none', 'solid', 'dashed', 'dotted', 'double'] as const;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { semantic, ...colors } = vars.color;
 
 export type BoxShadow = keyof typeof boxShadow;
 
@@ -67,10 +71,10 @@ export const unresponsiveProperties = {
 export type UnresponsiveProperties = keyof typeof unresponsiveProperties;
 
 export const colorProperties = {
-  color: vars.color,
-  backgroundColor: vars.color,
-  borderColor: vars.color,
-} as const;
+  color: colors,
+  backgroundColor: colors,
+  borderColor: colors,
+} as Record<'color' | 'backgroundColor' | 'borderColor', Omit<typeof vars.color, 'semantic'>>;
 
 export type ColorProperties = keyof typeof colorProperties;
 type ResponsiveSpace = Record<Space, StyleRule>;

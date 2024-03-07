@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic-themes",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Te Whatu Ora - Anatomic Design system. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
@@ -32,7 +32,8 @@
     "lint:types": "tsc --noEmit",
     "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
     "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
-    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify"
+    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
+    "major:beta": "standard-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",
@@ -51,7 +52,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./styles": "./dist/style.css"
   },

@@ -77,10 +77,10 @@ export const Root = ({
           <RadixDialog.Overlay className={styles.overlay} />
           <RadixDialog.Content className={styles.dialog} onPointerDownOutside={() => onOpenChange?.(false)}>
             <RadixDialog.Close className={styles.closeButton}>
-              <Icon icon="cross" variant="functionalIcons" />
+              <Icon className={styles.icon} icon="cross" variant="functionalIcons" />
             </RadixDialog.Close>
             <Stack alignItems="center" display="flex" flexDirection="column" space="medium">
-              {!!icon && <Icon icon={icon} variant="decorativeIcons" />}
+              {!!icon && <Icon className={styles.icon} icon={icon} variant="decorativeIcons" />}
               <RadixDialog.Title asChild>
                 <Box as="span" className={headingClassName}>
                   {heading}

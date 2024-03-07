@@ -37,7 +37,7 @@ export type AnchorLinkProps = {
 export const AnchorLink = ({
   to,
   size = 'medium',
-  weight = 'regular',
+  weight = 'link-normal',
   noIcon = false,
   noVisited = false,
   className,

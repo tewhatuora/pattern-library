@@ -9,7 +9,7 @@ export default {
   component: Button,
   argTypes: {
     variant: {
-      options: ['primary', 'secondary', 'tertiary'],
+      options: ['primary', 'secondary', 'tertiary', 'link'],
       control: { type: 'select' },
     },
     icon: {

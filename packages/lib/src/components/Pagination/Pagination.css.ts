@@ -2,7 +2,9 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 import { rem } from '@/src/css/helpers';
 
-import * as buttonStyles from '../Button/Button.css';
+import { fontFamily } from '@/src/hooks/typography/typography.css';
+
+import { getFocusSelectors } from '@/src/utils/custom';
 
 import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -71,10 +73,19 @@ export const pageItem = style([
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+    borderRadius: 'button',
+    transitionDuration: '150',
+    transitionProperty: 'default',
+    transitionTimingFunction: 'inOut',
   }),
+  fontFamily,
   {
     width: '100%',
     height: '100%',
+    fontSize: vars.textSize.medium.tablet.fontSize,
+    selectors: {
+      ...getFocusSelectors(vars.color.semantic.button.primary.highlight.focus),
+    },
   },
 ]);
 
@@ -98,7 +109,6 @@ export const buttonContainer = style(
 
 export const button = styleVariants({
   primary: [
-    buttonStyles.variants({ color: 'primary' }),
     pageItem,
     responsiveStyle({
       mobile: {
@@ -114,24 +124,31 @@ export const button = styleVariants({
     }),
   ],
   page: [
-    buttonStyles.variants({ color: 'tertiary' }),
     pageItem,
     {
+      color: vars.color.semantic.text.copy.dark,
       border: 'none',
       ':hover': {
-        color: vars.color.primary0,
-        backgroundColor: vars.color.secondary100,
+        color: vars.color.semantic.text.copy.light,
+        backgroundColor: vars.color.semantic.button.primary.background.hover,
       },
     },
   ],
-  current: [buttonStyles.variants({ color: 'primary' }), pageItem],
+  current: [
+    pageItem,
+    {
+      color: vars.color.semantic.text.copy.light,
+      backgroundColor: vars.color.semantic.button.primary.background.normal,
+      fontWeight: vars.textWeight.bold,
+    },
+  ],
 });
 
 const dot = {
   width: rem(3),
   height: rem(3),
   borderRadius: '50%',
-  backgroundColor: vars.color.primary100,
+  backgroundColor: vars.color.semantic.text.copy.dark,
 };
 
 export const ellipsis = style([

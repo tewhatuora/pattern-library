@@ -1,10 +1,9 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { calc } from '@vanilla-extract/css-utils';
+import { Viewport } from '@te-whatu-ora/anatomic-themes/dist/types/tokenType';
 
 import { ColumnLength } from './Column';
-
-import { Viewport } from '../../themes/tokenType';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';

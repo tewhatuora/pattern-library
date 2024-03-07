@@ -4,6 +4,7 @@ import sizeToRem from '../utils/sizeToRem.js';
 const typographyTokensShape = {
   fontFamily: '',
   fontWeight: {},
+  textDecoration: {},
   heading: {
     weight: {},
     level: {},
@@ -58,6 +59,7 @@ const typography = (typographyTokens) => {
       for (const weight of Object.keys(typographyTokens[bp][size])) {
         tokens.fontFamily = typographyTokens[bp][size][weight].fontFamily;
         tokens.fontWeight[weight] = typographyTokens[bp][size][weight].fontWeight.toString();
+        tokens.textDecoration[weight] = typographyTokens[bp][size][weight].textDecoration.toString();
 
         let formattedSize = makeSize(size);
         const newBp = bp === 'desktop' ? 'tablet' : bp;

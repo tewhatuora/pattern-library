@@ -3,16 +3,13 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
-import { focusSelectorsStyles } from '@/src/utils/custom';
+import { getFocusSelectors } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
 
 const barHeightVar = createVar();
 
-export const container = style({
-  overflowX: 'auto',
-  overflowY: 'hidden',
-});
+export const container = style({});
 
 export const list = style({
   display: 'flex',
@@ -20,7 +17,7 @@ export const list = style({
   width: 'max-content',
   minWidth: '100%',
   padding: 0,
-  borderBottom: `${vars.borderWidth.medium} solid ${vars.color.primary25}`,
+  borderBottom: `${vars.borderWidth.medium} solid ${vars.color.semantic.controls.border.inactive}`,
 });
 
 export const button = style({
@@ -30,6 +27,7 @@ export const button = style({
   padding: `${rem(6)} ${rem(16)}`,
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+  color: vars.color.semantic.controls.content.dark,
 
   vars: {
     [barHeightVar]: '0',
@@ -45,7 +43,7 @@ export const button = style({
     right: 0,
     bottom: calc.multiply(vars.borderWidth.medium, -1), // Cover the list's bottom border
     height: barHeightVar,
-    backgroundColor: vars.color.primary100,
+    backgroundColor: vars.color.semantic.controls.border.active,
   },
 
   selectors: {
@@ -56,7 +54,7 @@ export const button = style({
       },
     },
 
-    ...focusSelectorsStyles,
+    ...getFocusSelectors(vars.color.semantic.controls.highlight.focus),
   },
 });
 

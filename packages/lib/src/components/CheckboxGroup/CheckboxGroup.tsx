@@ -11,6 +11,8 @@ import * as styles from './CheckboxGroup.css';
 export const CheckboxGroupStyles = styles;
 
 export type CheckboxGroupProps = {
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
   /** Only `Checkbox` components are allowed as children of `CheckboxGroup` */
   children: ChildrenOfType<'Checkbox', CheckboxProps>;
 } & InputLabelProps &
@@ -34,6 +36,7 @@ export const CheckboxGroup = ({
   label,
   labelProps,
   required,
+  showRequiredAsterisk = true,
   subheading,
   descriptionProps,
   disabled,
@@ -55,7 +58,7 @@ export const CheckboxGroup = ({
         htmlFor={id}
         label={label}
         labelProps={labelProps}
-        required={required}
+        required={showRequiredAsterisk && required}
         subheading={subheading}
         tertiaryLabel={tertiaryLabel}
         tertiaryLabelAs={tertiaryLabelAs}

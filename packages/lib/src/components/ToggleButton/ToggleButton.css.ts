@@ -24,10 +24,10 @@ export const button = style([
     display: 'flex',
     justifyContent: 'center',
     borderStyle: 'solid',
-    borderColor: vars.color.primary100,
+    borderColor: vars.color.semantic.button.tertiary.border.normal,
     borderWidth: vars.borderWidth.small,
-    backgroundColor: vars.color.primary0,
-    color: vars.color.primary100,
+    backgroundColor: vars.color.semantic.button.tertiary.background.normal,
+    color: vars.color.semantic.button.tertiary.content.normal,
     paddingTop: vars.space.xsmall.tablet,
     paddingBottom: vars.space.xsmall.tablet,
 
@@ -40,10 +40,21 @@ export const button = style([
         borderTopRightRadius: vars.borderRadius.topRight.standard,
         borderBottomRightRadius: vars.borderRadius.bottomRight.standard,
       },
-      '&:hover': {
-        borderColor: vars.color.primary75,
+
+      '&[data-state=on]': {
+        backgroundColor: vars.color.semantic.button.primary.background.normal,
+        color: vars.color.semantic.button.primary.content.normal,
       },
-      '&[data-state=on]': { backgroundColor: vars.color.primary100, color: vars.color.primary0 },
+      '&:hover': {
+        backgroundColor: vars.color.semantic.button.tertiary.background.hover,
+        color: vars.color.semantic.button.tertiary.content.normal,
+        borderColor: vars.color.semantic.button.tertiary.border.hover,
+      },
+      '&[data-state=on]:hover': {
+        backgroundColor: vars.color.semantic.button.primary.background.hover,
+        color: vars.color.semantic.button.primary.content.normal,
+        borderColor: vars.color.semantic.button.primary.border.hover,
+      },
       '&:focus': {
         outline: focusOutline,
         outlineOffset: calc.multiply(vars.borderWidth.xlarge, -1),
@@ -54,14 +65,14 @@ export const button = style([
 
       '&:disabled': {
         cursor: 'not-allowed',
-        backgroundColor: vars.color.primary0,
-        color: vars.color.primary25,
-        borderColor: vars.color.primary25,
+        backgroundColor: vars.color.semantic.button.tertiary.background.disabled,
+        color: vars.color.semantic.button.tertiary.content.disabled,
+        borderColor: vars.color.semantic.button.tertiary.border.disabled,
       },
       '&[data-state=on]:disabled': {
-        backgroundColor: vars.color.tertiary25,
-        color: vars.color.primary0,
-        borderColor: vars.color.tertiary25,
+        backgroundColor: vars.color.semantic.button.primary.background.disabled,
+        color: vars.color.semantic.button.primary.content.disabled,
+        borderColor: vars.color.semantic.button.primary.border.disabled,
       },
     },
   },

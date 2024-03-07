@@ -1,5 +1,3 @@
-#image: node:16.10.0
-#
 pages:
   script:
     - yarn
@@ -11,7 +9,7 @@ pages:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_URL == "https://gitlab.com/alphero/moh-design-system"'
 
 default:
-  image: node:16
+  image: ${CI_DEPENDENCY_PROXY_DIRECT_GROUP_IMAGE_PREFIX}/node:16
   # Cache node_modules
   cache: &global_cache
     key:

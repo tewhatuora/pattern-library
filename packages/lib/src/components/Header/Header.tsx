@@ -1,12 +1,4 @@
-import {
-  ComponentPropsWithoutRef,
-  ElementType,
-  PropsWithChildren,
-  createContext,
-  forwardRef,
-  useContext,
-  useMemo,
-} from 'react';
+import { ComponentPropsWithoutRef, ElementType, PropsWithChildren, createContext, forwardRef, useContext } from 'react';
 import clsx from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -19,7 +11,7 @@ import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
-import type { Color, ContrastVariant } from '../../types';
+import type { ContrastVariant } from '../../types';
 
 import * as helpers from '../../css/helpers.css';
 import * as styles from './Header.css';
@@ -27,7 +19,6 @@ import * as styles from './Header.css';
 type HeaderContextType = {
   /** Contrast variant for dark/light UI */
   variant: ContrastVariant;
-  color: Color;
 };
 
 const HeaderContext = createContext<HeaderContextType | undefined>(undefined);
@@ -62,15 +53,8 @@ type HeaderProps = {
  * @constructor
  */
 const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'light', className, ...props }, ref) => {
-  /**
-   * Light/dark color
-   */
-  const color = useMemo(() => {
-    return variant === 'light' ? 'primary100' : 'primary0';
-  }, [variant]);
-
   return (
-    <HeaderContext.Provider value={{ variant, color }}>
+    <HeaderContext.Provider value={{ variant }}>
       <header className={clsx(styles.wrapper, className)} {...props} ref={ref} />
     </HeaderContext.Provider>
   );
@@ -154,13 +138,10 @@ type HeaderRightProps = PropsWithChildren<Partial<StackProps>> & {
 };
 
 const HeaderRight = ({ className, hasRightMargin = true, ...props }: HeaderRightProps) => {
-  const { color } = useHeader();
-
   return (
     <Stack
       alignItems="center"
       className={clsx(className, { [styles.headerRightMargin]: hasRightMargin })}
-      color={color}
       display="flex"
       horizontal
       marginRight={hasRightMargin ? { mobile: 'small', tablet: 'medium' } : undefined}
@@ -181,9 +162,7 @@ const HEADER_LOGO_NAME = 'HeaderLogo';
 type HeaderLogoProps = BoxProps;
 
 const HeaderLogo = forwardRef<HTMLElement, HeaderLogoProps>((props, ref) => {
-  const { color } = useHeader();
-
-  return <Box alignItems="flexStart" color={color} display="flex" flexDirection="column" ref={ref} {...props} />;
+  return <Box alignItems="flexStart" display="flex" flexDirection="column" ref={ref} {...props} />;
 });
 
 HeaderLogo.displayName = HEADER_LOGO_NAME;
@@ -207,18 +186,14 @@ type HeaderMenuButtonProps = {
  * @constructor
  */
 const HeaderMenuButton = ({ open, onToggle, className, ...props }: HeaderMenuButtonProps) => {
-  const { color } = useHeader();
-
   return (
     <ButtonRoot
       className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className)}
       onPress={onToggle}
       {...props}
     >
-      <Text className={styles.mobileMenuButtonText} color={color}>
-        {open ? 'Close' : 'Menu'}
-      </Text>
-      <Icon color={color} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
+      <Text className={styles.mobileMenuButtonText}>{open ? 'Close' : 'Menu'}</Text>
+      <Icon icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
     </ButtonRoot>
   );
 };

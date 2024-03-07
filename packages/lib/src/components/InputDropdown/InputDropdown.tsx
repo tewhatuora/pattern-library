@@ -8,8 +8,8 @@ import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
-import * as styles from './InputDropdown.css';
 import * as fieldStyles from '../InputField/InputField.css';
+import * as styles from './InputDropdown.css';
 
 import { useText } from '../../hooks/typography';
 
@@ -40,6 +40,8 @@ export type InputDropdownProps = {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   /** Function to call when the field is focused */
   onSelectFocus?: ChangeEventHandler<HTMLSelectElement>;
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
 } & InputLabelProps &
   InputMessageProps &
   OtherInputFieldProps &
@@ -60,6 +62,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       defaultValue,
       value = '',
       required,
+      showRequiredAsterisk = true,
       label,
       subheading,
       placeholder,
@@ -73,6 +76,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       onSelectBlur,
       onChange,
       onSelectFocus,
+      className,
       options,
       ...props
     }: InputDropdownProps,
@@ -119,7 +123,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
-          required={required}
+          required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
@@ -129,6 +133,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
         />
         <div className={fieldStyles.field}>
           <select
+            id={id}
             {...fieldProps}
             aria-invalid={invalid}
             className={clsx(
@@ -138,10 +143,10 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
                 [fieldStyles.input.dropdownPlaceholder]: shouldShowPlaceholder,
               },
               textSizeClasses,
+              className,
             )}
             defaultValue={defaultValue}
             disabled={disabled}
-            id={id}
             name={name}
             required={required}
             value={value}

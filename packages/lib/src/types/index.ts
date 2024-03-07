@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { vars } from '../themes/vars.css';
+import { Atoms } from '../css/atoms/atoms';
 
 export type AllOrNone<T> = T | { [K in keyof T]?: never };
 
@@ -21,4 +21,4 @@ export type ContrastVariant = 'light' | 'dark';
 
 export type AvatarVariant = 'small' | 'large';
 
-export type Color = keyof typeof vars.color;
+export type Color = Atoms['color'];

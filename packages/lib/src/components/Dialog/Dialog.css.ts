@@ -12,7 +12,7 @@ export const overlay = style({
   top: '0',
   width: '100%',
   height: '100%',
-  backgroundColor: vars.color.primary100,
+  backgroundColor: vars.color.semantic.structure.background.overlay,
   opacity: '0.7',
   zIndex: 1000,
 });
@@ -27,10 +27,11 @@ export const dialog = style([
     width: '100vw',
     maxWidth: rem(824),
     boxSizing: 'border-box',
+    boxShadow: vars.shadow.primary,
     zIndex: 1200,
 
     borderRadius: vars.borderRadiusAll.standard,
-    backgroundColor: vars.color.primary0,
+    backgroundColor: vars.color.semantic.card.background,
   },
   /* The calc functions below ensure that the dialog box has a 'margin'
    at the sides, we've avoid using margin to ensure the dialog stays 
@@ -66,3 +67,7 @@ export const closeButton = style([
     },
   }),
 ]);
+
+export const icon = style({
+  color: vars.color.semantic.icons.dark,
+});

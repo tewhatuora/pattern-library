@@ -1,4 +1,4 @@
-import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback } from 'react';
+import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import PhoneInput, { Country } from 'react-phone-number-input';
 import { useTextField } from '@react-aria/textfield';
 import clsx from 'clsx';
@@ -27,6 +27,8 @@ export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
     international?: boolean;
     defaultCountry?: Country;
     onChange?: InputPhoneOnChangeFn;
+    /** show asterisk when field is required (default: `true`) */
+    showRequiredAsterisk?: boolean;
   };
 
 /**
@@ -43,6 +45,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       value,
       disabled,
       required,
+      showRequiredAsterisk = true,
       subheading,
       placeholder,
       helperText,
@@ -61,6 +64,10 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     }: InputPhoneProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
+    const internalRef = useRef<HTMLInputElement>(null);
+
+    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
+
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
     const { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
       {
@@ -73,11 +80,14 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
         errorMessage,
         type: 'tel',
       },
-      ref as RefObject<HTMLInputElement>,
+      internalRef as RefObject<HTMLInputElement>,
     );
 
     const handleClear = useCallback(() => {
       onChange?.('');
+
+      // Focus input on clear
+      internalRef.current?.focus();
     }, [onChange]);
 
     return (
@@ -88,7 +98,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           htmlFor={id}
           label={label}
           labelProps={labelProps}
-          required={required}
+          required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
@@ -105,6 +115,8 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
               styles.input,
               {
                 [inputStyles.input.base]: !errorMessage,
+                'PhoneInput--error': errorMessage,
+                [styles.clearable]: clearable,
               },
               textSizeClasses,
             )}
@@ -113,12 +125,13 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             defaultCountry={defaultCountry}
             disabled={disabled}
             displayInitialValueAsLocalNumber
+            focusInputOnCountrySelection={false}
             inputComponent={InputField}
             international={international}
             invalid={(!!errorMessage).toString()}
             name={name}
             placeholder={placeholder}
-            ref={ref as LegacyRef<any>}
+            ref={internalRef as LegacyRef<any>}
             required={required}
             value={value}
             onBlur={onBlur}

@@ -10,10 +10,10 @@ enum PasswordFieldType {
   Text = 'text',
 }
 
-export type InputPasswordProps = Omit<
-  InputLabelProps,
-  'tertiaryLabel' | 'tertiaryLabelAs' | 'onTertiaryLabelClick' | 'href' | 'htmlFor'
-> &
+export type InputPasswordProps = {
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
+} & Omit<InputLabelProps, 'tertiaryLabel' | 'tertiaryLabelAs' | 'onTertiaryLabelClick' | 'href' | 'htmlFor'> &
   InputMessageProps &
   OtherInputFieldProps &
   Pick<BaseInputFieldProps, 'clearable'>;
@@ -37,6 +37,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       helperText,
       value,
       required,
+      showRequiredAsterisk = true,
       disabled,
       clearable,
       defaultValue,
@@ -68,6 +69,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
         placeholder={placeholder}
         ref={ref}
         required={required}
+        showRequiredAsterisk={showRequiredAsterisk}
         subheading={subheading}
         tertiaryLabel={type === PasswordFieldType.Password ? 'Show' : 'Hide'}
         tertiaryLabelAs="button"

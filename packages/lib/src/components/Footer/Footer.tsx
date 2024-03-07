@@ -142,12 +142,7 @@ const Footer = ({
   );
 
   return (
-    <Box
-      as="footer"
-      backgroundColor={variant && (variant === 'dark' ? 'primary100' : 'primary0')}
-      className={clsx(styles.footer, className)}
-      color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
-    >
+    <Box as="footer" className={clsx(styles.footer({ variant }), className)}>
       <div className={styles.footerInner}>
         <Stack space="xxlarge">
           {/* First row */}

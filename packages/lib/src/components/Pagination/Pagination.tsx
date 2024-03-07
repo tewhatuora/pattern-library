@@ -7,6 +7,7 @@ import { Text } from '../Text/Text';
 import usePagination from '../../hooks/usePagination';
 
 import * as styles from './Pagination.css';
+import { ButtonRoot } from '../Button/ButtonRoot';
 
 export const PaginationStyles = styles;
 
@@ -34,9 +35,9 @@ const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) 
 
   return (
     <li className={styles.page}>
-      <Button aria-label={`Go to page ${page}`} className={className} onPress={onPress}>
+      <ButtonRoot aria-label={`Go to page ${page}`} className={className} onPress={onPress}>
         {page}
-      </Button>
+      </ButtonRoot>
     </li>
   );
 });
@@ -102,7 +103,12 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
     <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
       <Box className={styles.buttonContainer}>
         {showPrevious && (
-          <Button aria-label="Go to previous page" className={styles.button.primary} onPress={handlePrevious}>
+          <Button
+            aria-label="Go to previous page"
+            className={styles.button.primary}
+            variant="secondary"
+            onPress={handlePrevious}
+          >
             Previous
           </Button>
         )}
@@ -121,7 +127,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
       ) : null}
       <Box className={styles.buttonContainer}>
         {showNext && (
-          <Button aria-label="Go to next page" className={styles.button.primary} onPress={handleNext}>
+          <Button aria-label="Go to next page" className={styles.button.primary} variant="primary" onPress={handleNext}>
             Next
           </Button>
         )}

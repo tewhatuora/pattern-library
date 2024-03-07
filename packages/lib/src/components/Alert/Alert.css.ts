@@ -8,30 +8,22 @@ import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 
 const variant = {
-  positive: atoms({
-    color: 'positive100',
-    backgroundColor: {
-      base: 'positive5',
-    },
-  }),
-  informative: atoms({
-    color: 'info100',
-    backgroundColor: {
-      base: 'info5',
-    },
-  }),
-  cautionary: atoms({
-    color: 'caution0',
-    backgroundColor: {
-      base: 'caution5',
-    },
-  }),
-  critical: atoms({
-    color: 'error100',
-    backgroundColor: {
-      base: 'error5',
-    },
-  }),
+  positive: {
+    color: vars.color.semantic.notifications.alert.content.positive,
+    backgroundColor: vars.color.semantic.notifications.alert.background.positive,
+  },
+  informative: {
+    color: vars.color.semantic.notifications.alert.content.informative,
+    backgroundColor: vars.color.semantic.notifications.alert.background.informative,
+  },
+  cautionary: {
+    color: vars.color.semantic.notifications.alert.content.caution,
+    backgroundColor: vars.color.semantic.notifications.alert.background.caution,
+  },
+  critical: {
+    color: vars.color.semantic.notifications.alert.content.critical,
+    backgroundColor: vars.color.semantic.notifications.alert.background.critical,
+  },
 };
 
 export type Variant = keyof typeof variant;
@@ -47,15 +39,15 @@ export const variants = recipe({
     responsiveStyle({
       mobile: {
         gap: vars.space.xsmall.mobile,
-        paddingTop: vars.space.xsmall.mobile,
-        paddingBottom: vars.space.xsmall.mobile,
+        paddingTop: vars.space.small.mobile,
+        paddingBottom: vars.space.small.mobile,
         paddingLeft: vars.space.small.mobile,
         paddingRight: vars.space.small.mobile,
       },
       tablet: {
-        gap: vars.space.xsmall.tablet,
-        paddingTop: vars.space.xsmall.tablet,
-        paddingBottom: vars.space.xsmall.tablet,
+        gap: vars.space.small.tablet,
+        paddingTop: vars.space.small.tablet,
+        paddingBottom: vars.space.small.tablet,
         paddingLeft: vars.space.small.tablet,
         paddingRight: vars.space.small.tablet,
       },
@@ -83,7 +75,7 @@ export const contentWrapper = style([
       gap: vars.space.xsmall.mobile,
     },
     desktop: {
-      gap: vars.space.xsmall.tablet,
+      gap: vars.space.xsmall.mobile,
     },
   }),
 ]);

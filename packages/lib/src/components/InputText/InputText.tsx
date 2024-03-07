@@ -15,7 +15,13 @@ type MultilineFormFieldProps = {
   rows?: number;
 };
 
-export type InputTextProps = InputLabelProps & InputMessageProps & InputFieldProps & MultilineFormFieldProps;
+export type InputTextProps = {
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
+} & InputLabelProps &
+  InputMessageProps &
+  InputFieldProps &
+  MultilineFormFieldProps;
 
 /**
  * Form field wrapper
@@ -41,6 +47,7 @@ export const InputText = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
       helperText,
       value,
       required,
+      showRequiredAsterisk = true,
       disabled,
       clearable,
       multiline,
@@ -70,7 +77,7 @@ export const InputText = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           htmlFor={id}
           label={label}
           labelProps={labelProps}
-          required={required}
+          required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}

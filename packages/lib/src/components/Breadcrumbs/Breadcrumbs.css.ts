@@ -1,14 +1,13 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
+
+import { recipe } from '@vanilla-extract/recipes';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 import { fontFamily } from '../../hooks/typography/typography.css';
 
 export const list = style([
-  {
-    color: vars.color.primary100,
-  },
   responsiveStyle({
     mobile: {
       maxWidth: '100%',
@@ -27,7 +26,6 @@ export const boldText = style({
 export const crumb = style({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  color: vars.color.primary100,
   fontWeight: vars.textWeight.regular,
 
   selectors: {
@@ -37,20 +35,12 @@ export const crumb = style({
     [`${boldText} &`]: {
       fontWeight: 'bold',
     },
-    // [`${boldLinks} > &:first-child > &`]: {
-    //   color: 'green',
-    //   fontWeight: 'bold',
-    // },
-    // [`${boldLinks} &`]: {
-    //   color: 'yellow',
-    //   fontWeight: 'bold',
-    // },
   },
 });
 
 export const ellipsis = style({
   flexShrink: '0',
-  color: vars.color.info100,
+  color: vars.color.semantic.text.links.active,
 });
 
 export const separator = style(
@@ -66,32 +56,35 @@ export const separator = style(
   }),
 );
 
-const defaultStyles = style([
-  fontFamily,
-  {
-    color: vars.color.primary100,
-  },
-]);
-
-export const breadcrumbs = styleVariants({
-  withBackground: [
-    defaultStyles,
+export const breadcrumbs = recipe({
+  base: [
+    fontFamily,
     {
-      backgroundColor: vars.color.primary5,
+      color: vars.color.semantic.text.copy.dark,
     },
-    responsiveStyle({
-      mobile: {
-        paddingLeft: vars.space.small.mobile,
-        paddingRight: vars.space.small.mobile,
-        paddingTop: vars.space.xsmall.mobile,
-        paddingBottom: vars.space.xsmall.mobile,
-      },
-      tablet: {
-        paddingLeft: vars.space.small.tablet,
-        paddingRight: vars.space.small.tablet,
-        paddingTop: vars.space.xsmall.tablet,
-        paddingBottom: vars.space.xsmall.tablet,
-      },
-    }),
   ],
+  variants: {
+    background: {
+      true: [
+        {
+          backgroundColor: vars.color.semantic.controls.background.light2,
+          borderRadius: vars.borderRadiusAll.standard,
+        },
+        responsiveStyle({
+          mobile: {
+            paddingLeft: vars.space.small.mobile,
+            paddingRight: vars.space.small.mobile,
+            paddingTop: vars.space.xsmall.mobile,
+            paddingBottom: vars.space.xsmall.mobile,
+          },
+          tablet: {
+            paddingLeft: vars.space.small.tablet,
+            paddingRight: vars.space.small.tablet,
+            paddingTop: vars.space.xsmall.tablet,
+            paddingBottom: vars.space.xsmall.tablet,
+          },
+        }),
+      ],
+    },
+  },
 });

@@ -1,4 +1,4 @@
-import { FocusEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { InputText, InputTextProps } from './InputText';
 import icons from '../Icon/icons';
@@ -106,7 +106,12 @@ export default {
   },
 };
 export const Default = (args: InputTextProps) => {
-  return <InputText {...args} />;
+  const [value, setValue] = useState('');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  return <InputText {...args} value={value} onChange={handleChange} />;
 };
 
 /**
@@ -117,11 +122,17 @@ export const Default = (args: InputTextProps) => {
  */
 export const WithFocus = (args: InputTextProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
+  const [value, setValue] = useState('Focus');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   useEffect(() => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputText {...args} defaultValue="Focus" ref={ref} />;
+  return <InputText {...args} defaultValue="Focus" ref={ref} value={value} onChange={handleChange} />;
 };
 
 export const Filled = (args: InputTextProps) => {
@@ -139,13 +150,12 @@ export const Disabled = (args: InputTextProps) => {
   return <InputText {...args} disabled value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
-export const OnFocusAndBlurEvent = (args: InputTextProps) => {
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    e.target.style.backgroundColor = '';
-  };
+export const Clearable = (args: InputTextProps) => {
+  const [value, setValue] = useState('Clearable');
+  return <InputText {...args} clearable value={value} onChange={(e) => setValue(e.target.value)} />;
+};
 
-  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
-    e.target.style.backgroundColor = 'yellow';
-  };
-  return <InputText {...args} onBlur={handleBlur} onFocus={handleFocus} />;
+export const OnFocusAndBlurEvent = (args: InputTextProps) => {
+  const [value, setValue] = useState('Filled');
+  return <InputText {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
 };

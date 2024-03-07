@@ -15,15 +15,18 @@ import { vars } from '../../themes/vars.css';
 const offset = rem(2);
 
 const variant = {
-  positive: atoms({
-    color: 'positive100',
-  }),
-  info: atoms({
-    color: 'info100',
-  }),
-  critical: atoms({
-    color: 'error100',
-  }),
+  positive: {
+    color: vars.color.semantic.notifications.alert.content.positive,
+  },
+  info: {
+    color: vars.color.semantic.notifications.alert.content.informative,
+  },
+  critical: {
+    color: vars.color.semantic.notifications.alert.content.critical,
+  },
+  caution: {
+    color: vars.color.semantic.notifications.alert.content.caution,
+  },
 };
 
 export type Variant = keyof typeof variant;
@@ -48,8 +51,8 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-export const icon = style([
-  responsiveStyle({
+export const icon = recipe({
+  base: responsiveStyle({
     mobile: {
       marginTop: offset,
       marginLeft: vars.space.xsmall.mobile,
@@ -61,4 +64,20 @@ export const icon = style([
       marginRight: vars.space.xsmall.tablet,
     },
   }),
-]);
+  variants: {
+    variant: {
+      positive: {
+        color: vars.color.semantic.notifications.alert.icons.positive,
+      },
+      info: {
+        color: vars.color.semantic.notifications.alert.icons.informative,
+      },
+      critical: {
+        color: vars.color.semantic.notifications.alert.icons.critical,
+      },
+      caution: {
+        color: vars.color.semantic.notifications.alert.icons.caution,
+      },
+    },
+  },
+});

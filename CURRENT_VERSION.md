@@ -1,15 +1,39 @@
 
-## [3.1.0](https://gitlab.com/alphero/moh-design-system/compare/v2.0.0...v3.1.0) (2023-07-25)
+## [4.0.0](///compare/v4.0.0-beta.0...v4.0.0) (2024-03-07)
 
+
+### ⚠ BREAKING CHANGES
+
+* **themes:** the `myHealthRecord` theme has been renamed to `webSelfService` to more accurately reflect it.
+* **themes:** the `myCovidRecord` & `myHealthAccount` themes have been removed.
 
 ### Features
 
-* avatar: new avatar component ([d852c00](https://gitlab.com/alphero/moh-design-system/commit/d852c004f9e0a2e1cf8ebe6f5c4201de9442eb16))
-* avatar: update the size function to scale text and element ([e56b9ed](https://gitlab.com/alphero/moh-design-system/commit/e56b9ed979765c6c4f2a507287d74540a7a3f0fc))
-* inputs on blur and on focus events ([2a69695](https://gitlab.com/alphero/moh-design-system/commit/2a696958918a0e5bb633d9b65dc4022673c7ec52))
-* new inline option for icon ([99cfa4e](https://gitlab.com/alphero/moh-design-system/commit/99cfa4e91065adc0f1aba2bcea5754347dfebc7b))
+* **Accordion:** update `Accordion` props 9923efb
+* **Accordion:** update `Accordion` styles 798e6fc
+* **Accordion:** update `Accordion`’s item gap 765483f
+* **AnchorLink:** set default weight to “link-normal” efe568b
+* **Dialog:** update `Dialog`’s overlay colour token 2d11e51
+* **InputDate:** add `showRequiredAsterisk` prop e1dbe94
+* **inputs:** add `showRequiredAsterisk` prop to input components 61fa7ac
+* **Storybook:** add “All” story for `Heading` c8fc408
+* **Storybook:** add `Button` “link” variant 7c2f5f6
+* **Storybook:** update `Breadcrumbs` default styling 8f4e5a7
+* **TextLinkButton:** set default weight to “link-normal” 04d852c
+* **TextLink:** set default weight to “link-normal” 48a5c69
+* **themes:** add `structure.background.overlay` token 10b4c03
+* **themes:** remove `myCovidRecord` & `myHealthAccount` themes 87c5c22
+* **themes:** rename `myHealthRecord` theme to `webSelfService` 6d57e31
+* **themes:** update neutral theme to use new token structure b1f1896
+* **theme:** update `Web Self-Service` theme tokens ea0597b
 
 
 ### Bug Fixes
 
-* Update types for color, add width to avoid layout shift, add margin right for menu toggle ([164591f](https://gitlab.com/alphero/moh-design-system/commit/164591fb222867d85a579cf62aca2cce20eedca4))
+* **Accordion:** fix `Accordion`’s chevron icon colour 2a93643
+* **Button:** fix `Button`’s variant types 84a602c
+* **InputPhone:** fix `InputPhone` rendering issue 504d77b
+* **Links:** add correct link text decoration 066607f
+* **Row:** fix `Row`’s type dependency 91305a5
+* **types:** fix type error where component props are undefined 3e4b3d6
+* **types:** fix type resolution for Vite bundler 7b76369

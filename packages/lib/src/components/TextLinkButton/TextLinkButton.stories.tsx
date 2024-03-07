@@ -47,16 +47,11 @@ export default {
 export const Default = (args: TextLinkButtonProps) => {
   return <TextLinkButton {...args}>{args.children}</TextLinkButton>;
 };
-Default.args = {
-  weight: 'regular',
-};
+
 export const WithLink = (args: TextLinkButtonProps) => {
   return (
     <TextLinkButton {...args} as="a" href="#example">
       {args.children}
     </TextLinkButton>
   );
-};
-WithLink.args = {
-  weight: 'regular',
 };

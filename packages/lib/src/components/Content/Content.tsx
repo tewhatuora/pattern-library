@@ -1,5 +1,7 @@
 import { PropsWithChildren, forwardRef } from 'react';
 
+import clsx from 'clsx';
+
 import { Heading, HeadingProps } from '../Heading/Heading';
 
 import { Text } from '../Text/Text';
@@ -8,6 +10,8 @@ import { Stack } from '../Stack/Stack';
 import { Box } from '../Box/Box';
 
 import { ContrastVariant } from '../../types';
+
+import * as styles from './Content.css';
 
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
@@ -60,9 +64,8 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
       <Box
         className={
           // Inherit color if variant is not given
-          className
+          clsx(styles.content[variant], className)
         }
-        color={variant && (variant === 'dark' ? 'primary0' : 'primary100')}
         maxWidth="full"
       >
         <Stack space="xsmall">

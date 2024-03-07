@@ -1,5 +1,7 @@
 import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
 
+import { ComponentStory } from '@storybook/react';
+
 import { TextLink, TextLinkProps } from './TextLink';
 import DocsPage from '../../../utils/DocsPage';
 
@@ -13,7 +15,7 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: '#',
+      defaultValue: undefined,
     },
     target: {
       control: {
@@ -49,7 +51,19 @@ export default {
   },
 };
 
-export const Default = (args: TextLinkProps) => <TextLink {...args} />;
+const Template: ComponentStory<typeof TextLink> = (args: TextLinkProps) => <TextLink {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  to: '#',
+};
+
+export const Visited = Template.bind({});
+
+Visited.args = {
+  to: '',
+};
 
 const RouterLink = forwardRef((props: PropsWithChildren<TextLinkProps>, ref: ForwardedRef<any>) => {
   return (
@@ -59,4 +73,7 @@ const RouterLink = forwardRef((props: PropsWithChildren<TextLinkProps>, ref: For
   );
 });
 
-export const AsComponent = (args: TextLinkProps) => <TextLink {...args} component={RouterLink} />;
+export const AsComponent = Template.bind({});
+AsComponent.args = {
+  component: RouterLink,
+};

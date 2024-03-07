@@ -12,8 +12,8 @@ export const styledAvatar = style({
   textTransform: 'capitalize',
   borderRadius: '50%',
   transition: 'background-color .3s ease-out',
-  backgroundColor: vars.color.primary100,
-  color: vars.color.primary0,
+  backgroundColor: vars.color.semantic.controls.background.active,
+  color: vars.color.semantic.controls.content.light,
   lineHeight: 0, // Helps with centring
 });
 

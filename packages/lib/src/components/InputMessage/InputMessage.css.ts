@@ -12,14 +12,14 @@ export const message = style({
 });
 
 export const helperText = style({
-  color: vars.color.primary100,
+  color: vars.color.semantic.text.copy.dark,
 });
 
 export const errorMessage = style({
   display: 'flex',
   alignItems: 'center',
   marginTop: calc.divide(vars.space.xsmall.tablet, 4),
-  color: vars.color.error100,
+  color: vars.color.semantic.text.copy.error,
 });
 
 export const errorMessageIcon = style({
