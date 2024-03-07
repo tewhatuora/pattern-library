@@ -3413,11 +3413,11 @@
       },
       "type": "custom-radius",
       "value": {
-        "bottomLeft": 4,
-        "bottomRight": 4,
+        "bottomLeft": 8,
+        "bottomRight": 8,
         "smoothing": 0,
-        "topLeft": 4,
-        "topRight": 4
+        "topLeft": 8,
+        "topRight": 8
       }
     },
     "inputs": {
@@ -3445,11 +3445,11 @@
       },
       "type": "custom-radius",
       "value": {
-        "bottomLeft": 8,
-        "bottomRight": 8,
+        "bottomLeft": 4,
+        "bottomRight": 4,
         "smoothing": 0,
-        "topLeft": 8,
-        "topRight": 8
+        "topLeft": 4,
+        "topRight": 4
       }
     },
     "tags": {
