@@ -116,12 +116,24 @@ export const headerContainer = style({
   alignItems: 'center',
 });
 
-export const chevron = style({
-  flexShrink: 0,
+export const chevron = recipe({
+  base: {
+    flexShrink: 0,
 
-  transition: `transform ${animationDuration}`,
-  selectors: {
-    '[data-state=open] &': { transform: 'rotate(180deg)' },
+    transition: `transform ${animationDuration}`,
+    selectors: {
+      '[data-state=open] &': { transform: 'rotate(180deg)' },
+    },
+  },
+  variants: {
+    variant: {
+      light: {
+        color: vars.color.semantic.icons.dark,
+      },
+      dark: {
+        color: vars.color.semantic.icons.light,
+      },
+    },
   },
 });
 
