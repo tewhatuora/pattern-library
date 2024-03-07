@@ -68,7 +68,7 @@ export const icon = style({
 export const contentWrapper = style([
   {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   responsiveStyle({
     mobile: {

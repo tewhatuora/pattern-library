@@ -1,7 +1,9 @@
 import { PropsWithChildren, ReactNode, useCallback, useState } from 'react';
 
+import clsx from 'clsx';
+
 import { Text } from '../Text/Text';
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 
 import * as styles from './Alert.css';
 import { Icon } from '../Icon/Icon';
@@ -19,7 +21,7 @@ export type AlertProps = {
   alternativeIcon?: IconType;
   /** A function that will be called when closing the Alert */
   onClose?: () => void;
-};
+} & BoxProps;
 
 const iconMap: Record<styles.Variant, IconType> = {
   positive: 'tick',
@@ -33,7 +35,15 @@ const iconMap: Record<styles.Variant, IconType> = {
  * a stronger visual treatment than notices.
  * @constructor
  */
-export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps }: PropsWithChildren<AlertProps>) => {
+export const Alert = ({
+  as = 'div',
+  className,
+  variant,
+  children,
+  alternativeIcon,
+  onClose,
+  ...boxProps
+}: PropsWithChildren<AlertProps>) => {
   // for closing alert
   const [isClosed, setIsClosed] = useState(false);
 
@@ -52,16 +62,18 @@ export const Alert = ({ variant, children, alternativeIcon, onClose, ...boxProps
 
   return (
     <Box
-      as="div"
-      className={styles.variants({
-        variant,
-      })}
-      role="alert"
+      as={as}
+      className={clsx(
+        styles.variants({
+          variant,
+        }),
+        className,
+      )}
       {...boxProps}
     >
       <Box className={styles.contentWrapper}>
         <Icon className={styles.icon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
-        <Text size="small">{children}</Text>
+        <Text size="medium">{children}</Text>
       </Box>
       {!!onClose && <CloseButton className={styles.closeButton} onClose={handleClose} />}
     </Box>
