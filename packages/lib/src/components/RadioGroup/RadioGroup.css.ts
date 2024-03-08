@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 import { rem } from '@/src/css/helpers';
 
@@ -10,11 +10,12 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const container = style([
   {
-    marginBottom: rem(20),
+    // marginBottom: rem(20),
     color: vars.color.semantic.text.copy.dark,
   },
   atoms({
     display: 'flex',
+    // alignItems: 'center',
   }),
 ]);
 
@@ -28,7 +29,7 @@ export const radioButton = style([
     overflow: 'hidden',
     width: rem(24),
     height: rem(24),
-    marginTop: rem(4),
+    marginTop: rem(2),
     borderStyle: 'solid',
     borderWidth: vars.borderWidth.small,
     borderRadius: '100%',
@@ -40,6 +41,9 @@ export const radioButton = style([
         borderColor: vars.color.semantic.inputs.elements.border.hover,
         backgroundColor: vars.color.semantic.inputs.elements.background['unselected-hover'],
       },
+      '[data-error=true] &': {
+        borderColor: vars.color.semantic.inputs.elements.border.error,
+      },
       '&[disabled]': {
         borderColor: vars.color.semantic.inputs.elements.border.disabled,
         cursor: 'not-allowed',
@@ -49,14 +53,14 @@ export const radioButton = style([
   },
 ]);
 
-export const radioButtonVariant = styleVariants({
-  error: [
-    radioButton,
-    {
-      borderColor: vars.color.semantic.inputs.elements.border.error,
-    },
-  ],
-});
+// export const radioButtonVariant = styleVariants({
+//   error: [
+//     radioButton,
+//     {
+//       borderColor: vars.color.semantic.inputs.elements.border.error,
+//     },
+//   ],
+// });
 
 export const indicator = style([
   atoms({
@@ -97,6 +101,15 @@ export const label = style([
   }),
   {
     marginLeft: vars.space.xsmall.tablet,
+    selectors: {
+      '[data-error=true] &': {
+        color: vars.color.semantic.text.copy.error,
+      },
+      '[data-disabled] + &': {
+        color: vars.color.semantic.text.copy.disabled,
+        cursor: 'not-allowed',
+      },
+    },
   },
   responsiveStyle({
     mobile: {
@@ -108,18 +121,11 @@ export const label = style([
   }),
 ]);
 
-export const labelVariant = styleVariants({
-  disabled: [
-    label,
-    {
-      color: vars.color.semantic.text.copy.disabled,
-      cursor: 'not-allowed',
-    },
-  ],
-  error: [
-    label,
-    {
-      color: vars.color.semantic.text.copy.error,
-    },
-  ],
-});
+// export const labelVariant = styleVariants({
+//   error: [
+//     label,
+//     {
+//       color: vars.color.semantic.text.copy.error,
+//     },
+//   ],
+// });

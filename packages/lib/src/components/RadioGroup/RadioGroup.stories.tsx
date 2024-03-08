@@ -1,9 +1,12 @@
+import { useState } from 'react';
+
 import { RadioGroup, RadioGroupProps } from './RadioGroup';
 import { RadioButton } from './RadioButton';
-import icons from '../Icon/icons';
+
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './RadioGroup.docs.mdx';
+import icons from '../Icon/icons';
 
 export default {
   title: 'Forms/RadioGroup',
@@ -12,42 +15,54 @@ export default {
     RadioButton,
   },
   argTypes: {
-    name: { control: false },
-    id: { control: false },
-    label: {
-      defaultValue: 'Label',
-      control: {
-        type: 'text',
-      },
+    defaultValue: {
+      control: 'text',
     },
-    helperText: {
+    value: {
+      control: 'text',
+    },
+    onValueChange: {
+      control: false,
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    name: {
+      control: 'text',
+    },
+    required: {
+      control: 'boolean',
+    },
+    loop: {
+      control: 'boolean',
+    },
+
+    label: {
       control: {
         type: 'text',
       },
     },
     subheading: {
-      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
+    },
+    helperText: {
+      control: 'text',
+    },
+    errorMessage: {
+      control: 'text',
     },
     tertiaryLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     tertiaryLabelAs: {
-      defaultValue: 'button',
-      control: {
-        type: 'radio',
-        options: ['a', 'button', 'text'],
-      },
+      control: 'radio',
+      options: ['text', 'button', 'a'],
     },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     tertiaryLabelIcon: {
       options: ['', ...Object.keys(icons)],
@@ -60,40 +75,15 @@ export default {
       },
       defaultValue: 'left',
     },
-    error: {
-      control: { type: 'boolean' },
-    },
-    errorMessage: {
-      control: {
-        type: 'text',
-      },
-    },
-    required: {
-      defaultValue: false,
-      control: {
-        type: 'boolean',
-      },
-    },
-    disabled: {
-      defaultValue: false,
-      control: {
-        type: 'boolean',
-      },
-    },
-    onChange: { control: false },
-    children: { control: false },
   },
   parameters: {
-    controls: {
-      exclude: ['descriptionProps', 'errorMessageProps', 'labelProps'],
-    },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
 };
 
-export const Default = (args: RadioGroupProps) => {
+export const Uncontrolled = (args: RadioGroupProps) => {
   return (
     <RadioGroup {...args}>
       <RadioButton id="value_one" label="Content one" value="one" />
@@ -102,23 +92,30 @@ export const Default = (args: RadioGroupProps) => {
     </RadioGroup>
   );
 };
-Default.args = {
-  helperText: 'Helper text',
-};
+Uncontrolled.args = {
+  label: 'Uncontrolled example',
+  helperText: 'Example helper text',
+} as RadioGroupProps;
 
-export const Filled = (args: RadioGroupProps) => {
+export const Controlled = (args: RadioGroupProps) => {
+  const [state, setState] = useState('one');
+
   return (
-    <RadioGroup {...args} value="one">
+    <RadioGroup value={state} onValueChange={setState} {...args}>
       <RadioButton id="value_one" label="Content one" value="one" />
       <RadioButton id="value_two" label="Content two" value="two" />
       <RadioButton id="value_three" label="Content three" value="three" />
     </RadioGroup>
   );
 };
+Controlled.args = {
+  label: 'Controlled example',
+  helperText: 'Example helper text',
+} as RadioGroupProps;
 
 export const Error = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} value="one">
+    <RadioGroup {...args}>
       <RadioButton id="value_one" label="Content one" value="one" />
       <RadioButton id="value_two" label="Content two" value="two" />
       <RadioButton id="value_three" label="Content three" value="three" />
@@ -126,28 +123,39 @@ export const Error = (args: RadioGroupProps) => {
   );
 };
 Error.args = {
-  errorMessage: 'Error message',
-  error: true,
-};
+  label: 'Error example',
+  helperText: 'Example helper text',
+  errorMessage: 'Example error text',
+} as RadioGroupProps;
 
 export const Disabled = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} disabled>
+    <RadioGroup {...args}>
       <RadioButton disabled id="value_one" label="Content one" value="one" />
       <RadioButton disabled id="value_two" label="Content two" value="two" />
       <RadioButton disabled id="value_three" label="Content three" value="three" />
     </RadioGroup>
   );
+};
+Disabled.args = {
+  disabled: true,
+  label: 'Disabled example',
+  helperText: 'Example helper text',
 };
 
 export const DisabledAndFilled = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} disabled value="one">
+    <RadioGroup {...args} value="one">
       <RadioButton disabled id="value_one" label="Content one" value="one" />
       <RadioButton disabled id="value_two" label="Content two" value="two" />
       <RadioButton disabled id="value_three" label="Content three" value="three" />
     </RadioGroup>
   );
+};
+DisabledAndFilled.args = {
+  disabled: true,
+  label: 'Disabled and filled example',
+  helperText: 'Example helper text',
 };
 
 export const Headings = (args: RadioGroupProps) => {
@@ -158,6 +166,10 @@ export const Headings = (args: RadioGroupProps) => {
       <RadioButton heading="Heading three" id="value_three" label="Content three" value="three" />
     </RadioGroup>
   );
+};
+Headings.args = {
+  label: 'Headings example',
+  helperText: 'Example helper text',
 };
 
 export const HelperText = (args: RadioGroupProps) => {
@@ -171,15 +183,21 @@ export const HelperText = (args: RadioGroupProps) => {
 };
 
 HelperText.args = {
-  helperText: 'Helper text',
+  label: 'Helper text example',
+  helperText: 'Example helper text',
 };
 
 export const OnChange = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} onChange={(value) => alert(value)}>
+    <RadioGroup {...args} onValueChange={(value) => alert(value)}>
       <RadioButton heading="Heading one" id="value_one" label="Content one" value="one" />
       <RadioButton heading="Heading two" id="value_two" label="Content two" value="two" />
       <RadioButton heading="Heading three" id="value_three" label="Content three" value="three" />
     </RadioGroup>
   );
+};
+
+HelperText.args = {
+  label: 'On change example',
+  helperText: 'Example helper text',
 };

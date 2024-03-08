@@ -1,27 +1,18 @@
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
-import { Label } from '@radix-ui/react-label';
 import clsx from 'clsx';
+
+import { ComponentPropsWithoutRef } from 'react';
 
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';
 
 import * as styles from './RadioGroup.css';
 
-export type RadioButtonProps = {
-  /** Radio button input value */
-  value: string;
+export type RadioButtonProps = ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
   /** Label */
   label: string;
   /** Optional heading to display with label */
   heading?: string;
-  /** id attribute */
-  id: string;
-  /** Disabled state */
-  disabled?: boolean;
-  /** Error state */
-  error?: boolean | string;
-  /** Selected state */
-  selected?: true | undefined;
 };
 
 /**
@@ -29,32 +20,20 @@ export type RadioButtonProps = {
  * @param props
  * @constructor
  */
-export const RadioButton = ({ value, id, label, selected, disabled, error, heading }: RadioButtonProps) => (
+export const RadioButton = ({ id, label, heading, ...primitiveProps }: RadioButtonProps) => (
   <Box className={styles.container}>
-    <RadioGroupPrimitive.Item
-      className={clsx(styles.radioButton, {
-        [styles.radioButtonVariant.error]: !!error,
-      })}
-      disabled={disabled}
-      id={id}
-      value={value}
-    >
-      <RadioGroupPrimitive.Indicator className={styles.indicator} forceMount={selected} />
+    <RadioGroupPrimitive.Item className={clsx(styles.radioButton)} id={id} {...primitiveProps}>
+      <RadioGroupPrimitive.Indicator className={styles.indicator} />
     </RadioGroupPrimitive.Item>
-    <Box
-      className={clsx(styles.label, {
-        [styles.labelVariant.error]: !disabled && !!error, // Only have error styles if not disabled
-        [styles.labelVariant.disabled]: !!disabled,
-      })}
-    >
+    <Box className={clsx(styles.label)}>
       {!!heading && (
-        <Text size="medium" weight="bold">
-          <Label htmlFor={id}>{heading}</Label>
+        <Text as="label" htmlFor={id} size="medium" weight="bold">
+          {heading}
         </Text>
       )}
       {!!label && (
-        <Text size="medium" weight="regular">
-          <Label htmlFor={id}>{label}</Label>
+        <Text as="label" htmlFor={id} size="medium" weight="regular">
+          {label}
         </Text>
       )}
     </Box>

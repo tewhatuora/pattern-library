@@ -1,32 +1,28 @@
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 
-import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
+import { ComponentPropsWithoutRef, useId } from 'react';
 
-import { RadioButton, RadioButtonProps } from './RadioButton';
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
+import { Stack } from '../Stack/Stack';
 
-import { ChildrenOfType } from '../../types/index';
-
-export type RadioGroupProps = {
-  /** name attribute */
-  name: string;
-  /** RadioGroup current value */
-  value?: string;
-  /** Disabled state/attribute used to disable interaction */
-  disabled?: boolean;
-  /** required attribute */
-  required?: boolean;
-  /** show asterisk when field is required (default: `true`) */
-  showRequiredAsterisk?: boolean;
+export type RadioGroupRootProps = {
   /** Show error state */
   error?: boolean | string;
-  /** Function to call when the value is changed */
-  onChange?: (value: string) => void;
-  /** Only `RadioButton` components are allowed as children of `RadioGroup` */
-  children: ChildrenOfType<'RadioButton', RadioButtonProps>;
+} & ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>;
+
+export const RadioGroupRoot = ({ error, ...props }: RadioGroupRootProps) => (
+  <RadioGroupPrimitive.Root data-error={error ? true : undefined} {...props} />
+);
+
+RadioGroupRoot.displayName = 'RadioGroupRoot';
+
+export type RadioGroupProps = {
+  /** show asterisk when field is required (default: `true`) */
+  showRequiredAsterisk?: boolean;
 } & InputLabelProps &
-  InputMessageProps;
+  InputMessageProps &
+  ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>;
 
 /**
  * RadioGroup Component
@@ -38,64 +34,75 @@ export type RadioGroupProps = {
  * @param props
  * @constructor
  */
-export const RadioGroup = ({
-  name,
-  value,
-  required,
-  showRequiredAsterisk = true,
-  disabled,
-  error,
-  onChange,
-  errorMessage,
-  href,
-  id,
-  label,
-  labelProps,
-  subheading,
-  descriptionProps,
-  errorMessageProps,
-  helperText,
-  tertiaryLabel,
-  tertiaryLabelAs,
-  tertiaryLabelIcon,
-  tertiaryLabelIconPosition,
-  onTertiaryLabelClick,
-  children,
-}: RadioGroupProps) => (
-  <RadioGroupPrimitive.Root name={name} required={required} onValueChange={onChange}>
-    <InputLabel
-      error={!!errorMessage}
-      href={href}
-      htmlFor={id}
-      label={label}
-      labelProps={labelProps}
-      required={showRequiredAsterisk && required}
-      subheading={subheading}
-      tertiaryLabel={tertiaryLabel}
-      tertiaryLabelAs={tertiaryLabelAs}
-      tertiaryLabelIcon={tertiaryLabelIcon}
-      tertiaryLabelIconPosition={tertiaryLabelIconPosition}
-      onTertiaryLabelClick={onTertiaryLabelClick}
-    />
-    <AllowedChildren
-      errorMessage="Only `RadioButton` components are allowed as children of `RadioGroup`"
-      propsForChild={(child) => ({
-        selected: child?.props?.value === value,
-        disabled: child?.props?.disabled || disabled,
-        error: child?.props?.error || error,
-      })}
-      types={[RadioButton]}
-    >
-      {children}
-    </AllowedChildren>
-    <InputMessage
-      descriptionProps={descriptionProps}
+export const RadioGroup = (props: RadioGroupProps) => {
+  const {
+    error,
+    errorMessage,
+    helperText,
+    disabled,
+    href,
+    labelProps,
+    required,
+    subheading,
+    tertiaryLabel,
+    tertiaryLabelAs,
+    tertiaryLabelIcon,
+    tertiaryLabelIconPosition,
+    onTertiaryLabelClick,
+    descriptionProps,
+    errorMessageProps,
+    showRequiredAsterisk,
+    label,
+    id,
+    className,
+    children,
+    value,
+    onValueChange,
+  } = props;
+
+  const labelId = useId();
+  const helperTextId = useId();
+
+  const hasError = Boolean(error || errorMessage);
+
+  return (
+    <RadioGroupRoot
+      aria-describedby={helperTextId}
+      aria-labelledby={labelId}
+      className={className}
       disabled={disabled}
-      errorMessage={errorMessage}
-      errorMessageProps={errorMessageProps}
-      helperText={helperText}
-    />
-  </RadioGroupPrimitive.Root>
-);
+      error={hasError}
+      id={id}
+      value={value}
+      onValueChange={onValueChange}
+    >
+      <InputLabel
+        disabled={disabled}
+        error={hasError}
+        href={href}
+        label={label}
+        labelProps={{ id: labelId, ...labelProps }}
+        required={showRequiredAsterisk && required}
+        subheading={subheading}
+        tertiaryLabel={tertiaryLabel}
+        tertiaryLabelAs={tertiaryLabelAs}
+        tertiaryLabelIcon={tertiaryLabelIcon}
+        tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+        onTertiaryLabelClick={onTertiaryLabelClick}
+      />
+
+      <Stack space="xsmall">{children}</Stack>
+
+      <InputMessage
+        descriptionProps={descriptionProps}
+        disabled={disabled}
+        errorMessage={errorMessage}
+        errorMessageProps={errorMessageProps}
+        helperText={helperText}
+        id={helperTextId}
+      />
+    </RadioGroupRoot>
+  );
+};
 
 RadioGroup.displayName = 'RadioGroup';

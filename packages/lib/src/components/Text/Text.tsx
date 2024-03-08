@@ -6,7 +6,7 @@ import { UseTextProps, useText } from '../../hooks/typography';
 import * as styles from './Text.css';
 
 export type TextProps = Omit<ComponentPropsWithoutRef<'span'>, 'color'> &
-  Pick<BoxProps, 'as'> & {
+  Omit<BoxProps, 'size'> & {
     /** id attribute for the element */
     id?: string;
     /** Font size token */

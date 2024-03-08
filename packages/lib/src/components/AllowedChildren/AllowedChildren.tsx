@@ -5,7 +5,7 @@ import assert from 'assert';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 type AllowedChildrenProps = {
-  types: ReactNode[];
+  types?: ReactNode[];
   errorMessage: string;
   propsForChild?: (child?: ReactElement) => any;
 };
@@ -29,10 +29,14 @@ export const useAllowedChildren = ({
   return Children.map(children, (child) => {
     const childElement = child as ReactElement;
 
-    assert(
-      isValidElement(child) && types.some((allowedType) => child.type === allowedType),
-      `${errorMessage}. ${childElement?.type} given`,
-    );
+    assert(isValidElement(child));
+
+    if (types) {
+      assert(
+        types.some((allowedType) => child.type === allowedType),
+        `${errorMessage}. ${childElement?.type} given`,
+      );
+    }
 
     const props = propsForChild ? propsForChild?.(child) : null;
 
