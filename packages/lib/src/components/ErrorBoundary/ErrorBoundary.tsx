@@ -8,7 +8,7 @@ type ErrorBoundaryState = {
   error?: Error;
 };
 
-class ErrorBoundary extends React.Component<EmptyObject, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<any, ErrorBoundaryState> {
   constructor(props: EmptyObject) {
     super(props);
     this.state = { hasError: false };
@@ -20,6 +20,7 @@ class ErrorBoundary extends React.Component<EmptyObject, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 
