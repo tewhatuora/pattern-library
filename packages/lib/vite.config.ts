@@ -30,6 +30,9 @@ export default defineConfig({
       svgrOptions: {
         jsxRuntime: 'automatic',
         dimensions: false,
+        replaceAttrValues: {
+          '#404040': 'currentColor',
+        },
       },
     }),
     dts({
