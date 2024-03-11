@@ -88,8 +88,6 @@ export const input = styleVariants({
     inputBase,
     {
       position: 'relative',
-      zIndex: 2,
-      backgroundColor: 'transparent',
       color: vars.color.semantic.text.copy.dark,
     },
     responsiveStyle({

@@ -56,6 +56,8 @@ export const countryDropdown = style([
 
 export const select = style({
   color: 'transparent', // hides the select option text
+  backgroundColor: 'transparent', // hides the select option text
+  zIndex: 2,
 });
 
 globalStyle(`.PhoneInput--disabled .${countryDropdown}`, {
