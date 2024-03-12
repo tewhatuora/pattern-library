@@ -79,11 +79,24 @@ export const govtLogoWrapper = style({
   },
 });
 
-export const teWhatuOraLogoWrapper = style({
-  width: rem(115),
-  height: rem(53.5),
-  marginTop: rowGapLogo,
+export const teWhatuOraLogoWrapper = style([
+  responsiveStyle({
+    mobile: {
+      width: rem(148.72),
+      height: rem(24),
+      marginTop: rowGapLogo,
+    },
+    tablet: {
+      width: rem(173.5),
+      height: rem(28),
+    },
+  }),
+]);
+
+export const divider = style({
+  opacity: 0.3,
 });
+
 // ##### Second Row #####
 
 export const secondRow = style([

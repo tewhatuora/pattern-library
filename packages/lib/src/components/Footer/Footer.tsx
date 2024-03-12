@@ -14,8 +14,9 @@ import { IconType } from '../Icon/icons';
 
 import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
 import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
-import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
+// import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 // import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
+import HealthNZLogoLight from '../../assets/health-nz-logo-light.svg?component';
 
 import { ShieldedSite } from './ShieldedSite';
 
@@ -152,9 +153,11 @@ const Footer = ({
             </a>
             <a className={styles.teWhatuOraLogoWrapper} href="https://www.tewhatuora.govt.nz/">
               {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
-              <TeWhatuOraLogoLight focusable={false} role="img" />
+              <HealthNZLogoLight focusable={false} role="img" />
             </a>
           </Box>
+
+          <Divider className={styles.divider} variant="dark" />
 
           {/* Second row */}
           {numChildren > 0 && (
