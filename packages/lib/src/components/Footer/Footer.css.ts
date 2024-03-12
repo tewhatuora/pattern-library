@@ -85,6 +85,10 @@ export const teWhatuOraLogoWrapper = style([
       width: rem(148.72),
       height: rem(24),
       marginTop: rowGapLogo,
+
+      selectors: {
+        ...focusSelectorsStyles,
+      },
     },
     tablet: {
       width: rem(173.5),
