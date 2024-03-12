@@ -157,8 +157,6 @@ const Footer = ({
             </a>
           </Box>
 
-          <Divider className={styles.divider} variant="dark" />
-
           {/* Second row */}
           {numChildren > 0 && (
             <Box className={styles.secondRow}>
@@ -180,7 +178,7 @@ const Footer = ({
 
           {/* Third row */}
           <Stack space="medium">
-            <Divider variant={variant ?? 'light'} />
+            <Divider className={styles.divider} variant={variant ?? 'light'} />
             <Box className={styles.socialAndImprintWrapper}>
               {/*
                * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
