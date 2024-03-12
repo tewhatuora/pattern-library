@@ -1,5 +1,5 @@
 import { Text } from '../Text/Text';
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
@@ -14,7 +14,7 @@ export type NoticeProps = {
   variant: styles.Variant;
   /** Alternative icon to show */
   alternativeIcon?: IconType;
-};
+} & BoxProps;
 
 /**
  * Notice component
@@ -39,7 +39,6 @@ export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxPro
       className={styles.variants({
         variant,
       })}
-      role="status"
       {...boxProps}
     >
       <Icon className={styles.icon({ variant })} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
