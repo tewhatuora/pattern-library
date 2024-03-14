@@ -73,7 +73,9 @@ export const Alert = ({
     >
       <Box className={styles.contentWrapper}>
         <Icon className={styles.icon} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
-        <Text size="medium">{children}</Text>
+        <Text className={styles.content} size="medium">
+          {children}
+        </Text>
       </Box>
       {!!onClose && <CloseButton className={styles.closeButton} onClose={handleClose} />}
     </Box>

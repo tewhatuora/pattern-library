@@ -32,7 +32,7 @@ export const variants = recipe({
   base: style([
     atoms({
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flexStart',
       justifyContent: 'spaceBetween',
       borderRadius: 'standard',
     }),
@@ -61,9 +61,21 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-export const icon = style({
-  flexShrink: 0,
-});
+export const icon = style([
+  {
+    flexShrink: 0,
+    width: 24,
+    height: 24,
+  },
+  responsiveStyle({
+    mobile: {
+      marginTop: 1,
+    },
+    tablet: {
+      marginTop: 2,
+    },
+  }),
+]);
 
 export const contentWrapper = style([
   {
@@ -80,6 +92,20 @@ export const contentWrapper = style([
   }),
 ]);
 
-export const closeButton = style({
-  color: 'currentColor',
+export const content = style({
+  wordBreak: 'break-word',
 });
+
+export const closeButton = style([
+  {
+    color: 'currentColor',
+  },
+  responsiveStyle({
+    mobile: {
+      marginTop: 5,
+    },
+    tablet: {
+      marginTop: 2,
+    },
+  }),
+]);
