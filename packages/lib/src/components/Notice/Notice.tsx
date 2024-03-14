@@ -42,7 +42,7 @@ export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxPro
       {...boxProps}
     >
       <Icon className={styles.icon({ variant })} icon={alternativeIcon || iconMap[variant]} variant="functionalIcons" />
-      <Text size="medium" weight="regular">
+      <Text className={styles.content} size="medium" weight="regular">
         {label}
       </Text>
     </Box>

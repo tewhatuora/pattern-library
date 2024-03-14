@@ -12,7 +12,6 @@ import { vars } from '../../themes/vars.css';
 /**
  * Align icon to text offset
  */
-const offset = rem(2);
 
 const variant = {
   positive: {
@@ -54,14 +53,15 @@ export type Variants = RecipeVariants<typeof variants>;
 export const icon = recipe({
   base: responsiveStyle({
     mobile: {
-      marginTop: offset,
-      marginLeft: vars.space.xsmall.mobile,
+      marginTop: rem(1),
       marginRight: vars.space.xsmall.mobile,
+      flexShrink: 0,
+      width: 24,
+      height: 24,
     },
     tablet: {
-      marginTop: offset,
-      marginLeft: vars.space.xsmall.tablet,
-      marginRight: vars.space.xsmall.tablet,
+      marginTop: rem(2),
+      marginRight: vars.space.xsmall.mobile,
     },
   }),
   variants: {
@@ -80,4 +80,8 @@ export const icon = recipe({
       },
     },
   },
+});
+
+export const content = style({
+  wordBreak: 'break-word',
 });

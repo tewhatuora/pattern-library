@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -69,10 +71,10 @@ export const icon = style([
   },
   responsiveStyle({
     mobile: {
-      marginTop: 1,
+      marginTop: rem(1),
     },
     tablet: {
-      marginTop: 2,
+      marginTop: rem(2),
     },
   }),
 ]);
@@ -102,10 +104,10 @@ export const closeButton = style([
   },
   responsiveStyle({
     mobile: {
-      marginTop: 5,
+      marginTop: rem(5),
     },
     tablet: {
-      marginTop: 2,
+      marginTop: rem(2),
     },
   }),
 ]);
