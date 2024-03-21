@@ -23,12 +23,7 @@ import { useText } from '../../hooks/typography';
 export const InputDropdownStyles = styles;
 
 /** Option for dropdown */
-export type InputOption = {
-  value: string | number;
-  label: string;
-  selected?: boolean;
-  disabled?: boolean;
-};
+export type InputOption = ComponentPropsWithoutRef<'option'>;
 
 export type InputDropdownProps = {
   /**
@@ -54,14 +49,26 @@ export type InputDropdownProps = {
   OtherInputFieldProps &
   SelectHTMLAttributes<HTMLSelectElement>;
 
-type DropdownProps = {
+export type DropdownProps = {
   error?: boolean;
   placeholder?: string;
   options: InputOption[];
+  fieldProps?: ComponentPropsWithoutRef<'div'>;
 } & ComponentPropsWithoutRef<'select'>;
 
 export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
-  ({ error, placeholder, value, defaultValue, className, options, ...props }, ref) => {
+  ({ error, placeholder, value, defaultValue, className, options, fieldProps, ...props }, ref) => {
+    // this deconstructs the field props if they exist
+    let classNameField: string | undefined;
+    let restFieldProps: DropdownProps['fieldProps'];
+
+    if (fieldProps) {
+      const { className, ...otherFieldProps } = fieldProps;
+
+      classNameField = className;
+      restFieldProps = otherFieldProps;
+    }
+
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
 
     const optionEls = useMemo(() => {
@@ -76,11 +83,14 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
         });
       }
 
-      return opts.map((option) => (
-        <option disabled={option.disabled} key={option.label} value={option.value}>
-          {option.label}
-        </option>
-      ));
+      return opts.map((option) => {
+        const { label, ...optionProps } = option;
+        return (
+          <option key={option.label} {...optionProps}>
+            {label}
+          </option>
+        );
+      });
     }, [options, placeholder]);
 
     const shouldShowPlaceholder = useMemo(
@@ -89,7 +99,7 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
     );
 
     return (
-      <div className={fieldStyles.field}>
+      <div className={clsx(fieldStyles.field, classNameField)} {...restFieldProps}>
         <select
           className={clsx(
             fieldStyles.input.dropdown,

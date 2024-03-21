@@ -10,27 +10,16 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
-const base = style([
+export const paginationDropdown = style([
   responsiveStyle({
     mobile: {
-      display: 'flex',
-      alignItems: 'center',
-      textAlign: 'center',
+      flexGrow: 'initial',
+    },
+    tablet: {
+      display: 'none',
     },
   }),
 ]);
-
-export const pages = styleVariants({
-  controlled: [base],
-  uncontrolled: [
-    base,
-    responsiveStyle({
-      tablet: {
-        display: 'none',
-      },
-    }),
-  ],
-});
 
 const pageLinksBase = style([
   atoms({
@@ -93,7 +82,7 @@ export const buttonContainer = style(
   responsiveStyle({
     mobile: {
       display: 'flex',
-      width: rem(120),
+      width: rem(90),
       height: vars.space.xxlarge.tablet,
       selectors: {
         '&:last-of-type': {
@@ -102,7 +91,7 @@ export const buttonContainer = style(
       },
     },
     tablet: {
-      width: rem(130),
+      width: rem(180),
     },
   }),
 );
