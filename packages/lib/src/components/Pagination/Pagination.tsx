@@ -44,9 +44,10 @@ const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) 
 
 type PaginationDropdownProps = Omit<DropdownProps, 'options'> & {
   pages: number;
+  showPageButtons?: boolean;
 };
 
-const PaginationDropdown = ({ pages, ...dropdownProps }: PaginationDropdownProps) => {
+const PaginationDropdown = ({ pages, showPageButtons, ...dropdownProps }: PaginationDropdownProps) => {
   const options: InputOption[] = useMemo(
     () =>
       Array.from({ length: pages }).map((_, page) => ({
@@ -57,7 +58,13 @@ const PaginationDropdown = ({ pages, ...dropdownProps }: PaginationDropdownProps
     [pages],
   );
 
-  return <Dropdown fieldProps={{ className: styles.paginationDropdown }} options={options} {...dropdownProps} />;
+  return (
+    <Dropdown
+      fieldProps={{ className: styles.paginationDropdown({ showPageButtons }) }}
+      options={options}
+      {...dropdownProps}
+    />
+  );
 };
 
 /**
@@ -141,7 +148,12 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
       </Box>
       {/* Never show page label when `showPageButtons === true` */}
       {showPageButtons === false || showPageButtons === undefined ? (
-        <PaginationDropdown pages={pages} value={current} onChange={handleOnDropdownChange} />
+        <PaginationDropdown
+          pages={pages}
+          showPageButtons={showPageButtons}
+          value={current}
+          onChange={handleOnDropdownChange}
+        />
       ) : null}
       {/* Never show page buttons when `showPageButtons === false` */}
       {showPageButtons === true || showPageButtons === undefined ? (

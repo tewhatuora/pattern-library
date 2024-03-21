@@ -1,5 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
+import { recipe } from '@vanilla-extract/recipes';
+
 import { rem } from '@/src/css/helpers';
 
 import { fontFamily } from '@/src/hooks/typography/typography.css';
@@ -10,16 +12,24 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
-export const paginationDropdown = style([
-  responsiveStyle({
-    mobile: {
-      flexGrow: 'initial',
+export const paginationDropdown = recipe({
+  base: {
+    flexGrow: 'initial',
+  },
+  variants: {
+    showPageButtons: {
+      true: responsiveStyle({
+        tablet: {
+          display: 'none',
+        },
+      }),
+      false: {},
     },
-    tablet: {
-      display: 'none',
-    },
-  }),
-]);
+  },
+  defaultVariants: {
+    showPageButtons: true,
+  },
+});
 
 const pageLinksBase = style([
   atoms({
