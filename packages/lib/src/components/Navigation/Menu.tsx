@@ -155,7 +155,7 @@ export const Menu = ({
                   <ButtonRoot
                     className={clsx(navStyles.noDesktop, styles.backButton)}
                     ref={closeButton}
-                    onPress={onStartClose}
+                    onClick={onStartClose}
                   >
                     <Icon icon="chevron_left" />
                     <Text className={styles.backButtonText} weight="bold">

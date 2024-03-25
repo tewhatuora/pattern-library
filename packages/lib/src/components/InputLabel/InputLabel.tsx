@@ -111,7 +111,7 @@ export const InputLabel = ({
           icon={tertiaryLabelIcon}
           iconPosition={tertiaryLabelIconPosition}
           variant="link"
-          onPress={onTertiaryLabelClick}
+          onClick={onTertiaryLabelClick}
         >
           {tertiaryLabel}
         </Button>

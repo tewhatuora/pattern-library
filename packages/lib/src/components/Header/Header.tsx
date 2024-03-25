@@ -189,7 +189,7 @@ const HeaderMenuButton = ({ open, onToggle, className, ...props }: HeaderMenuBut
   return (
     <ButtonRoot
       className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className)}
-      onPress={onToggle}
+      onClick={onToggle}
       {...props}
     >
       <Text className={styles.mobileMenuButtonText}>{open ? 'Close' : 'Menu'}</Text>

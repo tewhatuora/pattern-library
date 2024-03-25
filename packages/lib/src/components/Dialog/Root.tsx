@@ -59,8 +59,8 @@ export const Root = ({
       !!trigger && (
         <RadixDialog.Trigger asChild>
           {cloneElement(trigger, {
-            onPress: () => {
-              trigger.props?.onPress?.();
+            onClick: () => {
+              trigger.props?.onClick?.();
               onOpenChange?.(true);
             },
           })}

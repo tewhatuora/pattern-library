@@ -14,10 +14,15 @@ import { vars } from '../../themes/vars.css';
 export const BUTTON_HEIGHT_MOBILE = vars.space.xxlarge.tablet;
 export const BUTTON_HEIGHT_TABLET = calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4));
 
-export const root = style({
-  color: 'inherit',
-  cursor: 'pointer',
-});
+export const root = style([
+  atoms({
+    reset: 'base',
+  }),
+  {
+    color: 'inherit',
+    cursor: 'pointer',
+  },
+]);
 
 const gapVar = createVar();
 
@@ -30,6 +35,8 @@ export const variants = recipe({
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
+      textAlign: 'center',
+      reset: 'button',
     }),
     {
       width: '100%',

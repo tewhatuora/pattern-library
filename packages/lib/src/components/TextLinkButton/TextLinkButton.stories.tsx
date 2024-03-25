@@ -33,7 +33,7 @@ export default {
       },
       defaultValue: 'Text Link',
     },
-    onPress: {
+    onClick: {
       control: false,
     },
   },

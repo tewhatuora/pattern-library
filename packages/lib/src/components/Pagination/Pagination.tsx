@@ -25,17 +25,17 @@ export type PaginationProps = {
 type PaginationPageProps = {
   page: number;
   isCurrent: boolean;
-  onPress?: (page: number) => void;
+  onClick?: () => void;
 };
 
-const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) => {
+const PaginationPage = memo(({ page, isCurrent, onClick }: PaginationPageProps) => {
   const className = useMemo(() => {
     return isCurrent ? styles.button.current : styles.button.page;
   }, [isCurrent]);
 
   return (
     <li className={styles.page}>
-      <ButtonRoot aria-label={`Go to page ${page}`} className={className} onPress={onPress}>
+      <ButtonRoot aria-label={`Go to page ${page}`} className={className} onClick={onClick}>
         {page}
       </ButtonRoot>
     </li>
@@ -118,7 +118,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
     return items.map((item) => {
       if (typeof item === 'number') {
         return (
-          <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onPress={handlePage(item)} />
+          <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onClick={handlePage(item)} />
         );
       }
 
@@ -140,7 +140,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
             aria-label="Go to previous page"
             className={styles.button.primary}
             variant="secondary"
-            onPress={handlePrevious}
+            onClick={handlePrevious}
           >
             Prev
           </Button>
@@ -163,7 +163,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
       ) : null}
       <Box className={styles.buttonContainer}>
         {showNext && (
-          <Button aria-label="Go to next page" className={styles.button.primary} variant="primary" onPress={handleNext}>
+          <Button aria-label="Go to next page" className={styles.button.primary} variant="primary" onClick={handleNext}>
             Next
           </Button>
         )}
