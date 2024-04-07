@@ -43,3 +43,10 @@ export const NoOptions: Story = {
     options: [],
   },
 };
+
+export const Error: Story = {
+  args: {
+    ...Single.args,
+    error: true,
+  },
+};

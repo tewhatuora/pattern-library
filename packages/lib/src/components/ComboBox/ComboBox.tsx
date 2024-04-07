@@ -6,6 +6,11 @@ import * as styles from './ComboBox.css';
 import * as inputStyles from '../InputField/InputField.css';
 import { Icon, ScreenReadersOnly, useText } from '..';
 
+type ComboBoxProps = {
+  /** Error state */
+  error?: boolean;
+};
+
 const ClearIndicatorSingle = <
   Option = unknown,
   IsMulti extends boolean = false,
@@ -46,15 +51,17 @@ export const ComboBox = <
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >(
-  props: Props<Option, IsMulti, Group>,
+  props: ComboBoxProps & Props<Option, IsMulti, Group>,
 ) => {
+  const { error, ...rest } = props;
   const textClass = useText({});
 
   return (
     <Select
-      {...props}
+      {...rest}
+      aria-invalid={error}
       classNames={{
-        control: () => clsx(styles.combobox, inputStyles.input.base, textClass),
+        control: () => clsx(styles.combobox({ error }), inputStyles.input.base, textClass),
         placeholder: () => styles.placeholder,
         menu: () => styles.menu,
         option: ({ isFocused, isSelected }) => styles.option({ isFocused, isSelected }),

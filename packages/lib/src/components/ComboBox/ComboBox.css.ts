@@ -8,14 +8,25 @@ import { vars } from '@/src/themes/vars.css';
 import { focusOutline } from '@/src/utils/custom';
 import * as typography from '@/src/hooks/typography/typography.css';
 import { responsiveStyle } from '@/src/css/responsiveStyle';
+import { rem } from '@/src/css/helpers';
 
 // the use of `!important` is necessary because `react-select` sets unremovable styles.
 
-export const combobox = style({
-  transition: 'unset !important',
-  selectors: {
-    '&:focus-within': {
-      outline: `${focusOutline(vars.color.semantic.inputs.fields.highlight.focus)} !important`,
+export const combobox = recipe({
+  base: {
+    transition: 'unset !important',
+    selectors: {
+      '&:focus-within': {
+        outline: `${focusOutline(vars.color.semantic.inputs.fields.highlight.focus)} !important`,
+      },
+    },
+  },
+  variants: {
+    error: {
+      true: {
+        borderColor: vars.color.semantic.inputs.fields.border.error,
+        boxShadow: `0 0 0 ${rem(1)} ${vars.color.semantic.inputs.fields.border.error}`,
+      },
     },
   },
 });
