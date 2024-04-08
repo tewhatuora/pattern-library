@@ -10,11 +10,18 @@ import * as typography from '@/src/hooks/typography/typography.css';
 import { responsiveStyle } from '@/src/css/responsiveStyle';
 import { rem } from '@/src/css/helpers';
 
+const height = vars.space.xxlarge.tablet;
+
 // the use of `!important` is necessary because `react-select` sets unremovable styles.
 
 export const combobox = recipe({
   base: {
+    minHeight: `${height} !important`,
+    paddingTop: vars.space.xsmall.mobile,
+    paddingBottom: vars.space.xsmall.mobile,
     transition: 'unset !important',
+    lineHeight: 'unset',
+    height: 'unset',
     selectors: {
       '&:focus-within': {
         outline: `${focusOutline(vars.color.semantic.inputs.fields.highlight.focus)} !important`,
@@ -33,6 +40,10 @@ export const combobox = recipe({
 
 export const placeholder = style({
   color: vars.color.semantic.text.copy.placeholder,
+});
+
+export const valueContainer = style({
+  gap: vars.space.xsmall.mobile,
 });
 
 export const menu = style([
@@ -75,7 +86,6 @@ export const option = recipe({
   variants: {
     isFocused: {
       true: {
-        // color: vars.color.semantic.text.copy.light,
         backgroundColor: vars.color.semantic.inputs.elements.background['unselected-hover'],
       },
     },
@@ -95,4 +105,9 @@ export const clearIndicatorSingle = style({
 export const clearIndicatorMulti = style({
   fontSize: vars.textSize.small.mobile.fontSize,
   lineHeight: vars.textSize.small.mobile.lineHeight,
+});
+
+export const indicatorsContainer = style({
+  alignItems: 'baseline !important',
+  paddingTop: vars.space.xsmall.mobile,
 });

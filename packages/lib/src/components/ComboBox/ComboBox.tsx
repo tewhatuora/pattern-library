@@ -1,9 +1,10 @@
-import Select, { ClearIndicatorProps, GroupBase, Props } from 'react-select';
+import Select, { ClearIndicatorProps, GroupBase, MultiValueRemoveProps, Props } from 'react-select';
 
 import clsx from 'clsx';
 
 import * as styles from './ComboBox.css';
 import * as inputStyles from '../InputField/InputField.css';
+import * as tagStyles from '../Tag/Tag.css';
 import { Icon, ScreenReadersOnly, useText } from '..';
 
 type ComboBoxProps = {
@@ -46,6 +47,27 @@ const ClearIndicatorMulti = <
   );
 };
 
+const MultiValueRemove = <
+  Option = unknown,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>,
+>(
+  props: MultiValueRemoveProps<Option, IsMulti, Group>,
+) => {
+  const {
+    innerProps: {
+      ref,
+      className, // eslint-disable-line @typescript-eslint/no-unused-vars
+      ...restInnerProps
+    },
+  } = props;
+  return (
+    <div className={tagStyles.closeButton} ref={ref} {...restInnerProps}>
+      <Icon icon="clear_field" variant="tagIcon" />
+    </div>
+  );
+};
+
 export const ComboBox = <
   Option = unknown,
   IsMulti extends boolean = false,
@@ -69,13 +91,17 @@ export const ComboBox = <
         // indicatorSeparator: ,
         // clearIndicator: ,
         // option: ,
-        // valueContainer: ,
+        valueContainer: () => styles.valueContainer,
         // singleValue: ,
-        // multiValue: ,
+        multiValue: () => tagStyles.tag,
+        indicatorsContainer: () => styles.indicatorsContainer,
         // multiValueLabel: ,
         // multiValueRemove: ,
       }}
-      components={{ ClearIndicator: props.isMulti ? ClearIndicatorMulti : ClearIndicatorSingle }}
+      components={{
+        ClearIndicator: props.isMulti ? ClearIndicatorMulti : ClearIndicatorSingle,
+        MultiValueRemove,
+      }}
       styles={{
         dropdownIndicator: () => ({
           display: 'none',
