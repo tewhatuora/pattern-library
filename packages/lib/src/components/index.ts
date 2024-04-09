@@ -49,5 +49,5 @@ export { ToggleSwitch, ToggleSwitchStyles } from './ToggleSwitch/ToggleSwitch';
 export { ToggleButton, ToggleButtonStyles } from './ToggleButton/ToggleButton';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
-export { useHeading, useText } from '../hooks/typography';
+export { useHeading, useText, getTextClass } from '../hooks/typography';
 export { atoms } from '../css/atoms/atoms';
