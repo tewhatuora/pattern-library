@@ -5,7 +5,6 @@ import Select, {
   MultiValueRemoveProps,
   Props,
 } from 'react-select';
-import AsyncSelect, { AsyncProps } from 'react-select/async';
 
 import clsx from 'clsx';
 
@@ -132,43 +131,6 @@ export const ComboBox = <
         ClearIndicator: props.isMulti ? ClearIndicatorMulti : ClearIndicatorSingle,
         MultiValueRemove,
         LoadingIndicator,
-      }}
-      styles={{
-        dropdownIndicator: () => ({
-          display: 'none',
-        }),
-      }}
-      unstyled
-    />
-  );
-};
-
-export const AsyncComboBox = <
-  Option = unknown,
-  IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>,
->(
-  props: ComboBoxProps & AsyncProps<Option, IsMulti, Group>,
-) => {
-  const { error, ...rest } = props;
-  const textClass = useText({});
-
-  return (
-    <AsyncSelect
-      {...rest}
-      aria-invalid={error}
-      classNames={{
-        control: () => clsx(styles.combobox({ error }), inputStyles.input.base, textClass),
-        placeholder: () => styles.placeholder,
-        menu: () => styles.menu,
-        option: ({ isFocused, isSelected }) => styles.option({ isFocused, isSelected }),
-        valueContainer: () => styles.valueContainer,
-        multiValue: () => tagStyles.tag,
-        indicatorsContainer: () => styles.indicatorsContainer,
-      }}
-      components={{
-        ClearIndicator: props.isMulti ? ClearIndicatorMulti : ClearIndicatorSingle,
-        MultiValueRemove,
       }}
       styles={{
         dropdownIndicator: () => ({

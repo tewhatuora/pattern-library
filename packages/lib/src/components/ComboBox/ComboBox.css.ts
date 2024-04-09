@@ -104,13 +104,22 @@ export const indicatorsContainer = style({
   paddingTop: vars.space.xsmall.mobile,
 });
 
-export const clearIndicatorSingle = style({
-  color: vars.color.semantic.icons.dark,
-});
+export const clearIndicatorSingle = style([
+  responsiveStyle({
+    mobile: {
+      display: 'flex',
+      alignItems: 'center',
+      color: vars.color.semantic.icons.dark,
+      minHeight: vars.textSize.small.mobile.lineHeight,
+      cursor: 'pointer',
+    },
+  }),
+]);
 
 export const clearIndicatorMulti = style({
   fontSize: vars.textSize.small.mobile.fontSize,
   lineHeight: vars.textSize.small.mobile.lineHeight,
+  cursor: 'pointer',
 });
 
 export const loadingIndicator = style([

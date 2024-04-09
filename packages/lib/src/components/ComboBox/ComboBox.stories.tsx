@@ -20,11 +20,12 @@ const options = [
 
 export const Single: Story = {
   args: {
+    isMulti: false,
     isSearchable: true,
     isClearable: true,
     isLoading: false,
     isDisabled: false,
-    isMulti: false,
+    error: false,
     options,
   },
 };
