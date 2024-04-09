@@ -7,6 +7,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '@/src/themes/vars.css';
 import { focusOutline } from '@/src/utils/custom';
 import * as typography from '@/src/hooks/typography/typography.css';
+import * as loader from '@/src/components/Loader/Loader.css';
 import { responsiveStyle } from '@/src/css/responsiveStyle';
 import { rem } from '@/src/css/helpers';
 
@@ -98,6 +99,11 @@ export const option = recipe({
   },
 });
 
+export const indicatorsContainer = style({
+  alignItems: 'baseline !important',
+  paddingTop: vars.space.xsmall.mobile,
+});
+
 export const clearIndicatorSingle = style({
   color: vars.color.semantic.icons.dark,
 });
@@ -107,7 +113,10 @@ export const clearIndicatorMulti = style({
   lineHeight: vars.textSize.small.mobile.lineHeight,
 });
 
-export const indicatorsContainer = style({
-  alignItems: 'baseline !important',
-  paddingTop: vars.space.xsmall.mobile,
-});
+export const loadingIndicator = style([
+  loader.baseVariant.dark,
+  {
+    width: 20,
+    height: 20,
+  },
+]);

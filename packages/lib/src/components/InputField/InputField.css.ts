@@ -58,7 +58,7 @@ export const inputBase = style([
     backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
     selectors: {
-      '&:disabled': {
+      '&:disabled, &[aria-disabled=true]': {
         color: vars.color.semantic.text.copy.disabled,
         borderColor: vars.color.semantic.inputs.fields.border.disabled,
         backgroundColor: vars.color.semantic.inputs.fields.background.normal,

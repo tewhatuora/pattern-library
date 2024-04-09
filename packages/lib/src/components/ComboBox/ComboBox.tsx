@@ -1,4 +1,11 @@
-import Select, { ClearIndicatorProps, GroupBase, MultiValueRemoveProps, Props } from 'react-select';
+import Select, {
+  ClearIndicatorProps,
+  GroupBase,
+  LoadingIndicatorProps,
+  MultiValueRemoveProps,
+  Props,
+} from 'react-select';
+import AsyncSelect, { AsyncProps } from 'react-select/async';
 
 import clsx from 'clsx';
 
@@ -10,6 +17,7 @@ import { Icon, ScreenReadersOnly, useText } from '..';
 type ComboBoxProps = {
   /** Error state */
   error?: boolean;
+  isAsync?: boolean;
 };
 
 const ClearIndicatorSingle = <
@@ -60,12 +68,41 @@ const MultiValueRemove = <
       className, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...restInnerProps
     },
+    selectProps: { isDisabled },
   } = props;
+
+  if (isDisabled) {
+    return null;
+  }
+
   return (
     <div className={tagStyles.closeButton} ref={ref} {...restInnerProps}>
       <Icon icon="clear_field" variant="tagIcon" />
     </div>
   );
+};
+
+const LoadingIndicator = <
+  Option = unknown,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>,
+>(
+  props: LoadingIndicatorProps<Option, IsMulti, Group>,
+) => {
+  const {
+    innerProps: {
+      ref,
+      className, // eslint-disable-line @typescript-eslint/no-unused-vars
+      ...restInnerProps
+    },
+    selectProps: { isDisabled },
+  } = props;
+
+  if (isDisabled) {
+    return null;
+  }
+
+  return <div className={styles.loadingIndicator} ref={ref} {...restInnerProps} />;
 };
 
 export const ComboBox = <
@@ -87,16 +124,47 @@ export const ComboBox = <
         placeholder: () => styles.placeholder,
         menu: () => styles.menu,
         option: ({ isFocused, isSelected }) => styles.option({ isFocused, isSelected }),
-        // dropdownIndicator: ,
-        // indicatorSeparator: ,
-        // clearIndicator: ,
-        // option: ,
         valueContainer: () => styles.valueContainer,
-        // singleValue: ,
         multiValue: () => tagStyles.tag,
         indicatorsContainer: () => styles.indicatorsContainer,
-        // multiValueLabel: ,
-        // multiValueRemove: ,
+      }}
+      components={{
+        ClearIndicator: props.isMulti ? ClearIndicatorMulti : ClearIndicatorSingle,
+        MultiValueRemove,
+        LoadingIndicator,
+      }}
+      styles={{
+        dropdownIndicator: () => ({
+          display: 'none',
+        }),
+      }}
+      unstyled
+    />
+  );
+};
+
+export const AsyncComboBox = <
+  Option = unknown,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>,
+>(
+  props: ComboBoxProps & AsyncProps<Option, IsMulti, Group>,
+) => {
+  const { error, ...rest } = props;
+  const textClass = useText({});
+
+  return (
+    <AsyncSelect
+      {...rest}
+      aria-invalid={error}
+      classNames={{
+        control: () => clsx(styles.combobox({ error }), inputStyles.input.base, textClass),
+        placeholder: () => styles.placeholder,
+        menu: () => styles.menu,
+        option: ({ isFocused, isSelected }) => styles.option({ isFocused, isSelected }),
+        valueContainer: () => styles.valueContainer,
+        multiValue: () => tagStyles.tag,
+        indicatorsContainer: () => styles.indicatorsContainer,
       }}
       components={{
         ClearIndicator: props.isMulti ? ClearIndicatorMulti : ClearIndicatorSingle,
