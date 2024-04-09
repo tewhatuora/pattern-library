@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ComboBox } from './ComboBox';
+import { ComboBoxAsync } from './ComboBoxAsync';
 
-const meta: Meta<typeof ComboBox> = {
-  title: 'Forms/ComboBox',
-  component: ComboBox,
+const meta: Meta<typeof ComboBoxAsync> = {
+  title: 'Forms/ComboBoxAsync',
+  component: ComboBoxAsync,
   argTypes: {
     onChange: {
       action: '',
@@ -13,7 +13,7 @@ const meta: Meta<typeof ComboBox> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ComboBox>;
+type Story = StoryObj<typeof ComboBoxAsync>;
 
 const options = [
   { label: 'Option A', value: 'a' },
@@ -29,9 +29,36 @@ const longOptions = [
   { label: '35 Stoke Street, Weston, New Plymouth 4310', value: 'c' },
 ];
 
+async function loadOptions(input: string): Promise<typeof options> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(input ? options.filter((option) => option.label.toLowerCase().includes(input.toLowerCase())) : options);
+    }, 700);
+  });
+}
+
+async function loadLongOptions(input: string): Promise<typeof longOptions> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(
+        input ? longOptions.filter((option) => option.label.toLowerCase().includes(input.toLowerCase())) : longOptions,
+      );
+    }, 700);
+  });
+}
+
+async function loadNoOptions(): Promise<typeof longOptions> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([]);
+    }, 700);
+  });
+}
+
 export const SingleSelect: Story = {
   args: {
     placeholder: 'Placeholder',
+    cacheOptions: true,
     multiline: false,
     isMulti: false,
     isSearchable: true,
@@ -39,16 +66,15 @@ export const SingleSelect: Story = {
     isLoading: false,
     isDisabled: false,
     error: false,
-    options,
+    loadOptions,
   },
 };
 
 export const SingleSelectMultiline: Story = {
   args: {
     ...SingleSelect.args,
-    options: longOptions,
+    loadOptions: loadLongOptions,
     multiline: true,
-    defaultValue: [longOptions[0]],
   },
 };
 
@@ -56,14 +82,13 @@ export const MultiSelect: Story = {
   args: {
     ...SingleSelect.args,
     isMulti: true,
-    defaultValue: [options[0]],
   },
 };
 
 export const NoOptions: Story = {
   args: {
     ...SingleSelect.args,
-    options: [],
+    loadOptions: loadNoOptions,
   },
 };
 

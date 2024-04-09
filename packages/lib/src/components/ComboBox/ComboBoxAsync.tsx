@@ -1,4 +1,6 @@
-import Select, { GroupBase, Props } from 'react-select';
+import AsyncSelect, { AsyncProps } from 'react-select/async';
+
+import { GroupBase } from 'react-select';
 
 import { getComponents } from './components';
 import { getClassNames } from './classNames';
@@ -10,17 +12,17 @@ type ComboBoxProps = {
   multiline?: boolean;
 };
 
-export const ComboBox = <
+export const ComboBoxAsync = <
   Option = unknown,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >(
-  props: ComboBoxProps & Props<Option, IsMulti, Group>,
+  props: ComboBoxProps & AsyncProps<Option, IsMulti, Group>,
 ) => {
   const { error, placeholder, multiline = false, ...rest } = props;
 
   return (
-    <Select
+    <AsyncSelect
       {...rest}
       aria-invalid={error}
       classNames={getClassNames<Option, IsMulti, Group>(error)}
