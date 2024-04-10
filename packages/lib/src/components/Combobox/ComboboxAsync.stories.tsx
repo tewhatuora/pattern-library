@@ -1,10 +1,18 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { ComboboxAsync } from './ComboboxAsync';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './ComboboxAsync.docs.mdx';
 
 const meta: Meta<typeof ComboboxAsync> = {
   title: 'Forms/ComboboxAsync',
   component: ComboboxAsync,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
   argTypes: {
     onChange: {
       action: '',

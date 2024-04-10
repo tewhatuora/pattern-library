@@ -1,10 +1,18 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Combobox } from './Combobox';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Combobox.docs.mdx';
 
 const meta: Meta<typeof Combobox> = {
   title: 'Forms/Combobox',
   component: Combobox,
+  parameters: {
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
+    },
+  },
   argTypes: {
     onChange: {
       action: '',
