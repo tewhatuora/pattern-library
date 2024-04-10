@@ -1,0 +1,35 @@
+import AsyncSelect, { AsyncProps } from 'react-select/async';
+
+import { GroupBase } from 'react-select';
+
+import { getComponents } from './components';
+import { getClassNames } from './classNames';
+import { getStyles } from './styles';
+
+type ComboBoxProps = {
+  /** Error state */
+  error?: boolean;
+  multiline?: boolean;
+};
+
+export const ComboboxAsync = <
+  Option = unknown,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>,
+>(
+  props: ComboBoxProps & AsyncProps<Option, IsMulti, Group>,
+) => {
+  const { error, placeholder, multiline = false, ...rest } = props;
+
+  return (
+    <AsyncSelect
+      {...rest}
+      aria-invalid={error}
+      classNames={getClassNames<Option, IsMulti, Group>(error)}
+      components={getComponents<Option, IsMulti, Group>(props.isMulti)}
+      placeholder={placeholder || false}
+      styles={getStyles<Option, IsMulti, Group>(multiline)}
+      unstyled
+    />
+  );
+};
