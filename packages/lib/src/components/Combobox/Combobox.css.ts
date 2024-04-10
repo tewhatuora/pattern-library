@@ -53,6 +53,7 @@ export const menu = style([
       marginTop: 4,
       paddingTop: calc.divide(vars.space.small.mobile, 2),
       paddingBottom: calc.divide(vars.space.small.mobile, 2),
+      backgroundColor: vars.color.semantic.card.background,
       borderRadius: vars.borderRadiusAll.inputs,
       boxShadow: vars.shadow.primary,
       borderWidth: vars.borderWidth.small,
