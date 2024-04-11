@@ -36,6 +36,8 @@ export function useText({ weight = 'regular', size = 'medium' }: UseTextProps) {
   return clsx(styles.fontFamily, styles.fontWeight[weight], styles.text[size]);
 }
 
+export { useText as getTextClass };
+
 export type HeadingLevel = keyof typeof styles.heading;
 export type HeadingWeight = 'regular' | 'weak';
 
