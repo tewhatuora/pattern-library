@@ -9,6 +9,7 @@ import { InputText } from '../InputText/InputText';
 import { Box } from '../Box/Box';
 
 import * as styles from '../InputField/InputField.css';
+import * as inputTextStyles from '../InputText/InputText.css';
 
 export const InputDateStyles = styles;
 
@@ -125,6 +126,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     return (
       <div>
         <InputLabel
+          className={inputTextStyles.fieldLabel}
           error={!!errorMessage}
           href={href}
           htmlFor={id}
@@ -209,6 +211,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
           </Box>
         </div>
         <InputMessage
+          className={inputTextStyles.fieldMessage}
           descriptionProps={descriptionProps}
           disabled={disabled}
           errorMessage={errorMessage}

@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'react';
 
+import clsx from 'clsx';
+
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 
@@ -20,6 +22,7 @@ export type InputMessageProps = {
   descriptionProps?: HTMLAttributes<HTMLElement>;
   /** Error message accessibility attributes */
   errorMessageProps?: HTMLAttributes<HTMLElement>;
+  className?: string;
 };
 
 /**
@@ -32,13 +35,14 @@ export const InputMessage = ({
   disabled,
   descriptionProps,
   errorMessageProps,
+  className,
 }: InputMessageProps) => {
   if (!helperText && !errorMessage) {
     return null;
   }
 
   return (
-    <div className={styles.message}>
+    <div className={clsx(styles.message, className)}>
       {!!helperText && (
         <Text className={styles.helperText} size="xsmall" weight="regular">
           <span {...descriptionProps}>{helperText}</span>

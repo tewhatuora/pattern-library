@@ -39,6 +39,7 @@ export type InputLabelProps = {
   href?: string | never;
   /** Function to call when the `tertiaryLabel` is clicked, if `tertiaryLabelAs` = `button` */
   onTertiaryLabelClick?: (e: any) => void | never;
+  className?: string;
 };
 
 /**
@@ -67,11 +68,12 @@ export const InputLabel = ({
   disabled,
   required,
   labelProps,
+  className,
 }: InputLabelProps) => {
   const state = disabled ? 'disabled' : error ? 'error' : undefined;
 
   return (
-    <Box className={styles.wrapper} display="flex" justifyContent="spaceBetween">
+    <Box className={clsx(styles.wrapper, className)} display="flex" justifyContent="spaceBetween">
       <Box
         as={as}
         display="flex"
