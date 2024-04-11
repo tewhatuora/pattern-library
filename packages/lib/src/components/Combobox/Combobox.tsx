@@ -10,13 +10,11 @@ type ComboBoxProps = {
   multiline?: boolean;
 };
 
-export const Combobox = <
+export function Combobox<
   Option = unknown,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
->(
-  props: ComboBoxProps & Props<Option, IsMulti, Group>,
-) => {
+>(props: ComboBoxProps & Props<Option, IsMulti, Group>) {
   const { error, placeholder, multiline = false, ...rest } = props;
 
   return (
@@ -30,4 +28,4 @@ export const Combobox = <
       unstyled
     />
   );
-};
+}

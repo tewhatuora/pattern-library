@@ -51,5 +51,5 @@ export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
 export { useHeading, useText, getTextClass } from '../hooks/typography';
 export { atoms } from '../css/atoms/atoms';
-export * from './Combobox/Combobox';
-export * from './Combobox/ComboboxAsync';
+export { Combobox } from './Combobox/Combobox';
+export { ComboboxAsync } from './Combobox/ComboboxAsync';
