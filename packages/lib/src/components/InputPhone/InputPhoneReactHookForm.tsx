@@ -24,6 +24,7 @@ import { CountryDropdown } from './CountryDropdown';
 
 import { useText } from '../../hooks/typography';
 
+import * as inputTextStyles from '../InputText/InputText.css';
 import * as inputStyles from '../InputField/InputField.css';
 import * as styles from './InputPhone.css';
 
@@ -150,6 +151,7 @@ const InputPhoneReactHookFormInner = <T extends FieldValues = FieldValues>(
   return (
     <div>
       <InputLabel
+        className={inputTextStyles.fieldLabel}
         error={!!errorMessage}
         href={href}
         htmlFor={id}
@@ -199,6 +201,7 @@ const InputPhoneReactHookFormInner = <T extends FieldValues = FieldValues>(
         {!!clearable && showClearButton && <InputClearButton onClear={handleClear} />}
       </div>
       <InputMessage
+        className={inputTextStyles.fieldMessage}
         descriptionProps={descriptionProps}
         disabled={disabled}
         errorMessage={errorMessage}
