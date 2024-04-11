@@ -72,6 +72,10 @@ export const InputLabel = ({
 }: InputLabelProps) => {
   const state = disabled ? 'disabled' : error ? 'error' : undefined;
 
+  if (!label && !subheading) {
+    return null;
+  }
+
   return (
     <Box className={clsx(styles.wrapper, className)} display="flex" justifyContent="spaceBetween">
       <Box
