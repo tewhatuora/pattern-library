@@ -6,6 +6,7 @@ import { RadioButton, RadioButtonProps } from './RadioButton';
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 
+import * as inputTextStyles from '../InputText/InputText.css';
 import { ChildrenOfType } from '../../types/index';
 
 export type RadioGroupProps = {
@@ -64,6 +65,7 @@ export const RadioGroup = ({
 }: RadioGroupProps) => (
   <RadioGroupPrimitive.Root name={name} required={required} onValueChange={onChange}>
     <InputLabel
+      className={inputTextStyles.fieldLabel}
       error={!!errorMessage}
       href={href}
       htmlFor={id}
@@ -89,6 +91,7 @@ export const RadioGroup = ({
       {children}
     </AllowedChildren>
     <InputMessage
+      className={inputTextStyles.fieldMessage}
       descriptionProps={descriptionProps}
       disabled={disabled}
       errorMessage={errorMessage}
