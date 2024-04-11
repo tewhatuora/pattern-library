@@ -11,6 +11,11 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 export const container = style([
   {
     color: vars.color.semantic.text.copy.dark,
+    selectors: {
+      '& + &': {
+        marginTop: rem(20),
+      },
+    },
   },
   atoms({
     display: 'flex',
