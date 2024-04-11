@@ -4,7 +4,7 @@ import { neutral, webSelfService } from '@te-whatu-ora/anatomic-themes';
 
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  backgrounds: { disable: true },
+  // backgrounds: { disable: true },
   docs: {
     source: {
       type: 'code',

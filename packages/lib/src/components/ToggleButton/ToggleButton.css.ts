@@ -57,7 +57,7 @@ export const button = style([
         borderColor: vars.color.semantic.button.primary.border.hover,
       },
       '&:focus': {
-        outline: focusOutline,
+        outline: focusOutline(),
         outlineOffset: calc.multiply(vars.borderWidth.xlarge, -1),
       },
       '&:focus:not(:focus-visible)': {

@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 
-import { Text } from '../Text/Text';
 import { Box } from '../Box/Box';
 import { CloseButton } from '../CloseButton/CloseButton';
 
@@ -42,12 +41,10 @@ export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
 
   return (
     <Box as="div" className={isCleared ? styles.hidden : styles.tag} {...boxProps}>
-      <Text className={styles.icon} size="xsmall" weight="regular">
-        {label}
-        {!!isClearable && (
-          <CloseButton className={styles.closeButton} icon="clear_field" variant="tagIcon" onClose={handleClearTag} />
-        )}
-      </Text>
+      {label}
+      {!!isClearable && (
+        <CloseButton className={styles.closeButton} icon="clear_field" variant="tagIcon" onClose={handleClearTag} />
+      )}
     </Box>
   );
 };

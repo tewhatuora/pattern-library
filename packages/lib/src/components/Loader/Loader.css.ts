@@ -14,14 +14,34 @@ export const container = style({
   width: rem(224),
 });
 
-const spinnerStyles = style([
+export const base = style({
+  animation: `${rotate} 1s linear infinite`,
+  borderRightColor: 'transparent',
+  borderBottomColor: 'transparent',
+  borderStyle: 'solid',
+  borderRadius: '100%',
+});
+
+export const baseVariant = styleVariants({
+  light: [
+    base,
+    {
+      borderLeftColor: vars.color.semantic.controls.background.light,
+      borderTopColor: vars.color.semantic.controls.background.light,
+    },
+  ],
+  dark: [
+    base,
+    {
+      borderLeftColor: vars.color.semantic.controls.background.active,
+      borderTopColor: vars.color.semantic.controls.background.active,
+    },
+  ],
+});
+
+const spinnerBase = style([
   {
     marginBottom: rem(16),
-    animation: `${rotate} 1s linear infinite`,
-    borderRightColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderStyle: 'solid',
-    borderRadius: '100%',
   },
   responsiveStyle({
     mobile: {
@@ -38,20 +58,8 @@ const spinnerStyles = style([
 ]);
 
 export const spinner = styleVariants({
-  light: [
-    spinnerStyles,
-    {
-      borderLeftColor: vars.color.semantic.controls.background.light,
-      borderTopColor: vars.color.semantic.controls.background.light,
-    },
-  ],
-  dark: [
-    spinnerStyles,
-    {
-      borderLeftColor: vars.color.semantic.controls.background.active,
-      borderTopColor: vars.color.semantic.controls.background.active,
-    },
-  ],
+  light: [baseVariant.light, spinnerBase],
+  dark: [baseVariant.dark, spinnerBase],
 });
 
 export const label = styleVariants({
