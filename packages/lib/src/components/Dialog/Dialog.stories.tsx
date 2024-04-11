@@ -84,7 +84,7 @@ export const Controlled = (args: DialogProps) => {
     <Dialog.Root
       {...args}
       open={open}
-      trigger={<Button onPress={() => alert('Dialog trigger')}>Open</Button>}
+      trigger={<Button onClick={() => alert('Dialog trigger')}>Open</Button>}
       onOpenChange={(open: boolean) => {
         setOpen(open);
       }}

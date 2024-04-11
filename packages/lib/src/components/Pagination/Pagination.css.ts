@@ -1,5 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
+import { recipe } from '@vanilla-extract/recipes';
+
 import { rem } from '@/src/css/helpers';
 
 import { fontFamily } from '@/src/hooks/typography/typography.css';
@@ -10,26 +12,23 @@ import { atoms } from '../../css/atoms/atoms';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
-const base = style([
-  responsiveStyle({
-    mobile: {
-      display: 'flex',
-      alignItems: 'center',
-      textAlign: 'center',
+export const paginationDropdown = recipe({
+  base: {
+    flexGrow: 'initial',
+  },
+  variants: {
+    showPageButtons: {
+      true: responsiveStyle({
+        tablet: {
+          display: 'none',
+        },
+      }),
+      false: {},
     },
-  }),
-]);
-
-export const pages = styleVariants({
-  controlled: [base],
-  uncontrolled: [
-    base,
-    responsiveStyle({
-      tablet: {
-        display: 'none',
-      },
-    }),
-  ],
+  },
+  defaultVariants: {
+    showPageButtons: true,
+  },
 });
 
 const pageLinksBase = style([
@@ -93,7 +92,7 @@ export const buttonContainer = style(
   responsiveStyle({
     mobile: {
       display: 'flex',
-      width: rem(120),
+      width: rem(90),
       height: vars.space.xxlarge.tablet,
       selectors: {
         '&:last-of-type': {
@@ -102,7 +101,7 @@ export const buttonContainer = style(
       },
     },
     tablet: {
-      width: rem(130),
+      width: rem(180),
     },
   }),
 );

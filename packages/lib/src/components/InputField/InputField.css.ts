@@ -94,13 +94,13 @@ export const input = styleVariants({
       mobile: {
         paddingRight: calc(vars.space.small.mobile) // Functional icon width
           .add(vars.space.small.mobile) // + icon right
-          .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
+          // .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
           .toString(),
       },
       tablet: {
         paddingRight: calc(vars.space.small.tablet) // Functional icon width
           .add(vars.space.xsmall.tablet) // + icon right
-          .add(vars.space.xsmall.tablet) // + gap between copy and icon (icon right)
+          // .add(vars.space.xsmall.tablet) // + gap between copy and icon (icon right)
           .toString(),
       },
     }),

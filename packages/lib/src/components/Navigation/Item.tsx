@@ -143,7 +143,7 @@ export const Item = ({
     ...baseProps,
     ref: ref,
     onFocus: handleFocus,
-    onPress: handleOpen,
+    onClick: handleOpen,
     onKeyDown: handleKeyboardClose,
   };
 

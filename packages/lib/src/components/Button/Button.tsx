@@ -24,20 +24,9 @@ export type ButtonProps = {
   as?: ElementType;
   /** URL/path to link to if `as` is set to `a` */
   href?: string;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
-  className?: string;
-  /** A function that will be called when clicking/pressing the Button */
-  onPress?: (e: any) => void;
-  /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
-  onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   children?: ReactNode | undefined;
 } & styles.Variants &
-  Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
-  AsLink;
-
-type AsLink = {
-  href?: string;
-};
+  ComponentPropsWithoutRef<'button'>;
 
 /**
  * Buttons allow users to take actions, and make choices, with a single tap.
@@ -47,26 +36,12 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     children,
     as = 'button',
     variant = 'primary',
-    disabled,
     className,
     icon,
     weight = fontWeightForButton(variant),
     iconPosition = 'right',
-    href,
-    onClick,
-    onPress,
     ...rest
   } = props;
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // Call the onPress prop if it's provided
-    // OnClick used for Radix components
-    if (onClick) {
-      onClick(e);
-    } else if (onPress) {
-      onPress(e);
-    }
-  };
 
   return (
     <ButtonRoot
@@ -77,10 +52,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
         }),
         className,
       )}
-      disabled={disabled}
-      href={href}
       ref={ref}
-      onPress={handleClick}
       {...rest}
     >
       {!!icon && iconPosition === 'left' && (

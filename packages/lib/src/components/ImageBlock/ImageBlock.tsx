@@ -133,7 +133,7 @@ export const ImageBlock = ({
                       as={primaryButton.as}
                       href={primaryButton.href}
                       variant="primary"
-                      onPress={primaryButton.onClick}
+                      onClick={primaryButton.onClick}
                     >
                       {primaryButton.label}
                     </Button>
@@ -143,7 +143,7 @@ export const ImageBlock = ({
                       as={secondaryButton.as}
                       href={secondaryButton.href}
                       variant="secondary"
-                      onPress={secondaryButton.onClick}
+                      onClick={secondaryButton.onClick}
                     >
                       {secondaryButton.label}
                     </Button>
