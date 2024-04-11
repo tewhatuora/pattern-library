@@ -71,6 +71,7 @@ export const InputText = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
     return (
       <Box flexGrow={1}>
         <InputLabel
+          className={styles.fieldLabel}
           disabled={disabled}
           error={error || !!errorMessage}
           href={href}
@@ -104,6 +105,7 @@ export const InputText = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           onChange={onChange}
         />
         <InputMessage
+          className={styles.fieldMessage}
           descriptionProps={descriptionProps}
           disabled={disabled}
           errorMessage={errorMessage}

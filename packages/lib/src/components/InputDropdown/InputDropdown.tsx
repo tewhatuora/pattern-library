@@ -15,6 +15,7 @@ import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
+import * as inputTextStyles from '../InputText/InputText.css';
 import * as fieldStyles from '../InputField/InputField.css';
 import * as styles from './InputDropdown.css';
 
@@ -171,6 +172,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
     return (
       <div>
         <InputLabel
+          className={inputTextStyles.fieldLabel}
           error={error || !!errorMessage}
           href={href}
           htmlFor={id}
@@ -235,6 +237,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           <Icon aria-hidden="true" className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
         </div> */}
         <InputMessage
+          className={inputTextStyles.fieldMessage}
           descriptionProps={descriptionProps}
           disabled={disabled}
           errorMessage={errorMessage}

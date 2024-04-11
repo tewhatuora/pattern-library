@@ -6,6 +6,8 @@ import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 import { Stack } from '../Stack/Stack';
 
+import * as inputTextStyles from '../InputText/InputText.css';
+
 export type RadioGroupRootProps = {
   /** Show error state */
   error?: boolean | string;
@@ -77,6 +79,7 @@ export const RadioGroup = (props: RadioGroupProps) => {
       onValueChange={onValueChange}
     >
       <InputLabel
+        className={inputTextStyles.fieldLabel}
         disabled={disabled}
         error={hasError}
         href={href}
@@ -94,6 +97,7 @@ export const RadioGroup = (props: RadioGroupProps) => {
       <Stack space="xsmall">{children}</Stack>
 
       <InputMessage
+        className={inputTextStyles.fieldMessage}
         descriptionProps={descriptionProps}
         disabled={disabled}
         errorMessage={errorMessage}

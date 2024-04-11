@@ -10,6 +10,8 @@ import { InputLabel, type InputLabelProps } from '../InputLabel/InputLabel';
 import { InputMessage, type InputMessageProps } from '../InputMessage/InputMessage';
 import { Combobox, type ComboboxProps } from './Combobox';
 
+import * as inputTextStyles from '../InputText/InputText.css';
+
 type ComboboxFieldProps<
   Option = unknown,
   IsMulti extends boolean = false,
@@ -59,6 +61,7 @@ function ComboboxField<
   return (
     <div>
       <InputLabel
+        className={inputTextStyles.fieldLabel}
         disabled={disabled}
         error={error || !!errorMessage}
         href={href}
@@ -86,6 +89,7 @@ function ComboboxField<
         {...comboboxProps}
       />
       <InputMessage
+        className={inputTextStyles.fieldMessage}
         descriptionProps={descriptionProps}
         disabled={disabled}
         errorMessage={errorMessage}

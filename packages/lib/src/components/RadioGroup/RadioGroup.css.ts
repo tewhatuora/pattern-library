@@ -10,7 +10,6 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const container = style([
   {
-    // marginBottom: rem(20),
     color: vars.color.semantic.text.copy.dark,
   },
   atoms({
