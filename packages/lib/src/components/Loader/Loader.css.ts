@@ -14,13 +14,21 @@ export const container = style({
   width: rem(224),
 });
 
-export const base = style({
-  animation: `${rotate} 1s linear infinite`,
-  borderRightColor: 'transparent',
-  borderBottomColor: 'transparent',
-  borderStyle: 'solid',
-  borderRadius: '100%',
-});
+export const base = style([
+  responsiveStyle({
+    mobile: {
+      animation: `${rotate} 1s linear infinite`,
+      borderRightColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderStyle: 'solid',
+      borderRadius: '100%',
+      borderWidth: vars.borderWidth.medium,
+    },
+    tablet: {
+      borderWidth: vars.borderWidth.large,
+    },
+  }),
+]);
 
 export const baseVariant = styleVariants({
   light: [
@@ -47,12 +55,10 @@ const spinnerBase = style([
     mobile: {
       width: rem(36),
       height: rem(36),
-      borderWidth: vars.borderWidth.medium,
     },
     desktop: {
       width: rem(72),
       height: rem(72),
-      borderWidth: vars.borderWidth.large,
     },
   }),
 ]);
