@@ -51,8 +51,6 @@ export const menu = style([
   responsiveStyle({
     mobile: {
       marginTop: 4,
-      paddingTop: calc.divide(vars.space.small.mobile, 2),
-      paddingBottom: calc.divide(vars.space.small.mobile, 2),
       backgroundColor: vars.color.semantic.card.background,
       borderRadius: vars.borderRadiusAll.inputs,
       boxShadow: vars.shadow.primary,
@@ -60,14 +58,23 @@ export const menu = style([
       borderStyle: 'solid',
       borderColor: vars.color.semantic.card.border,
     },
+  }),
+  typography.fontFamily,
+  typography.fontWeight['regular'],
+  typography.text.medium,
+]);
+
+export const menuList = style([
+  responsiveStyle({
+    mobile: {
+      paddingTop: calc.divide(vars.space.small.mobile, 2),
+      paddingBottom: calc.divide(vars.space.small.mobile, 2),
+    },
     tablet: {
       paddingTop: calc.divide(vars.space.small.tablet, 2),
       paddingBottom: calc.divide(vars.space.small.tablet, 2),
     },
   }),
-  typography.fontFamily,
-  typography.fontWeight['regular'],
-  typography.text.medium,
 ]);
 
 export const option = recipe({

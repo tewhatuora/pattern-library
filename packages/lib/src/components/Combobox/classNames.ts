@@ -16,6 +16,7 @@ export function getClassNames<
     control: () => clsx(styles.combobox({ error }), inputStyles.input.base, getTextClass({})),
     placeholder: () => styles.placeholder,
     menu: () => styles.menu,
+    menuList: () => styles.menuList,
     option: ({ isFocused, isSelected }) => styles.option({ isFocused, isSelected }),
     valueContainer: () => styles.valueContainer,
     multiValue: () => tagStyles.tag,
