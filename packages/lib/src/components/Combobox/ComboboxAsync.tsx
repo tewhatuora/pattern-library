@@ -2,26 +2,24 @@ import AsyncSelect, { AsyncProps } from 'react-select/async';
 
 import { GroupBase, SelectInstance } from 'react-select';
 
-import { ForwardedRef, forwardRef } from 'react';
+import { Ref, forwardRef } from 'react';
 
 import { getComponents } from './components';
 import { getClassNames } from './classNames';
 import { getStyles } from './styles';
+import type { ComboboxBaseProps } from './Combobox';
 
-type ComboBoxProps = {
-  /** Error state */
-  error?: boolean;
-  multiline?: boolean;
-};
+export type ComboboxAsyncProps<
+  Option = unknown,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>,
+> = ComboboxBaseProps & AsyncProps<Option, IsMulti, Group>;
 
 function ComboboxAsync<
   Option = unknown,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
->(
-  props: ComboBoxProps & AsyncProps<Option, IsMulti, Group>,
-  ref: ForwardedRef<SelectInstance<Option, IsMulti, Group>>,
-) {
+>(props: ComboboxAsyncProps<Option, IsMulti, Group>, ref: Ref<SelectInstance<Option, IsMulti, Group>>) {
   const { error, placeholder, multiline = false, ...rest } = props;
 
   return (
@@ -43,8 +41,7 @@ const WithRef = forwardRef(ComboboxAsync) as <
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >(
-  props: ComboBoxProps &
-    AsyncProps<Option, IsMulti, Group> & { ref?: ForwardedRef<SelectInstance<Option, IsMulti, Group>> },
+  props: ComboboxBaseProps & AsyncProps<Option, IsMulti, Group> & { ref?: Ref<SelectInstance<Option, IsMulti, Group>> },
 ) => JSX.Element;
 
 export { WithRef as ComboboxAsync };

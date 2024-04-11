@@ -1,22 +1,28 @@
 import Select, { GroupBase, Props, SelectInstance } from 'react-select';
 
-import { ForwardedRef, forwardRef } from 'react';
+import { Ref, forwardRef } from 'react';
 
 import { getComponents } from './components';
 import { getClassNames } from './classNames';
 import { getStyles } from './styles';
 
-type ComboBoxProps = {
+export type ComboboxBaseProps = {
   /** Error state */
   error?: boolean;
   multiline?: boolean;
 };
 
+export type ComboboxProps<
+  Option = unknown,
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>,
+> = ComboboxBaseProps & Props<Option, IsMulti, Group>;
+
 function Combobox<
   Option = unknown,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
->(props: ComboBoxProps & Props<Option, IsMulti, Group>, ref: ForwardedRef<SelectInstance<Option, IsMulti, Group>>) {
+>(props: ComboboxBaseProps & Props<Option, IsMulti, Group>, ref: Ref<SelectInstance<Option, IsMulti, Group>>) {
   const { error, placeholder, multiline = false, ...rest } = props;
 
   return (
@@ -38,7 +44,7 @@ const WithRef = forwardRef(Combobox) as <
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >(
-  props: ComboBoxProps & Props<Option, IsMulti, Group> & { ref?: ForwardedRef<SelectInstance<Option, IsMulti, Group>> },
+  props: ComboboxBaseProps & Props<Option, IsMulti, Group> & { ref?: Ref<SelectInstance<Option, IsMulti, Group>> },
 ) => JSX.Element;
 
 export { WithRef as Combobox };

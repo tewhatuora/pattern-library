@@ -53,3 +53,5 @@ export { useHeading, useText, getTextClass } from '../hooks/typography';
 export { atoms } from '../css/atoms/atoms';
 export { Combobox } from './Combobox/Combobox';
 export { ComboboxAsync } from './Combobox/ComboboxAsync';
+export { ComboboxField } from './Combobox/ComboboxField';
+export { ComboboxAsyncField } from './Combobox/ComboboxAsyncField';
