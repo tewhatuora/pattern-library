@@ -1,13 +1,10 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-
-import { rem } from '@/src/css/helpers';
 
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
-
-const offset = rem(4);
+import * as typography from '../../hooks/typography/typography.css';
 
 export const tag = style([
   atoms({
@@ -15,44 +12,46 @@ export const tag = style([
 
     borderWidth: 'small',
     borderRadius: 'tags',
+    borderStyle: 'solid',
   }),
   {
     color: vars.color.semantic.controls.content.dark,
     backgroundColor: vars.color.semantic.controls.background.light,
     borderColor: vars.color.semantic.controls.border.active,
   },
+  typography.fontFamily,
+  typography.fontWeight['regular'],
+  typography.text['xsmall'],
   responsiveStyle({
     mobile: {
       width: 'max-content',
-      paddingLeft: calc.add(vars.space.xsmall.mobile, offset),
-      paddingRight: calc.add(vars.space.xsmall.mobile, offset),
+      paddingTop: calc.divide(vars.space.xsmall.mobile, 2),
+      paddingRight: vars.space.xsmall.mobile,
+      paddingBottom: calc.divide(vars.space.xsmall.mobile, 2),
+      paddingLeft: vars.space.xsmall.mobile,
     },
     tablet: {
       width: 'max-content',
-      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offset),
-      paddingRight: calc.subtract(vars.space.xsmall.tablet, offset),
+      paddingRight: vars.space.small.mobile,
+      paddingLeft: vars.space.small.mobile,
     },
   }),
 ]);
 
 export const closeButton = style([
   {
+    display: 'flex',
     alignItems: 'center',
     border: 'none',
     background: 'none',
     cursor: 'pointer',
-    color: 'white',
-    width: rem(25),
+    color: vars.color.semantic.icons.dark,
   },
   responsiveStyle({
     mobile: { paddingLeft: vars.space.xsmall.mobile },
     tablet: { paddingLeft: vars.space.xsmall.mobile },
   }),
 ]);
-
-globalStyle(`${closeButton} circle`, {
-  fill: vars.color.semantic.icons.dark,
-});
 
 export const icon = style({
   display: 'flex',
