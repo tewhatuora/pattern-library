@@ -8,6 +8,7 @@ import Document from '../../icons/Document.svg?component';
 import Email from '../../icons/Email.svg?component';
 import Exempt from '../../icons/Exempt.svg?component';
 import Language from '../../icons/Language.svg?component';
+import Medicine from '../../icons/Medicine.svg?component';
 import Menu from '../../icons/Menu.svg?component';
 import Name from '../../icons/Name.svg?component';
 import Nasal from '../../icons/Nasal.svg?component';
@@ -41,6 +42,7 @@ import ArrowRight from '../../icons/functional/ArrowRight.svg?component';
 import ArrowUp from '../../icons/functional/ArrowUp.svg?component';
 import ArrowLeft from '../../icons/functional/ArrowLeft.svg?component';
 import ArrowDown from '../../icons/functional/ArrowDown.svg?component';
+import Filter from '../../icons/functional/Filter.svg?component';
 // Social
 import Facebook from '../../icons/social/Facebook.svg?component';
 import Instagram from '../../icons/social/Instagram.svg?component';
@@ -58,9 +60,11 @@ export type IconType =
   | 'document'
   | 'email'
   | 'exempt'
+  | 'filter'
   | 'international'
   | 'language'
   | 'menu'
+  | 'medicine'
   | 'name'
   | 'nasal'
   | 'nhi_number'
@@ -112,6 +116,7 @@ export const decorative: IconMap = {
   exempt: Exempt,
   language: Language,
   menu: Menu,
+  medicine: Medicine,
   name: Name,
   nasal: Nasal,
   nhi_number: NHINumber,
@@ -147,6 +152,7 @@ export const functional: IconMap = {
   arrow_up: ArrowUp,
   arrow_left: ArrowLeft,
   arrow_down: ArrowDown,
+  filter: Filter,
 };
 
 // Social
