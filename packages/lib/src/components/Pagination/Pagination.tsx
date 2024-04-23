@@ -149,6 +149,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
       {/* Never show page label when `showPageButtons === true` */}
       {showPageButtons === false || showPageButtons === undefined ? (
         <PaginationDropdown
+          aria-label="Page selector"
           pages={pages}
           showPageButtons={showPageButtons}
           value={current}
