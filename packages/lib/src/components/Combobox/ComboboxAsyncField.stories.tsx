@@ -92,6 +92,9 @@ const meta: Meta<typeof ComboboxAsyncField> = {
     },
     tertiaryLabel: {
       defaultValue: 'Tertiary label',
+      control: {
+        type: 'text',
+      },
     },
     tertiaryLabelAs: {
       defaultValue: 'button',
