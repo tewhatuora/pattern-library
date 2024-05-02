@@ -31,8 +31,8 @@ export const error = style({
 
 export const checkbox = style({
   all: 'unset',
-  width: rem(22),
-  height: rem(22),
+  width: rem(20),
+  height: rem(20),
   borderRadius: rem(4),
   borderStyle: 'solid',
   borderWidth: vars.borderWidth.medium,
