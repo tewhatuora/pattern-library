@@ -78,7 +78,11 @@ export default {
   },
 };
 
-export const Default = (args: InputDateProps) => <InputDate {...args} />;
+export const Default = (args: InputDateProps) => {
+  const [date, setDate] = useState<InputDateValue | undefined>(undefined);
+
+  return <InputDate value={date} onChange={(newValue) => setDate(newValue)} {...args} />;
+};
 Default.argTypes = {
   errorMessage: {
     control: {
@@ -107,7 +111,9 @@ export const WithFocus = (args: InputDateProps) => {
     }
   }, [ref]);
 
-  return <InputDate id="input_date_1" {...args} ref={ref} />;
+  const [date, setDate] = useState<InputDateValue | undefined>(undefined);
+
+  return <InputDate id="input_date_1" value={date} onChange={(newValue) => setDate(newValue)} {...args} ref={ref} />;
 };
 
 export const Filled = (args: InputDateProps) => {
@@ -123,17 +129,34 @@ export const Filled = (args: InputDateProps) => {
 
   return <InputDate {...args} id="input_date_2" value={{ day, month, year }} onChange={handleChange} />;
 };
-export const SingleError = (args: InputDateProps) => (
-  <InputDate {...args} errorMessage="Day is required" errors={{ day: 'Day is required ' }} id="input_date_3" />
-);
-export const FullError = (args: InputDateProps) => (
-  <InputDate
-    {...args}
-    errorMessage="Please enter a date"
-    errors={{ day: 'Day is required', month: 'Month is required', year: 'Year is required' }}
-    id="input_date_4"
-  />
-);
+export const SingleError = (args: InputDateProps) => {
+  const [date, setDate] = useState<InputDateValue | undefined>(undefined);
+
+  return (
+    <InputDate
+      value={date}
+      onChange={(newValue) => setDate(newValue)}
+      {...args}
+      errorMessage="Day is required"
+      errors={{ day: 'Day is required ' }}
+      id="input_date_3"
+    />
+  );
+};
+export const FullError = (args: InputDateProps) => {
+  const [date, setDate] = useState<InputDateValue | undefined>(undefined);
+
+  return (
+    <InputDate
+      value={date}
+      onChange={(newValue) => setDate(newValue)}
+      {...args}
+      errorMessage="Please enter a date"
+      errors={{ day: 'Day is required', month: 'Month is required', year: 'Year is required' }}
+      id="input_date_4"
+    />
+  );
+};
 export const Disabled = (args: InputDateProps) => (
   <InputDate {...args} disabled id="input_date_5" value={{ day: '30', month: '09', year: '2022' }} />
 );
@@ -147,5 +170,15 @@ export const OnFocusAndBlurEvent = (args: InputDateProps) => {
     e.target.style.backgroundColor = '';
   };
 
-  return <InputDate {...args} onBlur={handleBlur} onFocus={handleFocus} />;
+  const [date, setDate] = useState<InputDateValue | undefined>(undefined);
+
+  return (
+    <InputDate
+      value={date}
+      onChange={(newValue) => setDate(newValue)}
+      {...args}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+    />
+  );
 };
