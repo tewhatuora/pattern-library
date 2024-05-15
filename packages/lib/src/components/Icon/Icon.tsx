@@ -12,7 +12,6 @@ import { Color } from '../../types';
 export const IconStyles = styles;
 
 const validIcons = Object.keys(icons);
-
 export type IconProps = {
   /** Icon type */
   icon: IconType;
@@ -46,7 +45,7 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, .
     <Box
       aria-label={alt || undefined} // Prevents alt being passed through as an empty string
       as="span"
-      className={clsx(styles.icon, styles.variants({ variant }), className)}
+      className={clsx(styles.variants({ variant }), `icon--${icon}`, className)}
       {...boxProps}
     >
       <IconComponent aria-hidden="true" />

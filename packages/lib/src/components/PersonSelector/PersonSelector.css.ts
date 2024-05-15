@@ -1,0 +1,85 @@
+import { style, styleVariants } from '@vanilla-extract/css';
+
+import { calc } from '@vanilla-extract/css-utils';
+
+import { recipe } from '@vanilla-extract/recipes';
+
+import { BUTTON_HEIGHT_TABLET, variants } from '../Button/Button.css';
+
+import { vars } from '../../themes/vars.css';
+import { responsiveStyle } from '../../css/responsiveStyle';
+import { rem } from '../../css/helpers';
+
+export const personSelector = style([
+  {
+    gap: vars.space.small.tablet,
+  },
+  responsiveStyle({
+    mobile: {
+      display: 'none',
+    },
+    tablet: {
+      display: 'flex',
+    },
+  }),
+]);
+
+export const heading = style([
+  responsiveStyle({
+    mobile: {
+      display: 'none',
+    },
+    tablet: {
+      display: 'block',
+      marginBottom: vars.space.xsmall.tablet,
+    },
+  }),
+]);
+export const buttonVariants = recipe({
+  base: style([
+    {
+      width: 'auto',
+      height: calc.add(BUTTON_HEIGHT_TABLET, rem(4)),
+      gap: vars.space.xsmall.tablet,
+      paddingLeft: vars.space.xsmall.tablet,
+      paddingRight: vars.space.small.tablet,
+      whiteSpace: 'nowrap',
+    },
+    responsiveStyle({
+      mobile: {
+        justifyContent: 'flex-start',
+      },
+      tablet: {
+        maxWidth: 'unset',
+      },
+    }),
+  ]),
+  variants: {
+    variant: {
+      default: [
+        variants({ variant: 'tertiary' }),
+        {
+          color: vars.color.semantic.text.copy.dark,
+          ':hover': {
+            color: vars.color.semantic.text.copy.dark,
+          },
+        },
+      ],
+      selected: [
+        variants({ variant: 'primary' }),
+        {
+          color: vars.color.primary0,
+        },
+      ],
+    },
+  },
+});
+
+export const buttonIconVariants = styleVariants({
+  default: {
+    color: vars.color.primary100,
+  },
+  selected: {
+    color: vars.color.primary0,
+  },
+});

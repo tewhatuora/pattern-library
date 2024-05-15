@@ -90,6 +90,7 @@
     "clsx": "^1.1.1",
     "country-flag-icons": "^1.5.5",
     "csstype": "^3.0.10",
+    "date-fns": "^3.6.0",
     "dedent": "^0.7.0",
     "focus-trap-react": "^9.0.2",
     "focus-visible": "^5.2.0",

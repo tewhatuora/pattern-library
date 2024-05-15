@@ -58,7 +58,7 @@ const variant = {
 export type Variant = keyof typeof variant;
 
 export const variants = recipe({
-  base: {},
+  base: icon,
   variants: {
     variant,
   },
@@ -67,8 +67,18 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
+const strokeColorIcons = ['child'];
+const strokeColorSelectors = strokeColorIcons.map((name) => {
+  return `${icon}.icon--${name} > svg path`;
+});
+
 globalStyle(`${icon} > svg path`, {
   fill: 'currentColor',
+});
+
+globalStyle(strokeColorSelectors.join(','), {
+  stroke: 'currentColor',
+  fill: 'inherit',
 });
 
 globalStyle(`${icon} > svg`, {
