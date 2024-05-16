@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
@@ -7,6 +7,8 @@ import { Heading } from '../Heading/Heading';
 import * as styles from './HeroBlock.css';
 import { Badge, BadgeProps } from '../Badge/Badge';
 import { Container } from '../Container/Container';
+
+import Pattern from '../../assets/tohu.svg?component';
 
 export const HeroBlockStyles = styles;
 
@@ -36,19 +38,17 @@ export const HeroBlock = ({
   children,
   className,
 }: PropsWithChildren<HeroBlockProps>) => {
+  const PatternSVG = Pattern as FC;
+
   return (
-    <Box
-      as="div"
-      backgroundColor="primary50"
-      className={clsx(
-        styles.heroBlock,
-        {
-          [styles.variants.withPattern]: withPattern,
-        },
-        className,
+    <Box as="div" backgroundColor="primary50" position="relative">
+      {withPattern && (
+        <div className={styles.patternContainer}>
+          <div className={styles.patternGradient} />
+          <PatternSVG />
+        </div>
       )}
-    >
-      <Container>
+      <Container className={clsx(styles.heroBlock, className)}>
         <div className={styles.headingContainer}>
           <Heading level="2" weight="regular">
             {title}
