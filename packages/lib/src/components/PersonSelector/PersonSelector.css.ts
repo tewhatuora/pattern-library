@@ -13,7 +13,7 @@ import { rem } from '../../css/helpers';
 export const personSelector = recipe({
   base: [
     {
-      gap: vars.space.small.tablet,
+      gap: vars.space.xsmall.tablet,
     },
     responsiveStyle({
       mobile: {
@@ -68,6 +68,10 @@ export const buttonVariants = recipe({
       paddingLeft: vars.space.xsmall.tablet,
       paddingRight: vars.space.small.tablet,
       whiteSpace: 'nowrap',
+      borderTopLeftRadius: vars.borderRadius.topLeft.standard,
+      borderTopRightRadius: vars.borderRadius.topRight.standard,
+      borderBottomRightRadius: vars.borderRadius.bottomRight.standard,
+      borderBottomLeftRadius: vars.borderRadius.bottomLeft.standard,
     },
     responsiveStyle({
       mobile: {
