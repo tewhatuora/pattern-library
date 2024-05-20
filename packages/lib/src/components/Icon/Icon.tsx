@@ -45,7 +45,7 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, .
     <Box
       aria-label={alt || undefined} // Prevents alt being passed through as an empty string
       as="span"
-      className={clsx(styles.variants({ variant }), `icon--${icon}`, className)}
+      className={clsx(styles.variants({ variant }), className)}
       {...boxProps}
     >
       <IconComponent aria-hidden="true" />

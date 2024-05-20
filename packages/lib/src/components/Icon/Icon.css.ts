@@ -67,30 +67,9 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-const strokeColorIcons = ['child'];
-const strokeColorSelectors = strokeColorIcons.map((name) => {
-  return `${icon}.icon--${name} > svg path`;
-});
-
-globalStyle(`${icon} > svg path`, {
-  fill: 'currentColor',
-});
-
-globalStyle(strokeColorSelectors.join(','), {
-  stroke: 'currentColor',
-  fill: 'inherit',
-});
-
 globalStyle(`${icon} > svg`, {
   width: '100%',
   height: '100%',
 });
 
 export const clearIcon = style({});
-
-globalStyle(`${clearIcon} > svg path`, {
-  fill: vars.color.semantic.icons.light,
-});
-globalStyle(`${clearIcon} > svg circle`, {
-  fill: 'currentColor',
-});

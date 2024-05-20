@@ -10,19 +10,43 @@ import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { rem } from '../../css/helpers';
 
-export const personSelector = style([
-  {
-    gap: vars.space.small.tablet,
+export const personSelector = recipe({
+  base: [
+    {
+      gap: vars.space.small.tablet,
+    },
+    responsiveStyle({
+      mobile: {
+        // Hide desktop person selector on mobile
+        display: 'none',
+      },
+      tablet: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+      },
+    }),
+  ],
+  variants: {
+    variant: {
+      // Show desktop person selector on mobile
+      // Hide it visually but still render it so we can still measure if it wraps
+      // as we can't tell if it is not in the DOM
+      full: responsiveStyle({
+        tablet: {
+          position: 'unset',
+          visibility: 'unset',
+        },
+      }),
+      hidden: responsiveStyle({
+        tablet: {
+          position: 'absolute',
+          visibility: 'hidden',
+        },
+      }),
+    },
   },
-  responsiveStyle({
-    mobile: {
-      display: 'none',
-    },
-    tablet: {
-      display: 'flex',
-    },
-  }),
-]);
+});
 
 export const heading = style([
   responsiveStyle({
