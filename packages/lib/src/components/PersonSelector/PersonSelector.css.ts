@@ -12,18 +12,16 @@ import { rem } from '../../css/helpers';
 
 export const personSelector = recipe({
   base: [
-    {
-      gap: vars.space.small.tablet,
-    },
     responsiveStyle({
       mobile: {
         // Hide desktop person selector on mobile
         display: 'none',
       },
       tablet: {
+        position: 'absolute',
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexWrap: 'nowrap',
       },
     }),
   ],
@@ -34,13 +32,11 @@ export const personSelector = recipe({
       // as we can't tell if it is not in the DOM
       full: responsiveStyle({
         tablet: {
-          position: 'unset',
           visibility: 'unset',
         },
       }),
       hidden: responsiveStyle({
         tablet: {
-          position: 'absolute',
           visibility: 'hidden',
         },
       }),
@@ -64,10 +60,19 @@ export const buttonVariants = recipe({
     {
       width: 'auto',
       height: calc.add(BUTTON_HEIGHT_TABLET, rem(4)),
-      gap: vars.space.xsmall.tablet,
       paddingLeft: vars.space.xsmall.tablet,
       paddingRight: vars.space.small.tablet,
+      marginLeft: vars.space.xsmall.tablet,
       whiteSpace: 'nowrap',
+      borderTopLeftRadius: vars.borderRadius.topLeft.standard,
+      borderTopRightRadius: vars.borderRadius.topRight.standard,
+      borderBottomRightRadius: vars.borderRadius.bottomRight.standard,
+      borderBottomLeftRadius: vars.borderRadius.bottomLeft.standard,
+      selectors: {
+        '&:first-child': {
+          marginLeft: 0,
+        },
+      },
     },
     responsiveStyle({
       mobile: {

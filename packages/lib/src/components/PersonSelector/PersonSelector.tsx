@@ -39,34 +39,18 @@ export const PersonSelector = ({
   isLoading,
   personSelectorLabel,
 }: PropsWithChildren<PersonSelectorProps>) => {
-  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [isWrapped, setIsWrapped] = useState(false);
   const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const isUpMd = breakpoint !== 'mobile';
+  const wrapper = useRef<HTMLDivElement | null>(null);
+  const container = useRef<HTMLDivElement | null>(null);
 
-  // this measures whether the button list of people wraps or not by comparing the y-position of the first button compared the last button
-  // when the PersonSelector changes size (e.g. due to window resize, font size change, etc).
-  // 1. measure if the last button is below the first button
-  // 2. if it has wrapped, update the wrapped state.
-  const container = useResizeObserver(() => {
-    if (Object.keys(buttonRefs.current).length === 0) {
-      return;
-    }
+  const resizeObserver = useResizeObserver(() => {
+    if (container?.current && wrapper?.current) {
+      const wrapped =
+        wrapper?.current?.getBoundingClientRect()?.width < container?.current?.getBoundingClientRect()?.width;
 
-    // 1. measure if the last button is below the first button
-    const buttonKeys = Object.keys(buttonRefs.current);
-    const firstButtonKey = buttonKeys[0];
-    const lastButtonKey = buttonKeys[buttonKeys.length - 1];
-    const firstButton = firstButtonKey !== undefined && buttonRefs.current[firstButtonKey];
-    const lastButton = lastButtonKey !== undefined && buttonRefs.current[lastButtonKey];
-
-    const isWrapped = !!firstButton && !!lastButton && firstButton.offsetTop < lastButton.offsetTop;
-
-    // 2. if it has wrapped, update the wrapped state.
-    if (isWrapped) {
-      setIsWrapped(true);
-    } else {
-      setIsWrapped(false);
+      setIsWrapped(wrapped);
     }
   });
 
@@ -82,7 +66,6 @@ export const PersonSelector = ({
         <ButtonRoot
           className={styles.buttonVariants({ variant })}
           key={`person-selector-${person.nhi}`}
-          ref={(ref) => (buttonRefs.current[person.nhi] = ref)}
           onClick={() => onChange(person.nhi)}
         >
           <Icon
@@ -91,7 +74,7 @@ export const PersonSelector = ({
             variant="decorativeIcons"
           />
           <ScreenReadersOnly>{person.isUser ? 'Current user: ' : 'Child: '}</ScreenReadersOnly>
-          <Box alignItems="flexStart" display="flex" flexDirection="column" overflow="hidden">
+          <Box alignItems="flexStart" display="flex" flexDirection="column" marginLeft="xsmall" overflow="hidden">
             <Text size="medium" weight="bold">
               {person.name}
             </Text>
@@ -102,7 +85,7 @@ export const PersonSelector = ({
         </ButtonRoot>
       );
     });
-  }, [isLoading, people, value, onChange, buttonRefs]);
+  }, [isLoading, people, value, onChange]);
 
   const renderOptions = useMemo(() => {
     if (isLoading) {
@@ -116,16 +99,18 @@ export const PersonSelector = ({
   }, [isLoading, people]);
 
   return (
-    <Box as={showFull ? 'fieldset' : 'div'}>
+    <Box as="fieldset" ref={resizeObserver}>
       {showFull && (
         <Heading as="legend" className={styles.heading} level="4" weight="regular">
           {personSelectorLabel}
         </Heading>
       )}
 
-      <div className={styles.personSelector({ variant: showFull ? 'full' : 'hidden' })} ref={container}>
-        {renderButtons}
-      </div>
+      <Box position="relative" ref={wrapper}>
+        <div className={styles.personSelector({ variant: showFull ? 'full' : 'hidden' })} ref={container}>
+          {renderButtons}
+        </div>
+      </Box>
 
       {!showFull && (
         <InputDropdown
