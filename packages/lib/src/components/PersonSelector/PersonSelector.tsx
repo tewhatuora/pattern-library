@@ -1,4 +1,4 @@
-import { PropsWithChildren, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { PropsWithChildren, useContext, useMemo, useRef, useState } from 'react';
 
 import { Box } from '../Box/Box';
 import { Heading } from '../Heading/Heading';
@@ -10,6 +10,7 @@ import { ButtonRoot } from '../Button/ButtonRoot';
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { Breakpoint } from '../../css/breakpoints';
 import { formatAge } from '../../utils/dateUtils';
+import useResizeObserver from '../../hooks/useResizeObserver';
 
 import * as styles from './PersonSelector.css';
 
@@ -42,10 +43,12 @@ export const PersonSelector = ({
   const [isWrapped, setIsWrapped] = useState(false);
   const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const isUpMd = breakpoint !== 'mobile';
-  const container = useRef(null);
-  const buttonContainer = useRef(null);
 
-  useEffect(() => {
+  // this measures whether the button list of people wraps or not by comparing the y-position of the first button compared the last button
+  // when the PersonSelector changes size (e.g. due to window resize, font size change, etc).
+  // 1. measure if the last button is below the first button
+  // 2. if it has wrapped, update the wrapped state.
+  const container = useResizeObserver(() => {
     if (Object.keys(buttonRefs.current).length === 0) {
       return;
     }
@@ -57,11 +60,15 @@ export const PersonSelector = ({
     const firstButton = firstButtonKey !== undefined && buttonRefs.current[firstButtonKey];
     const lastButton = lastButtonKey !== undefined && buttonRefs.current[lastButtonKey];
 
-    const isWrapped = !!firstButton && !!lastButton && firstButton?.offsetTop < lastButton?.offsetTop;
+    const isWrapped = !!firstButton && !!lastButton && firstButton.offsetTop < lastButton.offsetTop;
 
     // 2. if it has wrapped, update the wrapped state.
-    setIsWrapped(isWrapped);
-  }, [breakpoint, buttonRefs]);
+    if (isWrapped) {
+      setIsWrapped(true);
+    } else {
+      setIsWrapped(false);
+    }
+  });
 
   const showFull = isUpMd && !isWrapped;
 
@@ -109,23 +116,18 @@ export const PersonSelector = ({
   }, [isLoading, people]);
 
   return (
-    <Box as={showFull ? 'fieldset' : 'div'} ref={container}>
+    <Box as={showFull ? 'fieldset' : 'div'}>
       {showFull && (
         <Heading as="legend" className={styles.heading} level="4" weight="regular">
           {personSelectorLabel}
         </Heading>
       )}
-      {showFull ? (
-        <Box
-          className={styles.personSelector}
-          display="flex"
-          flexDirection="row"
-          flexWrap={showFull ? 'wrap' : 'nowrap'}
-          ref={buttonContainer}
-        >
-          {renderButtons}
-        </Box>
-      ) : (
+
+      <div className={styles.personSelector({ variant: showFull ? 'full' : 'hidden' })} ref={container}>
+        {renderButtons}
+      </div>
+
+      {!showFull && (
         <InputDropdown
           id="person-selector-dropdown"
           label={personSelectorLabel}
