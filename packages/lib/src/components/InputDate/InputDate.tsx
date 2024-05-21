@@ -109,6 +109,10 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
         const field: 'day' | 'month' | 'year' = e.target.name.split(`${name}_`)?.[1];
         const newValue: InputDateValue = { ...value };
 
+        if (isNaN(e.target.value)) {
+          e.target.value = value?.[field] ?? null;
+        }
+
         newValue[field] = e.target.value;
 
         onChange?.(newValue);
@@ -157,7 +161,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               ref={dayRef}
               required={required}
               showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
+              type="text"
               value={value?.day}
               onBlur={handleBlur}
               onChange={handleChange}
@@ -180,7 +184,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               ref={monthRef}
               required={required}
               showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
+              type="text"
               value={value?.month}
               onBlur={handleBlur}
               onChange={handleChange}
@@ -202,7 +206,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               ref={yearRef}
               required={required}
               showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
+              type="text"
               value={value?.year}
               onBlur={handleBlur}
               onChange={handleChange}
