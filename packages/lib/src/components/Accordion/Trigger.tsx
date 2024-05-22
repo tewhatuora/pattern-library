@@ -14,9 +14,9 @@ export type AccordionTriggerProps = {
   /** Optional icon to display in Accordion Trigger */
   icon?: IconType;
   /** Optional header label for Accordion Trigger */
-  header?: string;
+  header?: string | React.ReactNode;
   /** Accordion Trigger label */
-  label: string;
+  label: string | React.ReactNode;
 };
 
 export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ icon, header, label }, ref) => {
@@ -31,15 +31,22 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
             {!!icon && <Icon className={styles.icon({ variant })} icon={icon} variant="functionalIcons" />}
 
             {/* Div to keep the header text vertical. */}
-            <div>
-              {!!header && (
-                <Text align="left" as="div" weight="bold">
+            <div style={{ width: 'inherit' }}>
+              {!!header && typeof header === 'string' ? (
+                <Text align="left" weight="bold">
                   {header}
                 </Text>
+              ) : (
+                header
               )}
-              <Text align="left" as="div">
-                {label}
-              </Text>
+
+              {!!label && typeof label === 'string' ? (
+                <Text align="left" as="div">
+                  {label}
+                </Text>
+              ) : (
+                label
+              )}
             </div>
           </div>
 

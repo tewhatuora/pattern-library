@@ -68,6 +68,25 @@ export const Default = (args: AccordionRootProps) => {
             <Text>Lorem ipsum</Text>
           </Accordion.Content>
         </Accordion.Item>
+
+        <Accordion.Item value="item-5">
+          <Accordion.Trigger
+            header={
+              <Text align="left">
+                Header normal <strong>bold</strong> <em>italics</em> <s>strikethrough</s>
+              </Text>
+            }
+            icon="document"
+            label={
+              <Text align="left">
+                Label normal <strong> bold</strong> <em> italics</em> <s>strikethrough</s>
+              </Text>
+            }
+          />
+          <Accordion.Content>
+            <Text>Lorem ipsum</Text>
+          </Accordion.Content>
+        </Accordion.Item>
       </Accordion.Root>
     </ContrastWrapper>
   );
