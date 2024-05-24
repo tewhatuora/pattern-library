@@ -125,6 +125,8 @@ export const icon = recipe({
 export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
+  width: '100%',
+  paddingRight: vars.space.small.mobile,
 });
 
 export const chevron = recipe({
