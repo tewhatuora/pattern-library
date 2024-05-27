@@ -10,7 +10,8 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
 
-const animationDuration = '300ms';
+export const animationDurationMS = 300;
+const animationDuration = `${animationDurationMS}ms`;
 
 const slideDown = keyframes({
   from: { height: 0 },
@@ -152,7 +153,6 @@ export const chevron = recipe({
 
 export const content = style({
   overflow: 'hidden', // Lets the animation cover the content
-
   selectors: {
     '&[data-state="open"]': {
       animation: `${slideDown} ${animationDuration}`,
