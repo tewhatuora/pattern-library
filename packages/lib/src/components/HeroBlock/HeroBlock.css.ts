@@ -13,14 +13,25 @@ export const heroBlock = style([
     mobile: {
       paddingTop: vars.space.xxlarge.mobile,
       paddingRight: vars.space.medium.mobile,
-      paddingBottom: vars.space.xxlarge.mobile,
       paddingLeft: vars.space.medium.mobile,
+      paddingBottom: vars.space.medium.mobile,
     },
     tablet: {
       paddingTop: vars.space.xlarge.tablet,
+      paddingBottom: 0, // vars.space.xlarge.mobile,
       paddingRight: 0,
-      paddingBottom: vars.space.xlarge.tablet,
       paddingLeft: 0,
+    },
+  }),
+]);
+
+export const heroBlockNoChildren = style([
+  responsiveStyle({
+    mobile: {
+      paddingBottom: vars.space.xxlarge.mobile,
+    },
+    tablet: {
+      paddingBottom: vars.space.xlarge.tablet,
     },
   }),
 ]);
@@ -98,6 +109,59 @@ export const badge = style([
     tablet: {
       marginLeft: vars.space.xsmall.tablet,
       marginBottom: 0,
+    },
+  }),
+]);
+
+export const childrenContainer = style([
+  {
+    // border: '1px solid red',
+  },
+  responsiveStyle({
+    mobile: {
+      paddingRight: vars.space.medium.mobile,
+      paddingLeft: vars.space.medium.mobile,
+      paddingBottom: vars.space.xxlarge.mobile,
+    },
+    tablet: {
+      paddingRight: 0,
+      paddingLeft: 0,
+      paddingBottom: vars.space.xlarge.tablet,
+    },
+  }),
+]);
+
+export const shadow = style({
+  boxShadow: vars.shadow.primary,
+});
+
+export const separator = style([
+  responsiveStyle({
+    mobile: {
+      height: '2px',
+      backgroundColor: vars.color.semantic.structure.divider.dark,
+    },
+    tablet: {
+      height: '1px',
+      backgroundColor: 'transparent',
+    },
+  }),
+]);
+
+export const sticky = style({
+  position: 'sticky',
+  top: 0,
+  width: '100%',
+  backgroundColor: vars.color.primary25,
+});
+
+export const children = style([
+  responsiveStyle({
+    mobile: {
+      paddingTop: vars.space.medium.mobile,
+    },
+    tablet: {
+      paddingTop: vars.space.xlarge.mobile,
     },
   }),
 ]);

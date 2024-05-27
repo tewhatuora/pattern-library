@@ -110,7 +110,7 @@ export const responsiveProperties = {
     flex: 'flex',
     grid: 'grid',
   },
-  position: ['relative', 'absolute', 'fixed', 'sticky'],
+  position: ['relative', 'absolute', 'fixed', 'sticky', 'static'],
   overflow: ['hidden', 'scroll', 'visible', 'auto'],
   borderWidth: borderWidth,
   borderBottomWidth: borderWidth,

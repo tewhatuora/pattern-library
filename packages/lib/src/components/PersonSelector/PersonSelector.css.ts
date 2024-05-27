@@ -19,6 +19,7 @@ export const personSelector = recipe({
       },
       tablet: {
         position: 'absolute',
+        top: 0,
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'nowrap',
@@ -55,6 +56,15 @@ export const heading = style([
     },
   }),
 ]);
+
+export const heightSpacer = style([
+  responsiveStyle({
+    tablet: {
+      height: calc.add(BUTTON_HEIGHT_TABLET, rem(4)),
+    },
+  }),
+]);
+
 export const buttonVariants = recipe({
   base: style([
     {

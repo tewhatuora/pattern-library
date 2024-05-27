@@ -1,5 +1,7 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useMemo } from 'react';
 import clsx from 'clsx';
+
+import { useIntersectionObserver } from 'usehooks-ts';
 
 import { Box } from '../Box/Box';
 import { Heading } from '../Heading/Heading';
@@ -40,31 +42,71 @@ export const HeroBlock = ({
 }: PropsWithChildren<HeroBlockProps>) => {
   const PatternSVG = Pattern as FC;
 
+  const { isIntersecting, ref: stickyDetector } = useIntersectionObserver({
+    threshold: [0, 1],
+  });
+
+  const isSticky = useMemo(() => {
+    return !isIntersecting;
+  }, [isIntersecting]);
+
   return (
-    <Box as="div" backgroundColor="primary50" position="relative">
-      {withPattern && (
-        <div className={styles.patternContainer}>
-          <div className={styles.patternGradient} />
-          <PatternSVG />
-        </div>
-      )}
-      <Container className={clsx(styles.heroBlock, className)}>
-        <div className={styles.headingContainer}>
-          <Heading level="2" weight="regular">
-            {title}
-          </Heading>
-          {!!badge && !!badgeVariant && (
-            <div className={styles.badge}>
-              <Badge variant={badgeVariant}>{badge}</Badge>
+    <>
+      <Box
+        as="div"
+        backgroundColor={withPattern && !children ? 'primary50' : 'primary25'}
+        position={withPattern && !children ? 'relative' : 'static'}
+      >
+        {withPattern && !children && (
+          <div className={styles.patternContainer}>
+            <div className={styles.patternGradient} />
+            <PatternSVG />
+          </div>
+        )}
+        <Container
+          className={clsx(
+            styles.heroBlock,
+            {
+              [styles.heroBlockNoChildren]: !children,
+            },
+            className,
+          )}
+        >
+          {title && (
+            <div className={styles.headingContainer}>
+              <Heading level="2" weight="regular">
+                {title}
+              </Heading>
+              {!!badge && !!badgeVariant && (
+                <div className={styles.badge}>
+                  <Badge variant={badgeVariant}>{badge}</Badge>
+                </div>
+              )}
             </div>
           )}
-        </div>
-        <Heading level="3" weight="weak">
-          {description}
-        </Heading>
-        {children}
-      </Container>
-    </Box>
+          {description && (
+            <Heading level="3" weight="weak">
+              {description}
+            </Heading>
+          )}
+        </Container>
+      </Box>
+      {children && (
+        <>
+          <div ref={stickyDetector} style={{ height: 1, marginTop: -1 }} />
+          <div
+            className={clsx(styles.sticky, {
+              [styles.shadow]: isSticky,
+            })}
+          >
+            <Container className={styles.childrenContainer}>
+              <div className={clsx(styles.separator)} />
+              <div className={styles.children}>{children}</div>
+            </Container>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

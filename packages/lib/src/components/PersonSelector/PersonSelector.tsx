@@ -107,6 +107,7 @@ export const PersonSelector = ({
       )}
 
       <Box position="relative" ref={wrapper}>
+        {showFull && <div className={styles.heightSpacer} />}
         <div className={styles.personSelector({ variant: showFull ? 'full' : 'hidden' })} ref={container}>
           {renderButtons}
         </div>
