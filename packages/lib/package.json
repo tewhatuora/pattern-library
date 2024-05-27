@@ -99,6 +99,7 @@
     "react-phone-number-input": "^3.2.3",
     "react-shielded": "^2.1.0",
     "rooks": "^5.11.8",
+    "usehooks-ts": "^3.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
