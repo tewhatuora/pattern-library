@@ -1,4 +1,12 @@
-import { ChangeEventHandler, ForwardedRef, SelectHTMLAttributes, forwardRef, useMemo } from 'react';
+import {
+  ChangeEventHandler,
+  ForwardedRef,
+  SelectHTMLAttributes,
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import { useField } from '@react-aria/label';
 import clsx from 'clsx';
 
@@ -82,6 +90,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
     }: InputDropdownProps,
     ref: ForwardedRef<HTMLSelectElement>,
   ) => {
+    const containerRef = useRef<HTMLDivElement | null>(null);
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
     const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
       id,
@@ -115,6 +124,10 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
 
     const invalid = error || !!errorMessage ? 'true' : 'false';
 
+    const handleClickIcon = useCallback(() => {
+      containerRef?.current?.querySelector('select')?.focus();
+    }, [containerRef]);
+
     return (
       <div>
         <InputLabel
@@ -131,7 +144,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           tertiaryLabelIconPosition={tertiaryLabelIconPosition}
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
-        <div className={fieldStyles.field}>
+        <div className={fieldStyles.field} ref={containerRef}>
           <select
             id={id}
             {...fieldProps}
@@ -159,7 +172,13 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             {optionEls}
           </select>
           {shouldShowPlaceholder && <Text className={styles.placeholder}>{placeholder}</Text>}
-          <Icon aria-hidden="true" className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
+          <Icon
+            aria-hidden="true"
+            className={styles.chevron}
+            icon="chevron_down"
+            variant="functionalIcons"
+            onClick={handleClickIcon}
+          />
         </div>
         <InputMessage
           descriptionProps={descriptionProps}
