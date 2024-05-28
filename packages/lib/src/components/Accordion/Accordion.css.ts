@@ -136,7 +136,7 @@ export const chevron = recipe({
 
     transition: `transform ${animationDuration}`,
     selectors: {
-      '[data-state=open] &': { transform: 'rotate(180deg)' },
+      '[data-state="open"] > &': { transform: 'rotate(180deg)' },
     },
   },
   variants: {
