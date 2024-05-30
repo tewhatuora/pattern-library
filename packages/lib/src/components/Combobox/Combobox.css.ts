@@ -125,13 +125,14 @@ export const indicatorsContainer = style([
   {
     alignItems: 'baseline !important',
     paddingTop: vars.space.xsmall.mobile,
+    paddingLeft: vars.space.xsmall.mobile,
   },
   responsiveStyle({
     mobile: {
       alignSelf: 'end !important',
     },
     tablet: {
-      alignSelf: 'unset !important',
+      alignSelf: 'stretch !important',
     },
   }),
 ]);
