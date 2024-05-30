@@ -58,6 +58,7 @@ export const placeholder = style({
 
 export const valueContainer = style({
   gap: vars.space.xsmall.mobile,
+  maxWidth: '100%',
 });
 
 export const menu = style([
