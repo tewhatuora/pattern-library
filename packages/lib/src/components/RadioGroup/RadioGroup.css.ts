@@ -38,6 +38,7 @@ export const radioButton = style([
     borderWidth: vars.borderWidth.small,
     borderRadius: '100%',
     borderColor: vars.color.semantic.inputs.elements.border.normal,
+    backgroundColor: vars.color.semantic.inputs.elements.background.normal,
     flexShrink: '0',
     transition: 'border-color 0.3s ease-out, background-color 0.3s ease-out',
     selectors: {
