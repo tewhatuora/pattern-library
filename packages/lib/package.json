@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Te Whatu Ora - Anatomic Design system",
   "homepage": "https://main--630296ff1edaa813b72e85c0.chromatic.com/",
   "author": "Kyle Beattie <kyle.beattie@alphero.com>",
@@ -90,6 +90,7 @@
     "clsx": "^1.1.1",
     "country-flag-icons": "^1.5.5",
     "csstype": "^3.0.10",
+    "date-fns": "^3.6.0",
     "dedent": "^0.7.0",
     "focus-trap-react": "^9.0.2",
     "focus-visible": "^5.2.0",
@@ -98,6 +99,7 @@
     "react-phone-number-input": "^3.2.3",
     "react-shielded": "^2.1.0",
     "rooks": "^5.11.8",
+    "usehooks-ts": "^3.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

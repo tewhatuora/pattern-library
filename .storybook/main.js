@@ -30,7 +30,7 @@ module.exports = {
       shouldRemoveUndefinedFromOptional: true,
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) => {
-        return (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
+        return prop.parent ? !/node_modules/.test(prop.parent.fileName) : true;
       },
     },
   },
@@ -39,7 +39,7 @@ module.exports = {
     return mergeConfig(config, {
       base: process.env.BASE_URL || config.base,
       build: {
-        sourcemap: false
+        sourcemap: false,
       },
       plugins: [
         vanillaExtractPlugin({
@@ -49,6 +49,9 @@ module.exports = {
           svgrOptions: {
             jsxRuntime: 'automatic',
             dimensions: false,
+            replaceAttrValues: {
+              '#404040': 'currentColor',
+            },
           },
         }),
       ],
