@@ -49,6 +49,7 @@ export { TextLink, TextLinkStyles } from './TextLink/TextLink';
 export { TextLinkButton } from './TextLinkButton/TextLinkButton';
 export { ToggleSwitch, ToggleSwitchStyles } from './ToggleSwitch/ToggleSwitch';
 export { ToggleButton, ToggleButtonStyles } from './ToggleButton/ToggleButton';
+export { Tooltip, TooltipStyles } from './Tooltip/Tooltip';
 export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
 export { useHeading, useText, getTextClass } from '../hooks/typography';
