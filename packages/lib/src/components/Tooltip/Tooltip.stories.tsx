@@ -41,6 +41,9 @@ export default {
     skipDelayDuration: {
       control: 'number',
     },
+    triggerOpenOnClick: {
+      control: 'boolean',
+    },
   },
   parameters: {
     docs: {

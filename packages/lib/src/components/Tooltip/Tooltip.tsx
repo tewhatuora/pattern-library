@@ -34,6 +34,8 @@ export type TooltipProps = {
   alignOffset?: number;
   /** Change the default rendered trigger element for the one passed as a child, merging their props and behavior. */
   triggerAsChild?: boolean;
+  /** Trigger open on click/touch, useful for mobile devices. Warning: The properties triggerAsChild and triggerOpenOnClick are not guaranteed to work together. */
+  triggerOpenOnClick?: boolean;
 };
 
 /**
@@ -45,7 +47,7 @@ export const Tooltip = ({
   delayDuration = 700,
   skipDelayDuration = 300,
   defaultOpen,
-  open,
+  open: intialOpenValue,
   onOpenChange,
   content,
   label,
@@ -55,6 +57,7 @@ export const Tooltip = ({
   alignOffset = 0,
   triggerAsChild,
   children,
+  triggerOpenOnClick,
 }: PropsWithChildren<TooltipProps>) => {
   const theme = useTheme();
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -66,6 +69,8 @@ export const Tooltip = ({
     }
   }, [ref]);
 
+  const [isOpen, setIsOpen] = useState<boolean>(!!intialOpenValue);
+
   return (
     <>
       <div ref={ref} />
@@ -74,10 +79,24 @@ export const Tooltip = ({
           <RadixTooltip.Root
             defaultOpen={defaultOpen}
             delayDuration={delayDuration}
-            open={open}
-            onOpenChange={onOpenChange}
+            open={isOpen}
+            onOpenChange={(open) => {
+              setIsOpen(open);
+              onOpenChange?.(open);
+            }}
           >
-            <RadixTooltip.Trigger asChild={triggerAsChild} className={styles.trigger}>
+            <RadixTooltip.Trigger
+              asChild={triggerAsChild}
+              className={styles.trigger}
+              onClick={
+                triggerOpenOnClick
+                  ? (e) => {
+                      e.preventDefault();
+                      setIsOpen(true);
+                    }
+                  : undefined
+              }
+            >
               {children}
             </RadixTooltip.Trigger>
             <RadixTooltip.Portal container={ref?.current}>
