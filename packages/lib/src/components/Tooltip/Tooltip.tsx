@@ -105,6 +105,7 @@ export const Tooltip = ({
                 alignOffset={alignOffset}
                 aria-label={label}
                 avoidCollisions
+                collisionPadding={5}
                 hideWhenDetached
                 side={side}
                 sideOffset={4}

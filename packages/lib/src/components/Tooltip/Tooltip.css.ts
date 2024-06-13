@@ -19,7 +19,7 @@ export const content = style([
   },
   responsiveStyle({
     mobile: {
-      maxWidth: rem(300),
+      maxWidth: '70vw',
     },
     tablet: {
       maxWidth: rem(480),
