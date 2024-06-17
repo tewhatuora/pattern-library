@@ -14,15 +14,16 @@ export const content = style([
   {
     position: 'relative',
     zIndex: 1300,
-    padding: vars.space.small.tablet,
     backgroundColor: vars.color.semantic.controls.background.active,
   },
   responsiveStyle({
     mobile: {
-      maxWidth: '70vw',
+      maxWidth: '75vw',
+      padding: vars.space.small.mobile,
     },
     tablet: {
       maxWidth: rem(480),
+      padding: vars.space.small.tablet,
     },
   }),
 ]);

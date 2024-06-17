@@ -92,6 +92,7 @@ export const Tooltip = ({
             }}
           >
             <RadixTooltip.Trigger
+              aria-label="tooltip trigger"
               asChild={triggerAsChild}
               className={styles.trigger}
               onClick={
