@@ -18,7 +18,8 @@ export const content = style([
   },
   responsiveStyle({
     mobile: {
-      maxWidth: '75vw',
+      marginLeft: vars.space.small.tablet,
+      marginRight: vars.space.small.tablet,
       padding: vars.space.small.mobile,
     },
     tablet: {
@@ -27,6 +28,10 @@ export const content = style([
     },
   }),
 ]);
+
+export const contentContainer = style({
+  maxWidth: '100vw',
+});
 
 export const text = style({
   color: vars.color.semantic.controls.content.light,
