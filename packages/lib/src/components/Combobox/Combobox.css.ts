@@ -16,19 +16,32 @@ const height = vars.space.xxlarge.tablet;
 // the use of `!important` is necessary because `react-select` sets unremovable styles.
 
 export const combobox = recipe({
-  base: {
-    minHeight: `${height} !important`,
-    paddingTop: vars.space.xsmall.mobile,
-    paddingBottom: vars.space.xsmall.mobile,
-    transition: 'unset !important',
-    lineHeight: 'unset',
-    height: 'unset',
-    selectors: {
-      '&:focus-within': {
-        outline: `${focusOutline(vars.color.semantic.inputs.fields.highlight.focus)} !important`,
+  base: style([
+    {
+      minHeight: `${height} !important`,
+      paddingTop: vars.space.xsmall.mobile,
+      paddingBottom: vars.space.xsmall.mobile,
+      transition: 'unset !important',
+      lineHeight: 'unset',
+      height: 'unset',
+
+      selectors: {
+        '&:focus-within': {
+          outline: `${focusOutline(vars.color.semantic.inputs.fields.highlight.focus)} !important`,
+        },
       },
     },
-  },
+    responsiveStyle({
+      mobile: {
+        flexDirection: 'column', // column on mobile so that the clear can be on its own row
+        alignItems: 'flex-start !important',
+      },
+      tablet: {
+        flexDirection: 'row',
+        alignItems: 'center !important',
+      },
+    }),
+  ]),
   variants: {
     error: {
       true: {
@@ -45,6 +58,7 @@ export const placeholder = style({
 
 export const valueContainer = style({
   gap: vars.space.xsmall.mobile,
+  maxWidth: '100%',
 });
 
 export const menu = style([
@@ -107,10 +121,21 @@ export const option = recipe({
   },
 });
 
-export const indicatorsContainer = style({
-  alignItems: 'baseline !important',
-  paddingTop: vars.space.xsmall.mobile,
-});
+export const indicatorsContainer = style([
+  {
+    alignItems: 'baseline !important',
+    paddingTop: vars.space.xsmall.mobile,
+    paddingLeft: vars.space.xsmall.mobile,
+  },
+  responsiveStyle({
+    mobile: {
+      alignSelf: 'end !important',
+    },
+    tablet: {
+      alignSelf: 'stretch !important',
+    },
+  }),
+]);
 
 export const clearIndicatorSingle = style([
   responsiveStyle({

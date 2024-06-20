@@ -37,7 +37,20 @@ export const Root = ({
   ...props
 }: PropsWithChildren<AccordionRootProps>) => {
   return (
-    <RadixAccordion.Root className={styles.root[variant]} {...props}>
+    <RadixAccordion.Root
+      className={styles.root[variant]}
+      onAnimationEnd={({ target }) => {
+        if (!target || !hasStyle(target)) return;
+        // remove the overflow override after animation is complete so we don't interfere with content
+        if (target.attributes.getNamedItem('data-state')?.nodeValue === 'open') target.style.overflow = 'unset';
+      }}
+      onAnimationStart={({ target }) => {
+        if (!target || !hasStyle(target)) return;
+        // delete the unset so that the animation can hide our content
+        if (target.style.overflow === 'unset') target.style.overflow = '';
+      }}
+      {...props}
+    >
       <AccordionContext.Provider value={{ headingLevel, variant }}>
         <AllowedChildren
           errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"
@@ -49,3 +62,8 @@ export const Root = ({
     </RadixAccordion.Root>
   );
 };
+
+const hasStyle = (
+  target: EventTarget,
+): target is EventTarget & { style: CSSStyleDeclaration; attributes: NamedNodeMap } =>
+  'style' in target && 'attributes' in target;
