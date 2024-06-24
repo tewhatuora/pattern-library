@@ -1,6 +1,6 @@
 import { ThemeProvider } from '../packages/lib/src';
 
-import { neutral, webSelfService } from '@te-whatu-ora/anatomic-themes';
+import { neutral, webSelfService } from '../packages/themes';
 
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

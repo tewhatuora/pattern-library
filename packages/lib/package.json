@@ -92,6 +92,7 @@
     "clsx": "^1.1.1",
     "country-flag-icons": "^1.5.5",
     "csstype": "^3.0.10",
+    "date-fns": "^3.6.0",
     "dedent": "^0.7.0",
     "focus-trap-react": "^9.0.2",
     "focus-visible": "^5.2.0",
@@ -102,6 +103,7 @@
     "react-select": "^5.8.0",
     "react-shielded": "^2.1.0",
     "rooks": "^5.11.8",
+    "usehooks-ts": "^3.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
