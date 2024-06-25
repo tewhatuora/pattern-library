@@ -1,0 +1,63 @@
+import { Meta, Source } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Themes/Usage" />
+
+# Theming
+
+Instead of harcoding the foundation values in Anatomic, we choose to implement a theming system allowing applications to supply their core values to Anatomic.
+
+The theming system introduced a concept of theme object. To configure Anatomic, you'll need to build your own theme object or import a pre-constructed one from Anatomic. The theme object will be used to render the foundation variables and define a theme provider at the root of your application.
+
+<Source
+  language="tsx"
+  dark
+  code={`import '@te-whatu-ora/anatomic/styles';\n
+import { ThemeProvider } from '@te-whatu-ora/anatomic';
+import { neutral } from '@te-whatu-ora/anatomic-themes';\n
+<ThemeProvider theme={neutral}>
+  <App />
+</ThemeProvider>`}
+/>
+
+## useTheme hook
+
+The `useTheme` hook provides access to the theme variables that are available on the theme passed to `ThemeProvider`.
+
+<Source
+  language="tsx"
+  dark
+  code={`import { useTheme } from '@te-whatu-ora/anatomic';\n// ...\nconst { tokens } = useTheme();`}
+/>
+
+
+## Custom components
+
+Using the theme variables allows custom components to be created, with consistent theming.
+
+<Source
+  language="tsx"
+  dark
+  code={`const MyComponent = () => {
+  const { tokens } = useTheme();\n
+  return (
+    <div style={{
+      backgroundColor: tokens.color.annotation75,
+      marginBottom: tokens.space.large.tablet
+    }}>
+      My component
+    </div>
+  );
+};
+`}
+/>
+
+
+### Tokens
+- <LinkTo kind="Themes/Tokens" story="color">Color</LinkTo>
+- <LinkTo kind="Themes/Tokens" story="space">Space</LinkTo>
+- <LinkTo kind="Themes/Tokens" story="border-radius">Border radius</LinkTo>
+- <LinkTo kind="Themes/Tokens" story="border-width">Border width</LinkTo>
+- <LinkTo kind="Themes/Tokens" story="shadows">Shadows</LinkTo>
+- <LinkTo kind="Themes/Tokens" story="transitions">Transitions</LinkTo>
+- <LinkTo kind="Themes/Tokens" story="typography">Typography</LinkTo>
