@@ -1,4 +1,4 @@
-import { ForwardedRef, RefObject, forwardRef } from 'react';
+import { FormEventHandler, ForwardedRef, RefObject, forwardRef, useMemo } from 'react';
 import { useTextField } from '@react-aria/textfield';
 
 import { InputField, OtherInputFieldProps } from '../InputField/InputField';
@@ -9,7 +9,9 @@ import * as styles from './InputSearch.css';
 
 export const InputSearchStyles = styles;
 
-export type InputSearchProps = Omit<OtherInputFieldProps, 'error' | 'disabled' | 'required'>;
+export type InputSearchProps = Omit<OtherInputFieldProps, 'error' | 'disabled' | 'required'> & {
+  onSubmit?: FormEventHandler<HTMLFormElement>;
+};
 
 const INPUT_TYPE = 'search';
 
@@ -19,7 +21,7 @@ const INPUT_TYPE = 'search';
  */
 export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
   (
-    { id, name, placeholder, value, defaultValue, onBlur, onChange, onFocus, ...rest }: InputSearchProps,
+    { id, name, placeholder, value, defaultValue, onBlur, onChange, onFocus, onSubmit, ...rest }: InputSearchProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const { inputProps } = useTextField(
@@ -35,8 +37,12 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
       ref as RefObject<HTMLInputElement>,
     );
 
+    const element = useMemo(() => {
+      return typeof onSubmit === 'function' ? 'form' : 'div';
+    }, [onSubmit]);
+
     return (
-      <Box className={styles.container}>
+      <Box as={element} className={styles.container} onSubmit={onSubmit}>
         <InputField
           {...inputProps}
           className={styles.input}
