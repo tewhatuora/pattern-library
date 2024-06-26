@@ -8,6 +8,9 @@ import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 
 import { ChildrenOfType } from '../../types/index';
 
+import * as styles from './RadioGroup.css';
+export const RadioGroupStyles = styles;
+
 export type RadioGroupProps = {
   /** name attribute */
   name: string;

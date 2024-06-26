@@ -73,7 +73,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     <ButtonRoot
       as={as}
       className={clsx(
-        styles.variants({
+        styles.button({
           variant,
         }),
         className,

@@ -21,7 +21,129 @@ export const root = style({
 
 const gapVar = createVar();
 
-export const variants = recipe({
+export const buttonVariants = {
+  variant: {
+    // Used in TextLinkButton and InputPassword
+    link: style([
+      {
+        display: 'inline-flex',
+        width: 'auto',
+        height: 'auto',
+        color: vars.color.semantic.text.links.active,
+        textDecoration: vars.textDecoration['link-normal'],
+        borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+        borderWidth: 0,
+        ':hover': {
+          color: vars.color.semantic.text.links.hover,
+          textDecoration: vars.textDecoration['link-hover&focus'],
+        },
+        selectors: {
+          ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
+        },
+      },
+      responsiveStyle({
+        mobile: {
+          vars: {
+            [gapVar]: calc.divide(vars.space.xsmall.mobile, 2),
+          },
+        },
+        tablet: {
+          vars: {
+            [gapVar]: calc.multiply(vars.space.xsmall.mobile, 1.25),
+          },
+        },
+      }),
+    ]),
+    primary: {
+      color: vars.color.semantic.button.primary.content.normal,
+      backgroundColor: vars.color.semantic.button.primary.background.normal,
+      borderColor: vars.color.semantic.button.primary.border.normal,
+      ':hover': {
+        color: vars.color.semantic.button.primary.content.normal,
+        backgroundColor: vars.color.semantic.button.primary.background.hover,
+        borderColor: vars.color.semantic.button.primary.border.hover,
+      },
+      ':focus': {
+        color: vars.color.semantic.button.primary.content.normal,
+        backgroundColor: vars.color.semantic.button.primary.background.focused,
+        borderColor: vars.color.semantic.button.primary.border.focused,
+      },
+      ':active': {
+        color: vars.color.semantic.button.primary.content.normal,
+        backgroundColor: vars.color.semantic.button.primary.background.pressed,
+        borderColor: vars.color.semantic.button.primary.border.pressed,
+        outline: 'none',
+      },
+      selectors: {
+        '&[disabled]': {
+          color: vars.color.semantic.button.primary.content.disabled,
+          backgroundColor: vars.color.semantic.button.primary.background.disabled,
+          borderColor: vars.color.semantic.button.primary.border.disabled,
+        },
+        ...getFocusSelectors(vars.color.semantic.button.primary.highlight.focus),
+      },
+    },
+    secondary: {
+      color: vars.color.semantic.button.secondary.content.normal,
+      backgroundColor: vars.color.semantic.button.secondary.background.normal,
+      borderColor: vars.color.semantic.button.secondary.border.normal,
+      ':hover': {
+        color: vars.color.semantic.button.secondary.content.normal,
+        backgroundColor: vars.color.semantic.button.secondary.background.hover,
+        borderColor: vars.color.semantic.button.secondary.border.hover,
+      },
+      ':focus': {
+        color: vars.color.semantic.button.secondary.content.normal,
+        backgroundColor: vars.color.semantic.button.secondary.background.focused,
+        borderColor: vars.color.semantic.button.secondary.border.focused,
+      },
+      ':active': {
+        color: vars.color.semantic.button.secondary.content.normal,
+        backgroundColor: vars.color.semantic.button.secondary.background.pressed,
+        borderColor: vars.color.semantic.button.secondary.border.pressed,
+        outline: 'none',
+      },
+      selectors: {
+        '&[disabled]': {
+          color: vars.color.semantic.button.secondary.content.disabled,
+          backgroundColor: vars.color.semantic.button.secondary.background.disabled,
+          borderColor: vars.color.semantic.button.secondary.border.disabled,
+        },
+        ...getFocusSelectors(vars.color.semantic.button.secondary.highlight.focus),
+      },
+    },
+    tertiary: {
+      color: vars.color.semantic.button.tertiary.content.normal,
+      backgroundColor: vars.color.semantic.button.tertiary.background.normal,
+      borderColor: vars.color.semantic.button.tertiary.border.normal,
+      ':hover': {
+        color: vars.color.semantic.button.tertiary.content.normal,
+        backgroundColor: vars.color.semantic.button.tertiary.background.hover,
+        borderColor: vars.color.semantic.button.tertiary.border.hover,
+      },
+      ':focus': {
+        color: vars.color.semantic.button.tertiary.content.normal,
+        backgroundColor: vars.color.semantic.button.tertiary.background.focused,
+        borderColor: vars.color.semantic.button.tertiary.border.focused,
+      },
+      ':active': {
+        color: vars.color.semantic.button.tertiary.content.normal,
+        backgroundColor: vars.color.semantic.button.tertiary.background.pressed,
+        borderColor: vars.color.semantic.button.tertiary.border.pressed,
+        outline: 'none',
+      },
+      selectors: {
+        '&[disabled]': {
+          color: vars.color.semantic.button.tertiary.content.disabled,
+          backgroundColor: vars.color.semantic.button.tertiary.background.disabled,
+          borderColor: vars.color.semantic.button.tertiary.border.disabled,
+        },
+        ...getFocusSelectors(vars.color.semantic.button.tertiary.highlight.focus),
+      },
+    },
+  },
+};
+export const button = recipe({
   base: style([
     atoms({
       display: 'flex',
@@ -61,134 +183,13 @@ export const variants = recipe({
       },
     }),
   ]),
-  variants: {
-    variant: {
-      // Used in TextLinkButton and InputPassword
-      link: style([
-        {
-          display: 'inline-flex',
-          width: 'auto',
-          height: 'auto',
-          color: vars.color.semantic.text.links.active,
-          textDecoration: vars.textDecoration['link-normal'],
-          borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
-          borderWidth: 0,
-          ':hover': {
-            color: vars.color.semantic.text.links.hover,
-            textDecoration: vars.textDecoration['link-hover&focus'],
-          },
-          selectors: {
-            ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
-          },
-        },
-        responsiveStyle({
-          mobile: {
-            vars: {
-              [gapVar]: calc.divide(vars.space.xsmall.mobile, 2),
-            },
-          },
-          tablet: {
-            vars: {
-              [gapVar]: calc.multiply(vars.space.xsmall.mobile, 1.25),
-            },
-          },
-        }),
-      ]),
-      primary: {
-        color: vars.color.semantic.button.primary.content.normal,
-        backgroundColor: vars.color.semantic.button.primary.background.normal,
-        borderColor: vars.color.semantic.button.primary.border.normal,
-        ':hover': {
-          color: vars.color.semantic.button.primary.content.normal,
-          backgroundColor: vars.color.semantic.button.primary.background.hover,
-          borderColor: vars.color.semantic.button.primary.border.hover,
-        },
-        ':focus': {
-          color: vars.color.semantic.button.primary.content.normal,
-          backgroundColor: vars.color.semantic.button.primary.background.focused,
-          borderColor: vars.color.semantic.button.primary.border.focused,
-        },
-        ':active': {
-          color: vars.color.semantic.button.primary.content.normal,
-          backgroundColor: vars.color.semantic.button.primary.background.pressed,
-          borderColor: vars.color.semantic.button.primary.border.pressed,
-          outline: 'none',
-        },
-        selectors: {
-          '&[disabled]': {
-            color: vars.color.semantic.button.primary.content.disabled,
-            backgroundColor: vars.color.semantic.button.primary.background.disabled,
-            borderColor: vars.color.semantic.button.primary.border.disabled,
-          },
-          ...getFocusSelectors(vars.color.semantic.button.primary.highlight.focus),
-        },
-      },
-      secondary: {
-        color: vars.color.semantic.button.secondary.content.normal,
-        backgroundColor: vars.color.semantic.button.secondary.background.normal,
-        borderColor: vars.color.semantic.button.secondary.border.normal,
-        ':hover': {
-          color: vars.color.semantic.button.secondary.content.normal,
-          backgroundColor: vars.color.semantic.button.secondary.background.hover,
-          borderColor: vars.color.semantic.button.secondary.border.hover,
-        },
-        ':focus': {
-          color: vars.color.semantic.button.secondary.content.normal,
-          backgroundColor: vars.color.semantic.button.secondary.background.focused,
-          borderColor: vars.color.semantic.button.secondary.border.focused,
-        },
-        ':active': {
-          color: vars.color.semantic.button.secondary.content.normal,
-          backgroundColor: vars.color.semantic.button.secondary.background.pressed,
-          borderColor: vars.color.semantic.button.secondary.border.pressed,
-          outline: 'none',
-        },
-        selectors: {
-          '&[disabled]': {
-            color: vars.color.semantic.button.secondary.content.disabled,
-            backgroundColor: vars.color.semantic.button.secondary.background.disabled,
-            borderColor: vars.color.semantic.button.secondary.border.disabled,
-          },
-          ...getFocusSelectors(vars.color.semantic.button.secondary.highlight.focus),
-        },
-      },
-      tertiary: {
-        color: vars.color.semantic.button.tertiary.content.normal,
-        backgroundColor: vars.color.semantic.button.tertiary.background.normal,
-        borderColor: vars.color.semantic.button.tertiary.border.normal,
-        ':hover': {
-          color: vars.color.semantic.button.tertiary.content.normal,
-          backgroundColor: vars.color.semantic.button.tertiary.background.hover,
-          borderColor: vars.color.semantic.button.tertiary.border.hover,
-        },
-        ':focus': {
-          color: vars.color.semantic.button.tertiary.content.normal,
-          backgroundColor: vars.color.semantic.button.tertiary.background.focused,
-          borderColor: vars.color.semantic.button.tertiary.border.focused,
-        },
-        ':active': {
-          color: vars.color.semantic.button.tertiary.content.normal,
-          backgroundColor: vars.color.semantic.button.tertiary.background.pressed,
-          borderColor: vars.color.semantic.button.tertiary.border.pressed,
-          outline: 'none',
-        },
-        selectors: {
-          '&[disabled]': {
-            color: vars.color.semantic.button.tertiary.content.disabled,
-            backgroundColor: vars.color.semantic.button.tertiary.background.disabled,
-            borderColor: vars.color.semantic.button.tertiary.border.disabled,
-          },
-          ...getFocusSelectors(vars.color.semantic.button.tertiary.highlight.focus),
-        },
-      },
-    },
-  },
+  variants: buttonVariants,
   defaultVariants: {
     variant: 'primary',
   },
 });
 
-export type Variants = RecipeVariants<typeof variants>;
+export type Variants = RecipeVariants<typeof button>;
 
 /* ###############################
  * Margins are used instead of flex gap because iOS Safari <14.5 does not support it.
