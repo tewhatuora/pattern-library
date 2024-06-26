@@ -1,5 +1,5 @@
 import { group } from '../ThemeItems.css';
-import { Heading } from '../../../packages/lib/src';
+import { Text } from '../../../packages/lib/src';
 import { PathBadge } from './PathBadge';
 
 type GroupProps = {
@@ -10,7 +10,7 @@ type GroupProps = {
 
 export const Group = ({ label, level, path }: GroupProps) => (
   <div className={group}>
-    <Heading level={level}>{label}</Heading>
+    <Text size="medium">{label}</Text>
     <PathBadge path={path} />
   </div>
 );

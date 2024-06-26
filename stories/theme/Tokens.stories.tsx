@@ -1,5 +1,3 @@
-import { Meta } from '@storybook/react';
-
 import DocsPage from '../../packages/lib/utils/DocsPage';
 import ColorDocs from './Color';
 import SpaceDocs from './Space';

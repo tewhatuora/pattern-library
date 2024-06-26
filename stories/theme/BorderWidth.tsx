@@ -3,8 +3,8 @@ import { vscodeTheme } from '@uiw/react-json-view/vscode';
 
 import { useTheme } from '../../packages/lib/src/components/ThemeProvider/ThemeContext';
 
-import { Card, Stack, Text } from '../../packages/lib/src/components';
-import { Group, PathBadge, Table, TableCell } from './components';
+import { Stack, Text } from '../../packages/lib/src/components';
+import { Group, PathBadge, Section, Table, TableCell } from './components';
 import { code } from './ThemeItems.css';
 
 /**
@@ -14,7 +14,7 @@ const BorderWidth = () => {
   const { tokens } = useTheme();
 
   return (
-    <Card>
+    <Section>
       <Stack space="medium">
         <Group label="Border width" level="1" path="tokens.border.width" />
         <Table>
@@ -51,7 +51,7 @@ const BorderWidth = () => {
           }}
         />
       </Stack>
-    </Card>
+    </Section>
   );
 };
 

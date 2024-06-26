@@ -3,9 +3,9 @@ import { vscodeTheme } from '@uiw/react-json-view/vscode';
 
 import { useTheme } from '../../packages/lib/src/components/ThemeProvider/ThemeContext';
 
-import { Card, Stack, Text } from '../../packages/lib/src/components';
+import { Stack, Text } from '../../packages/lib/src/components';
 import { code } from './ThemeItems.css';
-import { Group, PathBadge, Table, TableCell } from './components';
+import { Group, PathBadge, Section, Table, TableCell } from './components';
 
 /**
  * Border radius
@@ -14,7 +14,7 @@ const Shadows = () => {
   const { tokens } = useTheme();
 
   return (
-    <Card>
+    <Section>
       <Stack space="medium">
         <Group label="Shadows" level="1" path="tokens.shadows" />
         <Table>
@@ -43,7 +43,7 @@ const Shadows = () => {
         </Table>
         <JsonView collapsed={false} style={vscodeTheme} value={{ shadows: tokens?.shadows }} />
       </Stack>
-    </Card>
+    </Section>
   );
 };
 

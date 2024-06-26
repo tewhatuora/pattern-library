@@ -2,9 +2,10 @@ import JsonView from '@uiw/react-json-view';
 import { vscodeTheme } from '@uiw/react-json-view/vscode';
 
 import { useTheme } from '../../packages/lib/src/components/ThemeProvider/ThemeContext';
-import { Card, Stack, Text } from '../../packages/lib/src/components';
-import { block, code } from './ThemeItems.css';
-import { Group, PathBadge, Table, TableCell } from './components';
+import { Stack, Text } from '../../packages/lib/src/components';
+import { block, code, colorSection, colorSwatches, swatch, swatchHolder } from './ThemeItems.css';
+import { ColorRow, Group, PathBadge, Section, Table, TableCell } from './components';
+
 /**
  * Color
  */
@@ -12,167 +13,108 @@ const Color = () => {
   const { tokens } = useTheme();
 
   return (
-    <Card>
-      <Stack space="medium">
+    <Section>
+      <Stack space="xsmall">
         <Group label="Color" level="1" path="tokens.color" />
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(7, 1fr)',
-            gridAutoRows: '100px',
-            columnGap: '10px',
-            rowGap: '10px',
-          }}
-        >
+        <div className={colorSwatches}>
           {!!tokens?.color &&
             Object.keys(tokens?.color)?.map((name) => {
               if (typeof tokens?.color[name] === 'string') {
                 return (
-                  <div className={block} key={`color.${name}`} style={{ backgroundColor: tokens?.color[name] }}>
-                    <Text>{name}</Text>
+                  <div className={swatchHolder} key={`color.${name}`}>
+                    <div
+                      className={swatch}
+                      style={{
+                        backgroundColor: tokens?.color[name],
+                      }}
+                    />
+                    <code className={code}>{name}</code>
                   </div>
                 );
               }
             })}
         </div>
-        <Card>
-          <Stack space="medium">
-            <Group label="Semantic" level="2" path="tokens.color.sematic" />
-            <Stack space="medium">
+        <Section>
+          <Stack space="xsmall">
+            <Group label="semantic" level="2" path="tokens.color.sematic" />
+            <Stack space="xsmall">
               {Object.keys(tokens?.color.semantic)?.map((name) => (
-                <Card key={`tokens.color.semantic.${name}`}>
-                  <Stack space="medium">
+                <Section key={`tokens.color.semantic.${name}`}>
+                  <Stack space="xsmall">
                     <Group label={name} level="3" path={`tokens.color.sematic.${name}`} />
-                    <Stack space="medium">
+                    <Stack space="xsmall">
                       {Object.keys(tokens?.color.semantic[name])?.map((subName) => {
                         if (typeof tokens?.color.semantic[name][subName] === 'string') {
                           return (
                             <Table key={`tokens.color.semantic.${name}.${subName}`}>
-                              <tr>
-                                <TableCell>
-                                  <Text weight="bold">{subName}</Text>
-                                </TableCell>
-                                <TableCell>
-                                  <div
-                                    className={block}
-                                    style={{
-                                      width: 200,
-                                      height: 100,
-                                      backgroundColor: tokens.color.semantic[name][subName],
-                                    }}
-                                  />
-                                </TableCell>
-                                <TableCell>
-                                  <code className={code}>{tokens.color.semantic[name][subName]}</code>
-                                </TableCell>
-                                <TableCell>
-                                  <PathBadge path={`tokens.color.semantic.${name}.${subName}`} />
-                                </TableCell>
-                              </tr>
+                              <ColorRow
+                                color={tokens.color.semantic[name][subName]}
+                                name={subName}
+                                path={`tokens.color.semantic.${name}.${subName}`}
+                              />
                             </Table>
                           );
                         }
                         return (
-                          <Card key={`tokens.color.semantic.${name}.${subName}`}>
-                            <Stack space="medium">
+                          <Section key={`tokens.color.semantic.${name}.${subName}`}>
+                            <Stack space="xsmall">
                               <Group label={subName} level="4" path={`tokens.color.semantic.${name}.${subName}`} />
-                              <Stack space="medium">
+                              <Stack space="xsmall">
                                 {Object.keys(tokens?.color.semantic[name][subName])?.map((subSubName) => {
                                   if (typeof tokens?.color.semantic[name][subName][subSubName] === 'string') {
                                     return (
                                       <Table key={`tokens.color.semantic.${name}.${subName}.${subSubName}`}>
-                                        <tr>
-                                          <TableCell>
-                                            <Text weight="bold">{subSubName}</Text>
-                                          </TableCell>
-                                          <TableCell>
-                                            <div
-                                              className={block}
-                                              style={{
-                                                width: 200,
-                                                height: 100,
-                                                backgroundColor: tokens.color.semantic[name][subName][subSubName],
-                                              }}
-                                            />
-                                          </TableCell>
-                                          <TableCell>
-                                            <code className={code}>
-                                              {tokens.color.semantic[name][subName][subSubName]}
-                                            </code>
-                                          </TableCell>
-                                          <TableCell>
-                                            <PathBadge
-                                              path={`tokens.color.semantic.${name}.${subName}.${subSubName}`}
-                                            />
-                                          </TableCell>
-                                        </tr>
+                                        <ColorRow
+                                          color={tokens.color.semantic[name][subName][subSubName]}
+                                          name={subSubName}
+                                          path={`tokens.color.semantic.${name}.${subName}.${subSubName}`}
+                                        />
                                       </Table>
                                     );
                                   }
 
                                   return (
-                                    <Card key={`tokens.color.semantic.${name}.${subName}.${subSubName}`}>
-                                      <Stack space="medium">
+                                    <Section key={`tokens.color.semantic.${name}.${subName}.${subSubName}`}>
+                                      <Stack space="xsmall">
                                         <Group
+                                          key={`tokens.color.semantic.${name}.${subName}.${subSubName}`}
                                           label={subSubName}
                                           level="4"
                                           path={`tokens.color.semantic.${name}.${subName}.${subSubName}`}
                                         />
-                                        <Stack space="medium">
+                                        <Stack space="xsmall">
                                           <Table>
                                             {Object.keys(tokens?.color.semantic[name][subName][subSubName])?.map(
                                               (state) => (
-                                                <tr
+                                                <ColorRow
+                                                  color={tokens.color.semantic[name][subName][subSubName][state]}
                                                   key={`tokens.color.semantic.${name}.${subName}.${subSubName}.${state}`}
-                                                >
-                                                  <TableCell>
-                                                    <Text weight="bold">{state}</Text>
-                                                  </TableCell>
-                                                  <TableCell>
-                                                    <div
-                                                      className={block}
-                                                      style={{
-                                                        width: 200,
-                                                        height: 100,
-                                                        backgroundColor:
-                                                          tokens.color.semantic[name][subName][subSubName][state],
-                                                      }}
-                                                    />
-                                                  </TableCell>
-                                                  <TableCell>
-                                                    <code className={code}>
-                                                      {tokens.color.semantic[name][subName][subSubName][state]}
-                                                    </code>
-                                                  </TableCell>
-                                                  <TableCell>
-                                                    <PathBadge
-                                                      path={`tokens.color.semantic.${name}.${subName}.${subSubName}.${state}`}
-                                                    />
-                                                  </TableCell>
-                                                </tr>
+                                                  name={state}
+                                                  path={`tokens.color.semantic.${name}.${subName}.${subSubName}.${state}`}
+                                                />
                                               ),
                                             )}
                                           </Table>
                                         </Stack>
                                       </Stack>
-                                    </Card>
+                                    </Section>
                                   );
                                 })}
                               </Stack>
                             </Stack>
-                          </Card>
+                          </Section>
                         );
                       })}
                     </Stack>
                   </Stack>
-                </Card>
+                </Section>
               ))}
             </Stack>
           </Stack>
-        </Card>
+        </Section>
         <JsonView collapsed={false} style={vscodeTheme} value={{ color: tokens?.color }} />
       </Stack>
-    </Card>
+    </Section>
   );
 };
 

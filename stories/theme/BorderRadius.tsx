@@ -3,8 +3,8 @@ import { vscodeTheme } from '@uiw/react-json-view/vscode';
 
 import { useTheme } from '../../packages/lib/src/components/ThemeProvider/ThemeContext';
 
-import { Card, Stack, Text } from '../../packages/lib/src/components';
-import { Group, PathBadge, Table, TableCell } from './components';
+import { Stack, Text } from '../../packages/lib/src/components';
+import { Group, PathBadge, Section, Table, TableCell } from './components';
 import { code } from './ThemeItems.css';
 
 /**
@@ -14,12 +14,12 @@ const BorderRadius = () => {
   const { tokens } = useTheme();
 
   return (
-    <Card>
+    <Section>
       <Stack space="medium">
         <Group label="Border radius" level="1" path="tokens.border.radius" />
         <Stack space="medium">
           {Object.keys(tokens.border.radius).map((style) => (
-            <Card>
+            <Section>
               <Stack space="medium">
                 <Group label={style} level="2" path={`tokens.border.radius.${style}`} />
                 <Table>
@@ -49,7 +49,7 @@ const BorderRadius = () => {
                   ))}
                 </Table>
               </Stack>
-            </Card>
+            </Section>
           ))}
         </Stack>
         <JsonView
@@ -62,7 +62,7 @@ const BorderRadius = () => {
           }}
         />
       </Stack>
-    </Card>
+    </Section>
   );
 };
 

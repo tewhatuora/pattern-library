@@ -24,7 +24,7 @@ export const tableCell = style({
   width: '25%',
   borderRight: `1px solid ${vars.color.semantic.card.border}`,
   borderBottom: `1px solid ${vars.color.semantic.card.border}`,
-  padding: vars.space.xsmall.tablet,
+  padding: vars.space.xsmall.mobile,
   selectors: {
     '&:last-child': {
       textAlign: 'right',
@@ -48,4 +48,41 @@ export const codeBadge = style({
   backgroundColor: vars.color.info5,
   fontFamily: 'Courier New, monospace',
   fontSize: vars.textSize.xsmall.mobile.fontSize,
+});
+
+export const colorSwatches = style({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(7, 1fr)',
+  gridAutoRows: '50px',
+  columnGap: vars.space.xsmall.tablet,
+  rowGap: vars.space.xsmall.tablet,
+});
+
+export const swatchHolder = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+});
+
+export const swatch = style({
+  width: '100%',
+  height: 30,
+  border: '1px solid #EEEEEE',
+});
+
+export const colorSection = style({
+  position: 'relative',
+  paddingLeft: vars.space.xsmall.tablet,
+
+  selectors: {
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      width: '1px',
+      height: '100%',
+      backgroundColor: '#EEEEEE',
+    },
+  },
 });
