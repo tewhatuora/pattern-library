@@ -10,8 +10,6 @@ import { InputLabel, type InputLabelProps } from '../InputLabel/InputLabel';
 import { InputMessage, type InputMessageProps } from '../InputMessage/InputMessage';
 import { ComboboxAsync, type ComboboxAsyncProps } from './ComboboxAsync';
 
-import * as inputTextStyles from '../InputText/InputText.css';
-
 type ComboboxAsyncFieldProps<
   Option = unknown,
   IsMulti extends boolean = false,
@@ -61,7 +59,6 @@ function ComboboxAsyncField<
   return (
     <div>
       <InputLabel
-        className={inputTextStyles.fieldLabel}
         disabled={disabled}
         error={error || !!errorMessage}
         href={href}
@@ -89,7 +86,6 @@ function ComboboxAsyncField<
         {...comboboxProps}
       />
       <InputMessage
-        className={inputTextStyles.fieldMessage}
         descriptionProps={descriptionProps}
         disabled={disabled}
         errorMessage={errorMessage}
