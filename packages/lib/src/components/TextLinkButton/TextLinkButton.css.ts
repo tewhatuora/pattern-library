@@ -26,7 +26,6 @@ export const link = recipe({
     display: 'inline-flex',
     alignItems: 'center',
     width: 'auto',
-    height: 'auto',
     color: vars.color.semantic.text.links.active,
     textDecoration: vars.textDecoration['link-normal'],
     cursor: 'pointer',
