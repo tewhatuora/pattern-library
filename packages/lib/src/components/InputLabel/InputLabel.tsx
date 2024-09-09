@@ -1,10 +1,11 @@
-import { ElementType, LabelHTMLAttributes } from 'react';
+import { ElementType, LabelHTMLAttributes, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 import * as styles from './InputLabel.css';
 import { IconType } from '../Icon/icons';
@@ -25,6 +26,7 @@ export type InputLabelProps = {
   tertiaryLabelIconPosition?: 'left' | 'right';
   /** Element type to render the tertiary label as */
   tertiaryLabelAs?: 'a' | 'button' | 'text';
+  tertiaryLabelTooltip?: string;
   /** HTML `for` attribute */
   htmlFor?: string;
   /** Error state */
@@ -60,6 +62,7 @@ export const InputLabel = ({
   tertiaryLabelAs,
   tertiaryLabelIcon,
   tertiaryLabelIconPosition = 'left',
+  tertiaryLabelTooltip,
   onTertiaryLabelClick,
   htmlFor,
   href,
@@ -69,6 +72,56 @@ export const InputLabel = ({
   labelProps,
 }: InputLabelProps) => {
   const state = disabled ? 'disabled' : error ? 'error' : undefined;
+
+  const renderTertiaryLabel = useMemo(() => {
+    if (tertiaryLabelTooltip) {
+      return (
+        <Tooltip content={tertiaryLabelTooltip} label={tertiaryLabel ?? ''}>
+          {tertiaryLabel}
+        </Tooltip>
+      );
+    }
+
+    return tertiaryLabel;
+  }, [tertiaryLabel, tertiaryLabelTooltip]);
+
+  const renderTertiaryLabelAsButton = useMemo(() => {
+    const button = (
+      <Button
+        as={tertiaryLabelAs}
+        className={styles.tertiaryLabel}
+        href={href}
+        icon={tertiaryLabelIcon}
+        iconPosition={tertiaryLabelIconPosition}
+        variant="link"
+        onPress={onTertiaryLabelClick}
+      >
+        {tertiaryLabel}
+      </Button>
+    );
+
+    if (tertiaryLabel && tertiaryLabelAs === 'text') {
+      return null;
+    }
+
+    if (tertiaryLabelTooltip) {
+      return (
+        <Tooltip content={tertiaryLabelTooltip} label={tertiaryLabel ?? ''} triggerAsChild>
+          {button}
+        </Tooltip>
+      );
+    }
+
+    return button;
+  }, [
+    tertiaryLabelAs,
+    href,
+    tertiaryLabelIcon,
+    tertiaryLabelIconPosition,
+    onTertiaryLabelClick,
+    tertiaryLabel,
+    tertiaryLabelTooltip,
+  ]);
 
   return (
     <Box className={styles.wrapper} display="flex" justifyContent="spaceBetween">
@@ -96,26 +149,13 @@ export const InputLabel = ({
               [styles.labels.disabled]: disabled,
             })}
           >
-            <Text size="small">{tertiaryLabel}</Text>
-
+            <Text size="small">{renderTertiaryLabel}</Text>
             {!!tertiaryLabelIcon && <Icon aria-hidden="true" icon={tertiaryLabelIcon} variant="functionalIcons" />}
           </Box>
         ) : null}
       </Box>
 
-      {tertiaryLabel && tertiaryLabelAs !== 'text' ? (
-        <Button
-          as={tertiaryLabelAs}
-          className={clsx(styles.tertiaryLabel)}
-          href={href}
-          icon={tertiaryLabelIcon}
-          iconPosition={tertiaryLabelIconPosition}
-          variant="link"
-          onPress={onTertiaryLabelClick}
-        >
-          {tertiaryLabel}
-        </Button>
-      ) : null}
+      {renderTertiaryLabelAsButton}
     </Box>
   );
 };

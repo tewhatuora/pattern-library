@@ -1,6 +1,6 @@
 {
   "name": "@te-whatu-ora/anatomic",
-  "version": "4.2.0",
+  "version": "5.0.0-beta.1",
   "description": "Te Whatu Ora - Anatomic Design system",
   "homepage": "https://main--630296ff1edaa813b72e85c0.chromatic.com/",
   "author": "Kyle Beattie <kyle.beattie@alphero.com>",
@@ -24,7 +24,7 @@
     "design system",
     "pattern library"
   ],
-  "main": "./dist/index.cjs.js",
+  "main": "./dist/index.es.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
@@ -74,6 +74,7 @@
     "@radix-ui/react-switch": "^0.1.5",
     "@radix-ui/react-tabs": "^0.1.5",
     "@radix-ui/react-toggle-group": "^0.1.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@react-aria/button": "^3.4.4",
     "@react-aria/interactions": "^3.8.4",
     "@react-aria/label": "^3.3.1",

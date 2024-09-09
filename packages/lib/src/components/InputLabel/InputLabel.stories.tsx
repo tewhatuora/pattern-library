@@ -20,7 +20,12 @@ export default {
     },
     tertiaryLabel: {
       control: {
-        type: 'string',
+        type: 'text',
+      },
+    },
+    tertiaryLabelTooltip: {
+      control: {
+        type: 'text',
       },
     },
     href: {

@@ -1,4 +1,7 @@
 import { Checkbox, CheckboxProps } from './Checkbox';
+import DocsPage from '../../../utils/DocsPage';
+
+import Docs from './Checkbox.docs.mdx';
 
 export default {
   title: 'Forms/Checkbox',
@@ -6,6 +9,9 @@ export default {
   parameters: {
     controls: {
       include: ['label', 'id', 'heading', 'name', 'required', 'onCheckedChange', 'checked', 'disabled', 'hasError'],
+    },
+    docs: {
+      page: () => <DocsPage docs={Docs} />,
     },
   },
   argTypes: {

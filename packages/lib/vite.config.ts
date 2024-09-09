@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -16,9 +16,19 @@ export default defineConfig({
     },
     rollupOptions: {
       external: Object.keys(pkg.peerDependencies),
+      output: {
+        banner: `'use client';`,
+
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+        },
+      },
     },
   },
   plugins: [
+    splitVendorChunkPlugin(),
     vanillaExtractPlugin({
       identifiers: 'short',
     }),

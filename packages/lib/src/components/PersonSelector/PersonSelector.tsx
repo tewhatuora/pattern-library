@@ -64,7 +64,7 @@ export const PersonSelector = ({
       const variant = value === person.nhi ? 'selected' : 'default';
       return (
         <ButtonRoot
-          className={styles.buttonVariants({ variant })}
+          className={styles.button({ variant })}
           key={`person-selector-${person.nhi}`}
           onClick={() => onChange(person.nhi)}
         >

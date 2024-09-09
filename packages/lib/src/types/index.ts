@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { Tokens } from '!/themes/support/web/tokenType';
+
 import { Atoms } from '../css/atoms/atoms';
 
 export type AllOrNone<T> = T | { [K in keyof T]?: never };
@@ -22,3 +24,8 @@ export type ContrastVariant = 'light' | 'dark';
 export type AvatarVariant = 'small' | 'large';
 
 export type Color = Atoms['color'];
+
+export type Theme = {
+  className: string;
+  tokens: Tokens;
+};

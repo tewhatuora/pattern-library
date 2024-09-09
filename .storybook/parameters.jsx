@@ -2,6 +2,11 @@ import { ThemeProvider } from '../packages/lib/src';
 
 import { neutral, webSelfService } from '../packages/themes';
 
+const themes = {
+  [neutral.className]: neutral,
+  [webSelfService.className]: webSelfService,
+};
+
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   backgrounds: { disable: true },
@@ -33,7 +38,7 @@ const sbParameters = {
     ],
     target: 'root',
     Decorator: (props) => {
-      return <ThemeProvider theme={props.themeClasses}>{props.children}</ThemeProvider>;
+      return <ThemeProvider theme={themes[props.themeClasses]}>{props.children}</ThemeProvider>;
     },
   },
 };

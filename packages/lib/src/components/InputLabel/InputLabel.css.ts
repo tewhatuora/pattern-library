@@ -37,6 +37,7 @@ export const tertiaryLabel = style([
     alignItems: 'center',
     alignSelf: 'flex-start',
     width: 'auto',
+    borderWidth: 0,
   },
 ]);
 
