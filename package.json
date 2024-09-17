@@ -15,8 +15,8 @@
     "postinstall": "husky install",
     "size": "yarn build && yarn size-limit",
     "test": "yarn workspaces foreach -p run test",
-    "storybook": "start-storybook -p 9009",
-    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 && build-storybook",
+    "storybook": "storybook dev -p 9009",
+    "build-storybook": "NODE_OPTIONS=--max_old_space_size=4096 && storybook build",
     "chromatic": "chromatic"
   },
   "lint-staged": {
@@ -34,15 +34,18 @@
     "@next/eslint-plugin-next": "^12.1.6",
     "@prettier/plugin-xml": "^1.2.0",
     "@size-limit/preset-big-lib": "^6.0.3",
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/addons": "^6.5.12",
-    "@storybook/builder-vite": "0.1.41",
-    "@storybook/react": "^6.5.12",
-    "@storybook/testing-library": "^0.0.13",
-    "@storybook/theming": "^6.5.12",
+    "@storybook/addon-actions": "^8.3.0",
+    "@storybook/addon-essentials": "^8.3.0",
+    "@storybook/addon-interactions": "^8.3.0",
+    "@storybook/addon-links": "^8.3.0",
+    "@storybook/addon-mdx-gfm": "^8.3.0",
+    "@storybook/addon-themes": "^8.3.0",
+    "@storybook/addons": "^7.6.17",
+    "@storybook/builder-vite": "^8.3.0",
+    "@storybook/react": "^8.3.0",
+    "@storybook/react-vite": "^8.3.0",
+    "@storybook/testing-library": "^0.2.2",
+    "@storybook/theming": "^8.3.0",
     "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
     "@svgr/cli": "^6.4.0",
     "@svgr/core": "^6.4.0",
@@ -78,6 +81,7 @@
     "prompt": "^1.2.0",
     "react-docgen": "^5.4.3",
     "size-limit": "^6.0.3",
+    "storybook": "^8.3.0",
     "storybook-addon-themes": "^6.1.0",
     "storybook-preset-inline-svg": "^1.0.1",
     "storybook-tokens": "^1.0.1",
@@ -85,10 +89,8 @@
     "svg-inline-loader": "^0.8.2",
     "typescript": "4.4.4"
   },
-  "engines": {
-    "node": "16"
-  },
   "dependencies": {
+    "@storybook/addon-docs": "^8.3.0",
     "@uiw/react-json-view": "^2.0.0-alpha.24"
   }
 }
