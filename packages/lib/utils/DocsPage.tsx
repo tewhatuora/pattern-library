@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { ArgsTable, Description, PRIMARY_STORY, Primary, Stories, Subtitle, Title } from '@storybook/addon-docs';
+import { ArgTypes, Description, Subtitle, Title } from '@storybook/addon-docs';
 
 import { Classnames } from '../../../stories/components';
 
@@ -14,10 +14,14 @@ const DocsPage = (props: { docs: ElementType }) => {
         <hr />
         <Description />
       </div>
+      <hr />
+      <h3>Props</h3>
+      <ArgTypes />
+      <hr />
       <Classnames />
-      <Primary />
-      <ArgsTable story={PRIMARY_STORY} />
-      <Stories />
+      {/*<Primary />*/}
+      {/*<ArgsTable story={PRIMARY_STORY} />*/}
+      {/*<Stories />*/}
     </>
   );
 };

@@ -34,7 +34,7 @@ export const Classnames = () => {
   return (
     <DocsContext.Consumer>
       {(context) => {
-        const componentParts = context.title.split('/');
+        const componentParts = context.primaryStory?.title.split('/');
         const name = componentParts[componentParts.length - 1];
         const stylesObj = `${name}Styles`;
 
@@ -59,7 +59,7 @@ export const Classnames = () => {
                 code={`import { ${name}Styles } from '@te-whatu-ora/anatomic';
 const { ${classNames.join(', ')} } = ${name}Styles;`}
                 dark
-                language="ts"
+                language="typescript"
               />
               <table className="docblock-argstable">
                 <thead className="docblock-argstable-head">

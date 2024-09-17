@@ -1,18 +1,13 @@
-import { Badge, BadgeProps } from './Badge';
-import DocsPage from '../../../utils/DocsPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Docs from './Badge.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
-export default {
+import { Badge } from './Badge';
+
+const meta: Meta<typeof Badge> = {
   title: 'Components/Badge',
   component: Badge,
-  argTypes: {
-    children: {
-      control: {
-        type: 'text',
-      },
-    },
-  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -20,9 +15,12 @@ export default {
   },
 };
 
-export const Default = (args: BadgeProps) => {
-  const text = args.variant || 'badge';
-  const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
+export default meta;
+type Story = StoryObj<typeof Badge>;
 
-  return <Badge {...args}>{args.children || label}</Badge>;
+export const Default: Story = {
+  args: {
+    children: 'Badge',
+    variant: 'info',
+  },
 };
