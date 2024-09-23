@@ -15,12 +15,16 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4
-    - name: yarn install
+    - name: setup node and yarn cache
       uses: actions/setup-node@v4
       with:
         node-version-file: .nvmrc
         cache: yarn
-    - run: yarn install --frozen-lockfile
+    - name: yarn install
+      run: yarn install --frozen-lockfile
+    - name: yarn install themes
+      working-directory: ./packages/themes
+      run: yarn install --frozen-lockfile
 
   build:
     needs: install
