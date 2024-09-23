@@ -22,9 +22,6 @@ jobs:
         cache: yarn
     - name: yarn install
       run: yarn install --frozen-lockfile
-    - name: yarn install themes
-      working-directory: ./packages/themes
-      run: yarn install --frozen-lockfile
 
   build:
     needs: install
@@ -37,5 +34,6 @@ jobs:
       with:
         node-version-file: .nvmrc
         cache: yarn
+    - run: yarn install --frozen-lockfile
     - run: yarn build
     - run: yarn build-storybook
