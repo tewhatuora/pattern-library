@@ -15,13 +15,24 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4
-    - name: setup node and yarn cache
+    - name: setup node
       uses: actions/setup-node@v4
       with:
         node-version-file: .nvmrc
-        cache: yarn
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
     - name: yarn install
       run: yarn install --frozen-lockfile
+    - name: save install cache
+      uses: actions/cache/save@v4
+      id: cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
   build:
     needs: install
@@ -33,7 +44,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version-file: .nvmrc
-        cache: yarn
-    - run: yarn install --frozen-lockfile
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
     - run: yarn build
     - run: yarn build-storybook
