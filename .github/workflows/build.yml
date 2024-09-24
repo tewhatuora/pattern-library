@@ -28,8 +28,7 @@ jobs:
       id: restore-prev-cache
       with:
         path: node_modules
-        key: &cache-key
-          ${{ runner.os }}-${{ steps.node-setup.outputs.node-version }}-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ steps.node-setup.outputs.node-version }}-${{ hashFiles('**/yarn.lock') }}
 
     - name: yarn install
       if: steps.restore-prev-cache.outputs.cache-hit != 'true'
@@ -41,8 +40,7 @@ jobs:
       id: save-cache
       with:
         path: node_modules
-        key: *cache-key
-        #key: ${{ steps.restore-prev-cache.outputs.cache-primary-key }}
+        key: ${{ steps.restore-prev-cache.outputs.cache-primary-key }}
 
   build:
     needs: install
@@ -62,8 +60,7 @@ jobs:
       id: restore-install-cache
       with:
         path: node_modules
-        #key: ${{ jobs.install.steps.restore-prev-cache.outputs.cache-primary-key }}
-        key: *cache-key
+        key: ${{ runner.os }}-${{ steps.node-setup.outputs.node-version }}-${{ hashFiles('**/yarn.lock') }}
 
     - name: yarn build
       run: yarn build
