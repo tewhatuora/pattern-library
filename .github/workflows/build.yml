@@ -79,8 +79,9 @@ jobs:
         key: ${{ needs.info.outputs.cache-key }}
 
   build:
-    needs: install
+    needs: [info, install]
     runs-on: ubuntu-latest
+    if: ${{ needs.info.outputs.main-repo }}
     steps:
 
     - name: checkout
