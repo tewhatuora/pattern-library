@@ -2,10 +2,13 @@ name: Build
 
 on:
   workflow_call:
-  # push:
-  #   branches:
-  #     - main
-  #     - '*actions*' # A temp trigger to test workflows
+    outputs:
+      artifact-id:
+        description: "ID of uploaded artifact"
+        value: ${{ jobs.build.outputs.artifact-id }}
+      on-main-repo:
+        description: "Whether workflows are running from the main pattern-library repo"
+        value: ${{ jobs.build.outputs.on-main-repo }}
 
 jobs:
 
@@ -16,10 +19,13 @@ jobs:
     name: Build packages
     needs: install
     runs-on: ubuntu-latest
+    outputs:
+      artifact-id: ${{ steps.upload.outputs.artifact-id }}
+      on-main-repo: ${{ needs.install.outputs.on-main-repo }}
     if: ${{ needs.install.outputs.on-main-repo == true }}
     steps:
-    - name: logs
-      run: echo "${{ toJson(needs.install.outputs) }}"
+    # - name: logs
+    #   run: echo "${{ toJson(needs.install.outputs) }}"
 
     - name: checkout
       uses: actions/checkout@v4
@@ -42,3 +48,13 @@ jobs:
 
     - name: yarn build storybook
       run: yarn build-storybook
+
+    - name: Upload build artifacts
+      id: upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: pattern-lib-build
+        path: |
+          **/node_modules/
+          **/dist/
+        if-no-files-found: error

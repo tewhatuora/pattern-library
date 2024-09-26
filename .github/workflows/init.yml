@@ -40,5 +40,5 @@ jobs:
         hash="${{ hashFiles('**/yarn.lock') }}"
         echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
-    - name: log cache key value from steps context
-      run: echo cache-key is "${{ steps.gen-key.outputs.key }}"
+    # - name: log cache key value from steps context
+    #   run: echo cache-key is "${{ steps.gen-key.outputs.key }}"

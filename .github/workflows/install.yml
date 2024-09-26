@@ -27,8 +27,8 @@ jobs:
       on-main-repo: ${{ needs.init.outputs.on-main-repo }}
 
     steps:
-    - name: logs
-      run: echo "${{ toJson(needs.init.outputs) }}"
+    # - name: logs
+    #   run: echo "${{ toJson(needs.init.outputs) }}"
 
     - name: checkout
       uses: actions/checkout@v4
