@@ -5,13 +5,14 @@ on:
 
 jobs:
   init:
+    uses: ./.github/workflows/init.yml
+
+  install:
+    needs: init
     runs-on: ubuntu-latest
     steps:
     - name: checkout
       uses: actions/checkout@v4
-
-    - id: init
-      uses: ./.github/workflows/init.yml
 
     - name: setup node
       id: node-setup
@@ -24,7 +25,7 @@ jobs:
       id: restore-prev-cache
       with:
         path: node_modules
-        key: ${{ steps.init.outputs.cache-key }}
+        key: ${{ needs.init.outputs.cache-key }}
 
     - name: yarn install
       if: steps.restore-prev-cache.outputs.cache-hit != 'true'
@@ -36,4 +37,4 @@ jobs:
       id: save-cache
       with:
         path: node_modules
-        key: ${{ steps.init.outputs.cache-key }}
+        key: ${{ needs.init.outputs.cache-key }}

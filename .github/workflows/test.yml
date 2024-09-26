@@ -1,0 +1,17 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+      - '*actions*' # A temp trigger to test workflows
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: placeholder
+      run: echo hello
