@@ -8,16 +8,17 @@ on:
   #     - '*actions*' # A temp trigger to test workflows
 
 jobs:
-  # init:
-  #   uses: ./.github/workflows/init.yml
+  init:
+    uses: ./.github/workflows/init.yml
 
   install:
     uses: ./.github/workflows/install.yml
 
   build:
-    needs: install
+    name: Build packages
+    needs: [init, install]
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'tewhatuora/pattern-library' }}
+    if: ${{ needs.install.outputs.on-main-repo == true }}
     steps:
     - name: logs
       run: echo "${{ toJson(needs.install.outputs) }}"
