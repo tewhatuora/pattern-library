@@ -2,31 +2,25 @@ name: Build
 
 on:
   workflow_call:
-  push:
-    branches:
-      - main
-      - '*actions*' # A temp trigger to test workflows
+  # push:
+  #   branches:
+  #     - main
+  #     - '*actions*' # A temp trigger to test workflows
 
 jobs:
-  init:
-    uses: ./.github/workflows/init.yml
+  # init:
+  #   uses: ./.github/workflows/init.yml
 
   install:
     uses: ./.github/workflows/install.yml
 
   build:
-    needs: [init, install]
+    needs: install
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'tewhatuora/pattern-library' }}
     steps:
     - name: checkout
       uses: actions/checkout@v4
-
-    # - id: init
-    #   uses: ./.github/workflows/init.yml
-
-    # - id: install
-    #   uses: ./.github/workflows/install.yml
 
     - name: setup node
       id: node-setup

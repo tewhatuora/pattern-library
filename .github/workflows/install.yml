@@ -25,7 +25,8 @@ jobs:
       id: restore-prev-cache
       with:
         path: node_modules
-        key: ${{ needs.init.outputs.cache-key }}
+        #key: job.init.outputs.cache-key }}
+        key: ${{ env.CACHE_KEY }}
 
     - name: yarn install
       if: steps.restore-prev-cache.outputs.cache-hit != 'true'
@@ -37,4 +38,5 @@ jobs:
       id: save-cache
       with:
         path: node_modules
-        key: ${{ needs.init.outputs.cache-key }}
+        #key: needs.init.outputs.cache-key }}
+        key: ${{ env.CACHE_KEY }}
