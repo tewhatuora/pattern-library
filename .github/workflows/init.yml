@@ -15,6 +15,7 @@ on:
 
 jobs:
   collect:
+    name: Collect common settings
     runs-on: ubuntu-latest
 
     outputs:
@@ -41,10 +42,3 @@ jobs:
 
     - name: log cache key value from steps context
       run: echo cache-key is "${{ steps.gen-key.outputs.key }}"
-  
-  log:
-    runs-on: ubuntu-latest
-    needs: collect
-    steps:
-    - name: log cache key value from needs context
-      run: echo cache-key is "${{ needs.collect.outputs.cache-key }}"
