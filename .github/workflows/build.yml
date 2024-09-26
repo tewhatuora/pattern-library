@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'tewhatuora/pattern-library' }}
     steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
     - id: init
       uses: ./.github/workflows/init.yml
 
     - id: install
       uses: ./.github/workflows/install.yml
-
-    - name: checkout
-      uses: actions/checkout@v4
 
     - name: setup node
       id: node-setup
