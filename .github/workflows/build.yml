@@ -8,15 +8,13 @@ on:
   #     - '*actions*' # A temp trigger to test workflows
 
 jobs:
-  init:
-    uses: ./.github/workflows/init.yml
 
   install:
     uses: ./.github/workflows/install.yml
 
   build:
     name: Build packages
-    needs: [init, install]
+    needs: install
     runs-on: ubuntu-latest
     if: ${{ needs.install.outputs.on-main-repo == true }}
     steps:
