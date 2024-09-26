@@ -40,11 +40,11 @@ jobs:
         echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
     - name: log cache key value from steps context
-      run: echo cache-key is (${{ steps.node-setup.outputs.key }})
+      run: echo cache-key is "${{ steps.node-setup.outputs.key }}"
   
   log:
     runs-on: ubuntu-latest
     needs: collect
     steps:
     - name: log cache key value from needs context
-      run: echo cache-key is (${{ needs.collect.outputs.cache-key }})
+      run: echo cache-key is "${{ needs.collect.outputs.cache-key }}"

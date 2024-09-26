@@ -13,7 +13,7 @@ jobs:
     steps:
 
     - name: logs
-      run: echo ${{ needs.init.outputs }}
+      run: echo "${{ needs.init.outputs }}"
 
     - name: checkout
       uses: actions/checkout@v4
