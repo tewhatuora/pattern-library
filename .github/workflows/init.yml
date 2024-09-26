@@ -1,0 +1,40 @@
+name: Init
+
+on:
+  workflow_call:
+    outputs:
+      node-version:
+        description: "NodeJS version from .nvmrc file"
+        value: ${{ jobs.collect.outputs.node }}
+      cache-key:
+        description: "Unique key for caching node_modules from yarn.lock files"
+        value: ${{ jobs.collect.outputs.key }}
+      on-main-repo:
+        description: "Whether workflows are running from the main pattern-library repo"
+        value: ${{ github.repository == 'tewhatuora/pattern-library' }}
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    outputs:
+      node: ${{ steps.node-setup.outputs.node-version }}
+      key: ${{ steps.node-setup.outputs.key }}
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+
+    - id: cache-key
+      run: |
+        os="${{ runner.os }}"
+        node="${{ steps.node-setup.outputs.node-version }}"
+        hash="${{ hashFiles('**/yarn.lock') }}"
+        echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
+

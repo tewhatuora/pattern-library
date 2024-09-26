@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  #workflow_call:
+  push:
+    branches:
+      - main
+      - '*actions*' # A temp trigger to test workflows
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'tewhatuora/pattern-library' }}
+    steps:
+    - id: init
+      uses: ./.github/workflows/init.yml
+
+    - id: install
+      uses: ./.github/workflows/install.yml
+
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: node_modules
+        key: ${{ steps.init.outputs.cache-key }}
+    
+    - name: yarn build
+      run: yarn build
+
+    - name: yarn build storybook
+      run: yarn build-storybook

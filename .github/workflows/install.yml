@@ -1,0 +1,39 @@
+name: Install
+
+on:
+  workflow_call:
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+    - id: init
+      uses: ./.github/workflows/init.yml
+
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-prev-cache
+      with:
+        path: node_modules
+        key: ${{ steps.init.outputs.cache-key }}
+
+    - name: yarn install
+      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile
+
+    - name: save install cache
+      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      id: save-cache
+      with:
+        path: node_modules
+        key: ${{ steps.init.outputs.cache-key }}
