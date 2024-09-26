@@ -11,8 +11,9 @@ jobs:
     needs: init
     runs-on: ubuntu-latest
     steps:
-    - name: env var test
-      run: echo --$NODE_VERSION--
+
+    - name: logs
+      run: echo ${{ needs.init.outputs }}
 
     - name: checkout
       uses: actions/checkout@v4
@@ -29,7 +30,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ needs.init.outputs.cache-key }}
-        #key: env.CACHE_KEY }}
 
     - name: yarn install
       if: steps.restore-prev-cache.outputs.cache-hit != 'true'
@@ -42,4 +42,4 @@ jobs:
       with:
         path: node_modules
         key: ${{ needs.init.outputs.cache-key }}
-        #key: env.CACHE_KEY }}
+

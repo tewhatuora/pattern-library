@@ -39,9 +39,12 @@ jobs:
         hash="${{ hashFiles('**/yarn.lock') }}"
         echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
-  # export:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - run: echo "NODE_VERSION=${{ steps.node-setup.outputs.node-version }}" >> $GITHUB_ENV
-  #   - run: echo "CACHE_KEY=${{ steps.node-setup.outputs.cache-key }}" >> $GITHUB_ENV
-
+    - name: log cache key value from steps context
+      run: echo cache-key is (${{ steps.node-setup.outputs.key }})
+  
+  log:
+    runs-on: ubuntu-latest
+    needs: collect
+    steps:
+    - name: log cache key value from needs context
+      run: echo cache-key is (${{ needs.collect.outputs.cache-key }})
