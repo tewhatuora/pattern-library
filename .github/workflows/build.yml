@@ -22,7 +22,7 @@ jobs:
     outputs:
       artifact-id: ${{ steps.upload.outputs.artifact-id }}
       on-main-repo: ${{ needs.install.outputs.on-main-repo }}
-    if: ${{ needs.install.outputs.on-main-repo == true }}
+    #if: ${{ needs.install.outputs.on-main-repo == true }}
     steps:
     # - name: logs
     #   run: echo "${{ toJson(needs.install.outputs) }}"
