@@ -19,7 +19,7 @@ jobs:
 
     outputs:
       node: ${{ steps.node-setup.outputs.node-version }}
-      cache-key: ${{ steps.node-setup.outputs.key }}
+      cache-key: ${{ steps.gen-key.outputs.key }}
 
     steps:
     - name: checkout
@@ -32,7 +32,7 @@ jobs:
         node-version-file: .nvmrc
 
     - name: generate cache key
-      id: cache-key
+      id: gen-key
       run: |
         os="${{ runner.os }}"
         node="${{ steps.node-setup.outputs.node-version }}"
@@ -40,7 +40,7 @@ jobs:
         echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
     - name: log cache key value from steps context
-      run: echo cache-key is "${{ steps.node-setup.outputs.key }}"
+      run: echo cache-key is "${{ steps.gen-key.outputs.key }}"
   
   log:
     runs-on: ubuntu-latest
