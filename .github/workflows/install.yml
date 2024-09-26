@@ -2,6 +2,16 @@ name: Install
 
 on:
   workflow_call:
+    outputs:
+      node-version:
+        description: "NodeJS version from .nvmrc file"
+        value: ${{ jobs.install.outputs.node }}
+      cache-key:
+        description: "Unique key for caching node_modules from yarn.lock files"
+        value: ${{ jobs.install.outputs.cache-key }}
+      on-main-repo:
+        description: "Whether workflows are running from the main pattern-library repo"
+        value: ${{ jobs.install.outputs.on-main-repo }}
 
 jobs:
   init:
@@ -10,10 +20,14 @@ jobs:
   install:
     needs: init
     runs-on: ubuntu-latest
-    steps:
+    outputs:
+      node: ${{ needs.init.outputs.node-version }}
+      cache-key: ${{ needs.init.outputs-cache-key }}
+      on-main-repo: ${{ needs.init.outputs.on-main-repo }}
 
+    steps:
     - name: logs
-      run: echo "${{ needs.init.outputs }}"
+      run: echo "${{ toJson(needs.init.outputs) }}"
 
     - name: checkout
       uses: actions/checkout@v4
