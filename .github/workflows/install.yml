@@ -11,6 +11,9 @@ jobs:
     needs: init
     runs-on: ubuntu-latest
     steps:
+    - name: env var test
+      run: echo --$NODE_VERSION--
+
     - name: checkout
       uses: actions/checkout@v4
 
