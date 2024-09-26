@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       node: ${{ needs.init.outputs.node-version }}
-      cache-key: ${{ needs.init.outputs-cache-key }}
+      cache-key: ${{ needs.init.outputs.cache-key }}
       on-main-repo: ${{ needs.init.outputs.on-main-repo }}
 
     steps:
