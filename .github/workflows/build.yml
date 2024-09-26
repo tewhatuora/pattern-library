@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'tewhatuora/pattern-library' }}
     steps:
+    - name: logs
+      run: echo "${{ toJson(needs.install.outputs) }}"
+
     - name: checkout
       uses: actions/checkout@v4
 
@@ -33,7 +36,7 @@ jobs:
       id: restore-install-cache
       with:
         path: node_modules
-        key: ${{ needs.init.outputs.cache-key }}
+        key: ${{ needs.install.outputs.cache-key }}
     
     - name: yarn build
       run: yarn build
