@@ -2,7 +2,7 @@
 
 # TODO - restructure and clean up. eg make DRYer, and possibly split into multiple workflows?
 
-name: Build
+name: Combined
 
 on:
   push:

@@ -8,19 +8,25 @@ on:
       - '*actions*' # A temp trigger to test workflows
 
 jobs:
+  init:
+    uses: ./.github/workflows/init.yml
+
+  install:
+    uses: ./.github/workflows/install.yml
 
   build:
+    needs: [init, install]
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'tewhatuora/pattern-library' }}
     steps:
     - name: checkout
       uses: actions/checkout@v4
 
-    - id: init
-      uses: ./.github/workflows/init.yml
+    # - id: init
+    #   uses: ./.github/workflows/init.yml
 
-    - id: install
-      uses: ./.github/workflows/install.yml
+    # - id: install
+    #   uses: ./.github/workflows/install.yml
 
     - name: setup node
       id: node-setup
@@ -33,7 +39,7 @@ jobs:
       id: restore-install-cache
       with:
         path: node_modules
-        key: ${{ steps.init.outputs.cache-key }}
+        key: ${{ needs.init.outputs.cache-key }}
     
     - name: yarn build
       run: yarn build

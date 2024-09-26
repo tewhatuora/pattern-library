@@ -8,7 +8,7 @@ on:
         value: ${{ jobs.collect.outputs.node }}
       cache-key:
         description: "Unique key for caching node_modules from yarn.lock files"
-        value: ${{ jobs.collect.outputs.key }}
+        value: ${{ jobs.collect.outputs.cache-key }}
       on-main-repo:
         description: "Whether workflows are running from the main pattern-library repo"
         value: ${{ github.repository == 'tewhatuora/pattern-library' }}
@@ -19,7 +19,7 @@ jobs:
 
     outputs:
       node: ${{ steps.node-setup.outputs.node-version }}
-      key: ${{ steps.node-setup.outputs.key }}
+      cache-key: ${{ steps.node-setup.outputs.key }}
 
     steps:
     - name: checkout
@@ -36,5 +36,5 @@ jobs:
         os="${{ runner.os }}"
         node="${{ steps.node-setup.outputs.node-version }}"
         hash="${{ hashFiles('**/yarn.lock') }}"
-        echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
+        echo "cache-key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
