@@ -7,8 +7,9 @@ name: Combined
 on:
   push:
     branches:
-      - main
-      - '*actions*' # A temp trigger to test workflows
+      - never-run
+      # - main
+      # - '*actions*' # A temp trigger to test workflows
 
 jobs:
 
