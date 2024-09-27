@@ -16,7 +16,7 @@ jobs:
     name: Build packages
     runs-on: ubuntu-latest
     outputs:
-      cache-key: ${{ steps.gen-key.outputs.cache-key }}
+      cache-key: ${{ steps.gen-key.outputs.key }}
     steps:
 
     - name: checkout
@@ -41,7 +41,7 @@ jobs:
       id: restore-prev-cache
       with:
         path: node_modules
-        key: ${{ steps.gen-key.outputs.cache-key }}
+        key: ${{ steps.gen-key.outputs.key }}
 
     - name: yarn install
       if: steps.restore-prev-cache.outputs.cache-hit != 'true'
@@ -53,7 +53,7 @@ jobs:
       id: save-cache
       with:
         path: node_modules
-        key: ${{ steps.gen-key.outputs.cache-key }}
+        key: ${{ steps.gen-key.outputs.key }}
     
     - name: yarn build
       run: yarn build
