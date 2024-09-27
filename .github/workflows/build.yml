@@ -8,7 +8,7 @@ on:
         value: ${{ jobs.build.outputs.cache-key }}
       main-repo:
         description: "Name of the main pattern-library repo"
-        value: 'tewhatuora/pattern-library'
+        value: tewhatuora/pattern-library
 
 jobs:
 
@@ -60,6 +60,9 @@ jobs:
 
     - name: yarn build storybook
       run: yarn build-storybook
+
+    - name: print github repository
+      run: echo ${{ github.repository }}
 
     - name: Upload build artifacts
       id: upload
