@@ -3,6 +3,9 @@ name: Build
 on:
   workflow_call:
     outputs:
+      cache-key:
+        description: "Unique key for caching node_modules from yarn.lock files"
+        value: ${{ jobs.build.outputs.cache-key }}
       artifact-id:
         description: "ID of uploaded artifact"
         value: ${{ jobs.build.outputs.artifact-id }}
@@ -20,6 +23,7 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     outputs:
+      cache-key: ${{ needs.install.outputs.cache-key }}
       artifact-id: ${{ steps.upload.outputs.artifact-id }}
       on-main-repo: ${{ needs.install.outputs.on-main-repo }}
     #if: ${{ needs.install.outputs.on-main-repo == true }}
@@ -54,7 +58,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: pattern-lib-build
-        path: |
-          **/node_modules/
-          **/dist/
+        path: "**/dist/"
         if-no-files-found: error

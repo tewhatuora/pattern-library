@@ -23,6 +23,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: node_modules
+        key: ${{ needs.build.outputs.cache-key }}
     
     - name: download build artifact
       uses: actions/download-artifact@v4
