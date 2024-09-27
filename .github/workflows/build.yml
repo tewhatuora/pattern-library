@@ -6,9 +6,9 @@ on:
       cache-key:
         description: "Unique key for caching node_modules from yarn.lock files"
         value: ${{ jobs.build.outputs.cache-key }}
-      on-main-repo:
-        description: "Whether workflows are running from the main pattern-library repo"
-        value: ${{ jobs.build.outputs.on-main-repo }}
+      main-repo:
+        description: "Name of the main pattern-library repo"
+        value: 'tewhatuora/pattern-library'
 
 jobs:
 
@@ -17,10 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       cache-key: ${{ steps.gen-key.outputs.cache-key }}
-      on-main-repo: ${{ steps.on-main-repo.outputs.on-main-repo }}
     steps:
-    # - name: logs
-    #   run: echo "${{ toJson(needs.install.outputs) }}"
 
     - name: checkout
       uses: actions/checkout@v4
@@ -30,10 +27,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version-file: .nvmrc
-
-    - name: Is on main repo
-      id: on-main-repo
-      run: echo "${{ github.repository == 'tewhatuora/pattern-library' }}" >> $GITHUB_OUTPUT
 
     - name: generate cache key
       id: gen-key
