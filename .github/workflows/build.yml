@@ -6,27 +6,18 @@ on:
       cache-key:
         description: "Unique key for caching node_modules from yarn.lock files"
         value: ${{ jobs.build.outputs.cache-key }}
-      artifact-id:
-        description: "ID of uploaded artifact"
-        value: ${{ jobs.build.outputs.artifact-id }}
       on-main-repo:
         description: "Whether workflows are running from the main pattern-library repo"
         value: ${{ jobs.build.outputs.on-main-repo }}
 
 jobs:
 
-  install:
-    uses: ./.github/workflows/install.yml
-
   build:
     name: Build packages
-    needs: install
     runs-on: ubuntu-latest
     outputs:
-      cache-key: ${{ needs.install.outputs.cache-key }}
-      artifact-id: ${{ steps.upload.outputs.artifact-id }}
-      on-main-repo: ${{ needs.install.outputs.on-main-repo }}
-    #if: ${{ needs.install.outputs.on-main-repo == true }}
+      cache-key: ${{ steps.gen-key.outputs.cache-key }}
+      on-main-repo: ${{ steps.on-main-repo.outputs.on-main-repo }}
     steps:
     # - name: logs
     #   run: echo "${{ toJson(needs.install.outputs) }}"
@@ -39,13 +30,37 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version-file: .nvmrc
+
+    - name: Is on main repo
+      id: on-main-repo
+      run: echo "${{ github.repository == 'tewhatuora/pattern-library' }}" >> $GITHUB_OUTPUT
+
+    - name: generate cache key
+      id: gen-key
+      run: |
+        os="${{ runner.os }}"
+        node="${{ steps.node-setup.outputs.node-version }}"
+        hash="${{ hashFiles('**/yarn.lock') }}"
+        echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
   
     - name: restore cache
       uses: actions/cache/restore@v4
-      id: restore-install-cache
+      id: restore-prev-cache
       with:
         path: node_modules
-        key: ${{ needs.install.outputs.cache-key }}
+        key: ${{ steps.gen-key.outputs.cache-key }}
+
+    - name: yarn install
+      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile
+
+    - name: save install cache
+      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      id: save-cache
+      with:
+        path: node_modules
+        key: ${{ steps.gen-key.outputs.cache-key }}
     
     - name: yarn build
       run: yarn build
