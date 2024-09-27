@@ -1,0 +1,44 @@
+name: Publish theme
+
+on:
+  push:
+    tags:
+      - '@te-whatu-ora/anatomic-themes@[0-9]+.[0-9]+.[0-9]+' # Note: github globs way less exact that gitlab regexes
+    branches:
+      - '*actions*' # A temp trigger to test workflows - remove in prod
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.repository == needs.build.outputs.main-repo
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: node_modules
+        key: ${{ needs.build.outputs.cache-key }}
+    
+    - name: download build artifact
+      uses: actions/download-artifact@v4
+
+    - name: publish
+      if: false
+      run: |
+        npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
+        yarn publish --cwd ./packages/theme --tag latest
