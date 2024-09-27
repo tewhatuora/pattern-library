@@ -1,4 +1,4 @@
-name: Publish pre-release lib
+name: Publish prerelease lib
 
 on:
   push:
