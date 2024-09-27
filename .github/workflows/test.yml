@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - '*actions*' # A temp trigger to test workflows
+      - '*actions*' # A temp trigger to test workflows - remove in prod
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-    #if: github.repository == needs.build.outputs.main-repo
+    if: github.repository == needs.build.outputs.main-repo
     steps:
     - name: checkout
       uses: actions/checkout@v4
@@ -37,4 +37,6 @@ jobs:
       uses: actions/download-artifact@v4
 
     - name: run tests
-      run: yarn chromatic --project-token chpt_83775190bd163fd
+      run: echo This is the command for running the tests
+      # gitlab ci version:
+      # yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes

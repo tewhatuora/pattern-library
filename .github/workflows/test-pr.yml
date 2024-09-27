@@ -2,9 +2,9 @@ name: Test PR
 
 on:
   pull_request:
-  push:
+  push: # A temp trigger to test workflows - remove in prod
     branches:
-      - '*actions*' # A temp trigger to test workflows
+      - '*actions*'
 
 jobs:
   build:
@@ -12,7 +12,32 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    continue-on-error: true
     needs: build
+    if: github.repository == needs.build.outputs.main-repo
     steps:
-    - name: placeholder
-      run: echo hello
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: node_modules
+        key: ${{ needs.build.outputs.cache-key }}
+    
+    - name: download build artifact
+      uses: actions/download-artifact@v4
+
+    - name: run tests
+      run: echo This is the command for running the tests
+      # gitlab ci version:
+      # yarn chromatic --branch-name $CI_COMMIT_REF_SLUG
