@@ -1,9 +1,9 @@
-name: Publish pre-release theme
+name: Publish prerelease theme
 
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+[A-Za-z0-9.-+]+' # Note: github globs way less exact that gitlab regexes
+      - '@te-whatu-ora/anatomic-themes@[0-9]+.[0-9]+.[0-9]+[A-Za-z0-9.-+]+' # Note: github globs way less exact that gitlab regexes
     branches:
       - '*actions*' # A temp trigger to test workflows - remove in prod
 
