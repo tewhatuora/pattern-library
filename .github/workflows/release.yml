@@ -38,9 +38,21 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
+    - name: check if prerelease
+      id: prerelease
+      run: echo ${{ github.ref }} | egrep -q '^v[0-9]+\.[0-9]+\.[0-9]+$' && echo 'result=false' || echo 'result=true' >> GITHUB_OUTPUT
+
+    - name: test prerelease output
+      run: echo prerelease is ${{ steps.prerelease.outputs.result }}
+
     - name: create release
-      if: false
+      # if: false # temp guardrail to prevent creating unwanted releases
       uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ''
-        release_name: ''
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        body_path: 'CURRENT_VERSION.md'
+        draft: true
+        prerelease: ${{ steps.prerelease.outputs.result == 'true' }}
