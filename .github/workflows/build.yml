@@ -1,15 +1,5 @@
 name: Build
 
-# on:
-#   workflow_call:
-#     outputs:
-#       cache-key:
-#         description: "Unique key for caching node_modules from yarn.lock files"
-#         value: ${{ jobs.build.outputs.cache-key }}
-#       main-repo:
-#         description: "Name of the main pattern-library repo"
-#         value: tewhatuora/pattern-library
-
 on:
   pull_request:
     types: ['opened', 'synchronize', 'reopened']
@@ -20,7 +10,6 @@ on:
     branches:
       - main
       - '*actions*' # A temp trigger to test workflows - remove in prod
-
 
 jobs:
 
@@ -34,19 +23,10 @@ jobs:
       is-pre-lib: ${{ steps.components.outputs.is-pre-lib }}
       is-full-theme: ${{ steps.components.outputs.is-full-theme }}
       is-pre-theme: ${{ steps.components.outputs.is-pre-theme }}
+      is-lib: ${{ steps.checks.outputs.is-lib }}
+      is-theme: ${{ steps.checks.outputs.is-theme }}
+      should-publish: ${{ steps.checks.outputs.is-lib || steps.checks.outputs.is-theme }}
     steps:
-
-    # - name: determine components to act on
-    #   id: components
-    #   run: |
-    #     full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
-    #     echo "is-full-lib=${full-lib}" >> $GITHUB_OUTPUT
-    #     pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
-    #     echo "is-pre-lib=${pre-lib}" >> $GITHUB_OUTPUT
-    #     full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
-    #     echo "is-full-theme=${full-theme}" >> $GITHUB_OUTPUT
-    #     pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
-    #     echo "is-pre-theme=${pre-theme}" >> $GITHUB_OUTPUT
 
     - name: determine components to act on
       id: components
@@ -56,12 +36,20 @@ jobs:
         echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
         echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
+    - id: checks
+      run: |
+        echo "is-lib=${{ steps.components.outputs.is-full-lib=='true' || steps.components.outputs.is-pre-lib=='true' }}" >> $GITHUB_OUTPUT
+        echo "is-theme=${{ steps.components.outputs.is-full-theme=='true' || steps.components.outputs.is-pre-theme=='true' }}" >> $GITHUB_OUTPUT
+
     - name: log component values
       run: |
         echo is-full-lib '${{ steps.components.outputs.is-full-lib }}'
         echo is-pre-lib '${{ steps.components.outputs.is-pre-lib }}'
         echo is-full-theme '${{ steps.components.outputs.is-full-theme }}'
         echo is-pre-theme '${{ steps.components.outputs.is-pre-theme }}'
+        echo is-lib '${{ steps.checks.outputs.is-lib }}'
+        echo is-theme '${{ steps.checks.outputs.is-theme }}'
+        echo should-publish '${{ steps.checks.outputs.should-publish }}'
 
     - name: checkout
       uses: actions/checkout@v4
@@ -114,30 +102,27 @@ jobs:
         if-no-files-found: error
 
   test:
-    if: github.repository == needs.build.outputs.main-repo
+    if: github.repository == needs.build.outputs.main-repo && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref_type == 'branch'))
     needs: build
     uses: ./.github/workflows/test.yml
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
-      main-repo: ${{ needs.build.outputs.main-repo }}
 
   publish:
-    if: github.repository == needs.build.outputs.main-repo
+    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish
     needs: build
     uses: ./.github/workflows/publish.yml
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
-      main-repo: ${{ needs.build.outputs.main-repo }}
       is-full-lib: ${{ needs.build.outputs.is-full-lib }}
       is-pre-lib: ${{ needs.build.outputs.is-pre-lib }}
       is-full-theme: ${{ needs.build.outputs.is-full-theme }}
       is-pre-theme: ${{ needs.build.outputs.is-pre-theme }}
   
   release:
-    if: github.repository == needs.build.outputs.main-repo
+    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.is-lib
     needs: build
     uses: ./.github/workflows/release.yml
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
-      main-repo: ${{ needs.build.outputs.main-repo }}
       is-full-lib: ${{ needs.build.outputs.is-full-lib }}

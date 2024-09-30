@@ -6,9 +6,6 @@ on:
       cache-key:
         required: true
         type: string
-      main-repo:
-        required: true
-        type: string
       is-full-lib:
         type: string # 'true' or 'false'
       is-pre-lib:
@@ -17,20 +14,11 @@ on:
         type: string # 'true' or 'false'
       is-pre-theme:
         type: string # 'true' or 'false'
-  # push:
-  #   tags:
-  #     - 'v[0-9]+.[0-9]+.[0-9]+'
-  #   branches:
-  #     - '*actions*' # A temp trigger to test workflows - remove in prod
 
 jobs:
-  # build:
-  #   uses: ./.github/workflows/build.yml
 
   publish:
     runs-on: ubuntu-latest
-    #needs: build
-    if: github.repository == inputs.main-repo
     steps:
 
     - name: checkout
