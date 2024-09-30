@@ -36,17 +36,25 @@ jobs:
       is-pre-theme: ${{ steps.components.outputs.is-pre-theme }}
     steps:
 
+    # - name: determine components to act on
+    #   id: components
+    #   run: |
+    #     full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
+    #     echo "is-full-lib=${full-lib}" >> $GITHUB_OUTPUT
+    #     pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
+    #     echo "is-pre-lib=${pre-lib}" >> $GITHUB_OUTPUT
+    #     full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
+    #     echo "is-full-theme=${full-theme}" >> $GITHUB_OUTPUT
+    #     pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
+    #     echo "is-pre-theme=${pre-theme}" >> $GITHUB_OUTPUT
+
     - name: determine components to act on
       id: components
       run: |
-        full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
-        echo "is-full-lib=${full-lib}" >> $GITHUB_OUTPUT
-        pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
-        echo "is-pre-lib=${pre-lib}" >> $GITHUB_OUTPUT
-        full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
-        echo "is-full-theme=${full-theme}" >> $GITHUB_OUTPUT
-        pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
-        echo "is-pre-theme=${pre-theme}" >> $GITHUB_OUTPUT
+        echo "is-full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
     - name: log component values
       run: |
