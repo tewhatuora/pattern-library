@@ -6,15 +6,17 @@ on:
       cache-key:
         required: true
         type: string
-      full-release:
-        required: true
-        type: string # 'true' or 'false'
       main-repo:
         required: true
         type: string
-      theme-package:
-        default: 'te-whatu-ora/anatomic-themes'
-        type: string
+      is-full-lib:
+        type: string # 'true' or 'false'
+      is-pre-lib:
+        type: string # 'true' or 'false'
+      is-full-theme:
+        type: string # 'true' or 'false'
+      is-pre-theme:
+        type: string # 'true' or 'false'
   # push:
   #   tags:
   #     - 'v[0-9]+.[0-9]+.[0-9]+'
@@ -30,23 +32,6 @@ jobs:
     #needs: build
     if: github.repository == inputs.main-repo
     steps:
-    - name: determine components to publish
-      id: components
-      run: |
-        echo "is-full-lib=${{ inputs.full-release }}" >> $GITHUB_OUTPUT
-        pre-lib=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$' && echo 'true' || echo 'false')
-        echo "is-pre-lib=${pre-lib}" >> $GITHUB_OUTPUT
-        full-theme=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/@${{ inputs.theme-package }}@\d+\.\d+\.\d+$' && echo 'true' || echo 'false')
-        echo "is-full-theme=${full-theme}" >> $GITHUB_OUTPUT
-        pre-theme=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/@${{ inputs.theme-package }}@\d+\.\d+\.\d+-[\w\.-]+$' && echo 'true' || echo 'false')
-        echo "is-pre-theme=${pre-theme}" >> $GITHUB_OUTPUT
-
-    - name: log component values
-      run: |
-        echo is-full-lib '${{ steps.components.outputs.is-full-lib }}'
-        echo is-pre-lib '${{ steps.components.outputs.is-pre-lib }}'
-        echo is-full-theme '${{ steps.components.outputs.is-full-theme }}'
-        echo is-pre-theme '${{ steps.components.outputs.is-pre-theme }}'
 
     - name: checkout
       uses: actions/checkout@v4
