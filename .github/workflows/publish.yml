@@ -33,7 +33,7 @@ jobs:
     - name: determine components to publish
       id: components
       run: |
-        echo "is-full-lib=${${{ inputs.full-release }}}" >> GITHUB_OUTPUT
+        echo "is-full-lib=${{ inputs.full-release }}" >> GITHUB_OUTPUT
         is-pre-lib=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$' && echo 'true' || echo 'false')
         is-full-theme=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/@${{ inputs.theme-package }}@\d+\.\d+\.\d+$' && echo 'true' || echo 'false')
         echo "is-full-theme=${is-full-theme}" >> $GITHUB_OUTPUT
