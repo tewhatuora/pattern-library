@@ -1,19 +1,22 @@
 name: Test PR
 
+# on:
+#   pull_request:
+#   push: # A temp trigger to test workflows - remove in prod
+#     branches:
+#       - '*actions*'
+
 on:
-  pull_request:
-  push: # A temp trigger to test workflows - remove in prod
-    branches:
-      - '*actions*'
+  workflow_call:
 
 jobs:
-  build:
-    uses: ./.github/workflows/build.yml
+  # build:
+  #   uses: ./.github/workflows/build.yml
 
   test:
     runs-on: ubuntu-latest
     continue-on-error: true
-    needs: build
+    #needs: build
     if: github.repository == needs.build.outputs.main-repo
     steps:
     - name: checkout
@@ -38,6 +41,13 @@ jobs:
       uses: actions/download-artifact@v4
 
     - name: run tests
+      if: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name == 'main' }}
       run: echo This is the command for running the tests
+      # gitlab ci version:
+      # yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
+
+    - name: run pr tests
+      if: ${{ github.event_name == 'pull_request' }}
+      run: echo This is the command for running the PR tests
       # gitlab ci version:
       # yarn chromatic --branch-name $CI_COMMIT_REF_SLUG

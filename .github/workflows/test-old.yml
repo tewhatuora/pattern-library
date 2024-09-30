@@ -1,18 +1,18 @@
-name: Publish lib
+name: Test
 
 on:
   push:
     tags:
       - 'guardrail'
-    #   - 'v[0-9]+.[0-9]+.[0-9]+'
     # branches:
+    #   - main
     #   - '*actions*' # A temp trigger to test workflows - remove in prod
 
 jobs:
   build:
     uses: ./.github/workflows/build.yml
 
-  publish:
+  test:
     runs-on: ubuntu-latest
     needs: build
     if: github.repository == needs.build.outputs.main-repo
@@ -38,8 +38,7 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
-    - name: publish
-      if: false
-      run: |
-        npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        yarn publish --cwd ./packages/lib --tag latest
+    - name: run tests
+      run: echo This is the command for running the tests
+      # gitlab ci version:
+      # yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes

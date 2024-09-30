@@ -3,9 +3,10 @@ name: 'Publish prerelease lib'
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+-?[A-Za-z]+*' # Note: github globs way less exact that gitlab regexes
-    branches:
-      - '*actions*' # A temp trigger to test workflows - remove in prod
+      - 'guardrail'
+    #   - 'v[0-9]+.[0-9]+.[0-9]+-?[A-Za-z]+*' # Note: github globs way less exact that gitlab regexes
+    # branches:
+    #   - '*actions*' # A temp trigger to test workflows - remove in prod
 
 jobs:
   build:

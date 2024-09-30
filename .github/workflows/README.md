@@ -6,4 +6,4 @@
 
 ### Still to figure out
   * How to prevent the build workflow running multiple times and creating multiple artifacts. This can also create warnings during caching saving.
-    * This might need to have the build workflow get triggered by
+    * This might need to have the build workflow get triggered first then call the other steps afterwards.

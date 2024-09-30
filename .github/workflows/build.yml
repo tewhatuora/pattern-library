@@ -1,14 +1,29 @@
 name: Build
 
+# on:
+#   workflow_call:
+#     outputs:
+#       cache-key:
+#         description: "Unique key for caching node_modules from yarn.lock files"
+#         value: ${{ jobs.build.outputs.cache-key }}
+#       main-repo:
+#         description: "Name of the main pattern-library repo"
+#         value: tewhatuora/pattern-library
+
 on:
-  workflow_call:
-    outputs:
-      cache-key:
-        description: "Unique key for caching node_modules from yarn.lock files"
-        value: ${{ jobs.build.outputs.cache-key }}
-      main-repo:
-        description: "Name of the main pattern-library repo"
-        value: tewhatuora/pattern-library
+  pull_request:
+    types: ['opened', 'synchronize', 'reopened'] # from test-pr
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*' # from release
+      - 'v[0-9]+.[0-9]+.[0-9]+' # from publish-lib
+      - 'v[0-9]+.[0-9]+.[0-9]+-?[A-Za-z]+*' # from publish-lib-prerelease
+      - '@te-whatu-ora/anatomic-themes@[0-9]+.[0-9]+.[0-9]+' # from publish-theme
+      - '@te-whatu-ora/anatomic-themes@[0-9]+.[0-9]+.[0-9]+-?[A-Za-z0-9]+*' # from publish-theme-prerelease
+    branches:
+      - main # from test
+      - '*actions*' # A temp trigger to test workflows - remove in prod
+
 
 jobs:
 
@@ -17,6 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       cache-key: ${{ steps.gen-key.outputs.key }}
+      main-repo: 'tewhatuora/pattern-library'
     steps:
 
     - name: checkout
@@ -68,3 +84,18 @@ jobs:
         name: pattern-lib-build
         path: "**/dist/"
         if-no-files-found: error
+
+  test:
+    if: github.repository == needs.build.outputs.main-repo
+    needs: build
+    uses: ./.github/workflows/test.yml
+
+  publish:
+    if: github.repository == needs.build.outputs.main-repo
+    needs: build
+    uses: ./.github/workflows/publish.yml
+  
+  release:
+    if: github.repository == needs.build.outputs.main-repo
+    needs: build
+    uses: ./.github/workflows/release.yml
