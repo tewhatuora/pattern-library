@@ -33,6 +33,7 @@ jobs:
     outputs:
       cache-key: ${{ steps.gen-key.outputs.key }}
       main-repo: 'tewhatuora/pattern-library'
+      full-release: ${{ steps.full-release.outputs.full-release }}
     steps:
 
     - name: checkout
@@ -51,6 +52,13 @@ jobs:
         node="${{ steps.node-setup.outputs.node-version }}"
         hash="${{ hashFiles('**/yarn.lock') }}"
         echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
+
+    # full-release is true for library git tags that have no trailing chars after the version num
+    - name: check if full release
+      id: full-release
+      run: |
+        result=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/v\d+\.\d+\.\d+$' && echo 'true' || echo 'false')
+        echo "full-release=${result}" >> $GITHUB_OUTPUT
   
     - name: restore cache
       uses: actions/cache/restore@v4
@@ -89,13 +97,24 @@ jobs:
     if: github.repository == needs.build.outputs.main-repo
     needs: build
     uses: ./.github/workflows/test.yml
+    with:
+      cache-key: ${{ needs.build.outputs.cache-key }}
+      main-repo: ${{ needs.build.outputs.main-repo }}
 
   publish:
     if: github.repository == needs.build.outputs.main-repo
     needs: build
     uses: ./.github/workflows/publish.yml
+    with:
+      cache-key: ${{ needs.build.outputs.cache-key }}
+      full-release: ${{ needs.build.outputs.full-release }}
+      main-repo: ${{ needs.build.outputs.main-repo }}
   
   release:
     if: github.repository == needs.build.outputs.main-repo
     needs: build
     uses: ./.github/workflows/release.yml
+    with:
+      cache-key: ${{ needs.build.outputs.cache-key }}
+      full-release: ${{ needs.build.outputs.full-release }}
+      main-repo: ${{ needs.build.outputs.main-repo }}
