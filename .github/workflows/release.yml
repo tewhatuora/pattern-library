@@ -37,17 +37,18 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
-    # draft is true for any git ref that doesn't start with a version number (eg branch)
+    # draft is true for any git ref that isn't a tag starting with a version number
     - name: check if draft
       id: draft
       run: |
-        result=$(echo ${{ github.ref }} | egrep -qv '^v[0-9]+\.[0-9]+\.[0-9]+' && echo 'true' || echo 'false')
+        result=$(echo ${{ github.ref }} | egrep -q '^/refs/tags/v[0-9]+\.[0-9]+\.[0-9]+' && echo 'false' || echo 'true')
         echo "draft=${result}" >> $GITHUB_OUTPUT
 
+    # full-release is true for git tags that have no trailing chars after the version num
     - name: check if full release
       id: full-release
       run: |
-        result=$(echo ${{ github.ref }} | egrep -q '^v[0-9]+\.[0-9]+\.[0-9]+$' && echo 'true' || echo 'false')
+        result=$(echo ${{ github.ref }} | egrep -q '^/refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$' && echo 'true' || echo 'false')
         echo "full-release=${result}" >> $GITHUB_OUTPUT
 
     - name: log outputs
