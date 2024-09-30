@@ -37,15 +37,27 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
-    - name: check if prerelease
-      id: prerelease
-      run: echo ${{ github.ref }} | egrep -q '^v[0-9]+\.[0-9]+\.[0-9]+$' && echo 'result=false' || echo 'result=true' >> GITHUB_OUTPUT
+    # draft is true for any git ref that doesn't start with a version number (eg branch)
+    - name: check if draft
+      id: draft
+      run: |
+        result=(echo ${{ github.ref }} | egrep -qv '^v[0-9]+\.[0-9]+\.[0-9]+' && echo 'true' || echo 'false')
+        echo "draft=${result}" >> $GITHUB_OUTPUT
 
-    - name: test prerelease output
-      run: echo prerelease is ${{ steps.prerelease.outputs.result }}
+    - name: check if full release
+      id: full-release
+      run: |
+        result=(echo ${{ github.ref }} | egrep -q '^v[0-9]+\.[0-9]+\.[0-9]+$' && echo 'true' || echo 'false')
+        echo "full-release=${result}" >> $GITHUB_OUTPUT
+
+    - name: log outputs
+      run: |
+        echo draft is ${{ steps.draft.outputs.draft }}
+        echo full-release is ${{ steps.full-release.outputs.full-release }}
 
     - name: create release
-      # if: false # temp guardrail to prevent creating unwanted releases
+      # extra guard rail to prevent erroneous releases (can comment out for testing)
+      if: ${{ steps.draft.outputs.draft == 'false' }}
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,5 +65,5 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: ${{ github.ref }}
         body_path: 'CURRENT_VERSION.md'
-        draft: true
-        prerelease: ${{ steps.prerelease.outputs.result == 'true' }}
+        draft: ${{ steps.draft.outputs.draft == 'true' }}
+        prerelease: ${{ steps.full-release.outputs.full-release != 'true' }}
