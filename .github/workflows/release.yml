@@ -6,7 +6,7 @@ on:
       cache-key:
         required: true
         type: string
-      full-release:
+      is-full-lib:
         required: true
         type: string # 'true' or 'false'
       main-repo:
@@ -61,7 +61,7 @@ jobs:
     - name: log outputs
       run: |
         echo draft is ${{ steps.draft.outputs.draft }}
-        echo full-release is ${{ inputs.full-release }}
+        echo full-release is ${{ inputs.is-full-lib }}
 
     - name: create release
       # extra guard rail to prevent erroneous releases (can comment out for testing)
@@ -74,4 +74,4 @@ jobs:
         name: ${{ github.ref_name }}
         body_path: 'CURRENT_VERSION.md'
         draft: ${{ steps.draft.outputs.draft == 'true' }}
-        prerelease: ${{ inputs.full-release != 'true' }}
+        prerelease: ${{ inputs.is-full-lib != 'true' }}

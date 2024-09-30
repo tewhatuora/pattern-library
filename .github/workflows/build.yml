@@ -12,16 +12,13 @@ name: Build
 
 on:
   pull_request:
-    types: ['opened', 'synchronize', 'reopened'] # from test-pr
+    types: ['opened', 'synchronize', 'reopened']
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*' # from release
-      - 'v[0-9]+.[0-9]+.[0-9]+' # from publish-lib
-      - 'v[0-9]+.[0-9]+.[0-9]+-?[A-Za-z]+*' # from publish-lib-prerelease
-      - '@te-whatu-ora/anatomic-themes@[0-9]+.[0-9]+.[0-9]+' # from publish-theme
-      - '@te-whatu-ora/anatomic-themes@[0-9]+.[0-9]+.[0-9]+-?[A-Za-z0-9]+*' # from publish-theme-prerelease
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+      - '@te-whatu-ora/*-themes@[0-9]+.[0-9]+.[0-9]+*'
     branches:
-      - main # from test
+      - main
       - '*actions*' # A temp trigger to test workflows - remove in prod
 
 
@@ -33,8 +30,30 @@ jobs:
     outputs:
       cache-key: ${{ steps.gen-key.outputs.key }}
       main-repo: 'tewhatuora/pattern-library'
-      full-release: ${{ steps.full-release.outputs.full-release }}
+      is-full-lib: ${{ steps.components.outputs.is-full-lib }}
+      is-pre-lib: ${{ steps.components.outputs.is-pre-lib }}
+      is-full-theme: ${{ steps.components.outputs.is-full-theme }}
+      is-pre-theme: ${{ steps.components.outputs.is-pre-theme }}
     steps:
+
+    - name: determine components to act on
+      id: components
+      run: |
+        full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
+        echo "is-full-lib=${full-lib}" >> $GITHUB_OUTPUT
+        pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
+        echo "is-pre-lib=${pre-lib}" >> $GITHUB_OUTPUT
+        full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')
+        echo "is-full-theme=${full-theme}" >> $GITHUB_OUTPUT
+        pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')
+        echo "is-pre-theme=${pre-theme}" >> $GITHUB_OUTPUT
+
+    - name: log component values
+      run: |
+        echo is-full-lib '${{ steps.components.outputs.is-full-lib }}'
+        echo is-pre-lib '${{ steps.components.outputs.is-pre-lib }}'
+        echo is-full-theme '${{ steps.components.outputs.is-full-theme }}'
+        echo is-pre-theme '${{ steps.components.outputs.is-pre-theme }}'
 
     - name: checkout
       uses: actions/checkout@v4
@@ -53,13 +72,6 @@ jobs:
         hash="${{ hashFiles('**/yarn.lock') }}"
         echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
-    # full-release is true for library git tags that have no trailing chars after the version num
-    - name: check if full release
-      id: full-release
-      run: |
-        result=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/v\d+\.\d+\.\d+$' && echo 'true' || echo 'false')
-        echo "full-release=${result}" >> $GITHUB_OUTPUT
-  
     - name: restore cache
       uses: actions/cache/restore@v4
       id: restore-prev-cache
@@ -107,8 +119,11 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
-      full-release: ${{ needs.build.outputs.full-release }}
       main-repo: ${{ needs.build.outputs.main-repo }}
+      is-full-lib: ${{ needs.build.outputs.is-full-lib }}
+      is-pre-lib: ${{ needs.build.outputs.is-pre-lib }}
+      is-full-theme: ${{ needs.build.outputs.is-full-theme }}
+      is-pre-theme: ${{ needs.build.outputs.is-pre-theme }}
   
   release:
     if: github.repository == needs.build.outputs.main-repo
@@ -116,5 +131,5 @@ jobs:
     uses: ./.github/workflows/release.yml
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
-      full-release: ${{ needs.build.outputs.full-release }}
       main-repo: ${{ needs.build.outputs.main-repo }}
+      is-full-lib: ${{ needs.build.outputs.is-full-lib }}
