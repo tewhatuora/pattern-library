@@ -25,7 +25,7 @@ jobs:
       is-pre-theme: ${{ steps.components.outputs.is-pre-theme }}
       is-lib: ${{ steps.checks.outputs.is-lib }}
       is-theme: ${{ steps.checks.outputs.is-theme }}
-      should-publish: ${{ steps.checks.outputs.is-lib || steps.checks.outputs.is-theme }}
+      should-publish: ${{ steps.checks.outputs.is-lib=='true' || steps.checks.outputs.is-theme=='true' }}
     steps:
 
     - name: determine components to act on
@@ -109,7 +109,7 @@ jobs:
       cache-key: ${{ needs.build.outputs.cache-key }}
 
   publish:
-    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish
+    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish=='true'
     needs: build
     uses: ./.github/workflows/publish.yml
     with:
@@ -120,7 +120,7 @@ jobs:
       is-pre-theme: ${{ needs.build.outputs.is-pre-theme }}
   
   release:
-    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.is-lib
+    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.is-lib=='true'
     needs: build
     uses: ./.github/workflows/release.yml
     with:
