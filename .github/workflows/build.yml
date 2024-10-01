@@ -102,6 +102,7 @@ jobs:
         if-no-files-found: error
 
   test:
+    name: Run tests
     if: github.repository == needs.build.outputs.main-repo && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref_type == 'branch'))
     needs: build
     uses: ./.github/workflows/test.yml
@@ -109,6 +110,7 @@ jobs:
       cache-key: ${{ needs.build.outputs.cache-key }}
 
   publish:
+    name: Publish packages to npm
     if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish=='true'
     needs: build
     uses: ./.github/workflows/publish.yml
@@ -120,6 +122,7 @@ jobs:
       is-pre-theme: ${{ needs.build.outputs.is-pre-theme }}
   
   release:
+    name: Create GitHub release
     if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.is-lib=='true'
     needs: build
     uses: ./.github/workflows/release.yml

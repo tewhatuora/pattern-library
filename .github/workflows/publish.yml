@@ -42,32 +42,34 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
+    # TODO remove echo statements from npm and yarn commands once npm registry is ready for packages
+
     - name: publish library
-      if: false
+      if: inputs.is-full-lib == 'true'
       run: |
-        npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        yarn publish --cwd ./packages/lib --tag latest
+        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
+        echo yarn publish --cwd ./packages/lib --tag latest
 
     - name: publish prerelease library
-      if: false
+      if: inputs.is-pre-lib == 'true'
       run: |
         PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
-        npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        yarn publish --cwd ./packages/lib --tag $TAG_NAME
+        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
+        echo yarn publish --cwd ./packages/lib --tag $TAG_NAME
 
     - name: publish theme
-      if: false
+      if: inputs.is-full-theme == 'true'
       run: |
-        npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        yarn publish --cwd ./packages/theme --tag latest
+        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
+        echo yarn publish --cwd ./packages/theme --tag latest
 
     - name: publish prerelease theme
-      if: false
+      if: inputs.is-pre-theme == 'true'
       run: |
         PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
-        npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        yarn publish --cwd ./packages/theme --tag $TAG_NAME
+        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
+        echo yarn publish --cwd ./packages/theme --tag $TAG_NAME
