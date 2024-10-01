@@ -137,6 +137,7 @@ TL;DR:
 - Do work, [commit](./CONTRIBUTING.md) changes & push to `origin`
 - Create merge request
 - Review Chromatic/Storybook changes
+- `cd` into the package that you want to update (`packages/lib` or `packages/themes`)
 - Create new `major`, `minor` or `patch` release.
 - Merge request is approved
 - Merge
