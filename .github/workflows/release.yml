@@ -48,7 +48,6 @@ jobs:
         echo draft is ${{ steps.draft.outputs.draft }}
 
     - name: create release
-      # extra guard rail to prevent erroneous releases (can comment out for testing)
       if: ${{ steps.draft.outputs.draft == 'false' }}
       uses: softprops/action-gh-release@v2
       with:

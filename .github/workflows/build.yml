@@ -6,10 +6,9 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
-      - '@te-whatu-ora/*-themes@[0-9]+.[0-9]+.[0-9]+*'
+      - '@healthnz/pattern-library-themes@[0-9]+.[0-9]+.[0-9]+*'
     branches:
       - main
-      - '*actions*' # A temp trigger to test workflows - remove in prod
 
 jobs:
 
@@ -33,8 +32,8 @@ jobs:
       run: |
         echo "is-full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
         echo "is-pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
-        echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@te-whatu-ora/[\w-]+-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
-        echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@${theme-package}@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
     - id: checks
       run: |
