@@ -24,13 +24,13 @@
     "design system",
     "pattern library"
   ],
-  "main": "./dist/index.es.js",
-  "module": "./dist/index.es.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
       "types": "./dist/types/index.d.ts"
     },
     "./styles": {
