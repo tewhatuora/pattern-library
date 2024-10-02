@@ -10,7 +10,7 @@
     "start": "yarn workspace example start",
     "lint": "eslint --cache",
     "lint:fix": "yarn lint --fix",
-    "lint:format": "prettier --write",
+    "lint:format": "prettier --write packages/**/*.{js,ts,tsx}",
     "lint:types": "yarn workspaces run lint:types",
     "postinstall": "husky install",
     "size": "yarn build && yarn size-limit",
