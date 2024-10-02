@@ -17,9 +17,8 @@
     - [Themes](#themes)
   - [Storybook](#storybook)
     - [Themes](#themes-1)
-  - [Workflow](#workflow)
-    - [Releasing](#releasing)
-  - [Prereleases](#prereleases)
+  - [Releasing](#releasing)
+    - [Prereleases](#prereleases)
   - [GitLab CI/CD Jobs](#gitlab-cicd-jobs)
 
 
@@ -120,9 +119,21 @@ Storybook will open in your browser at [http://localhost:9009/](http://localhost
 
 --- 
 
-## Workflow
+## Releasing
 
 Please read the [contributing guide](./CONTRIBUTING.md) before working on this repository.
+
+TL;DR:
+- Create branch
+- Do work, [commit](./CONTRIBUTING.md) changes & push to `origin`
+- Create merge request
+- Review Chromatic/Storybook changes
+- `cd` into the package that you want to update (`packages/lib` or `packages/themes`)
+- Create new `major`, `minor` or `patch` release.
+- Merge request is approved
+- Merge
+
+### How to release a new version:
 
 - Always work on a feature branch e.g. `feature/my-feature`, branched off `main`.
 - Ensure you commit your changes using the [commit conventions](./CONTRIBUTING.md) outlined in the contributing guide.
@@ -130,110 +141,92 @@ Please read the [contributing guide](./CONTRIBUTING.md) before working on this r
   - This will deploy the branch to Chromatic
   - This pipeline will fail with [exit code 1](https://www.chromatic.com/docs/cli#exit-codes) if there are visual changes detected.
   - Approve or deny the changes in Chromatic, and re-run the pipeline.
-  - If it is successful, and your merge request has been approved
-  - [Storybook](https://-.chromatic.com/) will update with the changes.
-- [Release the change to NPM](#releasing)
+  - **Release a new version to NPM**
+    >  The process is the same for publishing a release for `@te-whatu-ora/anatomic` & `@te-whatu-ora/anatomic-themes`.
+    - <details>
+        <summary>@te-whatu-ora/anatomic</summary>
+        
+        To release a new version of the `@te-whatu-ora/anatomic` package on NPM, run one of the following from within `packages/lib`:
+      
+        **PATCH** version when you make backwards compatible bug fixes:
+        ```bash
+        # Patch version v1.0.0 => v1.0.1
+        $ yarn run patch
+        ```
+      
+        **MINOR** version when you add functionality in a backwards compatible manner:
+        ```bash
+        # Minor version v1.0.0 => v1.1.0
+        $ yarn run minor
+        ```
+      
+        **MAJOR** version when you make incompatible API changes:
+        ```bash
+        # Major version v1.0.0 => v2.0.0
+        $ yarn run major
+        ```
+      
+        This will:
+        - Bump the package version to the appropriate semver version.
+          - Update the `CHANGELOG.md` with the commits/release notes seperated out into sections based on commit types.
+          - Commit the changed files: `package.json`, `CHANGELOG.md` & `CURRENT_VERSION.md`.
+          - Tag the commit with the new semver version number, e.g.: `v1.0.1`.
+      
+        Next, push the commit **_and_** the new tag to origin/remote.
+      
+        ```bash
+        $ git push origin v1.0.1
+        ```
+      
+        This will run the CI/CD pipeline to:
+      
+        - Publish the package to `npm`.
+        - Create a [release in GitLab](https://gitlab.com/healthnz-ult/c3/anatomic/-/releases), with the new version's release notes.
+      
+      </details>
 
----
+    - <details>
+        <summary>@te-whatu-ora/anatomic-themes</summary>
+        
+        To release a new version of the `@te-whatu-ora/anatomic-themes` package on NPM, run one of the following from within `packages/themes`:
+          
+        **PATCH** version when you make backwards compatible bug fixes:
+        ```bash
+        # Patch version v1.0.0 => v1.0.1
+        $ yarn run patch
+        ```
+          
+        **MINOR** version when you add functionality in a backwards compatible manner:
+        ```bash
+        # Minor version v1.0.0 => v1.1.0
+        $ yarn run minor
+        ```
+          
+        **MAJOR** version when you make incompatible API changes:
+        ```bash
+        # Major version v1.0.0 => v2.0.0
+        $ yarn run major
+        ```
+          
+        This will:
+        - Bump the package version to the appropriate semver version.
+          - Commit the changed files: `package.json`
+          - Tag the commit with the package name and new semver version number, e.g.: `@te-whatu-ora/anatomic-themes@1.0.1`.
+          
+        Next, push the commit **_and_** the new tag to origin/remote.
+          
+        ```bash
+        $ git push origin @te-whatu-ora/anatomic-themes@1.0.1
+        ```
+          
+        This will run the CI/CD pipeline to:
+          
+        - Publish the package to `npm`.
+      </details>
+  - If Chromatic is successful, and your merge request has been approved, you may merge into `main`.
+--- 
 
-### Releasing
-
-The process is the same for publishing a release for `@te-whatu-ora/anatomic` & `@te-whatu-ora/anatomic-themes`.
-
-TLDR:
-
-1. `cd` into the appropriate package (`cd packages/lib` OR `cd packages/themes`)
-2. run the appropriate version bump script for the release:
-   1. backward-compatible bugfixes only: `yarn run patch`
-   2. added new backward-compatible functionality: `yarn run minor`
-   3. added breaking changes: `yarn run major`
-   4. prerelease beta release with breaking changes: `yarn run major:beta`
-3. push the tag(s) created by step 2
-
-Package-specific documentation:
-
-Checkout the `main` branch. `git checkout main && git pull`.
-
-<details>
-<summary>@te-whatu-ora/anatomic</summary>
-To release a new version of the `@te-whatu-ora/anatomic` package on NPM, run one of the following from within `packages/lib`:
-
-**PATCH** version when you make backwards compatible bug fixes:
-```bash
-# Patch version v1.0.0 => v1.0.1
-$ yarn run patch
-```
-
-**MINOR** version when you add functionality in a backwards compatible manner:
-```bash
-# Minor version v1.0.0 => v1.1.0
-$ yarn run minor
-```
-
-**MAJOR** version when you make incompatible API changes:
-```bash
-# Major version v1.0.0 => v2.0.0
-$ yarn run major
-```
-
-This will:
-- Bump the package version to the appropriate semver version.
-  - Update the `CHANGELOG.md` with the commits/release notes seperated out into sections based on commit types.
-  - Commit the changed files: `package.json`, `CHANGELOG.md` & `CURRENT_VERSION.md`.
-  - Tag the commit with the new semver version number, e.g.: `v1.0.1`.
-
-Next, push the commit **_and_** the new tag to origin/remote.
-
-```bash
-$ git push origin v1.0.1
-```
-
-This will run the CI/CD pipeline to:
-
-- Publish the package to `npm`.
-  - Create a [release in GitLab](https://gitlab.com/healthnz-ult/c3/anatomic/-/releases), with the new version's release notes.
-- </details>
-
-
-<details>
-<summary>@te-whatu-ora/anatomic-themes</summary>
-To release a new version of the `@te-whatu-ora/anatomic-themes` package on NPM, run one of the following from within `packages/themes`:
-
-**PATCH** version when you make backwards compatible bug fixes:
-```bash
-# Patch version v1.0.0 => v1.0.1
-$ yarn run patch
-```
-
-**MINOR** version when you add functionality in a backwards compatible manner:
-```bash
-# Minor version v1.0.0 => v1.1.0
-$ yarn run minor
-```
-
-**MAJOR** version when you make incompatible API changes:
-```bash
-# Major version v1.0.0 => v2.0.0
-$ yarn run major
-```
-
-This will:
-- Bump the package version to the appropriate semver version.
-  - Commit the changed files: `package.json`
-  - Tag the commit with the package name and new semver version number, e.g.: `@te-whatu-ora/anatomic-themes@1.0.1`.
-
-Next, push the commit **_and_** the new tag to origin/remote.
-
-```bash
-$ git push origin @te-whatu-ora/anatomic-themes@1.0.1
-```
-
-This will run the CI/CD pipeline to:
-
-- Publish the package to `npm`.
-</details>
-
-## Prereleases
+### Prereleases
 
 For prereleases, include the `--prerelease` flag, with a tag/channel name e.g. `beta`.
 This is useful to release testable/beta versions without affecting the latest release.
@@ -256,6 +249,8 @@ $ npm install @te-whatu-ora/anatomic@beta
 ```bash
 $ yarn add @te-whatu-ora/anatomic
 ```
+
+--- 
 
 ## GitLab CI/CD Jobs
 
