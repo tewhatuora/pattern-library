@@ -120,12 +120,12 @@ export const AnchorLinkExample = (args: TooltipProps) => (
 
 export const AccordionExample = (args: TooltipProps) => (
   <ContrastWrapper variant="light">
-    <Accordion.Root>
+    <Accordion.Root headingLevel={3} type="single" variant="light">
       <Accordion.Item value="item-1">
         <Accordion.Trigger header="Header" icon="document" label="Label" />
         <Accordion.Content>
-          <Tooltip {...args} side="bottom">
-            <Text>This is a tooltip</Text>
+          <Tooltip {...args} content="This is a tooltip" side="bottom">
+            <Text>Hover for tooltip</Text>
           </Tooltip>
         </Accordion.Content>
       </Accordion.Item>
