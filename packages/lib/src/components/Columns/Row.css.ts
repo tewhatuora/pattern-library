@@ -1,7 +1,7 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { calc } from '@vanilla-extract/css-utils';
-import { Viewport } from '@te-whatu-ora/anatomic-themes/dist/types/tokenType';
+import { Viewport } from '@healthnz/pattern-library-themes/dist/types/tokenType';
 
 import { ColumnLength } from './Column';
 

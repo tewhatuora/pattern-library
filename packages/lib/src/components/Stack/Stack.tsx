@@ -26,7 +26,7 @@ type StackProps = {
   space: Space;
   /** Order children elements horizontally */
   horizontal?: boolean;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & BoxProps;
 

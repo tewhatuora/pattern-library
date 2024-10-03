@@ -1,21 +1,21 @@
-# Anatomic design system
+# Design Pattern Library
 
-`@te-whatu-ora/anatomic`
+`@healthnz/pattern-library`
 
 # Installation
 
-To install Anatomic, open a terminal at the root of your project workspace and run the following command:
+To install the pattern library, open a terminal at the root of your project workspace and run the following command:
 
 ```bash
-$ yarn add @te-whatu-ora/anatomic
+$ yarn add @healthnz/pattern-library
 $ # or using NPM
-$ npm install @te-whatu-ora/anatomic
+$ npm install @healthnz/pattern-library
 ```
 
-The command will install all Anatomic packages in the node_modules folder of your application.
+The command will install all pattern library packages in the node_modules folder of your application.
 
 ## Include fonts
-Anatomic uses the Google Font "Fira Sans". Include the resources in your HTML.
+The pattern library uses the Google Font "Fira Sans". Include the resources in your HTML.
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,37 +24,37 @@ Anatomic uses the Google Font "Fira Sans". Include the resources in your HTML.
 ```
 
 ## Import styles
-Anatomic styles include a CSS bootstrap and the component styles.
+The pattern library styles include a CSS bootstrap and the component styles.
 
-To import Anatomic styles add the following import declaration to your root app:
+To import styles add the following import declaration to your root app:
 
 CSS in JS
 ```js
-import '@te-whatu-ora/anatomic/styles';
+import '@healthnz/pattern-library/styles';
 ```
 
 ## Configure your application
-Below is an example of how to configure an application with a pre-constructed Anatomic theme object:
+Below is an example of how to configure an application with a pre-constructed theme object:
 
 ```tsx
-import '@te-whatu-ora/anatomic/styles';
-import { ThemeProvider } from '@te-whatu-ora/anatomic';
-import { neutral } from '@te-whatu-ora/anatomic-themes';
+import '@healthnz/pattern-library/styles';
+import { ThemeProvider } from '@healthnz/pattern-library';
+import { neutral } from '@healthnz/pattern-library-themes';
 
 <ThemeProvider theme={neutral.className}>
   <App />
 </ThemeProvider>
 ```
 
-Instead of harcoding the foundation values in Anatomic, we choose to implement a theming system allowing applications to supply their core values to Anatomic.
+Instead of hardcoding the foundation values in the pattern library, we choose to implement a theming system allowing applications to supply their core values to the library.
 
-The theming system introduced a concept of theme object. To configure Anatomic, you'll need to build your own theme object or import a pre-constructed one from Anatomic. The theme object will be used to render the foundation variables and define a theme provider at the root of your application.
+The theming system introduced a concept of theme object. To configure it, you'll need to build your own theme object or import a pre-constructed one from the pattern library. The theme object will be used to render the foundation variables and define a theme provider at the root of your application.
 
 ### Start creating components
-You're all set! You can start creating your application with Anatomic:
+You're all set! You can start creating your application with the pattern library:
 
 ```tsx
-import { Container, Text, Button } from '@te-whatu-ora/anatomic';
+import { Container, Text, Button } from '@healthnz/pattern-library';
 
 export const App = () => (
   <Container>

@@ -60,7 +60,7 @@ export const Classnames = () => {
             <div>
               <Subheading>Classnames</Subheading>
               <Source
-                code={`import { ${name}Styles } from '@te-whatu-ora/anatomic';
+                code={`import { ${name}Styles } from '@healthnz/pattern-library';
 const { ${classNames.join(', ')} } = ${name}Styles;`}
                 dark
                 language="typescript"

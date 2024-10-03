@@ -19,7 +19,7 @@ export type IconProps = {
   variant?: styles.Variant;
   /** Optional onClick handler for Icon element */
   onClick?: () => void;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** Icon color */
   color?: Color;

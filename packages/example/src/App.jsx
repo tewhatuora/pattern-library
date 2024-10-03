@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
-import '@te-whatu-ora/anatomic/styles';
-import '@te-whatu-ora/anatomic-themes/styles';
+import '@healthnz/pattern-library/styles';
+import '@healthnz/pattern-library-themes/styles';
 
-import { ThemeProvider, Header, Stack, Container, Text, Navigation } from '@te-whatu-ora/anatomic';
-import { neutral } from '@te-whatu-ora/anatomic-themes';
+import { ThemeProvider, Header, Stack, Container, Text, Navigation } from '@healthnz/pattern-library';
+import { neutral } from '@healthnz/pattern-library-themes';
 
 import Example from './Example';
 import YourDetails from './YourDetails';

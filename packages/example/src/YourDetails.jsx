@@ -12,7 +12,7 @@ import {
   List,
   TextLink,
   Button
-} from '@te-whatu-ora/anatomic';
+} from '@healthnz/pattern-library';
 
 const YourDetails = (props) => {
   return (

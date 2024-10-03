@@ -19,7 +19,7 @@ export type TextProps = Omit<ComponentPropsWithoutRef<'span'>, 'color'> &
     display?: BoxProps['display'];
     /** Text color token */
     color?: BoxProps['color'];
-    /** Additional CSS className. (Use `__anatomic__` for an example) */
+    /** Additional CSS className. (Use `__patternlibrary__` for an example) */
     className?: BoxProps['className'];
   };
 

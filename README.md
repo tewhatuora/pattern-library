@@ -1,11 +1,11 @@
-# Te Whatu Ora Anatomic design system
+# Health NZ Design Pattern Library (DPL)
 
-[![npm version](https://badge.fury.io/js/@te-whatu-ora%2Fanatomic.svg)](https://badge.fury.io/js/@te-whatu-ora%2Fanatomic)
+[![npm version](https://badge.fury.io/js/@healthnz%2Fpattern-library.svg)](https://badge.fury.io/js/@healthnz%2Fpattern-library)
 [![storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://main--630296ff1edaa813b72e85c0.chromatic.com/)
 
 ## Table of contents
 
-- [Te Whatu Ora Anatomic design system](#te-whatu-ora-anatomic-design-system)
+- [Health NZ Design Pattern Library](#healthnz-design-pattern-library)
   - [Table of contents](#table-of-contents)
   - [Inspirations](#inspirations)
   - [Setup](#setup)
@@ -26,6 +26,10 @@
 
 [Braid](https://github.com/seek-oss/braid-design-system)
 
+## History
+
+The Design Pattern Library has replaced the deprecated Anatomic library.
+
 ## Setup
 
 Checkout this repository, and install the dependencies:
@@ -33,9 +37,9 @@ Checkout this repository, and install the dependencies:
 $ yarn
 ```
 
-Add the MOH remote repository:
+Add the remote repository:
 ```bash
-$ git remote add https://gitlab.com/healthnz-ult/c3/anatomic.git
+$ git remote add https://github.com/tewhatuora/pattern-library.git
 ```
 
 Build the themes package. First, navigate to the themes package:
@@ -88,13 +92,13 @@ all the React components and a package for the themes, generated with style-dict
 
 ### Design system library
 
-`@te-whatu-ora/anatomic`
+`@healthnz/pattern-library`
 
 See the [documentation](packages/lib/README.md) for the design system package.
 
 ### Themes
 
-`@te-whatu-ora/anatomic-themes`
+`@healthnz/pattern-library-themes`
 
 See the [documentation](packages/themes/README.md) for the themes package.
 
@@ -142,11 +146,11 @@ TL;DR:
   - This pipeline will fail with [exit code 1](https://www.chromatic.com/docs/cli#exit-codes) if there are visual changes detected.
   - Approve or deny the changes in Chromatic, and re-run the pipeline.
   - **Release a new version to NPM**
-    >  The process is the same for publishing a release for `@te-whatu-ora/anatomic` & `@te-whatu-ora/anatomic-themes`.
+    >  The process is the same for publishing a release for `@healthnz/pattern-library` & `@healthnz/pattern-library-themes`.
     - <details>
-        <summary>@te-whatu-ora/anatomic</summary>
+        <summary>@healthnz/pattern-library</summary>
         
-        To release a new version of the `@te-whatu-ora/anatomic` package on NPM, run one of the following from within `packages/lib`:
+        To release a new version of the `@healthnz/pattern-library` package on NPM, run one of the following from within `packages/lib`:
       
         **PATCH** version when you make backwards compatible bug fixes:
         ```bash
@@ -181,14 +185,14 @@ TL;DR:
         This will run the CI/CD pipeline to:
       
         - Publish the package to `npm`.
-        - Create a [release in GitLab](https://gitlab.com/healthnz-ult/c3/anatomic/-/releases), with the new version's release notes.
+        - Create a [release in GitHub](https://github.com/tewhatuora/pattern-library/releases), with the new version's release notes.
       
       </details>
 
     - <details>
-        <summary>@te-whatu-ora/anatomic-themes</summary>
+        <summary>@healthnz/pattern-library-themes</summary>
         
-        To release a new version of the `@te-whatu-ora/anatomic-themes` package on NPM, run one of the following from within `packages/themes`:
+        To release a new version of the `@healthnz/pattern-library-themes` package on NPM, run one of the following from within `packages/themes`:
           
         **PATCH** version when you make backwards compatible bug fixes:
         ```bash
@@ -211,12 +215,12 @@ TL;DR:
         This will:
         - Bump the package version to the appropriate semver version.
           - Commit the changed files: `package.json`
-          - Tag the commit with the package name and new semver version number, e.g.: `@te-whatu-ora/anatomic-themes@1.0.1`.
+          - Tag the commit with the package name and new semver version number, e.g.: `@healthnz/pattern-library-themes@1.0.1`.
           
         Next, push the commit **_and_** the new tag to origin/remote.
           
         ```bash
-        $ git push origin @te-whatu-ora/anatomic-themes@1.0.1
+        $ git push origin @healthnz/pattern-library-themes@1.0.1
         ```
           
         This will run the CI/CD pipeline to:
@@ -240,14 +244,14 @@ Users can install the prerelease version with:
 
 ```bash
 # yarn
-$ yarn add @te-whatu-ora/anatomic@beta
+$ yarn add @healthnz/pattern-library@beta
 # npm
-$ npm install @te-whatu-ora/anatomic@beta
+$ npm install @healthnz/pattern-library@beta
 ```
 
 `v1.0.0` will still work with
 ```bash
-$ yarn add @te-whatu-ora/anatomic
+$ yarn add @healthnz/pattern-library
 ```
 
 --- 
