@@ -16,7 +16,7 @@ const UseTheme = () => {
   return (
     <Source
       code={`
-import { useTheme } from '@te-whatu-ora/anatomic';
+import { useTheme } from '@healthnz/pattern-library';
 
 ...
 

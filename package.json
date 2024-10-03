@@ -1,12 +1,12 @@
 {
-  "name": "te-whatu-ora",
+  "name": "healthnz",
   "private": true,
   "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace @te-whatu-ora/anatomic-themes build && yarn workspace @te-whatu-ora/anatomic build",
+    "build": "yarn workspace @healthnz/pattern-library-themes build && yarn workspace @healthnz/pattern-library build",
     "start": "yarn workspace example start",
     "lint": "eslint --cache",
     "lint:fix": "yarn lint --fix",

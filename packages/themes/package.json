@@ -1,9 +1,10 @@
 {
-  "name": "@te-whatu-ora/anatomic-themes",
-  "version": "4.0.0",
-  "description": "Te Whatu Ora - Pattern library. Generate multi platform design tokens using Style Dictionary",
+  "name": "@healthnz/pattern-library-themes",
+  "version": "0.9.2",
+  "description": "Health NZ - Design Pattern Library. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
+    "health nz",
     "ui toolkit",
     "design system",
     "pattern library",
@@ -30,10 +31,10 @@
     "build": "node scripts/generate.js && vite build && rm -rf ./tmp",
     "test": "jest",
     "lint:types": "tsc --noEmit",
-    "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
-    "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
-    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify",
-    "major:beta": "standard-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @te-whatu-ora/anatomic-themes@ --no-verify"
+    "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "major:beta": "standard-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",

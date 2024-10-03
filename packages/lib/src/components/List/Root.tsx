@@ -19,7 +19,7 @@ export type ListRootProps = {
   dividersNoTop?: boolean;
   /** Option to disable divider on last item */
   dividersNoBottom?: boolean;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;

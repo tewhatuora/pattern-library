@@ -11,7 +11,7 @@ import * as styles from './Tabs.css';
 export type TabsTriggerProps = {
   /** Trigger label/content */
   children: string;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** Optional icon to display on the Trigger */
   icon?: IconType;

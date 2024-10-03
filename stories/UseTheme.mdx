@@ -5,16 +5,16 @@ import LinkTo from '@storybook/addon-links/react';
 
 # Theming
 
-Instead of harcoding the foundation values in Anatomic, we choose to implement a theming system allowing applications to supply their core values to Anatomic.
+Instead of harcoding the foundation values in the pattern library, we choose to implement a theming system allowing applications to supply their core values to the library.
 
-The theming system introduced a concept of theme object. To configure Anatomic, you'll need to build your own theme object or import a pre-constructed one from Anatomic. The theme object will be used to render the foundation variables and define a theme provider at the root of your application.
+The theming system introduced a concept of theme object. To configure, you'll need to build your own theme object or import a pre-constructed one. The theme object will be used to render the foundation variables and define a theme provider at the root of your application.
 
 <Source
   language="tsx"
   dark
-  code={`import '@te-whatu-ora/anatomic/styles';\n
-import { ThemeProvider } from '@te-whatu-ora/anatomic';
-import { neutral } from '@te-whatu-ora/anatomic-themes';\n
+  code={`import '@healthnz/pattern-library/styles';\n
+import { ThemeProvider } from '@healthnz/pattern-library';
+import { neutral } from '@healthnz/pattern-library-themes';\n
 <ThemeProvider theme={neutral}>
   <App />
 </ThemeProvider>`}
@@ -27,7 +27,7 @@ The `useTheme` hook provides access to the theme variables that are available on
 <Source
   language="tsx"
   dark
-  code={`import { useTheme } from '@te-whatu-ora/anatomic';\n// ...\nconst { tokens } = useTheme();`}
+  code={`import { useTheme } from '@healthnz/pattern-library';\n// ...\nconst { tokens } = useTheme();`}
 />
 
 

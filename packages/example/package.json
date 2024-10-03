@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@te-whatu-ora/anatomic": "^0.0.64-beta.1",
-    "@te-whatu-ora/anatomic-themes": "^0.0.2-beta.17",
+    "@healthnz/pattern-library": ">=0.9.0",
+    "@healthnz/pattern-library-themes": ">=0.9.0",
     "cra-template": "1.2.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

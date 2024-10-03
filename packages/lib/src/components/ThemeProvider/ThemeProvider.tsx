@@ -7,7 +7,7 @@ import { ThemeContext } from './ThemeContext';
 
 // TODO: Unsure why eslint is unable to resolve this path
 // eslint-disable-next-line import/no-unresolved
-import '@te-whatu-ora/anatomic/styles';
+import '@healthnz/pattern-library/styles';
 
 type ThemeProviderProps = {
   theme: Theme;

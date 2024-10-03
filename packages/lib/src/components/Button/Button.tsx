@@ -24,7 +24,7 @@ export type ButtonProps = {
   as?: ElementType;
   /** URL/path to link to if `as` is set to `a` */
   href?: string;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** A function that will be called when clicking/pressing the Button */
   onPress?: (e: any) => void;

@@ -7,7 +7,7 @@ const DocsPage = (props: { docs: ElementType }) => {
   const Docs = props.docs;
   return (
     <>
-      <div className="anatomic__docs">
+      <div className="patternlibrary__docs">
         <Title />
         <Subtitle />
         <Docs />

@@ -1,6 +1,6 @@
 import { StyleRule } from '@vanilla-extract/css';
 
-import { Viewport } from '@te-whatu-ora/anatomic-themes/dist/types/tokenType';
+import { Viewport } from '@healthnz/pattern-library-themes/dist/types/tokenType';
 
 import { vars } from '../../themes/vars.css';
 import { ResponsiveStyle, responsiveStyle } from '../../css/responsiveStyle';
