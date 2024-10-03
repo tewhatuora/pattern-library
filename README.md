@@ -253,37 +253,3 @@ $ npm install @healthnz/pattern-library@beta
 ```bash
 $ yarn add @healthnz/pattern-library
 ```
-
---- 
-
-## GitLab CI/CD Jobs
-
-Set job images to `${CI_DEPENDENCY_PROXY_DIRECT_GROUP_IMAGE_PREFIX}/<DOCKER_IMAGE>` (e.g. `image: ${CI_DEPENDENCY_PROXY_DIRECT_GROUP_IMAGE_PREFIX}/node:20.11.1-alpine`). This will use the GitLab image proxy which will pull from Docker Hub the first time, then cache the image. This prevents the runner from hitting the Docker Hub rate limit.
-
-**If this doesn't work for whatever reason, or you need to use a custom docker image, follow these instructions:**
-
-Docker images for jobs must be pulled from GitLab's my-record-web Container Registry and not Docker Hub (default). Docker Hub has a maximum number of pulls every six hours and when this gets reached, every pipeline fails for six hours, preventing any deployment.
-
-1. to save a Docker image to the project's Container Registry you must first have Docker installed: https://docs.docker.com/get-docker/.
-2. you must have a [personal or project GitLab access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
-3. login to the container registry
-   ```sh
-   TOKEN=<token>
-   docker login registry.gitlab.com -u <username> --password-stdin <<<$TOKEN
-   ```
-4. pull the image you want to use with docker (the GitLab runners have a x86_64 CPU architecture, so you must specify "linux/amd64" as the platform)
-   ```sh
-   docker pull --platform linux/amd64 node:15.14.0-alpine
-   ```
-5. retag the image so it will be pushed to the correct container registry
-   ```sh
-   docker tag node:15.14.0-alpine registry.gitlab.com/healthnz-ult/c3/my-record-web/node:15.14.0-alpine
-   ```
-6. push the image to the project's container registry:
-   ```sh
-   docker push registry.gitlab.com/healthnz-ult/c3/my-record-web/node:15.14.0-alpine
-   ```
-7. use the newly pushed image in the [.gitlab-ci.common.yml](./.gitlab-ci.common.yml) file.
-   ```yml
-   image: 'registry.gitlab.com/healthnz-ult/c3/my-record-web/node:15.14.0-alpine'
-   ```
