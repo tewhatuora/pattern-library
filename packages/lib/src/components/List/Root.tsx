@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Children, PropsWithChildren, cloneElement, createElement, isValidElement } from 'react';
+import { Children, PropsWithChildren, ReactNode, cloneElement, createElement, isValidElement } from 'react';
 
 import assert from 'assert';
 
@@ -35,20 +35,22 @@ export const Root = ({
   className,
   children,
 }: PropsWithChildren<ListRootProps>) => {
-  const newChildren = Children.map(children, (child) => {
+  const newChildren = Children.map(children, (child: ReactNode) => {
     assert(
       isValidElement(child),
       'A child of `List.Root` is an invalid React element. Check that the children are all valid.',
     );
 
-    return cloneElement(child, {
+    const props = {
       className: clsx(
         child.props.className,
         { [styles.dividers]: dividers },
         { [styles.dividersNoTop]: dividersNoTop },
         { [styles.dividersNoBottom]: dividersNoBottom },
       ),
-    });
+    };
+
+    return cloneElement(child, props);
   });
 
   const listEl = createElement(

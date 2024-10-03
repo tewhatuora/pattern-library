@@ -1,7 +1,8 @@
 import { memo, useCallback, useMemo } from 'react';
 import { getCountryCallingCode, isSupportedCountry } from 'react-phone-number-input';
 import { hasFlag } from 'country-flag-icons';
-import Flags, { FlagComponent } from 'country-flag-icons/react/3x2';
+import * as Flags from 'country-flag-icons/react/3x2';
+import type { FlagComponent } from 'country-flag-icons/react/3x2';
 import clsx from 'clsx';
 
 import { InputDropdown, InputDropdownProps } from '../InputDropdown/InputDropdown';
@@ -27,7 +28,7 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
 
   const Flag = useMemo(() => {
     return hasFlag(value || '')
-      ? Flags[value as keyof FlagComponent]
+      ? (Flags as Record<string, FlagComponent>)[value as keyof FlagComponent]
       : () => <Icon icon="international" style={{ width: '100%', height: 'auto' }} />;
   }, [value]);
 
@@ -56,7 +57,6 @@ export const CountryDropdown = memo(({ value, onChange, options, ...props }: Inp
           [styles.flagWrapper.international]: !value || value == 'International',
         })}
       >
-        {/* @ts-expect-error The `style` prop does exist, we just don't have the types for `Flag` */}
         <Flag style={{ width: '100%' }} />
       </div>
     </div>

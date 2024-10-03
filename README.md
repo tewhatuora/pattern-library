@@ -57,15 +57,6 @@ And now Storybook will work.
 
 ---
 
-## Development
-
-Storybook v6.5 with the Vite builder needs to run on Node 16. You will get an error trying to run/build Storybook on a Node version that isn’t `16`.
-
-Use NVM to install and use Node 
-```bash
-$ nvm install 16
-```
-
 ### Pre commit hooks
 
 The repo has a pre-commit hook setup, which uses `lint-staged` to run `prettier` to format code, `eslint` for linting and `tsc` for TypeScript type checking.

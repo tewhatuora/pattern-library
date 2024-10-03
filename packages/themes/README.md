@@ -1,4 +1,4 @@
-# Anatomic themes
+# Pattern library themes
 
 `@te-whatu-ora/anatomic-themes`
 

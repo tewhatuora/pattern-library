@@ -1,19 +1,13 @@
-import { Notice, NoticeProps } from './Notice';
-import DocsPage from '../../../utils/DocsPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Docs from './Notice.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
-export default {
+import { Notice } from './Notice';
+
+const meta: Meta<typeof Notice> = {
   title: 'Components/Notice',
   component: Notice,
-  argTypes: {
-    variant: {
-      defaultValue: 'positive',
-    },
-    label: {
-      defaultValue: 'A static message with a lighter visual treatment than alert',
-    },
-  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -21,9 +15,12 @@ export default {
   },
 };
 
-export const Default = (args: NoticeProps) => {
-  const text = args.variant || 'notice';
-  const label = `${text.substr(0, 1).toUpperCase()}${text.substr(1, text.length)}`;
+export default meta;
+type Story = StoryObj<typeof Notice>;
 
-  return <Notice {...args}>{label}</Notice>;
+export const Default: Story = {
+  args: {
+    variant: 'info',
+    label: 'A static message with a lighter visual treatment than alert',
+  },
 };

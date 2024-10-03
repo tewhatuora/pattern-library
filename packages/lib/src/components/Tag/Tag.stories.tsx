@@ -1,19 +1,13 @@
-import { Tag, TagProps } from './Tag';
-import DocsPage from '../../../utils/DocsPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Docs from './Tag.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
-export default {
+import { Tag } from './Tag';
+
+const meta: Meta<typeof Tag> = {
   title: 'Components/Tag',
   component: Tag,
-  argTypes: {
-    label: {
-      defaultValue: 'Tag Component',
-    },
-    onClear: {
-      control: false,
-    },
-  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -21,13 +15,11 @@ export default {
   },
 };
 
-export const Default = (args: TagProps) => {
-  return (
-    <Tag
-      {...args}
-      onClear={() => {
-        alert('Tag closed!');
-      }}
-    />
-  );
+export default meta;
+type Story = StoryObj<typeof Tag>;
+
+export const Default: Story = {
+  args: {
+    label: 'Tag Component',
+  },
 };

@@ -1,16 +1,13 @@
-import { Loader, LoaderProps } from './Loader';
-import DocsPage from '../../../utils/DocsPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Docs from './Loader.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
-export default {
+import { Loader } from './Loader';
+
+const meta: Meta<typeof Loader> = {
   title: 'Components/Loader',
   component: Loader,
-  argTypes: {
-    message: {
-      defaultValue: 'Loading',
-    },
-  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -18,6 +15,11 @@ export default {
   },
 };
 
-export const Default = (args: LoaderProps) => {
-  return <Loader {...args} />;
+export default meta;
+type Story = StoryObj<typeof Loader>;
+
+export const Default: Story = {
+  args: {
+    message: 'Loading',
+  },
 };
