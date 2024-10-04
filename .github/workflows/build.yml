@@ -85,7 +85,11 @@ jobs:
       with:
         path: node_modules
         key: ${{ steps.gen-key.outputs.key }}
-    
+  
+    - name: yarn build themes
+      working-directory: ./packages/themes
+      run: yarn build
+
     - name: yarn build
       run: yarn build
 
