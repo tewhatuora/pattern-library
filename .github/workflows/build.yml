@@ -1,0 +1,130 @@
+name: Build
+
+on:
+  pull_request:
+    types: ['opened', 'synchronize', 'reopened']
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+      - '@healthnz/pattern-library-themes@[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - main
+
+jobs:
+
+  build:
+    name: Build packages
+    runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.gen-key.outputs.key }}
+      main-repo: 'tewhatuora/pattern-library'
+      is-full-lib: ${{ steps.components.outputs.is-full-lib }}
+      is-pre-lib: ${{ steps.components.outputs.is-pre-lib }}
+      is-full-theme: ${{ steps.components.outputs.is-full-theme }}
+      is-pre-theme: ${{ steps.components.outputs.is-pre-theme }}
+      is-lib: ${{ steps.checks.outputs.is-lib }}
+      is-theme: ${{ steps.checks.outputs.is-theme }}
+      should-publish: ${{ steps.checks.outputs.is-lib=='true' || steps.checks.outputs.is-theme=='true' }}
+    steps:
+
+    - name: determine components to act on
+      id: components
+      run: |
+        echo "is-full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+        echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+
+    - id: checks
+      run: |
+        echo "is-lib=${{ steps.components.outputs.is-full-lib=='true' || steps.components.outputs.is-pre-lib=='true' }}" >> $GITHUB_OUTPUT
+        echo "is-theme=${{ steps.components.outputs.is-full-theme=='true' || steps.components.outputs.is-pre-theme=='true' }}" >> $GITHUB_OUTPUT
+
+    - name: log component values
+      run: |
+        echo is-full-lib '${{ steps.components.outputs.is-full-lib }}'
+        echo is-pre-lib '${{ steps.components.outputs.is-pre-lib }}'
+        echo is-full-theme '${{ steps.components.outputs.is-full-theme }}'
+        echo is-pre-theme '${{ steps.components.outputs.is-pre-theme }}'
+        echo is-lib '${{ steps.checks.outputs.is-lib }}'
+        echo is-theme '${{ steps.checks.outputs.is-theme }}'
+        echo should-publish '${{ steps.checks.outputs.should-publish }}'
+
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+
+    - name: generate cache key
+      id: gen-key
+      run: |
+        os="${{ runner.os }}"
+        node="${{ steps.node-setup.outputs.node-version }}"
+        hash="${{ hashFiles('**/yarn.lock') }}"
+        echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
+
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-prev-cache
+      with:
+        path: node_modules
+        key: ${{ steps.gen-key.outputs.key }}
+
+    - name: yarn install
+      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile
+
+    - name: save install cache
+      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      id: save-cache
+      with:
+        path: node_modules
+        key: ${{ steps.gen-key.outputs.key }}
+    
+    - name: yarn build
+      run: yarn build
+
+    - name: yarn build storybook
+      run: yarn build-storybook
+
+    - name: Upload build artifacts
+      id: upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: pattern-lib-build
+        path: "**/dist/"
+        if-no-files-found: error
+
+  test:
+    name: Run tests
+    if: github.repository == needs.build.outputs.main-repo && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref_type == 'branch'))
+    needs: build
+    uses: ./.github/workflows/test.yml
+    with:
+      cache-key: ${{ needs.build.outputs.cache-key }}
+
+  publish:
+    name: Publish packages to npm
+    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish=='true'
+    needs: build
+    uses: ./.github/workflows/publish.yml
+    with:
+      cache-key: ${{ needs.build.outputs.cache-key }}
+      is-full-lib: ${{ needs.build.outputs.is-full-lib }}
+      is-pre-lib: ${{ needs.build.outputs.is-pre-lib }}
+      is-full-theme: ${{ needs.build.outputs.is-full-theme }}
+      is-pre-theme: ${{ needs.build.outputs.is-pre-theme }}
+  
+  release:
+    name: Create GitHub release
+    if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.is-lib=='true'
+    needs: build
+    uses: ./.github/workflows/release.yml
+    with:
+      cache-key: ${{ needs.build.outputs.cache-key }}
+      is-full-lib: ${{ needs.build.outputs.is-full-lib }}

@@ -1,0 +1,73 @@
+name: Publish lib
+
+on:
+  workflow_call:
+    inputs:
+      cache-key:
+        required: true
+        type: string
+      is-full-lib:
+        type: string # 'true' or 'false'
+      is-pre-lib:
+        type: string # 'true' or 'false'
+      is-full-theme:
+        type: string # 'true' or 'false'
+      is-pre-theme:
+        type: string # 'true' or 'false'
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: node_modules
+        key: ${{ inputs.cache-key }}
+    
+    - name: download build artifact
+      uses: actions/download-artifact@v4
+
+    - name: publish library
+      if: inputs.is-full-lib == 'true'
+      run: |
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/lib --tag latest
+
+    - name: publish prerelease library
+      if: inputs.is-pre-lib == 'true'
+      run: |
+        PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
+        TAG_NAME=${PRE_RELEASE_VERSION%.*}
+        echo $TAG_NAME
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/lib --tag $TAG_NAME
+
+    - name: publish theme
+      if: inputs.is-full-theme == 'true'
+      run: |
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/theme --tag latest
+
+    - name: publish prerelease theme
+      if: inputs.is-pre-theme == 'true'
+      run: |
+        PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
+        TAG_NAME=${PRE_RELEASE_VERSION%.*}
+        echo $TAG_NAME
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/theme --tag $TAG_NAME

@@ -1,0 +1,58 @@
+name: 'Create release'
+
+on:
+  workflow_call:
+    inputs:
+      cache-key:
+        required: true
+        type: string
+      is-full-lib:
+        required: true
+        type: string # 'true' or 'false'
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: node_modules
+        key: ${{ inputs.cache-key }}
+    
+    - name: download build artifact
+      uses: actions/download-artifact@v4
+
+    # draft is true for any git ref that isn't a tag starting with a version number
+    - name: check if draft
+      id: draft
+      run: |
+        result=$(echo ${{ github.ref }} | grep -Pq '^refs/tags/v\d+\.\d+\.\d+' && echo 'false' || echo 'true')
+        echo "draft=${result}" >> $GITHUB_OUTPUT
+
+    - name: log outputs
+      run: |
+        echo draft is ${{ steps.draft.outputs.draft }}
+
+    - name: create release
+      if: ${{ steps.draft.outputs.draft == 'false' }}
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ github.ref_name }}
+        name: ${{ github.ref_name }}
+        body_path: 'CURRENT_VERSION.md'
+        draft: ${{ steps.draft.outputs.draft == 'true' }}
+        prerelease: ${{ inputs.is-full-lib != 'true' }}
