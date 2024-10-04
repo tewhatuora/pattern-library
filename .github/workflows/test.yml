@@ -37,13 +37,9 @@ jobs:
     - name: Run push tests
       if: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name == 'main' }}
       run: |
-        echo This is the command for running the push tests:
-        echo yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
-      # yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --auto-accept-changes
+        yarn chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --auto-accept-changes
 
     - name: Run PR tests
       if: ${{ github.event_name == 'pull_request' }}
       run: |
-        echo This is the command for running the PR tests
-        echo yarn chromatic --branch-name ${{ github.ref_name }}
-      # yarn chromatic --branch-name ${{ github.ref_name }}
+        yarn chromatic --branch-name ${{ github.ref_name }}

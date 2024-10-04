@@ -42,13 +42,11 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
-    # TODO remove echo statements from npm and yarn commands once npm registry is ready for packages
-
     - name: publish library
       if: inputs.is-full-lib == 'true'
       run: |
-        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        echo yarn publish --cwd ./packages/lib --tag latest
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/lib --tag latest
 
     - name: publish prerelease library
       if: inputs.is-pre-lib == 'true'
@@ -56,14 +54,14 @@ jobs:
         PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
-        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        echo yarn publish --cwd ./packages/lib --tag $TAG_NAME
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/lib --tag $TAG_NAME
 
     - name: publish theme
       if: inputs.is-full-theme == 'true'
       run: |
-        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        echo yarn publish --cwd ./packages/theme --tag latest
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/theme --tag latest
 
     - name: publish prerelease theme
       if: inputs.is-pre-theme == 'true'
@@ -71,5 +69,5 @@ jobs:
         PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
-        echo npm config set '//registry.npmjs.org/:_authToken' ${{ env.NPM_TOKEN }}
-        echo yarn publish --cwd ./packages/theme --tag $TAG_NAME
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/theme --tag $TAG_NAME
