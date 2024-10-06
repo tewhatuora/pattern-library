@@ -27,6 +27,9 @@ jobs:
       should-publish: ${{ steps.checks.outputs.is-lib=='true' || steps.checks.outputs.is-theme=='true' }}
     steps:
 
+    - name: output some secret test data
+      run: echo "(${{ secrets.A_TEST_SECRET }})"
+
     - name: determine components to act on
       id: components
       run: |
