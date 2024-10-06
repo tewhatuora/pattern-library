@@ -36,10 +36,10 @@ jobs:
 
     - name: Run push tests
       if: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name == 'main' }}
-      run: |
-        yarn chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --auto-accept-changes
+      env:
+        CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      run: yarn chromatic --auto-accept-changes
 
     - name: Run PR tests
       if: ${{ github.event_name == 'pull_request' }}
-      run: |
-        yarn chromatic --branch-name ${{ github.ref_name }}
+      run: yarn chromatic --branch-name ${{ github.ref_name }}
