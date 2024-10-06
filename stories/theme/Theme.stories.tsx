@@ -1,5 +1,5 @@
 import DocsPage from '../../packages/lib/utils/DocsPage';
-import UseThemeDocs from '../UseTheme.stories.mdx';
+import UseThemeDocs from '../UseTheme.mdx';
 
 export default {
   title: 'Theme',
