@@ -29,8 +29,8 @@ jobs:
 
     - name: output some secret test data
       env:
-        TEST_VALUE: ${{ secrets.A_TEST_SECRET }}
-      run: echo "($TEST_VALUE)"
+        TEST_RESULT: ${{ secrets.A_TEST_SECRET == 'present' && 'expected value' || 'unexpected value' }}
+      run: echo "($TEST_RESULT)"
 
     - name: determine components to act on
       id: components
