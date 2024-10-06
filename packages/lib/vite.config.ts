@@ -15,7 +15,7 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: Object.keys(pkg.peerDependencies),
+      external: [...Object.keys(pkg.peerDependencies), '@healthnz/pattern-library/styles'],
       output: {
         banner: `'use client';`,
 
