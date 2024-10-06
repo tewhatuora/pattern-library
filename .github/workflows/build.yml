@@ -28,7 +28,9 @@ jobs:
     steps:
 
     - name: output some secret test data
-      run: echo "(${{ secrets.A_TEST_SECRET }})"
+      env:
+        TEST_VALUE: ${{ secrets.A_TEST_SECRET }}
+      run: echo "($TEST_VALUE)"
 
     - name: determine components to act on
       id: components
