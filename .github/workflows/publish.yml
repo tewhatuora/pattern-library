@@ -71,7 +71,7 @@ jobs:
       if: inputs.is-full-theme == 'true'
       run: |
         npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
-        yarn publish --access public --cwd ./packages/theme --tag latest
+        yarn publish --access public --cwd ./packages/themes --tag latest
 
     - name: publish prerelease theme
       if: inputs.is-pre-theme == 'true'
@@ -80,4 +80,4 @@ jobs:
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
         npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
-        yarn publish --access public --cwd ./packages/theme --tag $TAG_NAME
+        yarn publish --access public --cwd ./packages/themes --tag $TAG_NAME
