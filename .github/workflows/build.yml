@@ -85,21 +85,14 @@ jobs:
       with:
         path: "**/node_modules"
         key: ${{ steps.gen-key.outputs.key }}
-  
-    - name: yarn build themes
-      working-directory: ./packages/themes
-      run: yarn build
 
-    - name: yarn build
-      run: yarn build
-
-    - name: Upload build artifacts
-      id: upload-build
-      uses: actions/upload-artifact@v4
-      with:
-        name: pattern-lib-build
-        path: "**/dist/"
-        if-no-files-found: error
+    # - name: Upload build artifacts
+    #   id: upload-build
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: pattern-lib-build
+    #     path: "**/dist/"
+    #     if-no-files-found: error
 
     # - name: yarn build storybook
     #   run: yarn build-storybook

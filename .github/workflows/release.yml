@@ -3,9 +3,9 @@ name: 'Create release'
 on:
   workflow_call:
     inputs:
-      cache-key:
-        required: true
-        type: string
+      # cache-key:
+      #   required: true
+      #   type: string
       is-full-lib:
         required: true
         type: string # 'true' or 'false'
@@ -20,21 +20,21 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: setup node
-      id: node-setup
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: .nvmrc
+    # - name: setup node
+    #   id: node-setup
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version-file: .nvmrc
   
-    - name: restore cache
-      uses: actions/cache/restore@v4
-      id: restore-install-cache
-      with:
-        path: "**/node_modules"
-        key: ${{ inputs.cache-key }}
+    # - name: restore cache
+    #   uses: actions/cache/restore@v4
+    #   id: restore-install-cache
+    #   with:
+    #     path: "**/node_modules"
+    #     key: ${{ inputs.cache-key }}
     
-    - name: download build artifact
-      uses: actions/download-artifact@v4
+    # - name: download build artifact
+    #   uses: actions/download-artifact@v4
 
     # draft is true for any git ref that isn't a tag starting with a version number
     - name: check if draft

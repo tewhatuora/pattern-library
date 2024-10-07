@@ -34,8 +34,8 @@ jobs:
         path: "**/node_modules"
         key: ${{ inputs.cache-key }}
     
-    - name: download build artifact
-      uses: actions/download-artifact@v4
+    # - name: download build artifact
+    #   uses: actions/download-artifact@v4
 
     # TODO find a way to get chromatic building/running from previous stage artifacts
     - name: yarn build themes

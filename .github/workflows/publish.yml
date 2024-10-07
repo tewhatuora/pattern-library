@@ -42,8 +42,15 @@ jobs:
         path: "**/node_modules"
         key: ${{ inputs.cache-key }}
     
-    - name: download build artifact
-      uses: actions/download-artifact@v4
+    # - name: download build artifact
+    #   uses: actions/download-artifact@v4
+
+    - name: yarn build themes
+      working-directory: ./packages/themes
+      run: yarn build
+
+    - name: yarn build
+      run: yarn build
 
     - name: publish library
       if: inputs.is-full-lib == 'true'
