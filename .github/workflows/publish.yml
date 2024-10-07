@@ -39,7 +39,7 @@ jobs:
       uses: actions/cache/restore@v4
       id: restore-install-cache
       with:
-        path: node_modules
+        path: "**/node_modules"
         key: ${{ inputs.cache-key }}
     
     - name: download build artifact

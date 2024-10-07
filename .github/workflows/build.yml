@@ -71,7 +71,7 @@ jobs:
       uses: actions/cache/restore@v4
       id: restore-prev-cache
       with:
-        path: node_modules
+        path: "**/node_modules"
         key: ${{ steps.gen-key.outputs.key }}
 
     - name: yarn install
@@ -83,7 +83,7 @@ jobs:
       uses: actions/cache/save@v4
       id: save-cache
       with:
-        path: node_modules
+        path: "**/node_modules"
         key: ${{ steps.gen-key.outputs.key }}
   
     - name: yarn build themes
@@ -104,13 +104,13 @@ jobs:
     - name: yarn build storybook
       run: yarn build-storybook
 
-    # - name: Upload storybook artifacts
-    #   id: upload-storybook
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: storybook-build
-    #     path: "storybook-static/"
-    #     if-no-files-found: error
+    - name: Upload storybook artifacts
+      id: upload-storybook
+      uses: actions/upload-artifact@v4
+      with:
+        name: storybook-build
+        path: "storybook-static"
+        if-no-files-found: error
 
   test:
     name: Run tests
