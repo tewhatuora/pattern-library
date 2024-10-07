@@ -27,11 +27,6 @@ jobs:
       should-publish: ${{ steps.checks.outputs.is-lib=='true' || steps.checks.outputs.is-theme=='true' }}
     steps:
 
-    - name: output some secret test data
-      env:
-        TEST_RESULT: ${{ secrets.A_TEST_SECRET == 'present' && 'expected value' || 'unexpected value' }}
-      run: echo "($TEST_RESULT)"
-
     - name: determine components to act on
       id: components
       run: |
@@ -114,6 +109,8 @@ jobs:
     if: github.repository == needs.build.outputs.main-repo && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref_type == 'branch'))
     needs: build
     uses: ./.github/workflows/test.yml
+    secrets:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
 
@@ -122,6 +119,8 @@ jobs:
     if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish=='true'
     needs: build
     uses: ./.github/workflows/publish.yml
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
       is-full-lib: ${{ needs.build.outputs.is-full-lib }}

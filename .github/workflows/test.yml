@@ -2,6 +2,9 @@ name: Test
 
 on:
   workflow_call:
+    secrets:
+      CHROMATIC_PROJECT_TOKEN:
+        required: true
     inputs:
       cache-key:
         required: true
@@ -34,18 +37,9 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
-    - name: Run Chromatic
+    - name: run chromatic tests
       uses: chromaui/action@latest
       with:
         projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         autoAcceptChanges: "main"
 
-    # - name: Run push tests
-    #   if: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name == 'main' }}
-    #   env:
-    #     CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-    #   run: yarn chromatic --auto-accept-changes
-
-    # - name: Run PR tests
-    #   if: ${{ github.event_name == 'pull_request' }}
-    #   run: yarn chromatic --branch-name ${{ github.ref_name }}
