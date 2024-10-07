@@ -61,7 +61,8 @@ jobs:
     - name: publish prerelease library
       if: inputs.is-pre-lib == 'true'
       run: |
-        PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
+        GIT_REF="${{ github.ref_name }}"
+        PRE_RELEASE_VERSION=${GIT_REF#*.[0-9]*-}
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
         npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
@@ -76,7 +77,8 @@ jobs:
     - name: publish prerelease theme
       if: inputs.is-pre-theme == 'true'
       run: |
-        PRE_RELEASE_VERSION=${${{ github.ref_name }}#*.[0-9]*-}
+        GIT_REF="${{ github.ref_name }}"
+        PRE_RELEASE_VERSION=${GIT_REF#*.[0-9]*-}
         TAG_NAME=${PRE_RELEASE_VERSION%.*}
         echo $TAG_NAME
         npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
