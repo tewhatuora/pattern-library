@@ -48,5 +48,5 @@ jobs:
     - name: run chromatic tests
       env:
         CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      run: yarn chromatic --auto-accept-changes --outputdir ./storybook-static
+      run: yarn chromatic --auto-accept-changes --output-dir ./storybook-static
 
