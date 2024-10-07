@@ -104,13 +104,13 @@ jobs:
     - name: yarn build storybook
       run: yarn build-storybook
 
-    - name: Upload storybook artifacts
-      id: upload-storybook
-      uses: actions/upload-artifact@v4
-      with:
-        name: storybook-build
-        path: "storybook-static/"
-        if-no-files-found: error
+    # - name: Upload storybook artifacts
+    #   id: upload-storybook
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: storybook-build
+    #     path: "storybook-static/"
+    #     if-no-files-found: error
 
   test:
     name: Run tests
