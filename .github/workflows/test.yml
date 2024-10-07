@@ -49,6 +49,9 @@ jobs:
       working-directory: ./packages/themes
       run: yarn build
 
+    - name: yarn build
+      run: yarn build
+
     - name: yarn build storybook
       run: yarn build-storybook
 
