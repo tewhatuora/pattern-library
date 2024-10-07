@@ -37,14 +37,7 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
-    # - name: run chromatic tests
-    #   uses: chromaui/action@latest
-    #   with:
-    #     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-    #     autoAcceptChanges: "main"
-    #     # outputDir: "storybook-static"
-    #     # storybookBuildDir: "storybook-static"
-
+    # TODO find a way to get chromatic building/running from previous stage artifacts
     - name: yarn build themes
       working-directory: ./packages/themes
       run: yarn build
@@ -55,8 +48,15 @@ jobs:
     - name: yarn build storybook
       run: yarn build-storybook
 
+    # - name: run chromatic tests
+    #   env:
+    #     CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    #   run: yarn chromatic --auto-accept-changes --storybook-build-dir storybook-static
+
     - name: run chromatic tests
-      env:
-        CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      run: yarn chromatic --auto-accept-changes --storybook-build-dir storybook-static
+      uses: chromaui/action@latest
+      with:
+        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        autoAcceptChanges: "main"
+        storybookBuildDir: "storybook-static"
 
