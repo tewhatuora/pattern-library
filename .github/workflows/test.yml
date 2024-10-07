@@ -45,8 +45,11 @@ jobs:
     #     # outputDir: "storybook-static"
     #     # storybookBuildDir: "storybook-static"
 
+    - name: yarn build storybook
+      run: yarn build-storybook
+
     - name: run chromatic tests
       env:
         CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      run: yarn chromatic --auto-accept-changes --output-dir ./storybook-static
+      run: yarn chromatic --auto-accept-changes --storybook-build-dir storybook-static
 
