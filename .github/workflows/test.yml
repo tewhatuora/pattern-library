@@ -42,4 +42,5 @@ jobs:
       with:
         projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         autoAcceptChanges: "main"
+        storybookBuildDir: "storybook-static"
 
