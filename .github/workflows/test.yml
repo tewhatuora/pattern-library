@@ -37,11 +37,16 @@ jobs:
     - name: download build artifact
       uses: actions/download-artifact@v4
 
+    # - name: run chromatic tests
+    #   uses: chromaui/action@latest
+    #   with:
+    #     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    #     autoAcceptChanges: "main"
+    #     # outputDir: "storybook-static"
+    #     # storybookBuildDir: "storybook-static"
+
     - name: run chromatic tests
-      uses: chromaui/action@latest
-      with:
-        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        autoAcceptChanges: "main"
-        outputDir: "storybook-static"
-        storybookBuildDir: "storybook-static"
+      env:
+        CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      run: yarn chromatic --auto-accept-changes --outputdir ./storybook-static
 
