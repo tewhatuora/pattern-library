@@ -135,5 +135,5 @@ jobs:
     needs: build
     uses: ./.github/workflows/release.yml
     with:
-      cache-key: ${{ needs.build.outputs.cache-key }}
+      #cache-key: ${{ needs.build.outputs.cache-key }}
       is-full-lib: ${{ needs.build.outputs.is-full-lib }}
