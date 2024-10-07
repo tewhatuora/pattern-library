@@ -45,6 +45,10 @@ jobs:
     #     # outputDir: "storybook-static"
     #     # storybookBuildDir: "storybook-static"
 
+    - name: yarn build themes
+      working-directory: ./packages/themes
+      run: yarn build
+
     - name: yarn build storybook
       run: yarn build-storybook
 
