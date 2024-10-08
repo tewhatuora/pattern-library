@@ -86,23 +86,13 @@ jobs:
         path: "**/node_modules"
         key: ${{ steps.gen-key.outputs.key }}
 
+    ## Currently not using reusable build artifacts until chromatic action works with them
     # - name: Upload build artifacts
     #   id: upload-build
     #   uses: actions/upload-artifact@v4
     #   with:
     #     name: pattern-lib-build
     #     path: "**/dist/"
-    #     if-no-files-found: error
-
-    # - name: yarn build storybook
-    #   run: yarn build-storybook
-
-    # - name: Upload storybook artifacts
-    #   id: upload-storybook
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: storybook-build
-    #     path: "storybook-static"
     #     if-no-files-found: error
 
   test:
@@ -135,5 +125,4 @@ jobs:
     needs: build
     uses: ./.github/workflows/release.yml
     with:
-      #cache-key: ${{ needs.build.outputs.cache-key }}
       is-full-lib: ${{ needs.build.outputs.is-full-lib }}

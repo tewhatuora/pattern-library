@@ -37,7 +37,9 @@ jobs:
     # - name: download build artifact
     #   uses: actions/download-artifact@v4
 
-    # TODO find a way to get chromatic building/running from previous stage artifacts
+    # TODO find a way to get chromatic building/running from previous stage artifacts.
+    # Will likely need the chromaui/action outputDir input working to resolve relative imports
+    # for themes in storybook broken be running out of tmp directory
     - name: yarn build themes
       working-directory: ./packages/themes
       run: yarn build
@@ -47,11 +49,6 @@ jobs:
 
     - name: yarn build storybook
       run: yarn build-storybook
-
-    # - name: run chromatic tests
-    #   env:
-    #     CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-    #   run: yarn chromatic --auto-accept-changes --storybook-build-dir storybook-static
 
     - name: run chromatic tests
       uses: chromaui/action@latest
