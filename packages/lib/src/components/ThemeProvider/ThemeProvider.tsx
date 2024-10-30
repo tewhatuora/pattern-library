@@ -15,6 +15,9 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
+  if (!theme) {
+    throw new Error('ThemeProvider requires a theme prop');
+  }
   return (
     <ThemeContext.Provider value={theme}>
       <div className={theme.className}>

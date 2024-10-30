@@ -16,7 +16,7 @@ const preview = {
   decorators: [
     (Story, options) => {
       return (
-        <ThemeProvider theme={themes[options.globals.theme ?? themes.neutral]}>
+        <ThemeProvider theme={themes[options.globals.theme]?? themes.neutral}>
           <Story />
         </ThemeProvider>
       );
