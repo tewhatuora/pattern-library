@@ -15,7 +15,7 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: [...Object.keys(pkg.peerDependencies), '@healthnz/pattern-library/styles'],
+      external: Object.keys(pkg.peerDependencies),
       output: {
         banner: `'use client';`,
 
@@ -53,7 +53,7 @@ export default defineConfig({
         emitDeclarationOnly: true,
         noEmit: false,
       },
-      outputDir: 'dist/types',
+      outDir: 'dist/types',
     }),
   ],
 });

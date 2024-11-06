@@ -26,7 +26,7 @@ export default defineConfig({
         emitDeclarationOnly: true,
         noEmit: false,
       },
-      outputDir: 'dist/types',
+      outDir: 'dist/types',
     }),
   ],
 });

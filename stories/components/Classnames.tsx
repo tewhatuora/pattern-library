@@ -38,7 +38,7 @@ export const Classnames = () => {
     <DocsContext.Consumer>
       {(context) => {
         /* @ts-ignore: primaryStory does exist on context, just not typed */
-        const componentParts = context.primaryStory?.title.split('/');
+        const componentParts = context.primaryStory?.title?.split('/');
         const name = componentParts[componentParts.length - 1];
         const stylesObj = `${name}Styles`;
 
