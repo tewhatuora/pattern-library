@@ -38,9 +38,16 @@ const sbParameters = {
     ],
     target: 'root',
     Decorator: (props) => {
+      
+      if (!props.themeClasses) {
+        return props.children;
+      }
+
+
       return <ThemeProvider theme={themes[props.themeClasses]}>{props.children}</ThemeProvider>;
     },
   },
 };
+
 
 export default sbParameters;

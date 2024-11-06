@@ -17,10 +17,11 @@ module.exports = {
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-mdx-gfm'),
     getAbsolutePath('@storybook/addon-themes'),
+    '@chromatic-com/storybook'
   ],
 
   core: {
-    builder: '@storybook/builder-vite',
+    builder: getAbsolutePath("@storybook/builder-vite"),
   },
 
   framework: {

@@ -15,13 +15,13 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: [...Object.keys(pkg.peerDependencies), '@healthnz/pattern-library/styles'],
+      external: Object.keys(pkg.peerDependencies),
       output: {
         banner: `'use client';`,
 
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+            return id.toString().split('node_modules/')[1]?.split('/')[0]?.toString();
           }
         },
       },
@@ -53,7 +53,7 @@ export default defineConfig({
         emitDeclarationOnly: true,
         noEmit: false,
       },
-      outputDir: 'dist/types',
+      outDir: 'dist/types',
     }),
   ],
 });

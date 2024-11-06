@@ -1,37 +1,27 @@
 import React from 'react';
-import { withThemeByClassName } from '@storybook/addon-themes';
+import { withThemeByClassName, withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { ThemeProvider } from '../packages/lib/src';
 import { neutral, webSelfService } from '../packages/themes';
+
 import sbParameters from './parameters';
 
 export const parameters = sbParameters;
-export const tags = ['autodocs'];
+export const tags = ['autodocs', 'autodocs'];
 
-const themes = {
-  neutral,
-  webSelfService,
-};
+import '@healthnz/pattern-library/styles';
+import '@healthnz/pattern-library-themes/styles';
 
-const preview = {
-  decorators: [
-    (Story, options) => {
-      return (
-        <ThemeProvider theme={themes[options.globals.theme ?? themes.neutral]}>
-          <Story />
-        </ThemeProvider>
-      );
-    },
-    withThemeByClassName({
-      themes: Object.keys(themes).reduce(
-        (map, name) => ({
-          ...map,
-          [name]: themes[name].className,
-        }),
-        {},
-      ),
-      defaultTheme: neutral.className,
-    }),
-  ],
-};
+
+export const decorators = [ withThemeFromJSXProvider({
+  themes: {
+    ['Neutral']: neutral,
+    ['Web Self-Service']: webSelfService,
+  },
+  defaultTheme: "Web Self-Service",
+  Provider: ThemeProvider,
+})
+]
+
+const preview = {};
 
 export default preview;

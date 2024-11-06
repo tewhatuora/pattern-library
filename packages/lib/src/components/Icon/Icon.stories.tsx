@@ -13,13 +13,15 @@ export default {
     icon: {
       options: Object.keys(icons),
       control: { type: 'select' },
-      defaultValue: 'alert',
     },
     color: {
       options: Object.keys(vars.color),
       control: { type: 'select' },
-      defaultValue: 'primary110',
     },
+  },
+  args: {
+    icon: 'alert',
+    color: 'primary110',
   },
 };
 
