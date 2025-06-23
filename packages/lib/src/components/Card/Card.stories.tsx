@@ -34,6 +34,7 @@ export default {
         type: 'radio',
         options: ['light', 'dark'],
       },
+      options: ['light', 'dark'],
       defaultValue: 'light',
     },
   },

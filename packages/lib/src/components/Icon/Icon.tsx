@@ -1,7 +1,7 @@
 import { ElementType, memo } from 'react';
 import clsx from 'clsx';
 
-import assert from 'assert';
+import assert from '../../utils/assert';
 
 import { Box, BoxProps } from '../Box/Box';
 import icons, { IconType } from './icons';
@@ -40,6 +40,8 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, .
   );
 
   const IconComponent = icons[icon] as ElementType;
+
+  assert(IconComponent && typeof IconComponent === 'function', `Icon component not found for icon: '${icon}'`);
 
   return (
     <Box

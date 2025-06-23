@@ -2,8 +2,6 @@ import { Children, ElementType, PropsWithChildren, useContext } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import assert from 'assert';
-
 import { Box, BoxProps } from '../Box/Box';
 
 import type { Space } from '../../css/atoms/atoms';
@@ -44,10 +42,11 @@ const Stack = ({
   className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
-  assert(
-    validStackComponents.includes(as),
-    `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
-  );
+  if (!validStackComponents.includes(as)) {
+    throw new Error(
+      `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
+    );
+  }
 
   const direction = horizontal ? 'horizontal' : 'vertical';
   const breakpoint = useContext(BreakpointContext) === 'mobile' ? 'mobile' : 'tablet';

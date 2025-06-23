@@ -1,6 +1,6 @@
 {
   "name": "@healthnz/pattern-library-themes",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Health NZ - Design Pattern Library. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
@@ -38,11 +38,13 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",
-    "@vanilla-extract/vite-plugin": "^3.3.0",
+    "@types/babel__core": "^7",
+    "@vanilla-extract/vite-plugin": "^5.0.6",
     "prettier": "^2.7.1",
     "standard-version": "^9.5.0",
     "style-dictionary": "^3.7.1",
-    "tsconfig-paths": "^4.1.0"
+    "tsconfig-paths": "^4.1.0",
+    "vite": "^5.4.19"
   },
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.js",
@@ -61,5 +63,8 @@
   "files": [
     "dist"
   ],
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@babel/core": "^7.27.4"
+  }
 }

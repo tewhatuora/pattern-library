@@ -37,17 +37,11 @@ const sbParameters = {
       },
     ],
     target: 'root',
-    Decorator: (props) => {
-      
-      if (!props.themeClasses) {
-        return props.children;
-      }
-
-
-      return <ThemeProvider theme={themes[props.themeClasses]}>{props.children}</ThemeProvider>;
+    Decorator: ({ themeClasses, children }) => {
+      const theme = themes[themeClasses] || webSelfService;
+      return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
     },
   },
 };
-
 
 export default sbParameters;

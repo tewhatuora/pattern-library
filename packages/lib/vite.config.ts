@@ -1,11 +1,13 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import dts from 'vite-plugin-dts';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';
-import svgr from '@honkhonk/vite-plugin-svgr';
+import svgr from 'vite-plugin-svgr';
 
 import pkg from './package.json';
+import path from 'path';
+
+console.error(__dirname);
 
 export default defineConfig({
   build: {
@@ -27,20 +29,27 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '!': path.resolve(__dirname, '../'),
+      '@': path.resolve(__dirname, './'),
+    },
+  },
   plugins: [
+    svgr({
+      include: '**/*.svg*',
+      svgrOptions: {
+        exportType: 'default',
+        jsxRuntime: 'classic',
+        dimensions: false,
+      },
+    }),
     splitVendorChunkPlugin(),
     vanillaExtractPlugin({
       identifiers: 'short',
     }),
-    tsconfigPaths(),
     react({
       jsxRuntime: 'automatic',
-    }),
-    svgr({
-      svgrOptions: {
-        jsxRuntime: 'automatic',
-        dimensions: false,
-      },
     }),
     dts({
       exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*', 'src/**/*.stories.tsx'],
@@ -49,10 +58,11 @@ export default defineConfig({
         filePath: filePath.replace('src', ''),
       }),
       compilerOptions: {
-        baseUrl: './src/',
+        // baseUrl: './src/',
         emitDeclarationOnly: true,
         noEmit: false,
       },
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
       outDir: 'dist/types',
     }),
   ],

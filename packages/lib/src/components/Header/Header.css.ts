@@ -30,9 +30,11 @@ export const base = style([
   responsiveStyle({
     mobile: {
       height: HEADER_HEIGHT_MOBILE,
+      padding: vars.space.small.mobile,
     },
     tablet: {
       height: HEADER_HEIGHT_TABLET,
+      padding: vars.space.small.tablet,
     },
   }),
 ]);
@@ -41,7 +43,8 @@ export const header = styleVariants({
   dark: [
     base,
     {
-      backgroundColor: vars.color.semantic.structure.background['header-dark'],
+      // dark header uses gradient
+      background: vars.gradient.semantic.structure.background['header-dark'],
       color: vars.color.semantic.text.copy.light,
     },
   ],

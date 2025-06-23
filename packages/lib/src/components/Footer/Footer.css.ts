@@ -20,16 +20,6 @@ const spacing = calc.multiply(vars.space.medium.tablet, 2); // 4rem / 64px
 const lessSpacing = calc.multiply(vars.space.medium.tablet, 1.25); // 2.5rem / 40px, for when there's 5 columns
 
 export const footer = recipe({
-  base: responsiveStyle({
-    mobile: {
-      paddingTop: vars.space.xxlarge.mobile,
-      paddingBottom: vars.space.xxlarge.mobile,
-    },
-    desktop: {
-      paddingTop: spacing,
-      paddingBottom: spacing,
-    },
-  }),
   variants: {
     variant: {
       light: {
@@ -47,17 +37,25 @@ export const footer = recipe({
 export const footerInner = style([
   responsiveStyle({
     mobile: {
+      paddingTop: vars.space.xxlarge.mobile,
+      paddingBottom: vars.space.xxlarge.mobile,
       paddingRight: vars.space.large.mobile,
       paddingLeft: vars.space.large.mobile,
       ...mobileContainer,
     },
     desktop: {
+      paddingTop: spacing,
+      paddingBottom: spacing,
       paddingRight: '0',
       paddingLeft: '0',
       ...tabletContainer,
     },
   }),
 ]);
+
+export const footerDarkGradient = style({
+  background: `${vars.gradient.semantic.structure.background['footer-dark-vertical gradient']}, ${vars.gradient.semantic.structure.background['footer-dark-horizontal gradient']}`,
+});
 
 // ##### First row #####
 

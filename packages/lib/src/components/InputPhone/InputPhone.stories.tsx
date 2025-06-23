@@ -65,7 +65,7 @@ export default {
 export const Default = (args: InputPhoneProps) => {
   const [value, setValue] = useState<string | undefined>('');
 
-  const handleChange: InputPhoneOnChangeFn = (value: string) => {
+  const handleChange: InputPhoneOnChangeFn = (value: string | undefined) => {
     setValue(value);
   };
 

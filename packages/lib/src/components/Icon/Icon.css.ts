@@ -72,4 +72,9 @@ globalStyle(`${icon} > svg`, {
   height: '100%',
 });
 
+globalStyle(`${icon} > svg *`, {
+  fill: 'currentColor',
+  stroke: 'currentColor',
+});
+
 export const clearIcon = style({});

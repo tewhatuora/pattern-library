@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Children, PropsWithChildren, ReactNode, cloneElement, createElement, isValidElement } from 'react';
 
-import assert from 'assert';
+import assert from '../../utils/assert';
 
 import { ContrastVariant } from '../../types';
 

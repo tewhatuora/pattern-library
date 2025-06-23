@@ -143,51 +143,53 @@ const Footer = ({
 
   return (
     <Box as="footer" className={clsx(styles.footer({ variant }), className)}>
-      <div className={styles.footerInner}>
-        <Stack space="xxlarge">
-          {/* First row */}
-          <Box display="flex" flexWrap="wrap" marginBottom="xsmall">
-            <Box className={styles.govtLogoWrapper}>
-              {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
-              <NZGovtLogo focusable={false} role="img" />
-            </Box>
-          </Box>
-
-          {/* Second row */}
-          {numChildren > 0 && (
-            <Box className={styles.secondRow}>
-              <Box className={clsx(styles.secondRowNavigationWrapper, styles.secondRowChild)}>
-                {Children.map(children, (child) => (
-                  // Div keeps MenuItems contained because they return 2 elements, not one
-                  <div className={clsx(styles.secondRowNavigationChild, { [styles.lessSpace]: numChildren >= 5 })}>
-                    {child}
-                  </div>
-                ))}
+      <div className={variant === 'dark' ? styles.footerDarkGradient : ''}>
+        <div className={styles.footerInner}>
+          <Stack space="xxlarge">
+            {/* First row */}
+            <Box display="flex" flexWrap="wrap" marginBottom="xsmall">
+              <Box className={styles.govtLogoWrapper}>
+                {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
+                <NZGovtLogo focusable={false} role="img" />
               </Box>
-              {!!socialLinks && (
-                <Box className={styles.secondRowChild}>
-                  <ShieldedSite />
-                </Box>
-              )}
             </Box>
-          )}
 
-          {/* Third row */}
-          <Stack space="medium">
-            <Divider variant={variant ?? 'light'} />
-            <Box className={styles.socialAndImprintWrapper}>
-              {/*
-               * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
-               * on the right even when there are no imprintItemsElements.
-               * It should also be okay for accessibility because the order of viewing the
-               * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
-               * really matter.
-               */}
-              <Box className={styles.socialAndImprintChild}>{socialLinks || <ShieldedSite />}</Box>
-              <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
-            </Box>
+            {/* Second row */}
+            {numChildren > 0 && (
+              <Box className={styles.secondRow}>
+                <Box className={clsx(styles.secondRowNavigationWrapper, styles.secondRowChild)}>
+                  {Children.map(children, (child) => (
+                    // Div keeps MenuItems contained because they return 2 elements, not one
+                    <div className={clsx(styles.secondRowNavigationChild, { [styles.lessSpace]: numChildren >= 5 })}>
+                      {child}
+                    </div>
+                  ))}
+                </Box>
+                {!!socialLinks && (
+                  <Box className={styles.secondRowChild}>
+                    <ShieldedSite />
+                  </Box>
+                )}
+              </Box>
+            )}
+
+            {/* Third row */}
+            <Stack space="medium">
+              <Divider variant={variant ?? 'light'} />
+              <Box className={styles.socialAndImprintWrapper}>
+                {/*
+                 * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
+                 * on the right even when there are no imprintItemsElements.
+                 * It should also be okay for accessibility because the order of viewing the
+                 * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
+                 * really matter.
+                 */}
+                <Box className={styles.socialAndImprintChild}>{socialLinks || <ShieldedSite />}</Box>
+                <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
+              </Box>
+            </Stack>
           </Stack>
-        </Stack>
+        </div>
       </div>
     </Box>
   );

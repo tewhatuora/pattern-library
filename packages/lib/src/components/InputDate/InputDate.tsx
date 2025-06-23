@@ -97,15 +97,15 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     });
 
     const handleFocus = useCallback(
-      (e) => {
+      (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onFocus?.(e);
       },
       [onFocus],
     );
 
     const handleChange = useCallback(
-      (e) => {
-        const field: 'day' | 'month' | 'year' = e.target.name.split(`${name}_`)?.[1];
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const field = e.target.name.split(`${name}_`)?.[1] as 'day' | 'month' | 'year';
         const newValue: InputDateValue = { ...value };
 
         newValue[field] = e.target.value;
@@ -116,7 +116,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     );
 
     const handleBlur = useCallback(
-      (e) => {
+      (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onBlur?.(e);
       },
       [onBlur],

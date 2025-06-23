@@ -107,7 +107,7 @@ export const Item = ({
    * with space or enter key
    */
   const handleKeyboardClose = useCallback(
-    (e) => {
+    (e: KeyboardEvent) => {
       if (['Space', 'Enter'].includes(e.code)) {
         closeSubMenuIfOpen();
       }

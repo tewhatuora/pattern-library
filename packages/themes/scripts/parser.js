@@ -5,16 +5,20 @@ import typography from './tokens/typography.js';
 import spacing from './tokens/spacing.js';
 import transitions from './tokens/transitions.js';
 import borders from './tokens/borders.js';
+import gradients from './tokens/gradients.js';
 
 const parser = ({ dictionary, options }) => {
+  const tokens = simplifyTokens(dictionary.tokens);
+
   const {
     color: colorTokens,
     sizes: spaceTokens,
     effect: effectTokens,
     typography: typographyTokens,
     motion: motionTokens,
+    gradient: gradientTokens,
     ...otherTokens
-  } = simplifyTokens(dictionary.tokens);
+  } = tokens;
 
   return {
     name: options.name,
@@ -25,6 +29,7 @@ const parser = ({ dictionary, options }) => {
     border: borders(otherTokens),
     shadows: shadows(effectTokens),
     color: color(colorTokens),
+    gradients: gradients(gradientTokens),
   };
 };
 

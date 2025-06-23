@@ -42,6 +42,7 @@ const navArgTypes = {
       type: 'radio',
       options: ['light', 'dark'],
     },
+    options: ['light', 'dark'],
     defaultValue: 'light',
   },
   withSearch: {

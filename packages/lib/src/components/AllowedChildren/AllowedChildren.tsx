@@ -1,11 +1,11 @@
-import { Children, PropsWithChildren, ReactElement, ReactNode, cloneElement, isValidElement } from 'react';
+import { Children, PropsWithChildren, ReactElement, cloneElement, isValidElement } from 'react';
 
-import assert from 'assert';
+import assert from '../../utils/assert';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 type AllowedChildrenProps = {
-  types: ReactNode[];
+  types: React.ElementType[];
   errorMessage: string;
   propsForChild?: (child?: ReactElement) => any;
 };
