@@ -36,8 +36,9 @@ export const variants = styleVariants({
   dark: [
     card,
     {
-      color: vars.color.semantic.text.copy.light,
-      backgroundColor: vars.color.primary100,
+      color: vars.color.semantic.text.copy.dark,
+      backgroundColor: vars.color.semantic.card.background,
+      borderColor: vars.color.semantic.card.border,
     },
   ],
 });

@@ -72,6 +72,7 @@ export const PersonSelector = ({
             className={styles.buttonIconVariants[variant]}
             icon={person.isUser ? 'person' : 'child'}
             variant="decorativeIcons"
+            noFill={person.isUser ? false : true}
           />
           <ScreenReadersOnly>{person.isUser ? 'Current user: ' : 'Child: '}</ScreenReadersOnly>
           <Box alignItems="flexStart" display="flex" flexDirection="column" marginLeft="xsmall" overflow="hidden">

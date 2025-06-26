@@ -20,7 +20,7 @@ const variant = {
     backgroundColor: vars.color.semantic.notifications.banner.background.caution,
   },
   urgent: {
-    color: vars.color.semantic.notifications.banner.content.critical,
+    color: vars.color.semantic.notifications.banner.content.informative,
     backgroundColor: vars.color.semantic.notifications.banner.background.critical,
   },
   informative: {

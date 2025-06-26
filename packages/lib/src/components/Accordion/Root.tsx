@@ -37,8 +37,8 @@ export const Root = ({
   ...props
 }: PropsWithChildren<AccordionRootProps>) => {
   return (
-    <RadixAccordion.Root className={styles.root[variant]} {...props}>
-      <AccordionContext.Provider value={{ headingLevel, variant }}>
+    <RadixAccordion.Root className={styles.root['light']} {...props}>
+      <AccordionContext.Provider value={{ headingLevel, variant: 'light' }}>
         <AllowedChildren
           errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"
           types={[Item]}

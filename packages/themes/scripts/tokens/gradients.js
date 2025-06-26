@@ -13,7 +13,7 @@ const gradients = (tokens) => {
     if (!isGradientObject(gradient)) return gradient;
 
     const stops = gradient.stops
-      // .sort((a, b) => a.position - b.position)
+      .sort((a, b) => a.position - b.position)
       .map((s) => `${s.color} ${(s.position * 100).toFixed(2)}%`)
       .join(', ');
 
