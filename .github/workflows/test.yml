@@ -11,49 +11,50 @@ on:
         type: string
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-    - name: checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: setup node
-      id: node-setup
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: .nvmrc
-  
-    - name: restore cache
-      uses: actions/cache/restore@v4
-      id: restore-install-cache
-      with:
-        path: "**/node_modules"
-        key: ${{ inputs.cache-key }}
-    
-    # - name: download build artifact
-    #   uses: actions/download-artifact@v4
+      - name: setup node
+        id: node-setup
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
 
-    # TODO find a way to get chromatic building/running from previous stage artifacts.
-    # Will likely need the chromaui/action outputDir input working to resolve relative imports
-    # for themes in storybook broken be running out of tmp directory
-    - name: yarn build themes
-      working-directory: ./packages/themes
-      run: yarn build
+      - name: enable corepack
+        run: corepack enable
 
-    - name: yarn build
-      run: yarn build
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        id: restore-install-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ inputs.cache-key }}
 
-    - name: yarn build storybook
-      run: yarn build-storybook
+      # - name: download build artifact
+      #   uses: actions/download-artifact@v4
 
-    - name: run chromatic tests
-      uses: chromaui/action@latest
-      with:
-        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        autoAcceptChanges: "main"
-        storybookBuildDir: "storybook-static"
+      # TODO find a way to get chromatic building/running from previous stage artifacts.
+      # Will likely need the chromaui/action outputDir input working to resolve relative imports
+      # for themes in storybook broken be running out of tmp directory
+      - name: yarn build themes
+        working-directory: ./packages/themes
+        run: yarn install --frozen-lockfile && yarn build
 
+      - name: yarn build
+        run: yarn build
+
+      - name: yarn build storybook
+        run: yarn build-storybook
+
+      - name: run chromatic tests
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: 'main'
+          storybookBuildDir: 'storybook-static'
