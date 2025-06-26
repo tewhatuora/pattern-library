@@ -7,8 +7,6 @@ import svgr from 'vite-plugin-svgr';
 import pkg from './package.json';
 import path from 'path';
 
-console.error(__dirname);
-
 export default defineConfig({
   build: {
     lib: {
@@ -17,7 +15,11 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: Object.keys(pkg.peerDependencies),
+      external: [
+        ...Object.keys(pkg.peerDependencies),
+        // Exclude the package's own generated CSS bundle so Rollup doesn't try to resolve it during the build
+        `${pkg.name}/styles`,
+      ],
       output: {
         banner: `'use client';`,
 
