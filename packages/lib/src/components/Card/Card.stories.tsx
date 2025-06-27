@@ -29,14 +29,6 @@ export default {
       },
       options: [undefined, ...Object.keys(vars.color)].filter((color) => color !== 'semantic'),
     },
-    variant: {
-      control: {
-        type: 'radio',
-        options: ['light', 'dark'],
-      },
-      options: ['light', 'dark'],
-      defaultValue: 'light',
-    },
   },
   parameters: {
     docs: {

@@ -124,11 +124,8 @@ export const button = recipe({
 export const buttonIconVariants = styleVariants({
   default: {
     color: vars.color.semantic.text.copy.dark,
-
   },
   selected: {
     color: vars.color.semantic.text.copy.light,
-
   },
-
 });

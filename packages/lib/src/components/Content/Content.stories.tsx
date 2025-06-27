@@ -19,9 +19,6 @@ export default {
         options: ['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend'],
       },
     },
-    variant: {
-      defaultValue: 'light',
-    },
   },
   parameters: {
     docs: {
@@ -32,7 +29,7 @@ export default {
 
 export const Default = (args: ContentProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <Content {...args}>Content</Content>
     </ContrastWrapper>
   );

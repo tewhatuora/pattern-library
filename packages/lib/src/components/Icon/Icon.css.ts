@@ -79,8 +79,7 @@ globalStyle(`${icon} > svg *`, {
 
 export const clearIcon = style({});
 
-export const noFill = style({
-});
+export const noFill = style({});
 
 globalStyle(`${noFill} > svg *`, {
   fill: 'none !important',
