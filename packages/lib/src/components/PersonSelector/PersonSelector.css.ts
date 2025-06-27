@@ -81,9 +81,9 @@ export const buttonVariants = {
     selected: [
       buttonComponentVariants({ variant: 'primary' }),
       {
-        color: vars.color.semantic.controls.background.active,
+        color: vars.color.semantic.text.copy.light,
         ':hover': {
-          color: vars.color.semantic.button.primary.background.hover,
+          color: vars.color.semantic.button.primary.content.hover,
         },
       },
     ],
@@ -125,7 +125,5 @@ export const buttonIconVariants = styleVariants({
   default: {
     color: vars.color.semantic.text.copy.dark,
   },
-  selected: {
-    color: vars.color.semantic.text.copy.light,
-  },
+  selected: {},
 });

@@ -1,6 +1,7 @@
+import type { Meta } from '@storybook/react';
+
 import { PersonSelector, PersonSelectorProps } from './PersonSelector';
 import DocsPage from '../../../utils/DocsPage';
-
 import Docs from './PersonSelector.docs.mdx';
 
 export default {
@@ -30,7 +31,7 @@ export default {
       page: () => <DocsPage docs={Docs} />,
     },
   },
-};
+} satisfies Meta<PersonSelectorProps>;
 
 export const Default = (args: PersonSelectorProps) => {
   const people = [
