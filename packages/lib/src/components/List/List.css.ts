@@ -141,13 +141,14 @@ export const dividers = style({
 
 export const itemIcon = style([
   {
-    width: listPadding,
     flexShrink: 0,
+    marginRight: '1rem'
   },
   // Make the icon line up with the text
   responsiveStyle({
     mobile: {
       transform: `translateY(${rem(1)})`,
+
     },
     tablet: {
       transform: `translateY(${rem(4)})`,

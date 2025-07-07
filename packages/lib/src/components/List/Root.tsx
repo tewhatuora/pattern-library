@@ -3,8 +3,6 @@ import { Children, PropsWithChildren, ReactNode, cloneElement, createElement, is
 
 import assert from '../../utils/assert';
 
-import { ContrastVariant } from '../../types';
-
 import * as styles from './List.css';
 
 export type ListRootProps = {
@@ -21,8 +19,6 @@ export type ListRootProps = {
   dividersNoBottom?: boolean;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
-  /** Contrast variant for dark/light UI */
-  variant?: ContrastVariant;
 };
 
 export const Root = ({
@@ -31,7 +27,6 @@ export const Root = ({
   dividers = false,
   dividersNoTop = false,
   dividersNoBottom = false,
-  variant = 'light',
   className,
   children,
 }: PropsWithChildren<ListRootProps>) => {
@@ -63,7 +58,7 @@ export const Root = ({
         className,
       ),
       'data-dividers': dividers,
-      'data-variant': variant, // Required to handle vertical padding of nested lists
+      'data-variant': 'light', // Required to handle vertical padding of nested lists
       role: 'list', // Fixes <ul> in Safari when list-style is set to 'none'. See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style#accessibility_concerns
     },
     newChildren,

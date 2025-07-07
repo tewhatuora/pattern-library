@@ -1,5 +1,4 @@
 import { Content, ContentProps } from './Content';
-import { ContrastWrapper } from '../Storybook/ContrastWrapper';
 import Docs from './Content.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
@@ -28,11 +27,7 @@ export default {
 };
 
 export const Default = (args: ContentProps) => {
-  return (
-    <ContrastWrapper>
-      <Content {...args}>Content</Content>
-    </ContrastWrapper>
-  );
+  return <Content {...args}>Content</Content>;
 };
 Default.args = {
   heading: 'Heading',

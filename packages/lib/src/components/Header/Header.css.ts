@@ -103,6 +103,47 @@ export const mobileMenuButton = style([
   }),
 ]);
 
+
+export const menuButtonIcon = styleVariants({
+  light: [
+    {
+      width: '1rem',
+      height: '1rem',
+    },
+  ],
+  dark: [
+    {
+      width: '1.5rem',
+      height: '1.5rem',
+    },
+  ],
+})
+
+export const menuButtonVariant = styleVariants({
+  light: [
+    {
+      padding: '1.2rem',
+      borderRadius: '27px',
+      backgroundColor: vars.color.semantic.button.primary.background.normal,
+      color: vars.color.semantic.icons.light,
+      selectors: {
+        '&:hover': {
+          color: vars.color.semantic.button.primary.content.hover,
+        },
+      },
+    },
+  ],
+  dark: [
+    {
+      selectors: {
+        '&:hover': {
+          color: vars.color.semantic.button.primary.content.hover,
+        },
+      },
+    },
+  ],
+});
+
 export const mobileMenuButtonText = style({
   width: rem(50),
 });

@@ -25,8 +25,8 @@ const variant = {
   }),
   functionalIcons: responsiveStyle({
     mobile: {
-      height: vars.space.small.mobile,
-      width: vars.space.small.mobile,
+      height: vars.space.xsmall.tablet,
+      width: vars.space.xsmall.tablet,
     },
     tablet: {
       height: vars.space.small.tablet,
@@ -34,23 +34,27 @@ const variant = {
     },
   }),
   socialIcons: responsiveStyle({
+    desktop: {
+      height: vars.space.large.mobile,
+      width: vars.space.large.mobile,
+    },
     mobile: {
       height: vars.space.large.mobile,
       width: vars.space.large.mobile,
     },
     tablet: {
-      height: vars.space.large.tablet,
-      width: vars.space.large.tablet,
+      height: vars.space.large.mobile,
+      width: vars.space.large.mobile,
     },
   }),
   tagIcon: responsiveStyle({
     mobile: {
-      height: vars.space.small.mobile,
-      width: vars.space.small.mobile,
+      height: vars.space.xsmall.tablet,
+      width: vars.space.xsmall.tablet,
     },
     tablet: {
-      height: vars.space.small.mobile,
-      width: vars.space.small.mobile,
+      height: vars.space.xsmall.tablet,
+      width: vars.space.xsmall.tablet,
     },
   }),
 };

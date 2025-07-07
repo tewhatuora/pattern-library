@@ -58,8 +58,8 @@ const navArgTypes = {
   searchFormMethod: {
     control: {
       type: 'select',
-      options: ['GET', 'POST'],
     },
+    options: ['GET', 'POST'],
   },
   children: {
     control: false,

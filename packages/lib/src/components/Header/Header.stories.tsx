@@ -68,19 +68,14 @@ export const Default = (args: Header.HeaderProps) => {
                 href: '#',
                 icon: 'language',
                 label: 'Language',
-              },
-              {
-                href: '#',
-                icon: 'person',
-                label: 'Name Surname',
-              },
+              }
             ]}
             variant={args.variant!}
           />
 
           <InputSearch id="search" name="search" placeholder="Search" />
         </Header.Right>
-        <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} />
+        <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} variant={args.variant!} />
       </Header.Main>
     </Header.Root>
   );

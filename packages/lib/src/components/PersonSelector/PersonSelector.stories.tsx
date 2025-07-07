@@ -21,8 +21,9 @@ export default {
     },
     value: {
       control: {
-        type: 'text',
+        type: 'select',
       },
+      options: ['123456', '987654', '9876542', '9876543', '9876544'],
       defaultValue: '123456',
     },
   },

@@ -176,7 +176,8 @@ const HEADER_MENU_BUTTON_NAME = 'HeaderMenuButton';
 type HeaderMenuButtonProps = {
   open?: boolean;
   onToggle?: () => void;
-} & ButtonRootProps;
+  variant: ContrastVariant;
+} & Omit<ButtonRootProps, 'variant'>;
 
 /**
  * Menu open/close button
@@ -185,15 +186,14 @@ type HeaderMenuButtonProps = {
  * @param onToggle
  * @constructor
  */
-const HeaderMenuButton = ({ open, onToggle, className, ...props }: HeaderMenuButtonProps) => {
+const HeaderMenuButton = ({ open, onToggle, className, variant, ...props }: HeaderMenuButtonProps) => {
   return (
     <ButtonRoot
-      className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className)}
+      className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className, styles.menuButtonVariant[variant])}
       onPress={onToggle}
       {...props}
     >
-      <Text className={styles.mobileMenuButtonText}>{open ? 'Close' : 'Menu'}</Text>
-      <Icon icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
+      <Icon icon={open ? 'cross' : 'menu'} variant="decorativeIcons" className={styles.menuButtonIcon[variant]} />
     </ButtonRoot>
   );
 };

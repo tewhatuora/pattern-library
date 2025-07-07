@@ -99,24 +99,26 @@ const Footer = ({
       legalCopy || !!imprintItems ? (
         <Box className={styles.imprintItems}>
           {legalCopy ? (
-            <Box className={clsx(styles.imprintItem, styles.legalCopy)}>
+            <Box className={clsx(styles.imprintItem, styles.legalCopy, styles.imprintChildVariant({ variant }))}>
               <Text size="small" weight="regular">
                 {legalCopy}
               </Text>
             </Box>
           ) : null}
-          {imprintItems?.map(({ text, href, component: ImprintComponent }) => {
+          {imprintItems?.toReversed().map(({ text, href, component: ImprintComponent }) => {
             let result;
 
             if (ImprintComponent) {
               result = (
                 <Text size="small" weight="regular">
-                  <ImprintComponent className={styles.imprintLink}>{text}</ImprintComponent>
+                  <ImprintComponent className={clsx(styles.imprintLink, styles.imprintChildVariant({ variant }))}>
+                    {text}
+                  </ImprintComponent>
                 </Text>
               );
             } else if (href) {
               result = (
-                <Box as="a" className={styles.imprintLink} href={href}>
+                <Box as="a" className={clsx(styles.imprintLink, styles.imprintChildVariant({ variant }))} href={href}>
                   <Text size="small" weight="regular">
                     {text}
                   </Text>
@@ -131,14 +133,15 @@ const Footer = ({
             }
 
             return (
-              <Box className={styles.imprintItem} key={text}>
+              <Box className={clsx(styles.imprintItem, styles.imprintChildVariant({ variant }))} key={text}>
                 {result}
               </Box>
             );
           })}
+          <ShieldedSite />
         </Box>
       ) : null,
-    [imprintItems, legalCopy],
+    [imprintItems, legalCopy, variant],
   );
 
   return (
@@ -147,11 +150,12 @@ const Footer = ({
         <div className={styles.footerInner}>
           <Stack space="xxlarge">
             {/* First row */}
-            <Box display="flex" flexWrap="wrap" marginBottom="xsmall">
+            <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
               <Box className={styles.govtLogoWrapper}>
                 {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
                 <NZGovtLogo focusable={false} role="img" />
               </Box>
+              <Box>{socialLinks}</Box>
             </Box>
 
             {/* Second row */}
@@ -165,11 +169,6 @@ const Footer = ({
                     </div>
                   ))}
                 </Box>
-                {!!socialLinks && (
-                  <Box className={styles.secondRowChild}>
-                    <ShieldedSite />
-                  </Box>
-                )}
               </Box>
             )}
 
@@ -177,14 +176,6 @@ const Footer = ({
             <Stack space="medium">
               <Divider variant={variant ?? 'light'} />
               <Box className={styles.socialAndImprintWrapper}>
-                {/*
-                 * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
-                 * on the right even when there are no imprintItemsElements.
-                 * It should also be okay for accessibility because the order of viewing the
-                 * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
-                 * really matter.
-                 */}
-                <Box className={styles.socialAndImprintChild}>{socialLinks || <ShieldedSite />}</Box>
                 <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
               </Box>
             </Stack>
