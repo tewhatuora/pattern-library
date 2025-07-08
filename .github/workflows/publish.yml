@@ -1,0 +1,86 @@
+name: Publish lib
+
+on:
+  workflow_call:
+    secrets:
+      NPM_TOKEN:
+        required: true
+    inputs:
+      cache-key:
+        required: true
+        type: string
+      is-full-lib:
+        type: string # 'true' or 'false'
+      is-pre-lib:
+        type: string # 'true' or 'false'
+      is-full-theme:
+        type: string # 'true' or 'false'
+      is-pre-theme:
+        type: string # 'true' or 'false'
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: "**/node_modules"
+        key: ${{ inputs.cache-key }}
+    
+    # - name: download build artifact
+    #   uses: actions/download-artifact@v4
+
+    # TODO get downloaded artifacts from previous jobs working to avoid additional build step
+    - name: yarn build themes
+      working-directory: ./packages/themes
+      run: yarn build
+
+    - name: yarn build
+      run: yarn build
+
+    - name: publish library
+      if: inputs.is-full-lib == 'true'
+      run: |
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/lib --tag latest
+
+    - name: publish prerelease library
+      if: inputs.is-pre-lib == 'true'
+      run: |
+        GIT_REF="${{ github.ref_name }}"
+        PRE_RELEASE_VERSION=${GIT_REF#*.[0-9]*-}
+        TAG_NAME=${PRE_RELEASE_VERSION%.*}
+        echo $TAG_NAME
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/lib --tag $TAG_NAME
+
+    - name: publish theme
+      if: inputs.is-full-theme == 'true'
+      run: |
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/themes --tag latest
+
+    - name: publish prerelease theme
+      if: inputs.is-pre-theme == 'true'
+      run: |
+        GIT_REF="${{ github.ref_name }}"
+        PRE_RELEASE_VERSION=${GIT_REF#*.[0-9]*-}
+        TAG_NAME=${PRE_RELEASE_VERSION%.*}
+        echo $TAG_NAME
+        npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
+        yarn publish --access public --cwd ./packages/themes --tag $TAG_NAME

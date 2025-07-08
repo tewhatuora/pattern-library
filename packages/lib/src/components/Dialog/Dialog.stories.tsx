@@ -5,6 +5,7 @@ import { Dialog } from './Dialog';
 
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
+import { Checkbox } from '../Checkbox/Checkbox';
 import icons from '../Icon/icons';
 import Docs from './Dialog.docs.mdx';
 

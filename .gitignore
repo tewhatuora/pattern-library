@@ -20,6 +20,8 @@ packages/themes/node_modules
 packages/themes/tmp
 packages/themes/.yarn
 
+storybook-static
+
 .yarn/*
 !.yarn/patches
 !.yarn/releases
@@ -29,3 +31,5 @@ packages/themes/.yarn
 
 .idea
 *.iml
+
+.yalc

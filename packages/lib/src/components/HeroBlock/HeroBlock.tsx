@@ -20,7 +20,7 @@ export type HeroBlockProps = {
   badgeVariant?: BadgeProps['variant'];
   description: string;
   withPattern?: boolean;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 

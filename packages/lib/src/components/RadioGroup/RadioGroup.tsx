@@ -17,6 +17,9 @@ export const RadioGroupRoot = ({ error, ...props }: RadioGroupRootProps) => (
 
 RadioGroupRoot.displayName = 'RadioGroupRoot';
 
+import * as styles from './RadioGroup.css';
+export const RadioGroupStyles = styles;
+
 export type RadioGroupProps = {
   /** show asterisk when field is required (default: `true`) */
   showRequiredAsterisk?: boolean;

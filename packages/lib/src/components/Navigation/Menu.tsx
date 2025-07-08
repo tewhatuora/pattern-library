@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Children, PropsWithChildren, ReactElement, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import FocusTrap from 'focus-trap-react';
 import clsx from 'clsx';
 
@@ -12,7 +12,7 @@ import { Box } from '../Box/Box';
 import { Container } from '../Container/Container';
 import { Row } from '../Columns/Row';
 import { Column } from '../Columns/Column';
-import { MenuList, MenuListProps } from './MenuList';
+import { MenuList } from './MenuList';
 import { ButtonRoot } from '../Button/ButtonRoot';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
@@ -163,7 +163,7 @@ export const Menu = ({
                     </Text>
                   </ButtonRoot>
                 )}
-                {menuLists?.map((menuList: ReactNode & { props: MenuListProps }) => (
+                {menuLists?.map((menuList: ReactElement) => (
                   <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
                     {menuList}
                   </Column>

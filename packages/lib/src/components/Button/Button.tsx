@@ -24,6 +24,12 @@ export type ButtonProps = {
   as?: ElementType;
   /** URL/path to link to if `as` is set to `a` */
   href?: string;
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
+  className?: string;
+  /** A function that will be called when clicking/pressing the Button */
+  onPress?: (e: any) => void;
+  /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
+  onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   children?: ReactNode | undefined;
 } & styles.Variants &
   ComponentPropsWithoutRef<'button'>;
@@ -47,7 +53,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     <ButtonRoot
       as={as}
       className={clsx(
-        styles.variants({
+        styles.button({
           variant,
         }),
         className,

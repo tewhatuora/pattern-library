@@ -54,7 +54,7 @@ type FooterProps = {
   legalCopy?: string;
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 };
 

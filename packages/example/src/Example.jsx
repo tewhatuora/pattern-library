@@ -1,6 +1,6 @@
-import '@te-whatu-ora/anatomic/styles';
-import '@te-whatu-ora/anatomic-themes/styles';
-import {Stack, Row, Column, Card, Button, Heading, Text, AnchorLink, Breadcrumbs} from '@te-whatu-ora/anatomic';
+import '@healthnz/pattern-library/styles';
+import '@healthnz/pattern-library-themes/styles';
+import {Stack, Row, Column, Card, Button, Heading, Text, AnchorLink, Breadcrumbs} from '@healthnz/pattern-library';
 
 const Example = (props) => {
   return (

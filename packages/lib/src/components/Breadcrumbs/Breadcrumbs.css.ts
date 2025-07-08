@@ -60,6 +60,31 @@ export const separator = style(
   }),
 );
 
+export const variants = {
+  background: {
+    true: [
+      {
+        backgroundColor: vars.color.semantic.controls.background.light2,
+        borderRadius: vars.borderRadiusAll.standard,
+      },
+      responsiveStyle({
+        mobile: {
+          paddingLeft: vars.space.small.mobile,
+          paddingRight: vars.space.small.mobile,
+          paddingTop: vars.space.xsmall.mobile,
+          paddingBottom: vars.space.xsmall.mobile,
+        },
+        tablet: {
+          paddingLeft: vars.space.small.tablet,
+          paddingRight: vars.space.small.tablet,
+          paddingTop: vars.space.xsmall.tablet,
+          paddingBottom: vars.space.xsmall.tablet,
+        },
+      }),
+    ],
+  },
+};
+
 export const breadcrumbs = recipe({
   base: [
     fontFamily,
@@ -67,28 +92,5 @@ export const breadcrumbs = recipe({
       color: vars.color.semantic.text.copy.dark,
     },
   ],
-  variants: {
-    background: {
-      true: [
-        {
-          backgroundColor: vars.color.semantic.controls.background.light2,
-          borderRadius: vars.borderRadiusAll.standard,
-        },
-        responsiveStyle({
-          mobile: {
-            paddingLeft: vars.space.small.mobile,
-            paddingRight: vars.space.small.mobile,
-            paddingTop: vars.space.xsmall.mobile,
-            paddingBottom: vars.space.xsmall.mobile,
-          },
-          tablet: {
-            paddingLeft: vars.space.small.tablet,
-            paddingRight: vars.space.small.tablet,
-            paddingTop: vars.space.xsmall.tablet,
-            paddingBottom: vars.space.xsmall.tablet,
-          },
-        }),
-      ],
-    },
-  },
+  variants,
 });

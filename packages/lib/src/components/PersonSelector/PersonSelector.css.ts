@@ -4,11 +4,29 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { recipe } from '@vanilla-extract/recipes';
 
-import { BUTTON_HEIGHT_TABLET, variants } from '../Button/Button.css';
+import { BUTTON_HEIGHT_TABLET, button as buttonComponentVariants } from '../Button/Button.css';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { rem } from '../../css/helpers';
+
+export const personSelectorVariants = {
+  variant: {
+    // Show desktop person selector on mobile
+    // Hide it visually but still render it so we can still measure if it wraps
+    // as we can't tell if it is not in the DOM
+    full: responsiveStyle({
+      tablet: {
+        visibility: 'unset',
+      },
+    }),
+    hidden: responsiveStyle({
+      tablet: {
+        visibility: 'hidden',
+      },
+    }),
+  },
+};
 
 export const personSelector = recipe({
   base: [
@@ -26,23 +44,7 @@ export const personSelector = recipe({
       },
     }),
   ],
-  variants: {
-    variant: {
-      // Show desktop person selector on mobile
-      // Hide it visually but still render it so we can still measure if it wraps
-      // as we can't tell if it is not in the DOM
-      full: responsiveStyle({
-        tablet: {
-          visibility: 'unset',
-        },
-      }),
-      hidden: responsiveStyle({
-        tablet: {
-          visibility: 'hidden',
-        },
-      }),
-    },
-  },
+  variants: personSelectorVariants,
 });
 
 export const heading = style([
@@ -65,7 +67,27 @@ export const heightSpacer = style([
   }),
 ]);
 
-export const buttonVariants = recipe({
+export const buttonVariants = {
+  variant: {
+    default: [
+      buttonComponentVariants({ variant: 'tertiary' }),
+      {
+        color: vars.color.semantic.text.copy.dark,
+        ':hover': {
+          color: vars.color.semantic.text.copy.dark,
+        },
+      },
+    ],
+    selected: [
+      buttonComponentVariants({ variant: 'primary' }),
+      {
+        color: vars.color.primary0,
+      },
+    ],
+  },
+};
+
+export const button = recipe({
   base: style([
     {
       width: 'auto',
@@ -93,25 +115,7 @@ export const buttonVariants = recipe({
       },
     }),
   ]),
-  variants: {
-    variant: {
-      default: [
-        variants({ variant: 'tertiary' }),
-        {
-          color: vars.color.semantic.text.copy.dark,
-          ':hover': {
-            color: vars.color.semantic.text.copy.dark,
-          },
-        },
-      ],
-      selected: [
-        variants({ variant: 'primary' }),
-        {
-          color: vars.color.primary0,
-        },
-      ],
-    },
-  },
+  variants: buttonVariants,
 });
 
 export const buttonIconVariants = styleVariants({

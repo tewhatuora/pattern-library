@@ -1,16 +1,13 @@
-import { Avatar, AvatarProps } from './Avatar';
-import DocsPage from '../../../utils/DocsPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Docs from './Avatar.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
-export default {
+import { Avatar } from './Avatar';
+
+const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
-  argTypes: {
-    initial: {
-      defaultValue: 'A',
-    },
-  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -18,6 +15,11 @@ export default {
   },
 };
 
-export const Default = (args: AvatarProps) => {
-  return <Avatar {...args} />;
+export default meta;
+type Story = StoryObj<typeof Avatar>;
+
+export const Default: Story = {
+  args: {
+    initial: 'A',
+  },
 };

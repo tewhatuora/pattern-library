@@ -18,9 +18,9 @@ export const PersonSelectorStyles = styles;
 
 export type PersonSelectorProps = {
   people: { name: string; nhi: string; birthDate?: string; isUser?: boolean }[];
-  value: string;
-  onChange: (nhi: string) => void;
-  isLoading: boolean;
+  value?: string;
+  onChange?: (nhi: string) => void;
+  isLoading?: boolean;
   personSelectorLabel: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 
@@ -64,9 +64,9 @@ export const PersonSelector = ({
       const variant = value === person.nhi ? 'selected' : 'default';
       return (
         <ButtonRoot
-          className={styles.buttonVariants({ variant })}
+          className={styles.button({ variant })}
           key={`person-selector-${person.nhi}`}
-          onClick={() => onChange(person.nhi)}
+          onClick={() => onChange?.(person.nhi)}
         >
           <Icon
             className={styles.buttonIconVariants[variant]}
@@ -120,7 +120,7 @@ export const PersonSelector = ({
           name="person-selector-dropdown"
           options={renderOptions}
           value={value}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event) => onChange?.(event.target.value)}
         />
       )}
     </Box>

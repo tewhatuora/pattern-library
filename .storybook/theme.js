@@ -2,9 +2,9 @@ import { create } from '@storybook/theming';
 
 export default create({
   base: 'light',
-  brandTitle: 'Anatomic',
+  brandTitle: 'Pattern Library',
   brandUrl: '/',
-  brandImage: './Anatomic.svg',
+  brandImage: './patternlibrary.svg',
 
   colorPrimary: '#002E6E',
   colorSecondary: '#0071BC',

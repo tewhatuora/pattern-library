@@ -18,6 +18,33 @@ export const noVisited = style({
   //
 });
 
+export const linkVariants = {
+  noVisited: {
+    true: {},
+    false: {
+      selectors: {
+        '&:visited': {
+          color: vars.color.semantic.text.links.visited,
+        },
+        [`${noVisited} &`]: {
+          color: vars.color.semantic.text.links.active,
+        },
+      },
+    },
+  },
+  underline: {
+    true: {
+      selectors: {
+        '&:hover': {
+          textDecoration: 'none',
+        },
+      },
+      textDecoration: 'underline',
+    },
+    false: {},
+  },
+};
+
 export const link = recipe({
   base: {
     display: 'inline-flex',
@@ -42,34 +69,7 @@ export const link = recipe({
       ...focusSelectorsStyles,
     },
   },
-
-  variants: {
-    noVisited: {
-      true: {},
-      false: {
-        selectors: {
-          '&:visited': {
-            color: vars.color.semantic.text.links.visited,
-          },
-          [`${noVisited} &`]: {
-            color: vars.color.semantic.text.links.active,
-          },
-        },
-      },
-    },
-    underline: {
-      true: {
-        selectors: {
-          '&:hover': {
-            textDecoration: 'none',
-          },
-        },
-        textDecoration: 'underline',
-      },
-      false: {},
-    },
-  },
-
+  variants: linkVariants,
   defaultVariants: {
     noVisited: false,
   },

@@ -1,4 +1,4 @@
-const path = require('path');
+import { dirname, join } from 'path';
 const { vanillaExtractPlugin } = require('@vanilla-extract/vite-plugin');
 const svgr = require('@honkhonk/vite-plugin-svgr').default;
 
@@ -6,22 +6,31 @@ const { mergeConfig } = require('vite');
 
 module.exports = {
   stories: [
-    '../stories/**/*.stories.mdx',
+    '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
-    '../packages/lib/src/components/**/*.stories.mdx',
     '../packages/lib/src/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
+
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    'storybook-addon-themes',
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath('@storybook/addon-mdx-gfm'),
+    getAbsolutePath('@storybook/addon-themes'),
+    '@chromatic-com/storybook'
   ],
-  framework: '@storybook/react',
+
   core: {
-    builder: '@storybook/builder-vite',
+    builder: getAbsolutePath("@storybook/builder-vite"),
   },
+
+  framework: {
+    name: getAbsolutePath('@storybook/react-vite'),
+    options: {},
+  },
+
   staticDirs: ['./public'],
+
   typescript: {
     check: false,
     checkOptions: {},
@@ -34,8 +43,9 @@ module.exports = {
       },
     },
   },
+
   // use `mergeConfig` to recursively merge Vite options
-  viteFinal: async (config) => {
+  async viteFinal(config) {
     return mergeConfig(config, {
       base: process.env.BASE_URL || config.base,
       build: {
@@ -57,4 +67,10 @@ module.exports = {
       ],
     });
   },
+
+  docs: {},
 };
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}

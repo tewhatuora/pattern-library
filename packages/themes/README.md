@@ -1,6 +1,6 @@
-# Anatomic themes
+# Pattern library themes
 
-`@te-whatu-ora/anatomic-themes`
+`@healthnz/pattern-library-themes`
 
 ### Configuration
 
@@ -76,7 +76,7 @@ Once published, the updated theme will be available in the next version.
 
 #### JavaScript (Vanilla Extract)
 ```js
-import { myTheme } from '@te-whatu-ora/anatomic-themes';
+import { myTheme } from '@healthnz/pattern-library-themes';
 
 ...
 

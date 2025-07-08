@@ -16,7 +16,7 @@ export const TextLinkStyles = styles;
 export type TextLinkProps = {
   /** A URL/path to link to */
   to: string;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** A React component to render, e. react-router-dom `<Link />` */
   component?: FC<any>;

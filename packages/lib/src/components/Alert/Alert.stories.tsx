@@ -1,21 +1,13 @@
-import { Alert, AlertProps } from './Alert';
-import DocsPage from '../../../utils/DocsPage';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Docs from './Alert.docs.mdx';
+import DocsPage from '../../../utils/DocsPage';
 
-export default {
+import { Alert } from './Alert';
+
+const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
   component: Alert,
-  argTypes: {
-    children: {
-      control: {
-        type: 'text',
-      },
-    },
-    onClose: {
-      control: false,
-    },
-  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
@@ -23,11 +15,12 @@ export default {
   },
 };
 
-export const Default = (args: AlertProps) => {
-  const text = `${args.variant} alert`;
+export default meta;
+type Story = StoryObj<typeof Alert>;
 
-  return <Alert {...args}>{args.children || text}</Alert>;
-};
-Default.args = {
-  variant: 'positive',
+export const Default: Story = {
+  args: {
+    children: 'Alert',
+    variant: 'positive',
+  },
 };

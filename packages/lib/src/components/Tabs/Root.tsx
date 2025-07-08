@@ -11,7 +11,7 @@ import { Space } from '../../css/atoms/atoms';
 
 export type TabsRootProps = {
   onValueChange?: (value: string) => void;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** A space token for spacing between children elements */
   space: Space;

@@ -1,0 +1,59 @@
+name: Test
+
+on:
+  workflow_call:
+    secrets:
+      CHROMATIC_PROJECT_TOKEN:
+        required: true
+    inputs:
+      cache-key:
+        required: true
+        type: string
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: setup node
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+  
+    - name: restore cache
+      uses: actions/cache/restore@v4
+      id: restore-install-cache
+      with:
+        path: "**/node_modules"
+        key: ${{ inputs.cache-key }}
+    
+    # - name: download build artifact
+    #   uses: actions/download-artifact@v4
+
+    # TODO find a way to get chromatic building/running from previous stage artifacts.
+    # Will likely need the chromaui/action outputDir input working to resolve relative imports
+    # for themes in storybook broken be running out of tmp directory
+    - name: yarn build themes
+      working-directory: ./packages/themes
+      run: yarn build
+
+    - name: yarn build
+      run: yarn build
+
+    - name: yarn build storybook
+      run: yarn build-storybook
+
+    - name: run chromatic tests
+      uses: chromaui/action@latest
+      with:
+        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        autoAcceptChanges: "main"
+        storybookBuildDir: "storybook-static"
+

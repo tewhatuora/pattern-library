@@ -95,9 +95,9 @@ export const Tooltip = ({
               onClick={
                 triggerOpenOnClick
                   ? (e) => {
-                      e.preventDefault();
-                      setIsOpen(true);
-                    }
+                    e.preventDefault();
+                    setIsOpen(true);
+                  }
                   : undefined
               }
             >

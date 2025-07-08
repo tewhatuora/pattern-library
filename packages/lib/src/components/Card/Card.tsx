@@ -18,7 +18,7 @@ export type CardProps = {
   /** Option to display the Card without a box-shadow */
   noShadow?: boolean;
   border?: Color;
-  /** Additional CSS className. (Use `__anatomic__` for an example) */
+  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & BoxProps &
   Pick<JSX.IntrinsicElements['div'], 'children'>;

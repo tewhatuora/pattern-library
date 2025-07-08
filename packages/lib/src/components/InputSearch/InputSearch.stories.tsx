@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FocusEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
 import { InputSearch, InputSearchProps } from './InputSearch';
 import DocsPage from '../../../utils/DocsPage';
@@ -12,6 +12,7 @@ export default {
     id: { control: false },
     name: { control: false },
     onChange: { control: false },
+    onSubmit: { control: false },
   },
   parameters: {
     docs: {
@@ -20,7 +21,10 @@ export default {
   },
 };
 
-export const Default = (args: InputSearchProps) => <InputSearch {...args} />;
+export const Default = (args: InputSearchProps) => {
+  delete args.onSubmit;
+  return <InputSearch {...args} />;
+};
 
 /**
  * Example with forwarding a ref, and using it
@@ -29,6 +33,7 @@ export const Default = (args: InputSearchProps) => <InputSearch {...args} />;
  * @constructor
  */
 export const WithFocus = (args: InputSearchProps) => {
+  delete args.onSubmit;
   const ref = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     ref?.current?.focus();
@@ -43,6 +48,7 @@ WithFocus.argTypes = {
 };
 
 export const Filled = (args: InputSearchProps) => {
+  delete args.onSubmit;
   const [value, setValue] = useState<string | undefined>('Filled');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,21 +58,8 @@ export const Filled = (args: InputSearchProps) => {
   return <InputSearch {...args} value={value} onChange={handleChange} />;
 };
 
-/**
- * Example with a form wrapping the
- * component to handle `onSubmit`
- * @param args
- * @constructor
- */
-export const SearchFormExample = (args: InputSearchProps) => {
-  return (
-    <form action="/" method="GET" onSubmit={() => alert('Search submitted')}>
-      <InputSearch {...args} />
-    </form>
-  );
-};
-
 export const OnFocusAndBlurEvent = (args: InputSearchProps) => {
+  delete args.onSubmit;
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.target.style.backgroundColor = '';
   };
@@ -76,4 +69,20 @@ export const OnFocusAndBlurEvent = (args: InputSearchProps) => {
   };
 
   return <InputSearch {...args} onBlur={handleBlur} onFocus={handleFocus} />;
+};
+
+export const OnSubmitEvent = (args: InputSearchProps) => {
+  const [value, setValue] = useState<string | undefined>('');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+
+    alert(`Search for ${value}`);
+  };
+
+  return <InputSearch {...args} value={value} onChange={handleChange} onSubmit={handleSubmit} />;
 };
