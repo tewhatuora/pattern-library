@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import path from 'path';
 
 export default defineConfig({
   build: {
@@ -11,11 +11,16 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
   },
+  resolve: {
+    alias: {
+      '!/*': path.resolve(__dirname, '../*'),
+      '@/*': path.resolve(__dirname, './*'),
+    },
+  },
   plugins: [
     vanillaExtractPlugin({
       identifiers: 'short',
     }),
-    tsconfigPaths(),
     dts({
       beforeWriteFile: (filePath, content) => ({
         content,

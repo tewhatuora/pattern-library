@@ -1,8 +1,10 @@
 import {
   FC,
   Fragment,
+  type KeyboardEventHandler,
   MutableRefObject,
   PropsWithChildren,
+  type Ref,
   createElement,
   useCallback,
   useContext,
@@ -18,7 +20,7 @@ import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 import { Link } from './Link';
 import { Menu } from './Menu';
-import { ButtonRoot } from '../Button/ButtonRoot';
+import { ButtonRoot, ButtonRootProps } from '../Button/ButtonRoot';
 
 import { ContrastVariant } from '../../types';
 
@@ -106,7 +108,7 @@ export const Item = ({
    * Handle closing the submenu
    * with space or enter key
    */
-  const handleKeyboardClose = useCallback(
+  const handleKeyboardClose: KeyboardEventHandler<HTMLButtonElement> = useCallback(
     (e) => {
       if (['Space', 'Enter'].includes(e.code)) {
         closeSubMenuIfOpen();
@@ -139,7 +141,7 @@ export const Item = ({
     }),
     tabIndex: 0,
   };
-  const buttonProps = {
+  const buttonProps: ButtonRootProps & { ref: Ref<HTMLButtonElement> | null } = {
     ...baseProps,
     ref: ref,
     onFocus: handleFocus,

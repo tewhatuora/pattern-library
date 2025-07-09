@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
-import '@healthnz/pattern-library/styles';
-import '@healthnz/pattern-library-themes/styles';
-
 import { ThemeProvider, Header, Stack, Container, Text, Navigation } from '@healthnz/pattern-library';
 import { neutral } from '@healthnz/pattern-library-themes';
 
@@ -14,39 +11,36 @@ const App = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
 
   const handleToggleNavigation = () => {
-    setNavigationOpen(navOpen => !navOpen)
+    setNavigationOpen((navOpen) => !navOpen);
   };
 
   return (
-    <ThemeProvider theme={neutral.className}>
+    <ThemeProvider theme={neutral}>
       <Stack space="xxlarge" color="primary100">
-      <Header
-        utilityNavItems={[
-          {
-            href: '#',
-            icon: 'language',
-            label: 'Language',
-          },
-          {
-            href: '#',
-            icon: 'person',
-            label: 'Name Surname',
-          },
-        ]}
-        logoLinkHref="/"
-        logoComponent={
-          <>
-            <Text size="small">LOGO</Text>
-            <Text size="small" weight="bold">
-              Placeholder
-            </Text>
-          </>
-        }
-        withSearch
-        onToggleNavigation={handleToggleNavigation}
-        navigationOpen={navigationOpen}
-      />
-      <div style={{paddingTop: '9.6rem'}}>
+        <Header.Root>
+          <Header.Main>
+            <Header.Left>
+              <Header.Logo>
+                <Link to="/">
+                  <Text size="small">LOGO</Text>
+                  <Text size="small" weight="bold">
+                    Placeholder
+                  </Text>
+                </Link>
+              </Header.Logo>
+            </Header.Left>
+            <Header.Right>
+              <Navigation.Utility
+                items={[
+                  { href: '#', icon: 'language', label: 'Language' },
+                  { href: '#', icon: 'person', label: 'Name Surname' },
+                ]}
+                variant="light"
+              />
+            </Header.Right>
+            <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+          </Header.Main>
+        </Header.Root>
         <Stack space="xxlarge" color="primary100">
           <Navigation.Root open={navigationOpen} withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
@@ -95,15 +89,17 @@ const App = () => {
             <Stack space="medium">
               <Routes>
                 <Route path="/" element={<Example />} />
-                <Route path="/forms" element={<YourDetails firstName="TYREE" lastName="GUNN" dateOfBirth="13 September 1994"/>} />
+                <Route
+                  path="/forms"
+                  element={<YourDetails firstName="TYREE" lastName="GUNN" dateOfBirth="13 September 1994" />}
+                />
               </Routes>
             </Stack>
           </Container>
         </Stack>
-      </div>
       </Stack>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

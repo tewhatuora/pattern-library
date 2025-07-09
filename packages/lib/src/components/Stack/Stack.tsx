@@ -15,7 +15,7 @@ const StackStyles = styles;
 
 type StackProps = {
   /** Element type to render as */
-  as?: ElementType;
+  as?: (typeof validStackComponents)[number];
   /** Element type to render child wrapper as */
   childWrapperAs?: ElementType;
   /** A space token for spacing between children elements */
@@ -25,6 +25,8 @@ type StackProps = {
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & BoxProps;
+
+export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 /**
  * A component to vertically stack its
@@ -40,6 +42,12 @@ const Stack = ({
   className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
+  if (!validStackComponents.includes(as)) {
+    throw new Error(
+      `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
+    );
+  }
+
   const direction = horizontal ? 'horizontal' : 'vertical';
   const breakpoint = useContext(BreakpointContext) === 'mobile' ? 'mobile' : 'tablet';
 

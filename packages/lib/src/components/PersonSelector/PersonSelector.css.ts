@@ -81,7 +81,10 @@ export const buttonVariants = {
     selected: [
       buttonComponentVariants({ variant: 'primary' }),
       {
-        color: vars.color.primary0,
+        color: vars.color.semantic.text.copy.light,
+        ':hover': {
+          color: vars.color.semantic.button.primary.content.hover,
+        },
       },
     ],
   },
@@ -120,9 +123,7 @@ export const button = recipe({
 
 export const buttonIconVariants = styleVariants({
   default: {
-    color: vars.color.primary100,
+    color: vars.color.semantic.text.copy.dark,
   },
-  selected: {
-    color: vars.color.primary0,
-  },
+  selected: {},
 });

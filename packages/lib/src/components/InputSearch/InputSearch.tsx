@@ -1,5 +1,6 @@
 import { FormEventHandler, ForwardedRef, RefObject, forwardRef, useMemo } from 'react';
 import { useTextField } from '@react-aria/textfield';
+import { useObjectRef } from '@react-aria/utils';
 
 import { InputField, OtherInputFieldProps } from '../InputField/InputField';
 import { Box } from '../Box/Box';
@@ -24,6 +25,10 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
     { id, name, placeholder, value, defaultValue, onBlur, onChange, onFocus, onSubmit, ...rest }: InputSearchProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
+    // Convert the forwarded ref (which may be a callback) into an object ref that
+    // React Aria’s `useTextField` can safely work with.
+    const inputRef = useObjectRef(ref);
+
     const { inputProps } = useTextField(
       {
         id,
@@ -34,7 +39,7 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
         ...rest,
         type: INPUT_TYPE,
       },
-      ref as RefObject<HTMLInputElement>,
+      inputRef as RefObject<HTMLInputElement>,
     );
 
     const element = useMemo(() => {
@@ -51,7 +56,7 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
           id={id}
           name={name}
           placeholder={placeholder}
-          ref={ref}
+          ref={inputRef}
           type={INPUT_TYPE}
           value={value}
           onBlur={onBlur}

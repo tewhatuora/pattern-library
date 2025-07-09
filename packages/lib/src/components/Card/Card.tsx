@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { vars } from '../../themes/vars.css';
 
 import { Box, BoxProps } from '../Box/Box';
-import { ContrastVariant } from '../../types';
 
 import * as styles from './Card.css';
 
@@ -13,8 +12,6 @@ export const CardStyles = styles;
 type Color = Exclude<keyof typeof vars.color, 'semantic'>;
 
 export type CardProps = {
-  /** Contrast variant for dark/light UI */
-  variant?: ContrastVariant;
   /** Option to display the Card without a box-shadow */
   noShadow?: boolean;
   border?: Color;
@@ -31,7 +28,6 @@ export const Card = ({
   as = 'div',
   noShadow = false,
   border,
-  variant = 'light',
   children,
   className,
   ...boxProps
@@ -39,13 +35,12 @@ export const Card = ({
   const cardClassNames = useMemo(() => {
     return clsx(
       styles.card,
-      styles.variants[variant],
       {
         [styles.variants.noShadow]: noShadow,
       },
       className,
     );
-  }, [noShadow, variant, className]);
+  }, [noShadow, className]);
 
   return (
     <Box

@@ -4,10 +4,11 @@ import { calc } from '@vanilla-extract/css-utils';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { rem } from '@/src/css/helpers';
+import { mobileContainer, tabletContainer } from '@/src/css/grid';
 
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
-import { breakpointQuery, responsiveStyle } from '../../css/responsiveStyle';
+import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
@@ -19,16 +20,6 @@ const spacing = calc.multiply(vars.space.medium.tablet, 2); // 4rem / 64px
 const lessSpacing = calc.multiply(vars.space.medium.tablet, 1.25); // 2.5rem / 40px, for when there's 5 columns
 
 export const footer = recipe({
-  base: responsiveStyle({
-    mobile: {
-      paddingTop: vars.space.xlarge.mobile,
-      paddingBottom: vars.space.xlarge.mobile,
-    },
-    desktop: {
-      paddingTop: vars.space.xlarge.mobile,
-      paddingBottom: vars.space.xlarge.mobile,
-    },
-  }),
   variants: {
     variant: {
       light: {
@@ -43,62 +34,39 @@ export const footer = recipe({
   },
 });
 
-export const footerInner = style({
-  vars: {
-    '--footer-padding': '16px',
-  },
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  width: 'calc(100% - calc(var(--footer-padding) * 2))',
-  maxWidth: 1200,
-
-  '@media': {
-    [breakpointQuery.tablet]: {
-      vars: {
-        '--footer-padding': '24px',
-      },
-    },
-  },
-});
-
-// ##### First row #####
-const rowGapLogo = 24;
-
-export const logoWrapper = style({
-  marginTop: -rowGapLogo,
-});
-
-export const govtLogoWrapper = style({
-  width: rem(200),
-  height: rem(46),
-  marginTop: rowGapLogo,
-  marginRight: 40,
-
-  selectors: {
-    ...focusSelectorsStyles,
-  },
-});
-
-export const teWhatuOraLogoWrapper = style([
+export const footerInner = style([
   responsiveStyle({
     mobile: {
-      width: rem(148.72),
-      height: rem(24),
-      marginTop: rowGapLogo,
-
-      selectors: {
-        ...focusSelectorsStyles,
-      },
+      paddingTop: vars.space.xxlarge.mobile,
+      paddingBottom: vars.space.xxlarge.mobile,
+      paddingRight: vars.space.large.mobile,
+      paddingLeft: vars.space.large.mobile,
+      ...mobileContainer,
     },
-    tablet: {
-      width: rem(173.5),
-      height: rem(28),
+    desktop: {
+      paddingTop: spacing,
+      paddingBottom: spacing,
+      paddingRight: '0',
+      paddingLeft: '0',
+      ...tabletContainer,
     },
   }),
 ]);
 
-export const divider = style({
-  opacity: 0.3,
+export const footerDarkGradient = style({
+  background: `${vars.gradient.semantic.structure.background['footer-dark-vertical gradient']}, ${vars.gradient.semantic.structure.background['footer-dark-horizontal gradient']}`,
+});
+
+// ##### First row #####
+
+export const logoWrapper = style({
+  height: rem(80),
+  width: rem(172),
+});
+
+export const govtLogoWrapper = style({
+  height: rem(80),
+  width: rem(272),
 });
 
 // ##### Second Row #####
@@ -200,35 +168,39 @@ export const tempNavigation = style({ width: 'fit-content' });
 export const socialAndImprintWrapper = style([
   atoms({
     display: 'flex',
-    flexDirection: { mobile: 'columnReverse', desktop: 'rowReverse' },
+    flexDirection: { mobile: 'column', desktop: 'row' },
     justifyContent: 'spaceBetween',
-    alignItems: { mobile: 'flexStart', desktop: 'center' },
   }),
 ]);
 
-export const socialAndImprintChild = style(
+export const socialAndImprintChild = style([
+  {
+    display: 'flex',
+    flexGrow: 1,
+    width: '100%',
+  },
   responsiveStyle({
     mobile: {
       selectors: {
-        // :last-child because the parent has rowReverse, so it's the opposite
-        '&:not(:last-child)': {
+        '&:not(:first-child)': {
           marginTop: rem(42),
         },
       },
     },
     desktop: {
       selectors: {
-        // :last-child because the parent has rowReverse, so it's the opposite
-        '&:not(:last-child)': {
+        '&:not(:first-child)': {
           marginTop: 0,
           marginLeft: rem(42),
         },
       },
     },
   }),
-);
+]);
 
 export const socialIcon = style({
+  height: '2rem',
+  width: '2rem',
   selectors: {
     '&:not(:first-child)': {
       marginLeft: rem(22), // It's the same for all breakpoints and doesn't match any tokens
@@ -257,49 +229,47 @@ export const legalCopy = style([
 ]);
 
 export const imprintItems = style([
-  {
-    marginBottom: calc.multiply(vars.space.small.tablet, -1),
-  },
   atoms({
     display: 'flex',
+    flexGrow: 1,
   }),
   responsiveStyle({
     mobile: {
+      marginTop: vars.space.large.mobile,
       flexDirection: 'column',
       flexWrap: 'nowrap',
+      alignItems: 'flex-start',
+      gap: vars.space.large.mobile,
     },
     desktop: {
       flexDirection: 'row',
       flexWrap: 'wrap',
+      alignItems: 'center',
     },
   }),
 ]);
 
-export const imprintItem = style([
+export const imprintItem = style(
   responsiveStyle({
     mobile: {
       selectors: {
         // `flex-direction: column-reverse` so it's :first-child, not :last-child
         [`${imprintItems} > &:not(:first-child)`]: {
-          marginBottom: vars.space.small.tablet,
+          // marginBottom: vars.space.small.tablet,
         },
       },
     },
     desktop: {
+      marginRight: vars.space.small.tablet,
       selectors: {
-        [`${imprintItems} > &:not(:last-child)`]: {
-          marginRight: vars.space.small.tablet,
-
-          // marginBottom is needed because with row-reverse, this selector is not targeting the visually top item.
-          // And that top item needs the bottom margin to push away the lower items.
-          // It doesn't matter if the bottom item has padding on desktop because there is nothing below it (at
-          // least, for now...)
-          marginBottom: vars.space.small.tablet,
+        [`${imprintItems} > &:nth-last-child(2)`]: {
+          flex: 1,
+          textAlign: 'right',
         },
       },
     },
   }),
-]);
+);
 
 export const imprintLink = style({
   borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
@@ -329,10 +299,44 @@ export const shieldedSite = style([
   }),
 ]);
 
+export const imprintItemsWrapper = style([
+  atoms({
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: { mobile: 'column', desktop: 'row' },
+    justifyContent: 'flexEnd',
+    alignItems: 'center',
+  }),
+]);
+
 /**
  * The `react-shielded` component has SVG styles set to a size of 32px. Need to override it.
  */
 globalStyle(`${shieldedSite} > button > svg`, {
   width: shieldedSiteButtonSizeVar,
   height: shieldedSiteButtonSizeVar,
+});
+
+export const imprintChildVariant = recipe({
+  defaultVariants: {
+    variant: 'light',
+  },
+  variants: {
+    variant: {
+      light: {
+        selectors: {
+          [`${imprintItems} > &:nth-last-child(2)`]: {
+            color: vars.color.primary100,
+          },
+        },
+      },
+      dark: {
+        selectors: {
+          [`${imprintItems} > &:nth-last-child(2)`]: {
+            color: vars.color.semantic.text.copy.light,
+          },
+        },
+      },
+    },
+  },
 });

@@ -64,7 +64,7 @@ export const buttonVariants = {
       backgroundColor: vars.color.semantic.button.primary.background.normal,
       borderColor: vars.color.semantic.button.primary.border.normal,
       ':hover': {
-        color: vars.color.semantic.button.primary.content.normal,
+        color: vars.color.semantic.button.primary.content.hover,
         backgroundColor: vars.color.semantic.button.primary.background.hover,
         borderColor: vars.color.semantic.button.primary.border.hover,
       },
@@ -93,7 +93,7 @@ export const buttonVariants = {
       backgroundColor: vars.color.semantic.button.secondary.background.normal,
       borderColor: vars.color.semantic.button.secondary.border.normal,
       ':hover': {
-        color: vars.color.semantic.button.secondary.content.normal,
+        color: vars.color.semantic.button.secondary.content.hover,
         backgroundColor: vars.color.semantic.button.secondary.background.hover,
         borderColor: vars.color.semantic.button.secondary.border.hover,
       },

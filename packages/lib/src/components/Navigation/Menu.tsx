@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { debounce } from 'lodash';
 
-import assert from 'assert';
+import assert from '../../utils/assert';
 
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { useAllowedChildren } from '../AllowedChildren/AllowedChildren';

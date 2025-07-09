@@ -101,6 +101,7 @@ export const content = style({
 export const closeButton = style([
   {
     color: 'currentColor',
+    backgroundColor: 'transparent',
   },
   responsiveStyle({
     mobile: {

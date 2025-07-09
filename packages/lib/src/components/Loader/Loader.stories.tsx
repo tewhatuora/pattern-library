@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 
 import Docs from './Loader.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
-import { Loader } from './Loader';
+import { Loader, LoaderProps } from './Loader';
+import { ContrastWrapper } from '../Storybook/ContrastWrapper';
 
 const meta: Meta<typeof Loader> = {
   title: 'Components/Loader',
@@ -13,13 +14,17 @@ const meta: Meta<typeof Loader> = {
       page: () => <DocsPage docs={Docs} />,
     },
   },
-};
-
-export default meta;
-type Story = StoryObj<typeof Loader>;
-
-export const Default: Story = {
   args: {
     message: 'Loading',
   },
+};
+
+export default meta;
+
+export const Default = (args: LoaderProps) => {
+  return (
+    <ContrastWrapper variant={args.variant === 'light' ? 'dark' : 'light'}>
+      <Loader {...args} />
+    </ContrastWrapper>
+  );
 };

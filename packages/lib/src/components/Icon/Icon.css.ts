@@ -34,6 +34,10 @@ const variant = {
     },
   }),
   socialIcons: responsiveStyle({
+    desktop: {
+      height: vars.space.large.mobile,
+      width: vars.space.large.mobile,
+    },
     mobile: {
       height: 32,
       width: 32,
@@ -45,12 +49,12 @@ const variant = {
   }),
   tagIcon: responsiveStyle({
     mobile: {
-      height: vars.space.small.mobile,
-      width: vars.space.small.mobile,
+      height: vars.space.xsmall.tablet,
+      width: vars.space.xsmall.tablet,
     },
     tablet: {
-      height: vars.space.small.mobile,
-      width: vars.space.small.mobile,
+      height: vars.space.xsmall.tablet,
+      width: vars.space.xsmall.tablet,
     },
   }),
 };
@@ -72,4 +76,15 @@ globalStyle(`${icon} > svg`, {
   height: '100%',
 });
 
+globalStyle(`${icon} > svg *`, {
+  fill: 'currentColor',
+  stroke: 'currentColor',
+});
+
 export const clearIcon = style({});
+
+export const noFill = style({});
+
+globalStyle(`${noFill} > svg *`, {
+  fill: 'none !important',
+});

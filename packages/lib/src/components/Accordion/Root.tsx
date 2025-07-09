@@ -38,7 +38,7 @@ export const Root = ({
 }: PropsWithChildren<AccordionRootProps>) => {
   return (
     <RadixAccordion.Root
-      className={styles.root[variant]}
+      className={styles.root['light']}
       onAnimationEnd={({ target }) => {
         if (!target || !hasStyle(target)) return;
         // remove the overflow override after animation is complete so we don't interfere with content

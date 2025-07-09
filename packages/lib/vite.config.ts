@@ -1,11 +1,11 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import dts from 'vite-plugin-dts';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';
-import svgr from '@honkhonk/vite-plugin-svgr';
+import svgr from 'vite-plugin-svgr';
 
 import pkg from './package.json';
+import path from 'path';
 
 export default defineConfig({
   build: {
@@ -15,7 +15,11 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: Object.keys(pkg.peerDependencies),
+      external: [
+        ...Object.keys(pkg.peerDependencies),
+        // Exclude the package's own generated CSS bundle so Rollup doesn't try to resolve it during the build
+        `${pkg.name}/styles`,
+      ],
       output: {
         banner: `'use client';`,
 
@@ -27,23 +31,30 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '!': path.resolve(__dirname, '../'),
+      '@': path.resolve(__dirname, './'),
+    },
+  },
   plugins: [
-    splitVendorChunkPlugin(),
-    vanillaExtractPlugin({
-      identifiers: 'short',
-    }),
-    tsconfigPaths(),
-    react({
-      jsxRuntime: 'automatic',
-    }),
     svgr({
+      include: '**/*.svg*',
       svgrOptions: {
-        jsxRuntime: 'automatic',
+        exportType: 'default',
+        jsxRuntime: 'classic',
         dimensions: false,
         replaceAttrValues: {
           '#404040': 'currentColor',
         },
       },
+    }),
+    splitVendorChunkPlugin(),
+    vanillaExtractPlugin({
+      identifiers: 'short',
+    }),
+    react({
+      jsxRuntime: 'automatic',
     }),
     dts({
       exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*', 'src/**/*.stories.tsx'],
@@ -52,10 +63,11 @@ export default defineConfig({
         filePath: filePath.replace('src', ''),
       }),
       compilerOptions: {
-        baseUrl: './src/',
+        // baseUrl: './src/',
         emitDeclarationOnly: true,
         noEmit: false,
       },
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
       outDir: 'dist/types',
     }),
   ],

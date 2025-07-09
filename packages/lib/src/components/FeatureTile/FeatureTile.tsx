@@ -54,7 +54,7 @@ const Feature = ({
       <Text as="p" className={styles.description}>
         {description}
       </Text>
-      <Button icon={buttonIcon} iconPosition={buttonIconPosition} variant="tertiary">
+      <Button className={styles.button} icon={buttonIcon} iconPosition={buttonIconPosition} variant="tertiary">
         {buttonLabel}
       </Button>
     </div>
