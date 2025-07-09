@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Ref, forwardRef } from 'react';
 
 import { Theme } from '@/src/types';
 
@@ -9,17 +9,20 @@ import { ThemeContext } from './ThemeContext';
 // eslint-disable-next-line import/no-unresolved
 import '@healthnz/pattern-library/styles';
 
-type ThemeProviderProps = {
+export type ThemeProviderProps = {
   theme: Theme;
   children: ReactNode;
 };
 
-export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
+export const ThemeProvider = forwardRef(function ThemeProvider(
+  { theme, children }: ThemeProviderProps,
+  ref: Ref<HTMLDivElement>,
+) {
   return (
     <ThemeContext.Provider value={theme}>
-      <div className={theme.className}>
+      <div className={theme.className} ref={ref}>
         <BreakpointProvider>{children}</BreakpointProvider>
       </div>
     </ThemeContext.Provider>
   );
-};
+});
