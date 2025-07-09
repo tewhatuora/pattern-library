@@ -17,6 +17,7 @@ import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
 // import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 // import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 import HealthNZLogoLight from '../../assets/health-nz-logo-light.svg?component';
+import HealthNZLogoDark from '../../assets/health-nz-logo-dark.svg?component';
 
 import { ShieldedSite } from './ShieldedSite';
 
@@ -151,16 +152,20 @@ const Footer = ({
           <Stack space="xxlarge">
             {/* First row */}
             <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
-              <Box className={styles.govtLogoWrapper}>
+              <div className={styles.logoWrapper}>
                 <a className={styles.govtLogoWrapper} href="https://www.govt.nz/">
                   {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
                   <NZGovtLogo focusable={false} role="img" />
                 </a>
                 <a className={styles.teWhatuOraLogoWrapper} href="https://www.tewhatuora.govt.nz/">
                   {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
-                  <HealthNZLogoLight focusable={false} role="img" />
+                  {variant === 'dark' ? (
+                    <HealthNZLogoLight focusable={false} role="img" />
+                  ) : (
+                    <HealthNZLogoDark focusable={false} role="img" />
+                  )}
                 </a>
-              </Box>
+              </div>
               <Box>{socialLinks}</Box>
             </Box>
 

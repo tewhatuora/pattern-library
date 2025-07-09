@@ -60,14 +60,31 @@ export const footerDarkGradient = style({
 // ##### First row #####
 
 export const logoWrapper = style({
-  height: rem(80),
-  width: rem(172),
+  gap: vars.space.small.tablet,
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'spaceBetween',
 });
 
 export const govtLogoWrapper = style({
   height: rem(80),
   width: rem(272),
+  selectors: {
+    ...focusSelectorsStyles,
+  },
 });
+
+export const teWhatuOraLogoWrapper = style([
+  {
+    paddingBottom: rem(0.7),
+    selectors: {
+      ...focusSelectorsStyles,
+    },
+    width: rem(173.5),
+    height: rem(28),
+  },
+]);
 
 // ##### Second Row #####
 
