@@ -1,6 +1,6 @@
 {
   "name": "@healthnz/pattern-library",
-  "version": "2.0.0",
+  "version": "2.0.0-custom",
   "description": "Health NZ - Design Pattern Library",
   "homepage": "https://main--630296ff1edaa813b72e85c0.chromatic.com/",
   "author": "Kyle Beattie <kyle.beattie@alphero.com>",
@@ -108,6 +108,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@healthnz/pattern-library-themes": "workspace:*",
     "@jest/types": "^27.2.5",
     "@react-types/shared": "^3.30.0",
     "@testing-library/dom": "^10.4.0",

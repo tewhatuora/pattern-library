@@ -158,12 +158,14 @@ const Footer = ({
                   <NZGovtLogo focusable={false} role="img" />
                 </a>
                 <a className={styles.teWhatuOraLogoWrapper} href="https://www.tewhatuora.govt.nz/">
-                  {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
-                  {variant === 'dark' ? (
-                    <HealthNZLogoLight focusable={false} role="img" />
-                  ) : (
-                    <HealthNZLogoDark focusable={false} role="img" />
-                  )}
+                  {variant === 'dark' ?
+                    (
+                      /* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */
+                      <HealthNZLogoLight focusable={false} role="img" />
+                    ) : (
+                      /* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */
+                      <HealthNZLogoDark focusable={false} role="img" />
+                    )}
                 </a>
               </div>
               <Box>{socialLinks}</Box>

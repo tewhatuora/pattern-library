@@ -1,6 +1,6 @@
 {
   "name": "@healthnz/pattern-library-themes",
-  "version": "2.0.0",
+  "version": "2.0.0-custom",
   "description": "Health NZ - Design Pattern Library. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
