@@ -8,6 +8,9 @@ import { vars } from '../../themes/vars.css';
 import { fontFamily } from '../../hooks/typography/typography.css';
 
 export const list = style([
+  {
+    flexWrap: 'wrap',
+  },
   responsiveStyle({
     mobile: {
       maxWidth: '100%',
@@ -24,14 +27,15 @@ export const boldText = style({
 });
 
 export const crumb = style({
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
+  // whiteSpace: 'nowrap',
+  // overflow: 'hidden',
   fontWeight: vars.textWeight.regular,
+  wordBreak: 'break-word',
 
   selectors: {
-    '&:last-of-type, &:first-of-type': {
-      flexShrink: '0',
-    },
+    // '&:last-of-type, &:first-of-type': {
+    //   flexShrink: '0',
+    // },
     [`${boldText} &`]: {
       fontWeight: 'bold',
     },

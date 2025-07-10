@@ -1,8 +1,6 @@
-import { PropsWithChildren, Ref, RefObject, forwardRef } from 'react';
-import { useButton } from '@react-aria/button';
+import { PropsWithChildren, Ref, createElement, forwardRef } from 'react';
 import clsx from 'clsx';
 
-import { Box } from '../Box/Box';
 import { ButtonProps } from './Button';
 
 import * as styles from './Button.css';
@@ -13,29 +11,12 @@ export type ButtonRootProps = PropsWithChildren<ButtonProps>;
  * Accessible button component without Button UI styles
  */
 export const ButtonRoot = forwardRef((props: ButtonRootProps, ref: Ref<HTMLButtonElement> | null) => {
-  const { children, as = 'button', type = 'button', disabled, className, href, onPress, ...boxProps } = props;
+  const { as = 'button', type = 'button', className, ...buttonProps } = props;
 
-  const { buttonProps } = useButton(
-    {
-      type,
-      onPress,
-      isDisabled: disabled,
-      elementType: as,
-    },
-    ref as RefObject<HTMLButtonElement>,
-  );
-
-  return (
-    <Box
-      {...buttonProps}
-      {...boxProps}
-      as={as}
-      className={clsx(styles.root, className)}
-      href={href}
-      ref={ref}
-      type={type}
-    >
-      {children}
-    </Box>
-  );
+  return createElement(as, {
+    ref,
+    type: as === 'button' ? type : undefined,
+    className: clsx(styles.root, className),
+    ...buttonProps,
+  });
 });

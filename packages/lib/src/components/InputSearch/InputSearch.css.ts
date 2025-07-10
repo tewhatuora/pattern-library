@@ -10,7 +10,7 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 
 const focusStyle = {
-  outline: focusOutline,
+  outline: focusOutline(),
   boxShadow: `inset 0 0 0 ${rem(1)} ${focusColor}`,
   zIndex: 2,
 };

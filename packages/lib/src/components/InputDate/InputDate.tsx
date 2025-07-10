@@ -97,16 +97,20 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     });
 
     const handleFocus = useCallback(
-      (e) => {
+      (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onFocus?.(e);
       },
       [onFocus],
     );
 
     const handleChange = useCallback(
-      (e) => {
-        const field: 'day' | 'month' | 'year' = e.target.name.split(`${name}_`)?.[1];
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const field = e.target.name.split(`${name}_`)?.[1] as 'day' | 'month' | 'year';
         const newValue: InputDateValue = { ...value };
+
+        if (isNaN(Number(e.target.value))) {
+          e.target.value = value?.[field] ?? '';
+        }
 
         newValue[field] = e.target.value;
 
@@ -116,7 +120,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     );
 
     const handleBlur = useCallback(
-      (e) => {
+      (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onBlur?.(e);
       },
       [onBlur],
@@ -155,7 +159,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               ref={dayRef}
               required={required}
               showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
+              type="text"
               value={value?.day}
               onBlur={handleBlur}
               onChange={handleChange}
@@ -178,7 +182,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               ref={monthRef}
               required={required}
               showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
+              type="text"
               value={value?.month}
               onBlur={handleBlur}
               onChange={handleChange}
@@ -200,7 +204,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
               ref={yearRef}
               required={required}
               showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
+              type="text"
               value={value?.year}
               onBlur={handleBlur}
               onChange={handleChange}

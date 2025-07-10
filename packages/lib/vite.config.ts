@@ -1,11 +1,11 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import dts from 'vite-plugin-dts';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';
-import svgr from '@honkhonk/vite-plugin-svgr';
+import svgr from 'vite-plugin-svgr';
 
 import pkg from './package.json';
+import path from 'path';
 
 export default defineConfig({
   build: {
@@ -15,7 +15,11 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: Object.keys(pkg.peerDependencies),
+      external: [
+        ...Object.keys(pkg.peerDependencies),
+        // Exclude the package's own generated CSS bundle so Rollup doesn't try to resolve it during the build
+        `${pkg.name}/styles`,
+      ],
       output: {
         banner: `'use client';`,
 
@@ -27,32 +31,40 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '!': path.resolve(__dirname, '../'),
+      '@': path.resolve(__dirname, './'),
+    },
+  },
   plugins: [
+    svgr({
+      include: '**/*.svg*',
+      svgrOptions: {
+        exportType: 'default',
+        jsxRuntime: 'classic',
+        dimensions: false,
+        replaceAttrValues: {
+          '#404040': 'currentColor',
+        },
+      },
+    }),
     splitVendorChunkPlugin(),
     vanillaExtractPlugin({
       identifiers: 'short',
     }),
-    tsconfigPaths(),
     react({
       jsxRuntime: 'automatic',
     }),
-    svgr({
-      svgrOptions: {
-        jsxRuntime: 'automatic',
-        dimensions: false,
-      },
-    }),
     dts({
+      entryRoot: path.resolve(__dirname, 'src'),
       exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*', 'src/**/*.stories.tsx'],
       beforeWriteFile: (filePath, content) => ({
         content,
-        filePath: filePath.replace('src', ''),
+        // Remove the absolute path up to, and including, the local src folder
+        filePath: filePath.replace(path.resolve(__dirname, 'src'), ''),
       }),
-      compilerOptions: {
-        baseUrl: './src/',
-        emitDeclarationOnly: true,
-        noEmit: false,
-      },
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.build.json'),
       outDir: 'dist/types',
     }),
   ],

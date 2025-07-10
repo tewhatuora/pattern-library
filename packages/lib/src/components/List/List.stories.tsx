@@ -25,7 +25,7 @@ export default {
 
 export const Basic = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root {...args}>
         <List.Item>Item 1</List.Item>
         <List.Item>Item 2</List.Item>
@@ -39,7 +39,7 @@ export const Basic = (args: ListRootProps) => {
 
 export const NestedList = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root {...args}>
         <List.Item>Item</List.Item>
         <List.Item>Item</List.Item>
@@ -70,7 +70,7 @@ export const NestedList = (args: ListRootProps) => {
 
 export const Headings = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root {...args}>
         <List.Item heading="Heading" icon="tick">
           Content
@@ -89,7 +89,7 @@ Headings.args = { noMarkers: true };
 
 export const Icons = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root {...args}>
         <List.Item icon="alert">Item</List.Item>
         <List.Item icon="tick">Item</List.Item>
@@ -102,7 +102,7 @@ Icons.args = { noMarkers: true };
 
 export const WrappingLines = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root {...args}>
         <List.Item
           heading="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis massa sit amet velit ultrices accumsan a sed purus. Ut varius ipsum a purus commodo accumsan. Ut sem quam, dapibus sit amet accumsan in, rutrum eget felis. Etiam pulvinar tempor interdum. In elementum lorem in ornare ullamcorper. Nulla facilisi. Suspendisse."
@@ -132,7 +132,7 @@ export const WrappingLines = (args: ListRootProps) => {
 
 export const LinkLists = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root {...args}>
         <List.Link href="#" icon="tick">
           First link
@@ -151,7 +151,7 @@ export const LinkLists = (args: ListRootProps) => {
 
 export const LinkListsDivider = (args: ListRootProps) => {
   return (
-    <ContrastWrapper variant={args.variant}>
+    <ContrastWrapper>
       <List.Root dividers dividersNoBottom dividersNoTop noMarkers {...args}>
         <List.Link href="#" icon="tick">
           First link

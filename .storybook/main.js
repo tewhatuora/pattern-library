@@ -1,10 +1,14 @@
 import { dirname, join } from 'path';
-const { vanillaExtractPlugin } = require('@vanilla-extract/vite-plugin');
-const svgr = require('@honkhonk/vite-plugin-svgr').default;
+import { createRequire } from 'module';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import svgr from 'vite-plugin-svgr';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-const { mergeConfig } = require('vite');
+import { mergeConfig } from 'vite';
 
-module.exports = {
+const require = createRequire(import.meta.url);
+
+export default {
   stories: [
     '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
@@ -17,11 +21,11 @@ module.exports = {
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-mdx-gfm'),
     getAbsolutePath('@storybook/addon-themes'),
-    '@chromatic-com/storybook'
+    '@chromatic-com/storybook',
   ],
 
   core: {
-    builder: getAbsolutePath("@storybook/builder-vite"),
+    builder: getAbsolutePath('@storybook/builder-vite'),
   },
 
   framework: {
@@ -52,18 +56,20 @@ module.exports = {
         sourcemap: false,
       },
       plugins: [
-        vanillaExtractPlugin({
-          identifiers: 'debug',
-        }),
+        tsconfigPaths(),
         svgr({
+          include: '**/*.svg?component',
+          enforce: 'pre',
+          exportAsDefault: true,
           svgrOptions: {
-            jsxRuntime: 'automatic',
+            jsxRuntime: 'classic', // inject `import * as React from 'react'`
             dimensions: false,
             replaceAttrValues: {
               '#404040': 'currentColor',
             },
           },
         }),
+        vanillaExtractPlugin({ identifiers: 'debug' }),
       ],
     });
   },
@@ -71,6 +77,6 @@ module.exports = {
   docs: {},
 };
 
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
+function getAbsolutePath(pkg) {
+  return dirname(require.resolve(join(pkg, 'package.json')));
 }

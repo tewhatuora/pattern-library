@@ -1,11 +1,11 @@
-import { Children, PropsWithChildren, ReactElement, ReactNode, cloneElement, isValidElement } from 'react';
+import { Children, PropsWithChildren, ReactElement, cloneElement, isValidElement } from 'react';
 
-import assert from 'assert';
+import assert from '../../utils/assert';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 type AllowedChildrenProps = {
-  types: ReactNode[];
+  types: React.ElementType[];
   errorMessage: string;
   propsForChild?: (child?: ReactElement) => any;
 };
@@ -29,10 +29,14 @@ export const useAllowedChildren = ({
   return Children.map(children, (child) => {
     const childElement = child as ReactElement;
 
-    assert(
-      isValidElement(child) && types.some((allowedType) => child.type === allowedType),
-      `${errorMessage}. ${childElement?.type} given`,
-    );
+    assert(isValidElement(child));
+
+    if (types) {
+      assert(
+        types.some((allowedType) => child.type === allowedType),
+        `${errorMessage}. ${childElement?.type} given`,
+      );
+    }
 
     const props = propsForChild ? propsForChild?.(child) : null;
 

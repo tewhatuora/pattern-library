@@ -19,7 +19,7 @@ type CloseButtonProps = {
  */
 export const CloseButton = memo(
   ({ onClose, className, icon = 'cross', variant = 'functionalIcons' }: CloseButtonProps) => (
-    <ButtonRoot aria-label="Close" className={className} onPress={onClose}>
+    <ButtonRoot aria-label="Close" className={className} onClick={onClose}>
       <Icon icon={icon} variant={variant} />
     </ButtonRoot>
   ),

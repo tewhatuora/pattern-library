@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 
 import { Alert } from '../Alert/Alert';
-import { EmptyObject } from '../../types';
 
 type ErrorBoundaryState = {
   hasError: boolean;
   error?: Error;
 };
+type ErrorBoundaryProps = { children?: ReactNode };
 
-class ErrorBoundary extends React.Component<EmptyObject, ErrorBoundaryState> {
-  constructor(props: EmptyObject) {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
@@ -20,6 +20,7 @@ class ErrorBoundary extends React.Component<EmptyObject, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 

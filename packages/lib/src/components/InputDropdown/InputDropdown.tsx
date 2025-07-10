@@ -1,11 +1,10 @@
 import {
   ChangeEventHandler,
+  ComponentPropsWithoutRef,
   ForwardedRef,
   SelectHTMLAttributes,
   forwardRef,
-  useCallback,
   useMemo,
-  useRef,
 } from 'react';
 import { useField } from '@react-aria/label';
 import clsx from 'clsx';
@@ -24,12 +23,7 @@ import { useText } from '../../hooks/typography';
 export const InputDropdownStyles = styles;
 
 /** Option for dropdown */
-export type InputOption = {
-  value: string | number;
-  label: string;
-  selected?: boolean;
-  disabled?: boolean;
-};
+export type InputOption = ComponentPropsWithoutRef<'option'>;
 
 export type InputDropdownProps = {
   /**
@@ -55,6 +49,81 @@ export type InputDropdownProps = {
   OtherInputFieldProps &
   SelectHTMLAttributes<HTMLSelectElement>;
 
+export type DropdownProps = {
+  error?: boolean;
+  placeholder?: string;
+  options: InputOption[];
+  fieldProps?: ComponentPropsWithoutRef<'div'>;
+} & ComponentPropsWithoutRef<'select'>;
+
+export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
+  ({ error, placeholder, value, defaultValue, className, options, fieldProps, ...props }, ref) => {
+    // this deconstructs the field props if they exist
+    let classNameField: string | undefined;
+    let restFieldProps: DropdownProps['fieldProps'];
+
+    if (fieldProps) {
+      const { className, ...otherFieldProps } = fieldProps;
+
+      classNameField = className;
+      restFieldProps = otherFieldProps;
+    }
+
+    const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
+
+    const optionEls = useMemo(() => {
+      const opts = options.slice();
+
+      if (placeholder) {
+        opts.unshift({
+          value: '',
+          label: placeholder,
+          selected: true,
+          disabled: true,
+        });
+      }
+
+      return opts.map((option) => {
+        const { label, ...optionProps } = option;
+        return (
+          <option key={option.label} {...optionProps}>
+            {label}
+          </option>
+        );
+      });
+    }, [options, placeholder]);
+
+    const shouldShowPlaceholder = useMemo(
+      () => !!placeholder && !value && !defaultValue,
+      [placeholder, value, defaultValue],
+    );
+
+    return (
+      <div className={clsx(fieldStyles.field, classNameField)} {...restFieldProps}>
+        <select
+          className={clsx(
+            fieldStyles.input.dropdown,
+            {
+              [fieldStyles.input.base]: !error,
+              [fieldStyles.input.dropdownPlaceholder]: shouldShowPlaceholder,
+            },
+            textSizeClasses,
+            className,
+          )}
+          defaultValue={defaultValue}
+          value={value}
+          {...props}
+          ref={ref}
+        >
+          {optionEls}
+        </select>
+        {shouldShowPlaceholder && <Text className={styles.placeholder}>{placeholder}</Text>}
+        <Icon aria-hidden="true" className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
+      </div>
+    );
+  },
+);
+
 /**
  * Input with a set of options to select from.
  * @constructor
@@ -66,6 +135,7 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       name,
       error,
       errorMessage,
+      className,
       disabled,
       defaultValue,
       value = '',
@@ -84,49 +154,19 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       onSelectBlur,
       onChange,
       onSelectFocus,
-      className,
       options,
       ...props
     }: InputDropdownProps,
     ref: ForwardedRef<HTMLSelectElement>,
   ) => {
-    const containerRef = useRef<HTMLDivElement | null>(null);
-    const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
     const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
       id,
       label,
       description: helperText,
       errorMessage,
     });
-    const optionEls = useMemo(() => {
-      const opts = options.slice();
-
-      if (placeholder) {
-        opts.unshift({
-          value: '',
-          label: placeholder,
-          selected: true,
-          disabled: true,
-        });
-      }
-
-      return opts.map((option) => (
-        <option disabled={option.disabled} key={option.label} value={option.value}>
-          {option.label}
-        </option>
-      ));
-    }, [options, placeholder]);
-
-    const shouldShowPlaceholder = useMemo(
-      () => !!placeholder && !value && !defaultValue,
-      [placeholder, value, defaultValue],
-    );
 
     const invalid = error || !!errorMessage ? 'true' : 'false';
-
-    const handleClickIcon = useCallback(() => {
-      containerRef?.current?.querySelector('select')?.focus();
-    }, [containerRef]);
 
     return (
       <div>
@@ -144,13 +184,33 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
           tertiaryLabelIconPosition={tertiaryLabelIconPosition}
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
-        <div className={fieldStyles.field} ref={containerRef}>
+        <Dropdown
+          id={id}
+          {...fieldProps}
+          aria-invalid={invalid}
+          className={className}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          error={!error && !errorMessage}
+          name={name}
+          options={options}
+          placeholder={placeholder}
+          required={required}
+          value={value}
+          onBlur={onSelectBlur}
+          onChange={onChange}
+          onFocus={onSelectFocus}
+          {...props}
+          ref={ref}
+        />
+        {/* <div className={fieldStyles.field}>
           <select
             id={id}
             {...fieldProps}
             aria-invalid={invalid}
             className={clsx(
               fieldStyles.input.dropdown,
+              className,
               {
                 [fieldStyles.input.base]: !error && !errorMessage,
                 [fieldStyles.input.dropdownPlaceholder]: shouldShowPlaceholder,
@@ -172,14 +232,8 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             {optionEls}
           </select>
           {shouldShowPlaceholder && <Text className={styles.placeholder}>{placeholder}</Text>}
-          <Icon
-            aria-hidden="true"
-            className={styles.chevron}
-            icon="chevron_down"
-            variant="functionalIcons"
-            onClick={handleClickIcon}
-          />
-        </div>
+          <Icon aria-hidden="true" className={styles.chevron} icon="chevron_down" variant="functionalIcons" />
+        </div> */}
         <InputMessage
           descriptionProps={descriptionProps}
           disabled={disabled}

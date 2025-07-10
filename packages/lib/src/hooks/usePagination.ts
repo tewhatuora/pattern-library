@@ -11,7 +11,7 @@ type PaginationValues = {
   items: Array<number | string>;
 };
 
-const BOUNDARY_LIMIT = 2;
+const BOUNDARY_LIMIT = 1;
 const SIBLING_COUNT = 1;
 
 // https://dev.to/namirsab/comment/2050

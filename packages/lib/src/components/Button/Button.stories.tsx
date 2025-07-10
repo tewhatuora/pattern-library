@@ -31,7 +31,7 @@ export default {
         defaultValue: 'Button',
       },
     },
-    onPress: {
+    onClick: {
       control: false,
     },
   },
@@ -60,10 +60,10 @@ WithIcon.args = {
 };
 
 export const Default = (args: ButtonProps) => <Button {...args}>{args.children || 'Button'}</Button>;
-export const OnPress = (args: ButtonProps) => (
+export const OnClick = (args: ButtonProps) => (
   <Button
     {...args}
-    onPress={() => {
+    onClick={() => {
       alert('Button pressed!');
     }}
   >

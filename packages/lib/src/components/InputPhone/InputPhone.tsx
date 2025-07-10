@@ -16,7 +16,7 @@ import * as styles from './InputPhone.css';
 
 export const InputPhoneStyles = styles;
 
-export type InputPhoneOnChangeFn = (value: string) => void;
+export type InputPhoneOnChangeFn = (value: string | undefined) => void;
 
 export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
   InputMessageProps &

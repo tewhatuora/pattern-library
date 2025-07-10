@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { debounce } from 'lodash';
 
-import assert from 'assert';
+import assert from '../../utils/assert';
 
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { useAllowedChildren } from '../AllowedChildren/AllowedChildren';
@@ -155,7 +155,7 @@ export const Menu = ({
                   <ButtonRoot
                     className={clsx(navStyles.noDesktop, styles.backButton)}
                     ref={closeButton}
-                    onPress={onStartClose}
+                    onClick={onStartClose}
                   >
                     <Icon icon="chevron_left" />
                     <Text className={styles.backButtonText} weight="bold">

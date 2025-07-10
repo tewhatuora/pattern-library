@@ -1,6 +1,7 @@
-import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
+import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, forwardRef } from 'react';
 import clsx from 'clsx';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
+import { useObjectRef } from '@react-aria/utils';
 
 import { Icon } from '../Icon/Icon';
 
@@ -40,53 +41,58 @@ export type TextLinkProps = {
  * @param props
  * @constructor
  */
-export const TextLink = ({
-  to,
-  size = 'medium',
-  weight = 'link-normal',
-  icon,
-  iconPosition = 'right',
-  noVisited = false,
-  className,
-  showUnderline = false,
-  component: LinkComponent,
-  children,
-  ...rest
-}: PropsWithChildren<TextLinkProps>) => {
-  const ref = useRef<HTMLElement>(null);
-  const textStyles = useText({ weight, size });
-  const { linkProps } = useLink({ ...rest }, ref);
-  const props = {
-    ...linkProps,
-    ...rest,
-    className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
-    href: to,
-    rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
-  };
+export const TextLink = forwardRef<HTMLAnchorElement, PropsWithChildren<TextLinkProps>>(
+  (
+    {
+      to,
+      size = 'medium',
+      weight = 'link-normal',
+      icon,
+      iconPosition = 'right',
+      noVisited = false,
+      className,
+      showUnderline = false,
+      component: LinkComponent,
+      children,
+      ...rest
+    },
+    forwardedRef,
+  ) => {
+    const ref = useObjectRef(forwardedRef);
+    const textStyles = useText({ weight, size });
+    const { linkProps } = useLink({ ...rest }, ref);
+    const props = {
+      ...linkProps,
+      ...rest,
+      className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
+      href: to,
+      rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
+    };
 
-  const linkChildren = (
-    <>
-      {!!icon && iconPosition === 'left' && (
-        <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
-      )}
-      {children}
-      {!!icon && iconPosition === 'right' && (
-        <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
-      )}
-    </>
-  );
-
-  if (LinkComponent) {
-    return (
-      <LinkComponent {...props} ref={ref as RefObject<any>}>
-        {linkChildren}
-      </LinkComponent>
+    const linkChildren = (
+      <>
+        {!!icon && iconPosition === 'left' && (
+          <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
+        )}
+        {children}
+        {!!icon && iconPosition === 'right' && (
+          <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
+        )}
+      </>
     );
-  }
 
-  return (
-    <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
-      {linkChildren}
-    </a>
-  );
-};
+    if (LinkComponent) {
+      return (
+        <LinkComponent {...props} ref={ref as RefObject<any>}>
+          {linkChildren}
+        </LinkComponent>
+      );
+    }
+
+    return (
+      <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
+        {linkChildren}
+      </a>
+    );
+  },
+);

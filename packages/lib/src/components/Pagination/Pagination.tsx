@@ -1,13 +1,13 @@
-import { memo, useCallback, useMemo } from 'react';
+import { ChangeEvent, memo, useCallback, useMemo } from 'react';
 
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
 
 import usePagination from '../../hooks/usePagination';
 
 import * as styles from './Pagination.css';
 import { ButtonRoot } from '../Button/ButtonRoot';
+import { Dropdown, DropdownProps, InputOption } from '../InputDropdown/InputDropdown';
 
 export const PaginationStyles = styles;
 
@@ -25,22 +25,47 @@ export type PaginationProps = {
 type PaginationPageProps = {
   page: number;
   isCurrent: boolean;
-  onPress?: (page: number) => void;
+  onClick?: () => void;
 };
 
-const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) => {
+const PaginationPage = memo(({ page, isCurrent, onClick }: PaginationPageProps) => {
   const className = useMemo(() => {
     return isCurrent ? styles.button.current : styles.button.page;
   }, [isCurrent]);
 
   return (
     <li className={styles.page}>
-      <ButtonRoot aria-label={`Go to page ${page}`} className={className} onPress={onPress}>
+      <ButtonRoot aria-label={`Go to page ${page}`} className={className} onClick={onClick}>
         {page}
       </ButtonRoot>
     </li>
   );
 });
+
+type PaginationDropdownProps = Omit<DropdownProps, 'options'> & {
+  pages: number;
+  showPageButtons?: boolean;
+};
+
+const PaginationDropdown = ({ pages, showPageButtons, ...dropdownProps }: PaginationDropdownProps) => {
+  const options: InputOption[] = useMemo(
+    () =>
+      Array.from({ length: pages }).map((_, page) => ({
+        value: page + 1,
+        label: String(page + 1),
+        'aria-label': `page ${page + 1}`,
+      })),
+    [pages],
+  );
+
+  return (
+    <Dropdown
+      fieldProps={{ className: styles.paginationDropdown({ showPageButtons }) }}
+      options={options}
+      {...dropdownProps}
+    />
+  );
+};
 
 /**
  * Navigate between divided content on separate pages.
@@ -70,6 +95,14 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
     }
   }, [current, pages, onChange]);
 
+  const handleOnDropdownChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const newPage = Number(event.target.value);
+
+    if (!isNaN(newPage)) {
+      onChange?.(newPage);
+    }
+  };
+
   /**
    * Memoize rendering of page buttons
    */
@@ -85,7 +118,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
     return items.map((item) => {
       if (typeof item === 'number') {
         return (
-          <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onPress={handlePage(item)} />
+          <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onClick={handlePage(item)} />
         );
       }
 
@@ -107,17 +140,21 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
             aria-label="Go to previous page"
             className={styles.button.primary}
             variant="secondary"
-            onPress={handlePrevious}
+            onClick={handlePrevious}
           >
-            Previous
+            Prev
           </Button>
         )}
       </Box>
       {/* Never show page label when `showPageButtons === true` */}
       {showPageButtons === false || showPageButtons === undefined ? (
-        <Text className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
-          {current} of {pages}
-        </Text>
+        <PaginationDropdown
+          aria-label="Page selector"
+          pages={pages}
+          showPageButtons={showPageButtons}
+          value={current}
+          onChange={handleOnDropdownChange}
+        />
       ) : null}
       {/* Never show page buttons when `showPageButtons === false` */}
       {showPageButtons === true || showPageButtons === undefined ? (
@@ -127,7 +164,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
       ) : null}
       <Box className={styles.buttonContainer}>
         {showNext && (
-          <Button aria-label="Go to next page" className={styles.button.primary} variant="primary" onPress={handleNext}>
+          <Button aria-label="Go to next page" className={styles.button.primary} variant="primary" onClick={handleNext}>
             Next
           </Button>
         )}

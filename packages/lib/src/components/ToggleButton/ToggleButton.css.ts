@@ -6,7 +6,6 @@ import { rem } from '@/src/css/helpers';
 
 import { focusOutline } from '@/src/utils/custom';
 
-import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 export const group = style({
@@ -30,6 +29,8 @@ export const button = style([
     color: vars.color.semantic.button.tertiary.content.normal,
     paddingTop: vars.space.xsmall.tablet,
     paddingBottom: vars.space.xsmall.tablet,
+    cursor: 'pointer',
+    width: '100%',
 
     selectors: {
       '&:first-child': {
@@ -56,7 +57,7 @@ export const button = style([
         borderColor: vars.color.semantic.button.primary.border.hover,
       },
       '&:focus': {
-        outline: focusOutline,
+        outline: focusOutline(),
         outlineOffset: calc.multiply(vars.borderWidth.xlarge, -1),
       },
       '&:focus:not(:focus-visible)': {
@@ -76,12 +77,4 @@ export const button = style([
       },
     },
   },
-  responsiveStyle({
-    mobile: {
-      width: rem(150),
-    },
-    tablet: {
-      width: rem(420),
-    },
-  }),
 ]);

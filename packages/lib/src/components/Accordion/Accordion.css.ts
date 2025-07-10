@@ -10,7 +10,8 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
 
-const animationDuration = '300ms';
+export const animationDurationMS = 300;
+const animationDuration = `${animationDurationMS}ms`;
 
 const slideDown = keyframes({
   from: { height: 0 },
@@ -125,6 +126,8 @@ export const icon = recipe({
 export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
+  width: '100%',
+  paddingRight: vars.space.small.mobile,
 });
 
 export const chevron = recipe({
@@ -133,7 +136,7 @@ export const chevron = recipe({
 
     transition: `transform ${animationDuration}`,
     selectors: {
-      '[data-state=open] &': { transform: 'rotate(180deg)' },
+      '[data-state="open"] > &': { transform: 'rotate(180deg)' },
     },
   },
   variants: {
@@ -150,7 +153,6 @@ export const chevron = recipe({
 
 export const content = style({
   overflow: 'hidden', // Lets the animation cover the content
-
   selectors: {
     '&[data-state="open"]': {
       animation: `${slideDown} ${animationDuration}`,

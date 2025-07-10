@@ -1,7 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
 import { rem } from '@/src/css/helpers';
-
 import { getFocusSelectors } from '@/src/utils/custom';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -57,6 +56,7 @@ export const checkbox = style({
     },
     '&:not([data-state="unchecked"]):hover': {
       backgroundColor: vars.color.semantic.inputs.elements.background['selected-hover'],
+      color: vars.color.semantic.icons.dark,
     },
 
     // The following override `&:not([data-state="unchecked"]):hover`.

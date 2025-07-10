@@ -23,7 +23,7 @@ export const InputClearButton = ({ fieldType = 'text', onClear }: InputClearButt
     <ButtonRoot
       aria-label="Clear input field"
       className={clsx(styles.clearButtonBase, styles.clearButton[fieldType])}
-      onPress={onClear}
+      onClick={onClear}
     >
       <Icon className={clearIcon} color="primary100" icon="clear_field" variant="functionalIcons" />
     </ButtonRoot>

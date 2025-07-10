@@ -12,6 +12,7 @@ export const chevron = style([
     transform: 'translateY(-50%)',
     color: vars.color.semantic.icons.dark,
     cursor: 'pointer',
+    pointerEvents: 'none',
     zIndex: 2,
   },
   responsiveStyle({
@@ -21,6 +22,9 @@ export const chevron = style([
     tablet: {
       right: vars.space.xsmall.tablet,
     },
+    // tablet: {
+    //   right: vars.space.xsmall.tablet,
+    // },
   }),
 ]);
 

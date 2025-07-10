@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { type CSSProperties, PropsWithChildren, useEffect, useRef, useState } from 'react';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 
 import { Text } from '../Text/Text';
@@ -36,6 +36,8 @@ export type TooltipProps = {
   triggerAsChild?: boolean;
   /** Trigger open on click/touch, useful for mobile devices. Warning: The properties triggerAsChild and triggerOpenOnClick are not guaranteed to work together. */
   triggerOpenOnClick?: boolean;
+  /** Allow customising the CSS of the tooltip container (Tooltip.Content) */
+  tooltipStyle?: CSSProperties;
 };
 
 /**
@@ -58,6 +60,7 @@ export const Tooltip = ({
   triggerAsChild,
   children,
   triggerOpenOnClick,
+  tooltipStyle,
 }: PropsWithChildren<TooltipProps>) => {
   const theme = useTheme();
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -86,6 +89,7 @@ export const Tooltip = ({
             }}
           >
             <RadixTooltip.Trigger
+              aria-label="tooltip trigger"
               asChild={triggerAsChild}
               className={styles.trigger}
               onClick={
@@ -105,10 +109,11 @@ export const Tooltip = ({
                 alignOffset={alignOffset}
                 aria-label={label}
                 avoidCollisions
+                className={styles.contentContainer}
                 hideWhenDetached
                 side={side}
-                sideOffset={4}
                 sticky={sticky}
+                style={tooltipStyle}
               >
                 <ThemeProvider theme={theme}>
                   <div className={styles.content}>

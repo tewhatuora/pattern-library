@@ -42,8 +42,10 @@ export const Classnames = () => {
         const name = componentParts[componentParts.length - 1];
         const stylesObj = `${name}Styles`;
 
+
+
         if (stylesObj in Components) {
-          const styles = (Components as Record<string, string | ReactNode>)[stylesObj] as Record<string, string>;
+          const styles = stylesObj as unknown as Record<string, string>;
           const variants: Variants = {};
           const classNames = Object.keys(styles).reduce((all, key: string) => {
             // Don't include upper snake case constants

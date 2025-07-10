@@ -86,13 +86,13 @@ export const InputText = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inpu
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
         <InputField
+          id={id}
           {...rest}
           {...fieldProps}
           clearable={clearable}
           defaultValue={defaultValue}
           disabled={disabled}
           error={error || !!errorMessage}
-          id={id}
           multiline={multiline}
           name={name}
           placeholder={placeholder}

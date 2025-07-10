@@ -1,6 +1,7 @@
+import type { Meta } from '@storybook/react';
+
 import { Footer, FooterList, FooterListItem, FooterProps } from './Footer';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-
 import Docs from './Footer.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
@@ -10,6 +11,7 @@ export default {
   component: Footer,
   argTypes: {
     variant: {
+      options: ['light', 'dark'],
       defaultValue: 'light',
       control: {
         type: 'radio',
@@ -23,7 +25,7 @@ export default {
     },
     chromatic: { viewports: [1600] },
   },
-};
+} satisfies Meta<FooterProps>;
 
 const imprintItems = [
   { text: '© Te Whatu Ora | Health New Zealand' },

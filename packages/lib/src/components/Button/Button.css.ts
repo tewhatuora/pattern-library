@@ -14,10 +14,15 @@ import { vars } from '../../themes/vars.css';
 export const BUTTON_HEIGHT_MOBILE = vars.space.xxlarge.tablet;
 export const BUTTON_HEIGHT_TABLET = calc.add(vars.space.xxlarge.tablet, calc.divide(vars.space.xsmall.tablet, 4));
 
-export const root = style({
-  color: 'inherit',
-  cursor: 'pointer',
-});
+export const root = style([
+  atoms({
+    reset: 'base',
+  }),
+  {
+    color: 'inherit',
+    cursor: 'pointer',
+  },
+]);
 
 const gapVar = createVar();
 
@@ -59,7 +64,7 @@ export const buttonVariants = {
       backgroundColor: vars.color.semantic.button.primary.background.normal,
       borderColor: vars.color.semantic.button.primary.border.normal,
       ':hover': {
-        color: vars.color.semantic.button.primary.content.normal,
+        color: vars.color.semantic.button.primary.content.hover,
         backgroundColor: vars.color.semantic.button.primary.background.hover,
         borderColor: vars.color.semantic.button.primary.border.hover,
       },
@@ -88,7 +93,7 @@ export const buttonVariants = {
       backgroundColor: vars.color.semantic.button.secondary.background.normal,
       borderColor: vars.color.semantic.button.secondary.border.normal,
       ':hover': {
-        color: vars.color.semantic.button.secondary.content.normal,
+        color: vars.color.semantic.button.secondary.content.hover,
         backgroundColor: vars.color.semantic.button.secondary.background.hover,
         borderColor: vars.color.semantic.button.secondary.border.hover,
       },
@@ -152,6 +157,8 @@ export const button = recipe({
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
+      textAlign: 'center',
+      reset: 'button',
     }),
     {
       width: '100%',

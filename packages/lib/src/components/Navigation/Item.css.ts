@@ -81,7 +81,7 @@ const navListItemLinkBase = style([
           transition: 'background-color 0.5s cubic-bezier(0.33, 1, 0.68, 1), width 0.5s cubic-bezier(0.33, 1, 0.68, 1)',
         },
         '&:hover:after': {
-          backgroundColor: 'currentColor',
+          backgroundColor: vars.color.semantic.controls.border.active,
           width: '100%',
         },
       },

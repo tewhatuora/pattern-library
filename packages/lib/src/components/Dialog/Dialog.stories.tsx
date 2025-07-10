@@ -5,7 +5,6 @@ import { Dialog } from './Dialog';
 
 import { Text } from '../Text/Text';
 import { Button } from '../Button/Button';
-import { Checkbox } from '../Checkbox/Checkbox';
 import icons from '../Icon/icons';
 import Docs from './Dialog.docs.mdx';
 
@@ -82,19 +81,17 @@ export const Controlled = (args: DialogProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <div>
-      <Dialog.Root
-        {...args}
-        open={open}
-        onOpenChange={(open: boolean) => {
-          setOpen(open);
-        }}
-      >
-        {content}
-        {actions}
-      </Dialog.Root>
-      <Checkbox checked={open} id="trigger" label="Trigger" onCheckedChange={() => setOpen(!open)} />
-    </div>
+    <Dialog.Root
+      {...args}
+      open={open}
+      trigger={<Button onClick={() => alert('Dialog trigger')}>Open</Button>}
+      onOpenChange={(open: boolean) => {
+        setOpen(open);
+      }}
+    >
+      {content}
+      {actions}
+    </Dialog.Root>
   );
 };
 

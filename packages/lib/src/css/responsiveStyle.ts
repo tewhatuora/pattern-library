@@ -15,7 +15,7 @@ const makeMediaQuery = (breakpoint: keyof typeof breakpointQuery) => (styles?: C
         [breakpointQuery[breakpoint]]: styles,
       };
 
-const mediaQuery = {
+export const mediaQuery = {
   tablet: makeMediaQuery('tablet'),
   desktop: makeMediaQuery('desktop'),
   wide: makeMediaQuery('wide'),

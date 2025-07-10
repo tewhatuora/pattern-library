@@ -9,8 +9,6 @@ import { Text } from '../Text/Text';
 import { Stack } from '../Stack/Stack';
 import { Box } from '../Box/Box';
 
-import { ContrastVariant } from '../../types';
-
 import * as styles from './Content.css';
 
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
@@ -24,8 +22,6 @@ export type ContentProps = {
   headingAs?: HeadingProps['as'];
   /** Content subheading */
   subheading?: string;
-  /** Contrast variant for dark/light UI */
-  variant?: ContrastVariant;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 };
@@ -35,7 +31,7 @@ export type ContentProps = {
  * @param props
  */
 export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
-  ({ heading, headingLevel, headingAs, subheading, variant = 'light', className, children }, ref) => {
+  ({ heading, headingLevel, headingAs, subheading, className, children }, ref) => {
     const subheadingLevel = subheadingLevelFor[headingLevel];
 
     const headingElement =
@@ -64,7 +60,7 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
       <Box
         className={
           // Inherit color if variant is not given
-          clsx(styles.content[variant], className)
+          clsx(styles.content, className)
         }
         maxWidth="full"
       >

@@ -22,6 +22,7 @@ import Saliva from '../../icons/Saliva.svg?component';
 import Search from '../../icons/Search.svg?component';
 import Security from '../../icons/Security.svg?component';
 import Tick from '../../icons/Tick.svg?component';
+import QuestionMark from '../../icons/QuestionMark.svg?component';
 import UnknownTest from '../../icons/UnknownTest.svg?component';
 import Vaccine from '../../icons/Vaccine.svg?component';
 // Functional
@@ -76,6 +77,7 @@ export type IconType =
   | 'search'
   | 'security'
   | 'tick'
+  | 'question_mark'
   | 'unknown_test'
   | 'vaccine'
   | 'warning'
@@ -127,6 +129,7 @@ export const decorative: IconMap = {
   search: Search,
   security: Security,
   tick: Tick,
+  question_mark: QuestionMark,
   unknown_test: UnknownTest,
   vaccine: Vaccine,
 };

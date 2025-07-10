@@ -14,18 +14,24 @@ export const content = style([
   {
     position: 'relative',
     zIndex: 1300,
-    padding: vars.space.small.tablet,
     backgroundColor: vars.color.semantic.controls.background.active,
   },
   responsiveStyle({
     mobile: {
-      maxWidth: rem(300),
+      marginLeft: vars.space.small.tablet,
+      marginRight: vars.space.small.tablet,
+      padding: vars.space.small.mobile,
     },
     tablet: {
       maxWidth: rem(480),
+      padding: vars.space.small.tablet,
     },
   }),
 ]);
+
+export const contentContainer = style({
+  maxWidth: '100vw',
+});
 
 export const text = style({
   color: vars.color.semantic.controls.content.light,

@@ -2,8 +2,6 @@ import { Children, ElementType, PropsWithChildren, useContext } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import assert from 'assert';
-
 import { Box, BoxProps } from '../Box/Box';
 
 import type { Space } from '../../css/atoms/atoms';
@@ -14,8 +12,6 @@ import { BreakpointContext } from '../../components/ThemeProvider/BreakpointCont
 import { vars } from '../../themes/vars.css';
 
 const StackStyles = styles;
-
-export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 type StackProps = {
   /** Element type to render as */
@@ -29,6 +25,8 @@ type StackProps = {
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & BoxProps;
+
+export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 /**
  * A component to vertically stack its
@@ -44,10 +42,11 @@ const Stack = ({
   className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
-  assert(
-    validStackComponents.includes(as),
-    `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
-  );
+  if (!validStackComponents.includes(as)) {
+    throw new Error(
+      `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
+    );
+  }
 
   const direction = horizontal ? 'horizontal' : 'vertical';
   const breakpoint = useContext(BreakpointContext) === 'mobile' ? 'mobile' : 'tablet';

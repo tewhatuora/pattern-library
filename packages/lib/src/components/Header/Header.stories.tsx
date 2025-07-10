@@ -33,6 +33,7 @@ export default {
   argTypes: {
     variant: {
       defaultValue: 'light',
+      options: ['light', 'dark'],
       control: {
         type: 'radio',
         options: ['light', 'dark'],
@@ -68,18 +69,13 @@ export const Default = (args: Header.HeaderProps) => {
                 icon: 'language',
                 label: 'Language',
               },
-              {
-                href: '#',
-                icon: 'person',
-                label: 'Name Surname',
-              },
             ]}
             variant={args.variant!}
           />
 
           <InputSearch id="search" name="search" placeholder="Search" />
         </Header.Right>
-        <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} />
+        <Header.MenuButton open={isMenuOpen} variant={args.variant!} onToggle={() => setIsMenuOpen((open) => !open)} />
       </Header.Main>
     </Header.Root>
   );

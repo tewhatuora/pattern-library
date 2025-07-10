@@ -4,6 +4,7 @@ import { calc } from '@vanilla-extract/css-utils';
 import { rem } from '@/src/css/helpers';
 
 import { focusSelectorsStyles, getFocusSelectors } from '@/src/utils/custom';
+import * as reset from '@/src/css/reset.css';
 
 import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
@@ -33,6 +34,7 @@ export const fieldSegment = style({
 });
 
 export const inputBase = style([
+  reset.base,
   responsiveStyle({
     mobile: {
       fontSize: vars.textSize.medium.mobile.fontSize,
@@ -58,7 +60,7 @@ export const inputBase = style([
     backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
     selectors: {
-      '&:disabled': {
+      '&:disabled, &[aria-disabled=true]': {
         color: vars.color.semantic.text.copy.disabled,
         borderColor: vars.color.semantic.inputs.fields.border.disabled,
         backgroundColor: vars.color.semantic.inputs.fields.background.normal,
@@ -95,13 +97,13 @@ export const input = styleVariants({
       mobile: {
         paddingRight: calc(vars.space.small.mobile) // Functional icon width
           .add(vars.space.small.mobile) // + icon right
-          .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
+          // .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
           .toString(),
       },
       tablet: {
         paddingRight: calc(vars.space.small.tablet) // Functional icon width
           .add(vars.space.xsmall.tablet) // + icon right
-          .add(vars.space.xsmall.tablet) // + gap between copy and icon (icon right)
+          // .add(vars.space.xsmall.tablet) // + gap between copy and icon (icon right)
           .toString(),
       },
     }),

@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
+import { rem } from '@/src/css/helpers';
+
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
@@ -32,7 +34,7 @@ export const variants = recipe({
   base: style([
     atoms({
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flexStart',
       justifyContent: 'spaceBetween',
       borderRadius: 'standard',
     }),
@@ -61,14 +63,26 @@ export const variants = recipe({
 
 export type Variants = RecipeVariants<typeof variants>;
 
-export const icon = style({
-  flexShrink: 0,
-});
+export const icon = style([
+  {
+    flexShrink: 0,
+    width: 24,
+    height: 24,
+  },
+  responsiveStyle({
+    mobile: {
+      marginTop: rem(1),
+    },
+    tablet: {
+      marginTop: rem(2),
+    },
+  }),
+]);
 
 export const contentWrapper = style([
   {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   responsiveStyle({
     mobile: {
@@ -80,6 +94,21 @@ export const contentWrapper = style([
   }),
 ]);
 
-export const closeButton = style({
-  color: 'currentColor',
+export const content = style({
+  wordBreak: 'break-word',
 });
+
+export const closeButton = style([
+  {
+    color: 'currentColor',
+    backgroundColor: 'transparent',
+  },
+  responsiveStyle({
+    mobile: {
+      marginTop: rem(5),
+    },
+    tablet: {
+      marginTop: rem(2),
+    },
+  }),
+]);

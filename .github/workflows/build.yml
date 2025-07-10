@@ -11,7 +11,6 @@ on:
       - main
 
 jobs:
-
   build:
     name: Build packages
     runs-on: ubuntu-latest
@@ -26,65 +25,67 @@ jobs:
       is-theme: ${{ steps.checks.outputs.is-theme }}
       should-publish: ${{ steps.checks.outputs.is-lib=='true' || steps.checks.outputs.is-theme=='true' }}
     steps:
+      - name: determine components to act on
+        id: components
+        run: |
+          echo "is-full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "is-pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+          echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
-    - name: determine components to act on
-      id: components
-      run: |
-        echo "is-full-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
-        echo "is-pre-lib=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/v\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
-        echo "is-full-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
-        echo "is-pre-theme=$(echo ${{ github.ref }} | grep -Pq "^refs/tags/@healthnz/pattern-library-themes@\d+\.\d+\.\d+-[\w\.-]+$" && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+      - id: checks
+        run: |
+          echo "is-lib=${{ steps.components.outputs.is-full-lib=='true' || steps.components.outputs.is-pre-lib=='true' }}" >> $GITHUB_OUTPUT
+          echo "is-theme=${{ steps.components.outputs.is-full-theme=='true' || steps.components.outputs.is-pre-theme=='true' }}" >> $GITHUB_OUTPUT
 
-    - id: checks
-      run: |
-        echo "is-lib=${{ steps.components.outputs.is-full-lib=='true' || steps.components.outputs.is-pre-lib=='true' }}" >> $GITHUB_OUTPUT
-        echo "is-theme=${{ steps.components.outputs.is-full-theme=='true' || steps.components.outputs.is-pre-theme=='true' }}" >> $GITHUB_OUTPUT
+      - name: log component values
+        run: |
+          echo is-full-lib '${{ steps.components.outputs.is-full-lib }}'
+          echo is-pre-lib '${{ steps.components.outputs.is-pre-lib }}'
+          echo is-full-theme '${{ steps.components.outputs.is-full-theme }}'
+          echo is-pre-theme '${{ steps.components.outputs.is-pre-theme }}'
+          echo is-lib '${{ steps.checks.outputs.is-lib }}'
+          echo is-theme '${{ steps.checks.outputs.is-theme }}'
+          echo should-publish '${{ steps.checks.outputs.should-publish }}'
 
-    - name: log component values
-      run: |
-        echo is-full-lib '${{ steps.components.outputs.is-full-lib }}'
-        echo is-pre-lib '${{ steps.components.outputs.is-pre-lib }}'
-        echo is-full-theme '${{ steps.components.outputs.is-full-theme }}'
-        echo is-pre-theme '${{ steps.components.outputs.is-pre-theme }}'
-        echo is-lib '${{ steps.checks.outputs.is-lib }}'
-        echo is-theme '${{ steps.checks.outputs.is-theme }}'
-        echo should-publish '${{ steps.checks.outputs.should-publish }}'
+      - name: checkout
+        uses: actions/checkout@v4
 
-    - name: checkout
-      uses: actions/checkout@v4
+      - name: setup node
+        id: node-setup
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
 
-    - name: setup node
-      id: node-setup
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: .nvmrc
+      - name: enable corepack
+        run: corepack enable
 
-    - name: generate cache key
-      id: gen-key
-      run: |
-        os="${{ runner.os }}"
-        node="${{ steps.node-setup.outputs.node-version }}"
-        hash="${{ hashFiles('**/yarn.lock') }}"
-        echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
+      - name: generate cache key
+        id: gen-key
+        run: |
+          os="${{ runner.os }}"
+          node="${{ steps.node-setup.outputs.node-version }}"
+          hash="${{ hashFiles('**/yarn.lock') }}"
+          echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
-    - name: restore cache
-      uses: actions/cache/restore@v4
-      id: restore-prev-cache
-      with:
-        path: "**/node_modules"
-        key: ${{ steps.gen-key.outputs.key }}
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        id: restore-prev-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ steps.gen-key.outputs.key }}
 
-    - name: yarn install
-      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
-      run: yarn install --frozen-lockfile
+      - name: yarn install
+        if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable --frozen-lockfile
 
-    - name: save install cache
-      if: steps.restore-prev-cache.outputs.cache-hit != 'true'
-      uses: actions/cache/save@v4
-      id: save-cache
-      with:
-        path: "**/node_modules"
-        key: ${{ steps.gen-key.outputs.key }}
+      - name: save install cache
+        if: steps.restore-prev-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        id: save-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ steps.gen-key.outputs.key }}
 
     ## Currently not using reusable build artifacts until chromatic action works with them
     # - name: Upload build artifacts
@@ -118,7 +119,7 @@ jobs:
       is-pre-lib: ${{ needs.build.outputs.is-pre-lib }}
       is-full-theme: ${{ needs.build.outputs.is-full-theme }}
       is-pre-theme: ${{ needs.build.outputs.is-pre-theme }}
-  
+
   release:
     name: Create GitHub release
     if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.is-lib=='true'
