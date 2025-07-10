@@ -57,17 +57,14 @@ export default defineConfig({
       jsxRuntime: 'automatic',
     }),
     dts({
+      entryRoot: path.resolve(__dirname, 'src'),
       exclude: ['src/**/*.docs.mdx', 'src/**/*.snippets.tsx', 'src/**/*.test.ts*', 'src/**/*.stories.tsx'],
       beforeWriteFile: (filePath, content) => ({
         content,
-        filePath: filePath.replace('src', ''),
+        // Remove the absolute path up to, and including, the local src folder
+        filePath: filePath.replace(path.resolve(__dirname, 'src'), ''),
       }),
-      compilerOptions: {
-        // baseUrl: './src/',
-        emitDeclarationOnly: true,
-        noEmit: false,
-      },
-      tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.build.json'),
       outDir: 'dist/types',
     }),
   ],

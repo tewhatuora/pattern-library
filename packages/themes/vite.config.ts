@@ -22,6 +22,7 @@ export default defineConfig({
       identifiers: 'short',
     }),
     dts({
+      root: path.resolve(__dirname),
       beforeWriteFile: (filePath, content) => ({
         content,
         filePath: filePath.replace('tmp', ''),
