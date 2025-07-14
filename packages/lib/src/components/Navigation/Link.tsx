@@ -39,11 +39,24 @@ export const Link = ({
   };
 
   if (LinkComponent) {
-    return (
-      <LinkComponent {...props} ref={ref as RefObject<any>}>
-        {children}
-      </LinkComponent>
-    );
+    // Only pass the `ref` if the supplied component can actually accept it.
+    // A component can accept refs if it is:
+    //   1. A class component (has a prototype with a render method), or
+    //   2. A function component wrapped with React.forwardRef (identified via $$typeof symbol).
+    const canAcceptRef =
+      (typeof LinkComponent === 'function' && (LinkComponent as any).prototype?.render) ||
+      (LinkComponent as any).$$typeof === Symbol.for('react.forward_ref');
+
+    if (canAcceptRef) {
+      return (
+        <LinkComponent {...props} ref={ref as RefObject<any>}>
+          {children}
+        </LinkComponent>
+      );
+    }
+
+    // Fallback: don’t pass the ref to avoid the React warning.
+    return <LinkComponent {...props}>{children}</LinkComponent>;
   }
 
   return (

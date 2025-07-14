@@ -11,6 +11,9 @@ export const card = style([
   {
     boxShadow: vars.shadow.primary,
     borderWidth: vars.borderWidth.small,
+    color: vars.color.semantic.text.copy.dark,
+    backgroundColor: vars.color.semantic.card.background,
+    borderColor: vars.color.semantic.card.border,
   },
   responsiveStyle({
     mobile: {
@@ -24,20 +27,4 @@ export const card = style([
 
 export const variants = styleVariants({
   noShadow: [card, { boxShadow: 'none' }],
-  light: [
-    card,
-    {
-      color: vars.color.semantic.text.copy.dark,
-      backgroundColor: vars.color.semantic.card.background,
-      borderColor: vars.color.semantic.card.border,
-    },
-  ],
-  // TODO: remove in v2.1 as there should not be a dark variant
-  dark: [
-    card,
-    {
-      color: vars.color.semantic.text.copy.light,
-      backgroundColor: vars.color.primary100,
-    },
-  ],
 });

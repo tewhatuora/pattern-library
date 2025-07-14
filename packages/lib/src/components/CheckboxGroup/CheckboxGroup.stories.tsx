@@ -33,7 +33,6 @@ export default {
       },
     },
     tertiaryLabelAs: {
-      defaultValue: 'button',
       control: {
         type: 'radio',
         options: ['a', 'button', 'text'],
@@ -54,7 +53,6 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
     },
     error: {
       control: { type: 'boolean' },
@@ -71,6 +69,10 @@ export default {
     },
     onChange: { control: false },
     children: { control: false },
+  },
+  args: {
+    tertiaryLabelAs: 'button',
+    tertiaryLabelIconPosition: 'left',
   },
   parameters: {
     docs: {

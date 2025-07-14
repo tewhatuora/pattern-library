@@ -42,6 +42,7 @@ const navArgTypes = {
       type: 'radio',
       options: ['light', 'dark'],
     },
+    options: ['light', 'dark'],
     defaultValue: 'light',
   },
   withSearch: {
@@ -57,8 +58,8 @@ const navArgTypes = {
   searchFormMethod: {
     control: {
       type: 'select',
-      options: ['GET', 'POST'],
     },
+    options: ['GET', 'POST'],
   },
   children: {
     control: false,

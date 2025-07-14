@@ -15,15 +15,9 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "esnext",
-    "types": [
-      "node",
-      "mdx"
-    ],
-    "jsx" : "react-jsx"
+    "types": ["node", "mdx"],
+    "jsx": "react-jsx"
   },
-  "include": [
-    "packages/lib/**/*",
-    "*.mdx"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["packages/lib/**/*", "*.mdx"],
+  "exclude": ["node_modules", "tmp"]
 }

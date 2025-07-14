@@ -17,7 +17,7 @@ import * as styles from './PersonSelector.css';
 export const PersonSelectorStyles = styles;
 
 export type PersonSelectorProps = {
-  people: { name: string; nhi: string; birthDate?: string; isUser?: boolean }[];
+  people: Readonly<{ name: string; nhi: string; birthDate?: string; isUser?: boolean }[]>;
   value?: string;
   onChange?: (nhi: string) => void;
   isLoading?: boolean;
@@ -71,6 +71,7 @@ export const PersonSelector = ({
           <Icon
             className={styles.buttonIconVariants[variant]}
             icon={person.isUser ? 'person' : 'child'}
+            noFill={person.isUser ? false : true}
             variant="decorativeIcons"
           />
           <ScreenReadersOnly>{person.isUser ? 'Current user: ' : 'Child: '}</ScreenReadersOnly>

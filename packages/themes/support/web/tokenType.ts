@@ -1,5 +1,24 @@
 import { Breakpoint } from './breakpoints';
 
+// Type for gradient definitions
+export type GradientStop = {
+  position: number;
+  color: string;
+};
+
+export type LinearGradient = {
+  gradientType: 'linear';
+  rotation: number;
+  stops: GradientStop[];
+};
+
+export type RadialGradient = {
+  gradientType: 'radial';
+  stops: GradientStop[];
+};
+
+export type Gradient = LinearGradient | RadialGradient;
+
 export type TextBreakpoint = Exclude<Breakpoint, 'desktop' | 'wide'>;
 
 type FontSizeText = {
@@ -27,13 +46,51 @@ type FontWeight =
   | 'black'
   | 'link-normal'
   | 'link-hover&focus'
+  // added
+  // | 'link-bold'
   | 'button'
   | 'bullet'
   | 'number';
 
 type FontWeightValue = '400' | '500' | '600' | '700' | '800' | '900';
 
-export interface Tokens {
+// Gradient CSS string (already processed)
+export type GradientCSS = string;
+
+export type GradientMesh = Record<0 | 1, GradientCSS>;
+
+export type GradientTokens = {
+  semantic: {
+    structure: {
+      background: Record<
+        'header-dark' | 'footer-dark-vertical gradient' | 'footer-dark-horizontal gradient',
+        GradientCSS
+      >;
+    };
+  };
+  mesh: {
+    'pale aqua mesh': GradientMesh;
+  };
+  plain: Record<
+    | 'footer horizontal'
+    | 'pink'
+    | 'red-colbolt'
+    | 'header'
+    | 'turquoise-blue'
+    | 'aqua-cobolt'
+    | 'blue-green'
+    | 'blue-transparent gradient'
+    | 'blue-pink gradient'
+    | 'turquoise-purple',
+    GradientCSS
+  >;
+};
+
+export type NullableTokens = {
+  [key: string]: string | NullableTokens | null;
+};
+
+export interface Tokens extends NullableTokens {
   typography: {
     fontFamily: string;
     fontWeight: Record<FontWeight, FontWeightValue>;
@@ -163,16 +220,33 @@ export interface Tokens {
     // NEW
     focus100: string;
     transparent100: string;
+    'gradientfooter background': string;
+
+    'coredark blue': string;
+    'coremid blue': string;
+    'coredark aqua': string;
+    'corevibrant aqua': string;
+    'corebright aqua': string;
+    'coremid aqua': string;
+    corepurple: string;
+    'corevibrant purple': string;
+    'corepale purple': string;
+    corecobalt: string;
+    coreemerald: string;
+    coremandarin: string;
+    corebuttercup: string;
+    'corepale aqua': string;
+    'corepale blue': string;
 
     semantic: {
       structure: {
         background: {
-          'header-dark': string;
-          'header-light': string;
           base: string;
-          'footer-light': string;
+          'header-light': string;
           'footer-dark': string;
+          'footer-light': string;
           overlay: string;
+          'footer-dark-background': string;
         };
         divider: { dark: string; light: string };
       };
@@ -190,7 +264,12 @@ export interface Tokens {
             pressed: string;
             disabled: string;
           };
-          content: { normal: string; disabled: string };
+          content: {
+            normal: string;
+            disabled: string;
+            // hover has been added to content
+            hover: string;
+          };
           highlight: { focus: string };
           border: {
             normal: string;
@@ -208,7 +287,12 @@ export interface Tokens {
             pressed: string;
             disabled: string;
           };
-          content: { normal: string; disabled: string };
+          content: {
+            normal: string;
+            disabled: string;
+            // hover has been added to content
+            hover: string;
+          };
           highlight: { focus: string };
           border: {
             normal: string;
@@ -309,4 +393,6 @@ export interface Tokens {
       };
     };
   };
+
+  gradients: GradientTokens;
 }

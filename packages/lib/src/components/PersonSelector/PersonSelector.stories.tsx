@@ -1,6 +1,7 @@
+import type { Meta } from '@storybook/react';
+
 import { PersonSelector, PersonSelectorProps } from './PersonSelector';
 import DocsPage from '../../../utils/DocsPage';
-
 import Docs from './PersonSelector.docs.mdx';
 
 export default {
@@ -11,7 +12,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'View records for:',
     },
     isLoading: {
       control: {
@@ -20,17 +20,21 @@ export default {
     },
     value: {
       control: {
-        type: 'text',
+        type: 'select',
       },
-      defaultValue: '123456',
+      options: ['123456', '987654', '9876542', '9876543', '9876544'],
     },
+  },
+  args: {
+    value: '123456',
+    personSelectorLabel: 'View records for:',
   },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
-};
+} satisfies Meta<PersonSelectorProps>;
 
 export const Default = (args: PersonSelectorProps) => {
   const people = [

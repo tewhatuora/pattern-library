@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { vars } from '../../themes/vars.css';
 
 import { Box } from '../Box/Box';
-import { ContrastVariant } from '../../types';
 
 import * as styles from './Card.css';
 
@@ -13,8 +12,6 @@ export const CardStyles = styles;
 type Color = Exclude<keyof typeof vars.color, 'semantic'>;
 
 export type CardProps = {
-  /** Contrast variant for dark/light UI */
-  variant?: ContrastVariant;
   /** Option to display the Card without a box-shadow */
   noShadow?: boolean;
   border?: Color;
@@ -26,23 +23,16 @@ export type CardProps = {
  * Card for building 2D layouts using grids or to contain content.
  * @constructor
  */
-export const Card = ({
-  noShadow = false,
-  border,
-  variant = 'light',
-  children,
-  className,
-}: PropsWithChildren<CardProps>) => {
+export const Card = ({ noShadow = false, border, children, className }: PropsWithChildren<CardProps>) => {
   const cardClassNames = useMemo(() => {
     return clsx(
       styles.card,
-      styles.variants[variant],
       {
         [styles.variants.noShadow]: noShadow,
       },
       className,
     );
-  }, [noShadow, variant, className]);
+  }, [noShadow, className]);
 
   return (
     <Box as="div" className={cardClassNames} style={border ? { borderColor: vars.color[border] } : undefined}>

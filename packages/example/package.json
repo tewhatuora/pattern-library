@@ -1,14 +1,14 @@
 {
   "name": "example",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@healthnz/pattern-library": ">=0.9.0",
-    "@healthnz/pattern-library-themes": ">=0.9.0",
+    "@healthnz/pattern-library": "workspace:^",
+    "@healthnz/pattern-library-themes": "workspace:^",
     "cra-template": "1.2.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-router-dom": "^6.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {

@@ -12,62 +12,52 @@ export default {
   title: 'Components/ImageBlock',
   component: ImageBlock,
   argTypes: {
-    heading: {
-      defaultValue: 'Heading',
-    },
-    subheading: {
-      defaultValue: 'Subheading',
-    },
     headingLevel: {
       control: {
         type: 'number',
       },
     },
-    headingAs: {
-      defaultValue: 'h1',
-    },
     primaryButton: {
-      defaultValue: {
-        label: 'Primary',
-        as: 'button',
-        href: undefined,
-        onClick: () => {
-          alert('Primary button clicked');
-        },
-      },
       control: {
         type: 'object',
       },
     },
     secondaryButton: {
-      defaultValue: {
-        label: 'Secondary',
-        as: 'button',
-        href: undefined,
-        onClick: () => {
-          alert('Secondary button clicked');
-        },
-      },
       control: {
         type: 'object',
       },
     },
-    src: {
-      defaultValue: 'https://placehold.jp/404040/ffffff/500x500.png?text=ImageBlock',
-    },
-    shape: {
-      defaultValue: 'square',
-    },
-    width: {
-      defaultValue: 'full',
-    },
     imagePosition: {
-      defaultValue: 'after',
       control: {
         type: 'radio',
         options: ['before', 'after'],
       },
     },
+  },
+  args: {
+    heading: 'Heading',
+    subheading: 'Subheading',
+    headingLevel: 1,
+    primaryButton: {
+      label: 'Primary',
+      as: 'button',
+      href: undefined,
+      onClick: () => {
+        alert('Primary button clicked');
+      },
+    },
+    secondaryButton: {
+      label: 'Secondary',
+      as: 'button',
+      href: undefined,
+      onClick: () => {
+        alert('Secondary button clicked');
+      },
+    },
+    src: 'https://placehold.jp/404040/ffffff/500x500.png?text=ImageBlock',
+    shape: 'square',
+    width: 'full',
+    imagePosition: 'after',
   },
   parameters: {
     docs: {

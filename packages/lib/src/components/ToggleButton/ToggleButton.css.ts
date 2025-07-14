@@ -33,12 +33,12 @@ export const button = style([
 
     selectors: {
       '&:first-child': {
-        borderTopLeftRadius: vars.borderRadius.topLeft.standard,
-        borderBottomLeftRadius: vars.borderRadius.bottomLeft.standard,
+        borderTopLeftRadius: vars.borderRadius.topLeft.button,
+        borderBottomLeftRadius: vars.borderRadius.bottomLeft.button,
       },
       '&:last-child': {
-        borderTopRightRadius: vars.borderRadius.topRight.standard,
-        borderBottomRightRadius: vars.borderRadius.bottomRight.standard,
+        borderTopRightRadius: vars.borderRadius.topRight.button,
+        borderBottomRightRadius: vars.borderRadius.bottomRight.button,
       },
 
       '&[data-state=on]': {
@@ -46,9 +46,9 @@ export const button = style([
         color: vars.color.semantic.button.primary.content.normal,
       },
       '&:hover': {
-        backgroundColor: vars.color.semantic.button.tertiary.background.hover,
-        color: vars.color.semantic.button.tertiary.content.normal,
-        borderColor: vars.color.semantic.button.tertiary.border.hover,
+        backgroundColor: vars.color.semantic.button.primary.background.hover,
+        color: vars.color.semantic.button.primary.content.normal,
+        borderColor: vars.color.semantic.button.primary.border.hover,
       },
       '&[data-state=on]:hover': {
         backgroundColor: vars.color.semantic.button.primary.background.hover,

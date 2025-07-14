@@ -167,6 +167,8 @@ globalStyle(`.PhoneInput--error.${input.phone}`, {
 
 export const clearButtonBase = style([
   {
+    // Light-mode/Icons/Dark
+    color: vars.color.semantic.icons.dark,
     position: 'absolute',
     top: rem(1),
     right: 0,

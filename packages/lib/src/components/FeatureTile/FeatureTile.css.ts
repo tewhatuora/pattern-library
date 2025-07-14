@@ -5,6 +5,9 @@ import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const featureTile = style([
+  {
+    backgroundColor: vars.color.semantic.controls.background.light2,
+  },
   responsiveStyle({
     mobile: {
       paddingRight: vars.space.medium.mobile,
@@ -78,3 +81,7 @@ export const description = style([
     },
   }),
 ]);
+
+export const button = style({
+  backgroundColor: vars.color.semantic.controls.background.light2,
+});

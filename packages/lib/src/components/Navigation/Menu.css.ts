@@ -37,22 +37,17 @@ const navigationMenuContainerBase = style([
 ]);
 
 export const variants = styleVariants({
-  light: {
-    backgroundColor: vars.color.primary0,
-    color: vars.color.semantic.text.copy.dark,
-  },
+  light: [
+    {
+      backgroundColor: vars.color.semantic.structure.background['header-light'],
+      color: vars.color.semantic.text.copy.dark,
+    },
+  ],
   dark: [
     {
+      background: vars.gradient.semantic.structure.background['header-dark'],
       color: vars.color.semantic.text.copy.light,
     },
-    responsiveStyle({
-      mobile: {
-        backgroundColor: vars.color.primary75,
-      },
-      desktop: {
-        backgroundColor: vars.color.primary100,
-      },
-    }),
   ],
 });
 

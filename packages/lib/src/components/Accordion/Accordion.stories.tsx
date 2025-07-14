@@ -19,7 +19,6 @@ export default {
   argTypes: {
     type: {
       options: ['single', 'multiple'],
-      defaultValue: 'multiple',
       control: { type: 'radio' },
     },
     defaultValue: {
@@ -34,6 +33,9 @@ export default {
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
+  },
+  args: {
+    type: 'multiple',
   },
 };
 

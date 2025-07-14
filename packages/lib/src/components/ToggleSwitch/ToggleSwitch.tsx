@@ -23,6 +23,7 @@ export type ToggleSwitchProps = {
   onChange?: (checked: boolean) => void;
   /** name attribute */
   name?: string;
+  required?: boolean;
 };
 
 /**
@@ -43,6 +44,7 @@ export const ToggleSwitch = ({
   onChange,
   disabled,
   name,
+  required,
   ...boxProps
 }: ToggleSwitchProps) => {
   return (
@@ -64,6 +66,7 @@ export const ToggleSwitch = ({
         id={id}
         name={name}
         onCheckedChange={onChange}
+        required={required}
       >
         <SwitchPrimitive.Thumb className={styles.switchThumb} />
       </SwitchPrimitive.Root>

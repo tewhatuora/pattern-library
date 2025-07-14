@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { ChangeEventHandler, memo, useCallback, useMemo } from 'react';
 import { getCountryCallingCode, isSupportedCountry } from 'react-phone-number-input';
 import { hasFlag } from 'country-flag-icons';
 import * as Flags from 'country-flag-icons/react/3x2';
@@ -16,51 +16,53 @@ export const CountryDropdownStyles = styles;
  * Country flag dropdown for InputPhone
  * @constructor
  */
-export const CountryDropdown = memo(({ value, onChange, options, ...props }: InputDropdownProps) => {
-  const handleCountrySelect = useCallback(
-    (event) => {
-      const value = event.target.value;
+export const CountryDropdown = memo(
+  ({ value, onChange, options, ...props }: InputDropdownProps & { onChange: (value: string | undefined) => void }) => {
+    const handleCountrySelect = useCallback(
+      (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value;
 
-      onChange?.(value === 'International' ? undefined : value);
-    },
-    [onChange],
-  );
+        onChange?.(value === 'International' ? undefined : value);
+      },
+      [onChange],
+    );
 
-  const Flag = useMemo(() => {
-    return hasFlag(value || '')
-      ? (Flags as Record<string, FlagComponent>)[value as keyof FlagComponent]
-      : () => <Icon icon="international" style={{ width: '100%', height: 'auto' }} />;
-  }, [value]);
+    const Flag = useMemo(() => {
+      return hasFlag(value || '')
+        ? (Flags as Record<string, FlagComponent>)[value as keyof FlagComponent]
+        : () => <Icon icon="international" style={{ width: '100%', height: 'auto' }} />;
+    }, [value]);
 
-  const countryOptions = useMemo(() => {
-    return options.map(({ value, label }: any) => ({
-      value,
-      label: `${label} ${isSupportedCountry(value) ? `(+${getCountryCallingCode(value)})` : ''}`,
-    }));
-  }, [options]);
+    const countryOptions = useMemo(() => {
+      return options.map(({ value, label }: any) => ({
+        value,
+        label: `${label} ${isSupportedCountry(value) ? `(+${getCountryCallingCode(value)})` : ''}`,
+      }));
+    }, [options]);
 
-  // "ZZ" means "International".
-  return (
-    <div className={styles.countryDropdown}>
-      <InputDropdown
-        {...props}
-        className={styles.select}
-        id="countryCode"
-        name="countryCode"
-        options={countryOptions}
-        value={value || 'International'}
-        onChange={handleCountrySelect}
-      />
-      <div
-        aria-hidden="true"
-        className={clsx(styles.flagWrapper.base, {
-          [styles.flagWrapper.international]: !value || value == 'International',
-        })}
-      >
-        <Flag style={{ width: '100%' }} />
+    // "ZZ" means "International".
+    return (
+      <div className={styles.countryDropdown}>
+        <InputDropdown
+          {...props}
+          className={styles.select}
+          id="countryCode"
+          name="countryCode"
+          options={countryOptions}
+          value={value || 'International'}
+          onChange={handleCountrySelect as InputDropdownProps['onChange']}
+        />
+        <div
+          aria-hidden="true"
+          className={clsx(styles.flagWrapper.base, {
+            [styles.flagWrapper.international]: !value || value == 'International',
+          })}
+        >
+          <Flag style={{ width: '100%' }} />
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 CountryDropdown.displayName = 'CountryDropdown';

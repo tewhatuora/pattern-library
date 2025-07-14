@@ -9,10 +9,12 @@ export default {
   argTypes: {
     id: { control: false },
     name: { control: false },
-    label: {
-      defaultValue: 'Label',
-    },
     disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    required: {
       control: {
         type: 'boolean',
       },
@@ -20,6 +22,9 @@ export default {
     onChange: {
       control: false,
     },
+  },
+  args: {
+    label: 'Label',
   },
   parameters: {
     docs: {

@@ -30,7 +30,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: undefined,
     },
     disabled: {
       control: {
@@ -54,9 +53,12 @@ export default {
       if: { arg: 'multiline' },
     },
     type: {
-      defaultValue: 'text',
       options: ['email', 'number', 'password', 'search', 'tel', 'text', 'url'],
     },
+  },
+  args: {
+    type: 'text',
+    value: undefined,
   },
 };
 

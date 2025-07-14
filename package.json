@@ -34,7 +34,7 @@
     "@chromatic-com/storybook": "^3",
     "@next/eslint-plugin-next": "^12.1.6",
     "@prettier/plugin-xml": "^1.2.0",
-    "@size-limit/preset-big-lib": "^6.0.3",
+    "@size-limit/preset-big-lib": "^11.1.6",
     "@storybook/addon-actions": "^8.4.1",
     "@storybook/addon-essentials": "^8.4.1",
     "@storybook/addon-interactions": "^8.4.1",
@@ -53,6 +53,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.2.0",
     "@types/mdx": "^2.0.2",
+    "@types/react": "^18",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
     "@vanilla-extract/webpack-plugin": "^2.1.10",
@@ -79,21 +80,23 @@
     "lint-staged": "13.0.0",
     "prettier": "^2.4.1",
     "prompt": "^1.2.0",
+    "react": "18",
     "react-docgen": "^5.4.3",
-    "size-limit": "^6.0.3",
+    "size-limit": "^11.1.6",
     "storybook": "^8.4.1",
     "storybook-preset-inline-svg": "^1.0.1",
     "style-dictionary": "^3.7.0",
     "svg-inline-loader": "^0.8.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@healthnz/pattern-library": ">=0.9.0",
     "@healthnz/pattern-library-themes": ">=0.9.0",
     "@storybook/addon-docs": "^8.4.1",
-    "@uiw/react-json-view": "^2.0.0-alpha.24",
-    "vite": "^5.4.4",
-    "vite-plugin-dts": "^4.3.0",
-    "vite-tsconfig-paths": "^3.3.17"
-  }
+    "@uiw/react-json-view": "^2.0.0-alpha.32",
+    "vite": "^5.4.19",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "packageManager": "yarn@4.5.1"
 }

@@ -20,7 +20,7 @@ export type AccordionTriggerProps = {
 };
 
 export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ icon, header, label }, ref) => {
-  const { headingLevel, variant } = useContext(AccordionContext);
+  const { headingLevel } = useContext(AccordionContext);
   const boxElement = (`h${headingLevel?.toString()}` as ElementType<any>) || ('h6' as ElementType<any>);
 
   return (
@@ -28,7 +28,7 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
       <Box as={boxElement}>
         <RadixAccordion.Trigger className={styles.trigger} ref={ref}>
           <div className={styles.headerContainer}>
-            {!!icon && <Icon className={styles.icon({ variant })} icon={icon} variant="functionalIcons" />}
+            {!!icon && <Icon className={styles.icon({ variant: 'light' })} icon={icon} variant="functionalIcons" />}
 
             {/* Div to keep the header text vertical. */}
             <div>
@@ -43,7 +43,7 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
             </div>
           </div>
 
-          <Icon className={styles.chevron({ variant })} icon="chevron_down" variant="functionalIcons" />
+          <Icon className={styles.chevron({ variant: 'light' })} icon="chevron_down" variant="functionalIcons" />
         </RadixAccordion.Trigger>
       </Box>
     </RadixAccordion.Header>

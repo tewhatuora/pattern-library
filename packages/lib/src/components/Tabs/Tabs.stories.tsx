@@ -34,7 +34,6 @@ export default {
       control: { type: 'text' },
     },
     space: {
-      defaultValue: 'medium',
       options: ['', ...Object.keys(vars.space)],
       control: { type: 'select' },
     },
@@ -44,6 +43,9 @@ export default {
         options: ['automatic', 'manual'],
       },
     },
+  },
+  args: {
+    space: 'medium',
   },
   parameters: {
     docs: {

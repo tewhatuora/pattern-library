@@ -47,7 +47,7 @@ const UtilityNavItem = memo(
   }) => (
     <li>
       <Link className={styles.utilityLink[variant]} component={component} href={href}>
-        <Icon icon={icon} variant="functionalIcons" /> <Text>{label}</Text>
+        <Text>{label}</Text> <Icon icon={icon} variant="functionalIcons" />
       </Link>
     </li>
   ),

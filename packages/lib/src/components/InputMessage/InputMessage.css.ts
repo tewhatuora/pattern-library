@@ -19,7 +19,6 @@ export const errorMessage = style({
   display: 'flex',
   alignItems: 'center',
   marginTop: calc.divide(vars.space.xsmall.tablet, 4),
-  color: vars.color.semantic.text.copy.error,
 });
 
 export const errorMessageIcon = style({

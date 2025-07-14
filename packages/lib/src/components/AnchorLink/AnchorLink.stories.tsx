@@ -13,7 +13,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: '#',
     },
     noIcon: {
       control: {
@@ -35,17 +34,20 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'Anchor link',
     },
     'aria-label': {
       control: {
         type: 'text',
       },
-      defaultValue: 'Anchor link',
     },
     component: {
       control: false,
     },
+  },
+  args: {
+    to: '#',
+    children: 'Anchor link',
+    'aria-label': 'Anchor link',
   },
   parameters: {
     docs: {

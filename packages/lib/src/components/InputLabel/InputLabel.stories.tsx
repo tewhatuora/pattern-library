@@ -10,9 +10,6 @@ export default {
   argTypes: {
     htmlFor: { control: false },
     onTertiaryLabelClick: { control: false },
-    label: {
-      defaultValue: 'Label',
-    },
     subheading: {
       control: {
         type: 'string',
@@ -40,13 +37,16 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
     },
     required: {
       control: {
         type: 'boolean',
       },
     },
+  },
+  args: {
+    label: 'Label',
+    tertiaryLabelIconPosition: 'left',
   },
   parameters: {
     controls: {

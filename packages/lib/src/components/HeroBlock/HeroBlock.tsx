@@ -52,15 +52,17 @@ export const HeroBlock = ({
 
   return (
     <>
-      <Box
-        as="div"
-        backgroundColor={withPattern && !children ? 'primary50' : 'primary25'}
-        position={withPattern && !children ? 'relative' : 'static'}
-      >
+      <Box as="div" className={styles.heroBoxBackground} position={!children ? 'relative' : 'static'}>
         {withPattern && !children && (
           <div className={styles.patternContainer}>
             <div className={styles.patternGradient} />
             <PatternSVG />
+          </div>
+        )}
+
+        {!withPattern && !children && (
+          <div className={styles.paleBlueGradientContainer}>
+            <div className={styles.paleBlueGradient} />
           </div>
         )}
         <Container

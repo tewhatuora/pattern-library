@@ -49,14 +49,14 @@ export const navigation = styleVariants({
   light: [
     base,
     {
-      backgroundColor: vars.color.primary5,
+      backgroundColor: vars.color.semantic.structure.background['header-light'],
       color: vars.color.semantic.text.copy.dark,
     },
   ],
   dark: [
     base,
     {
-      backgroundColor: vars.color.primary75,
+      background: vars.gradient.semantic.structure.background['header-dark'],
       color: vars.color.semantic.text.copy.light,
     },
   ],

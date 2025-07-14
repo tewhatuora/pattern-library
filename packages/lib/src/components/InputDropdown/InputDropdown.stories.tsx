@@ -16,19 +16,16 @@ export default {
     onChange: { control: false },
     onTertiaryLabelClick: { control: false },
     label: {
-      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     subheading: {
-      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
-      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
@@ -43,12 +40,6 @@ export default {
         type: 'boolean',
       },
     },
-    tertiaryLabel: {
-      defaultValue: 'Tertiary label',
-    },
-    tertiaryLabelAs: {
-      defaultValue: 'button',
-    },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
@@ -61,8 +52,15 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
     },
+  },
+  args: {
+    label: 'Label',
+    subheading: 'Subheading',
+    helperText: 'Helper text',
+    tertiaryLabel: 'Tertiary label',
+    tertiaryLabelAs: 'button',
+    tertiaryLabelIconPosition: 'left',
   },
   parameters: {
     docs: {

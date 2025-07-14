@@ -14,28 +14,19 @@ export default {
     name: { control: false },
     onChange: { control: false },
     label: {
-      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     subheading: {
-      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
-      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
-    },
-    tertiaryLabel: {
-      defaultValue: 'Tertiary label',
-    },
-    tertiaryLabelAs: {
-      defaultValue: 'button',
     },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
@@ -49,8 +40,15 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
     },
+  },
+  args: {
+    label: 'Label',
+    subheading: 'Subheading',
+    helperText: 'Helper text',
+    tertiaryLabel: 'Tertiary label',
+    tertiaryLabelAs: 'button',
+    tertiaryLabelIconPosition: 'left',
   },
   parameters: {
     controls: {
@@ -65,7 +63,7 @@ export default {
 export const Default = (args: InputPhoneProps) => {
   const [value, setValue] = useState<string | undefined>('');
 
-  const handleChange: InputPhoneOnChangeFn = (value: string) => {
+  const handleChange: InputPhoneOnChangeFn = (value: string | undefined) => {
     setValue(value);
   };
 

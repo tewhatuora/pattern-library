@@ -24,19 +24,16 @@ export default {
     icon: {
       options: ['', ...Object.keys(icons)],
       control: { type: 'select' },
-      defaultValue: 'alert',
     },
     heading: {
       control: {
         type: 'text',
       },
-      defaultValue: 'Heading',
     },
     subheading: {
       control: {
         type: 'text',
       },
-      defaultValue: 'Subheading',
     },
     trigger: {
       control: false,
@@ -44,6 +41,11 @@ export default {
     children: {
       control: false,
     },
+  },
+  args: {
+    icon: 'alert',
+    heading: 'Heading',
+    subheading: 'Subheading',
   },
   parameters: {
     docs: {
