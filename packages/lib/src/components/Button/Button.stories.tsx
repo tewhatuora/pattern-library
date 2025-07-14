@@ -18,22 +18,24 @@ export default {
     },
     iconPosition: {
       options: ['right', 'left'],
-      defaultValue: 'right',
       control: { type: 'radio' },
     },
     disabled: {
       control: { type: 'boolean' },
-      defaultValue: false,
     },
     children: {
       control: {
         type: 'text',
-        defaultValue: 'Button',
       },
     },
     onPress: {
       control: false,
     },
+  },
+  args: {
+    iconPosition: 'right',
+    children: 'Button',
+    disabled: false,
   },
   parameters: {
     docs: {

@@ -11,11 +11,18 @@ export default {
   subcomponents: {
     RadioButton,
   },
+  args: {
+    label: 'Label',
+    subheading: 'Subheading',
+    tertiaryLabelAs: 'button',
+    tertiaryLabelIconPosition: 'left',
+    required: false,
+    disabled: false,
+  },
   argTypes: {
     name: { control: false },
     id: { control: false },
     label: {
-      defaultValue: 'Label',
       control: {
         type: 'text',
       },
@@ -26,7 +33,6 @@ export default {
       },
     },
     subheading: {
-      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
@@ -37,7 +43,6 @@ export default {
       },
     },
     tertiaryLabelAs: {
-      defaultValue: 'button',
       control: {
         type: 'radio',
         options: ['a', 'button', 'text'],
@@ -58,7 +63,6 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
     },
     error: {
       control: { type: 'boolean' },
@@ -69,13 +73,11 @@ export default {
       },
     },
     required: {
-      defaultValue: false,
       control: {
         type: 'boolean',
       },
     },
     disabled: {
-      defaultValue: false,
       control: {
         type: 'boolean',
       },

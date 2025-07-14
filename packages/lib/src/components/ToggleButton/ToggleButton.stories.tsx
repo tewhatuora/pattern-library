@@ -2,22 +2,29 @@ import { ToggleButton, ToggleButtonProps } from './ToggleButton';
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './ToggleButton.docs.mdx';
+import { Meta } from '@storybook/react/*';
 
 export default {
   title: 'Forms/ToggleButton',
   component: ToggleButton,
   argTypes: {
     labelLeft: {
-      defaultValue: 'Left',
+      type: 'string',
+      control: {
+        type: 'text',
+      },
     },
     labelRight: {
-      defaultValue: 'Right',
+      type: 'string',
+      control: {
+        type: 'text',
+      },
     },
     valueLeft: {
-      defaultValue: 'Left ToggleButton',
+      type: 'string',
     },
     valueRight: {
-      defaultValue: 'Right ToggleButton',
+      type: 'string',
     },
     defaultValue: {
       control: {
@@ -33,12 +40,18 @@ export default {
       control: false,
     },
   },
+  args: {
+    labelLeft: 'Left',
+    labelRight: 'Right',
+    valueLeft: 'Left ToggleButton',
+    valueRight: 'Right ToggleButton',
+  },
   parameters: {
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
-};
+} satisfies Meta<ToggleButtonProps>;
 
 export const Default = (args: ToggleButtonProps) => {
   return <ToggleButton {...args} />;

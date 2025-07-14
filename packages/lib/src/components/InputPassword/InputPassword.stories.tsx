@@ -28,7 +28,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: undefined,
     },
     disabled: {
       control: {
@@ -41,19 +40,16 @@ export default {
       },
     },
     label: {
-      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     subheading: {
-      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
-      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
@@ -72,14 +68,18 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
-    },
-    tertiaryLabelAs: {
-      defaultValue: 'button',
     },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
+  },
+  args: {
+    label: 'Label',
+    tertiaryLabelIconPosition: 'left',
+    tertiaryLabelAs: 'button',
+    subheading: 'Subheading',
+    helperText: 'Helper text',
+    value: undefined
   },
   parameters: {
     controls: {

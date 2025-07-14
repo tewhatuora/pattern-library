@@ -18,11 +18,9 @@ export default {
   component: Tooltip,
   argTypes: {
     label: {
-      defaultValue: 'Label',
       control: 'text',
     },
     content: {
-      defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
       control: 'text',
     },
     onOpenChange: {
@@ -44,6 +42,10 @@ export default {
     triggerOpenOnClick: {
       control: 'boolean',
     },
+  },
+  args: {
+    label: 'Label',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
   },
   parameters: {
     docs: {

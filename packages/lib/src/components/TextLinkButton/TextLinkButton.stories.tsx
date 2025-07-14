@@ -13,7 +13,6 @@ export default {
         type: 'radio',
       },
       options: ['button', 'a'],
-      defaultValue: 'button',
     },
     href: {
       if: { arg: 'as', eq: 'a' },
@@ -24,18 +23,21 @@ export default {
     },
     iconPosition: {
       options: ['right', 'left'],
-      defaultValue: 'right',
       control: { type: 'radio' },
     },
     children: {
       control: {
         type: 'text',
       },
-      defaultValue: 'Text Link',
     },
     onPress: {
       control: false,
     },
+  },
+  args: {
+    as: 'button',
+    iconPosition: 'right',
+    children: 'Text Link',
   },
   parameters: {
     docs: {

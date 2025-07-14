@@ -42,6 +42,10 @@ export const switchRoot = style({
       cursor: 'not-allowed',
       backgroundColor: vars.color.semantic.inputs.elements.background.disabled,
     },
+    // error state
+    '&:has([data-state=error])': {
+      backgroundColor: vars.color.error0,
+    },
   },
 });
 

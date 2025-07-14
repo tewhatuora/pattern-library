@@ -55,26 +55,22 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'Page name',
     },
     description: {
       control: {
         type: 'text',
       },
-      defaultValue: 'Page description',
     },
     badge: {
       control: {
         type: 'text',
       },
-      defaultValue: 'badge',
     },
     badgeVariant: {
       control: {
         type: 'radio',
         options: ['positive', 'info', 'neutral', 'caution', 'critical'],
       },
-      defaultValue: 'info',
     },
     withPattern: {
       control: {
@@ -86,8 +82,15 @@ export default {
         type: 'select',
       },
       options: people.map((p) => p.nhi),
-      defaultValue: '123456',
     },
+  },
+  args: {
+    title: 'Page name',
+    description: 'Page description',
+    badge: 'badge',
+    badgeVariant: 'info',
+    withPattern: false,
+    value: '123456',
   },
   parameters: {
     docs: {

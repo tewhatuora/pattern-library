@@ -76,6 +76,7 @@ export const secondRow = style([
     display: 'flex',
     flexDirection: { mobile: 'column', desktop: 'row' },
     justifyContent: 'spaceBetween',
+    flexWrap: 'wrap',
   }),
 ]);
 

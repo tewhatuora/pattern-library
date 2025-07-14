@@ -12,7 +12,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'View records for:',
     },
     isLoading: {
       control: {
@@ -24,8 +23,11 @@ export default {
         type: 'select',
       },
       options: ['123456', '987654', '9876542', '9876543', '9876544'],
-      defaultValue: '123456',
     },
+  },
+  args: {
+    value: '123456',
+    personSelectorLabel: 'View records for:',
   },
   parameters: {
     docs: {

@@ -32,13 +32,15 @@ export default {
   ],
   argTypes: {
     variant: {
-      defaultValue: 'light',
       options: ['light', 'dark'],
       control: {
         type: 'radio',
         options: ['light', 'dark'],
       },
     },
+  },
+  args: {
+    variant: 'light'
   },
   parameters: {
     docs: {

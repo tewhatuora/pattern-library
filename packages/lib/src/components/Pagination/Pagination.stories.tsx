@@ -12,11 +12,13 @@ export default {
       control: {
         type: 'number',
       },
-      defaultValue: 13,
     },
     current: {
       disabled: true,
     },
+  },
+  args: {
+    pages: 13,
   },
   parameters: {
     docs: {

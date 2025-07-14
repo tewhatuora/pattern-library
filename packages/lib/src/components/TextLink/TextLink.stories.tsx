@@ -13,7 +13,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: undefined,
     },
     target: {
       control: {
@@ -30,11 +29,13 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'Text link',
     },
     component: {
       control: false,
     },
+  },
+  args: {
+    'aria-label': 'Text link',
   },
   parameters: {
     docs: {

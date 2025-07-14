@@ -19,13 +19,11 @@ export default {
     name: { control: false },
     onCheckedChange: { control: false },
     checked: {
-      defaultValue: false,
       control: {
         type: 'boolean',
       },
     },
     indeterminate: {
-      defaultValue: false,
       control: {
         type: 'boolean',
       },
@@ -45,6 +43,10 @@ export default {
         type: 'boolean',
       },
     },
+  },
+  args: {
+    checked: false,
+    indeterminate: false,
   },
 };
 

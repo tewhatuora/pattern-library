@@ -17,19 +17,16 @@ export default {
     onChange: { control: false },
     onTertiaryLabelClick: { control: false },
     label: {
-      defaultValue: 'Label',
       control: {
         type: 'text',
       },
     },
     subheading: {
-      defaultValue: 'Subheading',
       control: {
         type: 'text',
       },
     },
     helperText: {
-      defaultValue: 'Helper text',
       control: {
         type: 'text',
       },
@@ -48,7 +45,6 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: undefined,
     },
     disabled: {
       control: {
@@ -66,12 +62,6 @@ export default {
       },
       if: { arg: 'multiline' },
     },
-    tertiaryLabel: {
-      defaultValue: 'Tertiary label',
-    },
-    tertiaryLabelAs: {
-      defaultValue: 'button',
-    },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
@@ -84,13 +74,21 @@ export default {
         type: 'radio',
         options: ['left', 'right'],
       },
-      defaultValue: 'left',
     },
     type: {
       control: {
         type: 'text',
       },
     },
+  },
+  args: {
+    label: 'Label',
+    subheading: 'Subheading',
+    helperText: 'Helper text',
+    value: 'Value',
+    tertiaryLabel: 'Tertiary label',
+    tertiaryLabelAs: 'button',
+    tertiaryLabelIconPosition: 'left',
   },
   parameters: {
     controls: {

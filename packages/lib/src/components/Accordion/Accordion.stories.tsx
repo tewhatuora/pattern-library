@@ -19,7 +19,6 @@ export default {
   argTypes: {
     type: {
       options: ['single', 'multiple'],
-      defaultValue: 'multiple',
       control: { type: 'radio' },
     },
     defaultValue: {
@@ -35,6 +34,9 @@ export default {
       page: () => <DocsPage docs={Docs} />,
     },
   },
+  args: {
+    type: 'multiple',
+  }
 };
 
 export const Default = (args: AccordionRootProps) => {
