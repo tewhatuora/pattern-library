@@ -36,7 +36,7 @@ export default {
   },
   args: {
     type: 'multiple',
-  }
+  },
 };
 
 export const Default = (args: AccordionRootProps) => {

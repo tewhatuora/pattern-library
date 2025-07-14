@@ -45,7 +45,7 @@ export default {
   args: {
     icon: 'alert',
     heading: 'Heading',
-    subheading: 'Subheading'
+    subheading: 'Subheading',
   },
   parameters: {
     docs: {

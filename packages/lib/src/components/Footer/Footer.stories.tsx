@@ -20,7 +20,6 @@ export default {
   },
   args: {
     variant: 'light',
-
   },
   parameters: {
     docs: {

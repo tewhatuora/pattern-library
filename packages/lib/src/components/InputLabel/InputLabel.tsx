@@ -89,7 +89,9 @@ export const InputLabel = ({
     const button = (
       <Button
         as={tertiaryLabelAs}
-        className={styles.tertiaryLabel}
+        className={clsx(styles.tertiaryLabel, {
+          [styles.labels.disabled]: disabled,
+        })}
         href={href}
         icon={tertiaryLabelIcon}
         iconPosition={tertiaryLabelIconPosition}
@@ -121,6 +123,7 @@ export const InputLabel = ({
     onTertiaryLabelClick,
     tertiaryLabel,
     tertiaryLabelTooltip,
+    disabled,
   ]);
 
   return (

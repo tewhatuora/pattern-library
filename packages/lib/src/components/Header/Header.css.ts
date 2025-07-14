@@ -103,7 +103,6 @@ export const mobileMenuButton = style([
   }),
 ]);
 
-
 export const menuButtonIcon = styleVariants({
   light: [
     {
@@ -117,7 +116,7 @@ export const menuButtonIcon = styleVariants({
       height: '1.5rem',
     },
   ],
-})
+});
 
 export const menuButtonVariant = styleVariants({
   light: [

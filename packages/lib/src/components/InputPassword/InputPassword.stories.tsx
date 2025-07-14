@@ -79,7 +79,7 @@ export default {
     tertiaryLabelAs: 'button',
     subheading: 'Subheading',
     helperText: 'Helper text',
-    value: undefined
+    value: undefined,
   },
   parameters: {
     controls: {

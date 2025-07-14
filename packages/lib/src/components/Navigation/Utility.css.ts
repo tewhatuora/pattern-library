@@ -48,15 +48,6 @@ const utilityLinkBase = style([
 ]);
 
 export const utilityLink = styleVariants({
-  light: [
-    utilityLinkBase,
-    {
-    },
-  ],
-  dark: [
-    utilityLinkBase,
-    {
-
-    },
-  ],
+  light: [utilityLinkBase, {}],
+  dark: [utilityLinkBase, {}],
 });

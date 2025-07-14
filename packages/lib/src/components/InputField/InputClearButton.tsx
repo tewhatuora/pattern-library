@@ -25,7 +25,7 @@ export const InputClearButton = ({ fieldType = 'text', onClear }: InputClearButt
       className={clsx(styles.clearButtonBase, styles.clearButton[fieldType])}
       onPress={onClear}
     >
-      <Icon className={clearIcon} color="primary100" icon="clear_field" variant="functionalIcons" />
+      <Icon className={clearIcon} icon="clear_field" variant="functionalIcons" />
     </ButtonRoot>
   );
 };

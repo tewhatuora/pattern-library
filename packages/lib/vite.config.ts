@@ -44,6 +44,9 @@ export default defineConfig({
         exportType: 'default',
         jsxRuntime: 'classic',
         dimensions: false,
+        replaceAttrValues: {
+          '#404040': 'currentColor',
+        },
       },
     }),
     splitVendorChunkPlugin(),

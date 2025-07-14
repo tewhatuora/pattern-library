@@ -40,7 +40,7 @@ export default {
     },
   },
   args: {
-    variant: 'light'
+    variant: 'light',
   },
   parameters: {
     docs: {
@@ -70,7 +70,7 @@ export const Default = (args: Header.HeaderProps) => {
                 href: '#',
                 icon: 'language',
                 label: 'Language',
-              }
+              },
             ]}
             variant={args.variant!}
           />
