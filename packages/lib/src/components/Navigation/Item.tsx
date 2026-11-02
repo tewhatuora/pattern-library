@@ -1,5 +1,4 @@
 import {
-  FC,
   Fragment,
   MutableRefObject,
   PropsWithChildren,
@@ -10,7 +9,10 @@ import {
   useState,
 } from 'react';
 import { clsx } from 'clsx';
-import { useOutsideClick } from 'rooks';
+
+import { ContrastVariant, LinkComponentType } from '@/src/types';
+
+import useOutsideClick from '../../hooks/useOutsideClick';
 
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
@@ -19,8 +21,6 @@ import { Text } from '../Text/Text';
 import { Link } from './Link';
 import { Menu } from './Menu';
 import { ButtonRoot } from '../Button/ButtonRoot';
-
-import { ContrastVariant } from '../../types';
 
 import * as styles from './Item.css';
 import * as helpers from '../../css/helpers.css';
@@ -40,7 +40,7 @@ export type NavigationItemProps = {
   /** Contrast variant for dark/light UI */
   variant?: ContrastVariant;
   /** A React component to render, e. react-router-dom `<Link />` */
-  component?: FC<any>;
+  component?: LinkComponentType;
 };
 
 /**

@@ -21,6 +21,15 @@ export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; typ
 /** Contrast variant for dark/light UI */
 export type ContrastVariant = 'light' | 'dark';
 
+/** Props a custom link `component` is rendered with, e.g. a wrapper that passes `href` to react-router-dom `<Link to>` */
+export type LinkComponentProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href: string;
+  ref?: React.Ref<HTMLAnchorElement>;
+};
+
+/** A custom component to render a link with, instead of `<a>` */
+export type LinkComponentType = React.ElementType<LinkComponentProps>;
+
 export type AvatarVariant = 'small' | 'large';
 
 export type Color = Atoms['color'];

@@ -1,16 +1,52 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { getCountryCallingCode, isSupportedCountry } from 'react-phone-number-input';
-import { hasFlag } from 'country-flag-icons';
-import * as Flags from 'country-flag-icons/react/3x2';
-import type { FlagComponent } from 'country-flag-icons/react/3x2';
 import { clsx } from 'clsx';
 
 import { InputDropdown, InputDropdownProps } from '../InputDropdown/InputDropdown';
 import { Icon } from '../Icon/Icon';
 
+import { flagLoaders } from './flags';
 import * as styles from './CountryDropdown.css';
 
 export const CountryDropdownStyles = styles;
+
+// Flags that have been loaded, shared by every CountryDropdown so each flag is only fetched once
+const flagCache = new Map<string, string>();
+
+/**
+ * Loads the SVG markup for a country's flag on demand
+ * @param country
+ * @returns the SVG markup, or undefined until it has loaded
+ */
+const useFlagSvg = (country: string | undefined) => {
+  const [, setLoadedCountry] = useState<string>();
+
+  useEffect(() => {
+    if (!country || !flagLoaders[country] || flagCache.has(country)) {
+      return;
+    }
+
+    let active = true;
+
+    flagLoaders[country]()
+      .then(({ default: svg }) => {
+        flagCache.set(country, svg);
+
+        // Re-render to show the flag that's now in the cache
+        if (active) {
+          setLoadedCountry(country);
+        }
+      })
+      // If the flag can't be loaded (e.g. offline), the space is left empty
+      .catch(() => {});
+
+    return () => {
+      active = false;
+    };
+  }, [country]);
+
+  return country ? flagCache.get(country) : undefined;
+};
 
 /**
  * Country flag dropdown for InputPhone
@@ -34,11 +70,8 @@ export const CountryDropdown = memo(
       [onChange],
     );
 
-    const Flag = useMemo(() => {
-      return hasFlag(value || '')
-        ? (Flags as Record<string, FlagComponent>)[value as keyof FlagComponent]
-        : () => <Icon icon="international" style={{ width: '100%', height: 'auto' }} />;
-    }, [value]);
+    const hasFlag = !!value && !!flagLoaders[value];
+    const flagSvg = useFlagSvg(hasFlag ? value : undefined);
 
     const countryOptions = useMemo(() => {
       return options.map(({ value, label }: any) => ({
@@ -65,7 +98,12 @@ export const CountryDropdown = memo(
             [styles.flagWrapper.international]: !value || value == 'International',
           })}
         >
-          <Flag style={{ width: '100%' }} />
+          {hasFlag ? (
+            // The markup comes from country-flag-icons, never from user input
+            <span className={styles.flag} dangerouslySetInnerHTML={{ __html: flagSvg ?? '' }} />
+          ) : (
+            <Icon icon="international" style={{ width: '100%', height: 'auto' }} />
+          )}
         </div>
       </div>
     );

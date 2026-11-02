@@ -10,16 +10,14 @@ import path from 'path';
 // Match subpaths too (e.g. react/jsx-runtime, date-fns/locale)
 const toExternal = (names: string[]) => names.map((name) => new RegExp(`^${name}(/.*)?$`));
 const peerDependencies = toExternal(Object.keys(pkg.peerDependencies));
-// lodash is bundled: it has no package.json "exports", so a subpath import like 'lodash/debounce'
-// from an .mjs file fails in webpack 5, which requires fully specified paths in strict ESM
-const dependencies = toExternal(Object.keys(pkg.dependencies).filter((name) => name !== 'lodash'));
+const dependencies = toExternal(Object.keys(pkg.dependencies));
 
 // Two builds (see the build script):
 // - es (default mode): one file per module with dependencies left external, so consumers' bundlers
 //   can tree-shake unused components and dedupe dependencies (e.g. Radix) with the app's own copies.
 // - cjs (--mode cjs): a single file with dependencies bundled, as before. It's what Jest and other
-//   CommonJS consumers load, and several dependencies (e.g. rooks, usehooks-ts) can't be required
-//   by older resolvers such as Jest 27 in Create React App, which ignore package.json "exports".
+//   CommonJS consumers load, and some dependencies can't be required by older resolvers such as
+//   Jest 27 in Create React App, which ignore package.json "exports".
 export default defineConfig(({ mode }) => {
   const isCjs = mode === 'cjs';
 
@@ -42,14 +40,17 @@ export default defineConfig(({ mode }) => {
         // Peer dependencies are made external by esmExternalRequirePlugin below.
         external: [`${pkg.name}/styles`, ...(isCjs ? [] : dependencies)],
         output: isCjs
-          ? { banner: `'use client';`, entryFileNames: 'index.js' }
+          ? {
+              banner: `'use client';`,
+              entryFileNames: 'index.js',
+              // Keep the lazily loaded country flags in the single file rather than one chunk per flag
+              codeSplitting: false,
+            }
           : {
               banner: `'use client';`,
               preserveModules: true,
               preserveModulesRoot: 'src',
-              // Bundled dependencies (lodash) would otherwise be written to dist/node_modules/,
-              // which npm always leaves out of the published package
-              entryFileNames: ({ name }) => `${name.replace(/^node_modules\//, 'vendor/')}.mjs`,
+              entryFileNames: '[name].mjs',
             },
       },
     },

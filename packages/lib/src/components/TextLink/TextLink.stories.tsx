@@ -1,4 +1,6 @@
-import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
+
+import { LinkComponentProps } from '@/src/types';
 
 import { TextLink, TextLinkProps } from './TextLink';
 import DocsPage from '../../../utils/DocsPage';
@@ -52,7 +54,7 @@ export const Visited = (args: TextLinkProps) => (
   </TextLink>
 );
 
-const RouterLink = forwardRef((props: PropsWithChildren<TextLinkProps>, ref: ForwardedRef<any>) => {
+const RouterLink = forwardRef((props: Omit<LinkComponentProps, 'ref'>, ref: ForwardedRef<HTMLAnchorElement>) => {
   return (
     <a {...props} ref={ref} onClick={(e) => e.preventDefault()}>
       {props.children}

@@ -1,19 +1,20 @@
-import { Children, PropsWithChildren, ReactElement, cloneElement } from 'react';
+import { Children, PropsWithChildren, isValidElement } from 'react';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 const order = ['primary', 'secondary', 'tertiary'];
 
+const variantOrder = (child: unknown) =>
+  order.indexOf(isValidElement<{ variant?: string }>(child) ? (child.props.variant ?? '') : '');
+
 /**
  * Dialog action buttons
  * @constructor
  */
-export const Actions = ({ children }: PropsWithChildren<any>) => {
+export const Actions = ({ children }: PropsWithChildren) => {
   const sorted = Children.toArray(children).sort((a, b): number => {
-    const aChild = cloneElement(a as ReactElement<{ variant: string }>);
-    const bChild = cloneElement(b as ReactElement<{ variant: string }>);
-    if (order.indexOf(aChild.props.variant) > order.indexOf(bChild.props.variant)) return 1;
-    if (order.indexOf(aChild.props.variant) < order.indexOf(bChild.props.variant)) return -1;
+    if (variantOrder(a) > variantOrder(b)) return 1;
+    if (variantOrder(a) < variantOrder(b)) return -1;
     return 0;
   });
 

@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { clsx } from 'clsx';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
@@ -7,7 +7,7 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
-import { ContrastVariant } from '../../types';
+import { ContrastVariant, LinkComponentType } from '../../types';
 
 import * as styles from './Utility.css';
 
@@ -19,7 +19,7 @@ export type UtilityNavItemProps = {
   /** Label/text content for the link */
   label: string;
   /** Optionally render as a custom component, e.g. react-router-dom Link */
-  component?: FC<any>;
+  component?: LinkComponentType;
 };
 
 export type UtilityProps = {

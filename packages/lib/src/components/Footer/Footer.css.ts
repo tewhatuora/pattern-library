@@ -69,6 +69,12 @@ export const govtLogoWrapper = style({
   width: rem(272),
 });
 
+// The logo SVG is filled with currentColor; these are the logo's own black and white
+export const govtLogoColor = styleVariants({
+  light: { color: '#231F20' },
+  dark: { color: '#FFFFFF' },
+});
+
 // ##### Second Row #####
 
 export const secondRow = style([

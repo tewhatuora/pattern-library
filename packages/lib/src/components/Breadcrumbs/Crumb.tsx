@@ -1,5 +1,6 @@
-import { LiHTMLAttributes, PropsWithChildren, useEffect, useRef } from 'react';
+import { LiHTMLAttributes, PropsWithChildren, useRef } from 'react';
 import { clsx } from 'clsx';
+import { useLayoutEffect } from '@react-aria/utils';
 
 import * as styles from './Breadcrumbs.css';
 import { sprinkles } from '../../css/atoms/sprinkles.css';
@@ -40,7 +41,9 @@ export const Crumb = ({
    * second last items.
    * The first and last breadcrumb are always displayed.
    */
-  useEffect(() => {
+  // A layout effect measures and hides crumbs before the browser paints, so overflowing crumbs never flash.
+  // This is react-aria's version, which does nothing on the server instead of logging React 18's SSR warning.
+  useLayoutEffect(() => {
     if (crumbRef.current && crumbTextRef.current && shouldCheckVisibility) {
       const parent = crumbRef.current;
       const el = crumbTextRef.current;
@@ -49,7 +52,7 @@ export const Crumb = ({
 
       onToggleVisibility?.(index, shouldHide);
     }
-    // NOTE: disabling this rule as we only want the effect to run when `shouldTestLayout` changes.
+    // NOTE: disabling this rule as we only want the effect to run when `shouldCheckVisibility` or `hidden` changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldCheckVisibility, hidden]);
 

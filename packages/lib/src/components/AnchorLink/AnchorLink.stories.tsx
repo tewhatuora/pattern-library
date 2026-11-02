@@ -1,4 +1,6 @@
-import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
+
+import { LinkComponentProps } from '@/src/types';
 
 import { AnchorLink, AnchorLinkProps } from './AnchorLink';
 import DocsPage from '../../../utils/DocsPage';
@@ -58,7 +60,7 @@ export default {
 
 export const Default = (args: AnchorLinkProps) => <AnchorLink {...args} />;
 
-const RouterLink = forwardRef((props: PropsWithChildren<AnchorLinkProps>, ref: ForwardedRef<any>) => {
+const RouterLink = forwardRef((props: Omit<LinkComponentProps, 'ref'>, ref: ForwardedRef<HTMLAnchorElement>) => {
   return (
     <a {...props} ref={ref} onClick={(e) => e.preventDefault()}>
       {props.children}

@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 import { FC, PropsWithChildren, useMemo } from 'react';
 import { clsx } from 'clsx';
 
-import { useIntersectionObserver } from 'usehooks-ts';
+import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 
 import { Box } from '../Box/Box';
 import { Heading } from '../Heading/Heading';

@@ -1,6 +1,9 @@
-import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
+import { AnchorHTMLAttributes, PropsWithChildren, useRef } from 'react';
 import { clsx } from 'clsx';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
+
+import { LinkComponentType } from '@/src/types';
+import { canAcceptRef } from '@/src/utils/canAcceptRef';
 
 import { Icon } from '../Icon/Icon';
 
@@ -18,7 +21,7 @@ export type TextLinkProps = {
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** A React component to render, e. react-router-dom `<Link />` */
-  component?: FC<any>;
+  component?: LinkComponentType;
   /** Font size token */
   size?: UseTextProps['size'];
   /** Font weight token */
@@ -53,7 +56,7 @@ export const TextLink = ({
   children,
   ...rest
 }: PropsWithChildren<TextLinkProps>) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const textStyles = useText({ weight, size });
   const { linkProps } = useLink({ ...rest }, ref);
   const props = {
@@ -78,14 +81,14 @@ export const TextLink = ({
 
   if (LinkComponent) {
     return (
-      <LinkComponent {...props} ref={ref as RefObject<any>}>
+      <LinkComponent {...props} ref={canAcceptRef(LinkComponent) ? ref : undefined}>
         {linkChildren}
       </LinkComponent>
     );
   }
 
   return (
-    <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
+    <a {...props} ref={ref}>
       {linkChildren}
     </a>
   );

@@ -25,7 +25,7 @@ export type PaginationProps = {
 type PaginationPageProps = {
   page: number;
   isCurrent: boolean;
-  onPress?: (page: number) => void;
+  onPress?: () => void;
 };
 
 const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) => {

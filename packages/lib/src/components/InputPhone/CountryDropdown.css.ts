@@ -85,6 +85,15 @@ export const flagWrapperBase = style([
   }),
 ]);
 
+export const flag = style({
+  display: 'flex',
+  width: '100%',
+});
+
+globalStyle(`${flag} svg`, {
+  width: '100%',
+});
+
 export const flagWrapper = styleVariants({
   base: [flagWrapperBase],
   international: [

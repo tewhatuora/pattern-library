@@ -7,11 +7,13 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import { clsx } from 'clsx';
+import { useResizeObserver } from '@react-aria/utils';
 
-import debounce from 'lodash/debounce';
+import { debounce } from '../../utils/debounce';
 
 import { Box } from '../Box/Box';
 import { Crumb } from './Crumb';
@@ -47,19 +49,37 @@ export const Breadcrumbs = memo(
   ({ withBackground, boldLinks, boldText, noVisited, children }: PropsWithChildren<BreadcrumbsProps>) => {
     const [breadcrumbIsHidden, setBreadcrumbIsHidden] = useState<boolean[]>([]);
     const [indexToCheck, setIndexToCheck] = useState<number>(0);
+    const navRef = useRef<HTMLElement>(null);
+    const navWidth = useRef<number>(undefined);
 
-    useEffect(() => {
-      const resizeHandler = debounce(() => {
-        setBreadcrumbIsHidden([]);
-        setIndexToCheck(0);
-      }, 500);
+    /**
+     * Show every breadcrumb again so they are re-measured
+     */
+    const resetVisibility = useMemo(
+      () =>
+        debounce(() => {
+          setBreadcrumbIsHidden([]);
+          setIndexToCheck(0);
+        }, 500),
+      [],
+    );
 
-      window.addEventListener('resize', resizeHandler);
+    useEffect(() => resetVisibility.cancel, [resetVisibility]);
 
-      return () => {
-        window.removeEventListener('resize', resizeHandler);
-      };
-    }, []);
+    // Watch the container rather than the window, so layout changes that aren't a window resize are caught.
+    // Only the width matters: hiding breadcrumbs can change the height, which would otherwise loop.
+    useResizeObserver({
+      ref: navRef,
+      onResize: () => {
+        const width = navRef.current?.getBoundingClientRect().width;
+
+        if (navWidth.current !== undefined && width !== navWidth.current) {
+          resetVisibility();
+        }
+
+        navWidth.current = width;
+      },
+    });
 
     /**
      * Set a breadcrumb to be invisible if there
@@ -127,7 +147,7 @@ export const Breadcrumbs = memo(
     }, [indexToCheck, breadcrumbIsHidden, toggleBreadcrumbVisibility, children]);
 
     return (
-      <Box aria-label="Breadcrumb" as="nav" className={styles.breadcrumbs({ background: withBackground })}>
+      <Box aria-label="Breadcrumb" as="nav" className={styles.breadcrumbs({ background: withBackground })} ref={navRef}>
         <Box
           as="ol"
           className={clsx(

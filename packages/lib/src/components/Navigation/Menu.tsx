@@ -2,7 +2,7 @@ import { Children, PropsWithChildren, ReactElement, useContext, useEffect, useMe
 import { FocusTrap } from 'focus-trap-react';
 import { clsx } from 'clsx';
 
-import debounce from 'lodash/debounce';
+import { debounce } from '../../utils/debounce';
 
 import assert from '../../utils/assert';
 
@@ -115,6 +115,7 @@ export const Menu = ({
 
     return () => {
       window.removeEventListener('resize', resizeHandler);
+      resizeHandler.cancel();
     };
   }, [dimension, startTransitionOut, isMobile, navContext]);
 

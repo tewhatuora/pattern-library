@@ -1,11 +1,12 @@
 import { memo } from 'react';
+import type { PressEvent } from '@react-aria/interactions';
 
 import { Icon } from '../Icon/Icon';
 import { ButtonRoot } from '../Button/ButtonRoot';
 import { IconType } from '../Icon/icons';
 
 type CloseButtonProps = {
-  onClose: (e: any) => void;
+  onClose: (e: PressEvent) => void;
   className?: string;
   icon?: IconType;
   variant?: 'decorativeIcons' | 'functionalIcons' | 'socialIcons' | 'tagIcon';

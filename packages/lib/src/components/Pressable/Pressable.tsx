@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 import { ElementType } from 'react';
-import { usePress } from '@react-aria/interactions';
+import { PressEvent, usePress } from '@react-aria/interactions';
 import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
@@ -8,7 +8,7 @@ import { Box, BoxProps } from '../Box/Box';
 type PressableProps = {
   as?: ElementType;
   label?: string;
-  onPress?: (e: any) => void;
+  onPress?: (e: PressEvent) => void;
 } & Pick<JSX.IntrinsicElements['button'], 'className' | 'children' | 'disabled' | 'type' | 'tabIndex'> &
   Pick<BoxProps, 'width' | 'justifyContent'>;
 

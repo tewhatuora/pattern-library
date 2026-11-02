@@ -1,5 +1,6 @@
 import { ElementType, LabelHTMLAttributes, useMemo } from 'react';
 import { clsx } from 'clsx';
+import type { PressEvent } from '@react-aria/interactions';
 
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
@@ -40,7 +41,7 @@ export type InputLabelProps = {
   /** URL/path for `tertiaryLabel`, if `tertiaryLabelAs` = `a` */
   href?: string | never;
   /** Function to call when the `tertiaryLabel` is clicked, if `tertiaryLabelAs` = `button` */
-  onTertiaryLabelClick?: (e: any) => void | never;
+  onTertiaryLabelClick?: (e: PressEvent) => void;
 };
 
 /**

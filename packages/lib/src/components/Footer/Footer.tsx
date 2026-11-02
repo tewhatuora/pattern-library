@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { Children, FC, PropsWithChildren, useMemo } from 'react';
+import { Children, ElementType, PropsWithChildren, ReactNode, useMemo } from 'react';
 
 import { clsx } from 'clsx';
 
@@ -13,8 +13,7 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
-import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
-import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
+import NZGovtLogo from './nz-govt-logo.svg?component';
 // import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 // import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
@@ -30,8 +29,8 @@ const FooterStyles = styles;
 type ImprintItem = {
   text: string;
   href?: string;
-  /** A React component to render, e. react-router-dom `<Link />` */
-  component?: FC<any>;
+  /** A React component to render, e.g. a react-router-dom `<Link />`. It gets `className` and `children` but not `href`, so it must link to its own destination */
+  component?: ElementType<{ className?: string; children?: ReactNode }>;
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -77,7 +76,6 @@ const Footer = ({
   }
 
   // const TeWhatuOraLogo = variant === 'dark' ? TeWhatuOraLogoLight : TeWhatuOraLogoDark;
-  const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
   const socialLinks = useMemo(
     () =>
@@ -106,7 +104,7 @@ const Footer = ({
               </Text>
             </Box>
           ) : null}
-          {imprintItems?.toReversed().map(({ text, href, component: ImprintComponent }) => {
+          {[...(imprintItems ?? [])].reverse().map(({ text, href, component: ImprintComponent }) => {
             let result;
 
             if (ImprintComponent) {
@@ -152,7 +150,7 @@ const Footer = ({
           <Stack space="xxlarge">
             {/* First row */}
             <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
-              <Box className={styles.govtLogoWrapper}>
+              <Box className={clsx(styles.govtLogoWrapper, styles.govtLogoColor[variant ?? 'light'])}>
                 {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
                 <NZGovtLogo focusable={false} role="img" />
               </Box>

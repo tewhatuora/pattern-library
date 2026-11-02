@@ -1,8 +1,8 @@
-import { ForwardedRef, PropsWithChildren, forwardRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
+
+import { LinkComponentProps } from '@/src/types';
 
 import { MenuListProps } from '@/src/components/Navigation/MenuList';
-
-import { AnchorLinkProps } from '../AnchorLink/AnchorLink';
 
 import { LinkProps } from '../Navigation/Link';
 
@@ -66,7 +66,7 @@ const navArgTypes = {
   },
 };
 
-const RouterLink = forwardRef((props: PropsWithChildren<AnchorLinkProps>, ref: ForwardedRef<any>) => {
+const RouterLink = forwardRef((props: Omit<LinkComponentProps, 'ref'>, ref: ForwardedRef<HTMLAnchorElement>) => {
   return <a {...props} ref={ref} onClick={(e) => e.preventDefault()} />;
 });
 

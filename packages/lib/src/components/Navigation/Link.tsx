@@ -1,7 +1,10 @@
-import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
+import { AnchorHTMLAttributes, PropsWithChildren, useRef } from 'react';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
 
 import { clsx } from 'clsx';
+
+import { LinkComponentType } from '@/src/types';
+import { canAcceptRef } from '@/src/utils/canAcceptRef';
 
 import * as styles from './Link.css';
 
@@ -11,7 +14,7 @@ export type LinkProps = {
   href: string;
   selected?: boolean;
   className?: string;
-  component?: FC<any>;
+  component?: LinkComponentType;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -27,7 +30,7 @@ export const Link = ({
   children,
   ...rest
 }: PropsWithChildren<LinkProps>) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
 
   const { linkProps } = useLink({ ...rest }, ref);
   const props = {
@@ -39,28 +42,15 @@ export const Link = ({
   };
 
   if (LinkComponent) {
-    // Only pass the `ref` if the supplied component can actually accept it.
-    // A component can accept refs if it is:
-    //   1. A class component (has a prototype with a render method), or
-    //   2. A function component wrapped with React.forwardRef (identified via $$typeof symbol).
-    const canAcceptRef =
-      (typeof LinkComponent === 'function' && (LinkComponent as any).prototype?.render) ||
-      (LinkComponent as any).$$typeof === Symbol.for('react.forward_ref');
-
-    if (canAcceptRef) {
-      return (
-        <LinkComponent {...props} ref={ref as RefObject<any>}>
-          {children}
-        </LinkComponent>
-      );
-    }
-
-    // Fallback: don’t pass the ref to avoid the React warning.
-    return <LinkComponent {...props}>{children}</LinkComponent>;
+    return (
+      <LinkComponent {...props} ref={canAcceptRef(LinkComponent) ? ref : undefined}>
+        {children}
+      </LinkComponent>
+    );
   }
 
   return (
-    <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
+    <a {...props} ref={ref}>
       {children}
     </a>
   );

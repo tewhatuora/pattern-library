@@ -55,3 +55,4 @@ export { ThemeProvider } from './ThemeProvider/ThemeProvider';
 export { useTheme } from './ThemeProvider/ThemeContext';
 export { useHeading, useText } from '../hooks/typography';
 export { atoms } from '../css/atoms/atoms';
+export type { LinkComponentProps, LinkComponentType } from '../types';

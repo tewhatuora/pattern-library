@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react';
 import { clsx } from 'clsx';
+import type { PressEvent } from '@react-aria/interactions';
 
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
@@ -28,7 +29,7 @@ export type ButtonProps = {
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
   /** A function that will be called when clicking/pressing the Button */
-  onPress?: (e: any) => void;
+  onPress?: (e: PressEvent) => void;
   /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
   onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   children?: ReactNode | undefined;
@@ -60,11 +61,13 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     ...rest
   } = props;
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: PressEvent) => {
     // Call the onPress prop if it's provided
     // OnClick used for Radix components
     if (onClick) {
-      onClick(e);
+      // This runs from react-aria's onPress, so onClick has always received a PressEvent, not a MouseEvent.
+      // Radix triggers only use it as a callback, so the type is left as it was.
+      onClick(e as unknown as React.MouseEvent<HTMLButtonElement>);
     } else if (onPress) {
       onPress(e);
     }
