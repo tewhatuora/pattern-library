@@ -7,7 +7,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 type AllowedChildrenProps = {
   types: React.ElementType[];
   errorMessage: string;
-  propsForChild?: (child?: ReactElement) => any;
+  propsForChild?: (child?: ReactElement<any>) => any;
 };
 
 /**

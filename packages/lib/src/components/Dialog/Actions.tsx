@@ -10,8 +10,8 @@ const order = ['primary', 'secondary', 'tertiary'];
  */
 export const Actions = ({ children }: PropsWithChildren<any>) => {
   const sorted = Children.toArray(children).sort((a, b): number => {
-    const aChild = cloneElement(a as ReactElement);
-    const bChild = cloneElement(b as ReactElement);
+    const aChild = cloneElement(a as ReactElement<{ variant: string }>);
+    const bChild = cloneElement(b as ReactElement<{ variant: string }>);
     if (order.indexOf(aChild.props.variant) > order.indexOf(bChild.props.variant)) return 1;
     if (order.indexOf(aChild.props.variant) < order.indexOf(bChild.props.variant)) return -1;
     return 0;

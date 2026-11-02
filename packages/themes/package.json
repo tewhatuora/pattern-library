@@ -33,7 +33,8 @@
     "patch": "commit-and-tag-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
     "minor": "commit-and-tag-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
     "major": "commit-and-tag-version --release-as major --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "major:beta": "commit-and-tag-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify"
+    "major:beta": "commit-and-tag-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "lint:package": "publint && attw --pack . --exclude-entrypoints styles --ignore-rules false-cjs false-esm internal-resolution-error"
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^5.2.6",
@@ -48,17 +49,24 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/style.css"
+    "./styles": "./dist/style.css",
+    "./package.json": "./package.json"
   },
   "sideEffects": [
+    "*.css",
     "*.css.ts"
   ],
   "files": [
     "dist"
   ],
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tewhatuora/pattern-library.git",
+    "directory": "packages/themes"
+  }
 }

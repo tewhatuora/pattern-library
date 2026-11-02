@@ -32,7 +32,7 @@ export const Root = ({
 }: PropsWithChildren<ListRootProps>) => {
   const newChildren = Children.map(children, (child: ReactNode) => {
     assert(
-      isValidElement(child),
+      isValidElement<{ className?: string }>(child),
       'A child of `List.Root` is an invalid React element. Check that the children are all valid.',
     );
 

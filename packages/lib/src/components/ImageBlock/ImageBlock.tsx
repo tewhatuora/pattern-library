@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { PropsWithChildren, useContext, useMemo } from 'react';
 import { clsx } from 'clsx';
 

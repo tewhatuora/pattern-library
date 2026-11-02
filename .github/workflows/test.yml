@@ -44,6 +44,40 @@ jobs:
       - name: type check
         run: yarn lint:types
 
+  storybook-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: enable corepack
+        run: corepack enable
+
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ inputs.cache-key }}
+
+      # Storybook imports the built styles, and lint:package checks the packed output
+      - name: yarn build
+        run: yarn build
+
+      - name: lint packages
+        run: yarn lint:package
+
+      - name: install playwright browser
+        run: yarn playwright install --with-deps chromium-headless-shell
+
+      # Renders every story; accessibility violations are reported but don't fail yet (a11y.test: 'todo')
+      - name: storybook tests
+        run: yarn test
+
   test:
     runs-on: ubuntu-latest
     continue-on-error: true

@@ -9,6 +9,9 @@ const themes = {
 
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  // 'todo' reports axe violations as warnings (in the Storybook UI and test runs) without failing.
+  // Switch to 'error' once the existing violations are fixed, or per story/component as they're cleaned up.
+  a11y: { test: 'todo' },
   backgrounds: { disable: true },
   docs: {
     source: {

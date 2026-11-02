@@ -1,4 +1,4 @@
-import { FormEventHandler, ForwardedRef, RefObject, forwardRef, useMemo } from 'react';
+import { FormEvent, FormEventHandler, ForwardedRef, RefObject, forwardRef, useMemo } from 'react';
 import { useTextField } from '@react-aria/textfield';
 import { useObjectRef } from '@react-aria/utils';
 
@@ -47,7 +47,11 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
     }, [onSubmit]);
 
     return (
-      <Box as={element} className={styles.container} onSubmit={onSubmit}>
+      <Box
+        as={element}
+        className={styles.container}
+        onSubmit={onSubmit && ((event) => onSubmit(event as unknown as FormEvent<HTMLFormElement>))}
+      >
         <InputField
           {...inputProps}
           className={styles.input}

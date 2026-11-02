@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { PropsWithChildren } from 'react';
 
 import { Box } from '../Box/Box';

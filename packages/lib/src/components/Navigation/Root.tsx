@@ -15,7 +15,7 @@ import * as helpers from '../../css/helpers.css';
 
 export const NavigationStyles = styles;
 
-export const NavigationContext = createContext<{ element: RefObject<HTMLElement> | null }>({ element: null });
+export const NavigationContext = createContext<{ element: RefObject<HTMLElement | null> | null }>({ element: null });
 
 export type NavigationProps = {
   /** Contrast variant for dark/light UI */
@@ -47,7 +47,7 @@ export const Root = ({
   children,
   utilityNavItems,
 }: PropsWithChildren<NavigationProps>) => {
-  const navEl = useRef(null);
+  const navEl = useRef<HTMLElement>(null);
   const hasNavItems = !!Children.count(children);
 
   return (

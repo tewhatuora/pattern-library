@@ -10,7 +10,14 @@ export default {
     '../packages/lib/src/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
 
-  addons: ['@storybook/addon-links', '@storybook/addon-themes', '@storybook/addon-docs', '@chromatic-com/storybook'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-themes',
+    '@storybook/addon-docs',
+    '@storybook/addon-a11y',
+    '@storybook/addon-vitest',
+    '@chromatic-com/storybook',
+  ],
 
   framework: {
     name: '@storybook/react-vite',

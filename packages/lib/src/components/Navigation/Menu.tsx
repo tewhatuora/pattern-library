@@ -164,7 +164,7 @@ export const Menu = ({
                   </ButtonRoot>
                 )}
                 {menuLists?.map((menuList: ReactElement) => (
-                  <Column columns={3} key={`menuList-${menuList?.props?.heading}`}>
+                  <Column columns={3} key={`menuList-${(menuList?.props as { heading?: string })?.heading}`}>
                     {menuList}
                   </Column>
                 ))}

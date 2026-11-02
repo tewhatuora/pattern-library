@@ -25,38 +25,41 @@
     "design system",
     "pattern library"
   ],
-  "main": "./dist/index.mjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/index.js"
     },
-    "./styles": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
-    }
+    "./styles": "./dist/style.css",
+    "./package.json": "./package.json"
   },
   "sideEffects": [
-    "src/atoms/**/*",
-    "src/theme/**/*",
+    "*.css",
     "*.css.ts"
   ],
   "files": [
-    "dist"
+    "dist",
+    "styles"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tewhatuora/pattern-library.git",
+    "directory": "packages/lib"
+  },
   "license": "MIT",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && vite build --mode cjs",
     "lint:types": "tsc --noEmit",
     "clean": "rm -rf ../../CURRENT_VERSION.md",
     "patch": "yarn clean && commit-and-tag-version --release-as patch --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
     "minor": "yarn clean && commit-and-tag-version --release-as minor --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
     "major": "yarn clean && commit-and-tag-version --release-as major --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
-    "major:beta": "yarn clean && commit-and-tag-version --release-as major --prerelease beta --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify"
+    "major:beta": "yarn clean && commit-and-tag-version --release-as major --prerelease beta --infile ../../CURRENT_VERSION.md --header=\"\" --commit-all --no-verify",
+    "lint:package": "publint && attw --pack . --exclude-entrypoints styles --ignore-rules false-cjs false-esm internal-resolution-error"
   },
   "dependencies": {
     "@healthnz/pattern-library-themes": "*",
@@ -88,7 +91,7 @@
     "focus-trap-react": "^12.0.3",
     "lodash": "^4.18.1",
     "react-phone-number-input": "^3.4.12",
-    "react-shielded": "^2.1.0",
+    "react-shielded": "^2.2.0",
     "rooks": "^9.9.0",
     "usehooks-ts": "^3.1.1"
   },
@@ -96,8 +99,8 @@
     "@react-types/shared": "^3.30.0",
     "@types/lodash": "^4.17.17",
     "@types/node": "^24",
-    "@types/react": "^18.3.13",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "@vanilla-extract/vite-plugin": "^5.2.6",
     "@vitejs/plugin-react": "^6.1.2",
     "commit-and-tag-version": "^13.3.0",
@@ -107,8 +110,8 @@
   },
   "peerDependencies": {
     "@healthnz/pattern-library-themes": "*",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
   },
   "commit-and-tag-version": {
     "scripts": {

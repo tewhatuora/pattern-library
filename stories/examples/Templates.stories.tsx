@@ -1,5 +1,7 @@
 import { Meta } from '@storybook/react-vite';
 
+import ContentPageTemplate from './ContentPage';
+
 export default {
   title: 'Templates/Layouts',
   argTypes: {},
@@ -14,4 +16,5 @@ export default {
   ],
 } as Meta;
 
-export { default as ContentPage } from './ContentPage';
+// Declared rather than re-exported so the Storybook Vitest plugin picks it up as a story
+export const ContentPage = ContentPageTemplate;

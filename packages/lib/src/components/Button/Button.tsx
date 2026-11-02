@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react';
 import { clsx } from 'clsx';
 

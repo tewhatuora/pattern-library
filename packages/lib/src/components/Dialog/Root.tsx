@@ -24,7 +24,7 @@ export type DialogProps = {
   /** Dialog subheading */
   subheading?: string;
   /** Trigger element to open the dialog */
-  trigger?: ReactElement;
+  trigger?: ReactElement<{ onPress?: () => void }>;
 } & RadixDialog.DialogProps;
 
 /**

@@ -6,6 +6,6 @@ declare module '*.svg?component' {
 declare module 'react-shielded';
 
 declare module '*.mdx' {
-  let MDXComponent: (props: any) => JSX.Element;
+  let MDXComponent: (props: any) => React.JSX.Element;
   export default MDXComponent;
 }

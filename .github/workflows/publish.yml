@@ -56,32 +56,34 @@ jobs:
 
       - name: publish library
         if: inputs.is-full-lib == 'true'
-        run: |
-          npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
-          yarn publish --access public --cwd ./packages/lib --tag latest
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn workspace @healthnz/pattern-library npm publish --access public --tag latest
 
       - name: publish prerelease library
         if: inputs.is-pre-lib == 'true'
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           GIT_REF="${{ github.ref_name }}"
           PRE_RELEASE_VERSION=${GIT_REF#*.[0-9]*-}
           TAG_NAME=${PRE_RELEASE_VERSION%.*}
           echo $TAG_NAME
-          npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
-          yarn publish --access public --cwd ./packages/lib --tag $TAG_NAME
+          yarn workspace @healthnz/pattern-library npm publish --access public --tag $TAG_NAME
 
       - name: publish theme
         if: inputs.is-full-theme == 'true'
-        run: |
-          npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
-          yarn publish --access public --cwd ./packages/themes --tag latest
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn workspace @healthnz/pattern-library-themes npm publish --access public --tag latest
 
       - name: publish prerelease theme
         if: inputs.is-pre-theme == 'true'
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           GIT_REF="${{ github.ref_name }}"
           PRE_RELEASE_VERSION=${GIT_REF#*.[0-9]*-}
           TAG_NAME=${PRE_RELEASE_VERSION%.*}
           echo $TAG_NAME
-          npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
-          yarn publish --access public --cwd ./packages/themes --tag $TAG_NAME
+          yarn workspace @healthnz/pattern-library-themes npm publish --access public --tag $TAG_NAME

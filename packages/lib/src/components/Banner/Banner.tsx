@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { forwardRef, useCallback, useState } from 'react';
 
 import { Box } from '../Box/Box';

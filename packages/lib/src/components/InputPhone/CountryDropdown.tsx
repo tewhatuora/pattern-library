@@ -17,7 +17,14 @@ export const CountryDropdownStyles = styles;
  * @constructor
  */
 export const CountryDropdown = memo(
-  ({ value, onChange, options, ...props }: InputDropdownProps & { onChange: (value: string | undefined) => void }) => {
+  ({
+    value,
+    onChange,
+    options,
+    // Passed by react-phone-number-input but not used here; drop it so it isn't spread onto the DOM
+    iconComponent,
+    ...props
+  }: InputDropdownProps & { onChange: (value: string | undefined) => void; iconComponent?: unknown }) => {
     const handleCountrySelect = useCallback(
       (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;

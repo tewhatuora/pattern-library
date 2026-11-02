@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { ElementType } from 'react';
 import { usePress } from '@react-aria/interactions';
 import { clsx } from 'clsx';

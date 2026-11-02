@@ -31,7 +31,9 @@ export default defineConfig({
       root: path.resolve(import.meta.dirname),
       beforeWriteFile: (filePath, content) => ({
         content,
-        filePath: filePath.replace('tmp', ''),
+        // Generated sources live in tmp/; drop that segment so types land in dist/types/ directly.
+        // Only replace the path segment: a bare 'tmp' would also match e.g. /private/tmp/ in the checkout path.
+        filePath: filePath.replace(`${path.sep}types${path.sep}tmp${path.sep}`, `${path.sep}types${path.sep}`),
       }),
       compilerOptions: {
         baseUrl: './tmp/',
