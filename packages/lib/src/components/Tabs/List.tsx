@@ -2,7 +2,7 @@ import * as RadixTabs from '@radix-ui/react-tabs';
 
 import { RefAttributes } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { ChildrenOfType } from '../../types/index';
 

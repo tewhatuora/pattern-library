@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./src/",
+    "baseUrl": "./",
     "emitDeclarationOnly": true,
     "noEmit": false,
     "declaration": true,
@@ -11,7 +11,6 @@
       "!/*": ["../*"],
       "@/*": ["./*"]
     },
-    "types": ["@testing-library/jest-dom", "jest"],
     "skipLibCheck": true
   },
   "include": ["./"]

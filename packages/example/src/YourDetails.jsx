@@ -1,17 +1,17 @@
 import {
   Box,
-  Stack,
+  Button,
   Card,
-  TextLinkButton,
-  Heading,
   Column,
-  Row,
-  Text,
   Divider,
+  Heading,
   InputText,
   List,
+  Row,
+  Stack,
+  Text,
   TextLink,
-  Button,
+  TextLinkButton,
 } from '@healthnz/pattern-library';
 
 const YourDetails = (props) => {
@@ -48,15 +48,15 @@ const YourDetails = (props) => {
                   <Stack space="medium">
                     <InputText
                       helperText="Your pass will be sent to this email address"
+                      id="email"
                       label="Email address"
                       name="email"
-                      id="email"
                     />
                     <Divider variant="light" />
                     <Heading level="3">Changing your details</Heading>
                     <List.Root type="ul">
                       <List.Item>
-                        You can't edit your name or date of birth. These details come from your{' '}
+                        You can&apos;t edit your name or date of birth. These details come from your{' '}
                         <TextLink href="#">NHI number</TextLink>
                       </List.Item>
                       <List.Item>

@@ -16,7 +16,7 @@ const Shadows = () => {
   return (
     <Section>
       <Stack space="medium">
-        <Group label="Shadows" level="1" path="tokens.shadows" />
+        <Group label="Shadows" path="tokens.shadows" />
         <Table>
           {Object.keys(tokens.shadows).map((name) => (
             <tr key={`tokens.shadows.${name}`}>

@@ -1,5 +1,5 @@
 import { AllHTMLAttributes, ElementType, PropsWithChildren, createElement, forwardRef } from 'react';
-import clsx, { ClassValue } from 'clsx';
+import { ClassValue, clsx } from 'clsx';
 
 import { Atoms, atoms } from '../../css/atoms/atoms';
 import { sprinkles } from '../../css/atoms/sprinkles.css';

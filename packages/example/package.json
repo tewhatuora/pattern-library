@@ -5,35 +5,19 @@
   "dependencies": {
     "@healthnz/pattern-library": "workspace:^",
     "@healthnz/pattern-library-themes": "workspace:^",
-    "cra-template": "1.2.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-router-dom": "^6.28.0",
-    "react-scripts": "5.0.1"
+    "react-router": "^7.18.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "yarn && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint:types": "echo \"not typescript\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "type": "module",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.4"
   }
 }

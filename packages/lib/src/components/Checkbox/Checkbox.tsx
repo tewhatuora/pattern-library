@@ -3,7 +3,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import { Label } from '@radix-ui/react-label';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Text } from '../Text/Text';
 import { Box, BoxProps } from '../Box/Box';

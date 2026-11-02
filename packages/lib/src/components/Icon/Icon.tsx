@@ -1,5 +1,5 @@
 import { ElementType, memo } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import assert from '../../utils/assert';
 

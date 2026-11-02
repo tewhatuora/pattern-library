@@ -1,6 +1,6 @@
 import { Children, FC, PropsWithChildren, useMemo } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { ContrastVariant } from '@/src/types';
 

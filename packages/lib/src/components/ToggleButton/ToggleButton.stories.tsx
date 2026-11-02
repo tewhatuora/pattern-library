@@ -1,8 +1,9 @@
+import { Meta } from '@storybook/react-vite';
+
 import { ToggleButton, ToggleButtonProps } from './ToggleButton';
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './ToggleButton.docs.mdx';
-import { Meta } from '@storybook/react/*';
 
 export default {
   title: 'Forms/ToggleButton',

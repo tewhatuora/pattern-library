@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useOutsideClick } from 'rooks';
 
 import { BreakpointContext } from '../ThemeProvider/BreakpointContext';

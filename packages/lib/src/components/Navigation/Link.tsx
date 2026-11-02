@@ -1,7 +1,7 @@
 import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import * as styles from './Link.css';
 

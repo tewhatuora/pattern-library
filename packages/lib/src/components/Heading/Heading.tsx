@@ -1,6 +1,6 @@
 import { ReactNode, forwardRef } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import { HeadingLevel, HeadingWeight, useHeading } from '../../hooks/typography';

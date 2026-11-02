@@ -1,20 +1,26 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+
 import path from 'path';
 
 export default defineConfig({
   build: {
+    // Vite 7+ defaults to 'baseline-widely-available' (Safari 16.4+). Keep the previous
+    // 'modules' targets so consumer browser support doesn't change with the tooling upgrade.
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     lib: {
       entry: 'tmp/index.ts',
       fileName: 'index',
+      // Keep the CSS at dist/style.css (the ./styles export); Vite 6+ names it after fileName by default
+      cssFileName: 'style',
       formats: ['cjs', 'es'],
     },
   },
   resolve: {
     alias: {
-      '!/*': path.resolve(__dirname, '../*'),
-      '@/*': path.resolve(__dirname, './*'),
+      '!/*': path.resolve(import.meta.dirname, '../*'),
+      '@/*': path.resolve(import.meta.dirname, './*'),
     },
   },
   plugins: [
@@ -22,7 +28,7 @@ export default defineConfig({
       identifiers: 'short',
     }),
     dts({
-      root: path.resolve(__dirname),
+      root: path.resolve(import.meta.dirname),
       beforeWriteFile: (filePath, content) => ({
         content,
         filePath: filePath.replace('tmp', ''),
@@ -32,7 +38,7 @@ export default defineConfig({
         emitDeclarationOnly: true,
         noEmit: false,
       },
-      outDir: 'dist/types',
+      outDirs: 'dist/types',
     }),
   ],
 });

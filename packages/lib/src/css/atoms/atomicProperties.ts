@@ -1,6 +1,6 @@
 import { StyleRule } from '@vanilla-extract/css';
 
-import { Viewport } from '@healthnz/pattern-library-themes/dist/types/tokenType';
+import type { Viewport } from '@healthnz/pattern-library-themes';
 
 import { vars } from '../../themes/vars.css';
 import { ResponsiveStyle, responsiveStyle } from '../../css/responsiveStyle';
@@ -11,16 +11,14 @@ const sizes = {
   full: '100%',
 };
 const space = vars.space;
-const boxShadow = vars.shadow;
 const borderWidth = vars.borderWidth;
 const borderRadiusAll = vars.borderRadiusAll;
 const borderRadius = vars.borderRadius;
 const borderStyle = ['none', 'solid', 'dashed', 'dotted', 'double'] as const;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { semantic, ...colors } = vars.color;
 
-export type BoxShadow = keyof typeof boxShadow;
+export type BoxShadow = keyof typeof vars.shadow;
 
 export const unresponsiveProperties = {
   userSelect: ['none'],

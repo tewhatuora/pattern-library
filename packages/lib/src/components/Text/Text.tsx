@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, PropsWithChildren, forwardRef } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import { UseTextProps, useText } from '../../hooks/typography';

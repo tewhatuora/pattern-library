@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';

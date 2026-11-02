@@ -7,6 +7,8 @@ import { INPUT_DIR, OUTPUT_DIR } from './constants.js';
 import generateExports from './exports.js';
 import clean from './utils/clean.js';
 
+// Note: config.json deliberately omits 'size/rem'. In style-dictionary 3 it never matched these
+// tokens; from v4 it converts every unitless 'dimension' token (raw px numbers) to rem.
 const config = JSON.parse(await readFile(new URL('../config.json', import.meta.url)));
 const platforms = Object.keys(config.platforms);
 
@@ -40,7 +42,7 @@ function getStyleDictionaryConfig(theme, platform) {
   };
 }
 
-const generate = () => {
+const generate = async () => {
   console.log('Build started...');
 
   console.log('Clean output directory...');
@@ -54,33 +56,34 @@ const generate = () => {
     .filter((item) => item.isDirectory())
     .map((item) => item.name);
 
-  themes.forEach((theme) => {
-    platforms.forEach(async (platform) => {
-      try {
-        console.log('\n==============================================');
-        console.log(`\nProcessing: [${platform}] [${theme}]`);
+  for (const theme of themes) {
+    for (const platform of platforms) {
+      console.log('\n==============================================');
+      console.log(`\nProcessing: [${platform}] [${theme}]`);
 
-        const { default: registerFormats } = await import(`./formats/${platform}.js`);
+      const formatsUrl = new URL(`./formats/${platform}.js`, import.meta.url);
 
-        if (registerFormats) {
-          registerFormats(StyleDictionary);
-        }
+      if (fs.existsSync(formatsUrl)) {
+        // Let errors propagate: config.json relies on transforms registered here
+        const { default: registerFormats } = await import(formatsUrl);
 
-        console.log('\nEnd processing');
-      } catch (err) {
+        registerFormats?.(StyleDictionary);
+      } else {
         console.log('No custom formatters found for platform: ', platform);
       }
 
-      const styleDictionary = StyleDictionary.extend(getStyleDictionaryConfig(theme, platform));
+      console.log('\nEnd processing');
 
-      styleDictionary.buildPlatform(platform);
+      const styleDictionary = new StyleDictionary(getStyleDictionaryConfig(theme, platform));
+
+      await styleDictionary.buildPlatform(platform);
 
       generateExports(platform);
-    });
-  });
+    }
+  }
 
   console.log('\n==============================================');
   console.log('\nBuild completed!');
 };
 
-generate();
+await generate();

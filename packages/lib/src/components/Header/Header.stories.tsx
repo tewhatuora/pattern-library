@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import { Text } from '../Text/Text';
 import * as Header from './Header';
@@ -72,12 +72,16 @@ export const Default = (args: Header.HeaderProps) => {
                 label: 'Language',
               },
             ]}
-            variant={args.variant!}
+            variant={args.variant ?? 'light'}
           />
 
           <InputSearch id="search" name="search" placeholder="Search" />
         </Header.Right>
-        <Header.MenuButton open={isMenuOpen} onToggle={() => setIsMenuOpen((open) => !open)} variant={args.variant!} />
+        <Header.MenuButton
+          open={isMenuOpen}
+          variant={args.variant ?? 'light'}
+          onToggle={() => setIsMenuOpen((open) => !open)}
+        />
       </Header.Main>
     </Header.Root>
   );

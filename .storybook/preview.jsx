@@ -1,7 +1,8 @@
-import React from 'react';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { ThemeProvider } from '../packages/lib/src';
+
 import { neutral, webSelfService } from '@healthnz/pattern-library-themes';
+
+import { ThemeProvider } from '../packages/lib/src';
 
 import sbParameters from './parameters';
 

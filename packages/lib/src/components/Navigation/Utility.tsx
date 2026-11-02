@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { Link } from './Link';

@@ -61,7 +61,7 @@ const typography = (typographyTokens) => {
         tokens.fontWeight[weight] = typographyTokens[bp][size][weight].fontWeight.toString();
         tokens.textDecoration[weight] = typographyTokens[bp][size][weight].textDecoration.toString();
 
-        let formattedSize = makeSize(size);
+        const formattedSize = makeSize(size);
         const newBp = bp === 'desktop' ? 'tablet' : bp;
 
         // Large sizes are heading sizes

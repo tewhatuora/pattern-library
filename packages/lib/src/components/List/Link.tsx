@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { HTMLAttributes, PropsWithChildren, forwardRef } from 'react';
 
 import { Text } from '../Text/Text';

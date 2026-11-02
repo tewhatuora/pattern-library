@@ -1,9 +1,9 @@
-import { ChangeEventHandler, memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { getCountryCallingCode, isSupportedCountry } from 'react-phone-number-input';
 import { hasFlag } from 'country-flag-icons';
 import * as Flags from 'country-flag-icons/react/3x2';
 import type { FlagComponent } from 'country-flag-icons/react/3x2';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { InputDropdown, InputDropdownProps } from '../InputDropdown/InputDropdown';
 import { Icon } from '../Icon/Icon';

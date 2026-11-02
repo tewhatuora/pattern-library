@@ -1,8 +1,8 @@
 import { Children, PropsWithChildren, ReactElement, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import FocusTrap from 'focus-trap-react';
-import clsx from 'clsx';
+import { FocusTrap } from 'focus-trap-react';
+import { clsx } from 'clsx';
 
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 
 import assert from '../../utils/assert';
 

@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import * as Separator from '@radix-ui/react-separator';
 
 import * as styles from './Divider.css';

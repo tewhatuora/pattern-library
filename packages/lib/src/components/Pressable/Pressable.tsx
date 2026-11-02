@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
 import { usePress } from '@react-aria/interactions';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 
@@ -29,7 +29,7 @@ export const Pressable = ({ as = 'span', label, className, onPress, children, ..
   });
 
   return (
-    <Box as={as} className={clsx(className, isPressed)} aria-label={label} {...pressProps} {...boxProps}>
+    <Box aria-label={label} as={as} className={clsx(className, isPressed)} {...pressProps} {...boxProps}>
       {children}
     </Box>
   );

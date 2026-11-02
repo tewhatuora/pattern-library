@@ -1,6 +1,6 @@
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Label } from '@radix-ui/react-label';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box } from '../Box/Box';
 import { Text } from '../Text/Text';

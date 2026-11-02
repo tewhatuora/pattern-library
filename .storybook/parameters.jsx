@@ -18,7 +18,7 @@ const sbParameters = {
     transformSource: (source) => {
       // ContrastWrapper is a component that wraps Story components in a `Card` with appropriate
       // variant prop, to show that dark mode should be used within a `Card`.
-      return source.replaceAll(/\<ContrastWrapper variant\=\"dark\"\>\n|\n\<\/ContrastWrapper\>/gi, '');
+      return source.replaceAll(/<ContrastWrapper variant="dark">\n|\n<\/ContrastWrapper>/gi, '');
     },
   },
   themes: {

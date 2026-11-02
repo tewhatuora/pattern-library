@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { OptionalResponsiveValue, normalizeResponsiveValue } from '../css/atoms/sprinkles.css';
 import { optimizeResponsiveArray } from './optimizeResponsiveArray';

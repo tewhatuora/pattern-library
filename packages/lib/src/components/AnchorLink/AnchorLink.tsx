@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
 
 import { Icon } from '../Icon/Icon';

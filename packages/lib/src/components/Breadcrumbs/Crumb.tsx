@@ -1,5 +1,5 @@
 import { LiHTMLAttributes, PropsWithChildren, useEffect, useRef } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import * as styles from './Breadcrumbs.css';
 import { sprinkles } from '../../css/atoms/sprinkles.css';

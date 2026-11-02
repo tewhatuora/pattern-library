@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Docs from './Tag.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';

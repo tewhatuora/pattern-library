@@ -1,6 +1,6 @@
 import { PropsWithChildren, forwardRef } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Heading, HeadingProps } from '../Heading/Heading';
 

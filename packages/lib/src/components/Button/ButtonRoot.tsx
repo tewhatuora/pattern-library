@@ -1,6 +1,6 @@
 import { PropsWithChildren, Ref, RefObject, forwardRef } from 'react';
 import { useButton } from '@react-aria/button';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box } from '../Box/Box';
 import { ButtonProps } from './Button';

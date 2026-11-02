@@ -1,7 +1,7 @@
 import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import PhoneInput, { Country } from 'react-phone-number-input';
 import { useTextField } from '@react-aria/textfield';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputField, OtherInputFieldProps } from '../InputField/InputField';

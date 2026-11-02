@@ -1,5 +1,5 @@
 import * as RadixTabs from '@radix-ui/react-tabs';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { RefAttributes } from 'react';
 
 import { Icon } from '../Icon/Icon';

@@ -11,6 +11,39 @@ on:
         type: string
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: enable corepack
+        run: corepack enable
+
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ inputs.cache-key }}
+
+      # lib resolves the themes package's types from its build output
+      - name: yarn build themes
+        run: yarn workspace @healthnz/pattern-library-themes build
+
+      - name: prettier
+        run: yarn prettier --check .
+
+      - name: eslint
+        run: yarn lint
+
+      - name: type check
+        run: yarn lint:types
+
   test:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -44,7 +77,7 @@ jobs:
       # for themes in storybook broken be running out of tmp directory
       - name: yarn build themes
         working-directory: ./packages/themes
-        run: yarn install --frozen-lockfile && yarn build
+        run: yarn install --immutable && yarn build
 
       - name: yarn build
         run: yarn build

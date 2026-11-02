@@ -12,7 +12,7 @@ export type AccordionRootProps = (RadixAccordion.AccordionSingleProps | RadixAcc
   ComponentPropsWithoutRef<'div'> & {
     // /** Accordion type - single allows only one item open at a time*/
     // type: 'single' | 'multiple';
-    /** Contrast variant for dark/light UI */
+    /** @deprecated Dark variants have been removed; this prop is ignored. */
     variant?: ContrastVariant;
     /** Heading level */
     headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
@@ -31,13 +31,14 @@ export const AccordionContext = createContext<{ headingLevel: number; variant: '
  * @constructor
  */
 export const Root = ({
-  variant = 'light',
+  // Pulled out so it isn't spread onto the DOM
+  variant: _variant,
   headingLevel,
   children,
   ...props
 }: PropsWithChildren<AccordionRootProps>) => {
   return (
-    <RadixAccordion.Root className={styles.root['light']} {...props}>
+    <RadixAccordion.Root className={styles.root.light} {...props}>
       <AccordionContext.Provider value={{ headingLevel, variant: 'light' }}>
         <AllowedChildren
           errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"

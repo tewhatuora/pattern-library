@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useContext } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';

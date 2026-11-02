@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import { HeroBlock, HeroBlockProps } from './HeroBlock';
 import { PersonSelector, PersonSelectorProps } from '../PersonSelector/PersonSelector';

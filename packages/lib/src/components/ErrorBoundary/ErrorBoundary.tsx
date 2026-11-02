@@ -20,6 +20,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   componentDidCatch(error: Error) {
+    // Surface the error to developers; the fallback UI only shows the message
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 

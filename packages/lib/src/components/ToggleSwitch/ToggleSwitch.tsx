@@ -65,8 +65,8 @@ export const ToggleSwitch = ({
         disabled={disabled}
         id={id}
         name={name}
-        onCheckedChange={onChange}
         required={required}
+        onCheckedChange={onChange}
       >
         <SwitchPrimitive.Thumb className={styles.switchThumb} />
       </SwitchPrimitive.Root>

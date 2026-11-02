@@ -1,5 +1,5 @@
 import { Children, PropsWithChildren, RefObject, createContext, useRef } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Stack } from '../Stack/Stack';
 import { InputSearch } from '../InputSearch/InputSearch';

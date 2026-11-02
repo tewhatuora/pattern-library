@@ -30,8 +30,7 @@ export type BannerProps = {
  * @constructor
  */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  // disable eslint as `theme` is unused. This isn't used but we don't want to introduce breaking changes.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // `theme` is unused, but kept out of `boxProps` so it isn't spread onto the DOM; removing the prop would be a breaking change.
   ({ variant = 'alert', theme, onClose, children, ...boxProps }, ref) => {
     // for closing banner if set true banner hidden
     const [isClosed, setIsClosed] = useState(false);
@@ -39,7 +38,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
     //icon for display depending on variant
     const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
 
-    let bannerLabel = 'Announcement';
+    let bannerLabel: string;
     switch (variant) {
       case 'informative':
         bannerLabel = 'Announcement';

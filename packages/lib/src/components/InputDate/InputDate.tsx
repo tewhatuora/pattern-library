@@ -1,6 +1,6 @@
 import { FocusEventHandler, ForwardedRef, MutableRefObject, forwardRef, useCallback } from 'react';
 import { useField } from '@react-aria/label';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { OtherInputFieldProps } from '../InputField/InputField';

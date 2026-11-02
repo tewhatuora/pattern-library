@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Tokens } from '@healthnz/pattern-library-themes/support/web/tokenType';
+import type { Tokens } from '@healthnz/pattern-library-themes';
 
 import { Atoms } from '../css/atoms/atoms';
 

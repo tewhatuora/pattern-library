@@ -29,30 +29,27 @@
   "license": "MIT",
   "scripts": {
     "build": "node scripts/generate.js && vite build && rm -rf ./tmp",
-    "test": "jest",
     "lint:types": "tsc --noEmit",
-    "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "major:beta": "standard-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify"
+    "patch": "commit-and-tag-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "minor": "commit-and-tag-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "major": "commit-and-tag-version --release-as major --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "major:beta": "commit-and-tag-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.18.10",
-    "@types/babel__core": "^7",
-    "@vanilla-extract/vite-plugin": "^5.0.6",
-    "prettier": "^2.7.1",
-    "standard-version": "^9.5.0",
-    "style-dictionary": "^3.7.1",
-    "tsconfig-paths": "^4.1.0",
-    "vite": "^5.4.19"
+    "@vanilla-extract/vite-plugin": "^5.2.6",
+    "commit-and-tag-version": "^13.3.0",
+    "prettier": "^3.9.10",
+    "style-dictionary": "^5.7.0",
+    "typescript": "^5.8.3",
+    "vite": "^8.3.4"
   },
-  "main": "./dist/index.cjs.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js",
+      "require": "./dist/index.cjs",
       "types": "./dist/types/index.d.ts"
     },
     "./styles": "./dist/style.css"
@@ -63,8 +60,5 @@
   "files": [
     "dist"
   ],
-  "type": "module",
-  "dependencies": {
-    "@babel/core": "^7.27.4"
-  }
+  "type": "module"
 }

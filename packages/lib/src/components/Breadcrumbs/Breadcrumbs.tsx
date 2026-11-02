@@ -9,9 +9,9 @@ import {
   useMemo,
   useState,
 } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 
 import { Box } from '../Box/Box';
 import { Crumb } from './Crumb';

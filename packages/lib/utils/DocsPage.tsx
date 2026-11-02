@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { ArgTypes, Description, Subtitle, Title } from '@storybook/addon-docs';
+import { ArgTypes, Description, Subtitle, Title } from '@storybook/addon-docs/blocks';
 
 import { Classnames } from '../../../stories/components';
 

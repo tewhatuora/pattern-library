@@ -1,8 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType, PropsWithChildren, createContext, forwardRef, useContext } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
-import { Text } from '../Text/Text';
 import { ButtonRoot, ButtonRootProps } from '../Button/ButtonRoot';
 import { Stack, StackProps } from '../Stack/Stack';
 import { Icon } from '../Icon/Icon';
@@ -193,7 +192,7 @@ const HeaderMenuButton = ({ open, onToggle, className, variant, ...props }: Head
       onPress={onToggle}
       {...props}
     >
-      <Icon icon={open ? 'cross' : 'menu'} variant="decorativeIcons" className={styles.menuButtonIcon[variant]} />
+      <Icon className={styles.menuButtonIcon[variant]} icon={open ? 'cross' : 'menu'} variant="decorativeIcons" />
     </ButtonRoot>
   );
 };

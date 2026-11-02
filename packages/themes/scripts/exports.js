@@ -9,6 +9,7 @@ const platforms = {
         name: 'index.ts',
         contents: [
           `export { contract } from './contract.css';`,
+          `export type * from './tokenType';`,
           themes.reduce((code, theme) => {
             code += `export * as ${theme} from './themes/${theme}/web';\n`;
             return code;

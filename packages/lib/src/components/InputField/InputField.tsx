@@ -12,7 +12,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box } from '../Box/Box';
 import { InputClearButton } from './InputClearButton';

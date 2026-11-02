@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 
 import { Footer, FooterList, FooterListItem, FooterProps } from './Footer';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
