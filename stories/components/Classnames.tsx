@@ -42,8 +42,6 @@ export const Classnames = () => {
         const name = componentParts[componentParts.length - 1];
         const stylesObj = `${name}Styles`;
 
-
-
         if (stylesObj in Components) {
           const styles = stylesObj as unknown as Record<string, string>;
           const variants: Variants = {};

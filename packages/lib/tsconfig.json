@@ -12,7 +12,5 @@
     "types": ["@testing-library/jest-dom", "jest"],
     "skipLibCheck": true
   },
-  "include": [
-    "./"
-  ]
+  "include": ["./"]
 }

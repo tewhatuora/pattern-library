@@ -82,12 +82,15 @@ export const nested = styleVariants(makeStyles(getNestedStyle));
 const makeOffsetStyles = () => {
   const spaceNames = Object.keys(vars.space) as Space[];
 
-  return spaceNames.reduce((variants: any, space: Space) => {
-    return {
-      ...variants,
-      [space]: getOffsetStyle(space),
-    };
-  }, {} as Record<Space, StyleRule>);
+  return spaceNames.reduce(
+    (variants: any, space: Space) => {
+      return {
+        ...variants,
+        [space]: getOffsetStyle(space),
+      };
+    },
+    {} as Record<Space, StyleRule>,
+  );
 };
 
 export const offset = styleVariants(makeOffsetStyles());
