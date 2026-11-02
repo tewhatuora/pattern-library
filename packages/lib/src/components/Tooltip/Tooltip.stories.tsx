@@ -17,9 +17,6 @@ export default {
   title: 'Components/Tooltip',
   component: Tooltip,
   argTypes: {
-    label: {
-      control: 'text',
-    },
     content: {
       control: 'text',
     },
@@ -44,7 +41,6 @@ export default {
     },
   },
   args: {
-    label: 'Label',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
   },
   parameters: {

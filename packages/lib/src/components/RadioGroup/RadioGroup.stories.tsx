@@ -1,3 +1,5 @@
+import { expect, fn, userEvent, within } from 'storybook/test';
+
 import { RadioGroup, RadioGroupProps } from './RadioGroup';
 import { RadioButton } from './RadioButton';
 import icons from '../Icon/icons';
@@ -110,7 +112,7 @@ Default.args = {
 
 export const Filled = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} value="one">
+    <RadioGroup {...args} defaultValue="one">
       <RadioButton id="value_one" label="Content one" value="one" />
       <RadioButton id="value_two" label="Content two" value="two" />
       <RadioButton id="value_three" label="Content three" value="three" />
@@ -118,9 +120,27 @@ export const Filled = (args: RadioGroupProps) => {
   );
 };
 
+// An explicit spy, because Storybook errors when an implicit action arg is called during a play function
+Filled.args = {
+  onChange: fn(),
+};
+
+Filled.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  // The group is named by its label, and the preselected radio is really checked
+  await expect(canvas.getByRole('radiogroup', { name: /Label/ })).toBeInTheDocument();
+  await expect(canvas.getByRole('radio', { name: 'Content one' })).toBeChecked();
+
+  // Only one radio shows as selected after choosing another
+  await userEvent.click(canvas.getByRole('radio', { name: 'Content two' }));
+  await expect(canvas.getByRole('radio', { name: 'Content two' })).toBeChecked();
+  await expect(canvas.getByRole('radio', { name: 'Content one' })).not.toBeChecked();
+};
+
 export const Error = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} value="one">
+    <RadioGroup {...args} defaultValue="one">
       <RadioButton id="value_one" label="Content one" value="one" />
       <RadioButton id="value_two" label="Content two" value="two" />
       <RadioButton id="value_three" label="Content three" value="three" />
@@ -144,7 +164,7 @@ export const Disabled = (args: RadioGroupProps) => {
 
 export const DisabledAndFilled = (args: RadioGroupProps) => {
   return (
-    <RadioGroup {...args} disabled value="one">
+    <RadioGroup {...args} defaultValue="one" disabled>
       <RadioButton disabled id="value_one" label="Content one" value="one" />
       <RadioButton disabled id="value_two" label="Content two" value="two" />
       <RadioButton disabled id="value_three" label="Content three" value="three" />

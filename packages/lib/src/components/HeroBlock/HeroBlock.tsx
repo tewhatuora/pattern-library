@@ -16,24 +16,41 @@ import Pattern from '../../assets/tohu.svg?component';
 export const HeroBlockStyles = styles;
 
 export type HeroBlockProps = {
+  /** Page title, rendered as an `h2` unless `titleLevel` says otherwise. */
   title: string;
+  /**
+   * Heading level of the title element. Use 1 when it's the page's main heading. Doesn't change the look.
+   * @default '2'
+   */
+  titleLevel?: '1' | '2' | '3' | '4' | '5';
+  /** Text for a badge beside the title. Only shown when `badgeVariant` is also set. */
   badge?: string;
+  /** Badge colour. Required for `badge` to show. */
   badgeVariant?: BadgeProps['variant'];
+  /** Subtitle under the title, rendered as an `h3`. */
   description: string;
+  /** Show the tohu pattern instead of the pale blue gradient. Ignored when `children` are given. */
   withPattern?: boolean;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 
 /**
- * Appears at the top of all pages.
- * Details:
- * Variants for dashboard and sub-pages.
- * The sub-page variant can include the PersonFilter component.
- * @constructor
+ * Banner at the top of a page with a title and description. Pass `children`, typically a `PersonSelector`,
+ * to show a bar below it that sticks to the top of the viewport on scroll. With `children` the pattern and
+ * gradient background are not shown.
+ *
+ * @example
+ * <HeroBlock
+ *   badge="New"
+ *   badgeVariant="info"
+ *   description="Appointments and results"
+ *   title="Your health"
+ * />
  */
 export const HeroBlock = ({
   title,
+  titleLevel = '2',
   description,
   badge,
   badgeVariant,
@@ -77,7 +94,7 @@ export const HeroBlock = ({
         >
           {title && (
             <div className={styles.headingContainer}>
-              <Heading level="2" weight="regular">
+              <Heading as={`h${titleLevel}`} level="2" weight="regular">
                 {title}
               </Heading>
               {!!badge && !!badgeVariant && (

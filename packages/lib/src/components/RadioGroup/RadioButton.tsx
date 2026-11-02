@@ -8,26 +8,24 @@ import { Text } from '../Text/Text';
 import * as styles from './RadioGroup.css';
 
 export type RadioButtonProps = {
-  /** Radio button input value */
+  /** Value passed to the group's `onChange` when this button is selected. */
   value: string;
-  /** Label */
   label: string;
-  /** Optional heading to display with label */
+  /** Bold line above the label. */
   heading?: string;
-  /** id attribute */
+  /** Links the label to the button, so it must be unique on the page. */
   id: string;
-  /** Disabled state */
+  /** Disable this button. Inherits the group's `disabled`. */
   disabled?: boolean;
-  /** Error state */
+  /** Error styling. Inherits the group's `error`. Not shown on the label of a disabled button. */
   error?: boolean | string;
-  /** Selected state */
+  /** @deprecated Selection now comes from the `RadioGroup` `value` or `defaultValue` */
   selected?: true | undefined;
 };
 
 /**
- * Radio button input
- * @param props
- * @constructor
+ * One option in a `RadioGroup`, which supplies its name, selection and state. Only valid as a direct child
+ * of `RadioGroup`.
  */
 export const RadioButton = ({ value, id, label, selected, disabled, error, heading }: RadioButtonProps) => (
   <Box className={styles.container}>

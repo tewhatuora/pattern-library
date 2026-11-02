@@ -11,14 +11,15 @@ import { Box } from '../Box/Box';
 import { AccordionContext } from './Root';
 
 export type AccordionTriggerProps = {
-  /** Optional icon to display in Accordion Trigger */
+  /** Icon shown before the text. Decorative, so it is not announced. */
   icon?: IconType;
-  /** Optional header label for Accordion Trigger */
+  /** Bold line shown above `label`. */
   header?: string;
-  /** Accordion Trigger label */
+  /** Text of the trigger button. Keep it descriptive: it is the accessible name of the button. */
   label: string;
 };
 
+/** Button that toggles its `Accordion.Item`. Rendered inside a heading whose level comes from `Accordion.Root`'s `headingLevel`. */
 export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ icon, header, label }, ref) => {
   const { headingLevel } = useContext(AccordionContext);
   const boxElement = (`h${headingLevel?.toString()}` as ElementType<any>) || ('h6' as ElementType<any>);

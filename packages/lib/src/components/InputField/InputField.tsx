@@ -11,6 +11,7 @@ import {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from 'react';
 import { clsx } from 'clsx';
 
@@ -24,35 +25,35 @@ import * as styles from './InputField.css';
 export const InputFieldStyles = styles;
 
 export type BaseInputFieldProps = {
-  /** Input type attribute */
-  type: HTMLInputTypeAttribute;
-  /** id attribute */
+  /**
+   * Input `type`. `multiline` only takes effect when this is `text`.
+   * @default 'text'
+   */
+  type?: HTMLInputTypeAttribute;
   id?: string;
-  /** name attribute */
   name: string;
-  /** Field placeholder */
+  /** Hint text shown while the field is empty. It isn't a replacement for a label. */
   placeholder?: string;
-  /** Error state */
+  /** Marks the field invalid: error styling and `aria-invalid`. */
   error?: boolean;
-  /** Field value */
+  /** Controlled value. Pair with `onChange`. Omit to leave the field uncontrolled, and use `defaultValue`. */
   value?: string;
-  /** Disabled state */
   disabled?: boolean;
-  /** Clearable option, shows a clear button */
+  /**
+   * Show a clear button while the field has text and isn't disabled. Clearing calls `onChange` with an empty
+   * value and moves focus back to the field.
+   */
   clearable?: boolean;
-  /** Multiline option, combine with type = `text` for a textarea */
+  /** Render a `textarea`. Only takes effect when `type` is `text`. */
   multiline?: boolean;
-  /** Number of rows for a `multiline` field */
+  /** Visible lines of a `multiline` field. */
   rows?: number;
-  /** Required attribute */
   required?: boolean;
-  /** Default value to populate the field with */
+  /** Starting value of an uncontrolled field. Ignored when `value` is set. */
   defaultValue?: string;
-  /** Function to call when the field value changes */
+  /** Called on every change, including when the clear button empties the field. */
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  /** Function to call when the field is left */
   onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  /** Function to call when the field is focused */
   onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
 
@@ -61,9 +62,11 @@ export type InputFieldProps = BaseInputFieldProps & InputHTMLAttributes<HTMLInpu
 export type OtherInputFieldProps = Omit<BaseInputFieldProps, 'type' | 'clearable' | 'rows' | 'multiline'>;
 
 /**
- * Text field and background for an input field.
- * @param props
- * @constructor
+ * The bare input or textarea with its styling and optional clear button. It has no label or messages, so
+ * use `InputText` for a complete form field.
+ *
+ * @example
+ * <InputField aria-label="Search" clearable name="search" type="search" />
  */
 export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFieldProps>(
   (
@@ -96,23 +99,45 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
 
     const textSizeClasses = useText({ size: 'medium', weight: 'regular' });
 
-    const valueProps = useMemo(() => {
-      if (defaultValue) {
-        return { defaultValue };
-      }
-      return { value };
-    }, [value, defaultValue]);
+    const isControlled = value !== undefined;
+    // Tracks whether an uncontrolled field has text, so the clear button can be shown
+    const [uncontrolledHasValue, setUncontrolledHasValue] = useState(!!defaultValue);
+
+    const valueProps = useMemo(
+      () => (isControlled ? { value } : { defaultValue }),
+      [isControlled, value, defaultValue],
+    );
+
+    const handleChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (!isControlled) {
+          setUncontrolledHasValue(!!e.target.value);
+        }
+
+        onChange?.(e);
+      },
+      [isControlled, onChange],
+    );
 
     const handleClear = useCallback(() => {
-      onChange?.({ target: { name, value: '' } } as ChangeEvent<HTMLInputElement | HTMLTextAreaElement>);
+      const el = internalRef.current;
+
+      if (!el) {
+        return;
+      }
+
+      // Set the value with the native setter and dispatch a real input event, so React calls onChange with a
+      // genuine event. This works for controlled and uncontrolled fields, and for form libraries using a ref.
+      Object.getOwnPropertyDescriptor(Object.getPrototypeOf(el), 'value')?.set?.call(el, '');
+      el.dispatchEvent(new Event('input', { bubbles: true }));
 
       // Focus input on clear
-      internalRef.current?.focus();
-    }, [name, onChange]);
+      el.focus();
+    }, []);
 
     const inputEl = multiline && type === 'text' ? 'textarea' : 'input';
 
-    const hasClearButton = Boolean(!disabled && clearable && value?.length);
+    const hasClearButton = Boolean(!disabled && clearable && (isControlled ? value?.length : uncontrolledHasValue));
 
     const inputElement = createElement(inputEl, {
       disabled,
@@ -123,7 +148,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
       type,
       rows,
       onBlur,
-      onChange,
+      onChange: handleChange,
       onFocus,
       'aria-invalid': error,
       ...valueProps,

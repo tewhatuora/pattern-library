@@ -65,7 +65,7 @@ jobs:
         run: |
           os="${{ runner.os }}"
           node="${{ steps.node-setup.outputs.node-version }}"
-          hash="${{ hashFiles('**/yarn.lock') }}"
+          hash="${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}"
           echo "key=${os}-node-${node}-${hash}" >> $GITHUB_OUTPUT
 
       - name: restore cache

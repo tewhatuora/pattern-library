@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, useCallback, useState } from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef, useCallback, useState } from 'react';
 
 import { InputLabelProps } from '../InputLabel/InputLabel';
 import { BaseInputFieldProps, OtherInputFieldProps } from '../InputField/InputField';
@@ -11,16 +11,24 @@ enum PasswordFieldType {
 }
 
 export type InputPasswordProps = {
-  /** show asterisk when field is required (default: `true`) */
+  /**
+   * Add `*` to the label when `required`.
+   * @default true
+   */
   showRequiredAsterisk?: boolean;
 } & Omit<InputLabelProps, 'tertiaryLabel' | 'tertiaryLabelAs' | 'onTertiaryLabelClick' | 'href' | 'htmlFor'> &
   InputMessageProps &
   OtherInputFieldProps &
-  Pick<BaseInputFieldProps, 'clearable'>;
+  Pick<BaseInputFieldProps, 'clearable'> &
+  // Other input attributes, e.g. `autoComplete="current-password"` or `"new-password"` for password managers
+  Omit<InputHTMLAttributes<HTMLInputElement>, keyof BaseInputFieldProps | 'type'>;
 
 /**
- * An input field for entering a password.
- * @constructor
+ * A password field with a Show/Hide button in the label row that reveals the text. Set `autoComplete` to
+ * `current-password` or `new-password` so password managers fill it correctly.
+ *
+ * @example
+ * <InputPassword autoComplete="current-password" label="Password" name="password" />
  */
 export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
   (
@@ -31,6 +39,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       subheading,
       tertiaryLabelIcon,
       tertiaryLabelIconPosition,
+      tertiaryLabelTooltip,
       placeholder,
       error,
       errorMessage,
@@ -44,6 +53,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
       onBlur,
       onChange,
       onFocus,
+      ...inputProps
     }: InputPasswordProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
@@ -57,6 +67,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
 
     return (
       <InputText
+        {...inputProps}
         clearable={clearable}
         defaultValue={defaultValue}
         disabled={disabled}
@@ -75,6 +86,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
         tertiaryLabelAs="button"
         tertiaryLabelIcon={tertiaryLabelIcon}
         tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+        tertiaryLabelTooltip={tertiaryLabelTooltip}
         type={type}
         value={value}
         onBlur={onBlur}

@@ -14,46 +14,60 @@ import { IconType } from '../Icon/icons';
 export const InputLabelStyles = styles;
 
 export type InputLabelProps = {
+  /**
+   * Element to render the label as. Use something other than `label`, such as `legend` or `div`, when it
+   * names a group of fields rather than one input.
+   * @default 'label'
+   */
   as?: ElementType;
-  /** Label for the field */
   label: string;
-  /** Optional label subheading */
+  /** Smaller text under the label. Part of the label element, so it's included in the field's accessible name. */
   subheading?: string;
-  /** Optional tertiary label */
+  /** Extra text or link on the right of the label, e.g. "Forgot password?". See `tertiaryLabelAs`. */
   tertiaryLabel?: string;
-  /** Icon to display with the tertiary label */
+  /** Icon shown with the tertiary label. */
   tertiaryLabelIcon?: IconType;
-  /** Where to position the icon relative to the `tertiaryLabel` */
+  /**
+   * Which side of the `tertiaryLabel` the icon is on.
+   * @default 'left'
+   */
   tertiaryLabelIconPosition?: 'left' | 'right';
-  /** Element type to render the tertiary label as */
+  /**
+   * What `tertiaryLabel` renders as: `a` needs `href`, `button` needs `onTertiaryLabelClick`, and `text` is
+   * plain text. Without it the label renders as a button.
+   */
   tertiaryLabelAs?: 'a' | 'button' | 'text';
+  /** Tooltip text for the tertiary label, e.g. to explain what it does. */
   tertiaryLabelTooltip?: string;
-  /** HTML `for` attribute */
+  /** `id` of the field this labels. Not needed if `labelProps.htmlFor` is set. */
   htmlFor?: string;
-  /** Error state */
+  /** Error colour for the label text. Overridden by `disabled`. */
   error?: boolean;
-  /** Disabled state */
+  /** Disabled colour for the label text. */
   disabled?: boolean;
-  /** Show '*' if the field is required */
+  /** Add `*` to the label. This is only visual: it doesn't make the input required. */
   required?: boolean;
-  /** Accessibility attributes for the label */
+  /** Only `id` and `htmlFor` are used. Other label attributes are ignored. */
   labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
-  /** URL/path for `tertiaryLabel`, if `tertiaryLabelAs` = `a` */
+  /** Destination of `tertiaryLabel` when `tertiaryLabelAs` is `a`. */
   href?: string | never;
-  /** Function to call when the `tertiaryLabel` is clicked, if `tertiaryLabelAs` = `button` */
+  /** Called when the `tertiaryLabel` is pressed, when `tertiaryLabelAs` is `button`. */
   onTertiaryLabelClick?: (e: PressEvent) => void;
 };
 
 /**
- * InputLabel
+ * A label for an input field, with an optional subheading and a tertiary label on the right. Link it to
+ * its input with `htmlFor` rather than nesting the input inside it.
  *
- * A label for an input field.
- *
- * The label must be programmatically linked to a form input element using the
- * `htmlFor` method rather than nesting it inside the label.
- *
- * @param props
- * @constructor
+ * @example
+ * <InputLabel
+ *   href="/help/nhi"
+ *   htmlFor="nhi"
+ *   label="NHI number"
+ *   subheading="Three letters and four numbers"
+ *   tertiaryLabel="Where do I find this?"
+ *   tertiaryLabelAs="a"
+ * />
  */
 export const InputLabel = ({
   as = 'label',
@@ -76,11 +90,7 @@ export const InputLabel = ({
 
   const renderTertiaryLabel = useMemo(() => {
     if (tertiaryLabelTooltip) {
-      return (
-        <Tooltip content={tertiaryLabelTooltip} label={tertiaryLabel ?? ''}>
-          {tertiaryLabel}
-        </Tooltip>
-      );
+      return <Tooltip content={tertiaryLabelTooltip}>{tertiaryLabel}</Tooltip>;
     }
 
     return tertiaryLabel;
@@ -103,13 +113,14 @@ export const InputLabel = ({
       </Button>
     );
 
-    if (tertiaryLabel && tertiaryLabelAs === 'text') {
+    // Without a label the button would be empty: unlabelled for screen readers, and an extra tab stop
+    if (!tertiaryLabel || tertiaryLabelAs === 'text') {
       return null;
     }
 
     if (tertiaryLabelTooltip) {
       return (
-        <Tooltip content={tertiaryLabelTooltip} label={tertiaryLabel ?? ''} triggerAsChild>
+        <Tooltip content={tertiaryLabelTooltip} triggerAsChild>
           {button}
         </Tooltip>
       );

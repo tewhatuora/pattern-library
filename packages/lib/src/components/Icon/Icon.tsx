@@ -13,30 +13,30 @@ export const IconStyles = styles;
 
 const validIcons = Object.keys(icons);
 export type IconProps = {
-  /** Icon type */
+  /** Name of the icon. Throws if it isn't one of the available icons. */
   icon: IconType;
-  /** Size variant */
+  /**
+   * Size and use: `decorativeIcons` is large, `functionalIcons` is small for controls and inline text,
+   * `socialIcons` is a fixed large size, and `tagIcon` is the smallest.
+   * @default 'decorativeIcons'
+   */
   variant?: styles.Variant;
-  /** Optional onClick handler for Icon element */
+  /** Click handler on the icon's `span`. It isn't focusable or announced as a button, so use `Button` for actions. */
   onClick?: () => void;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
-  /** Icon color */
   color?: Color;
-  /** Alternative text to use for aria-label */
+  /** Accessible name. Gives the icon `role="img"`. Leave empty for a decorative icon, which is hidden from screen readers. */
   alt?: string;
-
-  /**
-   * If true, the icon will be rendered without a fill color
-   */
+  /** Remove the fill so only the outline shows. Use for icons whose fill would otherwise cover the shape. */
   noFill?: boolean;
 } & BoxProps;
 
 /**
- * Icon component to render
- * an icon from /lib/icons/*.svg
- * @param props
- * @constructor
+ * Renders one of the library's SVG icons.
+ *
+ * @example
+ * <Icon alt="Warning" icon="warning" variant="functionalIcons" />
  */
 export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, noFill, ...boxProps }: IconProps) => {
   assert(
@@ -53,6 +53,7 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, n
       aria-label={alt || undefined} // Prevents alt being passed through as an empty string
       as="span"
       className={clsx(styles.variants({ variant }), className, noFill && styles.noFill)}
+      role={alt ? 'img' : undefined} // A span has no role, so it needs one for the aria-label to be announced
       {...boxProps}
     >
       <IconComponent aria-hidden="true" />

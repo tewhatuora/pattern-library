@@ -29,24 +29,22 @@ import { Breakpoint } from '../../css/breakpoints';
 export const NavigationItemStyles = styles;
 
 export type NavigationItemProps = {
-  /** URL/path to link to */
+  /** Destination of the link. Required by the type, but not used when the item opens a sub menu. */
   href: string;
-  /** Selected/current/active state */
+  /** Marks the current page: bolds the label and sets `aria-current="page"` on the link. */
   selected?: boolean;
-  /** Navigation item label */
   label: string;
-  /** If there is a subnavigation  */
+  /** Style as a link inside a sub menu or the footer: no chevron, no sub menu, no hover behaviour. */
   subNav?: boolean;
-  /** Contrast variant for dark/light UI */
+  /** Set by `Navigation.Root` for top-level items. Don't pass it. */
   variant?: ContrastVariant;
-  /** A React component to render, e. react-router-dom `<Link />` */
+  /** Component to render instead of an `a`, e.g. a wrapper around a router `<Link>`. It receives `href`. */
   component?: LinkComponentType;
 };
 
 /**
- * Navigation item, either a <button> or <a> depending
- * on whether the component has children or not
- * @constructor
+ * An entry in the navigation. A link, or a button that opens a sub menu when it has a `Navigation.Menu`
+ * as its child.
  */
 export const Item = ({
   href,
@@ -59,6 +57,7 @@ export const Item = ({
 }: PropsWithChildren<NavigationItemProps>) => {
   const breakpoint: Breakpoint | null = useContext(BreakpointContext);
   const ref = useRef(null);
+  const itemRef = useRef<HTMLLIElement>(null);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
   const [startTransitionOut, setStartTransitionOut] = useState(false);
   const [focusedItem, setFocusedItem] = useState<MutableRefObject<HTMLButtonElement | null>>(ref);
@@ -127,10 +126,10 @@ export const Item = ({
   }, [ref, isDesktop]);
 
   /**
-   * Handle clicking outside submenu to trigger
-   * it to close, if it's open
+   * Handle clicking outside the item and its submenu
+   * to trigger it to close, if it's open
    */
-  useOutsideClick(ref, closeSubMenuIfOpen);
+  useOutsideClick(itemRef, closeSubMenuIfOpen);
 
   const className = subNav ? styles.subNavListItem : styles.navListItem;
   const baseProps = {
@@ -141,6 +140,7 @@ export const Item = ({
   };
   const buttonProps = {
     ...baseProps,
+    'aria-expanded': subMenuIsOpen,
     ref: ref,
     onFocus: handleFocus,
     onPress: handleOpen,
@@ -151,6 +151,7 @@ export const Item = ({
     ...baseProps,
     href,
     component,
+    'aria-current': selected ? ('page' as const) : undefined,
   };
 
   const elements = [
@@ -178,7 +179,7 @@ export const Item = ({
   }
 
   return (
-    <li className={className} {...mouseEventHandlers}>
+    <li className={className} ref={itemRef} {...mouseEventHandlers}>
       {el}
       {subMenuIsOpen && !subNav && (
         <AllowedChildren

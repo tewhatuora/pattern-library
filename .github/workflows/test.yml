@@ -27,9 +27,15 @@ jobs:
 
       - name: restore cache
         uses: actions/cache/restore@v4
+        id: restore-install-cache
         with:
           path: '**/node_modules'
           key: ${{ inputs.cache-key }}
+
+      # The build job saves this cache, but it can be evicted before this job runs
+      - name: yarn install
+        if: steps.restore-install-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
 
       # lib resolves the themes package's types from its build output
       - name: yarn build themes
@@ -60,9 +66,15 @@ jobs:
 
       - name: restore cache
         uses: actions/cache/restore@v4
+        id: restore-install-cache
         with:
           path: '**/node_modules'
           key: ${{ inputs.cache-key }}
+
+      # The build job saves this cache, but it can be evicted before this job runs
+      - name: yarn install
+        if: steps.restore-install-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
 
       # Storybook imports the built styles, and lint:package checks the packed output
       - name: yarn build

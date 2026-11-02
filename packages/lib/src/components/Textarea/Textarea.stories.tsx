@@ -111,11 +111,12 @@ export const Default = (args: InputTextProps) => {
  */
 export const WithFocus = (args: InputTextProps) => {
   const ref = useRef<HTMLTextAreaElement | null>(null);
+  const [value, setValue] = useState('Focus');
   useEffect(() => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <Textarea {...args} defaultValue="Focus" ref={ref} />;
+  return <Textarea {...args} ref={ref} value={value} onChange={(e) => setValue(e.target.value)} />;
 };
 
 export const Filled = (args: InputTextProps) => {

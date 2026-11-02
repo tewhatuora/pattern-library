@@ -56,3 +56,99 @@ export { useTheme } from './ThemeProvider/ThemeContext';
 export { useHeading, useText } from '../hooks/typography';
 export { atoms } from '../css/atoms/atoms';
 export type { LinkComponentProps, LinkComponentType } from '../types';
+
+// Compound component parts as named exports. React Server Components (e.g. the Next.js App Router) can't dot
+// into a client module, so `<Dialog.Root>` only works in a client component, but `<DialogRoot>` works anywhere.
+export { Root as AccordionRoot } from './Accordion/Root';
+export { Item as AccordionItem } from './Accordion/Item';
+export { Trigger as AccordionTrigger } from './Accordion/Trigger';
+export { Content as AccordionContent } from './Accordion/Content';
+export { Root as DialogRoot } from './Dialog/Root';
+export { Trigger as DialogTrigger } from '@radix-ui/react-dialog';
+export { Content as DialogContent } from './Dialog/Content';
+export { Actions as DialogActions } from './Dialog/Actions';
+export { Action as DialogAction } from './Dialog/Action';
+export { Root as FooterRoot, FooterList, FooterListItem } from './Footer/Footer';
+export {
+  Root as HeaderRoot,
+  HeaderMain,
+  HeaderLeft,
+  HeaderRight,
+  HeaderLogo,
+  HeaderTeWhatuOraLogo,
+  HeaderMenuButton,
+  useHeader,
+} from './Header/Header';
+export { Root as ListRoot } from './List/Root';
+export { Item as ListItem } from './List/Item';
+export { Link as ListLink } from './List/Link';
+export { Root as NavigationRoot } from './Navigation/Root';
+export { Item as NavigationItem } from './Navigation/Item';
+export { Link as NavigationLink } from './Navigation/Link';
+export { Menu as NavigationMenu } from './Navigation/Menu';
+export { MenuList as NavigationMenuList } from './Navigation/MenuList';
+export { Side as NavigationSide } from './Navigation/Side';
+export { Utility as NavigationUtility } from './Navigation/Utility';
+export { Root as TabsRoot } from './Tabs/Root';
+export { List as TabsList } from './Tabs/List';
+export { Content as TabsContent } from './Tabs/Content';
+export { Trigger as TabsTrigger } from './Tabs/Trigger';
+
+// Props types, for typing wrappers and values passed to the components
+export type { AccordionContentProps } from './Accordion/Content';
+export type { AccordionItemProps } from './Accordion/Item';
+export type { AccordionRootProps } from './Accordion/Root';
+export type { AccordionTriggerProps } from './Accordion/Trigger';
+export type { AnchorLinkProps } from './AnchorLink/AnchorLink';
+export type { AlertProps } from './Alert/Alert';
+export type { BadgeProps } from './Badge/Badge';
+export type { BannerProps } from './Banner/Banner';
+export type { BreadcrumbsProps } from './Breadcrumbs/Breadcrumbs';
+export type { ButtonProps } from './Button/Button';
+export type { DialogProps } from './Dialog/Root';
+export type { DividerProps } from './Divider/Divider';
+export type { CardProps } from './Card/Card';
+export type { CheckboxProps } from './Checkbox/Checkbox';
+export type { CheckboxGroupProps } from './CheckboxGroup/CheckboxGroup';
+export type { ColumnLength, ColumnProps } from './Columns/Column';
+export type { FeatureProps, FeatureTileProps } from './FeatureTile/FeatureTile';
+export type { HeadingProps } from './Heading/Heading';
+export type { HeroBlockProps } from './HeroBlock/HeroBlock';
+export type { IconProps } from './Icon/Icon';
+export type { ImageBlockProps } from './ImageBlock/ImageBlock';
+export type { InputFieldProps } from './InputField/InputField';
+export type { InputLabelProps } from './InputLabel/InputLabel';
+export type { InputMessageProps } from './InputMessage/InputMessage';
+export type { InputDateValue, InputDateOnChangeFn, InputDateProps } from './InputDate/InputDate';
+export type { InputOption, InputDropdownProps } from './InputDropdown/InputDropdown';
+export type { InputPasswordProps } from './InputPassword/InputPassword';
+export type { InputPhoneOnChangeFn, InputPhoneProps } from './InputPhone/InputPhone';
+export type { InputSearchProps } from './InputSearch/InputSearch';
+export type { InputTextProps } from './InputText/InputText';
+export type { ListItemProps } from './List/Item';
+export type { ListRootProps } from './List/Root';
+export type { LoaderProps } from './Loader/Loader';
+export type { NavigationItemProps } from './Navigation/Item';
+export type { LinkProps as NavigationLinkProps } from './Navigation/Link';
+export type { NavigationMenuProps } from './Navigation/Menu';
+export type { MenuListProps } from './Navigation/MenuList';
+export type { NavigationProps } from './Navigation/Root';
+export type { UtilityNavItemProps, UtilityProps } from './Navigation/Utility';
+export type { NoticeProps } from './Notice/Notice';
+export type { PaginationProps } from './Pagination/Pagination';
+export type { PersonSelectorProps } from './PersonSelector/PersonSelector';
+export type { RadioGroupProps } from './RadioGroup/RadioGroup';
+export type { RadioButtonProps } from './RadioGroup/RadioButton';
+export type { RowProps } from './Columns/Row';
+export type { TabsContentProps } from './Tabs/Content';
+export type { TabsListProps } from './Tabs/List';
+export type { TabsRootProps } from './Tabs/Root';
+export type { TabsTriggerProps } from './Tabs/Trigger';
+export type { TagProps } from './Tag/Tag';
+export type { TextProps } from './Text/Text';
+export type { TextLinkProps } from './TextLink/TextLink';
+export type { TextLinkButtonProps } from './TextLinkButton/TextLinkButton';
+export type { ToggleSwitchProps } from './ToggleSwitch/ToggleSwitch';
+export type { ToggleButtonProps } from './ToggleButton/ToggleButton';
+export type { TooltipProps } from './Tooltip/Tooltip';
+export type { ThemeProviderProps } from './ThemeProvider/ThemeProvider';

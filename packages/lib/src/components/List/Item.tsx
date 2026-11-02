@@ -13,14 +13,17 @@ import { useText } from '../../hooks/typography';
 import * as styles from './List.css';
 
 export type ListItemProps = {
-  /** Optional icon to display in the List Item */
   icon?: IconType;
-  /** Icon position relative to the List Item text */
+  /**
+   * Which side of the text the icon is on.
+   * @default 'left'
+   */
   iconPosition?: 'left' | 'right';
-  /** Optional heading text to display */
+  /** Bold line above the content. */
   heading?: string;
 } & HTMLAttributes<HTMLLIElement>;
 
+/** A list entry with optional icon and heading. Other props go to the `li`. */
 export const Item = ({ icon, iconPosition = 'left', heading, children, ...rest }: PropsWithChildren<ListItemProps>) => {
   const textStyles = useText({ weight: 'bullet', size: 'medium' });
 

@@ -17,12 +17,6 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
   },
-  resolve: {
-    alias: {
-      '!/*': path.resolve(import.meta.dirname, '../*'),
-      '@/*': path.resolve(import.meta.dirname, './*'),
-    },
-  },
   plugins: [
     vanillaExtractPlugin({
       identifiers: 'short',

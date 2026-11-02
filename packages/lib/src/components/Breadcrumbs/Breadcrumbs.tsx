@@ -11,7 +11,7 @@ import {
   useState,
 } from 'react';
 import { clsx } from 'clsx';
-import { useResizeObserver } from '@react-aria/utils';
+import { useLayoutEffect, useResizeObserver } from '@react-aria/utils';
 
 import { debounce } from '../../utils/debounce';
 
@@ -27,23 +27,28 @@ import * as stylesText from '../Text/Text.css';
 export const BreadcrumbsStyles = styles;
 
 export type BreadcrumbsProps = {
-  /** Option to display with a background color and additional padding */
+  /** Adds a background colour and extra padding. */
   withBackground?: boolean;
-  /** Option to bold link text */
+  /** Bolds the link text only. */
   boldLinks?: boolean;
-  /** Option to bold all text */
+  /** Bolds all text, including the current page. */
   boldText?: boolean;
-  /** Option disable visited state */
+  /** Uses the normal link colour for visited links. */
   noVisited?: boolean;
 };
 
 /**
- * Breadcrumb navigation is a way for users to
- * visualise their location on a website.
- * Use Breadcrumbs on all pages deeper than
- * the homepage or landing pages.
- * @param props
- * @constructor
+ * Shows where the current page sits in the site. Use it on every page deeper than the homepage or a landing page.
+ * Each child is one crumb, in order from the homepage to the current page. The last child is marked `aria-current="page"`
+ * and is usually plain text rather than a link.
+ * The first and last crumbs always show; middle crumbs that do not fit are hidden and replaced by an ellipsis.
+ *
+ * @example
+ * <Breadcrumbs>
+ *   <AnchorLink to="/">Home</AnchorLink>
+ *   <AnchorLink to="/services">Services</AnchorLink>
+ *   <span>Immunisation</span>
+ * </Breadcrumbs>
  */
 export const Breadcrumbs = memo(
   ({ withBackground, boldLinks, boldText, noVisited, children }: PropsWithChildren<BreadcrumbsProps>) => {
@@ -51,6 +56,8 @@ export const Breadcrumbs = memo(
     const [indexToCheck, setIndexToCheck] = useState<number>(0);
     const navRef = useRef<HTMLElement>(null);
     const navWidth = useRef<number>(undefined);
+    const listRef = useRef<HTMLElement>(null);
+    const listText = useRef<string>(undefined);
 
     /**
      * Show every breadcrumb again so they are re-measured
@@ -80,6 +87,20 @@ export const Breadcrumbs = memo(
         navWidth.current = width;
       },
     });
+
+    // Re-measure when the breadcrumbs themselves change, e.g. after client-side navigation. Compares the text
+    // because `children` is new on every render, and hiding a crumb doesn't change the text (it stays in the DOM).
+    useLayoutEffect(() => {
+      const text = listRef.current?.textContent ?? '';
+
+      if (listText.current !== undefined && text !== listText.current) {
+        resetVisibility.cancel();
+        setBreadcrumbIsHidden([]);
+        setIndexToCheck(0);
+      }
+
+      listText.current = text;
+    }, [children, resetVisibility]);
 
     /**
      * Set a breadcrumb to be invisible if there
@@ -140,6 +161,7 @@ export const Breadcrumbs = memo(
       }, []);
 
       return {
+        count: crumbs.length,
         first,
         middle,
         last,
@@ -158,12 +180,18 @@ export const Breadcrumbs = memo(
           )}
           display="flex"
           flexDirection="row"
+          ref={listRef}
         >
-          {breadcrumbs.first}
-          <Separator />
-          <Ellipsis hidden={!breadcrumbIsHidden[0]} />
-          <Separator hidden={!breadcrumbIsHidden[0]} />
-          {breadcrumbs.middle}
+          {/* A single breadcrumb is both first and last, so only render it once, as the current page */}
+          {breadcrumbs.count > 1 && (
+            <>
+              {breadcrumbs.first}
+              <Separator />
+              <Ellipsis hidden={!breadcrumbIsHidden[0]} />
+              <Separator hidden={!breadcrumbIsHidden[0]} />
+              {breadcrumbs.middle}
+            </>
+          )}
           {breadcrumbs.last}
         </Box>
       </Box>

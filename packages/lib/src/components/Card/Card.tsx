@@ -13,16 +13,21 @@ export const CardStyles = styles;
 type Color = Exclude<keyof typeof vars.color, 'semantic'>;
 
 export type CardProps = {
-  /** Option to display the Card without a box-shadow */
+  /** Removes the box-shadow. */
   noShadow?: boolean;
+  /** Colour token name from the theme, e.g. `'primary25'`, applied as the border colour. Without it the default border is used. */
   border?: Color;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 
 /**
- * Card for building 2D layouts using grids or to contain content.
- * @constructor
+ * Bordered, shadowed container that groups related content.
+ *
+ * @example
+ * <Card border="primary25">
+ *   <Text>Card content</Text>
+ * </Card>
  */
 export const Card = ({ noShadow = false, border, children, className }: PropsWithChildren<CardProps>) => {
   const cardClassNames = useMemo(() => {

@@ -16,7 +16,13 @@ export type ReactNodeNoStrings = React.ReactElement | React.ReactNode[] | boolea
  */
 export type EmptyObject = { [k: string]: unknown };
 
-export type ChildrenOfType<Name, Props> = (React.ReactNode & { props: Props; type: { name: Name } })[];
+/**
+ * Children that should be the named component, e.g. `ChildrenOfType<'Trigger', TabsTriggerProps>`.
+ * Only `ReactNode` is enforced: TypeScript types every JSX element the same, so it can't tell which component
+ * a child is, and a stricter type rejected valid children. `useAllowedChildren` checks them at runtime instead.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type ChildrenOfType<Name extends string, Props> = React.ReactNode;
 
 /** Contrast variant for dark/light UI */
 export type ContrastVariant = 'light' | 'dark';

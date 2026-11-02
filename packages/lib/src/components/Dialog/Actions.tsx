@@ -8,8 +8,8 @@ const variantOrder = (child: unknown) =>
   order.indexOf(isValidElement<{ variant?: string }>(child) ? (child.props.variant ?? '') : '');
 
 /**
- * Dialog action buttons
- * @constructor
+ * Container for `Dialog.Action` buttons. Reorders them by variant: primary, secondary, then tertiary.
+ * Actions with any other variant, or none, go before them.
  */
 export const Actions = ({ children }: PropsWithChildren) => {
   const sorted = Children.toArray(children).sort((a, b): number => {

@@ -40,7 +40,7 @@ type ImprintItem = {
 const FOOTER_NAME = 'Footer';
 
 type FooterProps = {
-  /** Social link href/paths for Facebook, Twitter, Instagram, LinkedIn & TikTok */
+  /** Social links as `{ network: url }`. Only the networks you pass are shown, always in the order Facebook, Twitter, Instagram, LinkedIn, TikTok. */
   socialLinkHrefs?: {
     facebook?: string;
     twitter?: string;
@@ -48,15 +48,35 @@ type FooterProps = {
     linkedin?: string;
     tiktok?: string;
   };
-  /** Array of Imprint items,which can have text and href for links */
+  /** Small print links such as Privacy and Copyright, shown in reverse order of the array. Plain text if there is no `href` or `component`. Maximum 7, otherwise it throws. */
   imprintItems?: ImprintItem[];
+  /** Copyright or legal line shown with the imprint items. */
   legalCopy?: string;
-  /** Contrast variant for dark/light UI */
+  /**
+   * Colour scheme: `'dark'` for a dark footer with light text. Choose to match the page.
+   * @default 'light'
+   */
   variant?: ContrastVariant;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 };
 
+/**
+ * Site footer with the NZ Government logo, optional social links, columns of navigation links and the imprint.
+ * Children are up to 5 `Footer.List` components (it throws above 5), each holding `Footer.ListItem` links.
+ *
+ * @example
+ * <Footer.Root
+ *   imprintItems={[{ text: 'Privacy policy', href: '/privacy' }]}
+ *   legalCopy="Crown copyright"
+ *   socialLinkHrefs={{ facebook: 'https://facebook.com/example' }}
+ * >
+ *   <Footer.List heading="Services">
+ *     <Footer.ListItem href="/clinics" label="Find a clinic" />
+ *     <Footer.ListItem href="/contact" label="Contact us" />
+ *   </Footer.List>
+ * </Footer.Root>
+ */
 const Footer = ({
   socialLinkHrefs,
   imprintItems,
@@ -194,6 +214,7 @@ const FOOTER_LIST_NAME = 'FooterList';
 
 type FooterListProps = PropsWithChildren<MenuListProps>;
 
+/** A titled column of links in the footer. Takes `heading` and `Footer.ListItem` children. */
 const FooterList = (props: FooterListProps) => {
   return <Navigation.MenuList {...props} />;
 };
@@ -208,6 +229,7 @@ const FOOTER_LIST_ITEM_NAME = 'FooterListItem';
 
 type FooterListItemProps = PropsWithChildren<NavigationItemProps>;
 
+/** A link in a `Footer.List`. Takes the same props as `Navigation.Item`, such as `href` and `label`. */
 const FooterListItem = (props: FooterListItemProps) => {
   return <Navigation.Item subNav {...props} />;
 };

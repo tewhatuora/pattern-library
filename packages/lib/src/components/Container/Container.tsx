@@ -10,9 +10,14 @@ type ContainerProps = {
 } & BoxProps;
 
 /**
- * Grid container component
- * @param props
- * @constructor
+ * Applies the page's side margins to its content (larger from tablet up). Put `Row` components inside it.
+ *
+ * @example
+ * <Container>
+ *   <Row>
+ *     <Column columns={12}>Content</Column>
+ *   </Row>
+ * </Container>
  */
 export const Container = ({ children, className, ...boxProps }: PropsWithChildren<ContainerProps>) => {
   return (

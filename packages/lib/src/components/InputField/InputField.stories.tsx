@@ -95,7 +95,7 @@ export const WithFocus = (args: InputFieldProps) => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputField {...args} defaultValue="Focus" ref={ref} value={value} onChange={handleChange} />;
+  return <InputField {...args} ref={ref} value={value} onChange={handleChange} />;
 };
 export const Filled = (args: InputFieldProps) => {
   const [value, setValue] = useState('Filled');
@@ -103,7 +103,7 @@ export const Filled = (args: InputFieldProps) => {
     setValue(e.target.value);
   };
 
-  return <InputField {...args} defaultValue="Filled" value={value} onChange={handleChange} />;
+  return <InputField {...args} value={value} onChange={handleChange} />;
 };
 export const Error = (args: InputFieldProps) => {
   const [value, setValue] = useState('Filled');
@@ -111,7 +111,7 @@ export const Error = (args: InputFieldProps) => {
     setValue(e.target.value);
   };
 
-  return <InputField {...args} defaultValue="Filled" error value={value} onChange={handleChange} />;
+  return <InputField {...args} error value={value} onChange={handleChange} />;
 };
 export const Disabled = (args: InputFieldProps) => {
   const [value, setValue] = useState('Filled');
@@ -119,7 +119,7 @@ export const Disabled = (args: InputFieldProps) => {
     setValue(e.target.value);
   };
 
-  return <InputField {...args} defaultValue="Filled" disabled value={value} onChange={handleChange} />;
+  return <InputField {...args} disabled value={value} onChange={handleChange} />;
 };
 export const Clearable = (args: InputFieldProps) => {
   const [value, setValue] = useState('Clearable');

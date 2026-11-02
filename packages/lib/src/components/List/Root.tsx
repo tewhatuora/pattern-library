@@ -6,21 +6,32 @@ import assert from '../../utils/assert';
 import * as styles from './List.css';
 
 export type ListRootProps = {
-  /** List element type */
+  /** `ol` numbers the items, `ul` bullets them. */
   type: 'ol' | 'ul';
-  /** Option to have no list item markers */
+  /** Hide the bullets or numbers, e.g. for lists of links or icons. */
   noMarkers?: boolean;
-  /** Option to show dividers between list items */
+  /** Draw a line between items. */
   dividers?: boolean;
-
-  /** Option to disable divider on first item */
+  /** Remove the divider above the first item. Needs `dividers`. */
   dividersNoTop?: boolean;
-  /** Option to disable divider on last item */
+  /** Remove the divider below the last item. Needs `dividers`. */
   dividersNoBottom?: boolean;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 };
 
+/**
+ * A styled list. Every child must be an element, such as `List.Item`, `List.Link` or a nested `List.Root`;
+ * plain text children throw.
+ *
+ * @example
+ * <List.Root dividers type="ul">
+ *   <List.Item heading="Pharmacy" icon="medicine">
+ *     Collect your prescription
+ *   </List.Item>
+ *   <List.Link href="/results">View results</List.Link>
+ * </List.Root>
+ */
 export const Root = ({
   type,
   noMarkers = false,

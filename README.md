@@ -12,6 +12,7 @@
   - [Development](#development)
     - [Pre commit hooks](#pre-commit-hooks)
     - [Build](#build)
+    - [Testing](#testing)
   - [Monorepo](#monorepo)
     - [Design system library](#design-system-library)
     - [Themes](#themes)
@@ -19,7 +20,6 @@
     - [Themes](#themes-1)
   - [Releasing](#releasing)
     - [Prereleases](#prereleases)
-  - [GitLab CI/CD Jobs](#gitlab-cicd-jobs)
 
 
 ## Inspirations
@@ -32,32 +32,21 @@ The Design Pattern Library has replaced the deprecated Anatomic library.
 
 ## Setup
 
-Checkout this repository, and install the dependencies:
+Use the Node version in `.nvmrc` (e.g. `nvm use`), and enable Corepack so the Yarn version in `package.json` is used:
 ```bash
+$ corepack enable
+```
+
+Clone this repository, and install the dependencies:
+```bash
+$ git clone https://github.com/tewhatuora/pattern-library.git
 $ yarn
 ```
 
-Add the remote repository:
+Build the themes and library packages, which Storybook and the example app import:
 ```bash
-$ git remote add https://github.com/tewhatuora/pattern-library.git
+$ yarn build
 ```
-
-Build the themes package. First, navigate to the themes package:
-```shell
-cd package/themes
-```
-
-Next, build the package with:
-```shell
-yarn build
-```
-
-Then navigate back to the root of the project:
-```shell
-cd ../..
-```
-
-And now Storybook will work.
 
 ---
 
@@ -78,13 +67,24 @@ $ yarn lint:types
 
 ### Build
 
-Building the packages is done via GitLab CI, but if you want/need to build the packages, the following will build both the `themes` and `lib` packages:
+Building the packages is done in CI, but if you want/need to build the packages, the following will build both the `themes` and `lib` packages:
 
 ```bash
 $ yarn build
 ```
 
 This is useful when making theme changes and reflecting the changes in the lib package.
+
+### Testing
+
+Every story is rendered as a test in a headless browser, using the Storybook Vitest addon. A story fails if it throws while rendering or its `play` function fails. Accessibility checks run on each story and are summarised at the end, but don't fail the run yet.
+
+Install the browser once, then run the tests (after `yarn build`):
+
+```bash
+$ yarn playwright install chromium-headless-shell
+$ yarn test
+```
 
 ## Monorepo
 This project is set up as a monorepo, with a package for the design system library -
@@ -106,13 +106,13 @@ See the [documentation](packages/themes/README.md) for the themes package.
 
 ## Storybook
 
-Documentation can be created as `.stories.mdx` files inside the `./stories` directory. e.g. `Introduction.stories.mdx`
+Documentation pages are `.mdx` files inside the `./stories` directory. e.g. `Introduction.mdx`
 
-Create component stories as either a `.stories.mdx` or `.stories.{ts|tsx|js|jsx}` file. e.g. `Button.stories.tsx`
+Create component stories as `.stories.{ts|tsx|js|jsx}` files next to the component. e.g. `Button.stories.tsx`
 
 ### Themes
 
-See `.storybook/preview.js` for how themes are configured.
+See `.storybook/preview.jsx` for how themes are configured.
 
 To run storybook:
 ```bash
@@ -130,7 +130,7 @@ Please read the [contributing guide](./CONTRIBUTING.md) before working on this r
 TL;DR:
 - Create branch
 - Do work, [commit](./CONTRIBUTING.md) changes & push to `origin`
-- Create merge request
+- Create pull request
 - Review Chromatic/Storybook changes
 - `cd` into the package that you want to update (`packages/lib` or `packages/themes`)
 - Create new `major`, `minor` or `patch` release.
@@ -141,7 +141,7 @@ TL;DR:
 
 - Always work on a feature branch e.g. `feature/my-feature`, branched off `main`.
 - Ensure you commit your changes using the [commit conventions](./CONTRIBUTING.md) outlined in the contributing guide.
-- Push your branch, and open a new merge request
+- Push your branch, and open a new pull request
   - This will deploy the branch to Chromatic
   - This pipeline will fail with [exit code 1](https://www.chromatic.com/docs/cli#exit-codes) if there are visual changes detected.
   - Approve or deny the changes in Chromatic, and re-run the pipeline.
@@ -227,7 +227,7 @@ TL;DR:
           
         - Publish the package to `npm`.
       </details>
-  - If Chromatic is successful, and your merge request has been approved, you may merge into `main`.
+  - If Chromatic is successful, and your pull request has been approved, you may merge into `main`.
 --- 
 
 ### Prereleases

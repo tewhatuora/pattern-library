@@ -9,22 +9,21 @@ import * as styles from './Tag.css';
 export const TagStyles = styles;
 
 export type TagProps = {
-  /** Tag label */
   label: string;
-  /** Allow the tag to be clearable */
+  /** Show a clear button on the tag. */
   isClearable?: boolean;
-  /** Function to call when the tag is cleared */
+  /**
+   * Called when the clear button is pressed. The tag also hides itself and can't be shown again, so remove
+   * it from your own state too.
+   */
   onClear?: () => void;
 };
 
 /**
- * Tag Component
- * For user-provided content.
- * Tags are compact element that represent an input, attribute,
- * or action.
- * Option to be clearable, if clearable a clear icon is displayed
- * @param props
- * @constructor
+ * A compact label for user-provided content, such as a selected filter. Optionally clearable.
+ *
+ * @example
+ * <Tag isClearable label="Auckland" onClear={() => removeRegion('akl')} />
  */
 export const Tag = ({ label, isClearable, onClear, ...boxProps }: TagProps) => {
   const [isCleared, setIsCleared] = useState(false);

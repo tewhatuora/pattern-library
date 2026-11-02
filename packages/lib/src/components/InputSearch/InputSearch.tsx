@@ -11,18 +11,55 @@ import * as styles from './InputSearch.css';
 export const InputSearchStyles = styles;
 
 export type InputSearchProps = Omit<OtherInputFieldProps, 'error' | 'disabled' | 'required'> & {
+  /**
+   * Called when the search is submitted, by Enter or the search button. Setting it wraps the field in a
+   * `form`; without it there is no form and the button does nothing. The event isn't prevented, so call
+   * `event.preventDefault()` to stay on the page.
+   */
   onSubmit?: FormEventHandler<HTMLFormElement>;
+  /**
+   * Accessible name of the input. Ignored when `aria-labelledby` is set.
+   * @default 'Search'
+   */
+  'aria-label'?: string;
+  /** Id of an element that names the input. */
+  'aria-labelledby'?: string;
+  /**
+   * Accessible name of the search button.
+   * @default 'Search'
+   */
+  submitLabel?: string;
 };
 
 const INPUT_TYPE = 'search';
 
 /**
- * On search, leads to search results page.
- * @constructor
+ * A search field with a clear button and a search button. Handle `onSubmit` to run the search.
+ *
+ * @example
+ * <InputSearch
+ *   name="q"
+ *   placeholder="Search"
+ *   onSubmit={(event) => {
+ *     event.preventDefault();
+ *   }}
+ * />
  */
 export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
   (
-    { id, name, placeholder, value, defaultValue, onBlur, onChange, onFocus, onSubmit, ...rest }: InputSearchProps,
+    {
+      id,
+      name,
+      placeholder,
+      value,
+      defaultValue,
+      onBlur,
+      onChange,
+      onFocus,
+      onSubmit,
+      submitLabel = 'Search',
+      ...rest
+    }: InputSearchProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     // Convert the forwarded ref (which may be a callback) into an object ref that
@@ -37,6 +74,7 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
         value,
         defaultValue,
         ...rest,
+        'aria-label': rest['aria-label'] ?? (rest['aria-labelledby'] ? undefined : 'Search'),
         type: INPUT_TYPE,
       },
       inputRef as RefObject<HTMLInputElement>,
@@ -67,7 +105,7 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
           onChange={onChange}
           onFocus={onFocus}
         />
-        <Button className={styles.button} icon="search" type="submit" variant="primary" />
+        <Button aria-label={submitLabel} className={styles.button} icon="search" type="submit" variant="primary" />
       </Box>
     );
   },

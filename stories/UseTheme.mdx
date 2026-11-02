@@ -12,7 +12,8 @@ The theming system introduced a concept of theme object. To configure, you'll ne
 <Source
   language="tsx"
   dark
-  code={`import '@healthnz/pattern-library/styles';\n
+  code={`import '@healthnz/pattern-library/styles';
+import '@healthnz/pattern-library-themes/styles';\n
 import { ThemeProvider } from '@healthnz/pattern-library';
 import { neutral } from '@healthnz/pattern-library-themes';\n
 <ThemeProvider theme={neutral}>

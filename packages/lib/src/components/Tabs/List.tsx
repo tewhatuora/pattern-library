@@ -18,6 +18,7 @@ export type TabsListProps = {
 } & RadixTabs.TabsListProps &
   RefAttributes<HTMLDivElement>;
 
+/** Row of `Tabs.Trigger`s. Pass `aria-label` to name the tab list for screen readers. */
 export const List = ({ className, children, ...rest }: TabsListProps) => {
   return (
     <div className={clsx(styles.container, className)}>

@@ -1,3 +1,5 @@
+import { expect, within } from 'storybook/test';
+
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
 
 import { Text } from '../Text/Text';
@@ -79,4 +81,20 @@ export const Truncated = (args: BreadcrumbsProps) => {
       <Text>Tenth</Text>
     </Breadcrumbs>
   );
+};
+
+/** A single breadcrumb renders once, as the current page */
+export const SingleCrumb = (args: BreadcrumbsProps) => {
+  return (
+    <Breadcrumbs {...args}>
+      <Text>Home</Text>
+    </Breadcrumbs>
+  );
+};
+
+SingleCrumb.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  await expect(canvas.getAllByText('Home')).toHaveLength(1);
+  await expect(canvasElement.querySelector('[aria-current="page"]')).toHaveTextContent('Home');
 };

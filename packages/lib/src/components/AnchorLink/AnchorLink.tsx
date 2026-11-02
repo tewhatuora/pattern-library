@@ -1,9 +1,12 @@
 import { AnchorHTMLAttributes, PropsWithChildren, useRef } from 'react';
 import { clsx } from 'clsx';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
+import { mergeProps } from '@react-aria/utils';
 
 import { LinkComponentType } from '@/src/types';
 import { canAcceptRef } from '@/src/utils/canAcceptRef';
+
+import { withoutLinkOptions } from '@/src/utils/withoutLinkOptions';
 
 import { Icon } from '../Icon/Icon';
 
@@ -14,28 +17,36 @@ import * as styles from './AnchorLink.css';
 export const AnchorLinkStyles = styles;
 
 export type AnchorLinkProps = {
-  /** A URL/path to link to */
+  /** Destination, set as the `href`. Use this rather than `href`. */
   to: string;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
-  /** A React component to render, e. react-router-dom `<Link />` */
+  /** Component to render instead of `<a>`, e.g. a wrapper around react-router-dom `<Link />`. It receives `href`, and a `ref` if it can accept one. */
   component?: LinkComponentType;
-  /** Font size for `<Text>` */
+  /**
+   * Text size token.
+   * @default 'medium'
+   */
   size?: UseTextProps['size'];
-  /** Font weight for `<Text>` */
+  /**
+   * Text weight token.
+   * @default 'link-normal'
+   */
   weight?: UseTextProps['weight'];
-  /** Option to not display the icon */
+  /** Hides the chevron icon shown before the text. */
   noIcon?: boolean;
-  /** Option to not display the visited styles */
+  /** Uses the normal link colour for visited links instead of the visited colour. */
   noVisited?: boolean;
-  /** Option to show underline when not hovered */
+  /** Underlines the link at rest. By default it is underlined only on hover and focus. */
   showUnderline?: boolean;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
 /**
- * Links to a specified anchor point within the same page.
- * @constructor
+ * Styled text link with a leading chevron. Adds `rel="noopener noreferrer"` when `target="_blank"`.
+ *
+ * @example
+ * <AnchorLink to="/services">Our services</AnchorLink>
  */
 export const AnchorLink = ({
   to,
@@ -51,12 +62,13 @@ export const AnchorLink = ({
 }: PropsWithChildren<AnchorLinkProps>) => {
   const ref = useRef<HTMLAnchorElement>(null);
   const textStyles = useText({ weight, size });
-  const { linkProps } = useLink({ ...rest }, ref);
+  const { linkProps } = useLink(rest, ref);
+  // mergeProps chains any handlers both define, rather than one replacing the other
   const props = {
-    ...linkProps,
-    ...rest,
+    ...mergeProps(withoutLinkOptions(rest), linkProps),
     className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
-    href: to,
+    // `to` is the documented prop; fall back to a plain `href` so it isn't overwritten with undefined
+    href: to ?? rest.href,
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
   };
 

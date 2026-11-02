@@ -39,17 +39,30 @@ const useHeader = () => {
 const HEADER_NAME = 'Header';
 
 type HeaderProps = {
-  /** Contrast variant for dark/light UI */
+  /**
+   * Colour scheme: `'dark'` for a dark header with light text. Also sets the logo colour.
+   * @default 'light'
+   */
   variant?: ContrastVariant;
 } & ComponentPropsWithoutRef<'header'>;
 
 /**
- * Found at the top of all mobile and desktop pages
+ * Page header found at the top of all mobile and desktop pages. Fixes on scroll at mobile
+ * and breaks to mobile when Navigation does.
+ * `variant` is shared with the parts through context, so the logo and menu button follow it.
+ * The parts throw if used outside a `Header.Root`.
  *
- * Fixes on scroll at mobile
- * Breaks to mobile when Navigation does
- *
- * @constructor
+ * @example
+ * <Header.Root variant="light">
+ *   <Header.Main>
+ *     <Header.Left>
+ *       <Header.TeWhatuOraLogo href="/" />
+ *     </Header.Left>
+ *     <Header.Right>
+ *       <Header.MenuButton open={open} variant="light" onToggle={() => setOpen(!open)} />
+ *     </Header.Right>
+ *   </Header.Main>
+ * </Header.Root>
  */
 const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'light', className, ...props }, ref) => {
   return (
@@ -69,6 +82,7 @@ const HEADER_MAIN_NAME = 'HeaderMain';
 
 type HeaderMainProps = ComponentPropsWithoutRef<'div'>;
 
+/** Coloured bar that holds the header content. */
 const HeaderMain = forwardRef<HTMLDivElement, HeaderMainProps>(({ className, ...props }, ref) => {
   const { variant } = useHeader();
 
@@ -85,6 +99,7 @@ const HEADER_TE_WHATU_ORA_LOGO_NAME = 'HeaderTeWhatuOraLogo';
 
 type HeaderTeWhatuOraLogoProps = ComponentPropsWithoutRef<'a'>;
 
+/** Te Whatu Ora logo link, in the colour for the Header's `variant`. Pass `href` for where it links to. */
 const HeaderTeWhatuOraLogo = forwardRef<HTMLAnchorElement, HeaderTeWhatuOraLogoProps>(
   ({ className, ...props }, ref) => {
     const { variant } = useHeader();
@@ -109,9 +124,14 @@ HeaderTeWhatuOraLogo.displayName = HEADER_TE_WHATU_ORA_LOGO_NAME;
 const HEADER_LEFT_NAME = 'HeaderLeft';
 
 type HeaderLeftProps = PropsWithChildren<Partial<StackProps>> & {
+  /**
+   * Adds the standard left margin. Set to false when the content should touch the edge.
+   * @default true
+   */
   hasLeftMargin?: boolean;
 };
 
+/** Left-aligned group of items, laid out in a row. */
 const HeaderLeft = ({ className, hasLeftMargin = true, ...props }: HeaderLeftProps) => {
   return (
     <Stack
@@ -133,9 +153,14 @@ HeaderLeft.displayName = HEADER_LEFT_NAME;
 const HEADER_RIGHT_NAME = 'HeaderRight';
 
 type HeaderRightProps = PropsWithChildren<Partial<StackProps>> & {
+  /**
+   * Adds the standard right margin. Set to false when the content should touch the edge.
+   * @default true
+   */
   hasRightMargin?: boolean;
 };
 
+/** Right-aligned group of items, laid out in a row. */
 const HeaderRight = ({ className, hasRightMargin = true, ...props }: HeaderRightProps) => {
   return (
     <Stack
@@ -160,6 +185,7 @@ const HEADER_LOGO_NAME = 'HeaderLogo';
 
 type HeaderLogoProps = BoxProps;
 
+/** Stacks logo content vertically, e.g. a logo above a site name. */
 const HeaderLogo = forwardRef<HTMLElement, HeaderLogoProps>((props, ref) => {
   return <Box alignItems="flexStart" display="flex" flexDirection="column" ref={ref} {...props} />;
 });
@@ -173,21 +199,23 @@ HeaderLogo.displayName = HEADER_LOGO_NAME;
 const HEADER_MENU_BUTTON_NAME = 'HeaderMenuButton';
 
 type HeaderMenuButtonProps = {
+  /** Whether the menu is open. Switches the icon and label between "Open menu" and "Close menu", and sets `aria-expanded`. */
   open?: boolean;
+  /** Called when the button is pressed. The consumer owns the open state. */
   onToggle?: () => void;
+  /** Colour scheme of the button. Should match the Header's `variant`; it is not read from context. */
   variant: ContrastVariant;
 } & Omit<ButtonRootProps, 'variant'>;
 
 /**
- * Menu open/close button
- * @param open
- * @param color
- * @param onToggle
- * @constructor
+ * Menu open/close button. Only shown up to the tablet breakpoint.
  */
 const HeaderMenuButton = ({ open, onToggle, className, variant, ...props }: HeaderMenuButtonProps) => {
   return (
     <ButtonRoot
+      // The button only shows an icon, so give it a name; consumers can still pass their own aria-label
+      aria-expanded={!!open}
+      aria-label={open ? 'Close menu' : 'Open menu'}
       className={clsx(helpers.upToTablet.flex, styles.mobileMenuButton, className, styles.menuButtonVariant[variant])}
       onPress={onToggle}
       {...props}

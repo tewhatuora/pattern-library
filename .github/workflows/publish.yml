@@ -43,6 +43,11 @@ jobs:
           path: '**/node_modules'
           key: ${{ inputs.cache-key }}
 
+      # The build job saves this cache, but it can be evicted before this job runs
+      - name: yarn install
+        if: steps.restore-install-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
       # - name: download build artifact
       #   uses: actions/download-artifact@v4
 

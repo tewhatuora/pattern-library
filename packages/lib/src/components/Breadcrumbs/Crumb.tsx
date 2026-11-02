@@ -13,15 +13,7 @@ type CrumbProps = {
 } & LiHTMLAttributes<HTMLLIElement>;
 
 /**
- * Crumb
- * Individual breadcrumb item
- * @param index
- * @param shouldCheckVisibility
- * @param hidden
- * @param onToggleVisibility
- * @param children
- * @param rest
- * @constructor
+ * Individual breadcrumb item. Internal to `Breadcrumbs`.
  */
 export const Crumb = ({
   index,

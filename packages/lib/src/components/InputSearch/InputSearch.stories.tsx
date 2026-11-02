@@ -1,3 +1,4 @@
+import { expect, within } from 'storybook/test';
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
 import { InputSearch, InputSearchProps } from './InputSearch';
@@ -24,6 +25,13 @@ export default {
 export const Default = (args: InputSearchProps) => {
   delete args.onSubmit;
   return <InputSearch {...args} />;
+};
+
+Default.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  await expect(canvas.getByRole('searchbox', { name: 'Search' })).toBeInTheDocument();
+  await expect(canvas.getByRole('button', { name: 'Search' })).toBeInTheDocument();
 };
 
 /**

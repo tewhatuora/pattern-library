@@ -9,12 +9,13 @@ import { ChildrenOfType } from '../../types/index';
 import * as styles from './Accordion.css';
 
 export type AccordionItemProps = {
-  /** Accordion item value */
+  /** Identifies the item in the Root's `value` / `defaultValue`. Must be unique within the Accordion. */
   value: string;
   /** Only `Accordion.Trigger` and `Accordion.Content` components are allowed as children of `Accordion.Item` */
   children: ChildrenOfType<'Trigger', AccordionTriggerProps> & ChildrenOfType<'Content', AccordionContentProps>;
 };
 
+/** One expandable section. Takes an `Accordion.Trigger` and an `Accordion.Content`. */
 export const Item = ({ value, children }: AccordionItemProps) => {
   return (
     <RadixAccordion.Item className={styles.item} value={value}>

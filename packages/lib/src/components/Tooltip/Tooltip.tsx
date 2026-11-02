@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 
 import { Text } from '../Text/Text';
@@ -10,47 +10,77 @@ import * as styles from './Tooltip.css';
 export const TooltipStyles = styles;
 
 export type TooltipProps = {
-  /** Tooltip content */
+  /** Plain text. Keep it supplementary: it only shows on hover or focus, and on click with `triggerOpenOnClick`. */
   content: string;
-  /** The duration from when the mouse enters a tooltip trigger until the tooltip opens.*/
+  /**
+   * Milliseconds the pointer must rest on the trigger before the tooltip opens.
+   * @default 700
+   */
   delayDuration?: number;
-  /** How much time a user has to enter another trigger without incurring a delay again. */
+  /**
+   * Milliseconds after one tooltip closes during which moving to another trigger opens it immediately.
+   * @default 300
+   */
   skipDelayDuration?: number;
-  /** The open state of the tooltip when it is initially rendered. Use when you do not need to control its open state. */
+  /** Open on first render, when the open state isn't controlled with `open`. */
   defaultOpen?: boolean;
-  /** The controlled open state of the tooltip. Must be used in conjunction with onOpenChange. */
+  /** Controlled open state. Pair with `onOpenChange`. */
   open?: boolean;
-  /** Event handler called when the open state of the tooltip changes. */
+  /** Called when the tooltip opens or closes, whether or not it's controlled. */
   onOpenChange?: (open: boolean) => void;
-  /** Aria-label for accessibility */
-  label: string;
-  /** The sticky behavior on the align axis. "partial" will keep the content in the boundary as long as the trigger is at least partially in the boundary whilst "always" will keep the content in the boundary regardless. */
+  /**
+   * @deprecated No longer used. It replaced the tooltip `content` for screen readers, so the content was never announced.
+   * Give an icon-only trigger its own accessible name instead.
+   */
+  label?: string;
+  /**
+   * `partial` keeps the tooltip on screen while any of the trigger is visible. `always` keeps it on screen
+   * even when the trigger has scrolled out.
+   * @default 'partial'
+   */
   sticky?: 'partial' | 'always';
-  /** The preferred side of the trigger to render against when open. Will be reversed when collisions occur and avoidCollisions is enabled.*/
+  /**
+   * Preferred side of the trigger. Flips to the opposite side if there isn't room.
+   * @default 'top'
+   */
   side?: 'top' | 'right' | 'bottom' | 'left';
-  /** The preferred alignment against the trigger. May change when collisions occur. */
+  /**
+   * Alignment along the side. May shift if there isn't room.
+   * @default 'center'
+   */
   align?: 'start' | 'center' | 'end';
-  /** An offset in pixels from the "start" or "end" alignment options. */
+  /**
+   * Pixels to shift the tooltip from its `start` or `end` alignment.
+   * @default 0
+   */
   alignOffset?: number;
-  /** Change the default rendered trigger element for the one passed as a child, merging their props and behavior. */
+  /**
+   * Use the single child element as the trigger, instead of wrapping it in a `button`. Set it when the child
+   * is already a button or link, to avoid nesting interactive elements. The child must accept a ref.
+   */
   triggerAsChild?: boolean;
-  /** Trigger open on click/touch, useful for mobile devices. Warning: The properties triggerAsChild and triggerOpenOnClick are not guaranteed to work together. */
+  /**
+   * Also open on click or tap, since touch screens have no hover. It calls `preventDefault`, so don't use it
+   * on a link or submit button. May not work together with `triggerAsChild`.
+   */
   triggerOpenOnClick?: boolean;
 };
 
 /**
- * Tooltip
- * @param props
- * @constructor
+ * A short text hint shown when the trigger is hovered or focused. The children are wrapped in a `button`
+ * that acts as the trigger, unless `triggerAsChild` is set. The tooltip uses the current theme, even though it
+ * renders in a portal.
+ *
+ * @example
+ * <Tooltip content="Your National Health Index number">NHI</Tooltip>
  */
 export const Tooltip = ({
   delayDuration = 700,
   skipDelayDuration = 300,
   defaultOpen,
-  open: intialOpenValue,
+  open: openProp,
   onOpenChange,
   content,
-  label,
   sticky = 'partial',
   side = 'top',
   align = 'center',
@@ -60,50 +90,43 @@ export const Tooltip = ({
   triggerOpenOnClick,
 }: PropsWithChildren<TooltipProps>) => {
   const theme = useTheme();
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
+  // Portal into an element next to the trigger. Only the portal waits for it, so the trigger is server rendered.
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState<boolean>(!!defaultOpen);
+  const isControlled = openProp !== undefined;
+  const isOpen = isControlled ? openProp : uncontrolledOpen;
 
-  useEffect(() => {
-    if (ref?.current) {
-      setIsMounted(true);
+  const setOpen = (open: boolean) => {
+    if (!isControlled) {
+      setUncontrolledOpen(open);
     }
-  }, [ref]);
-
-  const [isOpen, setIsOpen] = useState<boolean>(!!intialOpenValue);
+    onOpenChange?.(open);
+  };
 
   return (
     <>
-      <div ref={ref} />
-      {isMounted && (
-        <RadixTooltip.Provider delayDuration={delayDuration} skipDelayDuration={skipDelayDuration}>
-          <RadixTooltip.Root
-            defaultOpen={defaultOpen}
-            delayDuration={delayDuration}
-            open={isOpen}
-            onOpenChange={(open) => {
-              setIsOpen(open);
-              onOpenChange?.(open);
-            }}
+      <div ref={setContainer} />
+      <RadixTooltip.Provider delayDuration={delayDuration} skipDelayDuration={skipDelayDuration}>
+        <RadixTooltip.Root delayDuration={delayDuration} open={isOpen} onOpenChange={setOpen}>
+          <RadixTooltip.Trigger
+            asChild={triggerAsChild}
+            className={styles.trigger}
+            onClick={
+              triggerOpenOnClick
+                ? (e) => {
+                    e.preventDefault();
+                    setOpen(true);
+                  }
+                : undefined
+            }
           >
-            <RadixTooltip.Trigger
-              asChild={triggerAsChild}
-              className={styles.trigger}
-              onClick={
-                triggerOpenOnClick
-                  ? (e) => {
-                      e.preventDefault();
-                      setIsOpen(true);
-                    }
-                  : undefined
-              }
-            >
-              {children}
-            </RadixTooltip.Trigger>
-            <RadixTooltip.Portal container={ref?.current}>
+            {children}
+          </RadixTooltip.Trigger>
+          {!!container && (
+            <RadixTooltip.Portal container={container}>
               <RadixTooltip.Content
                 align={align}
                 alignOffset={alignOffset}
-                aria-label={label}
                 avoidCollisions
                 hideWhenDetached
                 side={side}
@@ -120,9 +143,9 @@ export const Tooltip = ({
                 </ThemeProvider>
               </RadixTooltip.Content>
             </RadixTooltip.Portal>
-          </RadixTooltip.Root>
-        </RadixTooltip.Provider>
-      )}
+          )}
+        </RadixTooltip.Root>
+      </RadixTooltip.Provider>
     </>
   );
 };

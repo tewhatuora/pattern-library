@@ -85,9 +85,9 @@ export const CountryDropdown = memo(
       <div className={styles.countryDropdown}>
         <InputDropdown
           {...props}
+          // id is generated, and name comes from react-phone-number-input (`<name>Country`), so a page can have
+          // several phone inputs without duplicate ids or an extra field in form submissions
           className={styles.select}
-          id="countryCode"
-          name="countryCode"
           options={countryOptions}
           value={value || 'International'}
           onChange={handleCountrySelect as InputDropdownProps['onChange']}

@@ -8,23 +8,24 @@ import * as styles from './InputMessage.css';
 export const InputMessageStyles = styles;
 
 export type InputMessageProps = {
-  /** id attribute */
+  /** Not used by `InputMessage`. Field components use it as the field's `id`. */
   id?: string;
-  /** Helper text to describe a field */
+  /** Hint shown below the field, e.g. the format expected. */
   helperText?: string;
-  /** Error message */
+  /** Shown below the field with an alert icon, after any `helperText`. Hidden when `disabled`. */
   errorMessage?: string;
-  /** Disabled state */
   disabled?: boolean;
-  /** Field description accessibility attributes */
+  /** Spread on the helper text, so the field can reference it with `aria-describedby`. From react-aria `useField`. */
   descriptionProps?: HTMLAttributes<HTMLElement>;
-  /** Error message accessibility attributes */
+  /** Spread on the error text, so the field can reference it with `aria-describedby`. From react-aria `useField`. */
   errorMessageProps?: HTMLAttributes<HTMLElement>;
 };
 
 /**
- * Further content for an input field.
- * @constructor
+ * Helper text and error message shown below a field. Renders nothing when neither is set.
+ *
+ * @example
+ * <InputMessage errorMessage="Enter an email address" helperText="We only use this to contact you" />
  */
 export const InputMessage = ({
   helperText,

@@ -4,6 +4,8 @@ import assert from '../../utils/assert';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
+const REACT_LAZY_TYPE = Symbol.for('react.lazy');
+
 type AllowedChildrenProps = {
   types: React.ElementType[];
   errorMessage: string;
@@ -27,10 +29,17 @@ export const useAllowedChildren = ({
   if (!children) return null;
 
   return Children.map(children, (child) => {
+    // Conditional children such as `{show && <Item />}` arrive as null when they aren't rendered
+    if (child === null) return null;
+
     const childElement = child as ReactElement;
 
+    // Children created in a React Server Component arrive as lazy references to the client component,
+    // which can't be identified until React resolves them, so they're trusted rather than rejected
+    const isLazy = (childElement?.type as { $$typeof?: symbol } | undefined)?.$$typeof === REACT_LAZY_TYPE;
+
     assert(
-      isValidElement(child) && types.some((allowedType) => child.type === allowedType),
+      isValidElement(child) && (isLazy || types.some((allowedType) => child.type === allowedType)),
       `${errorMessage}. ${childElement?.type} given`,
     );
 

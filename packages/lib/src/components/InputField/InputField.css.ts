@@ -146,6 +146,12 @@ globalStyle(`${input.phone} ${inputBase}`, {
   boxShadow: 'none',
 });
 
+// The phone field's wrapper shows the error border, so the inner input mustn't add its own
+globalStyle(`${input.phone} ${inputBase}[aria-invalid="true"]:not([disabled])`, {
+  border: 'none',
+  boxShadow: 'none',
+});
+
 globalStyle(`${input.phone} input${inputBase}`, {
   borderTopLeftRadius: '0',
   borderBottomLeftRadius: '0',

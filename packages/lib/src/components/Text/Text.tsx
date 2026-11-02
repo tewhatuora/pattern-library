@@ -7,25 +7,36 @@ import * as styles from './Text.css';
 
 export type TextProps = Omit<ComponentPropsWithoutRef<'span'>, 'color'> &
   Pick<BoxProps, 'as'> & {
-    /** id attribute for the element */
     id?: string;
-    /** Font size token */
+    /**
+     * Font size token: `xsmall`, `small`, `medium` or `large`.
+     * @default 'medium'
+     */
     size?: UseTextProps['size'];
-    /** Font weight token */
+    /**
+     * Font weight token, e.g. `regular` or `bold`.
+     * @default 'regular'
+     */
     weight?: UseTextProps['weight'];
-    /** Text alignment */
     align?: BoxProps['textAlign'];
-    /** CSS display property */
+    /**
+     * Text is block-level by default, even as a `span`. Use `inline` to flow within a line of text.
+     * @default 'block'
+     */
     display?: BoxProps['display'];
-    /** Text color token */
     color?: BoxProps['color'];
     /** Additional CSS className. (Use `__patternlibrary__` for an example) */
     className?: BoxProps['className'];
   };
 
 /**
- * A Text component for displaying
- * text content as a given HTML tag
+ * Body text. Renders a `span` unless `as` says otherwise, so use `as="p"` for paragraphs and other
+ * elements where the meaning matters.
+ *
+ * @example
+ * <Text as="p" size="small" weight="bold">
+ *   Appointment details
+ * </Text>
  */
 export const Text = forwardRef<HTMLElement, PropsWithChildren<TextProps>>(
   (

@@ -1,4 +1,4 @@
-import { FocusEventHandler, ForwardedRef, MutableRefObject, forwardRef, useCallback } from 'react';
+import { FocusEventHandler, ForwardedRef, MutableRefObject, forwardRef, useCallback, useId } from 'react';
 import { useField } from '@react-aria/label';
 import { clsx } from 'clsx';
 
@@ -7,6 +7,7 @@ import { OtherInputFieldProps } from '../InputField/InputField';
 import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
 import { InputText } from '../InputText/InputText';
 import { Box } from '../Box/Box';
+import { ScreenReadersOnly } from '../ScreenReadersOnly/ScreenReadersOnly';
 
 import * as styles from '../InputField/InputField.css';
 
@@ -14,11 +15,11 @@ export const InputDateStyles = styles;
 
 /** Value object for InputDate, containing `day`, `month` & `year` */
 export type InputDateValue = {
-  /** Day value */
+  /** Day of the month, `1` to `31`. */
   day?: string;
-  /** Month value */
+  /** Month number, `1` to `12`. */
   month?: string;
-  /** Year value */
+  /** Year as typed, e.g. `2024`. */
   year?: string;
 };
 
@@ -28,36 +29,60 @@ type InputDateRefs = {
   year?: MutableRefObject<HTMLInputElement | null>;
 };
 
-/** Function to call when either the day, month or year values change */
+type DateSegment = keyof InputDateValue;
+
+const segments: { field: DateSegment; label: string; max?: string }[] = [
+  { field: 'day', label: 'Day', max: '31' },
+  { field: 'month', label: 'Month', max: '12' },
+  { field: 'year', label: 'Year' },
+];
+
+/** Called when the day, month or year changes */
 export type InputDateOnChangeFn = ({ day, month, year }: InputDateValue) => void;
 
 export type InputDateProps = Omit<InputLabelProps, 'error'> &
   InputMessageProps &
   Omit<OtherInputFieldProps, 'value' | 'onChange'> & {
-    /** Field error messages for `day`, `month` & `year` */
+    /**
+     * Error per field. A field with an error gets error styling and its message read out with it. The messages
+     * are also shown below the group, unless `errorMessage` is set, which is shown instead.
+     */
     errors?: {
-      /** Error message for `day` value */
       day?: string | undefined;
-      /** Error message for `month` value */
       month?: string | undefined;
-      /** Error message for `year` value */
       year?: string | undefined;
     };
-    /** Value object for InputDate, containing `day`, `month` & `year` */
+    /** Controlled value. Omit for an uncontrolled date. */
     value?: InputDateValue;
-    /** Function to call when either the day, month or year values change */
+    /**
+     * Called when any field changes. With `value` set it gets all three parts. Without it, only the part
+     * that changed, so keep the date in state and pass it back as `value`.
+     */
     onChange?: InputDateOnChangeFn;
-    /** Function to call when either the day, month or year fields is left */
+    /** Called when focus leaves any of the three fields. */
     onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    /** Function to call when either the day, month or year fields are focused */
+    /** Called when any of the three fields gets focus. */
     onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    /** show asterisk when field is required (default: `true`) */
+    /**
+     * Add `*` to the label when `required`.
+     * @default true
+     */
     showRequiredAsterisk?: boolean;
   };
 
 /**
- * An input field for entering a date.
- * @constructor
+ * Separate day, month and year fields, grouped under one label. Values are strings and aren't checked as a
+ * real date, so validate them and report problems with `errors`. `name` is suffixed with `_day`, `_month` and
+ * `_year` for the fields.
+ *
+ * @example
+ * <InputDate
+ *   errors={{ month: 'Enter a month between 1 and 12' }}
+ *   label="Date of birth"
+ *   name="dob"
+ *   value={dob}
+ *   onChange={setDob}
+ * />
  */
 export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
   (
@@ -78,6 +103,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
       tertiaryLabelAs,
       tertiaryLabelIcon,
       tertiaryLabelIconPosition,
+      tertiaryLabelTooltip,
       onTertiaryLabelClick,
       onChange,
       onBlur,
@@ -86,14 +112,20 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     ref: ForwardedRef<InputDateRefs>,
   ) => {
     const refObj = ref !== null && typeof ref !== 'function' ? ref.current : null;
-    const dayRef = refObj?.day || null;
-    const monthRef = refObj?.month || null;
-    const yearRef = refObj?.year || null;
+    const segmentRefs = { day: refObj?.day || null, month: refObj?.month || null, year: refObj?.year || null };
+
+    const generatedId = useId();
+    const baseId = id ?? generatedId;
+
+    // A segment error is always given to screen readers with its field. It's only shown when there's no
+    // overall errorMessage, which otherwise summarises the problem.
+    const segmentErrors = [...new Set(segments.map(({ field }) => errors?.[field]?.trim()).filter(Boolean))];
+    const visibleErrorMessage = errorMessage || segmentErrors.join(' ') || undefined;
 
     const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
       label,
       description: helperText,
-      errorMessage,
+      errorMessage: visibleErrorMessage,
     });
 
     const handleFocus = useCallback(
@@ -104,15 +136,10 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     );
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const field = e.target.name.split(`${name}_`)?.[1] as 'day' | 'month' | 'year';
-        const newValue: InputDateValue = { ...value };
-
-        newValue[field] = e.target.value;
-
-        onChange?.(newValue);
+      (field: DateSegment) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        onChange?.({ ...value, [field]: e.target.value });
       },
-      [name, value, onChange],
+      [value, onChange],
     );
 
     const handleBlur = useCallback(
@@ -123,95 +150,63 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     );
 
     return (
-      <div>
+      // The label names the group of fields; it isn't the label of any one input
+      <div aria-labelledby={labelProps.id} role="group">
         <InputLabel
-          error={!!errorMessage}
+          error={!!visibleErrorMessage}
           href={href}
-          htmlFor={id}
           label={label}
-          labelProps={labelProps}
+          labelProps={{ id: labelProps.id }}
           required={showRequiredAsterisk && required}
           subheading={subheading}
           tertiaryLabel={tertiaryLabel}
           tertiaryLabelAs={tertiaryLabelAs}
           tertiaryLabelIcon={tertiaryLabelIcon}
           tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+          tertiaryLabelTooltip={tertiaryLabelTooltip}
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
         <div className={clsx(styles.field, styles.fieldSegments)}>
-          <Box className={styles.fieldSegment}>
-            <InputText
-              disabled={disabled}
-              error={!!errors?.day}
-              {...fieldProps}
-              aria-labelledby={labelProps.id}
-              id={`${id}_day`}
-              inputMode="numeric"
-              label="Day"
-              max="31"
-              min="1"
-              name={`${name}_day`}
-              pattern="[0-9]*"
-              ref={dayRef}
-              required={required}
-              showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
-              value={value?.day}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
-          </Box>
-          <Box className={styles.fieldSegment}>
-            <InputText
-              disabled={disabled}
-              error={!!errors?.month}
-              {...fieldProps}
-              aria-labelledby={labelProps.id}
-              id={`${id}_month`}
-              inputMode="numeric"
-              label="Month"
-              max="12"
-              min="1"
-              name={`${name}_month`}
-              pattern="[0-9]*"
-              ref={monthRef}
-              required={required}
-              showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
-              value={value?.month}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
-          </Box>
-          <Box className={styles.fieldSegment}>
-            <InputText
-              disabled={disabled}
-              error={!!errors?.year}
-              {...fieldProps}
-              aria-labelledby={labelProps.id}
-              id={`${id}_year`}
-              inputMode="numeric"
-              label="Year"
-              min="1"
-              name={`${name}_year`}
-              pattern="[0-9]*"
-              ref={yearRef}
-              required={required}
-              showRequiredAsterisk={showRequiredAsterisk}
-              type="number"
-              value={value?.year}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
-          </Box>
+          {segments.map(({ field, label: segmentLabel, max }) => {
+            const segmentErrorId = `${baseId}_${field}_error`;
+            const describedBy = [fieldProps['aria-describedby'], errors?.[field] && segmentErrorId]
+              .filter(Boolean)
+              .join(' ');
+
+            return (
+              <Box className={styles.fieldSegment} key={field}>
+                <InputText
+                  aria-describedby={describedBy || undefined}
+                  aria-labelledby={labelProps.id}
+                  disabled={disabled}
+                  error={!!errors?.[field]}
+                  id={`${baseId}_${field}`}
+                  inputMode="numeric"
+                  label={segmentLabel}
+                  max={max}
+                  min="1"
+                  // An empty name leaves the field out of form submissions, rather than submitting `undefined_day`
+                  name={name ? `${name}_${field}` : ''}
+                  pattern="[0-9]*"
+                  ref={segmentRefs[field]}
+                  required={required}
+                  showRequiredAsterisk={showRequiredAsterisk}
+                  type="number"
+                  // When the date is controlled, keep each field controlled even before it has a value
+                  value={value ? (value[field] ?? '') : undefined}
+                  onBlur={handleBlur}
+                  onChange={handleChange(field)}
+                  onFocus={handleFocus}
+                />
+                {!!errors?.[field] && <ScreenReadersOnly id={segmentErrorId}>{errors[field]}</ScreenReadersOnly>}
+              </Box>
+            );
+          })}
         </div>
         <InputMessage
           descriptionProps={descriptionProps}
           disabled={disabled}
-          errorMessage={errorMessage}
+          errorMessage={visibleErrorMessage}
           errorMessageProps={errorMessageProps}
           helperText={helperText}
         />
@@ -220,4 +215,4 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
   },
 );
 
-InputDate.displayName = 'InputPhone';
+InputDate.displayName = 'InputDate';

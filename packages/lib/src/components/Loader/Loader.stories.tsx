@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import Docs from './Loader.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
@@ -27,4 +28,8 @@ export const Default = (args: LoaderProps) => {
       <Loader {...args} />
     </ContrastWrapper>
   );
+};
+
+Default.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  await expect(within(canvasElement).getByRole('status')).toHaveTextContent('Loading');
 };

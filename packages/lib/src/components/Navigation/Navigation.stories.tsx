@@ -1,4 +1,5 @@
 import { ForwardedRef, forwardRef } from 'react';
+import { expect, within } from 'storybook/test';
 
 import { LinkComponentProps } from '@/src/types';
 
@@ -110,12 +111,20 @@ export const Default = (args: NavigationProps) => (
         </Navigation.MenuList>
       </Navigation.Menu>
     </Navigation.Item>
-    <Navigation.Item href="#" label="Nav item 3" />
+    <Navigation.Item href="#" label="Nav item 3" selected />
     <Navigation.Item href="#" label="Nav item 4" />
     <Navigation.Item href="#" label="Nav item 5" />
   </Navigation.Root>
 );
 Default.argTypes = navArgTypes;
+
+Default.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  await expect(canvas.getByRole('navigation', { name: 'Main' })).toBeInTheDocument();
+  await expect(canvas.getByRole('link', { name: 'Nav item 3' })).toHaveAttribute('aria-current', 'page');
+  await expect(canvas.getByRole('link', { name: 'Nav item 4' })).not.toHaveAttribute('aria-current');
+};
 
 export const WithUtilityNavigation = (args: NavigationProps) => {
   return (

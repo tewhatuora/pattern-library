@@ -14,21 +14,26 @@ import * as styles from './Content.css';
 type ContentHeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 export type ContentProps = {
-  /** Heading */
+  /** Heading text. */
   heading: string;
-  /** Heading level */
+  /** Visual size of the heading and subheading, from `'1'` (largest) to `'5'`. The subheading is sized automatically from this. Does not change the element, use `headingAs` for that. */
   headingLevel: ContentHeadingLevel;
-  /** Element type for Heading to render as */
+  /** Element the heading renders as. Defaults to `h{headingLevel}`, so set it when the visual size and the document outline differ. */
   headingAs?: HeadingProps['as'];
-  /** Content subheading */
+  /** Smaller line under the heading. Rendered as a `p`, not a heading. */
   subheading?: string;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 };
 
 /**
- * Predefined content groups to make laying out text more efficient.
- * @param props
+ * Heading, optional subheading and body text, spaced consistently. `ref` points at the heading element.
+ * Children are wrapped in `Text`, so pass inline content or text.
+ *
+ * @example
+ * <Content heading="Getting vaccinated" headingLevel="2" subheading="What to expect">
+ *   Your vaccinator will check your details first.
+ * </Content>
  */
 export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
   ({ heading, headingLevel, headingAs, subheading, className, children }, ref) => {
@@ -48,7 +53,7 @@ export const Content = forwardRef<HTMLElement, PropsWithChildren<ContentProps>>(
     const subheadingElement =
       subheadingLevel === '5' ? (
         <Text as="p" weight="bold">
-          {heading}
+          {subheading}
         </Text>
       ) : (
         <Heading as="p" level={subheadingLevel}>

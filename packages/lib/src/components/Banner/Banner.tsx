@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
 import { forwardRef, useCallback, useState } from 'react';
+import { useObjectRef } from '@react-aria/utils';
 
 import { Box } from '../Box/Box';
 import { Icon } from '../Icon/Icon';
@@ -7,15 +8,19 @@ import { CloseButton } from '../CloseButton/CloseButton';
 
 import * as styles from './Banner.css';
 import { ContrastVariant } from '../../types';
+import { moveFocusBeforeRemoving } from '../../utils/focus';
 
 export const BannerStyles = styles;
 
 export type BannerProps = {
-  /** Banner style variant */
-  variant: styles.Variant;
-  /** Contrast variant for dark/light UI */
+  /**
+   * `informative` for announcements, `alert` for cautions, `urgent` for critical notices. Also sets the accessible label (Announcement, Alert, Urgent alert) and the icon.
+   * @default 'alert'
+   */
+  variant?: styles.Variant;
+  /** @deprecated Has no effect. */
   theme?: ContrastVariant;
-  /** A function that will be called when closing the Alert */
+  /** Shows a close button when provided. Called after the Banner hides itself; the parent cannot re-open it, so unmount and remount it to show it again. */
   onClose?: () => void;
 } & Pick<
   JSX.IntrinsicElements['button'],
@@ -23,18 +28,20 @@ export type BannerProps = {
 >;
 
 /**
- * Banner component.
- * Displays a prominent message and icon.
- * Closable option and when closed, component is hidden
- * Has a light and dark variant
- * @param props
- * @constructor
+ * Prominent message with an icon, rendered as an `aside` labelled by its variant.
+ * Children are the message content, so links are fine.
+ *
+ * @example
+ * <Banner variant="informative" onClose={() => setDismissed(true)}>
+ *   Clinics are closed on public holidays.
+ * </Banner>
  */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
   // `theme` is unused, but kept out of `boxProps` so it isn't spread onto the DOM; removing the prop would be a breaking change.
   ({ variant = 'alert', theme, onClose, children, ...boxProps }, ref) => {
     // for closing banner if set true banner hidden
     const [isClosed, setIsClosed] = useState(false);
+    const bannerRef = useObjectRef(ref);
 
     //icon for display depending on variant
     const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
@@ -58,10 +65,11 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
      * Handle closing banner
      */
     const handleCloseBanner = useCallback(() => {
+      moveFocusBeforeRemoving(bannerRef.current);
       setIsClosed(true);
 
       onClose?.();
-    }, [onClose, setIsClosed]);
+    }, [onClose, setIsClosed, bannerRef]);
 
     if (isClosed) {
       return null;
@@ -74,7 +82,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
         className={styles.variants({
           variant,
         })}
-        ref={ref}
+        ref={bannerRef}
         {...boxProps}
       >
         <Box className={styles.bannerInner}>

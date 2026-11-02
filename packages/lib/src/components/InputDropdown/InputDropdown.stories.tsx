@@ -1,5 +1,7 @@
 import { FocusEvent, useEffect, useRef, useState } from 'react';
 
+import { expect, userEvent, within } from 'storybook/test';
+
 import { InputDropdown, InputDropdownProps } from './InputDropdown';
 import icons from '../Icon/icons';
 import DocsPage from '../../../utils/DocsPage';
@@ -184,4 +186,16 @@ export const OnFocusAndBlurEvent = (args: InputDropdownProps) => {
       onSelectFocus={handleFocus}
     />
   );
+};
+
+export const Uncontrolled = (args: InputDropdownProps) => (
+  <InputDropdown {...args} defaultValue="2" name="select_7" options={options} />
+);
+Uncontrolled.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const select = within(canvasElement).getByRole('combobox');
+
+  // Starts on defaultValue, and can still be changed without a value/onChange pair
+  await expect(select).toHaveValue('2');
+  await userEvent.selectOptions(select, '4');
+  await expect(select).toHaveValue('4');
 };

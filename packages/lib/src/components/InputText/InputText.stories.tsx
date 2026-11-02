@@ -130,7 +130,7 @@ export const WithFocus = (args: InputTextProps) => {
     ref?.current?.focus();
   }, [ref]);
 
-  return <InputText {...args} defaultValue="Focus" ref={ref} value={value} onChange={handleChange} />;
+  return <InputText {...args} ref={ref} value={value} onChange={handleChange} />;
 };
 
 export const Filled = (args: InputTextProps) => {
