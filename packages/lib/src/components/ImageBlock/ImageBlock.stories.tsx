@@ -9,7 +9,7 @@ import Docs from './ImageBlock.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/ImageBlock',
+  title: 'Content Components/ImageBlock',
   component: ImageBlock,
   argTypes: {
     headingLevel: {

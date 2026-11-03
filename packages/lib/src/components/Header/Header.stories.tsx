@@ -20,7 +20,7 @@ const ExampleLogo = () => (
 );
 
 export default {
-  title: 'Components/Header',
+  title: 'Patterns/Header',
   component: Header.Root,
   decorators: [
     // The `Header` has fixed position, so need to wrap it in a transform so it renders inside the story.

@@ -40,7 +40,7 @@ const people = [
 ] as const;
 
 export default {
-  title: 'Components/HeroBlock',
+  title: 'Patterns/HeroBlock',
   component: HeroBlock,
   argTypes: {
     children: {

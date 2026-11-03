@@ -50,6 +50,9 @@ export const root = styleVariants({
   ],
 });
 
+// Root class for the divider style: items are separated by hairlines instead of sitting on cards
+export const dividers = style({});
+
 export const item = style([
   responsiveStyle({
     mobile: {
@@ -71,6 +74,22 @@ export const item = style([
       },
     },
   }),
+  {
+    selectors: {
+      [`${dividers} > &`]: {
+        border: 'none',
+        borderBottom: `${vars.borderWidth.small} solid ${borderColorVar}`,
+        borderRadius: 0,
+      },
+      // Outranks the card spacing between items above
+      [`${dividers} > & + &`]: {
+        marginTop: 0,
+      },
+      [`${dividers} > &:first-child`]: {
+        borderTop: `${vars.borderWidth.small} solid ${borderColorVar}`,
+      },
+    },
+  },
 ]);
 
 export const header = style({
@@ -98,18 +117,30 @@ export const trigger = style([
   responsiveStyle({
     mobile: {
       padding: vars.space.small.mobile,
+      // Keeps long text off the chevron
+      gap: vars.space.small.mobile,
     },
     tablet: {
       padding: vars.space.small.tablet,
+      gap: vars.space.small.tablet,
     },
   }),
 ]);
 
 export const icon = recipe({
-  base: {
-    marginRight: vars.space.small.mobile,
-    flexShrink: 0,
-  },
+  base: [
+    {
+      flexShrink: 0,
+    },
+    responsiveStyle({
+      mobile: {
+        marginRight: vars.space.small.mobile,
+      },
+      tablet: {
+        marginRight: vars.space.small.tablet,
+      },
+    }),
+  ],
   variants: {
     variant: {
       light: {
@@ -161,13 +192,16 @@ export const content = style({
   },
 });
 
+// The trigger's bottom padding already gives `small` above the content, so the top padding tops it up to `medium`
 export const contentWrapper = style(
   responsiveStyle({
     mobile: {
       padding: vars.space.small.mobile,
+      paddingTop: calc.subtract(vars.space.medium.mobile, vars.space.small.mobile),
     },
     tablet: {
       padding: vars.space.small.tablet,
+      paddingTop: calc.subtract(vars.space.medium.tablet, vars.space.small.tablet),
     },
   }),
 );

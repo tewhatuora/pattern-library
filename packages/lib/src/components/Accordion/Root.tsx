@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, PropsWithChildren, createContext } from 'react';
 import * as RadixAccordion from '@radix-ui/react-accordion';
+import { clsx } from 'clsx';
 
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Item } from './Item';
@@ -16,6 +17,8 @@ export type AccordionRootProps = (RadixAccordion.AccordionSingleProps | RadixAcc
     variant?: ContrastVariant;
     /** Level of the heading element wrapping each `Accordion.Trigger`. Pick the level that follows the page's heading outline. */
     headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
+    /** Separate items with hairline dividers instead of showing each on a card. */
+    dividers?: boolean;
   };
 
 export const AccordionContext = createContext<{ headingLevel: number; variant: 'light' | 'dark' }>({
@@ -45,11 +48,13 @@ export const Root = ({
   // Pulled out so it isn't spread onto the DOM
   variant: _variant,
   headingLevel,
+  dividers,
+  className,
   children,
   ...props
 }: PropsWithChildren<AccordionRootProps>) => {
   return (
-    <RadixAccordion.Root className={styles.root.light} {...props}>
+    <RadixAccordion.Root className={clsx(styles.root.light, dividers && styles.dividers, className)} {...props}>
       <AccordionContext.Provider value={{ headingLevel, variant: 'light' }}>
         <AllowedChildren
           errorMessage="Only `Accordion.Item` components are allowed as children of `Accordion.Root`"

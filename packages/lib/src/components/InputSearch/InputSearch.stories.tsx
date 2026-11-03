@@ -7,7 +7,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './InputSearch.docs.mdx';
 
 export default {
-  title: 'Forms/InputSearch',
+  title: 'Transactional Components/InputSearch',
   component: InputSearch,
   argTypes: {
     id: { control: false },

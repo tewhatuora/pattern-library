@@ -2,6 +2,8 @@ import { Children, PropsWithChildren, isValidElement } from 'react';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
+import * as styles from './Dialog.css';
+
 const order = ['primary', 'secondary', 'tertiary'];
 
 const variantOrder = (child: unknown) =>
@@ -18,7 +20,11 @@ export const Actions = ({ children }: PropsWithChildren) => {
     return 0;
   });
 
-  return <ErrorBoundary>{sorted}</ErrorBoundary>;
+  return (
+    <ErrorBoundary>
+      <div className={styles.actions}>{sorted}</div>
+    </ErrorBoundary>
+  );
 };
 
 Actions.displayName = 'Actions';

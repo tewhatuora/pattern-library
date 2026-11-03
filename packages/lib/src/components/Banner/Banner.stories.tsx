@@ -5,7 +5,7 @@ import Docs from './Banner.docs.mdx';
 import { Text } from '../Text/Text';
 
 export default {
-  title: 'Components/Banner',
+  title: 'Transactional Components/Banner',
   component: Banner,
   argTypes: {
     onClose: {

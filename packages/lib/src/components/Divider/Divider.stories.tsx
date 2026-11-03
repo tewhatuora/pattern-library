@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { Divider } from './Divider';
 
 const meta: Meta<typeof Divider> = {
-  title: 'Components/Divider',
+  title: 'Transactional Components/Divider',
   component: Divider,
   parameters: {
     docs: {

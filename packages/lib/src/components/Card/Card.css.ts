@@ -10,10 +10,8 @@ export const card = style([
   }),
   {
     boxShadow: vars.shadow.primary,
-    borderWidth: vars.borderWidth.small,
     color: vars.color.semantic.text.copy.dark,
     backgroundColor: vars.color.semantic.card.background,
-    borderColor: vars.color.semantic.card.border,
   },
   responsiveStyle({
     mobile: {

@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { InputField, InputFieldProps } from './InputField';
 
 export default {
-  title: 'Forms/InputField',
+  title: 'Transactional Components/InputField',
   component: InputField,
   parameters: {
     controls: {

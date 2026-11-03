@@ -4,7 +4,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './Checkbox.docs.mdx';
 
 export default {
-  title: 'Forms/Checkbox',
+  title: 'Transactional Components/Checkbox',
   component: Checkbox,
   parameters: {
     controls: {

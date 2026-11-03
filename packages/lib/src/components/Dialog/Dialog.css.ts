@@ -71,3 +71,23 @@ export const closeButton = style([
 export const icon = style({
   color: vars.color.semantic.icons.dark,
 });
+
+// Dialog.Content and Dialog.Actions share one Stack item, so the actions set their own space from the content
+export const actions = style([
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.small.mobile,
+      marginTop: vars.space.small.mobile,
+    },
+    tablet: {
+      gap: vars.space.small.tablet,
+      marginTop: vars.space.small.tablet,
+    },
+  }),
+]);

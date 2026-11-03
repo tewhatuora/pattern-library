@@ -4,7 +4,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './FeatureTile.docs.mdx';
 
 export default {
-  title: 'Components/FeatureTile',
+  title: 'Patterns/FeatureTile',
   component: FeatureTile,
   parameters: {
     docs: {

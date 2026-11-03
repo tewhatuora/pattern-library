@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { Alert } from './Alert';
 
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Alert',
+  title: 'Transactional Components/Alert',
   component: Alert,
   parameters: {
     docs: {

@@ -14,7 +14,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './Navigation.docs.mdx';
 
 export default {
-  title: 'Components/Navigation',
+  title: 'Patterns/Navigation',
   component: Navigation,
   subcomponents: {
     Root: Navigation.Root,

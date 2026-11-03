@@ -5,7 +5,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './PersonSelector.docs.mdx';
 
 export default {
-  title: 'Components/PersonSelector',
+  title: 'Patterns/PersonSelector',
   component: PersonSelector,
   argTypes: {
     personSelectorLabel: {

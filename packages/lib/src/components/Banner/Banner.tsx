@@ -36,8 +36,8 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
     const [isClosed, setIsClosed] = useState(false);
     const bannerRef = useObjectRef(ref);
 
-    //icon for display depending on variant
-    const bannerIcon = variant === 'urgent' ? 'alert' : 'document';
+    // Icon for each variant, as in the design: document, exclamation in a circle, and warning triangle
+    const bannerIcon = ({ informative: 'document', alert: 'warning', urgent: 'alert' } as const)[variant];
 
     let bannerLabel: string;
     switch (variant) {

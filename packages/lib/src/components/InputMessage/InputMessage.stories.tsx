@@ -1,7 +1,7 @@
 import { InputMessage, InputMessageProps } from './InputMessage';
 
 export default {
-  title: 'Forms/InputMessage',
+  title: 'Transactional Components/InputMessage',
   component: InputMessage,
   parameters: {
     controls: {

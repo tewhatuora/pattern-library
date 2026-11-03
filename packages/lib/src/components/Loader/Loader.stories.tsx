@@ -8,7 +8,7 @@ import { Loader, LoaderProps } from './Loader';
 import { ContrastWrapper } from '../Storybook/ContrastWrapper';
 
 const meta: Meta<typeof Loader> = {
-  title: 'Components/Loader',
+  title: 'Transactional Components/Loader',
   component: Loader,
   parameters: {
     docs: {

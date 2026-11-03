@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { Avatar } from './Avatar';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Components/Avatar',
+  title: 'Transactional Components/Avatar',
   component: Avatar,
   parameters: {
     docs: {

@@ -9,7 +9,7 @@ import Docs from './Breadcrumbs.docs.mdx';
 import { TextLink } from '../TextLink/TextLink';
 
 export default {
-  title: 'Components/Breadcrumbs',
+  title: 'Transactional Components/Breadcrumbs',
   component: Breadcrumbs,
   argTypes: {
     withBackground: {

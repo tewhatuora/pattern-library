@@ -7,7 +7,7 @@ import Docs from './Footer.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/Footer',
+  title: 'Patterns/Footer',
   component: Footer,
   argTypes: {
     variant: {

@@ -4,7 +4,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './ToggleSwitch.docs.mdx';
 
 export default {
-  title: 'Forms/ToggleSwitch',
+  title: 'Transactional Components/ToggleSwitch',
   component: ToggleSwitch,
   argTypes: {
     id: { control: false },

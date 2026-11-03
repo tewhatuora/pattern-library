@@ -8,7 +8,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './TextLink.docs.mdx';
 
 export default {
-  title: 'Components/TextLink',
+  title: 'Transactional Components/TextLink',
   component: TextLink,
   argTypes: {
     to: {

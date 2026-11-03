@@ -8,7 +8,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './AnchorLink.docs.mdx';
 
 export default {
-  title: 'Components/AnchorLink',
+  title: 'Patterns/AnchorLink',
   component: AnchorLink,
   argTypes: {
     to: {

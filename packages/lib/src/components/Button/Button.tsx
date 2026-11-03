@@ -105,7 +105,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       )}
 
       {!!children && (
-        <Text size="medium" weight={weight}>
+        <Text className={variant === 'link' ? undefined : styles.label} size="medium" weight={weight}>
           {children}
         </Text>
       )}

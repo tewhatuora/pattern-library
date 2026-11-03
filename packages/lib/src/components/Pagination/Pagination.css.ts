@@ -110,6 +110,8 @@ export const buttonContainer = style(
 export const button = styleVariants({
   primary: [
     pageItem,
+    // Fills the container's height rather than Button's minimum height
+    { minHeight: 0, paddingBlock: 0 },
     responsiveStyle({
       mobile: {
         paddingLeft: vars.space.small.tablet,

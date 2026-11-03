@@ -9,7 +9,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { vars } from '../../themes/vars.css';
 
 export default {
-  title: 'Components/Tabs',
+  title: 'Transactional Components/Tabs',
   component: Tabs.Root,
   subcomponents: {
     Root: Tabs.Root,

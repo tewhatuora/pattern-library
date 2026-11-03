@@ -6,7 +6,7 @@ import Docs from './List.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/List',
+  title: 'Patterns/List',
   component: List.Root,
   subcomponents: {
     Root: List.Root,

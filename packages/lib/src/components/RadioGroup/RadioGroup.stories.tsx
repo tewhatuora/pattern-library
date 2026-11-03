@@ -8,7 +8,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './RadioGroup.docs.mdx';
 
 export default {
-  title: 'Forms/RadioGroup',
+  title: 'Transactional Components/RadioGroup',
   component: RadioGroup,
   subcomponents: {
     RadioButton,

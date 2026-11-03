@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { Tag } from './Tag';
 
 const meta: Meta<typeof Tag> = {
-  title: 'Components/Tag',
+  title: 'Transactional Components/Tag',
   component: Tag,
   parameters: {
     docs: {

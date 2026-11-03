@@ -8,7 +8,7 @@ import Docs from './Textarea.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Forms/Textarea',
+  title: 'Transactional Components/Textarea',
   component: Textarea,
   argTypes: {
     id: { control: false },

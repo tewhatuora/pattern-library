@@ -16,7 +16,7 @@ import { ContrastWrapper } from '../Storybook/ContrastWrapper';
 import Docs from './Tooltip.docs.mdx';
 
 export default {
-  title: 'Components/Tooltip',
+  title: 'Transactional Components/Tooltip',
   component: Tooltip,
   argTypes: {
     content: {

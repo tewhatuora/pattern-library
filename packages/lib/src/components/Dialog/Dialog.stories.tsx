@@ -14,7 +14,7 @@ import Docs from './Dialog.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/Dialog',
+  title: 'Patterns/Dialog',
   component: Dialog,
   subcomponents: {
     Root: Dialog.Root,

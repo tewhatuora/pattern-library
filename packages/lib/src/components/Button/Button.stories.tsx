@@ -5,7 +5,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './Button.docs.mdx';
 
 export default {
-  title: 'Forms/Button',
+  title: 'Transactional Components/Button',
   component: Button,
   argTypes: {
     variant: {

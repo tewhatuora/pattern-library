@@ -5,7 +5,7 @@ import Docs from './Pagination.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/Pagination',
+  title: 'Patterns/Pagination',
   component: Pagination,
   argTypes: {
     pages: {

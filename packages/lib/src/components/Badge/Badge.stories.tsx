@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Components/Badge',
+  title: 'Transactional Components/Badge',
   component: Badge,
   parameters: {
     docs: {

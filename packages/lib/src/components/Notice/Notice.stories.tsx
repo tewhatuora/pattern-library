@@ -6,7 +6,7 @@ import DocsPage from '../../../utils/DocsPage';
 import { Notice } from './Notice';
 
 const meta: Meta<typeof Notice> = {
-  title: 'Components/Notice',
+  title: 'Transactional Components/Notice',
   component: Notice,
   parameters: {
     docs: {

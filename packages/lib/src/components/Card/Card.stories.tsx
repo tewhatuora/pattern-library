@@ -12,7 +12,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './Card.docs.mdx';
 
 export default {
-  title: 'Components/Card',
+  title: 'Transactional Components/Card',
   component: Card,
   argTypes: {
     children: {

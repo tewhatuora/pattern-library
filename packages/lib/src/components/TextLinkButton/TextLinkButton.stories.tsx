@@ -5,7 +5,7 @@ import DocsPage from '../../../utils/DocsPage';
 import Docs from './TextLinkButton.docs.mdx';
 
 export default {
-  title: 'Components/TextLinkButton',
+  title: 'Transactional Components/TextLinkButton',
   component: TextLinkButton,
   argTypes: {
     as: {

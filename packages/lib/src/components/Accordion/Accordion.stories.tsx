@@ -8,7 +8,7 @@ import Docs from './Accordion.docs.mdx';
 import DocsPage from '../../../utils/DocsPage';
 
 export default {
-  title: 'Components/Accordion',
+  title: 'Transactional Components/Accordion',
   component: Accordion.Root,
   subcomponents: {
     Root: Accordion.Root,
@@ -79,4 +79,12 @@ Default.args = {
   defaultValue: undefined,
   variant: 'light',
   headingLevel: 3,
+};
+
+export const Dividers = {
+  render: Default,
+  args: {
+    ...Default.args,
+    dividers: true,
+  },
 };
