@@ -5,7 +5,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
-import { boldText } from '../Text/Text.css';
+import { boldText, text } from '../Text/Text.css';
 import { boldLinks, noVisited } from '../AnchorLink/AnchorLink.css';
 
 export const linkVariants = {
@@ -44,6 +44,11 @@ export const link = recipe({
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
+      // A link within a block of text must be distinguishable without relying on colour (WCAG 1.4.1).
+      // Before `&:hover` so hover keeps its own decoration.
+      [`${text} &`]: {
+        textDecoration: 'underline',
+      },
       '&:hover': {
         color: vars.color.semantic.text.links.hover,
         textDecoration: vars.textDecoration['link-hover&focus'],

@@ -11,6 +11,7 @@ export default {
     },
   },
   argTypes: {
+    'aria-label': { control: 'text' },
     id: { control: false },
     name: { control: false },
     onBlurEvt: { control: false },
@@ -57,6 +58,8 @@ export default {
     },
   },
   args: {
+    // InputField has no label of its own, so name it for assistive technology
+    'aria-label': 'Example field',
     type: 'text',
     value: undefined,
   },

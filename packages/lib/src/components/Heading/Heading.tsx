@@ -13,8 +13,8 @@ const resolveDefaultComponent = {
 } as const;
 
 export type HeadingProps = {
-  /** Type scale step, `'1'` largest to `'4'` smallest. Also picks the default element, `h1` to `h4`. */
-  level: HeadingLevel;
+  /** Type scale step, `'1'` largest to `'4'` smallest (a number works too). Also picks the default element, `h1` to `h4`. */
+  level: HeadingLevel | 1 | 2 | 3 | 4;
   /**
    * Font weight token.
    * @default 'regular'
@@ -43,7 +43,9 @@ export type HeadingProps = {
  * </Heading>
  */
 export const Heading = forwardRef<HTMLElement, HeadingProps>(
-  ({ level, weight, align, as, children, id, color, className }, ref) => {
+  ({ level: levelProp, weight, align, as, children, id, color, className }, ref) => {
+    const level = String(levelProp) as HeadingLevel;
+
     return (
       <Box
         as={as ?? resolveDefaultComponent[level]}

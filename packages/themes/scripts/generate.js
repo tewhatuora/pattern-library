@@ -21,12 +21,13 @@ function getStyleDictionaryConfig(theme, platform) {
     (platforms, current) => ({
       ...platforms,
       [current]: {
+        ...config.platforms[current],
         buildPath: `${OUTPUT_DIR}/themes/${theme}/${platform}/`,
         options: {
+          ...config.platforms[current].options,
           name: theme,
           displayName,
         },
-        ...config.platforms[current],
       },
     }),
     {},
@@ -35,7 +36,7 @@ function getStyleDictionaryConfig(theme, platform) {
   return {
     source: [
       `${INPUT_DIR}/themes/${theme}/*.json`,
-      '${INPUT_DIR}/globals/**/*.json',
+      `${INPUT_DIR}/globals/**/*.json`,
       `${INPUT_DIR}/platforms/${platform}/*.json`,
     ],
     platforms: platformsConfig,

@@ -1,7 +1,8 @@
 import makeSize from '../utils/makeSize.js';
 import sizeToRem from '../utils/sizeToRem.js';
 
-const typographyTokensShape = {
+// A function, so each theme starts from fresh objects rather than adding to the previous theme's
+const typographyTokensShape = () => ({
   fontFamily: '',
   fontWeight: {},
   textDecoration: {},
@@ -10,7 +11,7 @@ const typographyTokensShape = {
     level: {},
   },
   text: {},
-};
+});
 
 /**
  * Return a font size and lineHeight
@@ -49,15 +50,51 @@ const makeHeadingTokens = ({ tokens, typographyTokens, bp, size, weight, level, 
   },
 });
 /**
+ * The theme's font family: the one most typography tokens use. A theme has a single `fontFamily`, so warn when
+ * tokens disagree, which is usually a token that wasn't updated in Figma.
+ * @param typographyTokens Typography tokens
+ * @param themeName Theme name, for the warning
+ * @return {string} Font family
+ */
+const fontFamilyOf = (typographyTokens, themeName) => {
+  const paths = {};
+
+  for (const [bp, sizes] of Object.entries(typographyTokens)) {
+    for (const [size, weights] of Object.entries(sizes)) {
+      for (const [weight, token] of Object.entries(weights)) {
+        (paths[token.fontFamily] ??= []).push(`${bp}/${size}/${weight}`);
+      }
+    }
+  }
+
+  const families = Object.keys(paths).sort((a, b) => paths[b].length - paths[a].length);
+  const [main, ...others] = families;
+
+  if (others.length) {
+    const otherTokens = others.map((family) => `${family}: ${paths[family].join(', ')}`).join('; ');
+
+    console.warn(
+      `\nWarning: the ${themeName} theme's typography uses ${families.length} font families, but a theme has only one. ` +
+        `Using ${main}, which most tokens use. The others are ${otherTokens}.`,
+    );
+  }
+
+  return main;
+};
+
+/**
  * Format typography tokens
  * @param {Object} typographyTokens typography tokens
+ * @param {string} themeName Theme name, for warnings
  * @return {Object} Formatted typography tokens
  */
-const typography = (typographyTokens) => {
+const typography = (typographyTokens, themeName) => {
+  const fontFamily = fontFamilyOf(typographyTokens, themeName);
+
   return Object.keys(typographyTokens).reduce((tokens, bp) => {
     for (const size of Object.keys(typographyTokens[bp])) {
       for (const weight of Object.keys(typographyTokens[bp][size])) {
-        tokens.fontFamily = typographyTokens[bp][size][weight].fontFamily;
+        tokens.fontFamily = fontFamily;
         tokens.fontWeight[weight] = typographyTokens[bp][size][weight].fontWeight.toString();
         tokens.textDecoration[weight] = typographyTokens[bp][size][weight].textDecoration.toString();
 
@@ -101,7 +138,7 @@ const typography = (typographyTokens) => {
     }
 
     return tokens;
-  }, typographyTokensShape);
+  }, typographyTokensShape());
 };
 
 export default typography;

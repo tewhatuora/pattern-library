@@ -30,6 +30,8 @@
     "@storybook/addon-themes": "^10.6.2",
     "@storybook/addon-vitest": "^10.6.2",
     "@storybook/react-vite": "^10.6.2",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@types/mdx": "^2.0.2",
     "@types/react": "^19.2.0",
     "@uiw/react-json-view": "^2.0.0-alpha.32",

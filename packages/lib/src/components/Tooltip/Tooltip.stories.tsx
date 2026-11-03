@@ -1,3 +1,5 @@
+import { expect, within } from 'storybook/test';
+
 import { Tooltip, TooltipProps } from './Tooltip';
 import { Notice } from '../Notice/Notice';
 import { Icon } from '../Icon/Icon';
@@ -64,7 +66,7 @@ export const Trigger = (args: TooltipProps) => (
   <Text weight="bold">
     Tooltip Example
     <Tooltip {...args}>
-      <Icon color="primary100" icon="info" variant="functionalIcons" />
+      <Icon alt="More information" color="primary100" icon="info" variant="functionalIcons" />
     </Tooltip>
   </Text>
 );
@@ -111,10 +113,22 @@ export const ButtonExample = (args: TooltipProps) => (
 );
 
 export const AnchorLinkExample = (args: TooltipProps) => (
-  <Tooltip {...args}>
+  <Tooltip {...args} triggerAsChild>
     <AnchorLink to="#">Trigger tooltip</AnchorLink>
   </Tooltip>
 );
+
+/** The link forwards its ref, so the tooltip is positioned next to it rather than at the top left of the page */
+AnchorLinkExample.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const link = within(canvasElement).getByRole('link', { name: 'Trigger tooltip' });
+  link.focus();
+  const tooltip = await within(canvasElement.ownerDocument.body).findByRole('tooltip');
+  // Radix renders the visible content beside the trigger; the role="tooltip" element is visually hidden inside it
+  const content = tooltip.parentElement as HTMLElement;
+  const gap = (a: DOMRect, b: DOMRect) =>
+    Math.max(a.top - b.bottom, b.top - a.bottom, a.left - b.right, b.left - a.right);
+  await expect(gap(content.getBoundingClientRect(), link.getBoundingClientRect())).toBeLessThan(40);
+};
 
 export const AccordionExample = (args: TooltipProps) => (
   <ContrastWrapper variant="light">
@@ -133,7 +147,7 @@ export const AccordionExample = (args: TooltipProps) => (
 
 export const DialogExample = (args: TooltipProps) => {
   return (
-    <Dialog.Root defaultOpen trigger={<Button>Open</Button>}>
+    <Dialog.Root defaultOpen heading="Dialog heading" trigger={<Button>Open</Button>}>
       <Dialog.Content>
         <Tooltip {...args}>
           <Text>This is a tooltip</Text>

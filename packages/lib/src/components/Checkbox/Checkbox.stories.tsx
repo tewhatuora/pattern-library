@@ -45,6 +45,8 @@ export default {
     },
   },
   args: {
+    // Links the visible label to the checkbox, so each story is named
+    id: 'checkbox',
     checked: false,
     indeterminate: false,
   },
@@ -70,12 +72,24 @@ Disabled.args = {
   disabled: true,
   label: 'Disabled',
 };
+Disabled.parameters = {
+  a11y: {
+    // Disabled controls and their labels are exempt from WCAG contrast (1.4.3 inactive components).
+    config: { rules: [{ id: 'color-contrast', enabled: false }] },
+  },
+};
 export const CheckedAndDisabled = (args: CheckboxProps) => <Checkbox {...args} />;
 CheckedAndDisabled.args = {
   disabled: true,
   checked: true,
   heading: 'Checked',
   label: 'Disabled',
+};
+CheckedAndDisabled.parameters = {
+  a11y: {
+    // Disabled controls and their labels are exempt from WCAG contrast (1.4.3 inactive components).
+    config: { rules: [{ id: 'color-contrast', enabled: false }] },
+  },
 };
 export const Error = (args: CheckboxProps) => <Checkbox {...args} />;
 Error.args = {

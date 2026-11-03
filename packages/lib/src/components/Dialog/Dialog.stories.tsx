@@ -144,3 +144,43 @@ TriggerCallbacks.play = async ({ canvasElement }: { canvasElement: HTMLElement }
   await expect(onOpenChange).toHaveBeenCalledTimes(2);
   await expect(onOpenChange).toHaveBeenLastCalledWith(false);
 };
+
+const onCancelPress = fn();
+const onCloseActionOpenChange = fn();
+
+/** An action with `close` closes the dialog, and its own `onPress` still runs. `closeLabel` names the close button. */
+export const CloseAction = (args: DialogProps) => (
+  <Dialog.Root
+    {...args}
+    closeLabel="Close dialog"
+    trigger={<Button>Open</Button>}
+    onOpenChange={onCloseActionOpenChange}
+  >
+    {content}
+    <Dialog.Actions>
+      <Dialog.Action variant="primary">Save</Dialog.Action>
+      <Dialog.Action close variant="tertiary" onPress={onCancelPress}>
+        Cancel
+      </Dialog.Action>
+    </Dialog.Actions>
+  </Dialog.Root>
+);
+
+CloseAction.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  onCancelPress.mockClear();
+  onCloseActionOpenChange.mockClear();
+  const body = within(canvasElement.ownerDocument.body);
+
+  await userEvent.click(within(canvasElement).getByRole('button', { name: 'Open' }));
+  const dialog = await body.findByRole('dialog');
+  await expect(within(dialog).getByRole('button', { name: 'Close dialog' })).toBeInTheDocument();
+
+  // An action without `close` leaves the dialog open
+  await userEvent.click(within(dialog).getByRole('button', { name: 'Save' }));
+  await expect(body.getByRole('dialog')).toBeInTheDocument();
+
+  await userEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }));
+  await waitFor(() => expect(body.queryByRole('dialog')).not.toBeInTheDocument());
+  await expect(onCancelPress).toHaveBeenCalledTimes(1);
+  await expect(onCloseActionOpenChange).toHaveBeenLastCalledWith(false);
+};

@@ -38,7 +38,7 @@ export const Default = (args: StackProps) => (
         backgroundColor="primary25"
         borderColor="primary100"
         borderWidth="small"
-        color="primary100"
+        color="primary110"
         display="flex"
         justifyContent="center"
         key={x}

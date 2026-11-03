@@ -19,12 +19,17 @@ import * as styles from './Dialog.css';
 export type DialogProps = {
   /** Decorative icon shown above the heading. */
   icon?: IconType;
-  /** Dialog title. It is the dialog's accessible name, so always set it. */
+  /** Dialog title. It is the dialog's accessible name, so always set it. Without it the `subheading`, or "Dialog", is used. */
   heading?: string;
   /** Smaller line under the heading. Visual only, it is not part of the accessible name or description. */
   subheading?: string;
   /** Element that opens the dialog, usually a `Button`. It must accept a ref and `onClick`. It keeps its own `onPress`/`onClick`; the dialog opens as well. Omit it when you control `open` yourself. */
   trigger?: ReactElement;
+  /**
+   * Accessible name of the close button.
+   * @default 'Close'
+   */
+  closeLabel?: string;
 } & RadixDialog.DialogProps;
 
 /**
@@ -39,7 +44,7 @@ export type DialogProps = {
  *   <Dialog.Content>This cannot be undone.</Dialog.Content>
  *   <Dialog.Actions>
  *     <Dialog.Action variant="primary" onPress={() => remove()}>Delete</Dialog.Action>
- *     <Dialog.Action variant="tertiary">Cancel</Dialog.Action>
+ *     <Dialog.Action close variant="tertiary">Cancel</Dialog.Action>
  *   </Dialog.Actions>
  * </Dialog.Root>
  */
@@ -52,6 +57,7 @@ export const Root = ({
   onOpenChange,
   modal,
   trigger,
+  closeLabel = 'Close',
   children,
 }: PropsWithChildren<DialogProps>) => {
   const theme = useTheme();
@@ -72,8 +78,12 @@ export const Root = ({
       <RadixDialog.Portal>
         <ThemeProvider theme={theme}>
           <RadixDialog.Overlay className={styles.overlay} />
-          <RadixDialog.Content className={styles.dialog}>
-            <RadixDialog.Close className={styles.closeButton}>
+          <RadixDialog.Content
+            className={styles.dialog}
+            // Without a heading the title is empty, so name the dialog from the subheading instead
+            {...(!heading && { 'aria-labelledby': undefined, 'aria-label': subheading || 'Dialog' })}
+          >
+            <RadixDialog.Close aria-label={closeLabel} className={styles.closeButton}>
               <Icon className={styles.icon} icon="cross" variant="functionalIcons" />
             </RadixDialog.Close>
             <Stack alignItems="center" display="flex" flexDirection="column" space="medium">

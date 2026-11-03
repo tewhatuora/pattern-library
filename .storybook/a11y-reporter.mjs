@@ -1,5 +1,5 @@
 // Vitest reporter that summarises the axe results the a11y addon attaches to each story test.
-// With `a11y: { test: 'todo' }` violations don't fail the run, so this keeps them visible in CI logs.
+// Gives one summary per rule across all stories in CI logs, alongside the individual failing tests.
 export default class A11yReporter {
   violations = new Map();
 
@@ -27,9 +27,7 @@ export default class A11yReporter {
     const rules = [...this.violations].sort(([, a], [, b]) => order.indexOf(a.impact) - order.indexOf(b.impact));
     const stories = new Set(rules.flatMap(([, rule]) => [...rule.stories]));
 
-    this.logger.log(
-      `\nAccessibility: ${rules.length} axe rules violated across ${stories.size} stories (not failing; a11y.test is 'todo')\n`,
-    );
+    this.logger.log(`\nAccessibility: ${rules.length} axe rules violated across ${stories.size} stories\n`);
     for (const [id, rule] of rules) {
       const examples = [...rule.stories].slice(0, 3).join(', ');
       const more = rule.stories.size > 3 ? `, +${rule.stories.size - 3} more` : '';

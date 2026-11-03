@@ -1,6 +1,8 @@
 import {
   ChangeEvent,
   ChangeEventHandler,
+  FocusEvent,
+  FocusEventHandler,
   ForwardedRef,
   SelectHTMLAttributes,
   forwardRef,
@@ -41,12 +43,12 @@ export type InputDropdownProps = {
    * user chooses, in which case `selected` on an option is ignored.
    */
   options: InputOption[];
-  /** Called when the select loses focus. Passing `onBlur` as well overrides this. */
-  onSelectBlur?: ChangeEventHandler<HTMLSelectElement>;
+  /** Called when the select loses focus. Same as `onBlur`; both are called if you pass both. */
+  onSelectBlur?: FocusEventHandler<HTMLSelectElement>;
   /** Called with the change event when the user picks an option. Fires whether or not `value` is set. */
   onChange?: ChangeEventHandler<HTMLSelectElement>;
-  /** Called when the select gets focus. Passing `onFocus` as well overrides this. */
-  onSelectFocus?: ChangeEventHandler<HTMLSelectElement>;
+  /** Called when the select gets focus. Same as `onFocus`; both are called if you pass both. */
+  onSelectFocus?: FocusEventHandler<HTMLSelectElement>;
   /**
    * Add `*` to the label when `required`.
    * @default true
@@ -54,7 +56,8 @@ export type InputDropdownProps = {
   showRequiredAsterisk?: boolean;
 } & InputLabelProps &
   InputMessageProps &
-  OtherInputFieldProps &
+  // The input field's handlers are typed for input elements; the select's come from SelectHTMLAttributes
+  Omit<OtherInputFieldProps, 'onBlur' | 'onFocus' | 'onChange'> &
   SelectHTMLAttributes<HTMLSelectElement>;
 
 /**
@@ -98,8 +101,10 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       tertiaryLabelTooltip,
       onTertiaryLabelClick,
       onSelectBlur,
+      onBlur,
       onChange,
       onSelectFocus,
+      onFocus,
       className,
       options,
       labelProps: consumerLabelProps,
@@ -159,6 +164,22 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       [isControlled, onChange],
     );
 
+    const handleBlur = useCallback(
+      (e: FocusEvent<HTMLSelectElement>) => {
+        onSelectBlur?.(e);
+        onBlur?.(e);
+      },
+      [onSelectBlur, onBlur],
+    );
+
+    const handleFocus = useCallback(
+      (e: FocusEvent<HTMLSelectElement>) => {
+        onSelectFocus?.(e);
+        onFocus?.(e);
+      },
+      [onSelectFocus, onFocus],
+    );
+
     const invalid = error || !!errorMessage ? 'true' : 'false';
 
     const handleClickIcon = useCallback(() => {
@@ -201,11 +222,11 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
             disabled={disabled}
             name={name}
             required={required}
-            onBlur={onSelectBlur}
-            onChange={handleChange}
-            onFocus={onSelectFocus}
             {...props}
             ref={ref}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onFocus={handleFocus}
           >
             {optionEls}
           </select>

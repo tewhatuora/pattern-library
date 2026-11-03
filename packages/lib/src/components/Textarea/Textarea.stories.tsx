@@ -133,6 +133,12 @@ export const Disabled = (args: InputTextProps) => {
   const [value, setValue] = useState('Filled');
   return <Textarea {...args} disabled value={value} onChange={(e) => setValue(e.target.value)} />;
 };
+Disabled.parameters = {
+  a11y: {
+    // Disabled controls and their labels are exempt from WCAG contrast (1.4.3 inactive components).
+    config: { rules: [{ id: 'color-contrast', enabled: false }] },
+  },
+};
 
 export const Clearable = (args: InputTextProps) => {
   const [value, setValue] = useState('Clearable');

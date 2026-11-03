@@ -4,6 +4,8 @@ import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 
+import { svgrOptions } from './svgr.config.mjs';
+
 import pkg from './package.json';
 import path from 'path';
 
@@ -67,12 +69,8 @@ export default defineConfig(({ mode }) => {
       svgr({
         include: '**/*.svg*',
         svgrOptions: {
+          ...svgrOptions,
           exportType: 'default',
-          jsxRuntime: 'classic',
-          dimensions: false,
-          replaceAttrValues: {
-            '#404040': 'currentColor',
-          },
         },
       }),
       vanillaExtractPlugin({

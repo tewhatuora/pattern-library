@@ -21,7 +21,7 @@ export type InputPhoneOnChangeFn = (value: string | undefined) => void;
 export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
   InputMessageProps &
   Omit<OtherInputFieldProps, 'onChange'> & {
-    /** Show a clear button while there is a value. Clearing calls `onChange` with an empty string. */
+    /** Show a clear button while there is a value. Clearing calls `onChange` with `undefined`, as emptying the field does. */
     clearable?: boolean;
     /** Show and format the number in international form, with its country calling code. */
     international?: boolean;
@@ -97,7 +97,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     );
 
     const handleClear = useCallback(() => {
-      onChange?.('');
+      onChange?.(undefined);
 
       // Focus input on clear
       internalRef.current?.focus();

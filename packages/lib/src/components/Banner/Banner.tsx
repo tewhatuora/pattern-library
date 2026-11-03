@@ -7,7 +7,6 @@ import { Icon } from '../Icon/Icon';
 import { CloseButton } from '../CloseButton/CloseButton';
 
 import * as styles from './Banner.css';
-import { ContrastVariant } from '../../types';
 import { moveFocusBeforeRemoving } from '../../utils/focus';
 
 export const BannerStyles = styles;
@@ -18,14 +17,9 @@ export type BannerProps = {
    * @default 'alert'
    */
   variant?: styles.Variant;
-  /** @deprecated Has no effect. */
-  theme?: ContrastVariant;
   /** Shows a close button when provided. Called after the Banner hides itself; the parent cannot re-open it, so unmount and remount it to show it again. */
   onClose?: () => void;
-} & Pick<
-  JSX.IntrinsicElements['button'],
-  'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'disabled' | 'type' | 'tabIndex'
->;
+} & Pick<JSX.IntrinsicElements['aside'], 'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'tabIndex'>;
 
 /**
  * Prominent message with an icon, rendered as an `aside` labelled by its variant.
@@ -37,8 +31,7 @@ export type BannerProps = {
  * </Banner>
  */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  // `theme` is unused, but kept out of `boxProps` so it isn't spread onto the DOM; removing the prop would be a breaking change.
-  ({ variant = 'alert', theme, onClose, children, ...boxProps }, ref) => {
+  ({ variant = 'alert', onClose, children, ...boxProps }, ref) => {
     // for closing banner if set true banner hidden
     const [isClosed, setIsClosed] = useState(false);
     const bannerRef = useObjectRef(ref);

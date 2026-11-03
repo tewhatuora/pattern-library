@@ -9,6 +9,13 @@ import TypographyDocs from './Typography';
 export default {
   title: 'Themes/Tokens',
   argTypes: {},
+  parameters: {
+    a11y: {
+      // These pages document tokens by showing swatches, token names and sample values (some deliberately in
+      // low-contrast or dark-theme colours), so contrast here describes the token rather than the page's usage.
+      config: { rules: [{ id: 'color-contrast', enabled: false }] },
+    },
+  },
 };
 
 export const Color = () => <ColorDocs />;

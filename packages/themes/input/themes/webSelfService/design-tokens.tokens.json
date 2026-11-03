@@ -1940,7 +1940,7 @@
           "value": {
             "fontSize": 32,
             "textDecoration": "none",
-            "fontFamily": "Poppins",
+            "fontFamily": "Public Sans",
             "fontWeight": 900,
             "fontStyle": "normal",
             "fontStretch": "normal",
@@ -1956,7 +1956,7 @@
           "value": {
             "fontSize": 32,
             "textDecoration": "none",
-            "fontFamily": "Poppins",
+            "fontFamily": "Public Sans",
             "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
@@ -2324,7 +2324,7 @@
           "value": {
             "fontSize": 24,
             "textDecoration": "none",
-            "fontFamily": "Poppins",
+            "fontFamily": "Public Sans",
             "fontWeight": 700,
             "fontStyle": "normal",
             "fontStretch": "normal",
@@ -2790,7 +2790,7 @@
           },
           "fontFamily": {
             "type": "string",
-            "value": "Poppins"
+            "value": "Public Sans"
           },
           "fontWeight": {
             "type": "number",
@@ -2836,7 +2836,7 @@
           },
           "fontFamily": {
             "type": "string",
-            "value": "Poppins"
+            "value": "Public Sans"
           },
           "fontWeight": {
             "type": "number",
@@ -3864,7 +3864,7 @@
           },
           "fontFamily": {
             "type": "string",
-            "value": "Poppins"
+            "value": "Public Sans"
           },
           "fontWeight": {
             "type": "number",

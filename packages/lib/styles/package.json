@@ -1,3 +1,4 @@
 {
-  "main": "../dist/style.css"
+  "main": "../dist/style.css",
+  "types": "./index.d.ts"
 }

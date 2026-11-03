@@ -13,10 +13,7 @@ export type BadgeProps = {
    * @default 'neutral'
    */
   variant?: styles.Variant;
-} & Pick<
-  JSX.IntrinsicElements['button'],
-  'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'disabled' | 'type' | 'tabIndex'
->;
+} & Pick<JSX.IntrinsicElements['div'], 'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'children' | 'tabIndex'>;
 
 /**
  * Small static label, e.g. a status. Rendered as a `div`, so it is not interactive even though it accepts click props.

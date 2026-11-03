@@ -129,3 +129,9 @@ export const OnFocusAndBlurEvent = (args: InputPasswordProps) => {
   };
   return <InputPassword {...args} defaultValue="Password1234" onBlur={handleBlur} onFocus={handleFocus} />;
 };
+Disabled.parameters = {
+  a11y: {
+    // Disabled controls and their labels are exempt from WCAG contrast (1.4.3 inactive components).
+    config: { rules: [{ id: 'color-contrast', enabled: false }] },
+  },
+};

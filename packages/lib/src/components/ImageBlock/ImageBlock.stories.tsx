@@ -54,6 +54,7 @@ export default {
         alert('Secondary button clicked');
       },
     },
+    alt: 'Placeholder image',
     src: 'https://placehold.jp/404040/ffffff/500x500.png?text=ImageBlock',
     shape: 'square',
     width: 'full',

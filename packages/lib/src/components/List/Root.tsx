@@ -22,7 +22,7 @@ export type ListRootProps = {
 
 /**
  * A styled list. Every child must be an element, such as `List.Item`, `List.Link` or a nested `List.Root`;
- * plain text children throw.
+ * plain text children throw. A nested `List.Root` is wrapped in an `li` so the markup stays valid.
  *
  * @example
  * <List.Root dividers type="ul">
@@ -56,7 +56,10 @@ export const Root = ({
       ),
     };
 
-    return cloneElement(child, props);
+    const item = cloneElement(child, props);
+
+    // A list can't be a direct child of another list, so wrap a nested one in an `li` (without a marker)
+    return child.type === Root ? <li className={styles.nestedItem}>{item}</li> : item;
   });
 
   const listEl = createElement(

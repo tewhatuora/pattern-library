@@ -53,6 +53,8 @@ export const Row = ({
   tablet,
   desktop,
   wide,
+  // Not used by Row, but kept out of boxProps so it isn't rendered as a DOM attribute
+  columns,
   ...boxProps
 }: PropsWithChildren<RowProps<unknown>>) => {
   const parentCols = useContext(ParentColumnContext);

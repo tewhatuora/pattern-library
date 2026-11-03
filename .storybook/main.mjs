@@ -1,7 +1,8 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import svgr from 'vite-plugin-svgr';
-
 import { mergeConfig } from 'vite';
+
+import { svgrOptions } from '../packages/lib/svgr.config.mjs';
 
 export default {
   stories: [
@@ -53,10 +54,7 @@ export default {
         svgr({
           include: '**/*.svg?component',
           enforce: 'pre',
-          svgrOptions: {
-            jsxRuntime: 'classic', // inject `import * as React from 'react'`
-            dimensions: false,
-          },
+          svgrOptions,
         }),
         vanillaExtractPlugin({ identifiers: 'debug' }),
       ],

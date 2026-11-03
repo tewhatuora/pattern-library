@@ -2,6 +2,7 @@
 
 `@healthnz/pattern-library`
 
+
 # Installation
 
 To install the pattern library, open a terminal at the root of your project workspace and run the following command:
@@ -15,18 +16,26 @@ $ npm install @healthnz/pattern-library @healthnz/pattern-library-themes
 The themes package is a peer dependency, so your app provides the themes and the library shares them.
 
 ## Include fonts
-The pattern library uses the Google Font "Fira Sans". Include the resources in your HTML.
+Each theme uses Google Fonts. Include the ones for your theme in your HTML (in Next.js, `app/layout.tsx` or `pages/_document.tsx`).
+
+`neutral` uses Poppins:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet" />
+```
+
+`webSelfService` uses Public Sans:
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
 ```
 
 ## Import styles
 The pattern library styles include a CSS bootstrap and the component styles, and the themes styles define each theme's values.
 
-Import both once, at the root of your app (e.g. `app/layout.tsx` in Next.js):
+Import both once, at the root of your app: `app/layout.tsx` or `pages/_app.tsx` in Next.js, `app/root.tsx` in React Router, or your entry file in a Vite app.
 
 ```js
 import '@healthnz/pattern-library/styles';
@@ -53,6 +62,15 @@ The theming system introduced a concept of theme object. To configure it, you'll
 
 ### Server components (Next.js App Router)
 Every component is a client component, and can be rendered from a server component. Compound components are also exported by name for this, because a server component can't dot into a client module: use `<DialogRoot>`, `<HeaderRoot>`, `<NavigationItem>` and so on, or use `<Dialog.Root>` from a file marked `'use client'`.
+
+### Testing
+Components need a `ThemeProvider`, so wrap them in one when rendering in tests. jsdom lacks two browser APIs the library uses, so stub them in your test setup file:
+
+```ts
+window.matchMedia ??= (query) =>
+  ({ matches: false, media: query, addEventListener() {}, removeEventListener() {} }) as unknown as MediaQueryList;
+globalThis.ResizeObserver ??= class { observe() {} unobserve() {} disconnect() {} };
+```
 
 ### Component props
 Each component's props are documented in its types, so your editor shows them on hover and in autocomplete. The [Storybook](https://main--630296ff1edaa813b72e85c0.chromatic.com/) has live examples and a props table for every component.

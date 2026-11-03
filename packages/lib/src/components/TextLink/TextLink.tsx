@@ -1,7 +1,7 @@
-import { AnchorHTMLAttributes, PropsWithChildren, useRef } from 'react';
+import { AnchorHTMLAttributes, PropsWithChildren, forwardRef } from 'react';
 import { clsx } from 'clsx';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
-import { mergeProps } from '@react-aria/utils';
+import { mergeProps, useObjectRef } from '@react-aria/utils';
 
 import { LinkComponentType } from '@/src/types';
 import { canAcceptRef } from '@/src/utils/canAcceptRef';
@@ -60,54 +60,62 @@ export type TextLinkProps = {
  *   View appointments
  * </TextLink>
  */
-export const TextLink = ({
-  to,
-  size = 'medium',
-  weight = 'link-normal',
-  icon,
-  iconPosition = 'right',
-  noVisited = false,
-  className,
-  showUnderline = false,
-  component: LinkComponent,
-  children,
-  ...rest
-}: PropsWithChildren<TextLinkProps>) => {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const textStyles = useText({ weight, size });
-  const { linkProps } = useLink(rest, ref);
-  // mergeProps chains any handlers both define, rather than one replacing the other
-  const props = {
-    ...mergeProps(withoutLinkOptions(rest), linkProps),
-    className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
-    // `to` is the documented prop; fall back to a plain `href` so it isn't overwritten with undefined
-    href: to ?? rest.href,
-    rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
-  };
+export const TextLink = forwardRef<HTMLAnchorElement, PropsWithChildren<TextLinkProps>>(
+  (
+    {
+      to,
+      size = 'medium',
+      weight = 'link-normal',
+      icon,
+      iconPosition = 'right',
+      noVisited = false,
+      className,
+      showUnderline = false,
+      component: LinkComponent,
+      children,
+      ...rest
+    }: PropsWithChildren<TextLinkProps>,
+    forwardedRef,
+  ) => {
+    // One ref for react-aria and the caller (e.g. a Radix trigger with asChild)
+    const ref = useObjectRef(forwardedRef);
+    const textStyles = useText({ weight, size });
+    const { linkProps } = useLink(rest, ref);
+    // mergeProps chains any handlers both define, rather than one replacing the other
+    const props = {
+      ...mergeProps(withoutLinkOptions(rest), linkProps),
+      className: clsx(textStyles, styles.link({ noVisited, underline: showUnderline }), className),
+      // `to` is the documented prop; fall back to a plain `href` so it isn't overwritten with undefined
+      href: to ?? rest.href,
+      rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
+    };
 
-  const linkChildren = (
-    <>
-      {!!icon && iconPosition === 'left' && (
-        <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
-      )}
-      {children}
-      {!!icon && iconPosition === 'right' && (
-        <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
-      )}
-    </>
-  );
-
-  if (LinkComponent) {
-    return (
-      <LinkComponent {...props} ref={canAcceptRef(LinkComponent) ? ref : undefined}>
-        {linkChildren}
-      </LinkComponent>
+    const linkChildren = (
+      <>
+        {!!icon && iconPosition === 'left' && (
+          <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
+        )}
+        {children}
+        {!!icon && iconPosition === 'right' && (
+          <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
+        )}
+      </>
     );
-  }
 
-  return (
-    <a {...props} ref={ref}>
-      {linkChildren}
-    </a>
-  );
-};
+    if (LinkComponent) {
+      return (
+        <LinkComponent {...props} ref={canAcceptRef(LinkComponent) ? ref : undefined}>
+          {linkChildren}
+        </LinkComponent>
+      );
+    }
+
+    return (
+      <a {...props} ref={ref}>
+        {linkChildren}
+      </a>
+    );
+  },
+);
+
+TextLink.displayName = 'TextLink';

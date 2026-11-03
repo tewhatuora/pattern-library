@@ -5,8 +5,8 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 
 // Runs every story as a test in headless Chromium: a story fails if it throws while rendering or
-// its play function fails. Accessibility (axe) results are reported without failing; see the
-// a11y parameter in .storybook/preview.jsx.
+// its play function fails, or axe finds an accessibility violation (`a11y: { test: 'error' }` in
+// .storybook/parameters.jsx).
 export default defineConfig({
   // vanilla-extract compiles .css.ts files with a separate Vite instance built from this file rather
   // than Storybook's viteFinal, so it needs the lib's '@/src/...' path alias here too

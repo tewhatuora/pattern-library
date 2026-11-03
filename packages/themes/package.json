@@ -53,7 +53,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/style.css",
+    "./styles": {
+      "types": "./styles/index.d.ts",
+      "default": "./dist/style.css"
+    },
     "./package.json": "./package.json"
   },
   "sideEffects": [
@@ -61,7 +64,8 @@
     "*.css.ts"
   ],
   "files": [
-    "dist"
+    "dist",
+    "styles"
   ],
   "type": "module",
   "repository": {

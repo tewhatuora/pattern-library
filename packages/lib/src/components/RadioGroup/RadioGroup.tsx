@@ -71,6 +71,7 @@ export const RadioGroup = ({
   tertiaryLabelAs,
   tertiaryLabelIcon,
   tertiaryLabelIconPosition,
+  tertiaryLabelTooltip,
   onTertiaryLabelClick,
   children,
 }: RadioGroupProps) => {
@@ -108,6 +109,7 @@ export const RadioGroup = ({
         tertiaryLabelAs={tertiaryLabelAs}
         tertiaryLabelIcon={tertiaryLabelIcon}
         tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+        tertiaryLabelTooltip={tertiaryLabelTooltip}
         onTertiaryLabelClick={onTertiaryLabelClick}
       />
       <AllowedChildren

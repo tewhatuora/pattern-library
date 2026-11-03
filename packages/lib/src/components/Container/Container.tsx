@@ -5,7 +5,7 @@ import * as styles from './Container.css';
 
 export const ContainerStyles = styles;
 
-type ContainerProps = {
+export type ContainerProps = {
   className?: string;
 } & BoxProps;
 

@@ -10,7 +10,6 @@ import { Content, ContentProps } from '../Content/Content';
 import { Stack } from '../Stack/Stack';
 import { MAX_COLS } from '../../css/grid';
 
-import { IconType } from '../Icon/icons';
 import * as styles from './ImageBlock.css';
 
 export const ImageBlockStyles = styles;
@@ -65,8 +64,8 @@ type AsLink = {
 export type ImageBlockProps = {
   /** Describes the image. Use an empty string if it's purely decorative. */
   alt: string;
-  /** URL or path of the image. Passed straight to an `img`, so an icon name isn't rendered as an icon. */
-  src?: string | IconType;
+  /** URL or path of the image. */
+  src?: string;
   /**
    * Image crop.
    * @default 'rectangle'

@@ -24,6 +24,8 @@ export default {
     },
   },
   args: {
+    // Links the visible label to the switch, so each story is named
+    id: 'toggle-switch',
     label: 'Label',
   },
   parameters: {

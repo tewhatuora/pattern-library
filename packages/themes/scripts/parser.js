@@ -23,7 +23,7 @@ const parser = ({ dictionary, options }) => {
   return {
     name: options.name,
     displayName: options.displayName,
-    typography: typography(typographyTokens),
+    typography: typography(typographyTokens, options.name),
     space: spacing(spaceTokens),
     transitions: transitions(motionTokens),
     border: borders(otherTokens),
