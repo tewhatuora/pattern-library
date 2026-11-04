@@ -9,6 +9,8 @@ const base = style([
   responsiveStyle({
     mobile: {
       position: 'fixed',
+      // Includes the padding in the height, so the panel ends at the bottom of the viewport rather than 48px below it
+      boxSizing: 'border-box',
       top: calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet),
       height: calc.subtract('100%', calc.add(vars.space.xxlarge.tablet, vars.space.large.tablet)),
       left: '0',

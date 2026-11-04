@@ -46,7 +46,7 @@ export type BaseInputFieldProps = {
   clearable?: boolean;
   /** Render a `textarea`. Only takes effect when `type` is `text`. */
   multiline?: boolean;
-  /** Visible lines of a `multiline` field. */
+  /** Visible lines of a `multiline` field. Without it, the field is about five lines tall. */
   rows?: number;
   required?: boolean;
   /** Starting value of an uncontrolled field. Ignored when `value` is set. */
@@ -157,6 +157,7 @@ export const InputField = forwardRef<HTMLInputElement | HTMLTextAreaElement, Inp
         {
           [styles.input.base]: true,
           [styles.input.multiline]: multiline,
+          [styles.input.multilineDefaultHeight]: multiline && !rows,
           [styles.input.clearable]: clearable,
         },
         textSizeClasses,

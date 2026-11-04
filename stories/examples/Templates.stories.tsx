@@ -8,8 +8,9 @@ export default {
   parameters: {},
   decorators: [
     // The `Header` has fixed position, so need to wrap it in a transform so it renders inside the story.
+    // That also makes the closed mobile navigation (moved off screen to the right) widen the page, so clip it.
     (Story) => (
-      <div style={{ transform: 'translate(0,0)' }}>
+      <div style={{ transform: 'translate(0,0)', overflowX: 'clip' }}>
         <Story />
       </div>
     ),

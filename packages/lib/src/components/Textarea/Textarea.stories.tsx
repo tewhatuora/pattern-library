@@ -1,4 +1,5 @@
-import { FocusEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
+import { useArgs } from 'storybook/preview-api';
 
 import { Textarea } from './Textarea';
 import { InputTextProps } from '../InputText/InputText';
@@ -6,16 +7,22 @@ import icons from '../Icon/icons';
 import Docs from './Textarea.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 export default {
   title: 'Transactional Components/Textarea',
   component: Textarea,
   argTypes: {
-    id: { control: false },
-    name: { control: false },
-    options: { control: false },
+    id: { control: 'text' },
+    name: { control: 'text' },
     onChange: { control: false },
+    onBlur: { control: false },
+    onFocus: { control: false },
     onTertiaryLabelClick: { control: false },
+    className: { control: false },
+    // Label props that InputText doesn't pass on
+    as: { control: false },
+    htmlFor: { control: false },
     label: {
       control: {
         type: 'text',
@@ -27,6 +34,11 @@ export default {
       },
     },
     helperText: {
+      control: {
+        type: 'text',
+      },
+    },
+    errorMessage: {
       control: {
         type: 'text',
       },
@@ -46,7 +58,22 @@ export default {
         type: 'text',
       },
     },
+    error: {
+      control: {
+        type: 'boolean',
+      },
+    },
     disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    required: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    showRequiredAsterisk: {
       control: {
         type: 'boolean',
       },
@@ -60,9 +87,18 @@ export default {
       control: {
         type: 'number',
       },
-      if: { arg: 'multiline' },
+    },
+    tertiaryLabel: {
+      control: {
+        type: 'text',
+      },
+    },
+    tertiaryLabelAs: {
+      options: ['button', 'a', 'text'],
+      control: { type: 'radio' },
     },
     href: {
+      control: { type: 'text' },
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
     },
     tertiaryLabelIcon: {
@@ -70,12 +106,10 @@ export default {
       control: { type: 'select' },
     },
     tertiaryLabelIconPosition: {
-      control: {
-        type: 'radio',
-        options: ['left', 'right'],
-      },
+      options: ['left', 'right'],
+      control: { type: 'radio' },
     },
-    type: {
+    tertiaryLabelTooltip: {
       control: {
         type: 'text',
       },
@@ -92,15 +126,110 @@ export default {
   },
   parameters: {
     controls: {
-      exclude: ['multiline', 'labelProps', 'descriptionProps', 'errorMessageProps'],
+      // Textarea is always multiline, and it always renders a textarea, so `type` has no effect
+      exclude: ['multiline', 'type', 'labelProps', 'descriptionProps', 'errorMessageProps'],
     },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
 };
+
+// Disabled fields are exempt from WCAG contrast (1.4.3 inactive components): skip the check inside them only
+const disabledContrastExempt = {
+  a11y: { config: { rules: [{ id: 'color-contrast', selector: '*:not([data-disabled-example] *)' }] } },
+};
+
+const longValue =
+  'A long value that wraps onto several lines. Textareas are for answers longer than a line, such as a ' +
+  'description of a problem, so the text keeps wrapping as the person types, and the field can be resized.';
+
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="260px" title="States">
+      <Variant label="Empty, with placeholder">
+        <Textarea helperText="Helper text" label="Label" name="overview_empty" placeholder="Placeholder" />
+      </Variant>
+      <Variant label="Filled">
+        <Textarea defaultValue="Filled" helperText="Helper text" label="Label" name="overview_filled" />
+      </Variant>
+      <Variant label="Error message">
+        <Textarea
+          defaultValue="Filled"
+          errorMessage="Error message"
+          helperText="Helper text"
+          label="Label"
+          name="overview_error"
+        />
+      </Variant>
+      <Variant label="Disabled">
+        <div data-disabled-example>
+          <Textarea defaultValue="Filled" disabled helperText="Helper text" label="Label" name="overview_disabled" />
+        </div>
+      </Variant>
+      <Variant label="Required">
+        <Textarea label="Label" name="overview_required" required />
+      </Variant>
+      <Variant label="Clearable, filled">
+        <Textarea clearable defaultValue="Clearable" label="Label" name="overview_clearable" />
+      </Variant>
+    </Variants>
+    <Variants minWidth="260px" title="Label parts">
+      <Variant label="Subheading and tertiary label">
+        <Textarea
+          label="Label"
+          name="overview_label_parts"
+          subheading="Subheading"
+          tertiaryLabel="Tertiary label"
+          tertiaryLabelAs="button"
+        />
+      </Variant>
+      <Variant label="Tertiary label as text, with icon">
+        <Textarea
+          label="Label"
+          name="overview_tertiary_text"
+          tertiaryLabel="Tertiary label"
+          tertiaryLabelAs="text"
+          tertiaryLabelIcon="info"
+        />
+      </Variant>
+    </Variants>
+    <Variants minWidth="260px" title="Rows">
+      <Variant label="Default">
+        <Textarea label="Label" name="overview_rows_default" />
+      </Variant>
+      <Variant label="rows={10}">
+        <Textarea label="Label" name="overview_rows_10" rows={10} />
+      </Variant>
+    </Variants>
+    <Variants minWidth="260px" title="Long content">
+      <Variant label="Long value">
+        <Textarea defaultValue={longValue} label="Label" name="overview_long_value" />
+      </Variant>
+      <Variant label="Long label and messages">
+        <Textarea
+          errorMessage="A long error message that explains what went wrong and how to fix it, over several lines"
+          helperText="Long helper text that describes what to enter in the field, wrapping onto more lines"
+          label="A long label that wraps onto a second line when space runs out"
+          name="overview_long_label"
+          subheading="A long subheading that also wraps onto more lines on narrow screens"
+        />
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true }, ...disabledContrastExempt };
+
+/** The playground: every prop has a control. Typing updates the `value` control. */
 export const Default = (args: InputTextProps) => {
-  return <Textarea {...args} />;
+  const [, updateArgs] = useArgs();
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (args.value !== undefined) {
+      updateArgs({ value: e.target.value });
+    }
+    args.onChange?.(e);
+  };
+  return <Textarea {...args} onChange={handleChange} />;
 };
 
 /**

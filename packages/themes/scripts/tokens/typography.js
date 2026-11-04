@@ -96,7 +96,12 @@ const typography = (typographyTokens, themeName) => {
       for (const weight of Object.keys(typographyTokens[bp][size])) {
         tokens.fontFamily = fontFamily;
         tokens.fontWeight[weight] = typographyTokens[bp][size][weight].fontWeight.toString();
-        tokens.textDecoration[weight] = typographyTokens[bp][size][weight].textDecoration.toString();
+        // Text decoration isn't per breakpoint, so a decoration from any breakpoint wins over `none`
+        // (e.g. links are underlined on desktop but `none` on mobile in webSelfService).
+        const textDecoration = typographyTokens[bp][size][weight].textDecoration.toString();
+        if (!tokens.textDecoration[weight] || tokens.textDecoration[weight] === 'none') {
+          tokens.textDecoration[weight] = textDecoration;
+        }
 
         const formattedSize = makeSize(size);
         const newBp = bp === 'desktop' ? 'tablet' : bp;

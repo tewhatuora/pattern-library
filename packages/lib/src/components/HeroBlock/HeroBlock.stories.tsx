@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Meta } from '@storybook/react-vite';
 
 import { HeroBlock, HeroBlockProps } from './HeroBlock';
 import { PersonSelector, PersonSelectorProps } from '../PersonSelector/PersonSelector';
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 import Docs from './HeroBlock.docs.mdx';
 
@@ -66,10 +68,14 @@ export default {
         type: 'text',
       },
     },
+    titleLevel: {
+      options: ['1', '2', '3', '4', '5'],
+      control: { type: 'select' },
+    },
     badgeVariant: {
+      options: ['positive', 'info', 'neutral', 'caution', 'critical'],
       control: {
         type: 'radio',
-        options: ['positive', 'info', 'neutral', 'caution', 'critical'],
       },
     },
     withPattern: {
@@ -89,6 +95,7 @@ export default {
     description: 'Page description',
     badge: 'badge',
     badgeVariant: 'info',
+    titleLevel: '2',
     withPattern: false,
     value: '123456',
   },
@@ -98,6 +105,47 @@ export default {
     },
   },
 } satisfies Meta<HeroBlockProps & Partial<PersonSelectorProps>>;
+
+const StatefulPersonSelector = () => {
+  const [value, setValue] = useState('123456');
+  return (
+    <PersonSelector
+      id="overview-person-selector"
+      people={people}
+      personSelectorLabel="View records for"
+      value={value}
+      onChange={setValue}
+    />
+  );
+};
+
+/** With children the selector bar sticks to the top of the viewport on scroll. */
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="100%">
+      <Variant label="Pale blue gradient (default), with badge">
+        <HeroBlock badge="New" badgeVariant="info" description="Page description" title="Page name" />
+      </Variant>
+      <Variant label="withPattern">
+        <HeroBlock description="Page description" title="Page name" withPattern />
+      </Variant>
+      <Variant label="With children (PersonSelector): flat background, no gradient or pattern">
+        <HeroBlock description="Page description" title="Page name">
+          <StatefulPersonSelector />
+        </HeroBlock>
+      </Variant>
+      <Variant label="Long content">
+        <HeroBlock
+          badge="Beta"
+          badgeVariant="caution"
+          description="A longer page description that wraps across more than one line when space runs out"
+          title="A long page name that wraps onto a second line when space runs out"
+        />
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
 
 export const Default = (args: HeroBlockProps) => {
   return <HeroBlock {...args} />;

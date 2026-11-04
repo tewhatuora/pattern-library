@@ -6,13 +6,10 @@ import { ThemeProvider } from '../packages/lib/src';
 
 import sbParameters from './parameters';
 
-export const parameters = sbParameters;
-export const tags = ['autodocs', 'autodocs'];
-
 import '@healthnz/pattern-library/styles';
 import '@healthnz/pattern-library-themes/styles';
 
-export const decorators = [
+const decorators = [
   withThemeFromJSXProvider({
     themes: {
       ['Neutral']: neutral,
@@ -23,9 +20,13 @@ export const decorators = [
   }),
 ];
 
-// storySort must be a literal in this file: Storybook reads it statically, so it ignores it in an imported or spread object
+// Everything goes in this default export: with a default export, Storybook ignores named exports such as `parameters`.
+// storySort must be a literal in this file, as Storybook reads it statically.
 const preview = {
+  tags: ['autodocs'],
+  decorators,
   parameters: {
+    ...sbParameters,
     options: {
       // Component sections and order follow the Figma library (Web Self-service Library), so designers and developers
       // find components in the same place. Figma names that differ are noted.

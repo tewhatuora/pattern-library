@@ -15,8 +15,8 @@ export const icon = style({
 const variant = {
   decorativeIcons: responsiveStyle({
     mobile: {
-      height: vars.space.medium.mobile,
-      width: vars.space.medium.mobile,
+      height: vars.space.small.tablet,
+      width: vars.space.small.tablet,
     },
     tablet: {
       height: vars.space.large.tablet,
@@ -78,8 +78,5 @@ globalStyle(`${icon} > svg`, {
 
 export const clearIcon = style({});
 
+/** @deprecated No longer has any effect; see `IconProps.noFill`. */
 export const noFill = style({});
-
-globalStyle(`${noFill} > svg *`, {
-  fill: 'none !important',
-});

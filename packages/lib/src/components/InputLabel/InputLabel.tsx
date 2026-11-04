@@ -43,7 +43,7 @@ export type InputLabelProps = {
   htmlFor?: string;
   /** Error colour for the label text. Overridden by `disabled`. */
   error?: boolean;
-  /** Disabled colour for the label text. */
+  /** Disabled colour for the label text. Also disables a `tertiaryLabel` button or link. */
   disabled?: boolean;
   /** Add `*` to the label. This is only visual: it doesn't make the input required. */
   required?: boolean;
@@ -101,9 +101,11 @@ export const InputLabel = ({
       <Button
         as={tertiaryLabelAs}
         className={clsx(styles.tertiaryLabel, {
-          [styles.labels.disabled]: disabled,
+          [styles.tertiaryLabelDisabled]: disabled,
         })}
-        href={href}
+        // A disabled field's label action is disabled too. A link has no disabled state, so it loses its href.
+        disabled={disabled}
+        href={disabled ? undefined : href}
         icon={tertiaryLabelIcon}
         iconPosition={tertiaryLabelIconPosition}
         variant="link"
@@ -139,23 +141,16 @@ export const InputLabel = ({
   ]);
 
   return (
-    <Box className={styles.wrapper} display="flex" justifyContent="spaceBetween">
-      <Box
-        as={as}
-        display="flex"
-        htmlFor={htmlFor || labelProps?.htmlFor}
-        id={labelProps?.id}
-        justifyContent="spaceBetween"
-        width={tertiaryLabelAs === 'text' ? 'full' : undefined}
-      >
-        <span>
-          <Text className={state && styles.labels[state]} weight="bold">
-            {label} {!!required && '*'}
-          </Text>
-          <Text className={state && styles.labels[state]} size="small">
+    <Box className={styles.wrapper}>
+      <Box as={as} className={styles.labelElement} htmlFor={htmlFor || labelProps?.htmlFor} id={labelProps?.id}>
+        <Text className={clsx(styles.labelText, state && styles.labels[state])} weight="bold">
+          {label} {!!required && '*'}
+        </Text>
+        {!!subheading && (
+          <Text className={clsx(styles.subheading, state && styles.labels[state])} size="small">
             {subheading}
           </Text>
-        </span>
+        )}
 
         {tertiaryLabel && tertiaryLabelAs === 'text' ? (
           <Box

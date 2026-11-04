@@ -18,6 +18,11 @@ export type CheckboxGroupProps = {
    * @default true
    */
   showRequiredAsterisk?: boolean;
+  /**
+   * Error styling on every checkbox, which also marks them invalid. `errorMessage` alone only colours the label and
+   * shows the message, so set both.
+   */
+  error?: boolean;
   /** Only `Checkbox` components are allowed as children of `CheckboxGroup` */
   children: ChildrenOfType<'Checkbox', CheckboxProps>;
 } & InputLabelProps &
@@ -26,7 +31,7 @@ export type CheckboxGroupProps = {
 /**
  * Vertical list of `Checkbox` components with a shared label, helper text and error message.
  * Rendered as `role="group"` named by the label and described by the helper text and error.
- * `disabled` applies to every child. `errorMessage` turns on the error styling for the label, so `error` is not needed.
+ * `disabled` and `error` apply to every child. `errorMessage` colours the label and shows the message.
  * Each child's `checked` state is managed by the consumer.
  *
  * @example
@@ -55,10 +60,10 @@ export const CheckboxGroup = ({
   tertiaryLabelTooltip,
   onTertiaryLabelClick,
   children,
+  error,
   // Label props that don't apply to the group's wrapper element
   as,
   htmlFor,
-  error,
   ...boxProps
 }: CheckboxGroupProps) => {
   const generatedId = useId();
@@ -82,6 +87,7 @@ export const CheckboxGroup = ({
       {...boxProps}
     >
       <InputLabel
+        disabled={disabled}
         error={!!errorMessage}
         href={href}
         label={label}
@@ -95,13 +101,18 @@ export const CheckboxGroup = ({
         tertiaryLabelTooltip={tertiaryLabelTooltip}
         onTertiaryLabelClick={onTertiaryLabelClick}
       />
-      <AllowedChildren
-        errorMessage="Only `Checkbox` components are allowed as children of `CheckboxGroup`"
-        propsForChild={(child) => ({ disabled: child?.props?.disabled || disabled })}
-        types={[Checkbox]}
-      >
-        {children}
-      </AllowedChildren>
+      <Box className={styles.options}>
+        <AllowedChildren
+          errorMessage="Only `Checkbox` components are allowed as children of `CheckboxGroup`"
+          propsForChild={(child) => ({
+            disabled: child?.props?.disabled || disabled,
+            error: child?.props?.error || error,
+          })}
+          types={[Checkbox]}
+        >
+          {children}
+        </AllowedChildren>
+      </Box>
       <InputMessage
         descriptionProps={{ ...descriptionProps, id: helperTextId }}
         disabled={disabled}

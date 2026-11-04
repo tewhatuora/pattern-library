@@ -12,6 +12,8 @@ import { NavigationProps } from './Root';
 import DocsPage from '../../../utils/DocsPage';
 
 import Docs from './Navigation.docs.mdx';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
+import type { ContrastVariant } from '../../types';
 
 export default {
   title: 'Patterns/Navigation',
@@ -36,15 +38,12 @@ const navArgTypes = {
     control: {
       type: 'boolean',
     },
-    defaultValue: true,
   },
   variant: {
     control: {
       type: 'radio',
-      options: ['light', 'dark'],
     },
     options: ['light', 'dark'],
-    defaultValue: 'light',
   },
   withSearch: {
     control: {
@@ -62,14 +61,118 @@ const navArgTypes = {
     },
     options: ['GET', 'POST'],
   },
+  'aria-label': {
+    control: { type: 'text' },
+  },
   children: {
     control: false,
   },
 };
 
+// Open, so the mobile panel shows below desktop (closed, it's off screen). `open` has no effect on desktop.
+const navArgs: Partial<NavigationProps> = {
+  open: true,
+  variant: 'light',
+  withSearch: false,
+  searchFormAction: '/',
+  searchFormMethod: 'GET',
+  'aria-label': 'Main',
+};
+
 const RouterLink = forwardRef((props: Omit<LinkComponentProps, 'ref'>, ref: ForwardedRef<HTMLAnchorElement>) => {
   return <a {...props} ref={ref} onClick={(e) => e.preventDefault()} />;
 });
+
+const ExampleNavigation = ({ variant, label }: { variant: ContrastVariant; label: string }) => (
+  // On mobile and tablet the navigation is a fixed panel. The transform makes the box its containing block, so the
+  // open panel shows inside the overview rather than over the page.
+  <div className="navigation-overview-example" style={{ transform: 'translate(0, 0)' }}>
+    <Navigation.Root
+      aria-label={label}
+      open
+      utilityNavItems={[
+        { href: '#', icon: 'language', label: 'Language' },
+        { href: '#', icon: 'person', label: 'Name Surname' },
+      ]}
+      variant={variant}
+      withSearch
+    >
+      <Navigation.Item href="#" label="With menu">
+        <Navigation.Menu>
+          <Navigation.MenuList heading="List one">
+            <Navigation.Item href="#" label="Sub nav item 1" />
+            <Navigation.Item href="#" label="Sub nav item 2" />
+          </Navigation.MenuList>
+          <Navigation.MenuList heading="List two">
+            <Navigation.Item href="#" label="Sub nav item 3" />
+            <Navigation.Item href="#" label="Sub nav item 4" />
+          </Navigation.MenuList>
+        </Navigation.Menu>
+      </Navigation.Item>
+      <Navigation.Item href="#" label="With mini menu">
+        <Navigation.Menu mini>
+          <Navigation.MenuList heading="List one">
+            <Navigation.Item href="#" label="Sub nav item 5" />
+            <Navigation.Item href="#" label="Sub nav item 6" />
+          </Navigation.MenuList>
+        </Navigation.Menu>
+      </Navigation.Item>
+      <Navigation.Item href="#" label="Selected" selected />
+      <Navigation.Item href="#" label="Link" />
+    </Navigation.Root>
+  </div>
+);
+
+// Tall enough for the open mobile panel (its content, below the gap it leaves for the header), or for a desktop
+// menu opened on hover. The panel's height comes from this box, so a shorter box makes the panel overflow it.
+const exampleHeight = `
+  .navigation-overview-example { height: 42rem; }
+  @media (min-width: 1024px) { .navigation-overview-example { height: 22rem; } }
+`;
+
+/**
+ * Menus open on hover or press, so aren't shown here. Below desktop the navigation is the open mobile panel, with
+ * the search field and utility links, which only show there.
+ */
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="100%">
+      <Variant label='Navigation.Root variant="light"'>
+        <style>{exampleHeight}</style>
+        <ExampleNavigation label="Light example" variant="light" />
+      </Variant>
+      <Variant label='Navigation.Root variant="dark"'>
+        <ExampleNavigation label="Dark example" variant="dark" />
+      </Variant>
+    </Variants>
+    <Variants minWidth="200px">
+      <Variant label="Navigation.Link">
+        <Navigation.Link href="#">Link</Navigation.Link>
+      </Variant>
+      <Variant label="Navigation.Link selected">
+        <Navigation.Link aria-current="page" href="#" selected>
+          Link
+        </Navigation.Link>
+      </Variant>
+      <Variant label="Navigation.Side">
+        <Navigation.Side>
+          <Navigation.Link href="#" selected>
+            Link one
+          </Navigation.Link>
+          <Navigation.Link href="#">Link two</Navigation.Link>
+          <Navigation.Link href="#">A longer link that wraps onto another line</Navigation.Link>
+        </Navigation.Side>
+      </Variant>
+      <Variant label="Navigation.MenuList">
+        <Navigation.MenuList heading="Heading">
+          <Navigation.Item href="#" label="Sub nav item 1" subNav />
+          <Navigation.Item href="#" label="Sub nav item 2" subNav />
+        </Navigation.MenuList>
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
 
 export const Default = (args: NavigationProps) => (
   <Navigation.Root {...args}>
@@ -116,7 +219,14 @@ export const Default = (args: NavigationProps) => (
     <Navigation.Item href="#" label="Nav item 5" />
   </Navigation.Root>
 );
-Default.argTypes = navArgTypes;
+Default.argTypes = {
+  ...navArgTypes,
+  // Up to two items: `{ href, icon, label }`
+  utilityNavItems: {
+    control: { type: 'object' },
+  },
+};
+Default.args = navArgs;
 
 Default.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
@@ -188,6 +298,7 @@ export const WithUtilityNavigation = (args: NavigationProps) => {
   );
 };
 WithUtilityNavigation.argTypes = navArgTypes;
+WithUtilityNavigation.args = navArgs;
 
 export const Link = (args: LinkProps) => {
   return (
@@ -199,6 +310,12 @@ export const Link = (args: LinkProps) => {
 Link.argTypes = {
   selected: {
     control: { type: 'boolean' },
+  },
+  className: {
+    control: { type: 'text' },
+  },
+  component: {
+    control: false,
   },
 };
 

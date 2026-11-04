@@ -30,7 +30,7 @@ export const Loader = ({ variant = 'dark', message }: LoaderProps) => {
       <Box alignItems="center" display="flex" flexDirection="column">
         <div className={styles.spinner[variant]} />
         {message ? (
-          <Text align="center" className={styles.label[variant]} weight="regular">
+          <Text align="center" className={styles.label[variant]} size="large" weight="regular">
             {message}
           </Text>
         ) : (

@@ -160,18 +160,24 @@ type HeaderRightProps = PropsWithChildren<Partial<StackProps>> & {
   hasRightMargin?: boolean;
 };
 
-/** Right-aligned group of items, laid out in a row. */
+/**
+ * Right-aligned group of items, laid out in a row. Hidden below the desktop breakpoint, where `Header.MenuButton`
+ * shows instead and these items belong in the navigation panel.
+ */
 const HeaderRight = ({ className, hasRightMargin = true, ...props }: HeaderRightProps) => {
   return (
-    <Stack
-      alignItems="center"
-      className={clsx(className, { [styles.headerRightMargin]: hasRightMargin })}
-      display="flex"
-      horizontal
-      marginRight={hasRightMargin ? { mobile: 'small', tablet: 'medium' } : undefined}
-      space="small"
-      {...props}
-    />
+    // Hidden by a wrapper because Stack always sets `display: flex`, which a responsive `display` can't override
+    <Box display={{ mobile: 'none', desktop: 'flex' }}>
+      <Stack
+        alignItems="center"
+        className={clsx(className, { [styles.headerRightMargin]: hasRightMargin })}
+        display="flex"
+        horizontal
+        marginRight={hasRightMargin ? { mobile: 'small', tablet: 'medium' } : undefined}
+        space="small"
+        {...props}
+      />
+    </Box>
   );
 };
 

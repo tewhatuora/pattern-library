@@ -1,5 +1,6 @@
 import { Checkbox, CheckboxProps } from './Checkbox';
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 import Docs from './Checkbox.docs.mdx';
 
@@ -8,13 +9,35 @@ export default {
   component: Checkbox,
   parameters: {
     controls: {
-      include: ['label', 'id', 'heading', 'name', 'required', 'onCheckedChange', 'checked', 'disabled', 'hasError'],
+      // Hides the Box layout props, which aren't specific to Checkbox
+      include: [
+        'label',
+        'heading',
+        'id',
+        'name',
+        'required',
+        'checked',
+        'indeterminate',
+        'disabled',
+        'error',
+        'onCheckedChange',
+      ],
     },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
   argTypes: {
+    label: {
+      control: {
+        type: 'text',
+      },
+    },
+    heading: {
+      control: {
+        type: 'text',
+      },
+    },
     id: { control: false },
     name: { control: false },
     onCheckedChange: { control: false },
@@ -51,6 +74,63 @@ export default {
     indeterminate: false,
   },
 };
+
+// Each Checkbox needs a unique id, as its label is linked to it
+const overviewId = (label: string) => `checkbox-overview-${label.toLowerCase().replace(/\W+/g, '-')}`;
+
+const states = [
+  { label: 'Unchecked', checked: false },
+  { label: 'Checked', checked: true },
+  { label: 'Indeterminate', checked: true, indeterminate: true },
+];
+
+export const Overview = () => (
+  <VariantSections>
+    <Variants>
+      {states.map((state) => (
+        <Variant key={state.label} label={state.label}>
+          <Checkbox {...state} id={overviewId(state.label)} />
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Disabled">
+      {states.map((state) => (
+        <Variant key={state.label} label={state.label}>
+          <Checkbox {...state} disabled id={overviewId(`Disabled ${state.label}`)} />
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Error">
+      {states.map((state) => (
+        <Variant key={state.label} label={state.label}>
+          <Checkbox {...state} error id={overviewId(`Error ${state.label}`)} />
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Heading and required">
+      <Variant label="With heading">
+        <Checkbox checked={false} heading="Heading" id={overviewId('With heading')} label="Label" />
+      </Variant>
+      <Variant label="Required">
+        <Checkbox checked={false} id={overviewId('Required')} label="Label" required />
+      </Variant>
+      <Variant label="Required with heading">
+        <Checkbox checked={false} heading="Heading" id={overviewId('Required with heading')} label="Label" required />
+      </Variant>
+    </Variants>
+    <Variants minWidth="280px" title="Long label">
+      <Variant label="Wraps beside the checkbox">
+        <Checkbox
+          checked
+          heading="A heading that is long enough to wrap"
+          id={overviewId('Long label')}
+          label="A long label that wraps onto several lines when there isn't enough room for it on one line"
+        />
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
 
 export const Default = (args: CheckboxProps) => {
   return <Checkbox {...args} />;

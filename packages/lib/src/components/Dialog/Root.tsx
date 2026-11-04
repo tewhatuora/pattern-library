@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactElement, useMemo } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
+import { clsx } from 'clsx';
 
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
-import { Stack } from '../Stack/Stack';
 import { Icon } from '../Icon/Icon';
 import { Content } from './Content';
 import { Actions } from './Actions';
@@ -86,8 +86,10 @@ export const Root = ({
             <RadixDialog.Close aria-label={closeLabel} className={styles.closeButton}>
               <Icon className={styles.icon} icon="cross" variant="functionalIcons" />
             </RadixDialog.Close>
-            <Stack alignItems="center" display="flex" flexDirection="column" space="medium">
-              {!!icon && <Icon className={styles.icon} icon={icon} variant="decorativeIcons" />}
+            <div className={styles.content}>
+              {!!icon && (
+                <Icon className={clsx(styles.icon, styles.decorativeIcon)} icon={icon} variant="decorativeIcons" />
+              )}
               <RadixDialog.Title asChild>
                 <Box as="span" className={headingClassName}>
                   {heading}
@@ -104,7 +106,7 @@ export const Root = ({
               >
                 {children}
               </AllowedChildren>
-            </Stack>
+            </div>
           </RadixDialog.Content>
         </ThemeProvider>
       </RadixDialog.Portal>

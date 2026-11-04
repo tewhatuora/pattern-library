@@ -28,9 +28,9 @@ import { useText } from '../../hooks/typography';
 export const InputDropdownStyles = styles;
 
 export type InputOption = {
-  /** Value submitted with the form, and the value `onChange` reads from `event.target`. */
+  /** Value submitted with the form, and the value `onChange` reads from `event.target`. Also the React key, so keep values unique. */
   value: string | number;
-  /** Text shown for the option. Also used as the React key, so keep labels unique. */
+  /** Text shown for the option. */
   label: string;
   /** Initially selected option, when neither `value`, `defaultValue` nor `placeholder` is set. */
   selected?: boolean;
@@ -125,24 +125,23 @@ export const InputDropdown = forwardRef<HTMLSelectElement, InputDropdownProps>(
       description: helperText,
       errorMessage,
     });
-    const optionEls = useMemo(() => {
-      const opts = options.slice();
-
-      if (placeholder) {
-        opts.unshift({
-          value: '',
-          label: placeholder,
-          selected: true,
-          disabled: true,
-        });
-      }
-
-      return opts.map((option) => (
-        <option disabled={option.disabled} key={option.label} value={option.value}>
-          {option.label}
-        </option>
-      ));
-    }, [options, placeholder]);
+    const optionEls = useMemo(
+      () => (
+        <>
+          {!!placeholder && (
+            <option disabled value="">
+              {placeholder}
+            </option>
+          )}
+          {options.map((option) => (
+            <option disabled={option.disabled} key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </>
+      ),
+      [options, placeholder],
+    );
 
     const isControlled = value !== undefined;
     // Without a value or defaultValue, start on the placeholder or the option marked as selected

@@ -47,6 +47,11 @@ export const personSelector = recipe({
   variants: personSelectorVariants,
 });
 
+// The hidden row keeps its full width so it can be measured. Clip it so it doesn't widen the page.
+export const clipHidden = style({
+  overflow: 'hidden',
+});
+
 export const heading = style([
   responsiveStyle({
     mobile: {

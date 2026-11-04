@@ -11,16 +11,7 @@ import { boldLinks, noVisited } from '../AnchorLink/AnchorLink.css';
 export const linkVariants = {
   noVisited: {
     true: {},
-    false: {
-      selectors: {
-        '&:visited': {
-          color: vars.color.semantic.text.links.visited,
-        },
-        [`${noVisited} &`]: {
-          color: vars.color.semantic.text.links.active,
-        },
-      },
-    },
+    false: {},
   },
   underline: {
     true: {
@@ -84,5 +75,21 @@ export const inlineIcon = recipe({
         marginLeft: '0.5rem',
       },
     },
+    noVisited: {
+      true: {},
+      false: {
+        selectors: {
+          'a:visited &': {
+            color: vars.color.semantic.text.links.visited,
+          },
+          [`${noVisited} &`]: {
+            color: vars.color.semantic.text.links.active,
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    noVisited: false,
   },
 });

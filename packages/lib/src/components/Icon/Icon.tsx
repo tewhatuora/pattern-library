@@ -28,7 +28,10 @@ export type IconProps = {
   color?: Color;
   /** Accessible name. Gives the icon `role="img"`. Leave empty for a decorative icon, which is hidden from screen readers. */
   alt?: string;
-  /** Remove the fill so only the outline shows. Use for icons whose fill would otherwise cover the shape. */
+  /**
+   * @deprecated Has no effect. It undid an old rule that filled every icon path; icons now set their own fill
+   * and stroke, so it is no longer needed (and it made filled icons such as `person` disappear).
+   */
   noFill?: boolean;
 } & BoxProps;
 
@@ -52,7 +55,7 @@ export const Icon = memo(({ icon, className, variant = 'decorativeIcons', alt, n
     <Box
       aria-label={alt || undefined} // Prevents alt being passed through as an empty string
       as="span"
-      className={clsx(styles.variants({ variant }), className, noFill && styles.noFill)}
+      className={clsx(styles.variants({ variant }), className)}
       role={alt ? 'img' : undefined} // A span has no role, so it needs one for the aria-label to be announced
       {...boxProps}
     >

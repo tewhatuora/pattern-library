@@ -28,7 +28,6 @@ export const radioButton = style([
     overflow: 'hidden',
     width: rem(24),
     height: rem(24),
-    marginTop: rem(4),
     borderStyle: 'solid',
     borderWidth: vars.borderWidth.small,
     borderRadius: '100%',
@@ -96,15 +95,12 @@ export const label = style([
     flexDirection: 'column',
     cursor: 'pointer',
   }),
-  {
-    marginLeft: vars.space.xsmall.tablet,
-  },
   responsiveStyle({
     mobile: {
-      marginTop: rem(4),
+      marginLeft: vars.space.xsmall.mobile,
     },
     tablet: {
-      marginTop: '0',
+      marginLeft: vars.space.xsmall.tablet,
     },
   }),
 ]);
@@ -124,3 +120,10 @@ export const labelVariant = styleVariants({
     },
   ],
 });
+
+export const options = style(
+  responsiveStyle({
+    mobile: { marginTop: vars.space.small.mobile },
+    tablet: { marginTop: vars.space.xsmall.tablet },
+  }),
+);

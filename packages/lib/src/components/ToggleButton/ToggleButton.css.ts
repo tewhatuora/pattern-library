@@ -47,12 +47,12 @@ export const button = style([
       },
       '&:hover': {
         backgroundColor: vars.color.semantic.button.primary.background.hover,
-        color: vars.color.semantic.button.primary.content.normal,
+        color: vars.color.semantic.button.primary.content.hover,
         borderColor: vars.color.semantic.button.primary.border.hover,
       },
       '&[data-state=on]:hover': {
         backgroundColor: vars.color.semantic.button.primary.background.hover,
-        color: vars.color.semantic.button.primary.content.normal,
+        color: vars.color.semantic.button.primary.content.hover,
         borderColor: vars.color.semantic.button.primary.border.hover,
       },
       '&:focus': {

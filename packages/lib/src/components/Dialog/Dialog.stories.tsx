@@ -12,6 +12,7 @@ import icons from '../Icon/icons';
 import Docs from './Dialog.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 export default {
   title: 'Patterns/Dialog',
@@ -37,6 +38,21 @@ export default {
         type: 'text',
       },
     },
+    closeLabel: {
+      control: { type: 'text' },
+    },
+    open: {
+      control: { type: 'boolean' },
+    },
+    defaultOpen: {
+      control: { type: 'boolean' },
+    },
+    modal: {
+      control: { type: 'boolean' },
+    },
+    onOpenChange: {
+      control: false,
+    },
     trigger: {
       control: false,
     },
@@ -48,6 +64,7 @@ export default {
     icon: 'alert',
     heading: 'Heading',
     subheading: 'Subheading',
+    closeLabel: 'Close',
   },
   parameters: {
     docs: {
@@ -67,6 +84,81 @@ const actions = (
     <Dialog.Action variant="tertiary">Tertiary</Dialog.Action>
     <Dialog.Action variant="primary">Primary</Dialog.Action>
   </Dialog.Actions>
+);
+
+/**
+ * A dialog renders in a portal over the page, so only one can be seen at a time. The first example opens on load;
+ * close it to open the others from their buttons. On the docs page it renders in an iframe, so it doesn't cover the
+ * docs.
+ */
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="240px" title="Press a button to open each dialog">
+      <Variant label="Icon, heading, subheading, content and actions">
+        <Dialog.Root
+          defaultOpen
+          heading="Heading"
+          icon="alert"
+          subheading="Subheading"
+          trigger={<Button variant="secondary">Open full dialog</Button>}
+        >
+          {content}
+          {actions}
+        </Dialog.Root>
+      </Variant>
+      <Variant label="Heading and content, no icon or actions">
+        <Dialog.Root heading="Heading" trigger={<Button variant="secondary">Open minimal dialog</Button>}>
+          {content}
+        </Dialog.Root>
+      </Variant>
+      <Variant label="Action that closes the dialog">
+        <Dialog.Root
+          heading="Delete this record?"
+          icon="alert"
+          trigger={<Button variant="secondary">Open confirmation</Button>}
+        >
+          <Dialog.Content>
+            <Text as="p">This cannot be undone.</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Dialog.Action close variant="tertiary">
+              Cancel
+            </Dialog.Action>
+            <Dialog.Action variant="primary">Delete</Dialog.Action>
+          </Dialog.Actions>
+        </Dialog.Root>
+      </Variant>
+      <Variant label="Long content">
+        <Dialog.Root
+          heading="A long heading that wraps onto a second line when space runs out"
+          subheading="A long subheading that also wraps onto another line"
+          trigger={<Button variant="secondary">Open long dialog</Button>}
+        >
+          <Dialog.Content>
+            <Text as="p">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Parturient sit consequat nisl, lectus sed sit.
+              Dui turpis vestibulum, scelerisque tristique amet augue facilisis. Turpis dignissim duis maecenas
+              facilisis. Dictumst quam orci eu venenatis in et faucibus ut diam. Pharetra turpis arcu, sed imperdiet
+              volutpat.
+            </Text>
+          </Dialog.Content>
+          {actions}
+        </Dialog.Root>
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = {
+  controls: { disable: true },
+  // In an iframe on the docs page, so the open dialog covers the example rather than the docs
+  docs: { story: { inline: false, iframeHeight: 640 } },
+};
+
+export const Default = (args: DialogProps) => (
+  <Dialog.Root {...args} trigger={<Button>Open</Button>}>
+    {content}
+    {actions}
+  </Dialog.Root>
 );
 
 export const Uncontrolled = (args: DialogProps) => (

@@ -15,14 +15,14 @@ type Color = Exclude<keyof typeof vars.color, 'semantic'>;
 export type CardProps = {
   /** Removes the box-shadow. */
   noShadow?: boolean;
-  /** Colour token name from the theme, e.g. `'primary25'`, applied as the border colour. Without it the default border is used. */
+  /** Colour token name from the theme, e.g. `'primary25'`, draws a border in that colour. Without it the card has no border. */
   border?: Color;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 
 /**
- * Bordered, shadowed container that groups related content.
+ * Shadowed container that groups related content.
  *
  * @example
  * <Card border="primary25">
@@ -35,10 +35,11 @@ export const Card = ({ noShadow = false, border, children, className }: PropsWit
       styles.card,
       {
         [styles.variants.noShadow]: noShadow,
+        [styles.variants.bordered]: !!border,
       },
       className,
     );
-  }, [noShadow, className]);
+  }, [noShadow, border, className]);
 
   return (
     <Box as="div" className={cardClassNames} style={border ? { borderColor: vars.color[border] } : undefined}>

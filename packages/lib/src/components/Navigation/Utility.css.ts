@@ -12,8 +12,13 @@ export const utility = style([
     display: 'flex',
   }),
   responsiveStyle({
+    // Same spacing as the Stack in Navigation.Root around the links
     mobile: {
       flexDirection: 'column',
+      gap: vars.space.medium.mobile,
+    },
+    tablet: {
+      gap: vars.space.medium.tablet,
     },
     desktop: {
       flexDirection: 'row',
@@ -49,5 +54,11 @@ const utilityLinkBase = style([
 
 export const utilityLink = styleVariants({
   light: [utilityLinkBase, {}],
-  dark: [utilityLinkBase, {}],
+  dark: [
+    utilityLinkBase,
+    {
+      backgroundColor: vars.color.semantic.button.secondary.background.normal,
+      color: vars.color.semantic.button.secondary.content.normal,
+    },
+  ],
 });

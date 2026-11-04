@@ -32,6 +32,11 @@ export const fieldSegment = style({
   flex: 1,
 });
 
+// InputDate's error message, which can hold one message per line
+export const messageLines = style({
+  whiteSpace: 'pre-line',
+});
+
 export const inputBase = style([
   responsiveStyle({
     mobile: {
@@ -95,7 +100,6 @@ export const input = styleVariants({
       mobile: {
         paddingRight: calc(vars.space.small.mobile) // Functional icon width
           .add(vars.space.small.mobile) // + icon right
-          .add(vars.space.small.mobile) // + gap between copy and icon (icon right)
           .toString(),
       },
       tablet: {
@@ -121,17 +125,24 @@ export const input = styleVariants({
       mobile: {
         paddingTop: rem(14),
         paddingBottom: rem(14),
-        minHeight: rem(131),
         lineHeight: vars.textSize.medium.mobile.lineHeight,
       },
       tablet: {
         paddingTop: rem(12),
         paddingBottom: rem(12),
-        minHeight: rem(166),
         lineHeight: vars.textSize.medium.tablet.lineHeight,
       },
     }),
   ],
+  // Default height of a multiline field without `rows`, which otherwise sets the height
+  multilineDefaultHeight: responsiveStyle({
+    mobile: {
+      minHeight: rem(131),
+    },
+    tablet: {
+      minHeight: rem(166),
+    },
+  }),
   phone: [
     inputBase,
     {

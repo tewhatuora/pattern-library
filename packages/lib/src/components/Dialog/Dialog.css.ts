@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
@@ -39,7 +40,8 @@ export const dialog = style([
   responsiveStyle({
     mobile: {
       width: `calc(100% - ${vars.space.small.mobile} - ${vars.space.small.mobile})`,
-      padding: vars.space.small.mobile,
+      padding: vars.space.medium.mobile,
+      paddingBottom: vars.space.medium.mobile,
     },
     tablet: {
       width: `calc(100% - ${rem(120)} - ${rem(120)})`,
@@ -68,6 +70,34 @@ export const closeButton = style([
   }),
 ]);
 
+export const content = style([
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.xsmall.mobile,
+    },
+    tablet: {
+      gap: calc.divide(vars.space.xsmall.tablet, 2),
+    },
+  }),
+]);
+
+// Brings the gap below the decorative icon up to the space between icon and heading
+export const decorativeIcon = style(
+  responsiveStyle({
+    mobile: {
+      marginBottom: vars.space.small.mobile,
+    },
+    tablet: {
+      marginBottom: vars.space.xsmall.tablet,
+    },
+  }),
+);
+
 export const icon = style({
   color: vars.color.semantic.icons.dark,
 });
@@ -82,12 +112,12 @@ export const actions = style([
   },
   responsiveStyle({
     mobile: {
-      gap: vars.space.small.mobile,
+      gap: vars.space.medium.mobile,
       marginTop: vars.space.small.mobile,
     },
     tablet: {
       gap: vars.space.small.tablet,
-      marginTop: vars.space.small.tablet,
+      marginTop: vars.space.xsmall.tablet,
     },
   }),
 ]);

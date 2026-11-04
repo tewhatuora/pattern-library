@@ -1,6 +1,4 @@
-// One loader per flag in country-flag-icons/string/3x2. Each is a separate ~1.5 KB module, so bundlers put
-// each flag in its own chunk and only the selected flag is downloaded. (The package's React flag components
-// can't be split this way: they all live in one ~320 KB module.)
+// Code split all of the flag svgs, to avoid bloating the main bundle.
 // Listed explicitly because bundlers can only split static import paths. Regenerate from the package's
 // "exports" when country-flag-icons adds flags.
 export const flagLoaders: Record<string, () => Promise<{ default: string }>> = {

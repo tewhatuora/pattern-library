@@ -1,18 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
-import { rem } from '@/src/css/helpers';
-
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
-
-/**
- * Align icon to text offset
- */
-const offset = rem(2);
 
 const variant = {
   positive: {
@@ -49,10 +42,11 @@ export const variants = recipe({
     responsiveStyle({
       mobile: {
         padding: vars.space.small.mobile,
+        gap: vars.space.xsmall.mobile,
       },
       tablet: {
         padding: vars.space.small.tablet,
-        width: '75%',
+        gap: vars.space.xsmall.tablet,
       },
     }),
   ]),
@@ -64,22 +58,11 @@ export const variants = recipe({
 export type Variants = RecipeVariants<typeof variants>;
 
 export const icon = recipe({
-  base: responsiveStyle({
-    mobile: {
-      marginTop: offset,
-      marginLeft: vars.space.xsmall.mobile,
-      marginRight: vars.space.xsmall.mobile,
-      width: vars.space.medium.mobile,
-      height: vars.space.medium.mobile,
-    },
-    tablet: {
-      marginTop: offset,
-      marginLeft: vars.space.xsmall.tablet,
-      marginRight: vars.space.xsmall.tablet,
-      width: vars.space.small.tablet,
-      height: vars.space.small.tablet,
-    },
-  }),
+  base: {
+    flexShrink: 0,
+    width: vars.space.small.tablet,
+    height: vars.space.small.tablet,
+  },
   variants: {
     variant: {
       positive: {

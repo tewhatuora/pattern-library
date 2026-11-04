@@ -37,9 +37,10 @@ jobs:
         if: steps.restore-install-cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
 
-      # lib resolves the themes package's types from its build output
-      - name: yarn build themes
-        run: yarn workspace @healthnz/pattern-library-themes build
+      # lib resolves the themes package's types from its build output, and eslint resolves the example app's
+      # imports of the lib package from its build output
+      - name: yarn build
+        run: yarn build
 
       - name: prettier
         run: yarn prettier --check .
@@ -86,13 +87,12 @@ jobs:
       - name: install playwright browser
         run: yarn playwright install --with-deps chromium-headless-shell
 
-      # Renders every story; accessibility violations are reported but don't fail yet (a11y.test: 'todo')
+      # Renders every story and fails on accessibility violations (a11y.test: 'error')
       - name: storybook tests
         run: yarn test
 
   test:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -121,10 +121,6 @@ jobs:
       # TODO find a way to get chromatic building/running from previous stage artifacts.
       # Will likely need the chromaui/action outputDir input working to resolve relative imports
       # for themes in storybook broken be running out of tmp directory
-      - name: yarn build themes
-        working-directory: ./packages/themes
-        run: yarn install --immutable && yarn build
-
       - name: yarn build
         run: yarn build
 

@@ -45,7 +45,7 @@ export type InputDateProps = Omit<InputLabelProps, 'error'> &
   Omit<OtherInputFieldProps, 'value' | 'onChange'> & {
     /**
      * Error per field. A field with an error gets error styling and its message read out with it. The messages
-     * are also shown below the group, unless `errorMessage` is set, which is shown instead.
+     * are also shown below the group, one per line, unless `errorMessage` is set, which is shown instead.
      */
     errors?: {
       day?: string | undefined;
@@ -118,9 +118,9 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
     const baseId = id ?? generatedId;
 
     // A segment error is always given to screen readers with its field. It's only shown when there's no
-    // overall errorMessage, which otherwise summarises the problem.
+    // overall errorMessage, which otherwise summarises the problem. Each is shown on its own line.
     const segmentErrors = [...new Set(segments.map(({ field }) => errors?.[field]?.trim()).filter(Boolean))];
-    const visibleErrorMessage = errorMessage || segmentErrors.join(' ') || undefined;
+    const visibleErrorMessage = errorMessage || segmentErrors.join('\n') || undefined;
 
     const { labelProps, fieldProps, descriptionProps, errorMessageProps } = useField({
       label,
@@ -153,6 +153,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
       // The label names the group of fields; it isn't the label of any one input
       <div aria-labelledby={labelProps.id} role="group">
         <InputLabel
+          disabled={disabled}
           error={!!visibleErrorMessage}
           href={href}
           label={label}
@@ -207,7 +208,7 @@ export const InputDate = forwardRef<InputDateRefs, InputDateProps>(
           descriptionProps={descriptionProps}
           disabled={disabled}
           errorMessage={visibleErrorMessage}
-          errorMessageProps={errorMessageProps}
+          errorMessageProps={{ ...errorMessageProps, className: styles.messageLines }}
           helperText={helperText}
         />
       </div>

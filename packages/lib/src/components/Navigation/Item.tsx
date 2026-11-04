@@ -135,6 +135,7 @@ export const Item = ({
   const baseProps = {
     className: clsx(styles.navListItemLink.default, {
       [styles.navListItemLink.subnav]: subNav,
+      [styles.selected]: selected && !subNav,
     }),
     tabIndex: 0,
   };

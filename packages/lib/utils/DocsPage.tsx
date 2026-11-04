@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { ArgTypes, Description, Subtitle, Title } from '@storybook/addon-docs/blocks';
+import { ArgTypes, Description, Primary, Subtitle, Title } from '@storybook/addon-docs/blocks';
 
 import { Classnames } from '../../../stories/components';
 
@@ -10,6 +10,11 @@ const DocsPage = (props: { docs: ElementType }) => {
       <div className="patternlibrary__docs">
         <Title />
         <Subtitle />
+      </div>
+      {/* The first story: each component's Overview, showing its main variations together. Outside the docs wrapper,
+          whose link styles would restyle the components */}
+      <Primary />
+      <div className="patternlibrary__docs">
         <Docs />
         <hr />
         <Description />
@@ -19,7 +24,6 @@ const DocsPage = (props: { docs: ElementType }) => {
       <ArgTypes />
       <hr />
       <Classnames />
-      {/*<Primary />*/}
       {/*<ArgsTable story={PRIMARY_STORY} />*/}
       {/*<Stories />*/}
     </>

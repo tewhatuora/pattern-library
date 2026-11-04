@@ -5,6 +5,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Docs from './Footer.docs.mdx';
 
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 export default {
   title: 'Patterns/Footer',
@@ -14,8 +15,19 @@ export default {
       options: ['light', 'dark'],
       control: {
         type: 'radio',
-        options: ['light', 'dark'],
       },
+    },
+    socialLinkHrefs: {
+      control: { type: 'object' },
+    },
+    imprintItems: {
+      control: { type: 'object' },
+    },
+    legalCopy: {
+      control: { type: 'text' },
+    },
+    className: {
+      control: { type: 'text' },
     },
   },
   args: {
@@ -42,6 +54,61 @@ const socialLinkHrefs = {
   tiktok: 'http://tiktok.com',
   facebook: 'http://facebook.com',
 };
+
+const exampleLists = [
+  <FooterList heading="Services" key="services">
+    <FooterListItem href="#" label="Find a clinic" />
+    <FooterListItem href="#" label="Book a vaccination" />
+    <FooterListItem href="#" label="Your health records" />
+  </FooterList>,
+  <FooterList heading="About" key="about">
+    <FooterListItem href="#" label="About us" />
+    <FooterListItem href="#" label="Contact us" />
+    <FooterListItem href="#" label="A long link label that wraps onto another line" />
+  </FooterList>,
+  <FooterList heading="Help" key="help">
+    <FooterListItem href="#" label="Accessibility" />
+    <FooterListItem href="#" label="Feedback" />
+  </FooterList>,
+];
+
+// Each footer is shown in an `article`, so it isn't a page `contentinfo` landmark (a page may only have one)
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="100%">
+      <Variant label='variant="light": lists, social links, legal copy and imprint'>
+        <article>
+          <Footer
+            imprintItems={imprintItems}
+            legalCopy="Crown copyright"
+            socialLinkHrefs={socialLinkHrefs}
+            variant="light"
+          >
+            {exampleLists}
+          </Footer>
+        </article>
+      </Variant>
+      <Variant label='variant="dark"'>
+        <article>
+          <Footer
+            imprintItems={imprintItems}
+            legalCopy="Crown copyright"
+            socialLinkHrefs={socialLinkHrefs}
+            variant="dark"
+          >
+            {exampleLists}
+          </Footer>
+        </article>
+      </Variant>
+      <Variant label="Minimal: imprint only, no lists or social links">
+        <article>
+          <Footer imprintItems={imprintItems} variant="light" />
+        </article>
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
 
 export const Default = (args: FooterProps) => {
   return (
@@ -70,6 +137,7 @@ export const Default = (args: FooterProps) => {
 Default.args = {
   imprintItems,
   socialLinkHrefs,
+  legalCopy: 'Crown copyright',
 };
 
 export const NoNavigations = (args: FooterProps) => {
@@ -115,7 +183,7 @@ NoSocialLinks.args = { imprintItems };
 export const NoNavigationsOrSocialLinks = (args: FooterProps) => {
   return <Footer {...args} />;
 };
-NoNavigations.args = {
+NoNavigationsOrSocialLinks.args = {
   imprintItems,
 };
 
@@ -205,6 +273,8 @@ export const MoreThanFiveNavigationsShouldThrowError = (args: FooterProps) => {
   );
 };
 
+MoreThanFiveNavigationsShouldThrowError.parameters = { chromatic: { disableSnapshot: true } };
+
 export const MoreThanSevenImprintItemsShouldThrowError = (args: FooterProps) => {
   return (
     <ErrorBoundary>
@@ -212,6 +282,7 @@ export const MoreThanSevenImprintItemsShouldThrowError = (args: FooterProps) => 
     </ErrorBoundary>
   );
 };
+MoreThanSevenImprintItemsShouldThrowError.parameters = { chromatic: { disableSnapshot: true } };
 MoreThanSevenImprintItemsShouldThrowError.args = {
   imprintItems: [...imprintItems, ...imprintItems, ...imprintItems],
 };

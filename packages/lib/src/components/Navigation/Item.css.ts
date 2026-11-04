@@ -56,13 +56,13 @@ const navListItemLinkBase = style([
   },
   responsiveStyle({
     mobile: {
-      paddingTop: calc.divide(vars.space.medium.mobile, 2),
-      paddingBottom: calc.divide(vars.space.medium.mobile, 2),
+      paddingTop: vars.space.small.mobile,
+      paddingBottom: vars.space.small.mobile,
       selectors: {
         '&:after': {
           left: calc.multiply(-1, vars.space.small.mobile),
-          top: calc.divide(vars.space.medium.mobile, 2),
-          bottom: calc.divide(vars.space.medium.mobile, 2),
+          top: vars.space.small.mobile,
+          bottom: vars.space.small.mobile,
           width: calc.divide(vars.space.xsmall.mobile, 2),
         },
       },
@@ -96,8 +96,8 @@ export const navListItemLink = styleVariants({
     style([
       responsiveStyle({
         mobile: {
-          paddingTop: calc.divide(vars.space.medium.mobile, 2),
-          paddingBottom: calc.divide(vars.space.medium.mobile, 2),
+          paddingTop: vars.space.xsmall.mobile,
+          paddingBottom: vars.space.xsmall.mobile,
         },
         desktop: {
           paddingTop: calc.divide(vars.space.small.tablet, 2),
@@ -115,6 +115,25 @@ export const navListItemLink = styleVariants({
     ]),
   ],
 });
+
+export const selected = style([
+  {
+    selectors: {
+      '&:after': {
+        backgroundColor: vars.color.semantic.controls.border.active,
+      },
+    },
+  },
+  responsiveStyle({
+    desktop: {
+      selectors: {
+        '&:after': {
+          width: '100%',
+        },
+      },
+    },
+  }),
+]);
 
 export const chevron = style({
   transform: 'rotate(0deg)',

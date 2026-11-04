@@ -110,6 +110,10 @@ jobs:
     name: Publish packages to npm
     if: github.repository == needs.build.outputs.main-repo && needs.build.outputs.should-publish=='true'
     needs: build
+    # id-token lets npm verify where the package was built (provenance)
+    permissions:
+      contents: read
+      id-token: write
     uses: ./.github/workflows/publish.yml
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

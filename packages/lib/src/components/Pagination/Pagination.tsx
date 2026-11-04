@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo } from 'react';
 
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
+import { Icon } from '../Icon/Icon';
 
 import usePagination from '../../hooks/usePagination';
 
@@ -13,8 +13,8 @@ export const PaginationStyles = styles;
 
 export type PaginationProps = {
   /**
-   * `true` always shows page number buttons, `false` always shows "1 of 12" text instead. Left unset, CSS
-   * media queries show the buttons on wider screens and the text on narrow ones.
+   * `true` always shows page number buttons, `false` always shows a page select instead. Left unset, CSS
+   * media queries show the buttons on desktop and the select on smaller screens.
    */
   showPageButtons?: boolean;
   /** Total number of pages. */
@@ -54,14 +54,15 @@ const PaginationPage = memo(({ page, isCurrent, onSelect }: PaginationPageProps)
 });
 
 /**
- * Previous and Next buttons with page numbers, for content split across pages. Controlled: the current
- * page comes from `current`.
+ * Previous and Next buttons with page numbers (or, on smaller screens, a page select), for content split
+ * across pages. Controlled: the current page comes from `current`.
  *
  * @example
  * <Pagination current={page} pages={12} onChange={setPage} />
  */
 export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: PaginationProps) => {
   const { items, showPrevious, showNext } = usePagination({ current, pages });
+  const pageNumbers = useMemo(() => Array.from({ length: pages }, (_, i) => i + 1), [pages]);
 
   /**
    * Handle clicking on the 'Previous' button
@@ -106,7 +107,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
   }, [current, items, onChange]);
 
   return (
-    <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
+    <Box className={styles.container}>
       <Box className={styles.buttonContainer}>
         {showPrevious && (
           <Button
@@ -119,11 +120,25 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
           </Button>
         )}
       </Box>
-      {/* Never show page label when `showPageButtons === true` */}
+      {/* Never show the page select when `showPageButtons === true` */}
       {showPageButtons === false || showPageButtons === undefined ? (
-        <Text className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
-          {current} of {pages}
-        </Text>
+        <Box className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
+          <Box className={styles.pageSelect}>
+            <select
+              aria-label={`Page, of ${pages}`}
+              className={styles.select}
+              value={current}
+              onChange={(e) => onChange?.(Number(e.target.value))}
+            >
+              {pageNumbers.map((page) => (
+                <option key={page} value={page}>
+                  {page}
+                </option>
+              ))}
+            </select>
+            <Icon aria-hidden="true" className={styles.selectChevron} icon="chevron_down" variant="functionalIcons" />
+          </Box>
+        </Box>
       ) : null}
       {/* Never show page buttons when `showPageButtons === false` */}
       {showPageButtons === true || showPageButtons === undefined ? (

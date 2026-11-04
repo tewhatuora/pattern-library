@@ -112,6 +112,11 @@ export const trigger = style([
 
     selectors: {
       ...focusSelectorsStyles,
+      // The design has no disabled accordion, so this follows the other disabled controls
+      '&:disabled': {
+        color: vars.color.semantic.text.copy.disabled,
+        cursor: 'not-allowed',
+      },
     },
   },
   responsiveStyle({
@@ -127,10 +132,18 @@ export const trigger = style([
   }),
 ]);
 
+// The icons have their own colour, so they need the disabled colour too
+const disabledIcon = {
+  [`${trigger}:disabled &`]: {
+    color: vars.color.semantic.text.copy.disabled,
+  },
+};
+
 export const icon = recipe({
   base: [
     {
       flexShrink: 0,
+      selectors: disabledIcon,
     },
     responsiveStyle({
       mobile: {
@@ -165,6 +178,7 @@ export const chevron = recipe({
     transition: `transform ${animationDuration}`,
     selectors: {
       '[data-state=open] &': { transform: 'rotate(180deg)' },
+      ...disabledIcon,
     },
   },
   variants: {

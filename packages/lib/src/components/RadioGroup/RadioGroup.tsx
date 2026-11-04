@@ -6,6 +6,7 @@ import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { RadioButton, RadioButtonProps } from './RadioButton';
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputMessage, InputMessageProps } from '../InputMessage/InputMessage';
+import { Box } from '../Box/Box';
 
 import { ChildrenOfType } from '../../types/index';
 
@@ -112,16 +113,18 @@ export const RadioGroup = ({
         tertiaryLabelTooltip={tertiaryLabelTooltip}
         onTertiaryLabelClick={onTertiaryLabelClick}
       />
-      <AllowedChildren
-        errorMessage="Only `RadioButton` components are allowed as children of `RadioGroup`"
-        propsForChild={(child) => ({
-          disabled: child?.props?.disabled || disabled,
-          error: child?.props?.error || error,
-        })}
-        types={[RadioButton]}
-      >
-        {children}
-      </AllowedChildren>
+      <Box className={styles.options}>
+        <AllowedChildren
+          errorMessage="Only `RadioButton` components are allowed as children of `RadioGroup`"
+          propsForChild={(child) => ({
+            disabled: child?.props?.disabled || disabled,
+            error: child?.props?.error || error,
+          })}
+          types={[RadioButton]}
+        >
+          {children}
+        </AllowedChildren>
+      </Box>
       <InputMessage
         descriptionProps={{ ...descriptionProps, id: helperTextId }}
         disabled={disabled}

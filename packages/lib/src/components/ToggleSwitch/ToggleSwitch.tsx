@@ -14,6 +14,8 @@ export type ToggleSwitchProps = {
   /** Text beside the switch, and its accessible name. Without it the switch has no name. */
   label?: string;
   disabled?: boolean;
+  /** Error styling, and marks the switch invalid. */
+  error?: boolean;
   /** Start switched on. The switch is uncontrolled: there is no `checked` prop. */
   defaultChecked?: boolean;
   /** Bold line above the label. */
@@ -38,6 +40,7 @@ export const ToggleSwitch = ({
   heading,
   onChange,
   disabled,
+  error,
   name,
   required,
   ...boxProps
@@ -55,6 +58,7 @@ export const ToggleSwitch = ({
         </Text>
       </Box>
       <SwitchPrimitive.Root
+        aria-invalid={error || undefined}
         className={styles.switchRoot}
         defaultChecked={defaultChecked}
         disabled={disabled}

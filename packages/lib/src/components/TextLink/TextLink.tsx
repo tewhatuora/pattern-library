@@ -93,11 +93,19 @@ export const TextLink = forwardRef<HTMLAnchorElement, PropsWithChildren<TextLink
     const linkChildren = (
       <>
         {!!icon && iconPosition === 'left' && (
-          <Icon className={styles.inlineIcon({ iconPosition: 'left' })} icon={icon} variant="functionalIcons" />
+          <Icon
+            className={styles.inlineIcon({ iconPosition: 'left', noVisited })}
+            icon={icon}
+            variant="functionalIcons"
+          />
         )}
         {children}
         {!!icon && iconPosition === 'right' && (
-          <Icon className={styles.inlineIcon({ iconPosition: 'right' })} icon={icon} variant="functionalIcons" />
+          <Icon
+            className={styles.inlineIcon({ iconPosition: 'right', noVisited })}
+            icon={icon}
+            variant="functionalIcons"
+          />
         )}
       </>
     );

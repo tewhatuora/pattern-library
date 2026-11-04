@@ -36,7 +36,7 @@ const filled = style(
   }),
 );
 
-// Figma's button text style. The theme has no token for it: it folds it into the medium text size
+// The theme has no token for the button text's line height
 export const label = style({
   lineHeight: 1.3,
 });
@@ -58,6 +58,10 @@ export const buttonVariants = {
           textDecoration: vars.textDecoration['link-hover&focus'],
         },
         selectors: {
+          '&[disabled], &[disabled]:hover': {
+            color: vars.color.semantic.text.copy.disabled,
+            textDecoration: vars.textDecoration['link-normal'],
+          },
           ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
         },
       },
@@ -211,6 +215,18 @@ export const button = recipe({
     }),
   ]),
   variants: buttonVariants,
+  // The base styles are generated after the variants, so they win over them. These undo the base's full-width,
+  // bordered button for the link variant.
+  compoundVariants: [
+    {
+      variants: { variant: 'link' },
+      style: {
+        width: 'auto',
+        maxWidth: 'none',
+        borderWidth: 0,
+      },
+    },
+  ],
   defaultVariants: {
     variant: 'primary',
   },

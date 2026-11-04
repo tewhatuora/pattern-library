@@ -46,47 +46,68 @@ export const linkVariants = {
 };
 
 export const link = recipe({
-  base: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    color: vars.color.semantic.text.links.active,
-    textDecoration: vars.textDecoration['link-normal'],
-    cursor: 'pointer',
-    transition: 'color 0.3s ease-out',
-    borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
-    selectors: {
-      // A link within a block of text must be distinguishable without relying on colour (WCAG 1.4.1).
-      // Before `&:hover` so hover keeps its own decoration.
-      [`${text} &`]: {
-        textDecoration: 'underline',
-      },
-      '&:hover': {
-        color: vars.color.semantic.text.links.hover,
-        textDecoration: vars.textDecoration['link-hover&focus'],
-      },
-      [`${boldText} &`]: {
-        fontWeight: 'bold',
-      },
-      [`${boldLinks} &`]: {
-        fontWeight: 'bold',
-      },
+  base: [
+    responsiveStyle({
+      mobile: { textDecoration: 'none' },
+      tablet: { textDecoration: vars.textDecoration['link-normal'] },
+    }),
+    {
+      display: 'inline-flex',
+      // The text is baseline-aligned (the icon opts out below), so the link's baseline is its text's first line and it
+      // lines up with surrounding text
+      alignItems: 'baseline',
+      color: vars.color.semantic.text.links.active,
+      cursor: 'pointer',
+      transition: 'color 0.3s ease-out',
+      borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
+      selectors: {
+        // A link within a block of text must be distinguishable without relying on colour (WCAG 1.4.1).
+        // Before `&:hover` so hover keeps its own decoration.
+        [`${text} &`]: {
+          textDecoration: 'underline',
+        },
+        '&:hover': {
+          color: vars.color.semantic.text.links.hover,
+          textDecoration: vars.textDecoration['link-hover&focus'],
+        },
+        [`${boldText} &`]: {
+          fontWeight: 'bold',
+        },
+        [`${boldLinks} &`]: {
+          fontWeight: 'bold',
+        },
 
-      ...focusSelectorsStyles,
+        ...focusSelectorsStyles,
+      },
     },
-  },
+  ],
   variants: linkVariants,
   defaultVariants: {
     noVisited: false,
   },
 });
 
-export const icon = style(
+export const icon = style([
+  { alignSelf: 'flex-start' },
   responsiveStyle({
     mobile: {
-      marginRight: vars.space.xsmall.mobile,
+      marginRight: vars.space.small.mobile,
+      marginTop: `calc((1lh - ${vars.space.xsmall.tablet}) / 2)`,
     },
     tablet: {
       marginRight: vars.space.xsmall.tablet,
+      marginTop: `calc((1lh - ${vars.space.small.tablet}) / 2)`,
     },
   }),
-);
+  {
+    selectors: {
+      // Inside running text, size the chevron to the text and keep it close to the words around it
+      [`${text} &`]: {
+        width: '1em',
+        height: '1em',
+        marginTop: 'calc((1lh - 1em) / 2)',
+        marginRight: calc.divide(vars.space.xsmall.mobile, 4),
+      },
+    },
+  },
+]);

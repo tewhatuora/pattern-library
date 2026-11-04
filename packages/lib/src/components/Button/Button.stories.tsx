@@ -1,6 +1,7 @@
 import { Button, ButtonProps } from './Button';
 import icons from '../Icon/icons';
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 import Docs from './Button.docs.mdx';
 
@@ -23,12 +24,33 @@ export default {
     disabled: {
       control: { type: 'boolean' },
     },
+    weight: {
+      options: ['regular', 'medium', 'bold', 'black'],
+      control: { type: 'select' },
+    },
+    as: {
+      options: ['button', 'a'],
+      control: { type: 'radio' },
+    },
+    href: {
+      control: { type: 'text' },
+    },
+    type: {
+      options: ['button', 'submit', 'reset'],
+      control: { type: 'radio' },
+    },
     children: {
       control: {
         type: 'text',
       },
     },
     onPress: {
+      control: false,
+    },
+    onClick: {
+      control: false,
+    },
+    className: {
       control: false,
     },
   },
@@ -43,6 +65,53 @@ export default {
     },
   },
 };
+
+const variants = ['primary', 'secondary', 'tertiary', 'link'] as const;
+
+export const Overview = () => (
+  <VariantSections>
+    <Variants>
+      {variants.map((variant) => (
+        <Variant key={variant} label={variant}>
+          <Button variant={variant}>Button</Button>
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Icon left">
+      {variants.map((variant) => (
+        <Variant key={variant} label={variant}>
+          <Button icon="chevron_left" iconPosition="left" variant={variant}>
+            Button
+          </Button>
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Icon right">
+      {variants.map((variant) => (
+        <Variant key={variant} label={variant}>
+          <Button icon="chevron_right" variant={variant}>
+            Button
+          </Button>
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Disabled">
+      {variants.map((variant) => (
+        <Variant key={variant} label={variant}>
+          <Button disabled variant={variant}>
+            Button
+          </Button>
+        </Variant>
+      ))}
+    </Variants>
+    <Variants title="Long label">
+      <Variant label="Wraps and grows">
+        <Button>A long label that wraps onto a second line when space runs out</Button>
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
 
 export const Primary = (args: ButtonProps) => <Button {...args}>{args.children || 'Button'}</Button>;
 Primary.args = {

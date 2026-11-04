@@ -4,6 +4,7 @@ import { RadioGroup, RadioGroupProps } from './RadioGroup';
 import { RadioButton } from './RadioButton';
 import icons from '../Icon/icons';
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 import Docs from './RadioGroup.docs.mdx';
 
@@ -18,23 +19,33 @@ export default {
     subheading: 'Subheading',
     tertiaryLabelAs: 'button',
     tertiaryLabelIconPosition: 'left',
+    name: 'radio-group',
     required: false,
+    showRequiredAsterisk: true,
     disabled: false,
   },
   argTypes: {
-    name: { control: false },
+    name: { control: { type: 'text' } },
     id: { control: false },
+    value: {
+      options: ['one', 'two', 'three'],
+      control: { type: 'select' },
+    },
+    defaultValue: {
+      options: ['one', 'two', 'three'],
+      control: { type: 'select' },
+    },
     label: {
       control: {
         type: 'text',
       },
     },
-    helperText: {
+    subheading: {
       control: {
         type: 'text',
       },
     },
-    subheading: {
+    helperText: {
       control: {
         type: 'text',
       },
@@ -45,10 +56,8 @@ export default {
       },
     },
     tertiaryLabelAs: {
-      control: {
-        type: 'radio',
-        options: ['a', 'button', 'text'],
-      },
+      options: ['a', 'button', 'text'],
+      control: { type: 'radio' },
     },
     href: {
       if: { arg: 'tertiaryLabelAs', eq: 'a' },
@@ -61,10 +70,11 @@ export default {
       control: { type: 'select' },
     },
     tertiaryLabelIconPosition: {
-      control: {
-        type: 'radio',
-        options: ['left', 'right'],
-      },
+      options: ['left', 'right'],
+      control: { type: 'radio' },
+    },
+    tertiaryLabelTooltip: {
+      control: { type: 'text' },
     },
     error: {
       control: { type: 'boolean' },
@@ -79,23 +89,145 @@ export default {
         type: 'boolean',
       },
     },
+    showRequiredAsterisk: {
+      control: { type: 'boolean' },
+    },
     disabled: {
       control: {
         type: 'boolean',
       },
     },
     onChange: { control: false },
+    onTertiaryLabelClick: { control: false },
     children: { control: false },
   },
   parameters: {
     controls: {
-      exclude: ['descriptionProps', 'errorMessageProps', 'labelProps'],
+      // ARIA wiring props, and label props the group doesn't pass on
+      exclude: ['descriptionProps', 'errorMessageProps', 'labelProps', 'as', 'htmlFor'],
     },
     docs: {
       page: () => <DocsPage docs={Docs} />,
     },
   },
 };
+
+// Each group needs its own `name`, and each button a unique `id`, as they're shown together
+const buttons = (name: string, headings = false) => [
+  <RadioButton
+    heading={headings ? 'Email' : undefined}
+    id={`${name}-one`}
+    key="one"
+    label={headings ? 'To your inbox' : 'Email'}
+    value="one"
+  />,
+  <RadioButton
+    heading={headings ? 'Phone' : undefined}
+    id={`${name}-two`}
+    key="two"
+    label={headings ? 'A call or a text' : 'Phone'}
+    value="two"
+  />,
+  <RadioButton
+    heading={headings ? 'Post' : undefined}
+    id={`${name}-three`}
+    key="three"
+    label={headings ? 'To your postal address' : 'Post'}
+    value="three"
+  />,
+];
+
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="260px">
+      <Variant label="Nothing selected">
+        <RadioGroup helperText="Choose one" label="Preferred contact" name="rg-empty">
+          {buttons('rg-empty')}
+        </RadioGroup>
+      </Variant>
+      <Variant label="Selected">
+        <RadioGroup defaultValue="one" helperText="Choose one" label="Preferred contact" name="rg-selected">
+          {buttons('rg-selected')}
+        </RadioGroup>
+      </Variant>
+      <Variant label="Headings">
+        <RadioGroup defaultValue="two" label="Preferred contact" name="rg-headings">
+          {buttons('rg-headings', true)}
+        </RadioGroup>
+      </Variant>
+      <Variant label="Subheading, tertiary label, required">
+        <RadioGroup
+          label="Preferred contact"
+          name="rg-required"
+          required
+          subheading="How should we reach you?"
+          tertiaryLabel="Why we ask"
+          tertiaryLabelAs="text"
+        >
+          {buttons('rg-required')}
+        </RadioGroup>
+      </Variant>
+    </Variants>
+    <Variants minWidth="260px" title="States">
+      <Variant label="Error">
+        <RadioGroup error errorMessage="Choose a contact method" label="Preferred contact" name="rg-error">
+          {buttons('rg-error')}
+        </RadioGroup>
+      </Variant>
+      <Variant label="Error, selected">
+        <RadioGroup
+          defaultValue="one"
+          error
+          errorMessage="Choose a contact method"
+          label="Preferred contact"
+          name="rg-error-selected"
+        >
+          {buttons('rg-error-selected')}
+        </RadioGroup>
+      </Variant>
+      <Variant label="Disabled">
+        <RadioGroup disabled helperText="Choose one" label="Preferred contact" name="rg-disabled">
+          {buttons('rg-disabled')}
+        </RadioGroup>
+      </Variant>
+      <Variant label="Disabled, selected">
+        <RadioGroup defaultValue="one" disabled label="Preferred contact" name="rg-disabled-selected">
+          {buttons('rg-disabled-selected')}
+        </RadioGroup>
+      </Variant>
+      <Variant label="One button disabled">
+        <RadioGroup defaultValue="one" label="Preferred contact" name="rg-one-disabled">
+          {[
+            <RadioButton id="rg-one-disabled-one" key="one" label="Email" value="one" />,
+            <RadioButton disabled id="rg-one-disabled-two" key="two" label="Phone (unavailable)" value="two" />,
+          ]}
+        </RadioGroup>
+      </Variant>
+    </Variants>
+    <Variants minWidth="280px" title="Long content">
+      <Variant label="Wraps">
+        <RadioGroup
+          defaultValue="one"
+          helperText="We'll only use this to contact you about your appointments and results"
+          label="How would you like us to contact you about appointments?"
+          name="rg-long"
+        >
+          {[
+            <RadioButton
+              heading="Email, to the address saved in your profile"
+              id="rg-long-one"
+              key="one"
+              label="You can change your email address at any time from your profile settings"
+              value="one"
+            />,
+            <RadioButton id="rg-long-two" key="two" label="Phone" value="two" />,
+          ]}
+        </RadioGroup>
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
 
 export const Default = (args: RadioGroupProps) => {
   return (

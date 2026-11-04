@@ -27,7 +27,7 @@
     "m": {
       "mobile": {
         "description": null,
-        "value": 10,
+        "value": 24,
         "type": "dimension"
       },
       "desktop": {
@@ -39,7 +39,7 @@
     "s": {
       "mobile": {
         "description": null,
-        "value": 10,
+        "value": 16,
         "type": "dimension"
       },
       "desktop": {

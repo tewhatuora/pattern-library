@@ -10,11 +10,10 @@ import * as styles from './CountryDropdown.css';
 
 export const CountryDropdownStyles = styles;
 
-// Flags that have been loaded, shared by every CountryDropdown so each flag is only fetched once
 const flagCache = new Map<string, string>();
 
 /**
- * Loads the SVG markup for a country's flag on demand
+ * Lazily loads the SVG markup for a country's flag on demand
  * @param country
  * @returns the SVG markup, or undefined until it has loaded
  */
@@ -74,9 +73,11 @@ export const CountryDropdown = memo(
     const flagSvg = useFlagSvg(hasFlag ? value : undefined);
 
     const countryOptions = useMemo(() => {
-      return options.map(({ value, label }: any) => ({
-        value,
-        label: `${label} ${isSupportedCountry(value) ? `(+${getCountryCallingCode(value)})` : ''}`,
+      // The International option has no value (and dividers have neither), which would leave the <option> without a key
+      return options.map(({ value, label, divider }: any) => ({
+        value: value ?? (divider ? '|' : 'International'),
+        label: `${label ?? ''} ${isSupportedCountry(value) ? `(+${getCountryCallingCode(value)})` : ''}`,
+        disabled: !!divider,
       }));
     }, [options]);
 

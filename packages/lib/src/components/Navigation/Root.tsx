@@ -107,12 +107,12 @@ export const Root = ({
             </ul>
           )}
           {!!utilityNavItems?.length && (
-            <>
-              {hasNavItems && (
-                <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
-              )}
-              <Utility className={helpers.upToTablet.block} items={utilityNavItems} variant={variant} />
-            </>
+            <div className={helpers.upToTablet.block}>
+              <Stack space="medium">
+                {hasNavItems && <Divider variant={variant} />}
+                <Utility items={utilityNavItems} variant={variant} />
+              </Stack>
+            </div>
           )}
         </Stack>
       </nav>

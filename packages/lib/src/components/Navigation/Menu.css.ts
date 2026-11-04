@@ -132,7 +132,7 @@ export const navigationMenu = styleVariants({
 export const subNavHeading = style([
   responsiveStyle({
     mobile: {
-      marginBottom: calc.divide(vars.space.medium.mobile, 2),
+      marginBottom: vars.space.small.mobile,
     },
     desktop: {
       marginBottom: calc.divide(vars.space.small.tablet, 2),

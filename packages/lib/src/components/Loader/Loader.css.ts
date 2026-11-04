@@ -16,7 +16,6 @@ export const container = style({
 
 const spinnerStyles = style([
   {
-    marginBottom: rem(16),
     animation: `${rotate} 1s linear infinite`,
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
@@ -25,11 +24,13 @@ const spinnerStyles = style([
   },
   responsiveStyle({
     mobile: {
+      marginBottom: vars.space.small.mobile,
       width: rem(36),
       height: rem(36),
       borderWidth: vars.borderWidth.medium,
     },
     desktop: {
+      marginBottom: vars.space.small.tablet,
       width: rem(72),
       height: rem(72),
       borderWidth: vars.borderWidth.large,

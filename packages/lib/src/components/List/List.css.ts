@@ -108,8 +108,16 @@ export const dividersNoBottom = style({
 export const dividers = style({
   position: 'relative',
 
-  paddingTop: vars.space.small.mobile,
-  paddingBottom: vars.space.small.mobile,
+  ...responsiveStyle({
+    mobile: {
+      paddingTop: vars.space.xsmall.mobile,
+      paddingBottom: vars.space.xsmall.mobile,
+    },
+    tablet: {
+      paddingTop: vars.space.small.mobile,
+      paddingBottom: vars.space.small.mobile,
+    },
+  }),
 
   selectors: {
     /** Shared styles for ::before and ::after. */
@@ -150,7 +158,6 @@ export const dividers = style({
 export const itemIcon = style([
   {
     flexShrink: 0,
-    marginRight: '1rem',
   },
   // Make the icon line up with the text
   responsiveStyle({
@@ -163,10 +170,21 @@ export const itemIcon = style([
   }),
 ]);
 
-export const itemContent = style({
-  display: 'inline-flex',
-  alignItems: 'baseline', // Works more consistently than 'flex-start' for aligning the icon
-});
+export const itemContent = style([
+  {
+    display: 'inline-flex',
+    alignItems: 'baseline', // Works more consistently than 'flex-start' for aligning the icon
+  },
+  // A gap rather than a margin on the icon, so it works for icons on either side
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.small.mobile,
+    },
+    tablet: {
+      gap: vars.space.xsmall.tablet,
+    },
+  }),
+]);
 
 export const itemIconPosition = styleVariants({
   left: {

@@ -15,7 +15,7 @@ export const card = style([
   },
   responsiveStyle({
     mobile: {
-      padding: vars.space.medium.mobile,
+      padding: vars.space.small.mobile,
     },
     tablet: {
       padding: vars.space.medium.tablet,
@@ -25,4 +25,6 @@ export const card = style([
 
 export const variants = styleVariants({
   noShadow: [card, { boxShadow: 'none' }],
+  // The design has no border; the `border` prop opts in, with its colour set inline
+  bordered: [card, { borderWidth: vars.borderWidth.small, borderStyle: 'solid' }],
 });

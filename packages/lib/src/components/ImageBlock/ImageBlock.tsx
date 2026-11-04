@@ -73,12 +73,13 @@ export type ImageBlockProps = {
   shape?: 'square' | 'rectangle';
   /**
    * `full` fills the row with content and image side by side. `half` and `third` take that share of the row
-   * on desktop, with the image stacked under the content.
+   * on desktop, with the content and image stacked.
    * @default 'full'
    */
   width?: styles.WidthVariant;
   /**
-   * Whether the image comes `before` or `after` the content.
+   * Whether the image comes `before` or `after` the content: to its left or right for `full` on desktop, otherwise
+   * above or below it. On mobile, `full` always shows the image first.
    * @default 'after'
    */
   imagePosition?: styles.ImagePositionVariant;
@@ -88,7 +89,12 @@ export type ImageBlockProps = {
   secondaryButton?: ImageBlockButton;
 } & Omit<ContentProps, 'className' | 'variant'>;
 
-const WithinParentColumn = ({ children }: PropsWithChildren<any>) => <Stack space="medium">{children}</Stack>;
+const WithinParentColumn = ({
+  imagePosition,
+  children,
+}: PropsWithChildren<Required<Pick<ImageBlockProps, 'width' | 'imagePosition'>>>) => (
+  <Box className={styles.stacked[imagePosition]}>{children}</Box>
+);
 const Standalone = ({
   width,
   imagePosition,
@@ -150,7 +156,7 @@ export const ImageBlock = ({
             <Stack space="medium">
               {children}
               {(!!primaryButton || !!secondaryButton) && (
-                <Stack className={styles.buttons[width]} space="medium">
+                <Box className={styles.buttons[width]}>
                   {!!primaryButton && (
                     <Button
                       as={primaryButton.as}
@@ -171,7 +177,7 @@ export const ImageBlock = ({
                       {secondaryButton.label}
                     </Button>
                   )}
-                </Stack>
+                </Box>
               )}
             </Stack>
           </Content>

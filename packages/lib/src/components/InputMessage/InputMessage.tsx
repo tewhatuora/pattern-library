@@ -47,7 +47,7 @@ export const InputMessage = ({
       )}
       {!!errorMessage && !disabled && (
         <Text className={styles.errorMessage} color="error100" size="xsmall" weight="regular">
-          <Icon className={styles.errorMessageIcon} icon="alert_filled" variant="functionalIcons" />
+          <Icon className={styles.errorMessageIcon} icon="warning" variant="functionalIcons" />
           <span {...errorMessageProps}>{errorMessage}</span>
         </Text>
       )}
