@@ -9,7 +9,10 @@ import { vars } from '../../themes/vars.css';
 
 const barHeightVar = createVar();
 
-export const container = style({});
+// More tabs than fit scroll sideways, as the design specifies, rather than widening the page
+export const container = style({
+  overflowX: 'auto',
+});
 
 export const list = style({
   display: 'flex',
@@ -28,6 +31,8 @@ export const button = style({
   cursor: 'pointer',
   whiteSpace: 'nowrap',
   color: vars.color.semantic.controls.content.dark,
+  // Draw the focus outline inside the tab, so the scrolling container doesn't clip it
+  outlineOffset: calc.multiply(vars.borderWidth.xlarge, -1),
 
   vars: {
     [barHeightVar]: '0',
@@ -52,6 +57,12 @@ export const button = style({
       vars: {
         [barHeightVar]: vars.borderWidth.xlarge,
       },
+    },
+
+    // The design has no disabled tab, so this follows the other disabled controls
+    '&:disabled': {
+      color: vars.color.semantic.text.copy.disabled,
+      cursor: 'not-allowed',
     },
 
     ...getFocusSelectors(vars.color.semantic.controls.highlight.focus),

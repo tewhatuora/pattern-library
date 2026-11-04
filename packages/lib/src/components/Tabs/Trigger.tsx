@@ -1,5 +1,5 @@
 import * as RadixTabs from '@radix-ui/react-tabs';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { RefAttributes } from 'react';
 
 import { Icon } from '../Icon/Icon';
@@ -9,17 +9,20 @@ import { Text } from '../Text/Text';
 import * as styles from './Tabs.css';
 
 export type TabsTriggerProps = {
-  /** Trigger label/content */
+  /** Label text. Must be a plain string. */
   children: string;
-  /** Additional CSS className. (Use `__patternlibrary__` for an example) */
+  /** Applied to the label text, not the button. */
   className?: string;
-  /** Optional icon to display on the Trigger */
   icon?: IconType;
-  /** Icon position relative to the Trigger label */
+  /**
+   * Which side of the label the icon is on.
+   * @default 'left'
+   */
   iconPosition?: 'left' | 'right';
 } & RadixTabs.TabsTriggerProps &
   RefAttributes<HTMLButtonElement>;
 
+/** Tab button. Its `value` must match the `value` of a `Tabs.Content`. */
 export const Trigger = ({ children, value, className, icon, iconPosition = 'left', ...rest }: TabsTriggerProps) => {
   return (
     <RadixTabs.Trigger className={styles.button} key={`tab-key-${value}`} value={value} {...rest}>

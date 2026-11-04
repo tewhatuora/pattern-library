@@ -2,7 +2,7 @@ import * as RadixTabs from '@radix-ui/react-tabs';
 
 import { RefAttributes } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { ChildrenOfType } from '../../types/index';
 
@@ -18,6 +18,7 @@ export type TabsListProps = {
 } & RadixTabs.TabsListProps &
   RefAttributes<HTMLDivElement>;
 
+/** Row of `Tabs.Trigger`s. Pass `aria-label` to name the tab list for screen readers. */
 export const List = ({ className, children, ...rest }: TabsListProps) => {
   return (
     <div className={clsx(styles.container, className)}>

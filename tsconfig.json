@@ -8,22 +8,16 @@
     "isolatedModules": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
     "target": "esnext",
-    "types": [
-      "node",
-      "mdx"
-    ],
-    "jsx" : "react-jsx"
+    "types": ["node", "mdx"],
+    "jsx": "react-jsx"
   },
-  "include": [
-    "packages/lib/**/*",
-    "*.mdx"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["packages/lib/**/*", "*.mdx"],
+  "exclude": ["node_modules", "tmp"]
 }

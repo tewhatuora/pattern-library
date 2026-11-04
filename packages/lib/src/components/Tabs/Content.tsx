@@ -9,6 +9,7 @@ export type TabsContentProps = PropsWithChildren<{
   RadixTabs.TabsContentProps &
   RefAttributes<HTMLDivElement>;
 
+/** Panel shown while the trigger with the same `value` is active. */
 export const Content = ({ className, children, value, ...rest }: TabsContentProps) => {
   return (
     <RadixTabs.Content className={className} key={`tab-content-${value}`} value={value} {...rest}>

@@ -9,31 +9,29 @@ import * as styles from './ToggleSwitch.css';
 export const ToggleSwitchStyles = styles;
 
 export type ToggleSwitchProps = {
-  /** id attribute */
+  /** Links the label to the switch, so it must be unique on the page. */
   id: string;
-  /** Label for the toggle switch */
+  /** Text beside the switch, and its accessible name. Without it the switch has no name. */
   label?: string;
-  /** Disabled state */
   disabled?: boolean;
-  /** Set the switch to 'on' by default */
+  /** Error styling, and marks the switch invalid. */
+  error?: boolean;
+  /** Start switched on. The switch is uncontrolled: there is no `checked` prop. */
   defaultChecked?: boolean;
-  /** Heading to show above the label */
+  /** Bold line above the label. */
   heading?: string;
-  /** Function to call when the switch is changed/toggled */
+  /** Called with the new on or off state. */
   onChange?: (checked: boolean) => void;
-  /** name attribute */
   name?: string;
+  required?: boolean;
 };
 
 /**
- * ToggleSwitch Component
- * A control that has two mutually exclusive states
- * Always has a default value
- * Display text on the left
- * Option to display a text heading on the left
- * Display a toggle switch on the right
- * @param props
- * @constructor
+ * An on/off switch with its label on the left. Use it for settings that apply straight away, and a
+ * checkbox for choices submitted with a form.
+ *
+ * @example
+ * <ToggleSwitch defaultChecked id="email-notifications" label="Email notifications" onChange={setEnabled} />
  */
 export const ToggleSwitch = ({
   id,
@@ -42,7 +40,9 @@ export const ToggleSwitch = ({
   heading,
   onChange,
   disabled,
+  error,
   name,
+  required,
   ...boxProps
 }: ToggleSwitchProps) => {
   return (
@@ -58,11 +58,13 @@ export const ToggleSwitch = ({
         </Text>
       </Box>
       <SwitchPrimitive.Root
+        aria-invalid={error || undefined}
         className={styles.switchRoot}
         defaultChecked={defaultChecked}
         disabled={disabled}
         id={id}
         name={name}
+        required={required}
         onCheckedChange={onChange}
       >
         <SwitchPrimitive.Thumb className={styles.switchThumb} />

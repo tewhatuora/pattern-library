@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { forwardRef } from 'react';
 
@@ -9,20 +9,21 @@ import * as styles from './TextLinkButton.css';
 import { UseTextProps } from '../../hooks/typography';
 
 export type TextLinkButtonProps = {
-  /** Font weight for `<Text>` */
+  /**
+   * Font weight token.
+   * @default 'link-normal'
+   */
   weight?: UseTextProps['weight'];
-  /** Option to show underline when not hovered */
+  /** Underline the text at rest. Without it the underline only shows on hover. */
   showUnderline?: boolean;
 } & Omit<ButtonProps, 'variant' | 'disabled' | 'width' | 'justifyContent'>;
 
 /**
- * TextLinkButton
- * A semantic button that looks like a link.
- * Because this is a button - we don’t
- * require a ‘pressed state’ as we do
- * with our link components.
- * @param props
- * @constructor
+ * A button that looks like a link, for actions rather than navigation. Use `TextLink` to go to another
+ * page. It has no visited state.
+ *
+ * @example
+ * <TextLinkButton onPress={() => setOpen(true)}>Show details</TextLinkButton>
  */
 export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>(
   ({ weight = 'link-normal', className, showUnderline = false, ...rest }, ref) => {
@@ -37,5 +38,3 @@ export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>
     );
   },
 );
-
-export default TextLinkButton;

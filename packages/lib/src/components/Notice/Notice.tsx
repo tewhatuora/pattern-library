@@ -8,11 +8,14 @@ import * as styles from './Notice.css';
 export const NoticeStyles = styles;
 
 export type NoticeProps = {
-  /** Notice label text */
+  /** Message text. */
   label?: string;
-  /** Notice color variant */
-  variant: styles.Variant;
-  /** Alternative icon to show */
+  /**
+   * Colour and default icon: `positive` (tick), `info` (info), `critical` (warning) or `caution` (alert).
+   * @default 'positive'
+   */
+  variant?: styles.Variant;
+  /** Icon to show in place of the variant's default. */
   alternativeIcon?: IconType;
 };
 
@@ -32,6 +35,13 @@ const iconMap: Record<string, IconType> = {
   caution: 'alert',
 };
 
+/**
+ * A short message with an icon, in a lighter style than `Alert`. It has `role="status"`, so screen
+ * readers announce changes to it politely.
+ *
+ * @example
+ * <Notice label="Results can take up to 3 days" variant="info" />
+ */
 export const Notice = ({ label, variant = 'positive', alternativeIcon, ...boxProps }: NoticeProps) => {
   return (
     <Box

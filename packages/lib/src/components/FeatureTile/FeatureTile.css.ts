@@ -5,10 +5,13 @@ import { vars } from '../../themes/vars.css';
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 export const featureTile = style([
+  {
+    backgroundColor: vars.color.semantic.controls.background.light2,
+  },
   responsiveStyle({
     mobile: {
-      paddingRight: vars.space.medium.mobile,
-      paddingLeft: vars.space.medium.mobile,
+      paddingRight: vars.space.small.mobile,
+      paddingLeft: vars.space.small.mobile,
     },
     tablet: {
       paddingRight: vars.space.medium.tablet,
@@ -29,8 +32,8 @@ export const feature = style([
   },
   responsiveStyle({
     mobile: {
-      paddingTop: vars.space.xxlarge.mobile,
-      paddingBottom: vars.space.xxlarge.mobile,
+      paddingTop: vars.space.medium.mobile,
+      paddingBottom: vars.space.medium.mobile,
     },
     tablet: {
       paddingTop: vars.space.large.tablet,
@@ -78,3 +81,7 @@ export const description = style([
     },
   }),
 ]);
+
+export const button = style({
+  backgroundColor: vars.color.semantic.controls.background.light2,
+});

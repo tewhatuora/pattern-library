@@ -7,20 +7,9 @@ import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 import { fontFamily } from '../../hooks/typography/typography.css';
 
-export const list = style([
-  responsiveStyle({
-    mobile: {
-      maxWidth: '100%',
-    },
-    tablet: {
-      maxWidth: '60%',
-    },
-  }),
-]);
-
-export const boldText = style({
-  fontWeight: 'bold',
-  background: 'red',
+// Middle crumbs only collapse when the breadcrumbs don't fit the container
+export const list = style({
+  maxWidth: '100%',
 });
 
 export const crumb = style({
@@ -29,11 +18,14 @@ export const crumb = style({
   fontWeight: vars.textWeight.regular,
 
   selectors: {
-    '&:last-of-type, &:first-of-type': {
+    '&:first-of-type': {
       flexShrink: '0',
     },
-    [`${boldText} &`]: {
-      fontWeight: 'bold',
+    // The current page wraps if it's still too long once the middle crumbs have collapsed
+    '&:last-of-type': {
+      minWidth: 0,
+      whiteSpace: 'normal',
+      overflowWrap: 'break-word',
     },
   },
 });

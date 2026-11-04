@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 import { AllowedChildren } from '../AllowedChildren/AllowedChildren';
 import { Checkbox, CheckboxProps } from '../Checkbox/Checkbox';
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
@@ -11,24 +13,33 @@ import * as styles from './CheckboxGroup.css';
 export const CheckboxGroupStyles = styles;
 
 export type CheckboxGroupProps = {
-  /** show asterisk when field is required (default: `true`) */
+  /**
+   * Shows `*` after the label when `required` is set. Set to false if the form states that fields are required instead.
+   * @default true
+   */
   showRequiredAsterisk?: boolean;
+  /**
+   * Error styling on every checkbox, which also marks them invalid. `errorMessage` alone only colours the label and
+   * shows the message, so set both.
+   */
+  error?: boolean;
   /** Only `Checkbox` components are allowed as children of `CheckboxGroup` */
   children: ChildrenOfType<'Checkbox', CheckboxProps>;
 } & InputLabelProps &
   InputMessageProps;
 
 /**
- * CheckboxGroup Component
- * Displays a list of vertically stacked Checkbox components
- * Enables users to pick multiple options from a group of Checkbox component
- * Have an option to display a heading
- * Have an option to be required
- * Have the option top display Checkboxes with indeterminate state
- * @param props
- * @constructor
+ * Vertical list of `Checkbox` components with a shared label, helper text and error message.
+ * Rendered as `role="group"` named by the label and described by the helper text and error.
+ * `disabled` and `error` apply to every child. `errorMessage` colours the label and shows the message.
+ * Each child's `checked` state is managed by the consumer.
+ *
+ * @example
+ * <CheckboxGroup helperText="Choose all that apply" label="Contact methods">
+ *   <Checkbox checked={email} id="contact-email" label="Email" onCheckedChange={setEmail} />
+ *   <Checkbox checked={phone} id="contact-phone" label="Phone" onCheckedChange={setPhone} />
+ * </CheckboxGroup>
  */
-
 export const CheckboxGroup = ({
   errorMessage,
   href,
@@ -46,37 +57,67 @@ export const CheckboxGroup = ({
   tertiaryLabelAs,
   tertiaryLabelIcon,
   tertiaryLabelIconPosition,
+  tertiaryLabelTooltip,
   onTertiaryLabelClick,
   children,
+  error,
+  // Label props that don't apply to the group's wrapper element
+  as,
+  htmlFor,
   ...boxProps
 }: CheckboxGroupProps) => {
+  const generatedId = useId();
+  const labelId = labelProps?.id ?? `${generatedId}-label`;
+  const helperTextId = descriptionProps?.id ?? `${generatedId}-description`;
+  const errorMessageId = errorMessageProps?.id ?? `${generatedId}-error`;
+
+  // The label and messages aren't form controls, so the group is named and described with ARIA
+  const describedBy = [!!helperText && helperTextId, !!errorMessage && !disabled && errorMessageId]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <Box as="div" className={styles.container} {...boxProps}>
+    <Box
+      aria-describedby={describedBy || undefined}
+      aria-labelledby={labelId}
+      as="div"
+      className={styles.container}
+      id={id}
+      role="group"
+      {...boxProps}
+    >
       <InputLabel
+        disabled={disabled}
         error={!!errorMessage}
         href={href}
-        htmlFor={id}
         label={label}
-        labelProps={labelProps}
+        labelProps={{ ...labelProps, id: labelId }}
         required={showRequiredAsterisk && required}
         subheading={subheading}
         tertiaryLabel={tertiaryLabel}
         tertiaryLabelAs={tertiaryLabelAs}
         tertiaryLabelIcon={tertiaryLabelIcon}
         tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+        tertiaryLabelTooltip={tertiaryLabelTooltip}
         onTertiaryLabelClick={onTertiaryLabelClick}
       />
-      <AllowedChildren
-        errorMessage="Only `Checkbox` components are allowed as children of `CheckboxGroup`"
-        types={[Checkbox]}
-      >
-        {children}
-      </AllowedChildren>
+      <Box className={styles.options}>
+        <AllowedChildren
+          errorMessage="Only `Checkbox` components are allowed as children of `CheckboxGroup`"
+          propsForChild={(child) => ({
+            disabled: child?.props?.disabled || disabled,
+            error: child?.props?.error || error,
+          })}
+          types={[Checkbox]}
+        >
+          {children}
+        </AllowedChildren>
+      </Box>
       <InputMessage
-        descriptionProps={descriptionProps}
+        descriptionProps={{ ...descriptionProps, id: helperTextId }}
         disabled={disabled}
         errorMessage={errorMessage}
-        errorMessageProps={errorMessageProps}
+        errorMessageProps={{ ...errorMessageProps, id: errorMessageId }}
         helperText={helperText}
       />
     </Box>

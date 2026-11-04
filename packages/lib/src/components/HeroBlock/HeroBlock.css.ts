@@ -25,6 +25,12 @@ export const heroBlock = style([
   }),
 ]);
 
+export const heroBoxBackground = style([
+  {
+    backgroundColor: vars.color.semantic.controls.background.light2,
+  },
+]);
+
 export const heroBlockNoChildren = style([
   responsiveStyle({
     mobile: {
@@ -84,6 +90,22 @@ export const patternGradient = style([
   }),
 ]);
 
+export const paleBlueGradientContainer = style({
+  position: 'absolute',
+  right: 0,
+  top: '0%',
+  width: '100%',
+  height: '100%',
+});
+
+export const paleBlueGradient = style({
+  position: 'absolute',
+  inset: 0,
+  backgroundBlendMode: 'color-burn',
+  background: `${vars.gradient.mesh['pale aqua mesh'][0]},
+               ${vars.gradient.mesh['pale aqua mesh'][1]}`,
+});
+
 export const headingContainer = style([
   atoms({
     display: 'flex',
@@ -91,12 +113,12 @@ export const headingContainer = style([
   responsiveStyle({
     mobile: {
       flexDirection: 'column-reverse',
-      marginBottom: vars.space.small.mobile,
+      marginBottom: 0,
     },
     tablet: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: vars.space.xsmall.mobile,
+      marginBottom: 0,
     },
   }),
 ]);
@@ -152,7 +174,7 @@ export const sticky = style({
   position: 'sticky',
   top: 0,
   width: '100%',
-  backgroundColor: vars.color.primary25,
+  backgroundColor: vars.color.semantic.controls.background.light2,
 });
 
 export const children = style([

@@ -1,7 +1,7 @@
 import { StyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 import { calc } from '@vanilla-extract/css-utils';
-import { Viewport } from '@healthnz/pattern-library-themes/dist/types/tokenType';
+import type { Viewport } from '@healthnz/pattern-library-themes';
 
 import { ColumnLength } from './Column';
 
@@ -82,12 +82,15 @@ export const nested = styleVariants(makeStyles(getNestedStyle));
 const makeOffsetStyles = () => {
   const spaceNames = Object.keys(vars.space) as Space[];
 
-  return spaceNames.reduce((variants: any, space: Space) => {
-    return {
-      ...variants,
-      [space]: getOffsetStyle(space),
-    };
-  }, {} as Record<Space, StyleRule>);
+  return spaceNames.reduce(
+    (variants: any, space: Space) => {
+      return {
+        ...variants,
+        [space]: getOffsetStyle(space),
+      };
+    },
+    {} as Record<Space, StyleRule>,
+  );
 };
 
 export const offset = styleVariants(makeOffsetStyles());

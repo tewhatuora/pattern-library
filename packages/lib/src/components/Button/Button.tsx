@@ -1,5 +1,7 @@
+import type { JSX } from 'react';
 import { ComponentPropsWithoutRef, ElementType, ReactNode, Ref, forwardRef } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
+import type { PressEvent } from '@react-aria/interactions';
 
 import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
@@ -14,22 +16,29 @@ import * as styles from './Button.css';
 export const ButtonStyles = styles;
 
 export type ButtonProps = {
-  /** Font weight for `<Text>` */
+  /** Text weight token. Defaults to bold. */
   weight?: UseTextProps['weight'];
-  /** Icon to display **/
+  /** Icon shown beside the text. Decorative, so the text must carry the meaning. */
   icon?: IconType;
-  /** Where to position the icon */
+  /**
+   * Side of the text the icon appears on.
+   * @default 'right'
+   */
   iconPosition?: 'left' | 'right';
-  /** Element type to render the Button as */
+  /**
+   * Element to render. Use `'a'` with `href` for navigation, so it is a real link rather than a button.
+   * @default 'button'
+   */
   as?: ElementType;
-  /** URL/path to link to if `as` is set to `a` */
+  /** Destination when `as` is `'a'`. Has no effect on a `button`. */
   href?: string;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
-  /** A function that will be called when clicking/pressing the Button */
-  onPress?: (e: any) => void;
-  /** A function that will be called when clicking/pressing the Button that is keyboard accessible */
+  /** Called on mouse, touch and keyboard activation. Prefer this over `onClick`. */
+  onPress?: (e: PressEvent) => void;
+  /** Called before `onPress`, mainly so Radix triggers (`asChild`) can attach their handler. Despite the type it receives a `PressEvent`, not a `MouseEvent`. */
   onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
+  /** Button text. If omitted, only the icon renders, so add an `aria-label`. */
   children?: ReactNode | undefined;
 } & styles.Variants &
   Pick<JSX.IntrinsicElements['button'], 'disabled' | 'type' | 'tabIndex'> &
@@ -40,7 +49,14 @@ type AsLink = {
 };
 
 /**
- * Buttons allow users to take actions, and make choices, with a single tap.
+ * Triggers an action. `variant` sets the emphasis: `primary` (default) for the main action, `secondary` and
+ * `tertiary` for lesser ones, `link` for an inline text-link look. Use one `primary` per view.
+ * `type` defaults to `"button"`, so it never submits a form unless you set `type="submit"`.
+ *
+ * @example
+ * <Button icon="chevron_right" variant="primary" onPress={() => save()}>
+ *   Save
+ * </Button>
  */
 export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement> | null) => {
   const {
@@ -59,14 +75,13 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
     ...rest
   } = props;
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // Call the onPress prop if it's provided
-    // OnClick used for Radix components
-    if (onClick) {
-      onClick(e);
-    } else if (onPress) {
-      onPress(e);
-    }
+  const handleClick = (e: PressEvent) => {
+    // onClick is how Radix triggers (e.g. Dialog.Trigger asChild) attach their handler. Call it first, then
+    // the consumer's onPress, so a Button used as a trigger still runs its own onPress.
+    // This runs from react-aria's onPress, so onClick has always received a PressEvent, not a MouseEvent.
+    // Radix triggers only use it as a callback, so the type is left as it was.
+    onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
+    onPress?.(e);
   };
 
   return (
@@ -90,7 +105,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<HTMLButtonElement
       )}
 
       {!!children && (
-        <Text size="medium" weight={weight}>
+        <Text className={variant === 'link' ? undefined : styles.label} size="medium" weight={weight}>
           {children}
         </Text>
       )}

@@ -7,14 +7,11 @@ import * as styles from './Menu.css';
 export const MenuListStyles = styles;
 
 export type MenuListProps = {
-  /** Heading for menu list **/
+  /** Heading above the links. Also used as a React key, so keep it unique within a menu. */
   heading: string;
 };
 
-/**
- * Navigation menu list
- * @constructor
- */
+/** A headed group of links inside a `Navigation.Menu`. */
 export const MenuList = ({ heading, children }: PropsWithChildren<MenuListProps>) => {
   return (
     <>

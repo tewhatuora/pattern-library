@@ -1,5 +1,5 @@
-import { FC, memo, useMemo } from 'react';
-import clsx from 'clsx';
+import { memo, useMemo } from 'react';
+import { clsx } from 'clsx';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import { Link } from './Link';
@@ -7,27 +7,26 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
-import { ContrastVariant } from '../../types';
+import { ContrastVariant, LinkComponentType } from '../../types';
 
 import * as styles from './Utility.css';
 
 export type UtilityNavItemProps = {
-  /** Link href/path */
   href: string;
-  /** Icon */
+  /** Icon shown after the label. */
   icon: IconType;
-  /** Label/text content for the link */
+  /** Link text. Also used as a React key, so keep labels unique. */
   label: string;
-  /** Optionally render as a custom component, e.g. react-router-dom Link */
-  component?: FC<any>;
+  /** Component to render instead of an `a`, e.g. a wrapper around a router `<Link>`. It receives `href`. */
+  component?: LinkComponentType;
 };
 
 export type UtilityProps = {
-  /** Contrast variant for dark/light UI */
+  /** Background the links sit on: `light` or `dark`. */
   variant: ContrastVariant;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
-  /** Array of utility navigation items */
+  /** Links to show. A maximum of two: more throws. */
   items: UtilityNavItemProps[];
 };
 
@@ -47,16 +46,13 @@ const UtilityNavItem = memo(
   }) => (
     <li>
       <Link className={styles.utilityLink[variant]} component={component} href={href}>
-        <Icon icon={icon} variant="functionalIcons" /> <Text>{label}</Text>
+        <Text>{label}</Text> <Icon icon={icon} variant="functionalIcons" />
       </Link>
     </li>
   ),
 );
 
-/**
- * Utility navigation
- * @constructor
- */
+/** Up to two links with icons, e.g. language and account. `Navigation.Root` shows these from `utilityNavItems`. */
 export const Utility = memo(({ variant, className, items }: UtilityProps) => {
   const navItems = useMemo(() => {
     if (items?.length > 2) {

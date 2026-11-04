@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { PropsWithChildren } from 'react';
 
 import { Box } from '../Box/Box';
@@ -10,25 +11,31 @@ import { Button, ButtonProps } from '../Button/Button';
 export const FeatureTileStyles = styles;
 
 export type FeatureProps = {
-  /** Title for the featured content */
+  /** Heading of the feature, rendered as an `h2`. */
   title: string;
-  /** Description for the featured content */
+  /** Short supporting text under the title. */
   description: string;
-  /** Optional badge for the featured content */
+  /** Text of the badge beside the title. Only shown when `badgeVariant` is also set. */
   badge?: string;
-  /** Variant for the badge */
+  /** Colour of the badge. The badge is not shown without it. */
   badgeVariant?: BadgeProps['variant'];
-  /** Label for the button */
+  /** Text of the call to action. It is the accessible name, so make it specific. */
   buttonLabel: string;
-  /** Icon to display **/
+  /** Icon shown beside the button label. */
   buttonIcon?: ButtonProps['icon'];
-  /** Where to position the icon */
+  /**
+   * Side of the label the icon appears on.
+   * @default 'right'
+   */
   buttonIconPosition?: ButtonProps['iconPosition'];
+  /** Destination of the button. Renders the button as a link (`a`). Without it the button is a `button`, so set `onButtonPress`. */
+  buttonHref?: string;
+  /** Called when the button is pressed. */
+  onButtonPress?: ButtonProps['onPress'];
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 
 /**
- * FeatureTile
- * @constructor
+ * One feature in a `FeatureTile`. Internal.
  */
 const Feature = ({
   title,
@@ -38,6 +45,8 @@ const Feature = ({
   buttonLabel,
   buttonIcon,
   buttonIconPosition = 'right',
+  buttonHref,
+  onButtonPress,
 }: PropsWithChildren<FeatureProps>) => {
   return (
     <div className={styles.feature}>
@@ -54,7 +63,15 @@ const Feature = ({
       <Text as="p" className={styles.description}>
         {description}
       </Text>
-      <Button icon={buttonIcon} iconPosition={buttonIconPosition} variant="tertiary">
+      <Button
+        as={buttonHref ? 'a' : 'button'}
+        className={styles.button}
+        href={buttonHref}
+        icon={buttonIcon}
+        iconPosition={buttonIconPosition}
+        variant="tertiary"
+        onPress={onButtonPress}
+      >
         {buttonLabel}
       </Button>
     </div>
@@ -62,13 +79,24 @@ const Feature = ({
 };
 
 export type FeatureTileProps = {
-  /** Featured content */
+  /** The features to show, in order. Each has a title, description and call to action. */
   features: FeatureProps[];
 } & Pick<JSX.IntrinsicElements['div'], 'children'>;
 
 /**
- * FeatureTile
- * @constructor
+ * Tinted panel highlighting a few features, each with a title, description and call-to-action button.
+ *
+ * @example
+ * <FeatureTile
+ *   features={[
+ *     {
+ *       title: 'Find a clinic',
+ *       description: 'Search for clinics near you.',
+ *       buttonLabel: 'Search clinics',
+ *       buttonHref: '/clinics',
+ *     },
+ *   ]}
+ * />
  */
 export const FeatureTile = ({ features }: PropsWithChildren<FeatureTileProps>) => {
   return (

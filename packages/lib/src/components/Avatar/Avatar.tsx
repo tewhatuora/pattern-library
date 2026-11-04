@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { ComponentPropsWithoutRef } from 'react';
 
@@ -10,16 +10,20 @@ import * as styles from './Avatar.css';
 export const AvatarStyles = styles;
 
 export type AvatarProps = ComponentPropsWithoutRef<'div'> & {
-  /** Avatar size variant for small/large. */
+  /**
+   * Size of the avatar.
+   * @default 'small'
+   */
   variant?: AvatarVariant;
-  /** Avatar user initial */
+  /** A single character, usually the first letter of the person's name. */
   initial: string;
 };
 
 /**
- * An avatar can indicate a users profile and should be a single character.
- * @param props
- * @constructor
+ * Circle showing a person's initial. It has no label, so add an `aria-label` if it is the only identification of the user.
+ *
+ * @example
+ * <Avatar initial="J" variant="large" />
  */
 export const Avatar = ({ variant = 'small', initial, className, ...props }: AvatarProps) => {
   const avatarClassNames = clsx(styles.styledAvatar, styles.avatarSize[variant], className);

@@ -1,6 +1,6 @@
 {
   "name": "@healthnz/pattern-library-themes",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Health NZ - Design Pattern Library. Generate multi platform design tokens using Style Dictionary",
   "keywords": [
     "te whatu ora",
@@ -29,37 +29,48 @@
   "license": "MIT",
   "scripts": {
     "build": "node scripts/generate.js && vite build && rm -rf ./tmp",
-    "test": "jest",
     "lint:types": "tsc --noEmit",
-    "patch": "standard-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "minor": "standard-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "major": "standard-version --release-as major --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
-    "major:beta": "standard-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify"
+    "patch": "commit-and-tag-version --release-as patch --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "minor": "commit-and-tag-version --release-as minor --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "major": "commit-and-tag-version --release-as major --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "major:beta": "commit-and-tag-version --release-as major --prerelease beta --skip.changelog --commit-all --path packages/themes -t @healthnz/pattern-library-themes@ --no-verify",
+    "lint:package": "publint && attw --pack . --exclude-entrypoints styles --ignore-rules false-cjs false-esm internal-resolution-error"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.18.10",
-    "@vanilla-extract/vite-plugin": "^3.3.0",
-    "prettier": "^2.7.1",
-    "standard-version": "^9.5.0",
-    "style-dictionary": "^3.7.1",
-    "tsconfig-paths": "^4.1.0"
+    "@vanilla-extract/vite-plugin": "^5.2.6",
+    "commit-and-tag-version": "^13.3.0",
+    "prettier": "^3.9.10",
+    "style-dictionary": "^5.7.0",
+    "typescript": "^5.8.3",
+    "vite": "^8.3.4"
   },
-  "main": "./dist/index.cjs.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/style.css"
+    "./styles": {
+      "types": "./styles/index.d.ts",
+      "default": "./dist/style.css"
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": [
+    "*.css",
     "*.css.ts"
   ],
   "files": [
-    "dist"
+    "dist",
+    "styles"
   ],
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tewhatuora/pattern-library.git",
+    "directory": "packages/themes"
+  }
 }

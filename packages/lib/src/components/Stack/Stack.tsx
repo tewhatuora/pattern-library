@@ -2,8 +2,6 @@ import { Children, ElementType, PropsWithChildren, useContext } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import assert from 'assert';
-
 import { Box, BoxProps } from '../Box/Box';
 
 import type { Space } from '../../css/atoms/atoms';
@@ -18,22 +16,38 @@ const StackStyles = styles;
 export const validStackComponents = ['div', 'span', 'ol', 'ul'] as const;
 
 type StackProps = {
-  /** Element type to render as */
+  /**
+   * Element to render. Use `ol` or `ul` with `childWrapperAs="li"` for a list.
+   * @default 'div'
+   */
   as?: (typeof validStackComponents)[number];
-  /** Element type to render child wrapper as */
+  /**
+   * Element each child is wrapped in.
+   * @default 'div'
+   */
   childWrapperAs?: ElementType;
-  /** A space token for spacing between children elements */
-  space: Space;
-  /** Order children elements horizontally */
+  /**
+   * Space token for the gap between children, e.g. `small` or `large`. The size resolves per breakpoint,
+   * mobile or tablet and up.
+   * @default 'medium'
+   */
+  space?: Space;
+  /** Lay children out in a row instead of a column. */
   horizontal?: boolean;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 } & BoxProps;
 
 /**
- * A component to vertically stack its
- * children components, separated by a
- * space provided as a prop
+ * Spaces its children evenly, in a column or a row. Each child is wrapped in an element, and falsy children
+ * (`null`, `false`, `0`, `''`) are skipped without leaving a gap. `alignItems` and `justifyContent` also
+ * apply to each wrapper.
+ *
+ * @example
+ * <Stack space="medium">
+ *   <Heading level="2">Appointments</Heading>
+ *   <Text as="p">You have no upcoming appointments.</Text>
+ * </Stack>
  */
 const Stack = ({
   as = 'div',
@@ -44,10 +58,11 @@ const Stack = ({
   className,
   ...boxProps
 }: PropsWithChildren<StackProps>) => {
-  assert(
-    validStackComponents.includes(as),
-    `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
-  );
+  if (!validStackComponents.includes(as)) {
+    throw new Error(
+      `Invalid Stack component: '${as}'. Should be one of [${validStackComponents.map((c) => `'${c}'`).join(', ')}]`,
+    );
+  }
 
   const direction = horizontal ? 'horizontal' : 'vertical';
   const breakpoint = useContext(BreakpointContext) === 'mobile' ? 'mobile' : 'tablet';

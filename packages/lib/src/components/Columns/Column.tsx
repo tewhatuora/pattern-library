@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useContext } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box, BoxProps } from '../Box/Box';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
@@ -19,27 +19,38 @@ export const ParentColumnContext = createContext<{ columns: ColumnLength }>({ co
 type BreakpointColumn = Partial<Record<Breakpoint, ColumnLength>>;
 
 export type ColumnProps = {
-  /** Amount of columns, e.g. 8 */
+  /** Width in grid columns (1 to 12) at every breakpoint that has no override below. Relative to the parent `Column` or the 12 column `Row`. */
   columns: ColumnLength;
-  /** Start position for the column. E.g., to center a 6 column element within an 8 column container, use start = 1 */
+  /**
+   * Grid line the column starts at (1 to 12).
+   * @default 1
+   */
   start?: ColumnLength;
-  /** Amount of columns for wide breakpoint */
+  /** Width in columns from the wide breakpoint (1280px) up, overriding `columns`. */
   wide?: ColumnLength;
-  /** Amount of columns for desktop breakpoint */
+  /** Width in columns from the desktop breakpoint (1024px) up, overriding `columns`. */
   desktop?: ColumnLength;
-  /** Amount of columns for tablet breakpoint */
+  /** Width in columns from the tablet breakpoint (768px) up, overriding `columns`. */
   tablet?: ColumnLength;
-  /** Amount of columns for mobile breakpoint */
+  /** Width in columns on mobile, overriding `columns`. */
   mobile?: ColumnLength;
+  /** Centres the column within its parent, ignoring `start`. Needs the parent's leftover columns to be even, e.g. a 6 column Column in a 12 column Row. */
   center?: boolean;
   className?: string;
 } & BoxProps &
   BreakpointColumn;
 
 /**
- * Column component
- * @param props
- * @constructor
+ * One cell of a 12 column grid. Place inside a `Row`. A Column's own `Row` children are laid out on that Column's grid.
+ * The breakpoint props take effect only for the viewport matching that breakpoint, as reported by the theme provider.
+ *
+ * @example
+ * <Container>
+ *   <Row>
+ *     <Column columns={12} desktop={8}>Main</Column>
+ *     <Column columns={12} desktop={4}>Aside</Column>
+ *   </Row>
+ * </Container>
  */
 export const Column = ({
   children,

@@ -3,6 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import { rem } from '@/src/css/helpers';
 
+import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 export const message = style({
@@ -19,9 +20,11 @@ export const errorMessage = style({
   display: 'flex',
   alignItems: 'center',
   marginTop: calc.divide(vars.space.xsmall.tablet, 4),
-  color: vars.color.semantic.text.copy.error,
 });
 
-export const errorMessageIcon = style({
-  marginRight: vars.space.xsmall.mobile,
-});
+export const errorMessageIcon = style(
+  responsiveStyle({
+    mobile: { marginRight: calc.divide(vars.space.xsmall.mobile, 2) },
+    tablet: { marginRight: calc.divide(vars.space.xsmall.tablet, 2) },
+  }),
+);

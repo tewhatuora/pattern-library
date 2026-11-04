@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import * as resetStyles from '../reset.css';
 import { vars } from '../../themes/vars.css';
 

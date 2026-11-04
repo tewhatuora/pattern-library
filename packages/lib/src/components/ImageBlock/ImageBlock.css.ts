@@ -232,48 +232,58 @@ export const buttonRow = styleVariants({
   },
 });
 
-const buttonsBase = style(
+// In a narrower parent column the content and image stack, in the order of `imagePosition`
+const stackedBase = style([
+  { display: 'flex' },
+  responsiveStyle({
+    mobile: { gap: vars.space.medium.mobile },
+    tablet: { gap: vars.space.medium.tablet },
+  }),
+]);
+
+export const stacked = styleVariants({
+  before: [stackedBase, { flexDirection: 'column-reverse' }],
+  after: [stackedBase, { flexDirection: 'column' }],
+});
+
+// Buttons are full width, so the wrapper sets their size. They're 24px apart at every size (the only 24px token
+// is small.tablet); on mobile they fill the width, from tablet up they're 360px wide.
+const buttonsBase = style([
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: vars.space.small.tablet,
+  },
   responsiveStyle({
     mobile: {
-      flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: 'stretch',
       marginRight: vars.space.xlarge.mobile,
       marginLeft: vars.space.xlarge.mobile,
+    },
+    tablet: {
+      alignItems: 'flex-start',
+      marginRight: '0',
+      marginLeft: '0',
+    },
+  }),
+]);
+
+globalStyle(
+  `${buttonsBase} > *`,
+  responsiveStyle({
+    tablet: {
+      width: rem(360),
+      maxWidth: '100%',
     },
   }),
 );
 
 export const buttons = styleVariants({
-  full: [
-    buttonsBase,
-    responsiveStyle({
-      tablet: {
-        flexDirection: 'row',
-        marginRight: '0',
-        marginLeft: '0',
-      },
-    }),
-  ],
-  half: [
-    buttonsBase,
-    responsiveStyle({
-      tablet: {
-        alignItems: 'flex-start',
-        flexDirection: 'column',
-        marginRight: '0',
-        marginLeft: '0',
-      },
-    }),
-  ],
-  third: [
-    buttonsBase,
-    responsiveStyle({
-      tablet: {
-        alignItems: 'flex-start',
-        flexDirection: 'column',
-        marginRight: '0',
-        marginLeft: '0',
-      },
-    }),
-  ],
+  // Side by side from tablet up
+  full: [buttonsBase, responsiveStyle({ tablet: { flexDirection: 'row' } })],
+  half: [buttonsBase],
+  third: [buttonsBase],
 });
+
+// Shrink below 360px rather than wrap when the content column is narrower than two buttons
+globalStyle(`${buttons.full} > *`, responsiveStyle({ tablet: { flex: `0 1 ${rem(360)}`, minWidth: 0 } }));

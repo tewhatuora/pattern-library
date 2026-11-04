@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import type { StyleRule } from '@vanilla-extract/css';
 
 import { vars } from '../../themes/vars.css';

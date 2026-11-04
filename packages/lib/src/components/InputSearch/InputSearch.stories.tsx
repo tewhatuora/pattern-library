@@ -1,18 +1,57 @@
+import { expect, within } from 'storybook/test';
 import { ChangeEvent, FocusEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
 import { InputSearch, InputSearchProps } from './InputSearch';
 import DocsPage from '../../../utils/DocsPage';
+import { Variant, VariantSections, Variants } from '../../../../../stories/components';
 
 import Docs from './InputSearch.docs.mdx';
 
 export default {
-  title: 'Forms/InputSearch',
+  title: 'Transactional Components/InputSearch',
   component: InputSearch,
   argTypes: {
     id: { control: false },
-    name: { control: false },
+    name: {
+      control: {
+        type: 'text',
+      },
+    },
+    placeholder: {
+      control: {
+        type: 'text',
+      },
+    },
+    defaultValue: {
+      control: {
+        type: 'text',
+      },
+    },
+    // Controlled by the Filled and OnSubmitEvent stories
+    value: { control: false },
+    submitLabel: {
+      control: {
+        type: 'text',
+      },
+    },
+    'aria-label': {
+      control: {
+        type: 'text',
+      },
+    },
+    'aria-labelledby': {
+      control: {
+        type: 'text',
+      },
+    },
     onChange: { control: false },
+    onBlur: { control: false },
+    onFocus: { control: false },
     onSubmit: { control: false },
+  },
+  args: {
+    name: 'search',
+    placeholder: 'Search',
   },
   parameters: {
     docs: {
@@ -21,9 +60,50 @@ export default {
   },
 };
 
+// Distinct names, so the fields can be told apart when shown together
+export const Overview = () => (
+  <VariantSections>
+    <Variants minWidth="280px">
+      <Variant label="Empty">
+        <InputSearch aria-label="Search, empty" name="search-empty" />
+      </Variant>
+      <Variant label="Placeholder">
+        <InputSearch aria-label="Search, placeholder" name="search-placeholder" placeholder="Search for a service" />
+      </Variant>
+      <Variant label="Filled, with clear button">
+        <InputSearch aria-label="Search, filled" defaultValue="Flu vaccination" name="search-filled" />
+      </Variant>
+    </Variants>
+    <Variants minWidth="280px" title="Long content">
+      <Variant label="Long value">
+        <InputSearch
+          aria-label="Search, long value"
+          defaultValue="Flu vaccinations for children under five at clinics near Wellington"
+          name="search-long"
+        />
+      </Variant>
+      <Variant label="Long placeholder">
+        <InputSearch
+          aria-label="Search, long placeholder"
+          name="search-long-placeholder"
+          placeholder="Search for a service, clinic, or health topic by name"
+        />
+      </Variant>
+    </Variants>
+  </VariantSections>
+);
+Overview.parameters = { controls: { disable: true } };
+
 export const Default = (args: InputSearchProps) => {
   delete args.onSubmit;
   return <InputSearch {...args} />;
+};
+
+Default.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  await expect(canvas.getByRole('searchbox', { name: 'Search' })).toBeInTheDocument();
+  await expect(canvas.getByRole('button', { name: 'Search' })).toBeInTheDocument();
 };
 
 /**

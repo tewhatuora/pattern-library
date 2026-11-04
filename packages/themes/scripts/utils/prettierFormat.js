@@ -1,6 +1,6 @@
 import prettier from 'prettier';
 
-const prettierConfig = prettier.resolveConfig.sync('./.prettierrc') || {};
+const prettierConfig = (await prettier.resolveConfig('./.prettierrc')) || {};
 
 export default function (input) {
   return prettier.format(input, { ...prettierConfig, parser: 'typescript' });

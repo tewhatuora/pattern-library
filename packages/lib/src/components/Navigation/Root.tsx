@@ -1,5 +1,5 @@
-import { Children, PropsWithChildren, RefObject, createContext, useRef } from 'react';
-import clsx from 'clsx';
+import { Children, PropsWithChildren, RefObject, createContext, useId, useRef } from 'react';
+import { clsx } from 'clsx';
 
 import { Stack } from '../Stack/Stack';
 import { InputSearch } from '../InputSearch/InputSearch';
@@ -15,28 +15,54 @@ import * as helpers from '../../css/helpers.css';
 
 export const NavigationStyles = styles;
 
-export const NavigationContext = createContext<{ element: RefObject<HTMLElement> | null }>({ element: null });
+export const NavigationContext = createContext<{ element: RefObject<HTMLElement | null> | null }>({ element: null });
 
 export type NavigationProps = {
-  /** Contrast variant for dark/light UI */
+  /**
+   * Background of the navigation: `light` is a light background with dark text, `dark` is a dark gradient
+   * with light text. Passed on to the items.
+   * @default 'light'
+   */
   variant?: ContrastVariant;
-  /** Open state for mobile navigation */
+  /** Whether the mobile navigation panel is open. Drive it from your menu button. It has no effect on desktop. */
   open: boolean;
-  /** Show InputSearch with mobile navigation */
+  /** Show a search field at the top of the mobile and tablet navigation. */
   withSearch?: boolean;
-  /** Search form action */
-  searchFormAction: string;
-  /** Search form method */
-  searchFormMethod: 'POST' | 'GET';
-  /** Array of Utility navigation items, with href, icon, label, and an optional custom link component e.g. react-router-dom Link */
+  /**
+   * URL the search form submits to.
+   * @default '/'
+   */
+  searchFormAction?: string;
+  /**
+   * HTTP method of the search form.
+   * @default 'GET'
+   */
+  searchFormMethod?: 'POST' | 'GET';
+  /** Up to two links with icons, e.g. language and account, shown at the bottom of the mobile navigation. More than two throws. */
   utilityNavItems?: UtilityNavItemProps[];
+  /**
+   * Accessible name of the `nav` landmark. Make it distinct when a page has more than one.
+   * @default 'Main'
+   */
+  'aria-label'?: string;
 };
 
 /**
- * Fixes on scroll at desktop.
- * Breaks to mobile when menu items can no longer fit. This will be content specific.
- * When Menu breaks to mobile, so does Navigation and Fly out
- * @constructor
+ * Site navigation. Children must be `Navigation.Item`s. An item with a nested `Navigation.Menu` opens a
+ * sub menu, otherwise it's a link. On mobile and tablet the navigation becomes a panel controlled by `open`.
+ *
+ * @example
+ * <Navigation.Root open={open} searchFormAction="/search" searchFormMethod="GET" variant="light" withSearch>
+ *   <Navigation.Item href="/home" label="Home" selected />
+ *   <Navigation.Item href="/services" label="Services">
+ *     <Navigation.Menu>
+ *       <Navigation.MenuList heading="Vaccines">
+ *         <Navigation.Item href="/services/flu" label="Flu" />
+ *         <Navigation.Item href="/services/covid" label="COVID-19" />
+ *       </Navigation.MenuList>
+ *     </Navigation.Menu>
+ *   </Navigation.Item>
+ * </Navigation.Root>
  */
 export const Root = ({
   variant = 'light',
@@ -46,13 +72,16 @@ export const Root = ({
   searchFormMethod = 'GET',
   children,
   utilityNavItems,
+  'aria-label': ariaLabel = 'Main',
 }: PropsWithChildren<NavigationProps>) => {
-  const navEl = useRef(null);
+  const searchId = useId();
+  const navEl = useRef<HTMLElement>(null);
   const hasNavItems = !!Children.count(children);
 
   return (
     <NavigationContext.Provider value={{ element: navEl }}>
       <nav
+        aria-label={ariaLabel}
         className={clsx(styles.navigation[variant], {
           [styles.open]: open,
         })}
@@ -61,7 +90,7 @@ export const Root = ({
         <Stack space="medium">
           {withSearch && (
             <form action={searchFormAction} className={clsx(helpers.upToTablet.block)} method={searchFormMethod}>
-              <InputSearch id="search" name="search" placeholder="Search" />
+              <InputSearch id={searchId} name="search" placeholder="Search" />
             </form>
           )}
           {hasNavItems && (
@@ -78,12 +107,12 @@ export const Root = ({
             </ul>
           )}
           {!!utilityNavItems?.length && (
-            <>
-              {hasNavItems && (
-                <Divider className={helpers.upToTablet.block} variant={variant === 'light' ? 'dark' : 'light'} />
-              )}
-              <Utility className={helpers.upToTablet.block} items={utilityNavItems} variant={variant} />
-            </>
+            <div className={helpers.upToTablet.block}>
+              <Stack space="medium">
+                {hasNavItems && <Divider variant={variant} />}
+                <Utility items={utilityNavItems} variant={variant} />
+              </Stack>
+            </div>
           )}
         </Stack>
       </nav>

@@ -2,85 +2,49 @@
 
 `@healthnz/pattern-library-themes`
 
-### Configuration
+Themes for `@healthnz/pattern-library`, generated from design tokens with [Style Dictionary](https://styledictionary.com/).
 
-[Style Dictionary](https://amzn.github.io/style-dictionary/) can output design tokens for multiple platforms from a single source.
+## Usage
 
-Add your platform to `config.js`.
-For example, a web platform with a built in format and a custom format:
+Install it alongside the pattern library, which lists it as a peer dependency, and import its styles once at the root of your app:
 
-```json
-"platforms": {
-  "web": {
-    "transformGroup": "js",
-    "files": [
-      {
-        "format": "javascript/es6",
-        "destination": "theme.ts"
-      },
-      {
-        "format": "myCustomFormat",
-        "destination": "myCustomFormat.ts"
-      },
-    ]
-  }
-}
+```tsx
+import '@healthnz/pattern-library/styles';
+import '@healthnz/pattern-library-themes/styles';
+import { ThemeProvider } from '@healthnz/pattern-library';
+import { neutral } from '@healthnz/pattern-library-themes';
+
+<ThemeProvider theme={neutral}>
+  <App />
+</ThemeProvider>
 ```
 
-#### Custom formats
+Available themes: `neutral` and `webSelfService`.
 
-Create a file for your platform (e.g `ios.js`) in `scripts/formats`.
+## Updating a theme
+
+1. Export the tokens from Figma with the [Design Tokens plugin](https://github.com/lukasoppermann/design-tokens).
+2. Replace the `.json` file in `input/themes/<themeName>/`. A new folder adds a new theme, exported by the folder name.
+3. Run `yarn build` in this package to check the output. It runs `scripts/generate.js` (Style Dictionary) and then Vite.
+4. Release a new version as described in the [repository README](../../README.md#releasing).
+
+## Configuration
+
+`config.json` lists the platforms Style Dictionary builds and the format used for each output file. Custom transforms and formats for a platform are registered in `scripts/formats/<platform>.js`, which `generate.js` loads automatically:
+
 ```js
 const registerFormats = (StyleDictionary) => {
   StyleDictionary.registerFormat({
-    name: 'ios/swift-custom-formatter',
-    formatter: function ({ options }) {
-      return `
-        
-      `;
-    }
+    name: 'typescript/my-format',
+    format: async ({ dictionary }) => `export default ${JSON.stringify(dictionary.tokens)};\n`,
   });
-  
-  // Register more formats here
 };
 
 export default registerFormats;
 ```
 
-Add the formatter to the platform's `files` array in `config.js`:
+Then reference it from the platform's `files` in `config.json`:
 
 ```json
-"platforms": {
-  "files": [
-    {
-      "format": "ios/swift-custom-formatter",
-      "destination": "MyCustomFormat.swift"
-    }
-  ]
-}
-```
-
----
-
-### Usage
-
-1. Export tokens from Figma using the [Design tokens plugin](https://github.com/lukasoppermann/design-tokens).
-
-2. Place the exported `.json` file(s) into `input/themes/[themeName]`.
-
-3. Commit the changes, and GitLab CI will:
-   - Run Style Dictionary transforms on the tokens.
-   - Publish a new release of the package to NPM. 
-
-Once published, the updated theme will be available in the next version.
-
-#### JavaScript (Vanilla Extract)
-```js
-import { myTheme } from '@healthnz/pattern-library-themes';
-
-...
-
-<ThemeProvider theme={myTheme}>
-  ...
-</ThemeProvider>
+{ "format": "typescript/my-format", "destination": "myFormat.ts" }
 ```

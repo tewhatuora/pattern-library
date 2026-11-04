@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { rem } from '@/src/css/helpers';
 
 import { atoms } from '../../css/atoms/atoms';
+import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { vars } from '../../themes/vars.css';
 
@@ -10,20 +11,26 @@ export const container = style([
   atoms({
     display: 'flex',
   }),
+  responsiveStyle({
+    mobile: { gap: vars.space.small.mobile },
+    tablet: { gap: vars.space.xsmall.tablet },
+  }),
 ]);
 
 export const label = style([
   atoms({
     display: 'flex',
     flexDirection: 'column',
-    flexShrink: 0,
     flexGrow: 1,
     alignItems: 'flexStart',
   }),
+  // Long labels wrap rather than squash the switch
+  { minWidth: 0, overflowWrap: 'break-word' },
 ]);
 
 export const switchRoot = style({
   all: 'unset',
+  flexShrink: 0,
   width: rem(51),
   height: rem(31),
   backgroundColor: vars.color.semantic.controls.background.inactive,
@@ -41,6 +48,9 @@ export const switchRoot = style({
     '&[data-state=checked]:disabled': {
       cursor: 'not-allowed',
       backgroundColor: vars.color.semantic.inputs.elements.background.disabled,
+    },
+    '&[aria-invalid=true]': {
+      backgroundColor: vars.color.semantic.inputs.elements.border.error,
     },
   },
 });

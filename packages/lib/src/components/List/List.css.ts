@@ -17,6 +17,13 @@ import type { ListRootProps } from './Root';
  */
 const listPadding = 40; //vars.space.large.tablet; // Default for Chrome and Firefox
 
+/** Wrapper `li` for a nested list. It adds no space of its own, so the nested list looks as if it were a direct child. */
+export const nestedItem = style({
+  listStyleType: 'none',
+  // Every li increments an ol's numbering, even without a marker; this wrapper shouldn't take a number
+  counterIncrement: 'list-item 0',
+});
+
 const base = style({
   paddingInlineStart: listPadding, // Override user agent styles
 
@@ -33,10 +40,11 @@ const base = style({
      * sibling selectors but it would break down if a nested list was the first
      * child.
      */
-    [`[data-dividers="true"] > &[data-dividers="true"]`]: {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
+    [`[data-dividers="true"] > &[data-dividers="true"], [data-dividers="true"] > ${nestedItem} > &[data-dividers="true"]`]:
+      {
+        paddingTop: 0,
+        paddingBottom: 0,
+      },
 
     '&[data-variant="dark"]': {
       color: vars.color.semantic.text.copy.light,
@@ -100,8 +108,16 @@ export const dividersNoBottom = style({
 export const dividers = style({
   position: 'relative',
 
-  paddingTop: vars.space.small.mobile,
-  paddingBottom: vars.space.small.mobile,
+  ...responsiveStyle({
+    mobile: {
+      paddingTop: vars.space.xsmall.mobile,
+      paddingBottom: vars.space.xsmall.mobile,
+    },
+    tablet: {
+      paddingTop: vars.space.small.mobile,
+      paddingBottom: vars.space.small.mobile,
+    },
+  }),
 
   selectors: {
     /** Shared styles for ::before and ::after. */
@@ -141,7 +157,6 @@ export const dividers = style({
 
 export const itemIcon = style([
   {
-    width: listPadding,
     flexShrink: 0,
   },
   // Make the icon line up with the text
@@ -155,10 +170,21 @@ export const itemIcon = style([
   }),
 ]);
 
-export const itemContent = style({
-  display: 'inline-flex',
-  alignItems: 'baseline', // Works more consistently than 'flex-start' for aligning the icon
-});
+export const itemContent = style([
+  {
+    display: 'inline-flex',
+    alignItems: 'baseline', // Works more consistently than 'flex-start' for aligning the icon
+  },
+  // A gap rather than a margin on the icon, so it works for icons on either side
+  responsiveStyle({
+    mobile: {
+      gap: vars.space.small.mobile,
+    },
+    tablet: {
+      gap: vars.space.xsmall.tablet,
+    },
+  }),
+]);
 
 export const itemIconPosition = styleVariants({
   left: {
