@@ -2,6 +2,8 @@
 
 `@healthnz/pattern-library`
 
+> **Upgrading from 1.x?** See the [2.0 migration guide](./MIGRATION.md) for setup changes and removed props and variants.
+
 
 # Installation
 
