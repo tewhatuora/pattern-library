@@ -1,13 +1,12 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import { rem } from '@/src/css/helpers';
-
 import { responsiveStyle } from '../../css/responsiveStyle';
 import { atoms } from '../../css/atoms/atoms';
 import { vars } from '../../themes/vars.css';
 
-const offset = rem(4);
+// The design's padding is Space 2XS (4px) above and below, which has no token in the theme, so it is half of XS
+const paddingBlock = calc.divide(vars.space.xsmall.mobile, 2);
 
 export const tag = style([
   atoms({
@@ -17,45 +16,49 @@ export const tag = style([
     borderRadius: 'tags',
   }),
   {
+    // Shrinks to fit its container, so long labels wrap rather than overflow
+    width: 'fit-content',
+    maxWidth: '100%',
+    paddingTop: paddingBlock,
+    paddingBottom: paddingBlock,
     color: vars.color.semantic.controls.content.dark,
     backgroundColor: vars.color.semantic.controls.background.light,
     borderColor: vars.color.semantic.controls.border.active,
   },
   responsiveStyle({
     mobile: {
-      width: 'max-content',
-      paddingLeft: calc.add(vars.space.xsmall.mobile, offset),
-      paddingRight: calc.add(vars.space.xsmall.mobile, offset),
+      paddingLeft: vars.space.xsmall.mobile,
+      paddingRight: vars.space.xsmall.mobile,
     },
     tablet: {
-      width: 'max-content',
-      paddingLeft: calc.subtract(vars.space.xsmall.tablet, offset),
-      paddingRight: calc.subtract(vars.space.xsmall.tablet, offset),
+      paddingLeft: vars.space.xsmall.tablet,
+      paddingRight: vars.space.xsmall.tablet,
     },
   }),
 ]);
 
-export const closeButton = style([
-  {
-    alignItems: 'center',
-    border: 'none',
-    background: 'none',
-    cursor: 'pointer',
-    color: 'white',
-    width: rem(25),
-  },
-  responsiveStyle({
-    mobile: { paddingLeft: vars.space.xsmall.mobile },
-    tablet: { paddingLeft: vars.space.xsmall.mobile },
-  }),
-]);
+export const closeButton = style({
+  display: 'flex',
+  flexShrink: 0,
+  alignItems: 'center',
+  padding: 0,
+  border: 'none',
+  background: 'none',
+  cursor: 'pointer',
+  color: 'white',
+});
 
 globalStyle(`${closeButton} circle`, {
-  fill: vars.color.semantic.icons.dark,
+  fill: vars.color.semantic.icons.black,
 });
 
 export const icon = style({
   display: 'flex',
+  alignItems: 'center',
+  // Space XS on mobile and 2XS on desktop in the design, both 8px
+  gap: vars.space.xsmall.mobile,
+  minWidth: 0,
+  overflowWrap: 'break-word',
 });
 
 export const hidden = style({

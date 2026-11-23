@@ -1,17 +1,17 @@
 import {
   Box,
-  Stack,
+  Button,
   Card,
-  TextLinkButton,
-  Heading,
   Column,
-  Row,
-  Text,
   Divider,
+  Heading,
   InputText,
   List,
+  Row,
+  Stack,
+  Text,
   TextLink,
-  Button
+  TextLinkButton,
 } from '@healthnz/pattern-library';
 
 const YourDetails = (props) => {
@@ -21,12 +21,16 @@ const YourDetails = (props) => {
         <Column columns={12}>
           <Stack space="medium">
             <Stack horizontal space="medium">
-              <TextLinkButton as="a" href="/" icon="arrow_left" iconPosition="left">Previous step</TextLinkButton>
+              <TextLinkButton as="a" href="/" icon="arrow_left" iconPosition="left">
+                Previous step
+              </TextLinkButton>
             </Stack>
             <Heading level="2">Your details</Heading>
             <Card>
               <Stack space="medium">
-                <Text as="p" weight="regular">These details will appear on your vaccine pass.</Text>
+                <Text as="p" weight="regular">
+                  These details will appear on your vaccine pass.
+                </Text>
                 <div>
                   <Text weight="bold">First name</Text>
                   <Text weight="regular">{props.firstName}</Text>
@@ -44,31 +48,29 @@ const YourDetails = (props) => {
                   <Stack space="medium">
                     <InputText
                       helperText="Your pass will be sent to this email address"
+                      id="email"
                       label="Email address"
                       name="email"
-                      id="email"
                     />
                     <Divider variant="light" />
                     <Heading level="3">Changing your details</Heading>
                     <List.Root type="ul">
                       <List.Item>
-                        You can't edit your name or date of birth. These details come from your <TextLink href="#">NHI number</TextLink>
+                        You can&apos;t edit your name or date of birth. These details come from your{' '}
+                        <TextLink href="#">NHI number</TextLink>
                       </List.Item>
                       <List.Item>
-                        If you would like to update your details complete this <TextLink href="#" icon="link">change of details form</TextLink>
+                        If you would like to update your details complete this{' '}
+                        <TextLink href="#" icon="link">
+                          change of details form
+                        </TextLink>
                       </List.Item>
                     </List.Root>
                     <Divider variant="light" />
-                    <Button
-                      type="submit"
-                      variant="primary"
-                    >
+                    <Button type="submit" variant="primary">
                       Request pass
                     </Button>
-                    <Button
-                      type="button"
-                      variant="secondary"
-                    >
+                    <Button type="button" variant="secondary">
                       Quit
                     </Button>
                   </Stack>
@@ -81,6 +83,6 @@ const YourDetails = (props) => {
       </Row>
     </Box>
   );
-}
+};
 
 export default YourDetails;

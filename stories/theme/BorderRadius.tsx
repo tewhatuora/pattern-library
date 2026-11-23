@@ -16,12 +16,12 @@ const BorderRadius = () => {
   return (
     <Section>
       <Stack space="medium">
-        <Group label="Border radius" level="1" path="tokens.border.radius" />
+        <Group label="Border radius" path="tokens.border.radius" />
         <Stack space="medium">
           {Object.keys(tokens.border.radius).map((style) => (
-            <Section>
+            <Section key={style}>
               <Stack space="medium">
-                <Group label={style} level="2" path={`tokens.border.radius.${style}`} />
+                <Group label={style} path={`tokens.border.radius.${style}`} />
                 <Table>
                   {Object.keys(tokens.border.radius[style]).map((dimension) => (
                     <tr key={`tokens.border.radius.${style}.${dimension}`}>

@@ -5,22 +5,13 @@ import { recipe } from '@vanilla-extract/recipes';
 import { focusSelectorsStyles } from '@/src/utils/custom';
 
 import { vars } from '../../themes/vars.css';
-import { boldText } from '../Text/Text.css';
+import { boldText, text } from '../Text/Text.css';
 import { boldLinks, noVisited } from '../AnchorLink/AnchorLink.css';
 
 export const linkVariants = {
   noVisited: {
     true: {},
-    false: {
-      selectors: {
-        '&:visited': {
-          color: vars.color.semantic.text.links.visited,
-        },
-        [`${noVisited} &`]: {
-          color: vars.color.semantic.text.links.active,
-        },
-      },
-    },
+    false: {},
   },
   underline: {
     true: {
@@ -39,14 +30,19 @@ export const link = recipe({
   base: {
     display: 'inline',
     color: vars.color.semantic.text.links.active,
-    textDecoration: vars.textDecoration['link-normal'],
+    textDecoration: vars.textDecoration.linkNormal,
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
     selectors: {
+      // A link within a block of text must be distinguishable without relying on colour (WCAG 1.4.1).
+      // Before `&:hover` so hover keeps its own decoration.
+      [`${text} &`]: {
+        textDecoration: 'underline',
+      },
       '&:hover': {
         color: vars.color.semantic.text.links.hover,
-        textDecoration: vars.textDecoration['link-hover&focus'],
+        textDecoration: vars.textDecoration.linkHoverFocus,
       },
       [`${boldText} &`]: {
         fontWeight: 'bold',
@@ -79,5 +75,21 @@ export const inlineIcon = recipe({
         marginLeft: '0.5rem',
       },
     },
+    noVisited: {
+      true: {},
+      false: {
+        selectors: {
+          'a:visited &': {
+            color: vars.color.semantic.text.links.visited,
+          },
+          [`${noVisited} &`]: {
+            color: vars.color.semantic.text.links.active,
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    noVisited: false,
   },
 });

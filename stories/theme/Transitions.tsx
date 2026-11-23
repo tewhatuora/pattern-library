@@ -24,7 +24,7 @@ const Transitions = () => {
   return (
     <Card>
       <Stack space="medium">
-        <Group label="Transitions" level="1" path="tokens.transitions" />
+        <Group label="Transitions" path="tokens.transitions" />
         <Table>
           {Object.keys(tokens.transitions).map((name) => (
             <tr key={`tokens.transitions.${name}`}>

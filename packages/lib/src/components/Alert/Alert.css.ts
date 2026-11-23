@@ -63,6 +63,12 @@ export type Variants = RecipeVariants<typeof variants>;
 
 export const icon = style({
   flexShrink: 0,
+  selectors: {
+    '&&': {
+      width: vars.space.small.tablet,
+      height: vars.space.small.tablet,
+    },
+  },
 });
 
 export const contentWrapper = style([

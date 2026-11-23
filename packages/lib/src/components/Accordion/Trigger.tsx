@@ -11,16 +11,17 @@ import { Box } from '../Box/Box';
 import { AccordionContext } from './Root';
 
 export type AccordionTriggerProps = {
-  /** Optional icon to display in Accordion Trigger */
+  /** Icon shown before the text. Decorative, so it is not announced. */
   icon?: IconType;
-  /** Optional header label for Accordion Trigger */
+  /** Bold line shown above `label`. */
   header?: string;
-  /** Accordion Trigger label */
+  /** Text of the trigger button. Keep it descriptive: it is the accessible name of the button. */
   label: string;
 };
 
+/** Button that toggles its `Accordion.Item`. Rendered inside a heading whose level comes from `Accordion.Root`'s `headingLevel`. */
 export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ icon, header, label }, ref) => {
-  const { headingLevel, variant } = useContext(AccordionContext);
+  const { headingLevel } = useContext(AccordionContext);
   const boxElement = (`h${headingLevel?.toString()}` as ElementType<any>) || ('h6' as ElementType<any>);
 
   return (
@@ -28,7 +29,7 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
       <Box as={boxElement}>
         <RadixAccordion.Trigger className={styles.trigger} ref={ref}>
           <div className={styles.headerContainer}>
-            {!!icon && <Icon className={styles.icon({ variant })} icon={icon} variant="functionalIcons" />}
+            {!!icon && <Icon className={styles.icon({ variant: 'light' })} icon={icon} variant="functionalIcons" />}
 
             {/* Div to keep the header text vertical. */}
             <div>
@@ -43,7 +44,7 @@ export const Trigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(({ i
             </div>
           </div>
 
-          <Icon className={styles.chevron({ variant })} icon="chevron_down" variant="functionalIcons" />
+          <Icon className={styles.chevron({ variant: 'light' })} icon="chevron_down" variant="functionalIcons" />
         </RadixAccordion.Trigger>
       </Box>
     </RadixAccordion.Header>

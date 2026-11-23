@@ -1,7 +1,13 @@
-import { AnchorHTMLAttributes, FC, PropsWithChildren, RefObject, useRef } from 'react';
+import { AnchorHTMLAttributes, PropsWithChildren, useRef } from 'react';
 import { AriaLinkOptions, useLink } from '@react-aria/link';
+import { mergeProps } from '@react-aria/utils';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
+
+import { LinkComponentType } from '@/src/types';
+import { canAcceptRef } from '@/src/utils/canAcceptRef';
+
+import { withoutLinkOptions } from '@/src/utils/withoutLinkOptions';
 
 import * as styles from './Link.css';
 
@@ -9,16 +15,15 @@ export const LinkStyles = styles;
 
 export type LinkProps = {
   href: string;
+  /** Selected link styling. It doesn't set `aria-current`, so pass `aria-current="page"` for the current page. */
   selected?: boolean;
   className?: string;
-  component?: FC<any>;
+  /** Component to render instead of an `a`, e.g. a wrapper around a router `<Link>`. It receives `href`. */
+  component?: LinkComponentType;
 } & AriaLinkOptions &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
-/**
- * Navigation link
- * @constructor
- */
+/** A styled navigation link. */
 export const Link = ({
   href,
   selected,
@@ -27,12 +32,12 @@ export const Link = ({
   children,
   ...rest
 }: PropsWithChildren<LinkProps>) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
 
-  const { linkProps } = useLink({ ...rest }, ref);
+  const { linkProps } = useLink(rest, ref);
+  // mergeProps chains any handlers both define, rather than one replacing the other
   const props = {
-    ...linkProps,
-    ...rest,
+    ...mergeProps(withoutLinkOptions(rest), linkProps),
     className: clsx(styles.link.normal, { [styles.link.selected]: selected }, className),
     href,
     rel: rest.target === '_blank' ? 'noopener noreferrer' : rest.rel,
@@ -40,14 +45,14 @@ export const Link = ({
 
   if (LinkComponent) {
     return (
-      <LinkComponent {...props} ref={ref as RefObject<any>}>
+      <LinkComponent {...props} ref={canAcceptRef(LinkComponent) ? ref : undefined}>
         {children}
       </LinkComponent>
     );
   }
 
   return (
-    <a {...props} ref={ref as RefObject<HTMLAnchorElement>}>
+    <a {...props} ref={ref}>
       {children}
     </a>
   );

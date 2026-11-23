@@ -8,30 +8,36 @@ import * as styles from './ToggleButton.css';
 export const ToggleButtonStyles = styles;
 
 export type ToggleButtonProps = {
-  /** Label for left hand button */
   labelLeft: string;
-  /** Label for right hand button */
   labelRight: string;
-  /** Value to assign when left hand button is selected */
+  /** Value passed to `onChange` when the left button is selected. */
   valueLeft: string;
-  /** Value to assign when right hand button is selected */
+  /** Value passed to `onChange` when the right button is selected. */
   valueRight: string;
-  /** Optional value to be selected by default */
+  /** Value selected initially. Neither button is selected if omitted. There is no controlled `value`. */
   defaultValue?: string;
-  /** Disabled state */
   disabled?: boolean;
-  /** Function to call when the button is changed/toggles */
+  /** Called with the selected value, or an empty string if the selected button is pressed again to clear it. */
   onChange?: (value: string) => void;
+  /** Name for the group, e.g. "View". Set this or `aria-labelledby`. */
+  'aria-label'?: string;
+  /** Id of an element that names the group. */
+  'aria-labelledby'?: string;
 };
 
 /**
- * ToggleButton Component
- * A control that has two mutually-exclusive states
- * Display a Left Button with text label
- * Display a Right button with text label
- * Only allow one button to have a selcted state
- * @param props
- * @constructor
+ * A pair of buttons where at most one is selected, for switching between two options such as a list and
+ * grid view. Uncontrolled: set the start with `defaultValue`.
+ *
+ * @example
+ * <ToggleButton
+ *   defaultValue="list"
+ *   labelLeft="List"
+ *   labelRight="Grid"
+ *   valueLeft="list"
+ *   valueRight="grid"
+ *   onChange={setView}
+ * />
  */
 export const ToggleButton = ({
   labelLeft,
@@ -41,12 +47,15 @@ export const ToggleButton = ({
   defaultValue,
   onChange,
   disabled,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
   ...boxProps
 }: ToggleButtonProps) => {
   return (
     <Box as="div" {...boxProps}>
       <ToggleGroup
-        aria-label="Text alignment"
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
         className={styles.group}
         defaultValue={defaultValue}
         disabled={disabled}

@@ -12,8 +12,13 @@ export const utility = style([
     display: 'flex',
   }),
   responsiveStyle({
+    // Same spacing as the Stack in Navigation.Root around the links
     mobile: {
       flexDirection: 'column',
+      gap: vars.space.medium.mobile,
+    },
+    tablet: {
+      gap: vars.space.medium.tablet,
     },
     desktop: {
       flexDirection: 'row',
@@ -23,6 +28,11 @@ export const utility = style([
 ]);
 
 const utilityLinkBase = style([
+  {
+    backgroundColor: vars.color.semantic.button.primary.background.normal,
+    borderRadius: vars.borderRadiusAll.button,
+    color: vars.color.semantic.button.primary.content.normal,
+  },
   atoms({
     display: 'flex',
     flexDirection: 'row',
@@ -30,33 +40,25 @@ const utilityLinkBase = style([
   responsiveStyle({
     mobile: {
       gap: vars.space.small.mobile,
-      paddingTop: calc.divide(vars.space.medium.mobile, 2),
-      paddingBottom: calc.divide(vars.space.medium.mobile, 2),
+      padding: '0.8rem 2rem',
     },
     desktop: {
       gap: calc.divide(vars.space.xsmall.tablet, 4),
-      paddingTop: vars.space.medium.tablet,
-      paddingBottom: vars.space.medium.tablet,
+      paddingTop: vars.space.xsmall.tablet,
+      paddingBottom: vars.space.xsmall.tablet,
+      paddingLeft: vars.space.small.tablet,
+      paddingRight: vars.space.small.tablet,
     },
   }),
 ]);
 
 export const utilityLink = styleVariants({
-  light: [
-    utilityLinkBase,
-    {
-      color: vars.color.semantic.text.copy.dark,
-    },
-  ],
+  light: [utilityLinkBase, {}],
   dark: [
     utilityLinkBase,
     {
-      color: vars.color.semantic.text.copy.light,
-      selectors: {
-        '&:hover': {
-          color: vars.color.semantic.text.copy.light,
-        },
-      },
+      backgroundColor: vars.color.semantic.button.secondary.background.normal,
+      color: vars.color.semantic.button.secondary.content.normal,
     },
   ],
 });

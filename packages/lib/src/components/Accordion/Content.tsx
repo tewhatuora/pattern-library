@@ -6,6 +6,7 @@ import * as styles from './Accordion.css';
 
 export type AccordionContentProps = PropsWithChildren<Record<string, any>>;
 
+/** Collapsible panel of an `Accordion.Item`. */
 export const Content = ({ children }: AccordionContentProps) => {
   return (
     <RadixAccordion.Content className={styles.content}>

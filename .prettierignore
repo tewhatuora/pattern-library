@@ -1,16 +1,16 @@
-docs/.next/
-docs/public/playroom/
-
-lib/dist/
-lib/coverage/
-lib/src/components/icons/
+**/dist/
+**/build/
+**/tmp/
+**/coverage/
+storybook-static/
+packages/lib/src/icons/
+# Exported from Figma; keep as exported
+packages/themes/input/
 
 *.svg
-
-.idea
-*.iml
-*.xml
 *.md
+# Prettier reflows JSX children in MDX, which changes how they render (e.g. <p> inside <h1>)
+*.mdx
 
-.yarn/*
+.yarn/
 yarn.lock

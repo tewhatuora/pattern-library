@@ -40,16 +40,20 @@ export const variants = recipe({
       display: 'inlineFlex',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 'tags',
     }),
+    // A minimum rather than a fixed height, so a label that wraps grows the badge instead of overflowing it. The radius
+    // is half the single-line height: the same pill on one line, a rounded rectangle that doesn't clip the text on more.
+    { textAlign: 'center' },
     responsiveStyle({
       mobile: {
-        height: rem(22),
+        minHeight: rem(22),
+        borderRadius: rem(11),
         paddingLeft: vars.space.xsmall.mobile,
         paddingRight: vars.space.xsmall.mobile,
       },
       tablet: {
-        height: rem(26),
+        minHeight: rem(26),
+        borderRadius: rem(13),
         paddingLeft: vars.space.xsmall.tablet,
         paddingRight: vars.space.xsmall.tablet,
       },

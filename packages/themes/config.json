@@ -1,7 +1,7 @@
 {
   "platforms": {
     "web": {
-      "transforms": ["attribute/cti", "name/cti/pascal", "size/rem", "color/css"],
+      "transforms": ["attribute/cti", "name/pascal", "color/css-rounded-alpha"],
       "options": {},
       "files": [
         {

@@ -16,7 +16,7 @@ const BorderWidth = () => {
   return (
     <Section>
       <Stack space="medium">
-        <Group label="Border width" level="1" path="tokens.border.width" />
+        <Group label="Border width" path="tokens.border.width" />
         <Table>
           {Object.keys(tokens.border.width).map((size) => (
             <tr key={`tokens.border.width.${size}`}>

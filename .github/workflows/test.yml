@@ -11,49 +11,125 @@ on:
         type: string
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: enable corepack
+        run: corepack enable
+
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        id: restore-install-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ inputs.cache-key }}
+
+      # The build job saves this cache, but it can be evicted before this job runs
+      - name: yarn install
+        if: steps.restore-install-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      # lib resolves the themes package's types from its build output, and eslint resolves the example app's
+      # imports of the lib package from its build output
+      - name: yarn build
+        run: yarn build
+
+      - name: prettier
+        run: yarn prettier --check .
+
+      - name: eslint
+        run: yarn lint
+
+      - name: type check
+        run: yarn lint:types
+
+  storybook-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: enable corepack
+        run: corepack enable
+
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        id: restore-install-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ inputs.cache-key }}
+
+      # The build job saves this cache, but it can be evicted before this job runs
+      - name: yarn install
+        if: steps.restore-install-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      # Storybook imports the built styles, and lint:package checks the packed output
+      - name: yarn build
+        run: yarn build
+
+      - name: lint packages
+        run: yarn lint:package
+
+      - name: install playwright browser
+        run: yarn playwright install --with-deps chromium-headless-shell
+
+      # Renders every story and fails on accessibility violations (a11y.test: 'error')
+      - name: storybook tests
+        run: yarn test
 
   test:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
-    - name: checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: setup node
-      id: node-setup
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: .nvmrc
-  
-    - name: restore cache
-      uses: actions/cache/restore@v4
-      id: restore-install-cache
-      with:
-        path: "**/node_modules"
-        key: ${{ inputs.cache-key }}
-    
-    # - name: download build artifact
-    #   uses: actions/download-artifact@v4
+      - name: setup node
+        id: node-setup
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
 
-    # TODO find a way to get chromatic building/running from previous stage artifacts.
-    # Will likely need the chromaui/action outputDir input working to resolve relative imports
-    # for themes in storybook broken be running out of tmp directory
-    - name: yarn build themes
-      working-directory: ./packages/themes
-      run: yarn build
+      - name: enable corepack
+        run: corepack enable
 
-    - name: yarn build
-      run: yarn build
+      - name: restore cache
+        uses: actions/cache/restore@v4
+        id: restore-install-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ inputs.cache-key }}
 
-    - name: yarn build storybook
-      run: yarn build-storybook
+      # - name: download build artifact
+      #   uses: actions/download-artifact@v4
 
-    - name: run chromatic tests
-      uses: chromaui/action@latest
-      with:
-        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        autoAcceptChanges: "main"
-        storybookBuildDir: "storybook-static"
+      # TODO find a way to get chromatic building/running from previous stage artifacts.
+      # Will likely need the chromaui/action outputDir input working to resolve relative imports
+      # for themes in storybook broken be running out of tmp directory
+      - name: yarn build
+        run: yarn build
 
+      - name: yarn build storybook
+        run: yarn build-storybook
+
+      - name: run chromatic tests
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: 'main'
+          storybookBuildDir: 'storybook-static'

@@ -1,23 +1,30 @@
-import { Children, PropsWithChildren, ReactElement, cloneElement } from 'react';
+import { Children, PropsWithChildren, isValidElement } from 'react';
 
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
+import * as styles from './Dialog.css';
+
 const order = ['primary', 'secondary', 'tertiary'];
 
+const variantOrder = (child: unknown) =>
+  order.indexOf(isValidElement<{ variant?: string }>(child) ? (child.props.variant ?? '') : '');
+
 /**
- * Dialog action buttons
- * @constructor
+ * Container for `Dialog.Action` buttons. Reorders them by variant: primary, secondary, then tertiary.
+ * Actions with any other variant, or none, go before them.
  */
-export const Actions = ({ children }: PropsWithChildren<any>) => {
+export const Actions = ({ children }: PropsWithChildren) => {
   const sorted = Children.toArray(children).sort((a, b): number => {
-    const aChild = cloneElement(a as ReactElement);
-    const bChild = cloneElement(b as ReactElement);
-    if (order.indexOf(aChild.props.variant) > order.indexOf(bChild.props.variant)) return 1;
-    if (order.indexOf(aChild.props.variant) < order.indexOf(bChild.props.variant)) return -1;
+    if (variantOrder(a) > variantOrder(b)) return 1;
+    if (variantOrder(a) < variantOrder(b)) return -1;
     return 0;
   });
 
-  return <ErrorBoundary>{sorted}</ErrorBoundary>;
+  return (
+    <ErrorBoundary>
+      <div className={styles.actions}>{sorted}</div>
+    </ErrorBoundary>
+  );
 };
 
 Actions.displayName = 'Actions';

@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router';
 
-import '@healthnz/pattern-library/styles';
-import '@healthnz/pattern-library-themes/styles';
-
-import { ThemeProvider, Header, Stack, Container, Text, Navigation } from '@healthnz/pattern-library';
+import { Container, Header, Navigation, Stack, Text, ThemeProvider } from '@healthnz/pattern-library';
 import { neutral } from '@healthnz/pattern-library-themes';
 
 import Example from './Example';
@@ -14,40 +11,37 @@ const App = () => {
   const [navigationOpen, setNavigationOpen] = useState(false);
 
   const handleToggleNavigation = () => {
-    setNavigationOpen(navOpen => !navOpen)
+    setNavigationOpen((navOpen) => !navOpen);
   };
 
   return (
-    <ThemeProvider theme={neutral.className}>
-      <Stack space="xxlarge" color="primary100">
-      <Header
-        utilityNavItems={[
-          {
-            href: '#',
-            icon: 'language',
-            label: 'Language',
-          },
-          {
-            href: '#',
-            icon: 'person',
-            label: 'Name Surname',
-          },
-        ]}
-        logoLinkHref="/"
-        logoComponent={
-          <>
-            <Text size="small">LOGO</Text>
-            <Text size="small" weight="bold">
-              Placeholder
-            </Text>
-          </>
-        }
-        withSearch
-        onToggleNavigation={handleToggleNavigation}
-        navigationOpen={navigationOpen}
-      />
-      <div style={{paddingTop: '9.6rem'}}>
-        <Stack space="xxlarge" color="primary100">
+    <ThemeProvider theme={neutral}>
+      <Stack color="primary100" space="xxlarge">
+        <Header.Root>
+          <Header.Main>
+            <Header.Left>
+              <Header.Logo>
+                <Link to="/">
+                  <Text size="small">LOGO</Text>
+                  <Text size="small" weight="bold">
+                    Placeholder
+                  </Text>
+                </Link>
+              </Header.Logo>
+            </Header.Left>
+            <Header.Right>
+              <Navigation.Utility
+                items={[
+                  { href: '#', icon: 'language', label: 'Language' },
+                  { href: '#', icon: 'person', label: 'Name Surname' },
+                ]}
+                variant="light"
+              />
+            </Header.Right>
+            <Header.MenuButton open={navigationOpen} onToggle={handleToggleNavigation} />
+          </Header.Main>
+        </Header.Root>
+        <Stack color="primary100" space="xxlarge">
           <Navigation.Root open={navigationOpen} withSearch>
             <Navigation.Item href="#" label="Nav item 1" selected>
               <Navigation.Menu>
@@ -87,23 +81,25 @@ const App = () => {
                 </Navigation.MenuList>
               </Navigation.Menu>
             </Navigation.Item>
-            <Navigation.Item href="/forms" label="Forms" component={(props) => <Link {...props} to="/forms" />} />
+            <Navigation.Item component={(props) => <Link {...props} to="/forms" />} href="/forms" label="Forms" />
             <Navigation.Item href="#" label="Nav item 4" />
             <Navigation.Item href="#" label="Nav item 5" />
           </Navigation.Root>
           <Container>
             <Stack space="medium">
               <Routes>
-                <Route path="/" element={<Example />} />
-                <Route path="/forms" element={<YourDetails firstName="TYREE" lastName="GUNN" dateOfBirth="13 September 1994"/>} />
+                <Route element={<Example />} path="/" />
+                <Route
+                  element={<YourDetails dateOfBirth="13 September 1994" firstName="TYREE" lastName="GUNN" />}
+                  path="/forms"
+                />
               </Routes>
             </Stack>
           </Container>
         </Stack>
-      </div>
       </Stack>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

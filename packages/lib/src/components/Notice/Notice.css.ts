@@ -1,31 +1,28 @@
 import { style } from '@vanilla-extract/css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
-import { rem } from '@/src/css/helpers';
-
 import { responsiveStyle } from '../../css/responsiveStyle';
 
 import { atoms } from '../../css/atoms/atoms';
 
 import { vars } from '../../themes/vars.css';
 
-/**
- * Align icon to text offset
- */
-const offset = rem(2);
-
 const variant = {
   positive: {
     color: vars.color.semantic.notifications.alert.content.positive,
+    backgroundColor: vars.color.semantic.notifications.alert.background.positive,
   },
   info: {
     color: vars.color.semantic.notifications.alert.content.informative,
+    backgroundColor: vars.color.semantic.notifications.alert.background.informative,
   },
   critical: {
     color: vars.color.semantic.notifications.alert.content.critical,
+    backgroundColor: vars.color.semantic.notifications.alert.background.critical,
   },
   caution: {
     color: vars.color.semantic.notifications.alert.content.caution,
+    backgroundColor: vars.color.semantic.notifications.alert.background.caution,
   },
 };
 
@@ -33,14 +30,23 @@ export type Variant = keyof typeof variant;
 
 export const variants = recipe({
   base: style([
+    {
+      borderRadius: vars.borderRadiusAll.standard,
+      alignItems: 'center',
+    },
     atoms({
       display: 'flex',
       flexShrink: 0,
       flexGrow: 1,
     }),
     responsiveStyle({
+      mobile: {
+        padding: vars.space.small.mobile,
+        gap: vars.space.xsmall.mobile,
+      },
       tablet: {
-        width: '75%',
+        padding: vars.space.small.tablet,
+        gap: vars.space.xsmall.tablet,
       },
     }),
   ]),
@@ -52,18 +58,11 @@ export const variants = recipe({
 export type Variants = RecipeVariants<typeof variants>;
 
 export const icon = recipe({
-  base: responsiveStyle({
-    mobile: {
-      marginTop: offset,
-      marginLeft: vars.space.xsmall.mobile,
-      marginRight: vars.space.xsmall.mobile,
-    },
-    tablet: {
-      marginTop: offset,
-      marginLeft: vars.space.xsmall.tablet,
-      marginRight: vars.space.xsmall.tablet,
-    },
-  }),
+  base: {
+    flexShrink: 0,
+    width: vars.space.small.tablet,
+    height: vars.space.small.tablet,
+  },
   variants: {
     variant: {
       positive: {

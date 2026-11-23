@@ -1,4 +1,4 @@
-import { Meta, Source } from '@storybook/addon-docs';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
 
 <Meta title="Overview/Installation" />
 
@@ -7,7 +7,7 @@ import { Meta, Source } from '@storybook/addon-docs';
 
 # Installation
 
-Two NPM packages compose the pattern library. The design system component library named `@healthnz/pattern-library`, and a themes package which is a dependency of the library, `@healthnz/pattern-library-themes`.
+Two NPM packages compose the pattern library. The design system component library named `@healthnz/pattern-library`, and a themes package, `@healthnz/pattern-library-themes`. The themes package is a peer dependency of the library, so install both.
 
 We assume you've already set up `react` and `react-dom`. Otherwise, you'll get a warning at installation.
 
@@ -18,14 +18,13 @@ To install, open a terminal at the root of your project workspace and run the fo
 <Source
   language="bash"
   dark
-  code={`$ yarn add @healthnz/pattern-library\n$ # or using NPM\n$ npm install @healthnz/pattern-library`}
+  code={`$ yarn add @healthnz/pattern-library @healthnz/pattern-library-themes\n$ # or using NPM\n$ npm install @healthnz/pattern-library @healthnz/pattern-library-themes`}
 />
 
-The command will install all pattern library packages in the node_modules folder of your application.
 
 ## Include fonts
 
-The pattern library uses the Google Font "Fira Sans" (for the Neural theme) and "Poppins" (for the Web Self-Service theme).
+Each theme uses Google Fonts: "Poppins" for the Neutral theme and "Public Sans" for the Web Self-Service theme.
 
 Include the relevant resources in your HTML:
 
@@ -38,7 +37,7 @@ Include the relevant resources in your HTML:
   code={`<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap"
   rel="stylesheet" />
 `}
 />
@@ -52,7 +51,7 @@ Include the relevant resources in your HTML:
   code={`<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap"
   rel="stylesheet"
 />
 `}
@@ -60,13 +59,18 @@ Include the relevant resources in your HTML:
 
 ## Import styles
 
-The pattern library styles include a CSS bootstrap and the component styles.
+The pattern library styles include a CSS bootstrap and the component styles, and the themes styles define each theme's values.
 
 To import styles add the following import declaration to your root app:
 
 CSS in JS
 
-<Source language="js" dark filename="index.js" code="import '@healthnz/pattern-library/styles';" />
+<Source
+  language="js"
+  dark
+  filename="index.js"
+  code={`import '@healthnz/pattern-library/styles';\nimport '@healthnz/pattern-library-themes/styles';`}
+/>
 
 ## Configure your application
 
@@ -75,7 +79,8 @@ Below is an example of how to configure an application with a pre-constructed th
 <Source
   language="tsx"
   dark
-  code={`import '@healthnz/pattern-library/styles';\n
+  code={`import '@healthnz/pattern-library/styles';
+import '@healthnz/pattern-library-themes/styles';\n
 import { ThemeProvider } from '@healthnz/pattern-library';
 import { neutral } from '@healthnz/pattern-library-themes';
 \n

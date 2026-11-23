@@ -2,9 +2,9 @@ import JsonView from '@uiw/react-json-view';
 import { vscodeTheme } from '@uiw/react-json-view/vscode';
 
 import { useTheme } from '../../packages/lib/src/components/ThemeProvider/ThemeContext';
-import { Stack, Text } from '../../packages/lib/src/components';
-import { block, code, colorSection, colorSwatches, swatch, swatchHolder } from './ThemeItems.css';
-import { ColorRow, Group, PathBadge, Section, Table, TableCell } from './components';
+import { Stack } from '../../packages/lib/src/components';
+import { code, colorSwatches, swatch, swatchHolder } from './ThemeItems.css';
+import { ColorRow, Group, Section, Table } from './components';
 
 /**
  * Color
@@ -15,7 +15,7 @@ const Color = () => {
   return (
     <Section>
       <Stack space="xsmall">
-        <Group label="Color" level="1" path="tokens.color" />
+        <Group label="Color" path="tokens.color" />
         <div className={colorSwatches}>
           {!!tokens?.color &&
             Object.keys(tokens?.color)?.map((name) => {
@@ -36,12 +36,12 @@ const Color = () => {
         </div>
         <Section>
           <Stack space="xsmall">
-            <Group label="semantic" level="2" path="tokens.color.sematic" />
+            <Group label="semantic" path="tokens.color.sematic" />
             <Stack space="xsmall">
               {Object.keys(tokens?.color.semantic)?.map((name) => (
                 <Section key={`tokens.color.semantic.${name}`}>
                   <Stack space="xsmall">
-                    <Group label={name} level="3" path={`tokens.color.sematic.${name}`} />
+                    <Group label={name} path={`tokens.color.sematic.${name}`} />
                     <Stack space="xsmall">
                       {Object.keys(tokens?.color.semantic[name])?.map((subName) => {
                         if (typeof tokens?.color.semantic[name][subName] === 'string') {
@@ -58,7 +58,7 @@ const Color = () => {
                         return (
                           <Section key={`tokens.color.semantic.${name}.${subName}`}>
                             <Stack space="xsmall">
-                              <Group label={subName} level="4" path={`tokens.color.semantic.${name}.${subName}`} />
+                              <Group label={subName} path={`tokens.color.semantic.${name}.${subName}`} />
                               <Stack space="xsmall">
                                 {Object.keys(tokens?.color.semantic[name][subName])?.map((subSubName) => {
                                   if (typeof tokens?.color.semantic[name][subName][subSubName] === 'string') {
@@ -79,7 +79,6 @@ const Color = () => {
                                         <Group
                                           key={`tokens.color.semantic.${name}.${subName}.${subSubName}`}
                                           label={subSubName}
-                                          level="4"
                                           path={`tokens.color.semantic.${name}.${subName}.${subSubName}`}
                                         />
                                         <Stack space="xsmall">

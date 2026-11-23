@@ -71,15 +71,15 @@ const usePagination = ({ pages, current }: UsePaginationHook): PaginationValues 
       siblingsStart > BOUNDARY_LIMIT + 2
         ? ['ellipsis-start']
         : BOUNDARY_LIMIT + 1 < pages - BOUNDARY_LIMIT
-        ? [BOUNDARY_LIMIT + 1]
-        : [];
+          ? [BOUNDARY_LIMIT + 1]
+          : [];
 
     const endEllipsis =
       siblingsEnd < pages - BOUNDARY_LIMIT - 1
         ? ['ellipsis-end']
         : pages - BOUNDARY_LIMIT > BOUNDARY_LIMIT
-        ? [pages - BOUNDARY_LIMIT]
-        : [];
+          ? [pages - BOUNDARY_LIMIT]
+          : [];
 
     const middle = range(siblingsStart, siblingsEnd);
 

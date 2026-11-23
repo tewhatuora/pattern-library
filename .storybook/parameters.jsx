@@ -9,6 +9,9 @@ const themes = {
 
 const sbParameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  // Axe violations fail the story's test. Disable a specific rule per story via `parameters.a11y.config`,
+  // with a comment saying why, rather than relaxing this.
+  a11y: { test: 'error' },
   backgrounds: { disable: true },
   docs: {
     source: {
@@ -18,7 +21,7 @@ const sbParameters = {
     transformSource: (source) => {
       // ContrastWrapper is a component that wraps Story components in a `Card` with appropriate
       // variant prop, to show that dark mode should be used within a `Card`.
-      return source.replaceAll(/\<ContrastWrapper variant\=\"dark\"\>\n|\n\<\/ContrastWrapper\>/gi, '');
+      return source.replaceAll(/<ContrastWrapper variant="dark">\n|\n<\/ContrastWrapper>/gi, '');
     },
   },
   themes: {
@@ -37,17 +40,11 @@ const sbParameters = {
       },
     ],
     target: 'root',
-    Decorator: (props) => {
-      
-      if (!props.themeClasses) {
-        return props.children;
-      }
-
-
-      return <ThemeProvider theme={themes[props.themeClasses]}>{props.children}</ThemeProvider>;
+    Decorator: ({ themeClasses, children }) => {
+      const theme = themes[themeClasses] || webSelfService;
+      return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
     },
   },
 };
-
 
 export default sbParameters;

@@ -5,6 +5,10 @@
  * @return {Object} Simplified/Formatted tokens object
  */
 function simplifyTokens(tokens) {
+  if (typeof tokens === 'string') {
+    return tokens;
+  }
+
   if ('value' in tokens) {
     return tokens.value;
   }

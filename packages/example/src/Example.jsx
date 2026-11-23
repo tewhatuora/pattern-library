@@ -1,8 +1,8 @@
 import '@healthnz/pattern-library/styles';
 import '@healthnz/pattern-library-themes/styles';
-import {Stack, Row, Column, Card, Button, Heading, Text, AnchorLink, Breadcrumbs} from '@healthnz/pattern-library';
+import { AnchorLink, Breadcrumbs, Button, Card, Column, Heading, Row, Stack, Text } from '@healthnz/pattern-library';
 
-const Example = (props) => {
+const Example = () => {
   return (
     <Stack space="medium">
       <Breadcrumbs>
@@ -39,10 +39,14 @@ const Example = (props) => {
         <Column columns={8}>
           <Card>
             <Row>
-              <Column columns={6} center>
+              <Column center columns={6}>
                 <Stack space="medium">
                   <Heading level="1">Example app</Heading>
-                  <Text as="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis consequuntur cupiditate deleniti, doloribus facere id iste laborum nemo odio perspiciatis porro quaerat quasi quia, repellendus unde vel voluptatibus.</Text>
+                  <Text as="p">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias blanditiis consequuntur
+                    cupiditate deleniti, doloribus facere id iste laborum nemo odio perspiciatis porro quaerat quasi
+                    quia, repellendus unde vel voluptatibus.
+                  </Text>
                   <Row>
                     <Column columns={3}>
                       <Button variant="primary">Primary</Button>
@@ -83,6 +87,6 @@ const Example = (props) => {
       </Row>
     </Stack>
   );
-}
+};
 
 export default Example;

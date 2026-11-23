@@ -3,7 +3,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import { Label } from '@radix-ui/react-label';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Text } from '../Text/Text';
 import { Box, BoxProps } from '../Box/Box';
@@ -16,39 +16,40 @@ import * as styles from './Checkbox.css';
 export const CheckboxStyles = styles;
 
 export type CheckboxProps = {
-  /** A label for the checkbox */
+  /** Text next to the checkbox. Use an empty string only if `heading` carries the text. */
   label: string;
-  /** A heading for the checkbox */
+  /** Bold text shown above `label`, for a group title or a short summary. */
   heading?: string;
-  /** Field id for the checkbox */
+  /** Must be unique on the page: the visible label is linked to the checkbox through it. */
   id: string;
-  /** Field name for the checkbox */
+  /** Name submitted with the form. */
   name?: string;
-  /** Whether the checkbox is a required field or not */
+  /** Marks the field required and appends `*` to the heading, or to the label when there is no heading. */
   required?: boolean;
-  /** Checkbox 'checked' state */
+  /** Controlled value. The Checkbox is always controlled, so update it from `onCheckedChange`. */
   checked: boolean;
-  /** Checkbox 'indeterminate' state */
+  /** Shows the mixed state, announced as "mixed". Only applies while `checked` is true. */
   indeterminate?: boolean;
-  /** Disable the Checkbox */
+  /** Prevents interaction and dims the Checkbox. */
   disabled?: boolean;
-  /** Display the Checkbox in an error state */
+  /** Error styling, and sets `aria-invalid`. Put the error text in a `CheckboxGroup` or an `InputMessage`. */
   error?: boolean;
-  /** A function that will be called when toggling the Checkbox */
+  /** Called with the new value when the user toggles the Checkbox. */
   onCheckedChange?: (checked: boolean) => void;
 } & BoxProps;
 
 /**
- * Checkbox Component
- * Displays a list of vertically stacked Checkbox components
- * Enables users to pick multiple options from a group of Checkbox component
- * Have an option to display a heading
- * Have an option to be required
- * Have the option top display Checkboxes with indeterminate state
- * @param props
- * @constructor
+ * Single checkbox with a label. Wrap several in a `CheckboxGroup` to give them a shared label and messages.
+ *
+ * @example
+ * <Checkbox
+ *   checked={accepted}
+ *   id="accept-terms"
+ *   label="I accept the terms"
+ *   name="terms"
+ *   onCheckedChange={setAccepted}
+ * />
  */
-
 export const Checkbox = ({
   label,
   heading,
@@ -74,7 +75,8 @@ export const Checkbox = ({
     >
       <CheckboxPrimitive.Root
         aria-invalid={error ? 'true' : 'false'}
-        checked={checked}
+        // 'indeterminate' makes assistive technology announce "mixed" rather than "checked"
+        checked={checked && indeterminate ? 'indeterminate' : checked}
         className={styles.checkbox}
         disabled={disabled}
         id={id}

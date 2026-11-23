@@ -1,5 +1,6 @@
+import type { JSX } from 'react';
 import { PropsWithChildren, useContext, useMemo } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Box } from '../Box/Box';
 import { Row } from '../Columns/Row';
@@ -9,7 +10,6 @@ import { Content, ContentProps } from '../Content/Content';
 import { Stack } from '../Stack/Stack';
 import { MAX_COLS } from '../../css/grid';
 
-import { IconType } from '../Icon/icons';
 import * as styles from './ImageBlock.css';
 
 export const ImageBlockStyles = styles;
@@ -49,11 +49,10 @@ const innerColumnLengths: Record<styles.WidthVariant, ColumnLength> = {
 };
 
 type ImageBlockButton = {
-  /** Label for the button */
   label: string;
-  /** Element type to render the button as */
+  /** Render as a link (`a`) or a `button`. `href` is required by the type either way, but only used for `a`. */
   as: Extract<keyof JSX.IntrinsicElements, 'button' | 'a'>;
-  /** Function to call when the button is clicked */
+  /** Called when the button is pressed. */
   onClick?: () => void;
 } & AsLink;
 
@@ -63,35 +62,66 @@ type AsLink = {
 };
 
 export type ImageBlockProps = {
-  /** Alternative text for the image */
+  /** Describes the image. Use an empty string if it's purely decorative. */
   alt: string;
-  /** Img source URL/path */
-  src?: string | IconType;
-  /** Image shape */
-  shape: 'square' | 'rectangle';
-  /** Image block width */
-  width: styles.WidthVariant;
-  /** Image position relative to content */
-  imagePosition: styles.ImagePositionVariant;
-  /** Primary button */
+  /** URL or path of the image. */
+  src?: string;
+  /**
+   * Image crop.
+   * @default 'rectangle'
+   */
+  shape?: 'square' | 'rectangle';
+  /**
+   * `full` fills the row with content and image side by side. `half` and `third` take that share of the row
+   * on desktop, with the content and image stacked.
+   * @default 'full'
+   */
+  width?: styles.WidthVariant;
+  /**
+   * Whether the image comes `before` or `after` the content: to its left or right for `full` on desktop, otherwise
+   * above or below it. On mobile, `full` always shows the image first.
+   * @default 'after'
+   */
+  imagePosition?: styles.ImagePositionVariant;
+  /** Rendered as a `primary` button under the content. */
   primaryButton?: ImageBlockButton;
-  /** Label for the secondary button */
+  /** Rendered as a `secondary` button after `primaryButton`. */
   secondaryButton?: ImageBlockButton;
 } & Omit<ContentProps, 'className' | 'variant'>;
 
-const WithinParentColumn = ({ children }: PropsWithChildren<any>) => <Stack space="medium">{children}</Stack>;
+const WithinParentColumn = ({
+  imagePosition,
+  children,
+}: PropsWithChildren<Required<Pick<ImageBlockProps, 'width' | 'imagePosition'>>>) => (
+  <Box className={styles.stacked[imagePosition]}>{children}</Box>
+);
 const Standalone = ({
   width,
   imagePosition,
   children,
-}: PropsWithChildren<Pick<ImageBlockProps, 'width' | 'imagePosition'>>) => (
+}: PropsWithChildren<Required<Pick<ImageBlockProps, 'width' | 'imagePosition'>>>) => (
   <Row className={clsx(styles.rowVariants({ width, imagePosition }))} {...rowColumns[width]}>
     {children}
   </Row>
 );
 /**
- * Further content for an input field.
- * @constructor
+ * An image beside a heading, text and up to two buttons. Place it directly in a full-width `Column`, or
+ * inside a narrower column, where the content and image stack. `headingLevel` defaults to `'1'` when `width`
+ * is `full`, otherwise `'2'`, so set it to fit the page's outline.
+ *
+ * @example
+ * <ImageBlock
+ *   alt="A nurse talking with a patient"
+ *   heading="Book a vaccination"
+ *   headingLevel="2"
+ *   imagePosition="after"
+ *   primaryButton={{ as: 'a', href: '/vaccinations', label: 'Book now' }}
+ *   shape="rectangle"
+ *   src="/images/nurse.jpg"
+ *   width="full"
+ * >
+ *   Find a clinic near you.
+ * </ImageBlock>
  */
 export const ImageBlock = ({
   alt,
@@ -122,12 +152,11 @@ export const ImageBlock = ({
             headingAs={headingAs}
             headingLevel={contentHeadingLevel}
             subheading={subheading}
-            variant="light"
           >
             <Stack space="medium">
               {children}
               {(!!primaryButton || !!secondaryButton) && (
-                <Stack className={styles.buttons[width]} space="medium">
+                <Box className={styles.buttons[width]}>
                   {!!primaryButton && (
                     <Button
                       as={primaryButton.as}
@@ -148,7 +177,7 @@ export const ImageBlock = ({
                       {secondaryButton.label}
                     </Button>
                   )}
-                </Stack>
+                </Box>
               )}
             </Stack>
           </Content>

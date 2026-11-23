@@ -16,11 +16,11 @@ const Typography = () => {
   return (
     <Card>
       <Stack space="medium">
-        <Group label="Typography" level="1" path="tokens.typography" />
+        <Group label="Typography" path="tokens.typography" />
         <Stack space="medium">
           <Card>
             <Stack space="medium">
-              <Group label="Font weight" level="2" path="tokens.typography.fontWeight" />
+              <Group label="Font weight" path="tokens.typography.fontWeight" />
               <Table>
                 {Object.keys(tokens.typography?.fontWeight).map((weight) => (
                   <tr key={`typography.fontWeight.${weight}`}>
@@ -45,10 +45,10 @@ const Typography = () => {
           </Card>
           <Card>
             <Stack space="small">
-              <Group label="Heading" level="2" path="tokens.typography.heading" />
+              <Group label="Heading" path="tokens.typography.heading" />
               <Card>
                 <Stack space="small">
-                  <Group label="Weight" level="3" path="tokens.typography.heading.weight" />
+                  <Group label="Weight" path="tokens.typography.heading.weight" />
                   <Table>
                     {Object.keys(tokens.typography?.heading.weight).map((weight) => (
                       <tr key={`tokens.typography.heading.weight.${weight}`}>
@@ -73,17 +73,16 @@ const Typography = () => {
               </Card>
               <Card>
                 <Stack space="small">
-                  <Group label="Level" level="3" path="tokens.typography.heading.level" />
+                  <Group label="Level" path="tokens.typography.heading.level" />
                   {Object.keys(tokens.typography?.heading.level).map((level) => (
-                    <Card>
+                    <Card key={level}>
                       <Stack space="small">
-                        <Group label={level} level="4" path={`tokens.typography.heading.level.${level}`} />
+                        <Group label={level} path={`tokens.typography.heading.level.${level}`} />
                         {Object.keys(tokens.typography?.heading.level[level]).map((breakpoint) => (
-                          <Card>
+                          <Card key={breakpoint}>
                             <Stack space="small">
                               <Group
                                 label={breakpoint}
-                                level="4"
                                 path={`tokens.typography.heading.level.${level}.${breakpoint}`}
                               />
                               <Table>

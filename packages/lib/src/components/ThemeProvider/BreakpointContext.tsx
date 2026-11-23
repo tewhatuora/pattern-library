@@ -59,17 +59,17 @@ export function BreakpointProvider({ children }: BreakpointProviderProps) {
       }
     };
 
-    tabletQuery.addListener(onChange);
-    desktopQuery.addListener(onChange);
-    wideQuery.addListener(onChange);
+    tabletQuery.addEventListener('change', onChange);
+    desktopQuery.addEventListener('change', onChange);
+    wideQuery.addEventListener('change', onChange);
 
     onChange();
 
     return () => {
       mounted = false;
-      tabletQuery.removeListener(onChange);
-      desktopQuery.removeListener(onChange);
-      wideQuery.removeListener(onChange);
+      tabletQuery.removeEventListener('change', onChange);
+      desktopQuery.removeEventListener('change', onChange);
+      wideQuery.removeEventListener('change', onChange);
     };
   }, [tablet, desktop, wide, state]);
 

@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "outDir": "./dist/types",
+    "paths": {
+      "!/*": ["../*"],
+      "@/*": ["./*"]
+    },
+    "skipLibCheck": true
+  },
+  "include": ["./"]
+}

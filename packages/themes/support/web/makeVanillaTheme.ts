@@ -1,7 +1,6 @@
 import { Tokens } from './tokenType';
 
 export default (tokens: Tokens) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const rest = tokens;
 
   type BorderRadiusName = keyof typeof rest.border.radius;
@@ -73,5 +72,6 @@ export default (tokens: Tokens) => {
     color: rest.color,
     shadow: rest.shadows,
     transition: rest.transitions,
+    gradient: rest.gradients,
   } as const;
 };

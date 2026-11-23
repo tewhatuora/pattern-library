@@ -1,6 +1,7 @@
-import { Children, FC, PropsWithChildren, useMemo } from 'react';
+import type { JSX } from 'react';
+import { Children, ElementType, PropsWithChildren, ReactNode, useMemo } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { ContrastVariant } from '@/src/types';
 
@@ -12,8 +13,7 @@ import { Text } from '../Text/Text';
 import { Icon } from '../Icon/Icon';
 import { IconType } from '../Icon/icons';
 
-import NZGovtLogoWhite from './nz-govt-logo-white.svg?component';
-import NZGovtLogoBlack from './nz-govt-logo-black.svg?component';
+import NZGovtLogo from './nz-govt-logo.svg?component';
 // import TeWhatuOraLogoLight from '../../assets/te-whatu-ora-logo-light.svg?component';
 // import TeWhatuOraLogoDark from '../../assets/te-whatu-ora-logo-dark.svg?component';
 
@@ -29,8 +29,8 @@ const FooterStyles = styles;
 type ImprintItem = {
   text: string;
   href?: string;
-  /** A React component to render, e. react-router-dom `<Link />` */
-  component?: FC<any>;
+  /** A React component to render, e.g. a react-router-dom `<Link />`. It gets `className` and `children` but not `href`, so it must link to its own destination */
+  component?: ElementType<{ className?: string; children?: ReactNode }>;
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ type ImprintItem = {
 const FOOTER_NAME = 'Footer';
 
 type FooterProps = {
-  /** Social link href/paths for Facebook, Twitter, Instagram, LinkedIn & TikTok */
+  /** Social links as `{ network: url }`. Only the networks you pass are shown, always in the order Facebook, Twitter, Instagram, LinkedIn, TikTok. */
   socialLinkHrefs?: {
     facebook?: string;
     twitter?: string;
@@ -48,15 +48,35 @@ type FooterProps = {
     linkedin?: string;
     tiktok?: string;
   };
-  /** Array of Imprint items,which can have text and href for links */
+  /** Small print links such as Privacy and Copyright, shown in reverse order of the array. Plain text if there is no `href` or `component`. Maximum 7, otherwise it throws. */
   imprintItems?: ImprintItem[];
+  /** Copyright or legal line shown with the imprint items. */
   legalCopy?: string;
-  /** Contrast variant for dark/light UI */
+  /**
+   * Colour scheme: `'dark'` for a dark footer with light text. Choose to match the page.
+   * @default 'light'
+   */
   variant?: ContrastVariant;
   /** Additional CSS className. (Use `__patternlibrary__` for an example) */
   className?: string;
 };
 
+/**
+ * Site footer with the NZ Government logo, optional social links, columns of navigation links and the imprint.
+ * Children are up to 5 `Footer.List` components (it throws above 5), each holding `Footer.ListItem` links.
+ *
+ * @example
+ * <Footer.Root
+ *   imprintItems={[{ text: 'Privacy policy', href: '/privacy' }]}
+ *   legalCopy="Crown copyright"
+ *   socialLinkHrefs={{ facebook: 'https://facebook.com/example' }}
+ * >
+ *   <Footer.List heading="Services">
+ *     <Footer.ListItem href="/clinics" label="Find a clinic" />
+ *     <Footer.ListItem href="/contact" label="Contact us" />
+ *   </Footer.List>
+ * </Footer.Root>
+ */
 const Footer = ({
   socialLinkHrefs,
   imprintItems,
@@ -76,7 +96,6 @@ const Footer = ({
   }
 
   // const TeWhatuOraLogo = variant === 'dark' ? TeWhatuOraLogoLight : TeWhatuOraLogoDark;
-  const NZGovtLogo = variant === 'dark' ? NZGovtLogoWhite : NZGovtLogoBlack;
 
   const socialLinks = useMemo(
     () =>
@@ -99,24 +118,26 @@ const Footer = ({
       legalCopy || !!imprintItems ? (
         <Box className={styles.imprintItems}>
           {legalCopy ? (
-            <Box className={clsx(styles.imprintItem, styles.legalCopy)}>
+            <Box className={clsx(styles.imprintItem, styles.legalCopy, styles.imprintChildVariant({ variant }))}>
               <Text size="small" weight="regular">
                 {legalCopy}
               </Text>
             </Box>
           ) : null}
-          {imprintItems?.map(({ text, href, component: ImprintComponent }) => {
+          {[...(imprintItems ?? [])].reverse().map(({ text, href, component: ImprintComponent }) => {
             let result;
 
             if (ImprintComponent) {
               result = (
                 <Text size="small" weight="regular">
-                  <ImprintComponent className={styles.imprintLink}>{text}</ImprintComponent>
+                  <ImprintComponent className={clsx(styles.imprintLink, styles.imprintChildVariant({ variant }))}>
+                    {text}
+                  </ImprintComponent>
                 </Text>
               );
             } else if (href) {
               result = (
-                <Box as="a" className={styles.imprintLink} href={href}>
+                <Box as="a" className={clsx(styles.imprintLink, styles.imprintChildVariant({ variant }))} href={href}>
                   <Text size="small" weight="regular">
                     {text}
                   </Text>
@@ -131,63 +152,54 @@ const Footer = ({
             }
 
             return (
-              <Box className={styles.imprintItem} key={text}>
+              <Box className={clsx(styles.imprintItem, styles.imprintChildVariant({ variant }))} key={text}>
                 {result}
               </Box>
             );
           })}
+          <ShieldedSite />
         </Box>
       ) : null,
-    [imprintItems, legalCopy],
+    [imprintItems, legalCopy, variant],
   );
 
   return (
     <Box as="footer" className={clsx(styles.footer({ variant }), className)}>
-      <div className={styles.footerInner}>
-        <Stack space="xxlarge">
-          {/* First row */}
-          <Box display="flex" flexWrap="wrap" marginBottom="xsmall">
-            <Box className={styles.govtLogoWrapper}>
-              {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
-              <NZGovtLogo focusable={false} role="img" />
-            </Box>
-          </Box>
-
-          {/* Second row */}
-          {numChildren > 0 && (
-            <Box className={styles.secondRow}>
-              <Box className={clsx(styles.secondRowNavigationWrapper, styles.secondRowChild)}>
-                {Children.map(children, (child) => (
-                  // Div keeps MenuItems contained because they return 2 elements, not one
-                  <div className={clsx(styles.secondRowNavigationChild, { [styles.lessSpace]: numChildren >= 5 })}>
-                    {child}
-                  </div>
-                ))}
+      <div className={variant === 'dark' ? styles.footerDarkGradient : ''}>
+        <div className={styles.footerInner}>
+          <Stack space="xxlarge">
+            {/* First row */}
+            <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="spaceBetween" marginBottom="xsmall">
+              <Box className={clsx(styles.govtLogoWrapper, styles.govtLogoColor[variant ?? 'light'])}>
+                {/* @ts-expect-error There is an error saying that the `focusable` & `role` props do not exist, but they do as it just gets applied to an svg element */}
+                <NZGovtLogo focusable={false} role="img" />
               </Box>
-              {!!socialLinks && (
-                <Box className={styles.secondRowChild}>
-                  <ShieldedSite />
-                </Box>
-              )}
+              <Box>{socialLinks}</Box>
             </Box>
-          )}
 
-          {/* Third row */}
-          <Stack space="medium">
-            <Divider variant={variant ?? 'light'} />
-            <Box className={styles.socialAndImprintWrapper}>
-              {/*
-               * `flexDirection="rowReverse" ensures the socialLinks/ShieldedSite is always
-               * on the right even when there are no imprintItemsElements.
-               * It should also be okay for accessibility because the order of viewing the
-               * socialLinks/ShieldedSite first or the imprintItemsElements first doesn't
-               * really matter.
-               */}
-              <Box className={styles.socialAndImprintChild}>{socialLinks || <ShieldedSite />}</Box>
-              <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
-            </Box>
+            {/* Second row */}
+            {numChildren > 0 && (
+              <Box className={styles.secondRow}>
+                <Box className={clsx(styles.secondRowNavigationWrapper, styles.secondRowChild)}>
+                  {Children.map(children, (child) => (
+                    // Div keeps MenuItems contained because they return 2 elements, not one
+                    <div className={clsx(styles.secondRowNavigationChild, { [styles.lessSpace]: numChildren >= 5 })}>
+                      {child}
+                    </div>
+                  ))}
+                </Box>
+              </Box>
+            )}
+
+            {/* Third row */}
+            <Stack space="medium">
+              <Divider variant={variant ?? 'light'} />
+              <Box className={styles.socialAndImprintWrapper}>
+                <Box className={styles.socialAndImprintChild}>{imprintItemsElements}</Box>
+              </Box>
+            </Stack>
           </Stack>
-        </Stack>
+        </div>
       </div>
     </Box>
   );
@@ -202,6 +214,7 @@ const FOOTER_LIST_NAME = 'FooterList';
 
 type FooterListProps = PropsWithChildren<MenuListProps>;
 
+/** A titled column of links in the footer. Takes `heading` and `Footer.ListItem` children. */
 const FooterList = (props: FooterListProps) => {
   return <Navigation.MenuList {...props} />;
 };
@@ -216,6 +229,7 @@ const FOOTER_LIST_ITEM_NAME = 'FooterListItem';
 
 type FooterListItemProps = PropsWithChildren<NavigationItemProps>;
 
+/** A link in a `Footer.List`. Takes the same props as `Navigation.Item`, such as `href` and `label`. */
 const FooterListItem = (props: FooterListItemProps) => {
   return <Navigation.Item subNav {...props} />;
 };

@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
+    "rootDir": "../..",
     "declaration": true,
     "jsx": "react-jsx",
     "outDir": "./dist/types",
@@ -9,10 +10,7 @@
       "!/*": ["../*"],
       "@/*": ["./*"]
     },
-    "types": ["@testing-library/jest-dom", "jest"],
     "skipLibCheck": true
   },
-  "include": [
-    "./"
-  ]
+  "include": ["./"]
 }

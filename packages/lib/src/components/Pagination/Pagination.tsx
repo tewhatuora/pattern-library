@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo } from 'react';
 
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
+import { Icon } from '../Icon/Icon';
 
 import usePagination from '../../hooks/usePagination';
 
@@ -12,30 +12,41 @@ import { ButtonRoot } from '../Button/ButtonRoot';
 export const PaginationStyles = styles;
 
 export type PaginationProps = {
-  /** Determines whether to show the pagination buttons. Overrides CSS media queries. */
+  /**
+   * `true` always shows page number buttons, `false` always shows a page select instead. Left unset, CSS
+   * media queries show the buttons on desktop and the select on smaller screens.
+   */
   showPageButtons?: boolean;
-  /** Total number of pages */
+  /** Total number of pages. */
   pages: number;
-  /** Current page number */
+  /**
+   * Current page, starting at 1. The component doesn't track the page itself, so update this from `onChange`.
+   * @default 1
+   */
   current: number;
-  /** Function to call when page is changed */
+  /** Called with the new page number when a page button, Previous or Next is pressed. */
   onChange?: (page: number) => void;
 };
 
 type PaginationPageProps = {
   page: number;
   isCurrent: boolean;
-  onPress?: (page: number) => void;
+  onSelect?: (page: number) => void;
 };
 
-const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) => {
+const PaginationPage = memo(({ page, isCurrent, onSelect }: PaginationPageProps) => {
   const className = useMemo(() => {
     return isCurrent ? styles.button.current : styles.button.page;
   }, [isCurrent]);
 
   return (
     <li className={styles.page}>
-      <ButtonRoot aria-label={`Go to page ${page}`} className={className} onPress={onPress}>
+      <ButtonRoot
+        aria-current={isCurrent ? 'page' : undefined}
+        aria-label={`Go to page ${page}`}
+        className={className}
+        onPress={() => onSelect?.(page)}
+      >
         {page}
       </ButtonRoot>
     </li>
@@ -43,12 +54,15 @@ const PaginationPage = memo(({ page, isCurrent, onPress }: PaginationPageProps) 
 });
 
 /**
- * Navigate between divided content on separate pages.
- * @param props
- * @constructor
+ * Previous and Next buttons with page numbers (or, on smaller screens, a page select), for content split
+ * across pages. Controlled: the current page comes from `current`.
+ *
+ * @example
+ * <Pagination current={page} pages={12} onChange={setPage} />
  */
 export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: PaginationProps) => {
   const { items, showPrevious, showNext } = usePagination({ current, pages });
+  const pageNumbers = useMemo(() => Array.from({ length: pages }, (_, i) => i + 1), [pages]);
 
   /**
    * Handle clicking on the 'Previous' button
@@ -74,18 +88,11 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
    * Memoize rendering of page buttons
    */
   const renderPageButtons = useMemo(() => {
-    /**
-     * Handle clicking on a page number button
-     * @param {number} page The page number clicked on
-     */
-    const handlePage = (page: number) => () => {
-      onChange?.(page);
-    };
-
     return items.map((item) => {
       if (typeof item === 'number') {
         return (
-          <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onPress={handlePage(item)} />
+          // onChange is passed as is (not wrapped per page) so the memoised PaginationPage only re-renders when needed
+          <PaginationPage isCurrent={item === current} key={`page-${item}`} page={item} onSelect={onChange} />
         );
       }
 
@@ -100,7 +107,7 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
   }, [current, items, onChange]);
 
   return (
-    <Box display="flex" flexDirection="row" justifyContent="spaceBetween">
+    <Box className={styles.container}>
       <Box className={styles.buttonContainer}>
         {showPrevious && (
           <Button
@@ -113,11 +120,25 @@ export const Pagination = ({ current = 1, pages, onChange, showPageButtons }: Pa
           </Button>
         )}
       </Box>
-      {/* Never show page label when `showPageButtons === true` */}
+      {/* Never show the page select when `showPageButtons === true` */}
       {showPageButtons === false || showPageButtons === undefined ? (
-        <Text className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
-          {current} of {pages}
-        </Text>
+        <Box className={styles.pages[showPageButtons === undefined ? 'uncontrolled' : 'controlled']}>
+          <Box className={styles.pageSelect}>
+            <select
+              aria-label={`Page, of ${pages}`}
+              className={styles.select}
+              value={current}
+              onChange={(e) => onChange?.(Number(e.target.value))}
+            >
+              {pageNumbers.map((page) => (
+                <option key={page} value={page}>
+                  {page}
+                </option>
+              ))}
+            </select>
+            <Icon aria-hidden="true" className={styles.selectChevron} icon="chevron_down" variant="functionalIcons" />
+          </Box>
+        </Box>
       ) : null}
       {/* Never show page buttons when `showPageButtons === false` */}
       {showPageButtons === true || showPageButtons === undefined ? (

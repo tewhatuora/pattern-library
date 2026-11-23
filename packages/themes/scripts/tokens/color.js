@@ -1,5 +1,9 @@
+import { camelCaseKey } from '../utils/tokenKey.js';
+
 /**
  * Format color tokens
+ * Palette tokens are flattened to camelCase keys, e.g. `primary.100` => `primary100`,
+ * `core.dark blue` => `coreDarkBlue`. Semantic tokens keep their nested structure.
  * @param {Object} tokens Color tokens
  * @return {Object} Formatted color tokens
  */
@@ -13,7 +17,7 @@ const color = (tokens) => {
       for (const subkey of Object.keys(tokens[key])) {
         // ignore `transparent.primary.100` token
         if (`${key}${subkey}` !== 'transparentprimary') {
-          acc[`${key}${subkey}`] = tokens[key][subkey];
+          acc[camelCaseKey(key, subkey)] = tokens[key][subkey];
         }
       }
     }

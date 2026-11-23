@@ -1,8 +1,4 @@
-import { DocsContext, DocsContextProps, Source, Subheading } from '@storybook/addon-docs';
-
-import { Renderer } from '@storybook/csf';
-
-import { ReactNode } from 'react';
+import { DocsContext, Source, Subheading } from '@storybook/addon-docs/blocks';
 
 import * as Components from '../../packages/lib/src/components';
 import { code } from '../theme/ThemeItems.css';
@@ -37,13 +33,13 @@ export const Classnames = () => {
   return (
     <DocsContext.Consumer>
       {(context) => {
-        /* @ts-ignore: primaryStory does exist on context, just not typed */
+        /* @ts-expect-error: primaryStory does exist on context, just not typed */
         const componentParts = context.primaryStory?.title?.split('/');
         const name = componentParts[componentParts.length - 1];
         const stylesObj = `${name}Styles`;
 
         if (stylesObj in Components) {
-          const styles = (Components as Record<string, string | ReactNode>)[stylesObj] as Record<string, string>;
+          const styles = stylesObj as unknown as Record<string, string>;
           const variants: Variants = {};
           const classNames = Object.keys(styles).reduce((all, key: string) => {
             // Don't include upper snake case constants

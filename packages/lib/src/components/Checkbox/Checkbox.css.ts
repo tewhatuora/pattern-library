@@ -5,6 +5,7 @@ import { rem } from '@/src/css/helpers';
 import { getFocusSelectors } from '@/src/utils/custom';
 
 import { atoms } from '../../css/atoms/atoms';
+import { responsiveStyle } from '../../css/responsiveStyle';
 import { vars } from '../../themes/vars.css';
 
 export const wrapper = style([
@@ -47,7 +48,7 @@ export const checkbox = style({
   backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
   ':hover': {
-    backgroundColor: vars.color.semantic.inputs.elements.background['unselected-hover'],
+    backgroundColor: vars.color.semantic.inputs.elements.background.unselectedHover,
     borderColor: vars.color.semantic.inputs.elements.border.hover,
   },
 
@@ -56,7 +57,9 @@ export const checkbox = style({
       backgroundColor: vars.color.semantic.inputs.elements.background.selected,
     },
     '&:not([data-state="unchecked"]):hover': {
-      backgroundColor: vars.color.semantic.inputs.elements.background['selected-hover'],
+      backgroundColor: vars.color.semantic.inputs.elements.background.selectedHover,
+      color: vars.color.semantic.icons.dark,
+      borderColor: vars.color.semantic.inputs.elements.background.selectedHover,
     },
 
     // The following override `&:not([data-state="unchecked"]):hover`.
@@ -85,9 +88,16 @@ export const indicator = style({
 
 globalStyle(`${indicator} > svg`, {
   width: rem(12),
-  fill: vars.color.semantic.icons.light,
+  fill: 'currentColor',
 });
 
-export const label = style({
-  marginLeft: vars.space.xsmall.tablet,
+globalStyle(`${checkbox}:not([data-state="unchecked"]):hover ${indicator}`, {
+  color: vars.color.semantic.icons.dark,
 });
+
+export const label = style(
+  responsiveStyle({
+    mobile: { marginLeft: vars.space.xsmall.mobile },
+    tablet: { marginLeft: vars.space.xsmall.tablet },
+  }),
+);

@@ -1,5 +1,24 @@
 import { Breakpoint } from './breakpoints';
 
+// Type for gradient definitions
+export type GradientStop = {
+  position: number;
+  color: string;
+};
+
+export type LinearGradient = {
+  gradientType: 'linear';
+  rotation: number;
+  stops: GradientStop[];
+};
+
+export type RadialGradient = {
+  gradientType: 'radial';
+  stops: GradientStop[];
+};
+
+export type Gradient = LinearGradient | RadialGradient;
+
 export type TextBreakpoint = Exclude<Breakpoint, 'desktop' | 'wide'>;
 
 type FontSizeText = {
@@ -25,15 +44,50 @@ type FontWeight =
   | 'medium'
   | 'bold'
   | 'black'
-  | 'link-normal'
-  | 'link-hover&focus'
+  | 'linkNormal'
+  | 'linkHoverFocus'
+  // added
+  // | 'link-bold'
   | 'button'
   | 'bullet'
   | 'number';
 
 type FontWeightValue = '400' | '500' | '600' | '700' | '800' | '900';
 
-export interface Tokens {
+// Gradient CSS string (already processed)
+export type GradientCSS = string;
+
+export type GradientMesh = Record<0 | 1, GradientCSS>;
+
+export type GradientTokens = {
+  semantic: {
+    structure: {
+      background: Record<'headerDark' | 'footerDarkVerticalGradient' | 'footerDarkHorizontalGradient', GradientCSS>;
+    };
+  };
+  mesh: {
+    paleAquaMesh: GradientMesh;
+  };
+  plain: Record<
+    | 'footerHorizontal'
+    | 'pink'
+    | 'redCobalt'
+    | 'header'
+    | 'turquoiseBlue'
+    | 'aquaCobalt'
+    | 'blueGreen'
+    | 'blueTransparentGradient'
+    | 'bluePinkGradient'
+    | 'turquoisePurple',
+    GradientCSS
+  >;
+};
+
+export type NullableTokens = {
+  [key: string]: string | NullableTokens | null;
+};
+
+export interface Tokens extends NullableTokens {
   typography: {
     fontFamily: string;
     fontWeight: Record<FontWeight, FontWeightValue>;
@@ -163,16 +217,33 @@ export interface Tokens {
     // NEW
     focus100: string;
     transparent100: string;
+    gradientFooterBackground: string;
+
+    coreDarkBlue: string;
+    coreMidBlue: string;
+    coreDarkAqua: string;
+    coreVibrantAqua: string;
+    coreBrightAqua: string;
+    coreMidAqua: string;
+    corePurple: string;
+    coreVibrantPurple: string;
+    corePalePurple: string;
+    coreCobalt: string;
+    coreEmerald: string;
+    coreMandarin: string;
+    coreButtercup: string;
+    corePaleAqua: string;
+    corePaleBlue: string;
 
     semantic: {
       structure: {
         background: {
-          'header-dark': string;
-          'header-light': string;
           base: string;
-          'footer-light': string;
-          'footer-dark': string;
+          headerLight: string;
+          footerDark: string;
+          footerLight: string;
           overlay: string;
+          footerDarkBackground: string;
         };
         divider: { dark: string; light: string };
       };
@@ -190,7 +261,12 @@ export interface Tokens {
             pressed: string;
             disabled: string;
           };
-          content: { normal: string; disabled: string };
+          content: {
+            normal: string;
+            disabled: string;
+            // hover has been added to content
+            hover: string;
+          };
           highlight: { focus: string };
           border: {
             normal: string;
@@ -208,7 +284,12 @@ export interface Tokens {
             pressed: string;
             disabled: string;
           };
-          content: { normal: string; disabled: string };
+          content: {
+            normal: string;
+            disabled: string;
+            // hover has been added to content
+            hover: string;
+          };
           highlight: { focus: string };
           border: {
             normal: string;
@@ -234,7 +315,7 @@ export interface Tokens {
           background: { normal: string; hover: string; focused: string };
           highlight: { focus: string };
         };
-        'text-link': { highlight: { focus: string } };
+        textLink: { highlight: { focus: string } };
       };
       notifications: {
         alert: {
@@ -277,9 +358,9 @@ export interface Tokens {
           background: {
             normal: string;
             selected: string;
-            'selected-hover': string;
+            selectedHover: string;
             unselected: string;
-            'unselected-hover': string;
+            unselectedHover: string;
             disabled: string;
           };
           border: { normal: string; hover: string; disabled: string; error: string };
@@ -309,4 +390,6 @@ export interface Tokens {
       };
     };
   };
+
+  gradients: GradientTokens;
 }

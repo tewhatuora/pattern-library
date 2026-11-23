@@ -16,12 +16,12 @@ const Space = () => {
   return (
     <Section>
       <Stack space="medium">
-        <Group label="Space" level="1" path="tokens.space" />
+        <Group label="Space" path="tokens.space" />
         <Section>
           <Stack space="medium">
             {Object.keys(tokens.space).map((name) => (
-              <Stack space="medium">
-                <Group label={name} level="2" path={`tokens.space.${name}`} />
+              <Stack key={name} space="medium">
+                <Group label={name} path={`tokens.space.${name}`} />
                 <Table>
                   {Object.keys(tokens.space[name]).map((size) => (
                     <tr key={`space.${name}.${size}`}>

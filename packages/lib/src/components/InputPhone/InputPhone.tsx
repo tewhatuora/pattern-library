@@ -1,7 +1,7 @@
 import { ForwardedRef, LegacyRef, RefObject, forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import PhoneInput, { Country } from 'react-phone-number-input';
 import { useTextField } from '@react-aria/textfield';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { InputLabel, InputLabelProps } from '../InputLabel/InputLabel';
 import { InputField, OtherInputFieldProps } from '../InputField/InputField';
@@ -16,24 +16,36 @@ import * as styles from './InputPhone.css';
 
 export const InputPhoneStyles = styles;
 
-export type InputPhoneOnChangeFn = (value: string) => void;
+export type InputPhoneOnChangeFn = (value: string | undefined) => void;
 
 export type InputPhoneProps = Omit<InputLabelProps, 'error'> &
   InputMessageProps &
   Omit<OtherInputFieldProps, 'onChange'> & {
-    /** Clearable option, shows a clear button */
+    /** Show a clear button while there is a value. Clearing calls `onChange` with `undefined`, as emptying the field does. */
     clearable?: boolean;
-    /** International phone number format */
+    /** Show and format the number in international form, with its country calling code. */
     international?: boolean;
+    /**
+     * Country selected initially, as an ISO 3166-1 alpha-2 code, e.g. `AU`. Numbers entered with a
+     * country calling code, e.g. `+61`, switch the country.
+     * @default 'NZ'
+     */
     defaultCountry?: Country;
+    /** Called with the number in E.164 format, e.g. `+64211234567`, or `undefined` when the field is emptied. */
     onChange?: InputPhoneOnChangeFn;
-    /** show asterisk when field is required (default: `true`) */
+    /**
+     * Add `*` to the label when `required`.
+     * @default true
+     */
     showRequiredAsterisk?: boolean;
   };
 
 /**
- * An input field for phone numbers.
- * @constructor
+ * A phone number field with a country selector. `value` and `onChange` use E.164 format
+ * (`+64211234567`), so keep the number in state and pass it back as `value`.
+ *
+ * @example
+ * <InputPhone label="Mobile number" name="mobile" value={mobile} onChange={setMobile} />
  */
 export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
   (
@@ -57,6 +69,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
       tertiaryLabelAs,
       tertiaryLabelIcon,
       tertiaryLabelIconPosition,
+      tertiaryLabelTooltip,
       onTertiaryLabelClick,
       onFocus,
       onChange,
@@ -84,7 +97,7 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
     );
 
     const handleClear = useCallback(() => {
-      onChange?.('');
+      onChange?.(undefined);
 
       // Focus input on clear
       internalRef.current?.focus();
@@ -104,12 +117,14 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
           tertiaryLabelAs={tertiaryLabelAs}
           tertiaryLabelIcon={tertiaryLabelIcon}
           tertiaryLabelIconPosition={tertiaryLabelIconPosition}
+          tertiaryLabelTooltip={tertiaryLabelTooltip}
           onTertiaryLabelClick={onTertiaryLabelClick}
         />
         <div className={inputStyles.field}>
           <PhoneInput
             id={id}
             {...inputProps}
+            aria-invalid={!!errorMessage || undefined}
             className={clsx(
               inputStyles.input.phone,
               styles.input,
@@ -128,7 +143,6 @@ export const InputPhone = forwardRef<HTMLInputElement, InputPhoneProps>(
             focusInputOnCountrySelection={false}
             inputComponent={InputField}
             international={international}
-            invalid={(!!errorMessage).toString()}
             name={name}
             placeholder={placeholder}
             ref={internalRef as LegacyRef<any>}
