@@ -75,7 +75,7 @@ export default {
   args: {
     to: '#',
     size: 'medium',
-    weight: 'link-normal',
+    weight: 'linkNormal',
     noIcon: false,
     showUnderline: false,
     noVisited: false,
@@ -90,7 +90,7 @@ export default {
 };
 
 const sizes = Object.keys(vars.textSize) as (keyof typeof vars.textSize)[];
-const weights = ['link-normal', 'regular', 'medium', 'bold'] as const;
+const weights = ['linkNormal', 'regular', 'medium', 'bold'] as const;
 
 export const Overview = () => (
   <VariantSections>

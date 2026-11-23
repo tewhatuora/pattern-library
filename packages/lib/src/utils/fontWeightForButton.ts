@@ -4,7 +4,7 @@
  * @param variant
  */
 function fontWeightForButton(variant: string) {
-  if (['text', 'label'].includes(variant)) return 'link-normal';
+  if (['text', 'label'].includes(variant)) return 'linkNormal';
   if (variant === 'link') return 'regular';
   return 'bold';
 }

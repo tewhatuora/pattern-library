@@ -44,14 +44,14 @@ export const header = styleVariants({
     base,
     {
       // dark header uses gradient
-      background: vars.gradient.semantic.structure.background['header-dark'],
+      background: vars.gradient.semantic.structure.background.headerDark,
       color: vars.color.semantic.text.copy.light,
     },
   ],
   light: [
     base,
     {
-      backgroundColor: vars.color.semantic.structure.background['header-light'],
+      backgroundColor: vars.color.semantic.structure.background.headerLight,
       color: vars.color.semantic.text.copy.dark,
     },
   ],

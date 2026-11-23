@@ -11,7 +11,7 @@ import { UseTextProps } from '../../hooks/typography';
 export type TextLinkButtonProps = {
   /**
    * Font weight token.
-   * @default 'link-normal'
+   * @default 'linkNormal'
    */
   weight?: UseTextProps['weight'];
   /** Underline the text at rest. Without it the underline only shows on hover. */
@@ -26,7 +26,7 @@ export type TextLinkButtonProps = {
  * <TextLinkButton onPress={() => setOpen(true)}>Show details</TextLinkButton>
  */
 export const TextLinkButton = forwardRef<HTMLButtonElement, TextLinkButtonProps>(
-  ({ weight = 'link-normal', className, showUnderline = false, ...rest }, ref) => {
+  ({ weight = 'linkNormal', className, showUnderline = false, ...rest }, ref) => {
     return (
       <Button
         className={clsx(styles.link({ underline: showUnderline }), styles.TextLinkButton, className)}

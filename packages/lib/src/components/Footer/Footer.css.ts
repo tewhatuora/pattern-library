@@ -23,11 +23,11 @@ export const footer = recipe({
   variants: {
     variant: {
       light: {
-        backgroundColor: vars.color.semantic.structure.background['footer-light'],
+        backgroundColor: vars.color.semantic.structure.background.footerLight,
         color: vars.color.semantic.text.copy.dark,
       },
       dark: {
-        backgroundColor: vars.color.semantic.structure.background['footer-dark'],
+        backgroundColor: vars.color.semantic.structure.background.footerDark,
         color: vars.color.semantic.text.copy.light,
       },
     },
@@ -54,7 +54,7 @@ export const footerInner = style([
 ]);
 
 export const footerDarkGradient = style({
-  background: `${vars.gradient.semantic.structure.background['footer-dark-vertical gradient']}, ${vars.gradient.semantic.structure.background['footer-dark-horizontal gradient']}`,
+  background: `${vars.gradient.semantic.structure.background.footerDarkVerticalGradient}, ${vars.gradient.semantic.structure.background.footerDarkHorizontalGradient}`,
 });
 
 // ##### First row #####

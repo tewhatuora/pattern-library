@@ -30,7 +30,7 @@ export type AnchorLinkProps = {
   size?: UseTextProps['size'];
   /**
    * Text weight token.
-   * @default 'link-normal'
+   * @default 'linkNormal'
    */
   weight?: UseTextProps['weight'];
   /** Hides the chevron icon shown before the text. */
@@ -53,7 +53,7 @@ export const AnchorLink = forwardRef<HTMLAnchorElement, PropsWithChildren<Anchor
     {
       to,
       size = 'medium',
-      weight = 'link-normal',
+      weight = 'linkNormal',
       noIcon = false,
       noVisited = false,
       className,

@@ -49,7 +49,7 @@ export const link = recipe({
   base: [
     responsiveStyle({
       mobile: { textDecoration: 'none' },
-      tablet: { textDecoration: vars.textDecoration['link-normal'] },
+      tablet: { textDecoration: vars.textDecoration.linkNormal },
     }),
     {
       display: 'inline-flex',
@@ -68,7 +68,7 @@ export const link = recipe({
         },
         '&:hover': {
           color: vars.color.semantic.text.links.hover,
-          textDecoration: vars.textDecoration['link-hover&focus'],
+          textDecoration: vars.textDecoration.linkHoverFocus,
         },
         [`${boldText} &`]: {
           fontWeight: 'bold',

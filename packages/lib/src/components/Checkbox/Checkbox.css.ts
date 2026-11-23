@@ -48,7 +48,7 @@ export const checkbox = style({
   backgroundColor: vars.color.semantic.inputs.fields.background.normal,
 
   ':hover': {
-    backgroundColor: vars.color.semantic.inputs.elements.background['unselected-hover'],
+    backgroundColor: vars.color.semantic.inputs.elements.background.unselectedHover,
     borderColor: vars.color.semantic.inputs.elements.border.hover,
   },
 
@@ -57,9 +57,9 @@ export const checkbox = style({
       backgroundColor: vars.color.semantic.inputs.elements.background.selected,
     },
     '&:not([data-state="unchecked"]):hover': {
-      backgroundColor: vars.color.semantic.inputs.elements.background['selected-hover'],
+      backgroundColor: vars.color.semantic.inputs.elements.background.selectedHover,
       color: vars.color.semantic.icons.dark,
-      borderColor: vars.color.semantic.inputs.elements.background['selected-hover'],
+      borderColor: vars.color.semantic.inputs.elements.background.selectedHover,
     },
 
     // The following override `&:not([data-state="unchecked"]):hover`.

@@ -6,6 +6,7 @@ import spacing from './tokens/spacing.js';
 import transitions from './tokens/transitions.js';
 import borders from './tokens/borders.js';
 import gradients from './tokens/gradients.js';
+import { camelCaseKey, renameKeys } from './utils/tokenKey.js';
 
 const parser = ({ dictionary, options }) => {
   const tokens = simplifyTokens(dictionary.tokens);
@@ -20,17 +21,21 @@ const parser = ({ dictionary, options }) => {
     ...otherTokens
   } = tokens;
 
-  return {
-    name: options.name,
-    displayName: options.displayName,
-    typography: typography(typographyTokens, options.name),
-    space: spacing(spaceTokens),
-    transitions: transitions(motionTokens),
-    border: borders(otherTokens),
-    shadows: shadows(effectTokens),
-    color: color(colorTokens),
-    gradients: gradients(gradientTokens),
-  };
+  // Every token key is camelCase, e.g. `color.semantic.structure.background.headerLight`.
+  return renameKeys(
+    {
+      name: options.name,
+      displayName: options.displayName,
+      typography: typography(typographyTokens, options.name),
+      space: spacing(spaceTokens),
+      transitions: transitions(motionTokens),
+      border: borders(otherTokens),
+      shadows: shadows(effectTokens),
+      color: color(colorTokens),
+      gradients: gradients(gradientTokens),
+    },
+    camelCaseKey,
+  );
 };
 
 export default parser;

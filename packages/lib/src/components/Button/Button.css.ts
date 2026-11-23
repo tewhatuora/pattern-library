@@ -50,19 +50,19 @@ export const buttonVariants = {
         width: 'auto',
         height: 'auto',
         color: vars.color.semantic.text.links.active,
-        textDecoration: vars.textDecoration['link-normal'],
+        textDecoration: vars.textDecoration.linkNormal,
         borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
         borderWidth: 0,
         ':hover': {
           color: vars.color.semantic.text.links.hover,
-          textDecoration: vars.textDecoration['link-hover&focus'],
+          textDecoration: vars.textDecoration.linkHoverFocus,
         },
         selectors: {
           '&[disabled], &[disabled]:hover': {
             color: vars.color.semantic.text.copy.disabled,
-            textDecoration: vars.textDecoration['link-normal'],
+            textDecoration: vars.textDecoration.linkNormal,
           },
-          ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
+          ...getFocusSelectors(vars.color.semantic.button.textLink.highlight.focus),
         },
       },
       responsiveStyle({

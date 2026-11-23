@@ -38,7 +38,7 @@ export const radioButton = style([
     selectors: {
       '&:hover': {
         borderColor: vars.color.semantic.inputs.elements.border.hover,
-        backgroundColor: vars.color.semantic.inputs.elements.background['unselected-hover'],
+        backgroundColor: vars.color.semantic.inputs.elements.background.unselectedHover,
       },
       '&[disabled]': {
         borderColor: vars.color.semantic.inputs.elements.border.disabled,
@@ -72,7 +72,7 @@ export const indicator = style([
     transition: 'backgroundColor 0.3s ease-out',
     selectors: {
       '&:hover': {
-        backgroundColor: vars.color.semantic.inputs.elements.background['selected-hover'],
+        backgroundColor: vars.color.semantic.inputs.elements.background.selectedHover,
       },
       '&:after': {
         content: '""',

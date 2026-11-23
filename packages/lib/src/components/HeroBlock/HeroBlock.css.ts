@@ -102,8 +102,8 @@ export const paleBlueGradient = style({
   position: 'absolute',
   inset: 0,
   backgroundBlendMode: 'color-burn',
-  background: `${vars.gradient.mesh['pale aqua mesh'][0]},
-               ${vars.gradient.mesh['pale aqua mesh'][1]}`,
+  background: `${vars.gradient.mesh.paleAquaMesh[0]},
+               ${vars.gradient.mesh.paleAquaMesh[1]}`,
 });
 
 export const headingContainer = style([

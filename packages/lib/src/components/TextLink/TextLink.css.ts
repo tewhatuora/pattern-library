@@ -30,7 +30,7 @@ export const link = recipe({
   base: {
     display: 'inline',
     color: vars.color.semantic.text.links.active,
-    textDecoration: vars.textDecoration['link-normal'],
+    textDecoration: vars.textDecoration.linkNormal,
     cursor: 'pointer',
     transition: 'color 0.3s ease-out',
     borderRadius: calc.divide(vars.borderRadius.topLeft.button, 2),
@@ -42,7 +42,7 @@ export const link = recipe({
       },
       '&:hover': {
         color: vars.color.semantic.text.links.hover,
-        textDecoration: vars.textDecoration['link-hover&focus'],
+        textDecoration: vars.textDecoration.linkHoverFocus,
       },
       [`${boldText} &`]: {
         fontWeight: 'bold',

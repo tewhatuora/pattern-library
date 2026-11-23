@@ -61,7 +61,7 @@ export default {
     as: 'button',
     iconPosition: 'right',
     children: 'Text Link',
-    weight: 'link-normal',
+    weight: 'linkNormal',
     showUnderline: false,
   },
   parameters: {
@@ -71,7 +71,7 @@ export default {
   },
 };
 
-const weights = ['link-normal', 'regular', 'medium', 'bold'] as const;
+const weights = ['linkNormal', 'regular', 'medium', 'bold'] as const;
 
 export const Overview = () => (
   <VariantSections>

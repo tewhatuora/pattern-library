@@ -16,12 +16,18 @@
 3. **Update your fonts.** `neutral` now uses Poppins (was Fira Sans), and `webSelfService` uses Public Sans (was Poppins). The [README](./README.md#include-fonts) has the links.
 4. **React 18 or 19** is supported.
 5. **Tests:** components need a `ThemeProvider`, and jsdom needs `matchMedia` (with `addEventListener`) and `ResizeObserver` stubs. See [Testing](./README.md#testing).
-6. **Custom theme CSS:** `contract.color.semantic.structure.background['header-dark']` moved to `contract.gradient.semantic.structure.background['header-dark']`, and is now a gradient. If you build your own `Theme` object, the `Tokens` type has new required keys (see `@healthnz/pattern-library-themes` types).
+6. **Custom theme CSS:** every token key is now camelCase, so the hyphenated 1.x keys are renamed (e.g. `vars.color.semantic.structure.background['header-light']` is now `.headerLight`):
+   - `color.semantic.structure.background`: `header-light` → `headerLight`, `footer-light` → `footerLight`, `footer-dark` → `footerDark`
+   - `color.semantic.button`: `text-link` → `textLink`
+   - `color.semantic.inputs.elements.background`: `selected-hover` → `selectedHover`, `unselected-hover` → `unselectedHover`
+   - `textWeight` and `textDecoration`: `link-normal` → `linkNormal`, `link-hover&focus` → `linkHoverFocus`
+
+   `color.semantic.structure.background['header-dark']` also moved to `gradient.semantic.structure.background.headerDark`, and is now a gradient. If you build your own `Theme` object, the `Tokens` type has new required keys (see `@healthnz/pattern-library-themes` types).
 7. The library no longer brings in `lodash`, `rooks`, `usehooks-ts`, `uuid`, `focus-visible`, `dedent` or `react-keyed-flatten-children`. Install them yourself if your app relied on getting them through the library.
 
 ## Breaking changes
 
-Props and variants that were removed:
+Props and variants that were removed or renamed:
 
 | Component           | Change                                                                     | What to do                              |
 | ------------------- | -------------------------------------------------------------------------- | --------------------------------------- |
@@ -32,6 +38,7 @@ Props and variants that were removed:
 | `Badge`, `Banner`   | `disabled` and `type` removed from the props (they render a `div`/`aside`) | Remove them                             |
 | `Header.MenuButton` | `variant` is now required                                                  | Pass the same `variant` as the `Header` |
 | `ImageBlock`        | `src` is `string` only (icon names were never rendered as icons)           | Pass an image URL                       |
+| `TextLink`, `AnchorLink`, `TextLinkButton` | `weight="link-normal"` is now `weight="linkNormal"` | Rename the value |
 
 Behaviour that changed:
 

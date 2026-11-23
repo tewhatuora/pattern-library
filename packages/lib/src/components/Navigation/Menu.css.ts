@@ -39,13 +39,13 @@ const navigationMenuContainerBase = style([
 export const variants = styleVariants({
   light: [
     {
-      backgroundColor: vars.color.semantic.structure.background['header-light'],
+      backgroundColor: vars.color.semantic.structure.background.headerLight,
       color: vars.color.semantic.text.copy.dark,
     },
   ],
   dark: [
     {
-      background: vars.gradient.semantic.structure.background['header-dark'],
+      background: vars.gradient.semantic.structure.background.headerDark,
       color: vars.color.semantic.text.copy.light,
     },
   ],

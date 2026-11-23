@@ -2,7 +2,7 @@
 // Accepts gradient design tokens (already simplified)
 // Recursively converts gradient definition objects to CSS-compatible strings
 // while preserving the token structure so components can access
-// e.g. vars.gradients.semantic.structure.background['header-dark']
+// e.g. vars.gradient.semantic.structure.background.headerDark
 
 const gradients = (tokens) => {
   // Helper to determine whether a value is a gradient definition

@@ -35,7 +35,7 @@ export type TextLinkProps = {
   size?: UseTextProps['size'];
   /**
    * Font weight token.
-   * @default 'link-normal'
+   * @default 'linkNormal'
    */
   weight?: UseTextProps['weight'];
   /** Don't style visited links differently. */
@@ -65,7 +65,7 @@ export const TextLink = forwardRef<HTMLAnchorElement, PropsWithChildren<TextLink
     {
       to,
       size = 'medium',
-      weight = 'link-normal',
+      weight = 'linkNormal',
       icon,
       iconPosition = 'right',
       noVisited = false,

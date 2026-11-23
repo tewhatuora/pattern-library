@@ -44,8 +44,8 @@ type FontWeight =
   | 'medium'
   | 'bold'
   | 'black'
-  | 'link-normal'
-  | 'link-hover&focus'
+  | 'linkNormal'
+  | 'linkHoverFocus'
   // added
   // | 'link-bold'
   | 'button'
@@ -62,26 +62,23 @@ export type GradientMesh = Record<0 | 1, GradientCSS>;
 export type GradientTokens = {
   semantic: {
     structure: {
-      background: Record<
-        'header-dark' | 'footer-dark-vertical gradient' | 'footer-dark-horizontal gradient',
-        GradientCSS
-      >;
+      background: Record<'headerDark' | 'footerDarkVerticalGradient' | 'footerDarkHorizontalGradient', GradientCSS>;
     };
   };
   mesh: {
-    'pale aqua mesh': GradientMesh;
+    paleAquaMesh: GradientMesh;
   };
   plain: Record<
-    | 'footer horizontal'
+    | 'footerHorizontal'
     | 'pink'
-    | 'red-colbolt'
+    | 'redCobalt'
     | 'header'
-    | 'turquoise-blue'
-    | 'aqua-cobolt'
-    | 'blue-green'
-    | 'blue-transparent gradient'
-    | 'blue-pink gradient'
-    | 'turquoise-purple',
+    | 'turquoiseBlue'
+    | 'aquaCobalt'
+    | 'blueGreen'
+    | 'blueTransparentGradient'
+    | 'bluePinkGradient'
+    | 'turquoisePurple',
     GradientCSS
   >;
 };
@@ -220,33 +217,33 @@ export interface Tokens extends NullableTokens {
     // NEW
     focus100: string;
     transparent100: string;
-    'gradientfooter background': string;
+    gradientFooterBackground: string;
 
-    'coredark blue': string;
-    'coremid blue': string;
-    'coredark aqua': string;
-    'corevibrant aqua': string;
-    'corebright aqua': string;
-    'coremid aqua': string;
-    corepurple: string;
-    'corevibrant purple': string;
-    'corepale purple': string;
-    corecobalt: string;
-    coreemerald: string;
-    coremandarin: string;
-    corebuttercup: string;
-    'corepale aqua': string;
-    'corepale blue': string;
+    coreDarkBlue: string;
+    coreMidBlue: string;
+    coreDarkAqua: string;
+    coreVibrantAqua: string;
+    coreBrightAqua: string;
+    coreMidAqua: string;
+    corePurple: string;
+    coreVibrantPurple: string;
+    corePalePurple: string;
+    coreCobalt: string;
+    coreEmerald: string;
+    coreMandarin: string;
+    coreButtercup: string;
+    corePaleAqua: string;
+    corePaleBlue: string;
 
     semantic: {
       structure: {
         background: {
           base: string;
-          'header-light': string;
-          'footer-dark': string;
-          'footer-light': string;
+          headerLight: string;
+          footerDark: string;
+          footerLight: string;
           overlay: string;
-          'footer-dark-background': string;
+          footerDarkBackground: string;
         };
         divider: { dark: string; light: string };
       };
@@ -318,7 +315,7 @@ export interface Tokens extends NullableTokens {
           background: { normal: string; hover: string; focused: string };
           highlight: { focus: string };
         };
-        'text-link': { highlight: { focus: string } };
+        textLink: { highlight: { focus: string } };
       };
       notifications: {
         alert: {
@@ -361,9 +358,9 @@ export interface Tokens extends NullableTokens {
           background: {
             normal: string;
             selected: string;
-            'selected-hover': string;
+            selectedHover: string;
             unselected: string;
-            'unselected-hover': string;
+            unselectedHover: string;
             disabled: string;
           };
           border: { normal: string; hover: string; disabled: string; error: string };

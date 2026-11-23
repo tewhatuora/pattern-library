@@ -217,11 +217,11 @@ export const link = style({
   selectors: {
     '&:hover, &:focus': {
       color: vars.color.semantic.text.links.hover,
-      fontWeight: vars.textWeight['link-hover&focus'],
+      fontWeight: vars.textWeight.linkHoverFocus,
       textDecoration: 'underline',
     },
 
-    ...getFocusSelectors(vars.color.semantic.button['text-link'].highlight.focus),
+    ...getFocusSelectors(vars.color.semantic.button.textLink.highlight.focus),
   },
 });
 

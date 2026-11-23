@@ -26,7 +26,17 @@ Available themes: `neutral` and `webSelfService`.
 1. Export the tokens from Figma with the [Design Tokens plugin](https://github.com/lukasoppermann/design-tokens).
 2. Replace the `.json` file in `input/themes/<themeName>/`. A new folder adds a new theme, exported by the folder name.
 3. Run `yarn build` in this package to check the output. It runs `scripts/generate.js` (Style Dictionary) and then Vite.
-4. Release a new version as described in the [repository README](../../README.md#releasing).
+4. If tokens were added, renamed or removed, update `support/web/tokenType.ts` to match. The type check fails until it does.
+5. Release a new version as described in the [repository README](../../README.md#releasing).
+
+### Token names
+
+Every token key is camelCase, so all tokens can be read with dot access. Any non-alphanumeric character in a Figma name is a word break:
+
+- **Palette colours** join group and name: `primary / 100` → `color.primary100`, `core / dark blue` → `color.coreDarkBlue`.
+- **Nested tokens** keep their structure: `footer-dark-vertical gradient` → `gradient.semantic.structure.background.footerDarkVerticalGradient`, `link-hover&focus` → `textDecoration.linkHoverFocus`.
+
+Misspelt Figma names are corrected in `scripts/utils/tokenKey.js` (`NAME_FIXES`). Remove an entry once the name is fixed in Figma.
 
 ## Configuration
 

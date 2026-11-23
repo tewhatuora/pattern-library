@@ -73,7 +73,7 @@ export const tertiaryLabelDisabled = style({
   selectors: {
     '&&, &&:hover': {
       color: vars.color.semantic.text.copy.disabled,
-      textDecoration: vars.textDecoration['link-normal'],
+      textDecoration: vars.textDecoration.linkNormal,
       cursor: 'not-allowed',
     },
   },
